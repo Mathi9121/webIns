@@ -1,0 +1,3 @@
+ocim_forma_gest_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: OCIMFormaGestBundle:Default:index }
