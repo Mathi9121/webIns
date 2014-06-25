@@ -1,4 +1,0 @@
-ocim_forma_gest:
-    resource: "@OCIMFormaGestBundle/Resources/config/routing.yml"
-    prefix:   /
-
