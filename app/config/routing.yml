@@ -1,0 +1,25 @@
+ocim_export:
+    resource: "@OCIMExportBundle/Resources/config/routing.yml"
+    prefix:   /
+
+ocim_user:
+    resource: "@OCIMUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+ocim_formations:
+    resource: "@OCIMFormationsBundle/Resources/config/routing.yml"
+    prefix:   /
+
+connexion:
+    pattern: /connexion
+    defaults: { _controller: OCIMUserBundle:Admin:connexion }
+
+check:
+    pattern: /check
+
+deconnexion:
+    pattern: /deconnexion
+
+home:
+    pattern: /
+    defaults: { _controller: OCIMFormationsBundle:Default:index }
