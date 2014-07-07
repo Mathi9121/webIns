@@ -259,4 +259,14 @@ class Formation
     {
         return $this->formules;
     }
+	
+	/**
+     * To string
+     *
+     * @return String
+     */
+    public function __toString()
+    {
+        return $this->getIntitule()." | ".$this->getLieu();
+    }
 }

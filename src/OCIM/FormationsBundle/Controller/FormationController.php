@@ -70,7 +70,7 @@ class FormationController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Créer la formation', 'attr' => array('class'=>'btn')));
 
         return $form;
     }
@@ -151,7 +151,7 @@ class FormationController extends Controller
 			'attr'	 => array('class' => 'forms'),
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Mettre à jour', 'attr' => array('class'=>'btn')));
 
         return $form;
     }
@@ -229,7 +229,7 @@ class FormationController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('formation_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Supprimer', 'attr' => array('class'=>'btn')))
             ->getForm()
         ;
     }

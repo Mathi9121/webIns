@@ -18,39 +18,47 @@ class FormationType extends AbstractType
 			->add('intitule', null, array(
 				'required' => true,
 				'label'  => 'Intitulé de la formation',
+				'attr' => array('class'=>'width-100')
 				))
             ->add('lieu', null, array(
 				'required' => true,
 				'label'  => 'Lieu',
+				'attr' => array('class'=>'width-100')
 				))
             ->add('dateDebut', 'date', array(
 				'required' => true,
 				'widget' => 'single_text',
 				'label'  => 'Date de début',
-				'attr' => array('placeholder'=>'AAAA-MM-JJ')
-				))
+				'attr' => array(
+					'placeholder'=>'AAAA-MM-JJ',
+					'size' => '10',
+					'class' => 'width-100'
+				)))
             ->add('dateFin', 'date', array(
 				'required' => true,
 				'widget' => 'single_text',
 				'label'  => 'Date de fin',
-				'attr' => array('placeholder'=>'AAAA-MM-JJ')
+				'attr' => array('placeholder'=>'AAAA-MM-JJ','size' => '10', 'max-length'=>'10', 'class'=>'width-100')
 				))
             ->add('dateText', null, array(
 				'required' => true,
 				'label'  => 'Date au format texte',
+				'attr' => array('class'=>'width-100')
 				))
-            ->add('nbHeures', 'number', array(
+            ->add('nbHeures', null, array(
 				'required' => true,
 				'label'  => 'Nombre d\'heures',
-				'attr' => array('step' => '0.5', 'min'=> '0'),
+				'attr' => array('step' => '0.5', 'min'=> '0', 'size'=>'6', 'class' => 'width-100'),
 				))
             ->add('type', null, array(
 				'required' => true,
 				'label'  => 'Type de formation',
+				'attr' => array('class'=>'width-100')
 				))
             ->add('formules', null, array(
 				'required' => false,
 				'label'  => 'Formules liées à la formation',
+				'attr' => array('class'=>'width-100')
 				))
         ;
     }

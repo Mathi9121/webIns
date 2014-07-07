@@ -2,16 +2,50 @@
 {% form_theme edit_form '::form.html.twig' %}
 
 {% block body %}
-    <h1>Formation edit</h1>
+<hgroup>
+    <h1>Formation</h1>
+    <h1 class="subheading">Modification</h1>
+	<hr/>
+</hgroup>
+<form action="{{ path('formation_update', {'id' : entity.id}) }}" method="post" class="forms units-row" {{ form_enctype(edit_form) }}>
 
-    {{ form(edit_form) }}
+<div class="units-row end">
+	<div class="unit-75">{{ form_row(edit_form.intitule) }}</div>
+	<div class="unit-25">{{ form_row(edit_form.type) }}</div>
+</div>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('formation') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+<div class="units-row end">
+	<div class="unit-33">
+		<div class="units-row end">
+			<div>{{ form_row(edit_form.lieu) }}</div>
+		</div>
+		<div class="units-row end">
+			<div>{{ form_row(edit_form.nbHeures) }}</div>
+		</div>
+	</div>
+	<div class="unit-66">
+		<div class="units-row end">
+			<div class="unit-50">{{ form_row(edit_form.dateDebut) }}</div>
+			<div class="unit-50">{{ form_row(edit_form.dateFin) }}</div>
+		</div>
+		<div class="units-row end">
+			<div class="unit-100">{{ form_row(edit_form.dateText) }}</div>
+		</div>
+	</div>
+</div>
+
+<div class="units-row end">
+	<div class="unit-100">{{ form_row(edit_form.formules) }}</div>
+</div>
+
+
+{{ form_rest(edit_form) }}
+{{ form_row(edit_form.submit) }}
+
+</form>
+
+<a href="{{ path('formation') }}">
+Retour à la liste des formations
+</a>
+{{ form(delete_form) }}
 {% endblock %}
