@@ -168,11 +168,11 @@ class User implements UserInterface
     }
 
 	public function getUsername(){
-		return $this->getMail();
+		return $this->getLogin();
 	}
 
 	public function getSalt(){
-		return null;
+		return "";
 	}
 
 	public function getRoles(){
@@ -182,4 +182,33 @@ class User implements UserInterface
 	public function eraseCredentials(){
 	
 	}
+	
+    /**
+     * @var string
+     */
+    private $login;
+
+
+    /**
+     * Set login
+     *
+     * @param string $login
+     * @return User
+     */
+    public function setLogin($login)
+    {
+        $this->login = $login;
+
+        return $this;
+    }
+
+    /**
+     * Get login
+     *
+     * @return string 
+     */
+    public function getLogin()
+    {
+        return $this->login;
+    }
 }

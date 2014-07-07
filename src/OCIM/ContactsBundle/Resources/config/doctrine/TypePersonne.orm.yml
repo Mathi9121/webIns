@@ -1,0 +1,18 @@
+OCIM\ContactsBundle\Entity\TypePersonne:
+    type: entity
+    oneToMany:
+      personnes:
+        targetEntity: Personne
+        mappedBy: type
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        type:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }

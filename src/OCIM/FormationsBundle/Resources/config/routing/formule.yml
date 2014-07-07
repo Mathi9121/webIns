@@ -1,0 +1,30 @@
+formule:
+    path:     /
+    defaults: { _controller: "OCIMFormationsBundle:Formule:index" }
+
+formule_show:
+    path:     /{id}/show
+    defaults: { _controller: "OCIMFormationsBundle:Formule:show" }
+
+formule_new:
+    path:     /new
+    defaults: { _controller: "OCIMFormationsBundle:Formule:new" }
+
+formule_create:
+    path:     /create
+    defaults: { _controller: "OCIMFormationsBundle:Formule:create" }
+    requirements: { _method: post }
+
+formule_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "OCIMFormationsBundle:Formule:edit" }
+
+formule_update:
+    path:     /{id}/update
+    defaults: { _controller: "OCIMFormationsBundle:Formule:update" }
+    requirements: { _method: post|put }
+
+formule_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "OCIMFormationsBundle:Formule:delete" }
+    requirements: { _method: post|delete }

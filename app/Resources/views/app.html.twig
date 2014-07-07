@@ -10,7 +10,28 @@
 		{% endstylesheets %}	
 </head>
 <body>
+
+{{include('::appHeader.html.twig')}}
+
+<!-- MAIN -->
+<div class="units-row">
+	<div role="main" id="content" class="unit-centered unit-70">
 		{% block body %}{% endblock %}
+	</div>
+</div>
+
+
+<!-- FOOTER -->
+<footer id="footer">
+</footer>
+
+
+{% block javascripts %}
+    {% javascripts '../app/Resources/Public/js/*' %}
+		<script type="text/javascript" src="{{asset_url}}"></script>
+	{% endjavascripts %}
+{% endblock  %}
+
 </body>
 </html>
 

@@ -1,3 +1,7 @@
+ocim_contacts:
+    resource: "@OCIMContactsBundle/Resources/config/routing.yml"
+    prefix:   /
+
 ocim_export:
     resource: "@OCIMExportBundle/Resources/config/routing.yml"
     prefix:   /
@@ -9,6 +13,14 @@ ocim_user:
 ocim_formations:
     resource: "@OCIMFormationsBundle/Resources/config/routing.yml"
     prefix:   /
+
+OCIMFormationsBundle_formation:
+    resource: "@OCIMFormationsBundle/Resources/config/routing/formation.yml"
+    prefix:   /formation
+
+OCIMFormationsBundle_formule:
+    resource: "@OCIMFormationsBundle/Resources/config/routing/formule.yml"
+    prefix:   /formule
 
 connexion:
     pattern: /connexion

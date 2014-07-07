@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new OCIM\FormationsBundle\OCIMFormationsBundle(),
             new OCIM\UserBundle\OCIMUserBundle(),
             new OCIM\ExportBundle\OCIMExportBundle(),
+            new OCIM\ContactsBundle\OCIMContactsBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

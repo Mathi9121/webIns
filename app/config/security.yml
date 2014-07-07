@@ -1,7 +1,9 @@
 security:
     encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
-        OCIM\UserBundle\Entity\User: plaintext
+        OCIM\UserBundle\Entity\User:
+            algorithm: sha512
+            encode_as_base64: true
+            iterations: 1
 
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
@@ -9,7 +11,7 @@ security:
 
     providers:
         main:
-            entity: {class: OCIM\UserBundle\Entity\User, property: mail}
+            entity: {class: OCIM\UserBundle\Entity\User, property: login}
 
     firewalls:
         dev:

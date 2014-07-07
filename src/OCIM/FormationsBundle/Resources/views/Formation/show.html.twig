@@ -1,0 +1,52 @@
+{% extends '::app.html.twig' %}
+
+{% block body -%}
+    <h1>Formation</h1>
+
+	<table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Intitule</th>
+                <td>{{ entity.intitule }}</td>
+            </tr>
+            <tr>
+                <th>Lieu</th>
+                <td>{{ entity.lieu }}</td>
+            </tr>
+            <tr>
+                <th>Datedebut</th>
+                <td>{{ entity.dateDebut|date('d-m-Y') }}</td>
+            </tr>
+            <tr>
+                <th>Datefin</th>
+                <td>{{ entity.dateFin|date('d-m-Y') }}</td>
+            </tr>
+            <tr>
+                <th>Datetext</th>
+                <td>{{ entity.dateText }}</td>
+            </tr>
+            <tr>
+                <th>Nbheures</th>
+                <td>{{ entity.nbHeures }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('formation') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('formation_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

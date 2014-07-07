@@ -1,9 +1,28 @@
 {% extends '::base.html.twig' %}
-
 {% block body %}
-	<form name="" action="{{ path('check') }}" method="post">
-		<label for="login">Email :</label><input type="" value="" id="login" name="_username"/>
-		<label for="password">Mot de passe :</label><input type="password" id="password" name="_password"/>
-		<input type="submit" value="Se connecter"/>
-	</form>
-{% endblock  %}
+
+<div style="width: 350px; margin:50px auto">
+
+<img src="../img/logo-ocim.png" alt="OCIM - Formations" style="display:block;text-align:center; margin:25px auto 0;"/>
+
+<hgroup>
+	<h2 class="text-centered">Formations</h2>
+	<h2 class="text-centered subheading">Gestion des inscriptions</h2>
+</hgroup>
+
+<form style="margin-top: 30px" method="post" action="{{ path('check') }}" name="connexion" class="forms">
+{% if error  %}
+	<div class="text-centered error">{{error.message}}</div>
+{% endif  %}
+    <label>
+        <input type="text" value="{{last_username}}"  name="_username" placeholder="Login" class="width-100" />
+    </label>
+    <label>
+        <input type="password" name="_password" placeholder="Mot de passe" class="width-100" />
+    </label>
+    <p> 
+        <input type="submit" value="Se connecter"  class="btn btn-green width-100"/>
+    </p>
+</form>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+<div class="units-row">
+<header class="group" id="header">
+	<nav class="navbar navbar-left">
+		<ul>
+			<li>
+				<a href="{{path('home')}}">
+					<img src="{{ asset('../app/Resources/Public/img/logo-ocim.png') }}" class="logo" alt="OCIM"/>
+				</a>
+			</li>
+			<li><a href="{{path('formation')}}">Formations</a></li>
+			<li><a href="{{path('formule')}}">Formules</a></li>
+			<li><a href="#">Candidats</a></li>
+			<li><a href="#">Export et Gabarits</a></li>
+			<li><a href="#">Rechercher</a></li>
+		</ul>
+	</nav>
+	<nav class="navbar navbar-right">
+		<ul>
+			<li><a href="#">{{app.user.prenom |capitalize}} {{app.user.nom |capitalize}}</a></li>
+		</ul>
+	</nav>
+</header>
+</div>

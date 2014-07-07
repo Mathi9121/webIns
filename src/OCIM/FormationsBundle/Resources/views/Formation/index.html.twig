@@ -1,0 +1,51 @@
+{% extends '::app.html.twig' %}
+
+{% block body -%}
+    <h1>Liste des formations</h1>
+
+    <table class="table_striped width-100">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Intitule</th>
+                <th>Lieu</th>
+                <th>Datedebut</th>
+                <th>Datefin</th>
+                <th>Datetext</th>
+                <th>Nbheures</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('formation_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.intitule }}</td>
+                <td>{{ entity.lieu }}</td>
+                <td>{% if entity.dateDebut %}{{ entity.dateDebut|date('d-m-Y') }}{% endif %}</td>
+                <td>{% if entity.dateFin %}{{ entity.dateFin|date('d-m-Y') }}{% endif %}</td>
+                <td>{{ entity.dateText }}</td>
+                <td>{{ entity.nbHeures }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('formation_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('formation_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+					<li>
+                        <a href="{{ path('formation_delete', { 'id': entity.id }) }}">Supprimer</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+            <a href="{{ path('formation_new') }}" class="btn">
+                Nouvelle formation
+            </a>
+
+    {% endblock %}
