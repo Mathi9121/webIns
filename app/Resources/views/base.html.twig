@@ -10,6 +10,11 @@
 		{% endstylesheets %}	
 </head>
 <body>
+		<div style="width: 350px; margin:50px auto">
+		{% image '../app/Resources/Public/img/logo-ocim.png' %}
+			<img src="{{ asset_url }}" alt="OCIM - Formations" style="display:block;text-align:center; margin:25px auto 0;"/>
+		{% endimage %}
+		
 		{% block body %}{% endblock %}
 </body>
 </html>

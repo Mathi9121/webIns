@@ -12,12 +12,6 @@ use OCIM\FormationsBundle\Entity\TypeFormation;
 class Formation
 {
 	
-	protected $formules;
-	
-	public function __construct(){
-		 $this->formules = new \Doctrine\Common\Collections\ArrayCollection();
-	}
-	
 	protected $type;
 	
     /**
@@ -227,15 +221,38 @@ class Formation
         return $this->type;
     }
 
+
+	/**
+     * To string
+     *
+     * @return String
+     */
+    public function __toString()
+    {
+        return $this->getIntitule()." | ".$this->getLieu();
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $formules;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->formules = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
     /**
      * Add formules
      *
-     * @param \OCIM\FormationsBundle\Entity\Formule $formules
+     * @param \OCIM\FormationsBundle\Entity\formationFormule $formules
      * @return Formation
      */
-    public function addFormule(\OCIM\FormationsBundle\Entity\Formule $formule)
+    public function addFormule(\OCIM\FormationsBundle\Entity\formationFormule $formules)
     {
-        $this->formules[] = $formule;
+        $this->formules[] = $formules;
 
         return $this;
     }
@@ -243,9 +260,9 @@ class Formation
     /**
      * Remove formules
      *
-     * @param \OCIM\FormationsBundle\Entity\Formule $formules
+     * @param \OCIM\FormationsBundle\Entity\formationFormule $formules
      */
-    public function removeFormule(\OCIM\FormationsBundle\Entity\Formule $formules)
+    public function removeFormule(\OCIM\FormationsBundle\Entity\formationFormule $formules)
     {
         $this->formules->removeElement($formules);
     }
@@ -258,15 +275,5 @@ class Formation
     public function getFormules()
     {
         return $this->formules;
-    }
-	
-	/**
-     * To string
-     *
-     * @return String
-     */
-    public function __toString()
-    {
-        return $this->getIntitule()." | ".$this->getLieu();
     }
 }

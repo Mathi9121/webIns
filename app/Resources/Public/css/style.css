@@ -5,6 +5,11 @@ header img.logo{
 header nav ul li a{
 	height: 50px; line-height: 50px;
 }
+header nav ul li a span.oi{
+	display: inline;
+}
+
+table tr td{vertical-align:middle}
 /*********CONTENT*******/
 
 /*********FOOTER*******/

@@ -248,4 +248,60 @@ class Personne
     {
         return $this->type;
     }
+    /**
+     * @var string
+     */
+    private $fax;
+
+
+    /**
+     * Set fax
+     *
+     * @param string $fax
+     * @return Personne
+     */
+    public function setFax($fax)
+    {
+        $this->fax = $fax;
+
+        return $this;
+    }
+
+    /**
+     * Get fax
+     *
+     * @return string 
+     */
+    public function getFax()
+    {
+        return $this->fax;
+    }
+    /**
+     * @var \OCIM\ContactsBundle\Entity\Adresse
+     */
+    private $adresse;
+
+
+    /**
+     * Set adresse
+     *
+     * @param \OCIM\ContactsBundle\Entity\Adresse $adresse
+     * @return Personne
+     */
+    public function setAdresse(\OCIM\ContactsBundle\Entity\Adresse $adresse = null)
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    /**
+     * Get adresse
+     *
+     * @return \OCIM\ContactsBundle\Entity\Adresse 
+     */
+    public function getAdresse()
+    {
+        return $this->adresse;
+    }
 }

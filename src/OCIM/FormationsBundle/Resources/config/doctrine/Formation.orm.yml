@@ -5,12 +5,13 @@ OCIM\FormationsBundle\Entity\Formation:
         targetEntity: TypeFormation
         inversedBy: formations
         joinColumn:
-          name: type_id
-          referencedColumnName: id
-    manyToMany:
-      formules:
-        targetEntity: Formule
-        mappedBy: formations
+            name: type_id
+            referencedColumnName: id
+    oneToMany:
+        formules:
+            targetEntity: formationFormule
+            mappedBy: formations
+            cascade: [persist]
     table: null
     repositoryClass: OCIM\FormationsBundle\Entity\FormationRepository
     id:

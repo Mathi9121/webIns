@@ -16,12 +16,6 @@ class Formule
      */
     private $id;
 	
-	protected $formations;
-	
-	public function __construct(){
-		$this->formations = new \Doctrine\Common\Collections\ArrayCollection();
-	}
-	
     /**
      * @var string
      */
@@ -172,14 +166,31 @@ class Formule
     {
         return $this->nuit;
     }
+	
+	public function __toString()
+	{
+		return $this->getTarif()."€ | ".$this->getDescription();
+	}
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $formations;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->formations = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Add formations
      *
-     * @param \OCIM\FormationsBundle\Entity\Formation $formations
+     * @param \OCIM\FormationsBundle\Entity\formationFormule $formations
      * @return Formule
      */
-    public function addFormation(\OCIM\FormationsBundle\Entity\Formation $formations)
+    public function addFormation(\OCIM\FormationsBundle\Entity\formationFormule $formations)
     {
         $this->formations[] = $formations;
 
@@ -189,9 +200,9 @@ class Formule
     /**
      * Remove formations
      *
-     * @param \OCIM\FormationsBundle\Entity\Formation $formations
+     * @param \OCIM\FormationsBundle\Entity\formationFormule $formations
      */
-    public function removeFormation(\OCIM\FormationsBundle\Entity\Formation $formations)
+    public function removeFormation(\OCIM\FormationsBundle\Entity\formationFormule $formations)
     {
         $this->formations->removeElement($formations);
     }
@@ -205,9 +216,4 @@ class Formule
     {
         return $this->formations;
     }
-	
-	public function __toString()
-	{
-		return $this->getTarif()."€ | ".$this->getDescription();
-	}
 }

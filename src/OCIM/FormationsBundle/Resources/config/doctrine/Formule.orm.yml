@@ -1,18 +1,11 @@
 OCIM\FormationsBundle\Entity\Formule:
     type: entity
-    manyToMany:
-      formations:
-        targetEntity: Formation
-        inversedBy: formules
-        joinTable:
-          name: formation_formule
-          joinColumns:
-            formule_id:
-              referencedColumnName: id
-          inverseJoinColumns:
-            formation_id:
-              referencedColumnName: id
     table: null
+    oneToMany:
+        formations:
+            targetEntity: formationFormule
+            mappedBy: formules
+            cascade: [persist]
     repositoryClass: OCIM\FormationsBundle\Entity\FormuleRepository
     id:
         id:

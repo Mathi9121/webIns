@@ -52,4 +52,49 @@ class TypePersonne
     {
         return $this->type;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $personnes;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->personnes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add personnes
+     *
+     * @param \OCIM\ContactsBundle\Entity\Personne $personnes
+     * @return TypePersonne
+     */
+    public function addPersonne(\OCIM\ContactsBundle\Entity\Personne $personnes)
+    {
+        $this->personnes[] = $personnes;
+
+        return $this;
+    }
+
+    /**
+     * Remove personnes
+     *
+     * @param \OCIM\ContactsBundle\Entity\Personne $personnes
+     */
+    public function removePersonne(\OCIM\ContactsBundle\Entity\Personne $personnes)
+    {
+        $this->personnes->removeElement($personnes);
+    }
+
+    /**
+     * Get personnes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPersonnes()
+    {
+        return $this->personnes;
+    }
 }

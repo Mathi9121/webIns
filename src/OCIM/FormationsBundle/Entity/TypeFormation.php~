@@ -98,4 +98,8 @@ class TypeFormation
     {
         return $this->formations;
     }
+	public function __toString()
+	{
+		return $this->getType();
+	}
 }

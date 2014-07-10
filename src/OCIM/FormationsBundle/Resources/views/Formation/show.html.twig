@@ -1,52 +1,86 @@
 {% extends '::app.html.twig' %}
 
 {% block body -%}
-    <h1>Formation</h1>
 
-	<table class="record_properties">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>Intitule</th>
-                <td>{{ entity.intitule }}</td>
-            </tr>
-            <tr>
-                <th>Lieu</th>
-                <td>{{ entity.lieu }}</td>
-            </tr>
-            <tr>
-                <th>Datedebut</th>
-                <td>{{ entity.dateDebut|date('d-m-Y') }}</td>
-            </tr>
-            <tr>
-                <th>Datefin</th>
-                <td>{{ entity.dateFin|date('d-m-Y') }}</td>
-            </tr>
-            <tr>
-                <th>Datetext</th>
-                <td>{{ entity.dateText }}</td>
-            </tr>
-            <tr>
-                <th>Nbheures</th>
-                <td>{{ entity.nbHeures }}</td>
-            </tr>
-        </tbody>
-    </table>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('formation') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('formation_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+<h2><span class="oi" data-glyph="book"></span> {{ entity.intitule }}</h2>
+<hr/>
+
+<table class="width-100">
+<caption>Informations sur la formation</caption>
+<tr>
+	<th><span class="oi" data-glyph="badge"></span> Intitulé</th>
+	<td>{{ entity.intitule }}</td>
+</tr>
+<tr>
+	<th><span class="oi" data-glyph="map-marker"></span> Lieu</th>
+	<td>{{ entity.lieu }}</td>
+</tr>
+<tr>
+	<th><span class="oi" data-glyph="calendar"></span> Date</th>
+	<td>{{entity.dateText}}</td>
+</tr>
+<tr>
+	<th><span class="oi" data-glyph="calendar"></span> Date de début</th>
+	<td>{{ entity.dateDebut|date('d/m/Y') }}</td>
+</tr>
+<tr>
+	<th><span class="oi" data-glyph="calendar"></span> Date de fin</th>
+	<td>{{ entity.dateFin|date('d/m/Y') }}</td>
+</tr>
+<tr>
+	<th><span class="oi" data-glyph="timer"></span> Nombre d'heures</th>
+	<td>{{ entity.nbHeures }}</td>
+</tr>
+</table>
+
+<table class="width-100">
+	<caption>Formules liées à la formation</caption>
+	<thead>
+		<tr>
+			<th>Description</th>
+			<th>Tarif</th>
+			<th colspan="3">Logistique</th>
+		</tr>
+	</thead>
+	{% for formule in formules %}
+	<tbody>
+		<tr>
+			<td>{{ formule.description}}</td>
+			<td>{{ formule.tarif}}{% if formule.tarif|number_format %} €{% endif %}</td>
+			<td>
+				{% if formule.midi %}
+					<strong>Midi</strong>
+				{% else %}
+					<small class="color-gray-light"><del>Midi</del></small>
+				{% endif%}
+			</td>
+			<td>
+				{% if formule.soir %}
+					<strong>Soir</strong>
+				{% else %}
+					<small class="color-gray-light"><del>Soir</del></small>
+				{% endif%}
+			</td>
+			<td>
+				{% if formule.nuit %}
+					<strong>Nuit</strong>
+				{% else %}
+					<small class="color-gray-light"><del>Nuit</del></small>
+				{% endif%}
+			</td>
+		</tr>
+	{% endfor %}
+	</tbody>
+</table>
+<hr/>
+<div class="group">
+	<div class="left">
+		<a href="{{ path('formation') }}" class="btn"><span class="oi" data-glyph="arrow-thick-left"></span> Retour à la liste</a>
+	</div>
+	<div class="right">
+		<a href="{{ path('formation_edit', { 'id': entity.id }) }}" class="btn"><span class="oi" data-glyph="pencil"></span> Modifier</a>
+		<div style='display:inline-block'>{{ form(delete_form) }}</div>
+	</div>
+</div>
 {% endblock %}

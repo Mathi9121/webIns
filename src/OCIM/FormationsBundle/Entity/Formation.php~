@@ -4,18 +4,13 @@ namespace OCIM\FormationsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use OCIM\FormationsBundle\Entity\TypeFormation;
 
 /**
  * Formation
  */
 class Formation
 {
-	
-	protected $formules;
-	
-	public function __construct(){
-		 $this->formules = new \Doctrine\Common\Collections\ArrayCollection();
-	}
 	
 	protected $type;
 	
@@ -50,7 +45,7 @@ class Formation
     private $dateText;
 
     /**
-     * @var integer
+     * @var decimal
      */
     private $nbHeures;
 
@@ -226,13 +221,36 @@ class Formation
         return $this->type;
     }
 
+
+	/**
+     * To string
+     *
+     * @return String
+     */
+    public function __toString()
+    {
+        return $this->getIntitule()." | ".$this->getLieu();
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $formules;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->formules = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
     /**
      * Add formules
      *
-     * @param \OCIM\FormationsBundle\Entity\Formule $formules
+     * @param \OCIM\FormationsBundle\Entity\formationFormule $formules
      * @return Formation
      */
-    public function addFormule(\OCIM\FormationsBundle\Entity\Formule $formules)
+    public function addFormule(\OCIM\FormationsBundle\Entity\formationFormule $formules)
     {
         $this->formules[] = $formules;
 
@@ -242,9 +260,9 @@ class Formation
     /**
      * Remove formules
      *
-     * @param \OCIM\FormationsBundle\Entity\Formule $formules
+     * @param \OCIM\FormationsBundle\Entity\formationFormule $formules
      */
-    public function removeFormule(\OCIM\FormationsBundle\Entity\Formule $formules)
+    public function removeFormule(\OCIM\FormationsBundle\Entity\formationFormule $formules)
     {
         $this->formules->removeElement($formules);
     }

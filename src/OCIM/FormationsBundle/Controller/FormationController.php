@@ -52,7 +52,7 @@ class FormationController extends Controller
 
         return $this->render('OCIMFormationsBundle:Formation:new.html.twig', array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'edit_form'   => $form->createView(),
         ));
     }
 
@@ -86,7 +86,7 @@ class FormationController extends Controller
 
         return $this->render('OCIMFormationsBundle:Formation:new.html.twig', array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'edit_form'   => $form->createView(),
         ));
     }
 
@@ -103,12 +103,13 @@ class FormationController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Formation entity.');
         }
-
+		
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('OCIMFormationsBundle:Formation:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
+            'formules' => $entity->getFormules(),
         ));
     }
 
@@ -229,7 +230,7 @@ class FormationController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('formation_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Supprimer', 'attr' => array('class'=>'btn')))
+            ->add('submit', 'submit', array('label' => 'Supprimer', 'attr' => array('class'=>'btn oi btn-red', 'data-glyph'=>'trash')))
             ->getForm()
         ;
     }

@@ -1,44 +1,30 @@
 {% extends '::app.html.twig' %}
 
-{% block body -%}
+{% block body %}
     <h1>Liste des formations</h1>
-
-    <table class="table_striped width-100">
+    <table class="table-striped width-100">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Intitule</th>
+                <th></th>
+                <th class="width-50">Intitulé</th>
                 <th>Lieu</th>
-                <th>Datedebut</th>
-                <th>Datefin</th>
-                <th>Datetext</th>
-                <th>Nbheures</th>
-                <th>Actions</th>
+                <th>Date</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('formation_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td><a class="" href="{{ path('formation_show', { 'id': entity.id }) }}"><span class="oi" data-glyph="info"></span></a></td>
                 <td>{{ entity.intitule }}</td>
                 <td>{{ entity.lieu }}</td>
-                <td>{% if entity.dateDebut %}{{ entity.dateDebut|date('d-m-Y') }}{% endif %}</td>
-                <td>{% if entity.dateFin %}{{ entity.dateFin|date('d-m-Y') }}{% endif %}</td>
                 <td>{{ entity.dateText }}</td>
-                <td>{{ entity.nbHeures }}</td>
                 <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('formation_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('formation_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-					<li>
-                        <a href="{{ path('formation_delete', { 'id': entity.id }) }}">Supprimer</a>
-                    </li>
-                </ul>
-                </td>
+					<div class="group">
+						<a class="btn btn-small" href="{{ path('formation_edit', { 'id': entity.id }) }}"><span class="oi" data-glyph="pencil"></span></span></a>
+						<a class="btn btn-small btn-red"href="{{ path('formation_delete', { 'id': entity.id }) }}"><span class="oi" data-glyph="trash"></span></a>
+					</div>
+				</td>
             </tr>
         {% endfor %}
         </tbody>
