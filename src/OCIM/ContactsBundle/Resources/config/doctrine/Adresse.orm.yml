@@ -1,0 +1,35 @@
+OCIM\ContactsBundle\Entity\Adresse:
+    type: entity
+    oneToOne:
+        structure:
+            targetEntity: Structure
+            mappedBy: adresse
+    table: null
+    repositoryClass: OCIM\ContactsBundle\Entity\AdresseRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        nomStructure:
+            type: string
+            length: 255
+        adresse:
+            type: string
+            length: 255
+        adresseComplement:
+            type: string
+            length: 255
+        cP:
+            type: string
+            length: 255
+            column: CP
+        ville:
+            type: string
+            length: 255
+        pays:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }

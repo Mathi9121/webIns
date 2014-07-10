@@ -1,0 +1,31 @@
+OCIM\FormationsBundle\Entity\Convention:
+    type: entity
+    table: null
+    oneToOne:
+        inscription:
+            targetEntity: Inscription
+            mappedBy: convention
+    repositoryClass: OCIM\FormationsBundle\Entity\ConventionRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        numero:
+            type: string
+            length: 255
+        edition:
+            type: date
+        envoiPresidentU2ex:
+            type: date
+        retourPresidentU2ex:
+            type: date
+        envoiOrganisme2ex:
+            type: date
+        retourOrganisme1ex:
+            type: date
+        envoiPresidentU1ex:
+            type: date
+    lifecycleCallbacks: {  }

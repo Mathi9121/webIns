@@ -1,0 +1,56 @@
+OCIM\FormationsBundle\Entity\Inscription:
+    type: entity
+    table: null
+    oneToOne:
+        convention:
+            targetEntity: Convention
+            inversedBy: inscription
+            joinColumn:
+                convention_id:
+                    referencedColumnName: id
+        formationformule:
+            targetEntity: formationFormule
+            inversedBy: inscription
+            joinColumn:
+                formationformule_id:
+                    referencedColumnName: id
+    oneToMany:
+        reponsesInscription:
+            targetEntity: ReponsesLogistique
+            mappedBy: inscrit
+    manyToMany:
+        personnes:
+            targetEntity: OCIM\ContactsBundle\Entity\Personne
+            joinTable:
+                name: inscription_personne
+                joinColumns:
+                    inscription_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    personne_id:
+                        referencedColumnName: id
+    repositoryClass: OCIM\FormationsBundle\Entity\InscriptionRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        dateInscription:
+            type: datetime
+        statut:
+            type: string
+            length: 255
+        attentes:
+            type: text
+        statutOrgFinanceur:
+            type: string
+            length: 255
+        statutConvention:
+            type: string
+            length: 255
+        hash:
+            type: string
+            length: 255
+    lifecycleCallbacks: {  }

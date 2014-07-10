@@ -1,0 +1,31 @@
+OCIM\FormationsBundle\Entity\formationFormule:
+    type: entity
+    manyToOne:
+        formules:
+            targetEntity: Formule
+            inversedBy: formations
+            joinColumn:
+                name: formule_id
+                referencedColumnName: id
+        formations:
+            targetEntity: Formation
+            inversedBy: formules
+            joinColumn:
+                name: formation_id
+                referencedColumnName: id
+    oneToOne:
+        inscription:
+            targetEntity: Inscription
+            mappedBy: formationformule
+    oneToMany:
+        modeles:
+            targetEntity: ModeleLogistique
+            mappedBy: formationformule
+    table: formation_formule
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    lifecycleCallbacks: {  }
