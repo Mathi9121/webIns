@@ -38,13 +38,10 @@ class FormationController extends Controller
         $entity = new Formation();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
-		
+
         if ($form->isValid()) {
-			$em = $this->getDoctrine()->getManager();
-				foreach($entity->getFormules() as $formule){
-					$formule->addFormation($entity);
-				}
-			$em->persist($entity);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($entity);
             $em->flush();
 
             return $this->redirect($this->generateUrl('formation_show', array('id' => $entity->getId())));
@@ -52,7 +49,7 @@ class FormationController extends Controller
 
         return $this->render('OCIMFormationsBundle:Formation:new.html.twig', array(
             'entity' => $entity,
-            'edit_form'   => $form->createView(),
+            'form'   => $form->createView(),
         ));
     }
 
@@ -70,7 +67,7 @@ class FormationController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Créer la formation', 'attr' => array('class'=>'btn')));
+        $form->add('submit', 'submit', array('label' => 'Create'));
 
         return $form;
     }
@@ -99,17 +96,22 @@ class FormationController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('OCIMFormationsBundle:Formation')->find($id);
-		
+
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Formation entity.');
         }
-		
-        $deleteForm = $this->createDeleteForm($id);
 
+        $deleteForm = $this->createDeleteForm($id);
+		
+		$formules = array();
+		foreach($entity->getFormationFormules() as $assoformules){
+			$formules[] = $assoformules->getFormule();
+		}
+		
         return $this->render('OCIMFormationsBundle:Formation:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
-            'formules' => $entity->getFormules(),
+			'formules' => $formules
         ));
     }
 
@@ -122,7 +124,7 @@ class FormationController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('OCIMFormationsBundle:Formation')->find($id);
-		
+
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Formation entity.');
         }
@@ -149,13 +151,13 @@ class FormationController extends Controller
         $form = $this->createForm(new FormationType(), $entity, array(
             'action' => $this->generateUrl('formation_update', array('id' => $entity->getId())),
             'method' => 'PUT',
-			'attr'	 => array('class' => 'forms'),
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Mettre à jour', 'attr' => array('class'=>'btn')));
+        $form->add('submit', 'submit', array('label' => 'Update'));
 
         return $form;
     }
+	
     /**
      * Edits an existing Formation entity.
      *
@@ -163,32 +165,20 @@ class FormationController extends Controller
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
-		
+
         $entity = $em->getRepository('OCIMFormationsBundle:Formation')->find($id);
-		
+
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Formation entity.');
         }
-		
+
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
-			
-			$nouvellesformules = $entity->getFormules();
-			
-			foreach($em->getRepository('OCIMFormationsBundle:Formule')->findAll() as $formule){
-				$formule->removeFormation($entity);
-			}
-			
-			foreach($nouvellesformules as $formuleform){
-				$formuleform->addFormation($entity);
-			}
-			
-			$em->persist($entity);
+		
             $em->flush();
-			
             return $this->redirect($this->generateUrl('formation_edit', array('id' => $id)));
         }
 
@@ -198,23 +188,28 @@ class FormationController extends Controller
             'delete_form' => $deleteForm->createView(),
         ));
     }
+	
     /**
      * Deletes a Formation entity.
      *
      */
     public function deleteAction(Request $request, $id)
     {
-		$em = $this->getDoctrine()->getManager();
-		$entity = $em->getRepository('OCIMFormationsBundle:Formation')->find($id);
+        $form = $this->createDeleteForm($id);
+        $form->handleRequest($request);
 
-		if (!$entity) {
-			throw $this->createNotFoundException('Unable to find Formation entity.');
-		}
-		else{
-			$em->remove($entity);
-			$em->flush();
-		}
-		
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $entity = $em->getRepository('OCIMFormationsBundle:Formation')->find($id);
+
+            if (!$entity) {
+                throw $this->createNotFoundException('Unable to find Formation entity.');
+            }
+
+            $em->remove($entity);
+            $em->flush();
+        }
+
         return $this->redirect($this->generateUrl('formation'));
     }
 
@@ -230,7 +225,7 @@ class FormationController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('formation_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Supprimer', 'attr' => array('class'=>'btn oi btn-red', 'data-glyph'=>'trash')))
+            ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
     }

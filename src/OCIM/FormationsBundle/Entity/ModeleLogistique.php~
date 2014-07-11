@@ -267,4 +267,32 @@ class ModeleLogistique
     {
         return $this->reponsesLog;
     }
+    /**
+     * @var \OCIM\FormationsBundle\Entity\formationFormule
+     */
+    private $formationformule;
+
+
+    /**
+     * Set formationformule
+     *
+     * @param \OCIM\FormationsBundle\Entity\formationFormule $formationformule
+     * @return ModeleLogistique
+     */
+    public function setFormationformule(\OCIM\FormationsBundle\Entity\formationFormule $formationformule = null)
+    {
+        $this->formationformule = $formationformule;
+
+        return $this;
+    }
+
+    /**
+     * Get formationformule
+     *
+     * @return \OCIM\FormationsBundle\Entity\formationFormule 
+     */
+    public function getFormationformule()
+    {
+        return $this->formationformule;
+    }
 }

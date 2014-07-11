@@ -231,49 +231,4 @@ class Formation
     {
         return $this->getIntitule()." | ".$this->getLieu();
     }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $formules;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->formules = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add formules
-     *
-     * @param \OCIM\FormationsBundle\Entity\formationFormule $formules
-     * @return Formation
-     */
-    public function addFormule(\OCIM\FormationsBundle\Entity\formationFormule $formules)
-    {
-        $this->formules[] = $formules;
-
-        return $this;
-    }
-
-    /**
-     * Remove formules
-     *
-     * @param \OCIM\FormationsBundle\Entity\formationFormule $formules
-     */
-    public function removeFormule(\OCIM\FormationsBundle\Entity\formationFormule $formules)
-    {
-        $this->formules->removeElement($formules);
-    }
-
-    /**
-     * Get formules
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getFormules()
-    {
-        return $this->formules;
-    }
 }

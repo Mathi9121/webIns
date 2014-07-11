@@ -171,49 +171,4 @@ class Formule
 	{
 		return $this->getTarif()."€ | ".$this->getDescription();
 	}
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $formations;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->formations = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add formations
-     *
-     * @param \OCIM\FormationsBundle\Entity\formationFormule $formations
-     * @return Formule
-     */
-    public function addFormation(\OCIM\FormationsBundle\Entity\formationFormule $formations)
-    {
-        $this->formations[] = $formations;
-
-        return $this;
-    }
-
-    /**
-     * Remove formations
-     *
-     * @param \OCIM\FormationsBundle\Entity\formationFormule $formations
-     */
-    public function removeFormation(\OCIM\FormationsBundle\Entity\formationFormule $formations)
-    {
-        $this->formations->removeElement($formations);
-    }
-
-    /**
-     * Get formations
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getFormations()
-    {
-        return $this->formations;
-    }
 }

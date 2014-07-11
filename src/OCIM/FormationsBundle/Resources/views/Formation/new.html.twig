@@ -9,29 +9,29 @@
 </hgroup>
 <form action="{{ path('formation_create') }}" method="post" class="forms units-row" {{ form_enctype(edit_form) }}>
 
-<div class="units-row end">
-	<div class="unit-75">{{ form_row(edit_form.intitule) }}</div>
-	<div class="unit-25">{{ form_row(edit_form.type) }}</div>
-</div>
+	<div class="units-row end">
+		<div class="unit-75">{{ form_row(edit_form.intitule) }}</div>
+		<div class="unit-25">{{ form_row(edit_form.type) }}</div>
+	</div>
 
-<div class="units-row end">
-	<div class="unit-33">{{ form_row(edit_form.lieu) }}</div>
-	<div class="unit-33">{{ form_row(edit_form.dateDebut) }}</div>
-	<div class="unit-33">{{ form_row(edit_form.dateFin) }}</div>
-</div>
-	
-<div class="units-row end">
-	<div class="unit-33">{{ form_row(edit_form.nbHeures) }}</div>
-	<div class="unit-66">{{ form_row(edit_form.dateText) }}</div>
-</div>
+	<div class="units-row end">
+		<div class="unit-33">{{ form_row(edit_form.lieu) }}</div>
+		<div class="unit-33">{{ form_row(edit_form.dateDebut) }}</div>
+		<div class="unit-33">{{ form_row(edit_form.dateFin) }}</div>
+	</div>
+		
+	<div class="units-row end">
+		<div class="unit-33">{{ form_row(edit_form.nbHeures) }}</div>
+		<div class="unit-66">{{ form_row(edit_form.dateText) }}</div>
+	</div>
 
-<div class="units-row end">
-	<div class="unit-100">{{ form_row(edit_form.formules) }}</div>
-</div>
+	<div class="units-row end">
+		<div class="unit-100">{{ form_row(edit_form.formules) }}</div>
+	</div>
 
 
-{{ form_rest(edit_form) }}
-{{ form_row(edit_form.submit) }}
+	{{ form_rest(edit_form) }}
+	{{ form_row(edit_form.submit) }}
 
 </form>
 

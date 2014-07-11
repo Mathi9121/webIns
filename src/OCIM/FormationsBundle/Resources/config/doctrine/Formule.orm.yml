@@ -2,10 +2,10 @@ OCIM\FormationsBundle\Entity\Formule:
     type: entity
     table: null
     oneToMany:
-        formations:
+        formationsFormule:
             targetEntity: formationFormule
-            mappedBy: formules
-            cascade: [persist]
+            mappedBy: formule
+            cascade: ["all"]
     repositoryClass: OCIM\FormationsBundle\Entity\FormuleRepository
     id:
         id:

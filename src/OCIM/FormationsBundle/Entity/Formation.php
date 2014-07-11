@@ -234,46 +234,55 @@ class Formation
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $formules;
+    private $formationFormules;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->formules = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->formationFormules = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
-     * Add formules
+     * Add formationFormules
      *
-     * @param \OCIM\FormationsBundle\Entity\formationFormule $formules
+     * @param \OCIM\FormationsBundle\Entity\formationFormule $formationFormules
      * @return Formation
      */
-    public function addFormule(\OCIM\FormationsBundle\Entity\formationFormule $formules)
+    public function addFormationFormule(\OCIM\FormationsBundle\Entity\formationFormule $formationFormules)
     {
-        $this->formules[] = $formules;
+        $this->formationFormules[] = $formationFormules;
 
         return $this;
     }
 
     /**
-     * Remove formules
+     * Remove formationFormules
      *
-     * @param \OCIM\FormationsBundle\Entity\formationFormule $formules
+     * @param \OCIM\FormationsBundle\Entity\formationFormule $formationFormules
      */
-    public function removeFormule(\OCIM\FormationsBundle\Entity\formationFormule $formules)
+    public function removeFormationFormule(\OCIM\FormationsBundle\Entity\formationFormule $formationFormules)
     {
-        $this->formules->removeElement($formules);
+        $this->formationFormules->removeElement($formationFormules);
     }
 
     /**
-     * Get formules
+     * Get formationFormules
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getFormules()
+    public function getFormationFormules()
     {
-        return $this->formules;
+        return $this->formationFormules;
     }
+	
+	public function getFormules(){
+		$formules = array();
+		
+		foreach($this->formationFormules as $assoFormules){
+			$this->formationFormules[] = $assoFormules->getFormule();
+		}
+		return $this->formationFormules;
+	}
 }

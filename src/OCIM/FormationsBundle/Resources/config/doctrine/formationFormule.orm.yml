@@ -1,15 +1,17 @@
 OCIM\FormationsBundle\Entity\formationFormule:
     type: entity
     manyToOne:
-        formules:
+        formule:
             targetEntity: Formule
-            inversedBy: formations
+            inversedBy: formationsFormule
+            fetch: EAGER
             joinColumn:
                 name: formule_id
                 referencedColumnName: id
-        formations:
+        formation:
             targetEntity: Formation
-            inversedBy: formules
+            inversedBy: formationFormules
+            fetch: EAGER
             joinColumn:
                 name: formation_id
                 referencedColumnName: id

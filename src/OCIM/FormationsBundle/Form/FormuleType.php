@@ -20,7 +20,10 @@ class FormuleType extends AbstractType
             ->add('midi')
             ->add('soir')
             ->add('nuit')
-            ->add('formations')
+            ->add('formations', 'entity' , array(
+                      'class'    => 'OCIMFormationsBundle:Formation' ,
+                      'expanded' => false ,
+                      'multiple' => true , ))
         ;
     }
     

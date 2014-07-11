@@ -27,4 +27,4 @@ formation_update:
 formation_delete:
     path:     /{id}/delete
     defaults: { _controller: "OCIMFormationsBundle:Formation:delete" }
-    requirements: { _method: post|delete|get }
+    requirements: { _method: post|delete }
