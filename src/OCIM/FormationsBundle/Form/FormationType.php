@@ -55,15 +55,7 @@ class FormationType extends AbstractType
 				'label'  => 'Type de formation',
 				'attr' => array('class'=>'width-100')
 				))
-            ->add('formules', 'entity', array(
-				'class' => 'OCIMFormationsBundle:Formule',
-				'required' => false,
-				'expanded' => false,
-				'multiple' => true,
-				'label'  => 'Formules liées à la formation',
-				'attr' => array('class'=>'width-100')
-				))
-        ;
+			;
     }
     
     /**

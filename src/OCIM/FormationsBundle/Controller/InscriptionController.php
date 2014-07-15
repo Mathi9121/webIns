@@ -5,37 +5,37 @@ namespace OCIM\FormationsBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use OCIM\FormationsBundle\Entity\Formule;
-use OCIM\FormationsBundle\Form\FormuleType;
+use OCIM\FormationsBundle\Entity\Inscription;
+use OCIM\FormationsBundle\Form\InscriptionType;
 
 /**
- * Formule controller.
+ * Inscription controller.
  *
  */
-class FormuleController extends Controller
+class InscriptionController extends Controller
 {
 
     /**
-     * Lists all Formule entities.
+     * Lists all Inscription entities.
      *
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('OCIMFormationsBundle:Formule')->findAll();
+        $entities = $em->getRepository('OCIMFormationsBundle:Inscription')->findAll();
 
-        return $this->render('OCIMFormationsBundle:Formule:index.html.twig', array(
+        return $this->render('OCIMFormationsBundle:Inscription:index.html.twig', array(
             'entities' => $entities,
         ));
     }
     /**
-     * Creates a new Formule entity.
+     * Creates a new Inscription entity.
      *
      */
     public function createAction(Request $request)
     {
-        $entity = new Formule();
+        $entity = new Inscription();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -44,90 +44,89 @@ class FormuleController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('formule_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('inscription_show', array('id' => $entity->getId())));
         }
 
-        return $this->render('OCIMFormationsBundle:Formule:new.html.twig', array(
+        return $this->render('OCIMFormationsBundle:Inscription:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Creates a form to create a Formule entity.
+     * Creates a form to create a Inscription entity.
      *
-     * @param Formule $entity The entity
+     * @param Inscription $entity The entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Formule $entity)
+    private function createCreateForm(Inscription $entity)
     {
-        $form = $this->createForm(new FormuleType(), $entity, array(
-            'action' => $this->generateUrl('formule_create'),
+        $form = $this->createForm(new InscriptionType(), $entity, array(
+            'action' => $this->generateUrl('inscription_create'),
             'method' => 'POST',
-			'attr' => array('class' => 'forms')
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Créer', 'attr'=> array('class'=> 'btn')));
+        $form->add('submit', 'submit', array('label' => 'Create'));
 
         return $form;
     }
 
     /**
-     * Displays a form to create a new Formule entity.
+     * Displays a form to create a new Inscription entity.
      *
      */
     public function newAction()
     {
-        $entity = new Formule();
+        $entity = new Inscription();
         $form   = $this->createCreateForm($entity);
 
-        return $this->render('OCIMFormationsBundle:Formule:new.html.twig', array(
+        return $this->render('OCIMFormationsBundle:Inscription:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Finds and displays a Formule entity.
+     * Finds and displays a Inscription entity.
      *
      */
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('OCIMFormationsBundle:Formule')->find($id);
+        $entity = $em->getRepository('OCIMFormationsBundle:Inscription')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Formule entity.');
+            throw $this->createNotFoundException('Unable to find Inscription entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('OCIMFormationsBundle:Formule:show.html.twig', array(
+        return $this->render('OCIMFormationsBundle:Inscription:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-     * Displays a form to edit an existing Formule entity.
+     * Displays a form to edit an existing Inscription entity.
      *
      */
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('OCIMFormationsBundle:Formule')->find($id);
+        $entity = $em->getRepository('OCIMFormationsBundle:Inscription')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Formule entity.');
+            throw $this->createNotFoundException('Unable to find Inscription entity.');
         }
 
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('OCIMFormationsBundle:Formule:edit.html.twig', array(
+        return $this->render('OCIMFormationsBundle:Inscription:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -135,16 +134,16 @@ class FormuleController extends Controller
     }
 
     /**
-    * Creates a form to edit a Formule entity.
+    * Creates a form to edit a Inscription entity.
     *
-    * @param Formule $entity The entity
+    * @param Inscription $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(Formule $entity)
+    private function createEditForm(Inscription $entity)
     {
-        $form = $this->createForm(new FormuleType(), $entity, array(
-            'action' => $this->generateUrl('formule_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new InscriptionType(), $entity, array(
+            'action' => $this->generateUrl('inscription_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -153,17 +152,17 @@ class FormuleController extends Controller
         return $form;
     }
     /**
-     * Edits an existing Formule entity.
+     * Edits an existing Inscription entity.
      *
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('OCIMFormationsBundle:Formule')->find($id);
+        $entity = $em->getRepository('OCIMFormationsBundle:Inscription')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Formule entity.');
+            throw $this->createNotFoundException('Unable to find Inscription entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -173,17 +172,17 @@ class FormuleController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('formule_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('inscription_edit', array('id' => $id)));
         }
 
-        return $this->render('OCIMFormationsBundle:Formule:edit.html.twig', array(
+        return $this->render('OCIMFormationsBundle:Inscription:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
     /**
-     * Deletes a Formule entity.
+     * Deletes a Inscription entity.
      *
      */
     public function deleteAction(Request $request, $id)
@@ -193,21 +192,21 @@ class FormuleController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('OCIMFormationsBundle:Formule')->find($id);
+            $entity = $em->getRepository('OCIMFormationsBundle:Inscription')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Formule entity.');
+                throw $this->createNotFoundException('Unable to find Inscription entity.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('formule'));
+        return $this->redirect($this->generateUrl('inscription'));
     }
 
     /**
-     * Creates a form to delete a Formule entity by id.
+     * Creates a form to delete a Inscription entity by id.
      *
      * @param mixed $id The entity id
      *
@@ -216,7 +215,7 @@ class FormuleController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('formule_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('inscription_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()

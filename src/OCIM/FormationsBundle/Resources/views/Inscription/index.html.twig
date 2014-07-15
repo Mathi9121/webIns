@@ -1,0 +1,51 @@
+{% extends '::app.html.twig' %}
+
+{% block body -%}
+    <h1>Inscription list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Dateinscription</th>
+                <th>Statut</th>
+                <th>Attentes</th>
+                <th>Statutorgfinanceur</th>
+                <th>Statutconvention</th>
+                <th>Hash</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('inscription_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{% if entity.dateInscription %}{{ entity.dateInscription|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.statut }}</td>
+                <td>{{ entity.attentes }}</td>
+                <td>{{ entity.statutOrgFinanceur }}</td>
+                <td>{{ entity.statutConvention }}</td>
+                <td>{{ entity.hash }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('inscription_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('inscription_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('inscription_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

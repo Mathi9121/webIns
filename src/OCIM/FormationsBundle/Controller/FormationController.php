@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use OCIM\FormationsBundle\Entity\Formation;
 use OCIM\FormationsBundle\Form\FormationType;
 
+
 /**
  * Formation controller.
  *
@@ -24,6 +25,7 @@ class FormationController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('OCIMFormationsBundle:Formation')->findAll();
+
 
         return $this->render('OCIMFormationsBundle:Formation:index.html.twig', array(
             'entities' => $entities,
@@ -138,7 +140,8 @@ class FormationController extends Controller
             'delete_form' => $deleteForm->createView(),
         ));
     }
-
+	
+	
     /**
     * Creates a form to edit a Formation entity.
     *
@@ -153,7 +156,7 @@ class FormationController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Enregistrer', 'attr' => array('class'=>'btn btn-green')));
 
         return $form;
     }
@@ -177,7 +180,7 @@ class FormationController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
-		
+			
             $em->flush();
             return $this->redirect($this->generateUrl('formation_edit', array('id' => $id)));
         }
@@ -225,7 +228,7 @@ class FormationController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('formation_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Supprimer', 'attr'=> array('class'=>'btn btn-red')))
             ->getForm()
         ;
     }

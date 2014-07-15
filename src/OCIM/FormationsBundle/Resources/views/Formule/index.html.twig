@@ -1,18 +1,17 @@
 {% extends '::app.html.twig' %}
 
 {% block body -%}
-    <h1>Formule list</h1>
+    <h1>Liste des Formules</h1>
 
-    <table class="records_list">
+    <table class="table-flat table-striped width-100">
         <thead>
             <tr>
-                <th>Id</th>
+                <th></th>
                 <th>Description</th>
                 <th>Tarif</th>
                 <th>Midi</th>
                 <th>Soir</th>
                 <th>Nuit</th>
-                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -21,18 +20,11 @@
                 <td><a href="{{ path('formule_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 <td>{{ entity.description }}</td>
                 <td>{{ entity.tarif }}</td>
-                <td>{{ entity.midi }}</td>
-                <td>{{ entity.soir }}</td>
-                <td>{{ entity.nuit }}</td>
+                <td>{% if entity.midi == 1 %}<span class="oi" data-glyph="check"></span>{% endif %}</td>
+                <td>{% if entity.soir == 1 %}<span class="oi" data-glyph="check"></span>{% endif %}</td>
+                <td>{% if entity.nuit == 1 %}<span class="oi" data-glyph="check"></span>{% endif %}</td>
                 <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('formule_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('formule_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
+					<a class="btn btn-small" href="{{ path('formule_edit', { 'id': entity.id }) }}"><span class="oi" data-glyph="pencil"></span></a>
                 </td>
             </tr>
         {% endfor %}

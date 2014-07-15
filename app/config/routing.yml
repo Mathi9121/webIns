@@ -22,6 +22,18 @@ OCIMFormationsBundle_formule:
     resource: "@OCIMFormationsBundle/Resources/config/routing/formule.yml"
     prefix:   /formule
 
+OCIMFormationsBundle_inscription:
+    resource: "@OCIMFormationsBundle/Resources/config/routing/inscription.yml"
+    prefix:   /inscription
+
+OCIMContactsBundle_personne:
+    resource: "@OCIMContactsBundle/Resources/config/routing/personne.yml"
+    prefix:   /personne
+
+OCIMUserBundle_user:
+    resource: "@OCIMUserBundle/Resources/config/routing/user.yml"
+    prefix:   /user
+
 connexion:
     pattern: /connexion
     defaults: { _controller: OCIMUserBundle:Admin:connexion }

@@ -15,15 +15,29 @@ class FormuleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('description')
-            ->add('tarif')
-            ->add('midi')
-            ->add('soir')
-            ->add('nuit')
-            ->add('formations', 'entity' , array(
-                      'class'    => 'OCIMFormationsBundle:Formation' ,
-                      'expanded' => false ,
-                      'multiple' => true , ))
+            ->add('description', null, array(
+				'required' => true,
+				'label'  => 'Description',
+				'attr' => array('class'=>'width-100')
+			))
+            ->add('tarif', null, array(
+				'required' => true,
+				'label'  => 'Tarif de la formule',
+				'attr' => array('class'=>'width-100', "placeholder"=>'"250" ou "Gratuit"...'),
+			))
+            ->add('midi', null, array(
+				'required' => false,
+				'label'  => 'Repas du midi',
+			))
+            ->add('soir', null, array(
+				'required' => false,
+				'label'  => 'Repas du soir',
+			))
+            ->add('nuit', null, array(
+				'required' => false,
+				'label'  => 'Hébergement',
+			))
+			
         ;
     }
     

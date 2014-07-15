@@ -1,41 +1,41 @@
 <?php
 
-namespace OCIM\FormationsBundle\Controller;
+namespace OCIM\ContactsBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use OCIM\FormationsBundle\Entity\Formule;
-use OCIM\FormationsBundle\Form\FormuleType;
+use OCIM\ContactsBundle\Entity\Personne;
+use OCIM\ContactsBundle\Form\PersonneType;
 
 /**
- * Formule controller.
+ * Personne controller.
  *
  */
-class FormuleController extends Controller
+class PersonneController extends Controller
 {
 
     /**
-     * Lists all Formule entities.
+     * Lists all Personne entities.
      *
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('OCIMFormationsBundle:Formule')->findAll();
+        $entities = $em->getRepository('OCIMContactsBundle:Personne')->findAll();
 
-        return $this->render('OCIMFormationsBundle:Formule:index.html.twig', array(
+        return $this->render('OCIMContactsBundle:Personne:index.html.twig', array(
             'entities' => $entities,
         ));
     }
     /**
-     * Creates a new Formule entity.
+     * Creates a new Personne entity.
      *
      */
     public function createAction(Request $request)
     {
-        $entity = new Formule();
+        $entity = new Personne();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -44,90 +44,89 @@ class FormuleController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('formule_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('personne_show', array('id' => $entity->getId())));
         }
 
-        return $this->render('OCIMFormationsBundle:Formule:new.html.twig', array(
+        return $this->render('OCIMContactsBundle:Personne:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Creates a form to create a Formule entity.
+     * Creates a form to create a Personne entity.
      *
-     * @param Formule $entity The entity
+     * @param Personne $entity The entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Formule $entity)
+    private function createCreateForm(Personne $entity)
     {
-        $form = $this->createForm(new FormuleType(), $entity, array(
-            'action' => $this->generateUrl('formule_create'),
+        $form = $this->createForm(new PersonneType(), $entity, array(
+            'action' => $this->generateUrl('personne_create'),
             'method' => 'POST',
-			'attr' => array('class' => 'forms')
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Créer', 'attr'=> array('class'=> 'btn')));
+        $form->add('submit', 'submit', array('label' => 'Create'));
 
         return $form;
     }
 
     /**
-     * Displays a form to create a new Formule entity.
+     * Displays a form to create a new Personne entity.
      *
      */
     public function newAction()
     {
-        $entity = new Formule();
+        $entity = new Personne();
         $form   = $this->createCreateForm($entity);
 
-        return $this->render('OCIMFormationsBundle:Formule:new.html.twig', array(
+        return $this->render('OCIMContactsBundle:Personne:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
     }
 
     /**
-     * Finds and displays a Formule entity.
+     * Finds and displays a Personne entity.
      *
      */
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('OCIMFormationsBundle:Formule')->find($id);
+        $entity = $em->getRepository('OCIMContactsBundle:Personne')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Formule entity.');
+            throw $this->createNotFoundException('Unable to find Personne entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('OCIMFormationsBundle:Formule:show.html.twig', array(
+        return $this->render('OCIMContactsBundle:Personne:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-     * Displays a form to edit an existing Formule entity.
+     * Displays a form to edit an existing Personne entity.
      *
      */
     public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('OCIMFormationsBundle:Formule')->find($id);
+        $entity = $em->getRepository('OCIMContactsBundle:Personne')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Formule entity.');
+            throw $this->createNotFoundException('Unable to find Personne entity.');
         }
 
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('OCIMFormationsBundle:Formule:edit.html.twig', array(
+        return $this->render('OCIMContactsBundle:Personne:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -135,16 +134,16 @@ class FormuleController extends Controller
     }
 
     /**
-    * Creates a form to edit a Formule entity.
+    * Creates a form to edit a Personne entity.
     *
-    * @param Formule $entity The entity
+    * @param Personne $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(Formule $entity)
+    private function createEditForm(Personne $entity)
     {
-        $form = $this->createForm(new FormuleType(), $entity, array(
-            'action' => $this->generateUrl('formule_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new PersonneType(), $entity, array(
+            'action' => $this->generateUrl('personne_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -153,17 +152,17 @@ class FormuleController extends Controller
         return $form;
     }
     /**
-     * Edits an existing Formule entity.
+     * Edits an existing Personne entity.
      *
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('OCIMFormationsBundle:Formule')->find($id);
+        $entity = $em->getRepository('OCIMContactsBundle:Personne')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Formule entity.');
+            throw $this->createNotFoundException('Unable to find Personne entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -173,17 +172,17 @@ class FormuleController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('formule_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('personne_edit', array('id' => $id)));
         }
 
-        return $this->render('OCIMFormationsBundle:Formule:edit.html.twig', array(
+        return $this->render('OCIMContactsBundle:Personne:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
     /**
-     * Deletes a Formule entity.
+     * Deletes a Personne entity.
      *
      */
     public function deleteAction(Request $request, $id)
@@ -193,21 +192,21 @@ class FormuleController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('OCIMFormationsBundle:Formule')->find($id);
+            $entity = $em->getRepository('OCIMContactsBundle:Personne')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Formule entity.');
+                throw $this->createNotFoundException('Unable to find Personne entity.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('formule'));
+        return $this->redirect($this->generateUrl('personne'));
     }
 
     /**
-     * Creates a form to delete a Formule entity by id.
+     * Creates a form to delete a Personne entity by id.
      *
      * @param mixed $id The entity id
      *
@@ -216,7 +215,7 @@ class FormuleController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('formule_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('personne_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()

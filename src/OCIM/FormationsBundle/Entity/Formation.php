@@ -276,13 +276,5 @@ class Formation
     {
         return $this->formationFormules;
     }
-	
-	public function getFormules(){
-		$formules = array();
-		
-		foreach($this->formationFormules as $assoFormules){
-			$this->formationFormules[] = $assoFormules->getFormule();
-		}
-		return $this->formationFormules;
-	}
+
 }

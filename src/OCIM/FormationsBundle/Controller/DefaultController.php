@@ -5,6 +5,7 @@ namespace OCIM\FormationsBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use OCIM\FormationsBundle\Entity\Formation;
 use OCIM\FormationsBundle\Entity\Formule;
+use OCIM\FormationsBundle\Entity\formationFormule;
 use OCIM\FormationsBundle\Entity\TypeFormation;
 
 class DefaultController extends Controller
@@ -50,8 +51,17 @@ class DefaultController extends Controller
 		/* $em = $this->getDoctrine()->getManager();
 		$em->persist($formule);
 		$em->flush(); */
-	
-	
+		
+		// Liaison entre une formation et une formule
+/* 		$formation = $this->getDoctrine()->getRepository('OCIMFormationsBundle:Formation')->find(2);
+		$formule = $this->getDoctrine()->getRepository('OCIMFormationsBundle:Formule')->find(2);
+		$ff = new formationFormule();
+		$ff->setFormation($formation);
+		$ff->setFormule($formule);
+		$em = $this->getDoctrine()->getManager();
+		$em->persist($ff);
+		$em->flush();  */
+		
 		//Info de l'utilisateur connecté.
 		$user = $this->getUser();
         return $this->render('OCIMFormationsBundle:Default:index.html.twig', array('user' => $user));
