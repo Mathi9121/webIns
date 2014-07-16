@@ -121,7 +121,7 @@ class formationFormule
 
         return $this;
     }
-
+	
     /**
      * Get formule
      *

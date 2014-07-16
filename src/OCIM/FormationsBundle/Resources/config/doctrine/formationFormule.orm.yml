@@ -5,6 +5,7 @@ OCIM\FormationsBundle\Entity\formationFormule:
             targetEntity: Formule
             inversedBy: formationsFormule
             fetch: EAGER
+            cascade: ["persist"]
             joinColumn:
                 name: formule_id
                 referencedColumnName: id
@@ -12,6 +13,7 @@ OCIM\FormationsBundle\Entity\formationFormule:
             targetEntity: Formation
             inversedBy: formationFormules
             fetch: EAGER
+            cascade: ["persist"]
             joinColumn:
                 name: formation_id
                 referencedColumnName: id

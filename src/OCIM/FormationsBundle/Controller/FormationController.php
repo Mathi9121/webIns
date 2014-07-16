@@ -105,15 +105,10 @@ class FormationController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 		
-		$formules = array();
-		foreach($entity->getFormationFormules() as $assoformules){
-			$formules[] = $assoformules->getFormule();
-		}
-		
         return $this->render('OCIMFormationsBundle:Formation:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
-			'formules' => $formules
+			'formules' => $entity->getFormules()
         ));
     }
 
@@ -175,13 +170,20 @@ class FormationController extends Controller
             throw $this->createNotFoundException('Unable to find Formation entity.');
         }
 
+		$anciennesformules = $entity->getFormationFormules()->toArray();
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
 			
-            $em->flush();
+			foreach($anciennesformules as $af){
+				if($entity->getFormationFormules()->contains($af)){
+					$em->remove($af);
+				}
+			}
+
+			$em->flush();
             return $this->redirect($this->generateUrl('formation_edit', array('id' => $id)));
         }
 

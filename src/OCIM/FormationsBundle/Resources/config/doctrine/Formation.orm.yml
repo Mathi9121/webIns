@@ -11,7 +11,7 @@ OCIM\FormationsBundle\Entity\Formation:
         formationFormules:
             targetEntity: formationFormule
             mappedBy: formation
-            cascade: ["all"]
+            cascade: ["persist"]
     table: null
     repositoryClass: OCIM\FormationsBundle\Entity\FormationRepository
     id:

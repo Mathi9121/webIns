@@ -5,7 +5,7 @@ OCIM\FormationsBundle\Entity\Formule:
         formationsFormule:
             targetEntity: formationFormule
             mappedBy: formule
-            cascade: ["all"]
+            cascade: ["persist"]
     repositoryClass: OCIM\FormationsBundle\Entity\FormuleRepository
     id:
         id:
