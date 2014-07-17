@@ -25,6 +25,16 @@ class formationFormule
     private $modeles;
 
     /**
+     * @var \OCIM\FormationsBundle\Entity\Formule
+     */
+    private $formule;
+
+    /**
+     * @var \OCIM\FormationsBundle\Entity\Formation
+     */
+    private $formation;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -99,17 +109,6 @@ class formationFormule
     }
 
     /**
-     * @var \OCIM\FormationsBundle\Entity\Formule
-     */
-    private $formule;
-
-    /**
-     * @var \OCIM\FormationsBundle\Entity\Formation
-     */
-    private $formation;
-
-
-    /**
      * Set formule
      *
      * @param \OCIM\FormationsBundle\Entity\Formule $formule
@@ -121,7 +120,7 @@ class formationFormule
 
         return $this;
     }
-	
+
     /**
      * Get formule
      *
@@ -154,8 +153,4 @@ class formationFormule
     {
         return $this->formation;
     }
-
-	public function __toString(){
-		return $this->getFormule()->getDescription();
-	}
 }

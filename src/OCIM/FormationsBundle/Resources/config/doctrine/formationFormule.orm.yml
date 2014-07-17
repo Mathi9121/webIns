@@ -3,7 +3,7 @@ OCIM\FormationsBundle\Entity\formationFormule:
     manyToOne:
         formule:
             targetEntity: Formule
-            inversedBy: formationsFormule
+            inversedBy: formationFormule
             fetch: EAGER
             cascade: ["persist"]
             joinColumn:
@@ -11,7 +11,7 @@ OCIM\FormationsBundle\Entity\formationFormule:
                 referencedColumnName: id
         formation:
             targetEntity: Formation
-            inversedBy: formationFormules
+            inversedBy: formationFormule
             fetch: EAGER
             cascade: ["persist"]
             joinColumn:

@@ -231,4 +231,5 @@ class Formation
     {
         return $this->getIntitule()." | ".$this->getLieu();
     }
+
 }

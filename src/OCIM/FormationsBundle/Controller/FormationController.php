@@ -6,7 +6,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use OCIM\FormationsBundle\Entity\Formation;
+use OCIM\FormationsBundle\Entity\Formule;
+use OCIM\FormationsBundle\Entity\formationFormule;
 use OCIM\FormationsBundle\Form\FormationType;
+use Doctrine\Common\Collections\ArrayCollection;
 
 
 /**
@@ -169,20 +172,23 @@ class FormationController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Formation entity.');
         }
+		
+		$ancienncesFF = new ArrayCollection();
+		foreach ($entity->getFormationFormule() as $ff) {
+			$ancienncesFF->add($ff);
+		}
 
-		$anciennesformules = $entity->getFormationFormules()->toArray();
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
 			
-			foreach($anciennesformules as $af){
-				if($entity->getFormationFormules()->contains($af)){
-					$em->remove($af);
+			foreach ($ancienncesFF as $ff) {
+				if ($entity->getFormationFormule()->contains($ff) == false) {
+					$em->remove($ff);
 				}
 			}
-
 			$em->flush();
             return $this->redirect($this->generateUrl('formation_edit', array('id' => $id)));
         }

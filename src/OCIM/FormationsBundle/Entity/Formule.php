@@ -174,46 +174,46 @@ class Formule
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $formationsFormule;
+    private $formationFormule;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->formationsFormule = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->formationFormule = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
-     * Add formationsFormule
+     * Add formationFormule
      *
-     * @param \OCIM\FormationsBundle\Entity\formationFormule $formationsFormule
+     * @param \OCIM\FormationsBundle\Entity\formationFormule $formationFormule
      * @return Formule
      */
-    public function addFormationsFormule(\OCIM\FormationsBundle\Entity\formationFormule $formationsFormule)
+    public function addFormationFormule(\OCIM\FormationsBundle\Entity\formationFormule $formationFormule)
     {
-        $this->formationsFormule[] = $formationsFormule;
+        $this->formationFormule[] = $formationFormule;
 
         return $this;
     }
 
     /**
-     * Remove formationsFormule
+     * Remove formationFormule
      *
-     * @param \OCIM\FormationsBundle\Entity\formationFormule $formationsFormule
+     * @param \OCIM\FormationsBundle\Entity\formationFormule $formationFormule
      */
-    public function removeFormationsFormule(\OCIM\FormationsBundle\Entity\formationFormule $formationsFormule)
+    public function removeFormationFormule(\OCIM\FormationsBundle\Entity\formationFormule $formationFormule)
     {
-        $this->formationsFormule->removeElement($formationsFormule);
+        $this->formationFormule->removeElement($formationFormule);
     }
 
     /**
-     * Get formationsFormule
+     * Get formationFormule
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getFormationsFormule()
+    public function getFormationFormule()
     {
-        return $this->formationsFormule;
+        return $this->formationFormule;
     }
 }

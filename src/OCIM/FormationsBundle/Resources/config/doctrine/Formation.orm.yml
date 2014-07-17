@@ -8,10 +8,11 @@ OCIM\FormationsBundle\Entity\Formation:
             name: type_id
             referencedColumnName: id
     oneToMany:
-        formationFormules:
+        formationFormule:
             targetEntity: formationFormule
+            fetch: EAGER
             mappedBy: formation
-            cascade: ["persist"]
+            cascade: ["all"]
     table: null
     repositoryClass: OCIM\FormationsBundle\Entity\FormationRepository
     id:

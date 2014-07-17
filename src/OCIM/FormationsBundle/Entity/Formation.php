@@ -231,71 +231,68 @@ class Formation
     {
         return $this->getIntitule()." | ".$this->getLieu();
     }
+
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $formationFormules;
-
+    private $formationFormule;
+	private $formules;
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->formationFormules = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->formationFormule = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->formules = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
-     * Add formationFormules
+     * Add formationFormule
      *
-     * @param \OCIM\FormationsBundle\Entity\formationFormule $formationFormules
+     * @param \OCIM\FormationsBundle\Entity\formationFormule $formationFormule
      * @return Formation
      */
-    public function addFormationFormule(\OCIM\FormationsBundle\Entity\formationFormule $formationFormules)
+    public function addFormationFormule(\OCIM\FormationsBundle\Entity\formationFormule $formationFormule)
     {
-        $this->formationFormules[] = $formationFormules;
+        $this->formationFormule[] = $formationFormule;
 
         return $this;
     }
 
     /**
-     * Remove formationFormules
+     * Remove formationFormule
      *
-     * @param \OCIM\FormationsBundle\Entity\formationFormule $formationFormules
+     * @param \OCIM\FormationsBundle\Entity\formationFormule $formationFormule
      */
-    public function removeFormationFormule(\OCIM\FormationsBundle\Entity\formationFormule $formationFormules)
+    public function removeFormationFormule(\OCIM\FormationsBundle\Entity\formationFormule $formationFormule)
     {
-        $this->formationFormules->removeElement($formationFormules);
+        $this->formationFormule->removeElement($formationFormule);
     }
 
     /**
-     * Get formationFormules
+     * Get formationFormule
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getFormationFormules()
+    public function getFormationFormule()
     {
-        return $this->formationFormules;
+        return $this->formationFormule;
     }
 	
 	public function getFormules(){
-		$formules = array();
-		foreach($this->getFormationFormules() as $assoformules){
-			$formules[] = $assoformules->getFormule();
+		$formules = new \Doctrine\Common\Collections\ArrayCollection();
+		foreach($this->formationFormule as $formule){
+			$formules[] = $formule->getFormule();
 		}
 		return $formules;
 	}
-	
-	public function setFormules($formules = null){
-		
-		foreach($formules as $formule){
-			if(!$this->formationFormules->contains($formule)){
-				$ff = new formationFormule();
-				$ff->setFormule($formule);
-				$ff->setFormation($this);
-				$this->formationFormules[] = $ff;
-			}
-		}
-		return $this;
-	}
 
+	public function setFormules($formules){
+		foreach($formules as $formule){
+			$ff = new formationFormule();
+			$ff->setFormation($this);
+			$ff->setFormule($formule);
+			$this->addFormationFormule($ff);
+		}
+	}
 }
