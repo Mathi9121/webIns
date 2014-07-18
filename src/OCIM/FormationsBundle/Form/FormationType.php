@@ -5,6 +5,7 @@ namespace OCIM\FormationsBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use OCIM\FormationsBundle\Entity\Formule;
 
 class FormationType extends AbstractType
 {
@@ -14,6 +15,8 @@ class FormationType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
+		
         $builder
 			->add('intitule', null, array(
 				'required' => true,
@@ -55,12 +58,15 @@ class FormationType extends AbstractType
 				'label'  => 'Type de formation',
 				'attr' => array('class'=>'width-100')
 				))
-            ->add('formules', 'entity', array(
+             ->add('formationFormule', 'collection', array(
+				'type'   => new formationFormuleType(),
+				'label' => 'Formules liées à la formation',
+				'options' => array('label' => false),
+				'attr'=> array('class'=>'width-100'),
 				'required' => false,
-				'class' => 'OCIM\FormationsBundle\Entity\Formule',
-				'multiple' => true,
-				'label'  => 'Formules liées à la formation',
-				'attr' => array('class'=>'width-100')
+				'allow_add' => true,
+				'allow_delete' => true,
+				'by_reference' => false
 				))
 			;
     }
@@ -73,6 +79,7 @@ class FormationType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'OCIM\FormationsBundle\Entity\Formation'
         ));
+
     }
 
     /**

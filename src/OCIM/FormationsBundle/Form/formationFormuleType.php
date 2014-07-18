@@ -17,6 +17,8 @@ class formationFormuleType extends AbstractType
         $builder
             ->add('formule', 'entity', array(
 				'class' => 'OCIM\FormationsBundle\Entity\Formule',
+				'label'=> false,
+				'attr'=> array('class'=>'width-100'),
 			))
         ;
     }

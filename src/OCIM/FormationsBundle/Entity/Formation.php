@@ -236,14 +236,12 @@ class Formation
      * @var \Doctrine\Common\Collections\Collection
      */
     private $formationFormule;
-	private $formules;
     /**
      * Constructor
      */
     public function __construct()
     {
         $this->formationFormule = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->formules = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -254,6 +252,7 @@ class Formation
      */
     public function addFormationFormule(\OCIM\FormationsBundle\Entity\formationFormule $formationFormule)
     {
+		$formationFormule->setFormation($this);
         $this->formationFormule[] = $formationFormule;
 
         return $this;
@@ -278,21 +277,5 @@ class Formation
     {
         return $this->formationFormule;
     }
-	
-	public function getFormules(){
-		$formules = new \Doctrine\Common\Collections\ArrayCollection();
-		foreach($this->formationFormule as $formule){
-			$formules[] = $formule->getFormule();
-		}
-		return $formules;
-	}
 
-	public function setFormules($formules){
-		foreach($formules as $formule){
-			$ff = new formationFormule();
-			$ff->setFormation($this);
-			$ff->setFormule($formule);
-			$this->addFormationFormule($ff);
-		}
-	}
 }
