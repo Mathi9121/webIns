@@ -304,4 +304,8 @@ class Personne
     {
         return $this->adresse;
     }
+	
+	public function __toString(){
+		return $this->prenom." ".$this->prenom;
+	}
 }

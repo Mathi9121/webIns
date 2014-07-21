@@ -50,7 +50,7 @@
 	<tbody>
 	{% for formule in formules %}
 		<tr>
-			<td>{{ formule.id }} {{ formule.description }}</td>
+			<td>{{ formule.description }}</td>
 			<td>{{ formule.tarif}}{% if formule.tarif|number_format %} €{% endif %}</td>
 			<td>
 				{% if formule.midi %}

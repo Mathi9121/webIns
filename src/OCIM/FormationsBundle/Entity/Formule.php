@@ -169,7 +169,8 @@ class Formule
 	
 	public function __toString()
 	{
-		return $this->getTarif()."€ | ".$this->getDescription();
+		$unit = (is_numeric($this->tarif))? '€' : '' ;
+		return $this->tarif.$unit.'  |  '.$this->description;
 	}
     /**
      * @var \Doctrine\Common\Collections\Collection

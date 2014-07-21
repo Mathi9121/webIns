@@ -277,5 +277,13 @@ class Formation
     {
         return $this->formationFormule;
     }
-
+	
+	public function getFormules()
+    {
+		$formules = new ArrayCollection();
+        foreach($this->formationFormule as $ff){
+			$formules->add($ff->getFormule());
+		}
+		return $formules;
+    }
 }

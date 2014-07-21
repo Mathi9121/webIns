@@ -1,6 +1,12 @@
 {% extends '::app.html.twig' %}
 {% form_theme edit_form '::form.html.twig' %}
 
+{% block  javascripts %}
+{% javascripts '@OCIMFormationsBundle/Resources/public/js/Formation/formFormation.js'%}
+         <script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+{% endblock %}
+
 {% block body %}
 <hgroup>
     <h1>Formation</h1>
@@ -25,8 +31,10 @@
 		<div class="unit-66">{{ form_row(edit_form.dateText) }}</div>
 	</div>
 
+<h3>Formules liées à la formation <a href="#" class="btn btn-small ajouterFormule"><span class="oi" data-glyph="plus"></span> Ajouter une formule</a></h3>
+
 	<div class="units-row end">
-		<div class="unit-66">{{ form_row(edit_form.formules) }}</div>
+		<div class="unit-66">{{ form_widget(edit_form.formationFormule) }}</div>
 	</div>
 
 

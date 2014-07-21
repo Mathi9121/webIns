@@ -72,7 +72,7 @@ class FormationController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Créer la formation', 'attr' => array('class'=>'btn btn-green oi', 'data-glyph'=>"circle-check")));
 
         return $form;
     }
@@ -154,7 +154,7 @@ class FormationController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Enregistrer', 'attr' => array('class'=>'btn btn-green')));
+        $form->add('submit', 'submit', array('label' => 'Enregistrer', 'attr' => array('class'=>'btn btn-green oi', 'data-glyph'=>"circle-check")));
 
         return $form;
     }
@@ -183,7 +183,7 @@ class FormationController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
-			
+
 			foreach ($ancienncesFF as $ff) {
 				if ($entity->getFormationFormule()->contains($ff) == false) {
 					$em->remove($ff);
@@ -236,7 +236,7 @@ class FormationController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('formation_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Supprimer', 'attr'=> array('class'=>'btn btn-red')))
+            ->add('submit', 'submit', array('label' => 'Supprimer', 'attr'=> array('class'=>'oi btn btn-red', 'data-glyph'=> 'trash')))
             ->getForm()
         ;
     }

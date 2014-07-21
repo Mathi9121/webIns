@@ -61,9 +61,11 @@ class DefaultController extends Controller
 		$em = $this->getDoctrine()->getManager();
 		$em->persist($ff);
 		$em->flush();  */
+
+		$inscriptions = $this->getDoctrine()->getRepository('OCIMFormationsBundle:Inscription')->findAllByFormation(6);
 		
 		//Info de l'utilisateur connecté.
 		$user = $this->getUser();
-        return $this->render('OCIMFormationsBundle:Default:index.html.twig', array('user' => $user));
+        return $this->render('OCIMFormationsBundle:Default:index.html.twig', array('user' => $user, 'inscriptions'=> \Doctrine\Common\Util\Debug::dump($inscriptions)));
     }
 }

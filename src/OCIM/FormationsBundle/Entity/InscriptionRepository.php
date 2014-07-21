@@ -12,4 +12,14 @@ use Doctrine\ORM\EntityRepository;
  */
 class InscriptionRepository extends EntityRepository
 {
+	public function findAllByFormation($formation_id)
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT i, f FROM OCIMFormationsBundle:Inscription i
+				JOIN i.formationformule f
+				WHERE f.formation = :id'
+            )->setParameter('id', $formation_id)
+            ->getResult();
+    }
 }

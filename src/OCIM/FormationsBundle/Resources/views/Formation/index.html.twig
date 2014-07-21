@@ -15,13 +15,14 @@
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a class="" href="{{ path('formation_show', { 'id': entity.id }) }}"><span class="oi" data-glyph="info"></span></a></td>
+                <td><a title="Voir les inscriptions/personnes associées" class="btn btn-small" href="#"><span class="oi" data-glyph="people"></span></a></td>
                 <td>{{ entity.intitule }}</td>
                 <td>{{ entity.lieu }}</td>
                 <td>{{ entity.dateText }}</td>
                 <td>
 					<div class="group">
-						<a class="btn btn-small" href="{{ path('formation_edit', { 'id': entity.id }) }}"><span class="oi" data-glyph="pencil"></span></span></a>
+						<a title="Voir la fiche" class="btn btn-small" href="{{ path('formation_show', { 'id': entity.id }) }}"><span class="oi" data-glyph="info"></span></a>
+						<a title="Configuration" class="btn btn-small" href="{{ path('formation_edit', { 'id': entity.id }) }}"><span class="oi" data-glyph="cog"></span></a>
 					</div>
 				</td>
             </tr>
