@@ -8,6 +8,7 @@ OCIM\FormationsBundle\Entity\Inscription:
             joinColumn:
                 convention_id:
                     referencedColumnName: id
+    manyToOne:
         formationformule:
             targetEntity: formationFormule
             inversedBy: inscription

@@ -17,13 +17,12 @@ OCIM\FormationsBundle\Entity\formationFormule:
             joinColumn:
                 name: formation_id
                 referencedColumnName: id
-    oneToOne:
-        inscription:
-            targetEntity: Inscription
-            mappedBy: formationformule
     oneToMany:
         modeles:
             targetEntity: ModeleLogistique
+            mappedBy: formationformule
+        inscription:
+            targetEntity: Inscription
             mappedBy: formationformule
     table: formation_formule
     id:
