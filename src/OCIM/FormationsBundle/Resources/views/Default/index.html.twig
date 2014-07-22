@@ -1,19 +1,7 @@
 {% extends "::app.html.twig" %}
 
 {% block body  %}
-<h1>Hello {{ user.prenom | upper}}!</h1>
-<br/>
-<h2>Utilisateur</h2>
-Mail : {{user.username}}<br/>
-prenom : {{user.prenom}}<br/>
-Mot de passe : {{user.password}}<br/>
-Nom : {{user.nom}}<br/>
-détail de l'objet $user:
-<code><pre>
-{{dump(user)}}
-</pre></code>
-<code><pre>
-{{inscriptions}}
-</pre></code>
+<h1>Hello {{ app.user.prenom | upper}}!</h1>
+
 <a href="{{ path('deconnexion') }}">Deconnexion<a/>
 {% endblock  %}

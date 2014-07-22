@@ -62,10 +62,12 @@ class DefaultController extends Controller
 		$em->persist($ff);
 		$em->flush();  */
 
-		$inscriptions = $this->getDoctrine()->getRepository('OCIMFormationsBundle:Inscription')->findAllByFormation(6);
+		//Test de recup des inscriptions à une formation, quelque soit la formule
+		//$inscriptions = $this->getDoctrine()->getRepository('OCIMFormationsBundle:Inscription')->findAllByFormation(6);
 		
 		//Info de l'utilisateur connecté.
-		$user = $this->getUser();
-        return $this->render('OCIMFormationsBundle:Default:index.html.twig', array('user' => $user, 'inscriptions'=> \Doctrine\Common\Util\Debug::dump($inscriptions)));
+		//$user = $this->getUser();
+		
+        return $this->render('OCIMFormationsBundle:Default:index.html.twig', array());
     }
 }

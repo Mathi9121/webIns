@@ -29,6 +29,22 @@ class InscriptionController extends Controller
             'entities' => $entities,
         ));
     }
+	
+	/**
+     * Lists all Inscription entities.
+     *
+     */
+    public function inscriptionsAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('OCIMFormationsBundle:Inscription')->findAllByFormation($id);
+
+        return $this->render('OCIMFormationsBundle:Inscription:index.html.twig', array(
+            'entities' => $entities,
+        ));
+    }
+	
     /**
      * Creates a new Inscription entity.
      *

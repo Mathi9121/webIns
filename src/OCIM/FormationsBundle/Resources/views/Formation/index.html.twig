@@ -1,5 +1,6 @@
 {% extends '::app.html.twig' %}
 
+
 {% block body %}
     <h1>Liste des formations</h1>
     <table class="table-striped width-100">
@@ -15,7 +16,7 @@
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a title="Voir les inscriptions/personnes associées" class="btn btn-small" href="#"><span class="oi" data-glyph="people"></span></a></td>
+                <td><a title="Voir les inscriptions/personnes associées" class="btn btn-small" href="{{ path('inscriptionsFormation', { 'id': entity.id }) }}"><span class="oi" data-glyph="people"></span></a></td>
                 <td>{{ entity.intitule }}</td>
                 <td>{{ entity.lieu }}</td>
                 <td>{{ entity.dateText }}</td>
