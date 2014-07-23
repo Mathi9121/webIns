@@ -7,6 +7,37 @@ header nav ul li a{
 }
 header nav ul li a span.oi{
 	display: inline;
+	color: inherit;
+	cursor: inherit;
+}
+
+/** sous menu ***/
+header nav.navbar ul li ul{
+	position: absolute;
+	display: none;
+	right:0;
+}
+header nav.navbar ul li:hover>ul{
+	display: block;
+}
+header nav.navbar ul li ul li{
+	display:block;
+	float: none;
+	text-align:left;
+	white-space: nowrap;
+	height: 40px;
+	line-height: 40px;
+}
+header nav.navbar-right ul li a{
+	padding: 0 25px;
+}
+
+
+header #user-img{
+	height:50px;width:50px;
+	display:inline-block;
+	text-align:center;
+	background-color:rgba(200, 243, 243, 1);
 }
 
 table tr td{vertical-align:middle}

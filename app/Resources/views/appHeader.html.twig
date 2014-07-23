@@ -7,16 +7,23 @@
 					<img src="{{ asset('../app/Resources/Public/img/logo-ocim.png') }}" class="logo" alt="OCIM"/>
 				</a>
 			</li>
-			<li><a href="{{path('formation')}}">Formations</a></li>
+{# 			<li><a href="{{path('formation')}}">Formations</a></li>
 			<li><a href="{{path('formule')}}">Formules</a></li>
 			<li><a href="{{path('personne')}}">Contacts</a></li>
 			<li><a href="#">Export et Gabarits</a></li>
-			<li><a href="#">Rechercher</a></li>
+			<li><a href="#">Rechercher</a></li> 
+#}
 		</ul>
 	</nav>
 	<nav class="navbar navbar-right">
 		<ul>
-			<li><a href="{{path('user')}}"><span class="oi" data-glyph="person"></span> {{app.user.prenom |capitalize}} {{app.user.nom |capitalize}}</a></li>
+			<li>
+				<a href="#"><div id="user-img"><span class="oi" data-glyph="person"></span></div> {{app.user.prenom |capitalize}} {{app.user.nom |capitalize}} <span class="oi" data-glyph="caret-bottom"></span></a>
+				<ul>
+						<li><a href="{{path('user')}}"><span class="oi" data-glyph="people"></span> Gestion des utilisateurs</a></li>
+						<li><a href="{{ path('deconnexion') }}"><span class="oi" data-glyph="power-standby"></span> Deconnexion</a></li>
+				</ul>
+			</li>
 		</ul>
 	</nav>
 </header>
