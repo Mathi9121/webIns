@@ -10,7 +10,19 @@ header nav ul li a span.oi{
 	color: inherit;
 	cursor: inherit;
 }
-
+header nav span.oi[data-glyph='caret-bottom']{
+	padding-left: 10px;
+}
+header{
+	background-color: rgba(233, 233, 233, 1);
+	border-bottom: 2px solid #fff;
+}
+header nav.navbar ul li a {
+	padding: 0 15px;
+	}
+header nav.navbar a {
+	color: grey
+}
 /** sous menu ***/
 header nav.navbar ul li ul{
 	position: absolute;
@@ -20,6 +32,9 @@ header nav.navbar ul li ul{
 header nav.navbar ul li:hover>ul{
 	display: block;
 }
+header nav.navbar ul li:hover{
+	background-color:rgba(200, 200, 200, 1);
+}
 header nav.navbar ul li ul li{
 	display:block;
 	float: none;
@@ -27,6 +42,7 @@ header nav.navbar ul li ul li{
 	white-space: nowrap;
 	height: 40px;
 	line-height: 40px;
+	background-color:rgba(233, 233, 233, 1);
 }
 header nav.navbar-right ul li a{
 	padding: 0 25px;
@@ -37,7 +53,7 @@ header #user-img{
 	height:50px;width:50px;
 	display:inline-block;
 	text-align:center;
-	background-color:rgba(200, 243, 243, 1);
+	background-color:rgba(200, 200, 200, 1);
 }
 
 table tr td{vertical-align:middle}
