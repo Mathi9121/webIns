@@ -169,6 +169,52 @@ class Formule
 	
 	public function __toString()
 	{
-		return $this->getTarif()."€ | ".$this->getDescription();
+		$unit = (is_numeric($this->tarif))? '€' : '' ;
+		return $this->tarif.$unit.'  |  '.$this->description;
 	}
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $formationFormule;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->formationFormule = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add formationFormule
+     *
+     * @param \OCIM\FormationsBundle\Entity\formationFormule $formationFormule
+     * @return Formule
+     */
+    public function addFormationFormule(\OCIM\FormationsBundle\Entity\formationFormule $formationFormule)
+    {
+        $this->formationFormule[] = $formationFormule;
+
+        return $this;
+    }
+
+    /**
+     * Remove formationFormule
+     *
+     * @param \OCIM\FormationsBundle\Entity\formationFormule $formationFormule
+     */
+    public function removeFormationFormule(\OCIM\FormationsBundle\Entity\formationFormule $formationFormule)
+    {
+        $this->formationFormule->removeElement($formationFormule);
+    }
+
+    /**
+     * Get formationFormule
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFormationFormule()
+    {
+        return $this->formationFormule;
+    }
 }

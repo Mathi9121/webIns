@@ -232,4 +232,58 @@ class Formation
         return $this->getIntitule()." | ".$this->getLieu();
     }
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $formationFormule;
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->formationFormule = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add formationFormule
+     *
+     * @param \OCIM\FormationsBundle\Entity\formationFormule $formationFormule
+     * @return Formation
+     */
+    public function addFormationFormule(\OCIM\FormationsBundle\Entity\formationFormule $formationFormule)
+    {
+		$formationFormule->setFormation($this);
+        $this->formationFormule[] = $formationFormule;
+
+        return $this;
+    }
+
+    /**
+     * Remove formationFormule
+     *
+     * @param \OCIM\FormationsBundle\Entity\formationFormule $formationFormule
+     */
+    public function removeFormationFormule(\OCIM\FormationsBundle\Entity\formationFormule $formationFormule)
+    {
+        $this->formationFormule->removeElement($formationFormule);
+    }
+
+    /**
+     * Get formationFormule
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFormationFormule()
+    {
+        return $this->formationFormule;
+    }
+	
+	public function getFormules()
+    {
+		$formules = new ArrayCollection();
+        foreach($this->formationFormule as $ff){
+			$formules->add($ff->getFormule());
+		}
+		return $formules;
+    }
 }

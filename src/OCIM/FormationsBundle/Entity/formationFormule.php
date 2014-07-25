@@ -15,11 +15,6 @@ class formationFormule
     private $id;
 
     /**
-     * @var \OCIM\FormationsBundle\Entity\Inscription
-     */
-    private $inscription;
-
-    /**
      * @var \Doctrine\Common\Collections\Collection
      */
     private $modeles;
@@ -40,6 +35,7 @@ class formationFormule
     public function __construct()
     {
         $this->modeles = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->inscriptions = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -52,28 +48,6 @@ class formationFormule
         return $this->id;
     }
 
-    /**
-     * Set inscription
-     *
-     * @param \OCIM\FormationsBundle\Entity\Inscription $inscription
-     * @return formationFormule
-     */
-    public function setInscription(\OCIM\FormationsBundle\Entity\Inscription $inscription = null)
-    {
-        $this->inscription = $inscription;
-
-        return $this;
-    }
-
-    /**
-     * Get inscription
-     *
-     * @return \OCIM\FormationsBundle\Entity\Inscription 
-     */
-    public function getInscription()
-    {
-        return $this->inscription;
-    }
 
     /**
      * Add modeles
@@ -157,4 +131,42 @@ class formationFormule
 	public function __toString(){
 		return $this->getFormule()->getDescription();
 	}
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $inscriptions;
+
+
+    /**
+     * Add inscriptions
+     *
+     * @param \OCIM\FormationsBundle\Entity\Inscription $inscriptions
+     * @return formationFormule
+     */
+    public function addInscription(\OCIM\FormationsBundle\Entity\Inscription $inscriptions)
+    {
+        $this->inscriptions[] = $inscriptions;
+
+        return $this;
+    }
+
+    /**
+     * Remove inscriptions
+     *
+     * @param \OCIM\FormationsBundle\Entity\Inscription $inscriptions
+     */
+    public function removeInscription(\OCIM\FormationsBundle\Entity\Inscription $inscriptions)
+    {
+        $this->inscriptions->removeElement($inscriptions);
+    }
+
+    /**
+     * Get inscriptions
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getInscriptions()
+    {
+        return $this->inscriptions;
+    }
 }

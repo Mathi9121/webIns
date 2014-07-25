@@ -22,4 +22,15 @@ class InscriptionRepository extends EntityRepository
             )->setParameter('id', $formation_id)
             ->getResult();
     }
+	public function countInscriptionsByFormation($formation_id){
+		return $this->getEntityManager()
+            ->createQuery(
+                'SELECT distinct COUNT(i.statut), i.statut FROM OCIMFormationsBundle:Inscription i
+				JOIN i.formationformule f
+				WHERE f.formation = :id
+				GROUP BY i.statut
+				'
+            )->setParameter('id', $formation_id)
+            ->getResult();
+	}
 }

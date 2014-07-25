@@ -11,7 +11,7 @@ OCIM\FormationsBundle\Entity\Inscription:
     manyToOne:
         formationformule:
             targetEntity: formationFormule
-            inversedBy: inscription
+            inversedBy: inscriptions
             joinColumn:
                 formationformule_id:
                     referencedColumnName: id

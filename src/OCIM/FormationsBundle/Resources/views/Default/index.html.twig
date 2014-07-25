@@ -1,8 +1,65 @@
 {% extends "::app.html.twig" %}
+{# {% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{asset('bundles/ocimformations/css/formations.css')}}"/>
+{% endblock %} #}
+
+{% block stylesheets %}
+{{parent()}}
+{% stylesheets '@OCIMFormationsBundle/Resources/public/css/formations.css' filter='cssrewrite' %}
+	<link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset_url }}"/>
+{% endstylesheets %}
+{% endblock %}
+
 {% block title %}Bonjour {{app.user.username|capitalize}} !{% endblock %}
 
+
 {% block body  %}
-<div class="units-row">
-	
-</div>
+
+<table class="table-striped width-100">
+        <thead>
+            <tr>
+                <th></th>
+                <th class="width-50">Intitulé</th>
+                <th>Lieu</th>
+                <th>Date</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for formation in formations %}
+            <tr>
+                <td><a title="Voir les inscriptions/personnes associées" class="btn btn-small" href="{{ path('inscriptionsFormation', { 'id': formation.id }) }}"><span class="oi" data-glyph="people"></span></a></td>
+                <td>{{ formation.intitule }}</td>
+                <td>{{ formation.lieu }}</td>
+                <td>{{ formation.dateText }}</td>
+                <td>
+					{% set spanclass = '' %}
+					{% for statut in formation._count %}
+						{% if statut.statut == 'en attente' %}
+							{% set spanclass = 'attente' %}
+							{% set text = 'Inscriptions en attente de validation' %}
+						{% endif %}
+						{% if statut.statut == 'accepté' %}
+							{% set spanclass = 'valide' %}
+							{% set text = 'Inscriptions validées' %}
+						{% endif %}
+						{% if statut.statut == 'annulé' %}
+							{% set spanclass = 'annule' %}
+							{% set text = "Nombre d'inscriptions annulées" %}
+						{% endif %}
+						<span title="{{ text }}" class="statut {{ spanclass }}">{{ statut.1 }}</span>
+					{% endfor %}
+				</td>
+                <td>
+					<div class="group">
+						<a title="Voir la fiche" class="btn btn-small" href="{{ path('formation_show', { 'id': formation.id }) }}"><span class="oi" data-glyph="info"></span></a>
+						<a title="Configuration" class="btn btn-small" href="{{ path('formation_edit', { 'id': formation.id }) }}"><span class="oi" data-glyph="cog"></span></a>
+					</div>
+				</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
 {% endblock  %}

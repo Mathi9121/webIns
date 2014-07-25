@@ -21,7 +21,7 @@ OCIM\FormationsBundle\Entity\formationFormule:
         modeles:
             targetEntity: ModeleLogistique
             mappedBy: formationformule
-        inscription:
+        inscriptions:
             targetEntity: Inscription
             mappedBy: formationformule
     table: formation_formule

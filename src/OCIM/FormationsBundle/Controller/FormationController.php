@@ -28,7 +28,7 @@ class FormationController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('OCIMFormationsBundle:Formation')->findAll();
-
+		
 
         return $this->render('OCIMFormationsBundle:Formation:index.html.twig', array(
             'entities' => $entities,

@@ -11,9 +11,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- STYLES -->
+	{% block stylesheets %}
 		{% stylesheets '../app/Resources/Public/css/*' filter='cssrewrite' %}
 			<link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset_url }}"/>
-		{% endstylesheets %}	
+		{% endstylesheets %}
+	{% endblock %}
 </head>
 <body>
 

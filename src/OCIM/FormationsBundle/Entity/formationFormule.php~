@@ -153,4 +153,8 @@ class formationFormule
     {
         return $this->formation;
     }
+	
+	public function __toString(){
+		return $this->getFormule()->getDescription();
+	}
 }

@@ -129,7 +129,7 @@ class User implements UserInterface
      */
     public function setPassword($password)
     {
-        $this->password = $password;
+        $this->password = base64_encode(hash('sha512', $password, true));
 
         return $this;
     }
