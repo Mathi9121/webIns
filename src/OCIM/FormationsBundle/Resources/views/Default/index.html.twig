@@ -1,8 +1,4 @@
 {% extends "::app.html.twig" %}
-{# {% block stylesheets %}
-	{{ parent() }}
-	<link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{asset('bundles/ocimformations/css/formations.css')}}"/>
-{% endblock %} #}
 
 {% block stylesheets %}
 {{parent()}}
@@ -34,6 +30,7 @@
                 <td>{{ formation.lieu }}</td>
                 <td>{{ formation.dateText }}</td>
                 <td>
+				<div class="group">
 					{% set spanclass = '' %}
 					{% for statut in formation._count %}
 						{% if statut.statut == 'en attente' %}
@@ -50,6 +47,7 @@
 						{% endif %}
 						<span title="{{ text }}" class="statut {{ spanclass }}">{{ statut.1 }}</span>
 					{% endfor %}
+				</div>
 				</td>
                 <td>
 					<div class="group">

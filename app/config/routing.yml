@@ -46,4 +46,4 @@ deconnexion:
 
 home:
     pattern: /
-    defaults: { _controller: OCIMFormationsBundle:Default:index }
+    defaults: { _controller: OCIMFormationsBundle:Formation:index }

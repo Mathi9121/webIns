@@ -27,12 +27,17 @@ class FormationController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('OCIMFormationsBundle:Formation')->findAll();
+        $formations = $em->getRepository('OCIMFormationsBundle:Formation')->findAll();
+		$types = $em->getRepository('OCIMFormationsBundle:TypeFormation')->findAll();
 		
-
-        return $this->render('OCIMFormationsBundle:Formation:index.html.twig', array(
-            'entities' => $entities,
-        ));
+		foreach($formations as $formation){
+			$formation->_count = $em->getRepository('OCIMFormationsBundle:Inscription')->countInscriptionsByFormation($formation->getId());
+		}
+		
+		return $this->render('OCIMFormationsBundle:Formation:index.html.twig', array(
+			'formations' => $formations,
+			'types' => $types,
+		));
     }
     /**
      * Creates a new Formation entity.

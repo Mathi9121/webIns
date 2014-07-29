@@ -1,12 +1,61 @@
-{% extends '::app.html.twig' %}
+{% extends "::app.html.twig" %}
 
+{% block stylesheets %}
+{{parent()}}
+{% stylesheets 
+	'@OCIMFormationsBundle/Resources/public/css/formations.css'
+	'@OCIMFormationsBundle/Resources/public/css/jquery.nouislider.css'
+filter='cssrewrite' %}
+	<link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset_url }}"/>
+{% endstylesheets %}
+{% endblock %}
 
-{% block body %}
-    <h1>Liste des formations</h1>
-    <table class="table-striped width-100">
+{% block  javascripts %}
+{% javascripts
+	'@OCIMFormationsBundle/Resources/public/js/Formation/jquery.nouislider.min.js'
+	'@OCIMFormationsBundle/Resources/public/js/Formation/filtresFormation.js'
+	%}
+         <script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+{% endblock %}
+
+{% block title %}Bonjour {{app.user.username|capitalize}} !{% endblock %}
+
+{% block body  %}
+<a href="{{ path('formation_new') }}" class="btn"><span class="oi" data-glyph="plus"></span> Nouvelle formation</a>
+<div class="units-row end">
+	<form class="forms" onsubmit="return false">
+		<div class="unit-25">
+			<label>Filtrer par date</label>
+			<div id="datefilter"></div>
+			<div id="event-start" class="left"></div>
+			<div id="event-end" class="right"></div>
+		</div>
+		<div class="unit-25">
+		    <label for="select_multi">
+				Types de formation
+			<select name="select_multi" multiple="multiple"  class="width-100">
+				<option name="tous" selected>Tous</option>
+			{% for type in types %}
+				<option name="{{type.id}}">{{type.type}}</option>
+			{% endfor %}
+			</select>
+			</label>
+		</div>
+		<div class="unit-50">
+			<br/><br/>
+			<label class="input-groups">
+				<input type="text" name="search" placeholder="Rechercher dans les formations" />
+				<span class="btn-append">
+					<button class="btn" style="height:2.3em"><span class="oi" data-glyph="magnifying-glass"></span></button>
+				</span>
+			</label>
+		</div>
+	</form>
+</div>
+<table class="table-striped width-100">
         <thead>
             <tr>
-                <th></th>
                 <th class="width-50">Intitulé</th>
                 <th>Lieu</th>
                 <th>Date</th>
@@ -14,25 +63,40 @@
             </tr>
         </thead>
         <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a title="Voir les inscriptions/personnes associées" class="btn btn-small" href="{{ path('inscriptionsFormation', { 'id': entity.id }) }}"><span class="oi" data-glyph="people"></span></a></td>
-                <td>{{ entity.intitule }}</td>
-                <td>{{ entity.lieu }}</td>
-                <td>{{ entity.dateText }}</td>
+        {% for formation in formations %}
+            <tr data-idformation="{{formation.id}}" data-typeformation="{{formation.type.id}}">
+                <td>{{ formation.intitule }}</td>
+                <td>{{ formation.lieu }}</td>
+                <td data-debut="{{ formation.dateDebut|date("d/m/Y") }}" data-fin="{{ formation.dateFin|date("d/m/Y") }}">{{ formation.dateText }}</td>
+                <td>
+				<div class="group">
+					{% set spanclass = '' %}
+					{% for statut in formation._count %}
+						{% if statut.statut == 'en attente' %}
+							{% set spanclass = 'attente' %}
+							{% set text = 'Inscriptions en attente de validation' %}
+						{% endif %}
+						{% if statut.statut == 'accepté' %}
+							{% set spanclass = 'valide' %}
+							{% set text = 'Inscriptions validées' %}
+						{% endif %}
+						{% if statut.statut == 'annulé' %}
+							{% set spanclass = 'annule' %}
+							{% set text = "Nombre d'inscriptions annulées" %}
+						{% endif %}
+						<span title="{{ text }}" class="statut {{ spanclass }}">{{ statut.1 }}</span>
+					{% endfor %}
+				</div>
+				</td>
                 <td>
 					<div class="group">
-						<a title="Voir la fiche" class="btn btn-small" href="{{ path('formation_show', { 'id': entity.id }) }}"><span class="oi" data-glyph="info"></span></a>
-						<a title="Configuration" class="btn btn-small" href="{{ path('formation_edit', { 'id': entity.id }) }}"><span class="oi" data-glyph="cog"></span></a>
+						<a title="Voir les inscriptions/personnes associées" class="btn btn-small" href="{{ path('inscriptionsFormation', { 'id': formation.id }) }}"><span class="oi" data-glyph="people"></span></a>
+						<a title="Voir la fiche" class="btn btn-small" href="{{ path('formation_show', { 'id': formation.id }) }}"><span class="oi" data-glyph="info"></span></a>
+						<a title="Configuration" class="btn btn-small" href="{{ path('formation_edit', { 'id': formation.id }) }}"><span class="oi" data-glyph="cog"></span></a>
 					</div>
 				</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-            <a href="{{ path('formation_new') }}" class="btn">
-                Nouvelle formation
-            </a>
-
-    {% endblock %}
+{% endblock %}
