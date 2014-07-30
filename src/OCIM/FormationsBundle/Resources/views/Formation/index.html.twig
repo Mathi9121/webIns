@@ -23,7 +23,7 @@ filter='cssrewrite' %}
 
 {% block body  %}
 <a href="{{ path('formation_new') }}" class="btn"><span class="oi" data-glyph="plus"></span> Nouvelle formation</a>
-<div class="units-row end">
+<div class="units-row end filtres">
 	<form class="forms" onsubmit="return false">
 		<div class="unit-25">
 			<label>Filtrer par date</label>
@@ -35,9 +35,9 @@ filter='cssrewrite' %}
 		    <label for="select_multi">
 				Types de formation
 			<select name="select_multi" multiple="multiple"  class="width-100">
-				<option name="tous" selected>Tous</option>
+				<option value="tous" selected>Tous</option>
 			{% for type in types %}
-				<option name="{{type.id}}">{{type.type}}</option>
+				<option value="{{type.id}}">{{type.type}}</option>
 			{% endfor %}
 			</select>
 			</label>
@@ -64,10 +64,10 @@ filter='cssrewrite' %}
         </thead>
         <tbody>
         {% for formation in formations %}
-            <tr data-idformation="{{formation.id}}" data-typeformation="{{formation.type.id}}">
+            <tr data-idformation="{{formation.id}}" data-typeformation="{{formation.type.id}}" data-debutstamp="{{ formation.dateDebut|date("U") }}" data-finstamp="{{ formation.dateFin|date("U") }}" data-debut="{{ formation.dateDebut|date("d/m/Y") }}" data-fin="{{ formation.dateFin|date("d/m/Y") }}">
                 <td>{{ formation.intitule }}</td>
                 <td>{{ formation.lieu }}</td>
-                <td data-debut="{{ formation.dateDebut|date("d/m/Y") }}" data-fin="{{ formation.dateFin|date("d/m/Y") }}">{{ formation.dateText }}</td>
+                <td>{{ formation.dateDebut|date("d/m/Y") }}</td>
                 <td>
 				<div class="group">
 					{% set spanclass = '' %}
