@@ -81,7 +81,22 @@ var dateMax = parseInt($("tbody>tr:last-child").attr("data-finstamp")) * 1000;
 							return typeId == $(this).attr('data-typeformation');
 						}).css("display", "table-row");
 					}
-					else {$("tbody tr").css("display", "table-row");}
+					else {
+						$("tbody tr").css("display", "table-row");
+					}
 			});
+	});
+
+$.expr[":"].contains = $.expr.createPseudo(function(arg) {
+    return function( elem ) {
+        return $(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
+    };
+});
+
+	// filtre par mot clé
+	$('#recherche').on('keyup', function(){
+		var recherche = $(this).val();
+		$("tbody tr").css("display", "none");
+		$('tbody tr td:contains("'+recherche+'")').parent("tr").css("display", "table-row");
 	});
 });
