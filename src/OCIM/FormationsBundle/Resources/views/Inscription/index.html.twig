@@ -1,40 +1,42 @@
 {% extends '::app.html.twig' %}
 
-{% block body -%}
-    <h1>Inscription list</h1>
+{% block stylesheets %}
+{{parent()}}
+{% stylesheets 
+	'@OCIMFormationsBundle/Resources/public/css/inscriptions.css'
+filter='cssrewrite' %}
+	<link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset_url }}"/>
+{% endstylesheets %}
+{% endblock %}
 
-    <table class="records_list">
+{% block title %}Inscriptions pour {% endblock %}
+
+{% block body -%}
+
+    <table class="">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Dateinscription</th>
+				<th></th>
+                <th>Inscription le</th>
                 <th>Statut</th>
                 <th>Attentes</th>
                 <th>Statutorgfinanceur</th>
                 <th>Statutconvention</th>
-                <th>Hash</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('inscription_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{% if entity.dateInscription %}{{ entity.dateInscription|date('Y-m-d H:i:s') }}{% endif %}</td>
+				<td>{{entity.personne.nom}}}</td>
+                <td>{% if entity.dateInscription %}{{ entity.dateInscription|date('d/m/Y') }}{% endif %}</td>
                 <td>{{ entity.statut }}</td>
                 <td>{{ entity.attentes }}</td>
                 <td>{{ entity.statutOrgFinanceur }}</td>
                 <td>{{ entity.statutConvention }}</td>
-                <td>{{ entity.hash }}</td>
                 <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('inscription_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('inscription_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
+					<a href="{{ path('inscription_show', { 'id': entity.id }) }}">show</a>
+					<a href="{{ path('inscription_edit', { 'id': entity.id }) }}">edit</a>
                 </td>
             </tr>
         {% endfor %}
@@ -44,7 +46,7 @@
         <ul>
         <li>
             <a href="{{ path('inscription_new') }}">
-                Create a new entry
+				Nouvelle inscription
             </a>
         </li>
     </ul>

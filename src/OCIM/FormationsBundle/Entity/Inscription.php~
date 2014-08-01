@@ -334,4 +334,17 @@ class Inscription
     {
         return $this->formationformule;
     }
+
+    /**
+     * Set personnes
+     *
+     * @param \OCIM\ContactsBundle\Entity\Personne $personnes
+     * @return Inscription
+     */
+    public function setPersonnes(\OCIM\ContactsBundle\Entity\Personne $personnes = null)
+    {
+        $this->personnes = $personnes;
+
+        return $this;
+    }
 }
