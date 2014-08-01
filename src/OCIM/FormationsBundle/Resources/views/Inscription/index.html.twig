@@ -28,7 +28,18 @@ filter='cssrewrite' %}
         <tbody>
         {% for entity in entities %}
             <tr>
-				<td>{{entity.personne.nom}}}</td>
+			{% if entity.personne %}
+				<td>{{ entity.personne.nom }}</td>
+				<td>{{ entity.personne.prenom }}</td>
+				<td>{{ entity.personne.id }}</td>
+				<td>{{ entity.personne.nom }}</td>
+			{% else %}
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			{% endif %}
                 <td>{% if entity.dateInscription %}{{ entity.dateInscription|date('d/m/Y') }}{% endif %}</td>
                 <td>{{ entity.statut }}</td>
                 <td>{{ entity.attentes }}</td>
@@ -42,12 +53,7 @@ filter='cssrewrite' %}
         {% endfor %}
         </tbody>
     </table>
-
-        <ul>
-        <li>
             <a href="{{ path('inscription_new') }}">
 				Nouvelle inscription
             </a>
-        </li>
-    </ul>
     {% endblock %}
