@@ -1,7 +1,7 @@
 {% extends '::app.html.twig' %}
 
 {% block stylesheets %}
-{{parent()}}
+{{ parent() }}
 {% stylesheets 
 	'@OCIMFormationsBundle/Resources/public/css/inscriptions.css'
 filter='cssrewrite' %}
@@ -12,36 +12,89 @@ filter='cssrewrite' %}
 {% block title %}Inscriptions pour {% endblock %}
 
 {% block body -%}
-
+</div>
+<div class="unit-100">
+<div class="table-container">
     <table class="">
+	<caption>Liste des candidats à la formation</caption>
+
+	<colgroup>
+		<col span="1" style="background-color:#000000">
+		<col span="7" style="background-color:#FFFCD1">
+		<col span="6" style="background-color:#FFEED1">
+		<col span="7" style="background-color:#FFD1D1">
+		<col span="4" style="background-color:#D1FAFF">
+	</colgroup>
+
         <thead>
             <tr>
+				<th class="statut"></th>
+				<th>Nom</th>
+				<th>Prénom</th>
+				<th>Fonction</th>
+				<th>Tel</th>
+				<th>Fax</th>
+				<th>Mail</th>
+				<th>Mail Admin</th>
+				
+				<th>Structure</th>
+				<th>Adresse</th>
+				<th>Complément</th>
+				<th>Code postal</th>
+				<th>Ville</th>
+				<th>Pays</th>
+				
 				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				<th></th>
+				
                 <th>Inscription le</th>
-                <th>Statut</th>
                 <th>Attentes</th>
-                <th>Statutorgfinanceur</th>
-                <th>Statutconvention</th>
+                <th>Financement</th>
+                <th>Convention</th>
                 <th>Actions</th>
+				
             </tr>
         </thead>
         <tbody>
         {% for entity in entities %}
             <tr>
-			{% if entity.personne %}
-				<td>{{ entity.personne.nom }}</td>
+				{% if entity.statut == 'en attente' %}
+					{% set class = "attente" %}
+				{% elseif entity.statut == 'accepté' %}
+					{% set class = "valide" %}
+				{% elseif entity.statut == 'annulé' %}
+					{% set class = "annule" %}
+				{% endif %}
+				<td class="statut {{class}}"></td>
+				<td>{{ entity.personne.nom }} ({{ entity.personne.civilite }})</td>
 				<td>{{ entity.personne.prenom }}</td>
-				<td>{{ entity.personne.id }}</td>
-				<td>{{ entity.personne.nom }}</td>
-			{% else %}
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			{% endif %}
+				<td>{{ entity.personne.fonction }}</td>
+				<td>{{ entity.personne.tel }}</td>
+				<td>{{ entity.personne.fax}}</td>
+				<td>{{ entity.personne.mail}}</td>
+				<td>{{ entity.personne.mailAdmin}}</td>
+				
+					<td>{{ entity.personne.adresse.nomStructure }}</td>
+					<td>{{ entity.personne.adresse.adresse }}</td>
+					<td>{{ entity.personne.adresse.adresseComplement }}</td>
+					<td>{{ entity.personne.adresse.CP }}</td>
+					<td>{{ entity.personne.adresse.ville }}</td>
+					<td>{{ entity.personne.adresse.pays }}</td>
+				
+					<td>{{ entity.convention.numero|date('d/m/Y') }}</td>
+					<td>{{ entity.convention.edition|date('d/m/Y') }}</td>
+					<td>{{ entity.convention.envoiPresidentU2ex|date('d/m/Y') }}</td>
+					<td>{{ entity.convention.retourPresidentU2ex|date('d/m/Y')}}</td>
+					<td>{{ entity.convention.envoiOrganisme2ex|date('d/m/Y') }}</td>
+					<td>{{ entity.convention.retourOrganisme1ex|date('d/m/Y') }}</td>
+					<td>{{ entity.convention.envoiPresidentU1ex|date('d/m/Y')}}</td>
+				
                 <td>{% if entity.dateInscription %}{{ entity.dateInscription|date('d/m/Y') }}{% endif %}</td>
-                <td>{{ entity.statut }}</td>
                 <td>{{ entity.attentes }}</td>
                 <td>{{ entity.statutOrgFinanceur }}</td>
                 <td>{{ entity.statutConvention }}</td>
@@ -53,7 +106,8 @@ filter='cssrewrite' %}
         {% endfor %}
         </tbody>
     </table>
+</div>
             <a href="{{ path('inscription_new') }}">
 				Nouvelle inscription
             </a>
-    {% endblock %}
+{% endblock %}

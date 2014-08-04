@@ -1,0 +1,12 @@
+td.statut, th.statut{
+	padding: 2px;
+}
+td.statut.attente{
+	background-color: #FFA500;
+}
+td.statut.valide{
+	background-color: rgba(3, 207, 3, 1);
+}
+td.statut.annule{
+	background-color: rgba(255, 54, 0, 0.89);
+}
