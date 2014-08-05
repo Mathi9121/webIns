@@ -4,9 +4,10 @@ OCIM\ContactsBundle\Entity\Structure:
         adresse:
             targetEntity: Adresse
             inversedBy: structure
+            cascade: ["all"]
             joinColumn:
                 adresse_id:
-                    referencedColumnName: id
+                    referencedColumnName: id    
     manyToOne:
         type:
             targetEntity: TypeStructure

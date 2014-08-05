@@ -248,4 +248,8 @@ class Convention
     {
         return $this->inscription;
     }
+	
+	public function __toString(){
+		return $this->numero;
+	}
 }

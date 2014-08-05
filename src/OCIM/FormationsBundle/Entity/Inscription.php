@@ -327,4 +327,42 @@ class Inscription
     {
         return $this->personne;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $personnes;
+
+
+    /**
+     * Add personnes
+     *
+     * @param \OCIM\ContactsBundle\Entity\Personne $personnes
+     * @return Inscription
+     */
+    public function addPersonne(\OCIM\ContactsBundle\Entity\Personne $personnes)
+    {
+        $this->personnes[] = $personnes;
+
+        return $this;
+    }
+
+    /**
+     * Remove personnes
+     *
+     * @param \OCIM\ContactsBundle\Entity\Personne $personnes
+     */
+    public function removePersonne(\OCIM\ContactsBundle\Entity\Personne $personnes)
+    {
+        $this->personnes->removeElement($personnes);
+    }
+
+    /**
+     * Get personnes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPersonnes()
+    {
+        return $this->personnes;
+    }
 }

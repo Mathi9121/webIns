@@ -8,12 +8,6 @@ OCIM\FormationsBundle\Entity\Inscription:
             joinColumn:
                 convention_id:
                     referencedColumnName: id
-        personne:
-            targetEntity: OCIM\ContactsBundle\Entity\Personne
-            inversedBy: inscription
-            joinColumns:
-                personne_id:
-                    referencedColumnName: id
     manyToOne:
         formationformule:
             targetEntity: formationFormule

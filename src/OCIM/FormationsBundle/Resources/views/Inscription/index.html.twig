@@ -19,7 +19,7 @@ filter='cssrewrite' %}
 	<caption>Liste des candidats à la formation</caption>
 
 	<colgroup>
-		<col span="1" style="background-color:#000000">
+		<col span="1" style="background-color:#ffffff">
 		<col span="7" style="background-color:#FFFCD1">
 		<col span="6" style="background-color:#FFEED1">
 		<col span="7" style="background-color:#FFD1D1">
@@ -86,7 +86,7 @@ filter='cssrewrite' %}
 					<td>{{ entity.personne.adresse.ville }}</td>
 					<td>{{ entity.personne.adresse.pays }}</td>
 				
-					<td>{{ entity.convention.numero|date('d/m/Y') }}</td>
+					<td>{{ entity.convention.numero }}</td>
 					<td>{{ entity.convention.edition|date('d/m/Y') }}</td>
 					<td>{{ entity.convention.envoiPresidentU2ex|date('d/m/Y') }}</td>
 					<td>{{ entity.convention.retourPresidentU2ex|date('d/m/Y')}}</td>
@@ -107,7 +107,7 @@ filter='cssrewrite' %}
         </tbody>
     </table>
 </div>
-            <a href="{{ path('inscription_new') }}">
-				Nouvelle inscription
-            </a>
+		<a href="{{ path('inscription_new') }}" class="btn btn-green">
+			<span class="oi" data-glyph="plus"></span> Nouvelle inscription
+		</a>
 {% endblock %}

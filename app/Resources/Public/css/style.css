@@ -58,7 +58,12 @@ header #user-img{
 
 table tr td{vertical-align:middle}
 /*********CONTENT*******/
-
+form select{
+	height: 2.3em;
+}
+form select[multiple]{
+	height: auto;
+}
 /*********FOOTER*******/
 
 

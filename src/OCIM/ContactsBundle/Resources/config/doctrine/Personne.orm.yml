@@ -6,9 +6,6 @@ OCIM\ContactsBundle\Entity\Personne:
             joinColumn:
                 name: adresse_id
                 referencedColumnName: id
-        inscription:
-            targetEntity: OCIM\FormationsBundle\Entity\Inscription
-            mappedBy: personne
     manyToOne:
         type:
             targetEntity: TypePersonne

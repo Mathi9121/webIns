@@ -308,4 +308,32 @@ class Personne
 	public function __toString(){
 		return $this->prenom." ".$this->prenom;
 	}
+    /**
+     * @var \OCIM\FormationsBundle\Entity\Inscription
+     */
+    private $inscription;
+
+
+    /**
+     * Set inscription
+     *
+     * @param \OCIM\FormationsBundle\Entity\Inscription $inscription
+     * @return Personne
+     */
+    public function setInscription(\OCIM\FormationsBundle\Entity\Inscription $inscription = null)
+    {
+        $this->inscription = $inscription;
+
+        return $this;
+    }
+
+    /**
+     * Get inscription
+     *
+     * @return \OCIM\FormationsBundle\Entity\Inscription 
+     */
+    public function getInscription()
+    {
+        return $this->inscription;
+    }
 }

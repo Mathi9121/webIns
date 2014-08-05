@@ -129,7 +129,7 @@ class formationFormule
     }
 	
 	public function __toString(){
-		return $this->getFormule()->getDescription();
+		return $this->getFormation()->getIntitule()." --- ".$this->getFormule()->getDescription();
 	}
     /**
      * @var \Doctrine\Common\Collections\Collection

@@ -192,52 +192,15 @@ class Inscription
     {
         return $this->hash;
     }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $personnes;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->personnes = new \Doctrine\Common\Collections\ArrayCollection();
         $this->reponsesInscription = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-    /**
-     * Add personnes
-     *
-     * @param \OCIM\FormationsBundle\Entity\Personne $personnes
-     * @return Inscription
-     */
-    public function addPersonne(\OCIM\FormationsBundle\Entity\Personne $personnes)
-    {
-        $this->personnes[] = $personnes;
-
-        return $this;
-    }
-
-    /**
-     * Remove personnes
-     *
-     * @param \OCIM\FormationsBundle\Entity\Personne $personnes
-     */
-    public function removePersonne(\OCIM\FormationsBundle\Entity\Personne $personnes)
-    {
-        $this->personnes->removeElement($personnes);
-    }
-
-    /**
-     * Get personnes
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getPersonnes()
-    {
-        return $this->personnes;
-    }
     /**
      * @var \OCIM\FormationsBundle\Entity\Convention
      */
@@ -335,16 +298,33 @@ class Inscription
         return $this->formationformule;
     }
 
+   
     /**
-     * Set personnes
+     * @var \OCIM\ContactsBundle\Entity\Personne
+     */
+    private $personne;
+
+
+    /**
+     * Set personne
      *
-     * @param \OCIM\ContactsBundle\Entity\Personne $personnes
+     * @param \OCIM\ContactsBundle\Entity\Personne $personne
      * @return Inscription
      */
-    public function setPersonnes(\OCIM\ContactsBundle\Entity\Personne $personnes = null)
+    public function setPersonne(\OCIM\ContactsBundle\Entity\Personne $personne = null)
     {
-        $this->personnes = $personnes;
+        $this->personne = $personne;
 
         return $this;
+    }
+
+    /**
+     * Get personne
+     *
+     * @return \OCIM\ContactsBundle\Entity\Personne 
+     */
+    public function getPersonne()
+    {
+        return $this->personne;
     }
 }

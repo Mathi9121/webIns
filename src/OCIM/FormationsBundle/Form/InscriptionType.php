@@ -23,7 +23,7 @@ class InscriptionType extends AbstractType
             ->add('hash')
             ->add('convention')
             ->add('formationformule')
-            ->add('personnes')
+            ->add('personne')
         ;
     }
     
