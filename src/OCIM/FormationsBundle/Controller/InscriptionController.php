@@ -39,9 +39,11 @@ class InscriptionController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('OCIMFormationsBundle:Inscription')->findAllByFormation($id);
+		$formation = $em->getRepository('OCIMFormationsBundle:Formation')->find($id);
 		
         return $this->render('OCIMFormationsBundle:Inscription:index.html.twig', array(
             'entities' => $entities,
+			'formation' => $formation,
         ));
     }
 	

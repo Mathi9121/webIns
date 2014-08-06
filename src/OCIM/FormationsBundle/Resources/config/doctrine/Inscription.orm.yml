@@ -19,6 +19,18 @@ OCIM\FormationsBundle\Entity\Inscription:
         reponsesInscription:
             targetEntity: ReponsesLogistique
             mappedBy: inscrit
+    manyToMany:
+        personnes:
+            targetEntity: OCIM\ContactsBundle\Entity\Personne
+            joinTable:
+                name: inscription_personnes
+                joinColumns:
+                    inscription_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    personne_id:
+                        referencedColumnName: id
+                        unique: true
     repositoryClass: OCIM\FormationsBundle\Entity\InscriptionRepository
     id:
         id:

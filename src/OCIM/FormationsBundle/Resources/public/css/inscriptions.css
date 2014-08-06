@@ -10,3 +10,10 @@ td.statut.valide{
 td.statut.annule{
 	background-color: rgba(255, 54, 0, 0.89);
 }
+
+table thead>tr:first-child th{
+	text-align:center
+}
+h2{
+	text-align:center
+}
