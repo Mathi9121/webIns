@@ -5,6 +5,7 @@ namespace OCIM\ContactsBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use OCIM\ContactsBundle\Form\DataTransformer\StringToTypePersonneTransformer;
 
 class PersonneType extends AbstractType
 {
@@ -14,6 +15,9 @@ class PersonneType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+		$entityManager = $options['em'];
+        $transformer = new StringToTypePersonneTransformer($entityManager);
+		
         $builder
             ->add('civilite', 'choice', array(
 				'choices' => array(
@@ -47,15 +51,14 @@ class PersonneType extends AbstractType
 				'attr' => array('class'=> 'width-100')
 			))
             
-            ->add('type', null, array(
-				'attr' => array('class'=> 'width-100')
-			))
+            ->add(
+				$builder->create('type', 'hidden')->addModelTransformer($transformer))
 			->add('adresse', new AdresseType(),array(
 				'required' => false,
 			))
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
@@ -64,6 +67,15 @@ class PersonneType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'OCIM\ContactsBundle\Entity\Personne',
 			'attr' => array('class'=> 'forms'),
+			'em' => null
+        ));
+		
+		$resolver->setRequired(array(
+            'em',
+        ));
+
+        $resolver->setAllowedTypes(array(
+            'em' => 'Doctrine\Common\Persistence\ObjectManager',
         ));
     }
 

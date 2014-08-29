@@ -129,7 +129,9 @@ class formationFormule
     }
 	
 	public function __toString(){
-		return $this->getFormation()->getIntitule()." --- ".$this->getFormule()->getDescription();
+		$tarif = $this->getFormule()->getTarif();
+		$tarif = (is_numeric($tarif))? $tarif."€": $tarif;
+		return $tarif." --- ".$this->getFormule()->getDescription();
 	}
     /**
      * @var \Doctrine\Common\Collections\Collection

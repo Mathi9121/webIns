@@ -6,7 +6,7 @@ OCIM\FormationsBundle\Entity\Formule:
             targetEntity: formationFormule
             mappedBy: formule
             fetch: EAGER
-            cascade: ["all"]
+            cascade: ["persist"]
     repositoryClass: OCIM\FormationsBundle\Entity\FormuleRepository
     id:
         id:

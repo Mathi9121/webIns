@@ -13,7 +13,11 @@
 {% block form_widget_simple %}
 {% spaceless %}
     {% set type = type|default('text') %}
-    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+	{%- if value.timestamp is defined %}
+    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value|date('Y-m-d H:i:s') }}" {% endif %}/>
+	{% else %}
+	<input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+	{% endif %}
 {% endspaceless %}
 {% endblock form_widget_simple %}
 
@@ -383,6 +387,8 @@
             {{- attrname }}="{{ attrvalue|trans({}, translation_domain) }}"
         {%- elseif attrvalue is sameas(true) -%}
             {{- attrname }}="{{ attrname }}"
+		{%- elseif attrvalue.timestamp is defined %}
+			{{- attrname }}="{{ attrvalue|date('Y-m-d H:i:s')}}"
         {%- elseif attrvalue is not sameas(false) -%}
             {{- attrname }}="{{ attrvalue }}"
         {%- endif -%}

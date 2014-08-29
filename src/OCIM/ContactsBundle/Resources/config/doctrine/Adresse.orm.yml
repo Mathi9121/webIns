@@ -22,6 +22,7 @@ OCIM\ContactsBundle\Entity\Adresse:
         adresseComplement:
             type: string
             length: 255
+            nullable: true
         cP:
             type: string
             length: 255

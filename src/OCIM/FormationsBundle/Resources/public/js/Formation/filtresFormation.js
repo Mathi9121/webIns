@@ -37,10 +37,11 @@ var dateMax = parseInt($("tbody>tr:last-child").attr("data-finstamp")) * 1000;
     },
 	
 // Steps of one week
-    step: 7 * 24 * 60 * 60 * 1000,
+//Ici j'ai supprimé le *10 (pour step par tranche d'une semaine)
+    step: 24 * 60 * 60 * 1000,
 	
 // Two more timestamps indicate the handle starting positions.
-    start: [ dateMin-3600, dateMax+3600 ],
+    start: [ dateMin-3600, dateMax+3600],
 	connect: true,
 // The setDate function will display the current values.
     serialization: {

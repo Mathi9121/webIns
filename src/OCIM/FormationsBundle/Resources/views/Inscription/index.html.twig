@@ -15,9 +15,8 @@ filter='cssrewrite' %}
 <h2>{{ formation.intitule }}</h2>
 <hr/>
 </div>
-
-{% if entities != null %}
 <div class="unit-90 unit-centered">
+{% if entities != null %}
 <div class="table-container">
     <table class="">
 	<caption>Liste des candidats à la formation</caption>
@@ -122,20 +121,23 @@ filter='cssrewrite' %}
 					<td></td>
 				{% endif %}
                 <td>{% if entity.dateInscription %}{{ entity.dateInscription|date('d/m/Y') }}{% endif %}</td>
-                <td>{{ entity.attentes }}</td>
+                <td>{{ entity.attentes|slice(0, 55)}}{% if entity.attentes|length > 55 %}...{% endif %}</td>
                 <td>{{ entity.statutOrgFinanceur }}</td>
                 <td>{{ entity.statutConvention }}</td>
                 <td>
-					<a href="{{ path('inscription_show', { 'id': entity.id }) }}">show</a>
-					<a href="{{ path('inscription_edit', { 'id': entity.id }) }}">edit</a>
+					<a href="{{ path('inscription_show', { 'id': entity.id, 'idformation':formation.id }) }}">show</a>
+					<a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation':formation.id }) }}">edit</a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-</div>
+{% else %}
+	<p class="text-centered"><span class="oi" data-glyph="info"></span> Aucune inscription pour le moment...</p>
 {% endif %}
-		<a href="{{ path('inscription_new') }}" class="btn btn-green">
+
+		<a href="{{ path('inscription_new', { 'idformation': formation.id }) }}" class="btn btn-green">
 			<span class="oi" data-glyph="plus"></span> Nouvelle inscription
 		</a>
+</div>
 {% endblock %}

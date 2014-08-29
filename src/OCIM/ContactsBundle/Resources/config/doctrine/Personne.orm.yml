@@ -3,6 +3,7 @@ OCIM\ContactsBundle\Entity\Personne:
     oneToOne:
         adresse:
             targetEntity: Adresse
+            cascade: ["persist", 'remove']
             joinColumn:
                 name: adresse_id
                 referencedColumnName: id
@@ -10,6 +11,7 @@ OCIM\ContactsBundle\Entity\Personne:
         type:
             targetEntity: TypePersonne
             inversedBy: personnes
+            fetch: EAGER
             joinColumn:
                 name: type_id
                 referencedColumnName: id
@@ -40,6 +42,7 @@ OCIM\ContactsBundle\Entity\Personne:
         fax:
             type: string
             length: 255
+            nullable: true
         mail:
             type: string
             length: 255

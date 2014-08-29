@@ -5,27 +5,29 @@ OCIM\FormationsBundle\Entity\formationFormule:
             targetEntity: Formule
             inversedBy: formationFormule
             fetch: EAGER
-            cascade: ["all"]
+            cascade: ["persist"]
             joinColumn:
                 name: formule_id
                 referencedColumnName: id
+                onDelete: CASCADE
         formation:
             targetEntity: Formation
             inversedBy: formationFormule
             fetch: EAGER
-            cascade: ["all"]
+            cascade: ["persist"]
             joinColumn:
                 name: formation_id
                 referencedColumnName: id
+                onDelete: CASCADE
     oneToMany:
         modeles:
             targetEntity: ModeleLogistique
             mappedBy: formationformule
-            cascade: ["all"]
+            cascade: ["persist"]
         inscriptions:
             targetEntity: Inscription
             mappedBy: formationformule
-            cascade: ["all"]
+            cascade: ["persist"]
     table: formation_formule
     id:
         id:

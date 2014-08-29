@@ -365,4 +365,8 @@ class Inscription
     {
         return $this->personnes;
     }
+	
+	function onPrePersist() {
+		$this->dateInscription = new \DateTime("now");
+	}
 }

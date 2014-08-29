@@ -51,23 +51,31 @@ class InscriptionController extends Controller
      * Creates a new Inscription entity.
      *
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request, $idformation)
     {
         $entity = new Inscription();
-        $form = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity, $idformation);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+			
+			$type = $em->getRepository('OCIMContactsBundle:TypePersonne')->findOneByType("Stagiaire");
+			
+			$entity->getPersonne()->setType($type);
+			$entity->addPersonne($entity->getPersonne());
+			
             $em->persist($entity);
+
             $em->flush();
 
-            return $this->redirect($this->generateUrl('inscription_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('inscription_show', array('id' => $entity->getId(), 'idformation'=> $idformation)));
         }
 
         return $this->render('OCIMFormationsBundle:Inscription:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
+			'idformation' => $idformation,
         ));
     }
 
@@ -78,14 +86,15 @@ class InscriptionController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Inscription $entity)
+    private function createCreateForm(Inscription $entity, $idformation)
     {
-        $form = $this->createForm(new InscriptionType(), $entity, array(
-            'action' => $this->generateUrl('inscription_create'),
+        $form = $this->createForm(new InscriptionType($idformation), $entity, array(
+            'action' => $this->generateUrl('inscription_create', array('idformation'=>$idformation)),
             'method' => 'POST',
+			'em' => $this->getDoctrine()->getManager(),
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Ajouter le stagiaire'));
 
         return $form;
     }
@@ -94,14 +103,15 @@ class InscriptionController extends Controller
      * Displays a form to create a new Inscription entity.
      *
      */
-    public function newAction()
+    public function newAction($idformation)
     {
         $entity = new Inscription();
-        $form   = $this->createCreateForm($entity);
+        $form   = $this->createCreateForm($entity, $idformation);
 
         return $this->render('OCIMFormationsBundle:Inscription:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
+			'idformation' => $idformation,
         ));
     }
 
@@ -109,7 +119,7 @@ class InscriptionController extends Controller
      * Finds and displays a Inscription entity.
      *
      */
-    public function showAction($id)
+    public function showAction($id, $idformation)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -124,6 +134,7 @@ class InscriptionController extends Controller
         return $this->render('OCIMFormationsBundle:Inscription:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
+			'idformation' => $idformation,
         ));
     }
 
@@ -131,7 +142,7 @@ class InscriptionController extends Controller
      * Displays a form to edit an existing Inscription entity.
      *
      */
-    public function editAction($id)
+    public function editAction($id, $idformation)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -140,14 +151,18 @@ class InscriptionController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Inscription entity.');
         }
-
-        $editForm = $this->createEditForm($entity);
+		
+		$entity->setPersonne($entity->getPersonnes()[0]);
+		
+        $editForm = $this->createEditForm($entity, $idformation);
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('OCIMFormationsBundle:Inscription:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+            'entity'    	=> $entity,
+            'form' 			=> $editForm->createView(),
+            'delete_form' 	=> $deleteForm->createView(),
+			'idformation' 	=> $idformation,
+			//'personne'		=> \Doctrine\Common\Util\Debug::dump($personne),
         ));
     }
 
@@ -158,14 +173,15 @@ class InscriptionController extends Controller
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(Inscription $entity)
+    private function createEditForm(Inscription $entity, $idformation)
     {
-        $form = $this->createForm(new InscriptionType(), $entity, array(
-            'action' => $this->generateUrl('inscription_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new InscriptionType($idformation), $entity, array(
+            'action' => $this->generateUrl('inscription_update', array('id' => $entity->getId(), 'idformation'=> $idformation)),
             'method' => 'PUT',
+			'em' => $this->getDoctrine()->getManager(),
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Enregistrer'));
 
         return $form;
     }
@@ -173,21 +189,22 @@ class InscriptionController extends Controller
      * Edits an existing Inscription entity.
      *
      */
-    public function updateAction(Request $request, $id)
+    public function updateAction(Request $request, $id, $idformation)
     {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('OCIMFormationsBundle:Inscription')->find($id);
-
-        if (!$entity) {
+        
+		if (!$entity) {
             throw $this->createNotFoundException('Unable to find Inscription entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity);
+        $editForm = $this->createEditForm($entity, $idformation);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+			
             $em->flush();
 
             return $this->redirect($this->generateUrl('inscription_edit', array('id' => $id)));
@@ -211,7 +228,7 @@ class InscriptionController extends Controller
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('OCIMFormationsBundle:Inscription')->find($id);
-
+			
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Inscription entity.');
             }

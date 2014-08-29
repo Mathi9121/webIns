@@ -13,6 +13,7 @@ OCIM\FormationsBundle\Entity\Inscription:
             targetEntity: formationFormule
             inversedBy: inscriptions
             joinColumn:
+                onDelete: CASCADE
                 formationformule_id:
                     referencedColumnName: id
     oneToMany:
@@ -22,15 +23,20 @@ OCIM\FormationsBundle\Entity\Inscription:
     manyToMany:
         personnes:
             targetEntity: OCIM\ContactsBundle\Entity\Personne
+            cascade: ["persist", "remove"]
+            fetch: EAGER
             joinTable:
                 name: inscription_personnes
+                cascade: ["persist", "remove"]
                 joinColumns:
                     inscription_id:
                         referencedColumnName: id
+                        onDelete: CASCADE
                 inverseJoinColumns:
                     personne_id:
                         referencedColumnName: id
                         unique: true
+                        onDelete: CASCADE
     repositoryClass: OCIM\FormationsBundle\Entity\InscriptionRepository
     id:
         id:
@@ -49,10 +55,14 @@ OCIM\FormationsBundle\Entity\Inscription:
         statutOrgFinanceur:
             type: string
             length: 255
+            nullable: true
         statutConvention:
             type: string
             length: 255
+            nullable: true
         hash:
             type: string
             length: 255
-    lifecycleCallbacks: {  }
+            nullable: true
+    lifecycleCallbacks: 
+        prePersist: [ onPrePersist ]
