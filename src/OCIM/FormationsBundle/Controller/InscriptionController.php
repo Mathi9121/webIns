@@ -16,25 +16,10 @@ class InscriptionController extends Controller
 {
 
     /**
-     * Lists all Inscription entities.
+     * liste toutes les entités en fonction d'une formation (id passé en paramètre)
      *
      */
-    public function indexAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entities = $em->getRepository('OCIMFormationsBundle:Inscription')->findAll();
-
-        return $this->render('OCIMFormationsBundle:Inscription:index.html.twig', array(
-            'entities' => $entities,
-        ));
-    }
-	
-	/**
-     * Lists all Inscription entities.
-     *
-     */
-    public function inscriptionsAction($id)
+    public function indexAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -46,6 +31,7 @@ class InscriptionController extends Controller
 			'formation' => $formation,
         ));
     }
+	
 	
     /**
      * Creates a new Inscription entity.
@@ -207,13 +193,14 @@ class InscriptionController extends Controller
 			
             $em->flush();
 
-            return $this->redirect($this->generateUrl('inscription_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('inscription_edit', array('id' => $id, 'idformation'=>$idformation)));
         }
 
         return $this->render('OCIMFormationsBundle:Inscription:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+			'idformation' => $idformation,
         ));
     }
     /**
@@ -252,7 +239,7 @@ class InscriptionController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('inscription_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => ' Supprimer', 'attr'=> array('class'=>'oi btn btn-red') ))
             ->getForm()
         ;
     }

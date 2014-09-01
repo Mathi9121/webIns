@@ -1,5 +1,5 @@
 inscription:
-    path:     /
+    path:     /formation-{id}
     defaults: { _controller: "OCIMFormationsBundle:Inscription:index" }
 
 inscription_show:
@@ -28,7 +28,3 @@ inscription_delete:
     path:     /{id}/delete
     defaults: { _controller: "OCIMFormationsBundle:Inscription:delete" }
     requirements: { _method: post|delete }
-
-inscriptionsFormation:
-    path:     /formation-{id}
-    defaults: { _controller: "OCIMFormationsBundle:Inscription:inscriptions" }

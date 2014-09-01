@@ -68,6 +68,6 @@
 {{ form_end(form)}}
 
 {{ form_row(form.personne) }}
-<a href="{{ path('inscription') }}">Retour à la liste</a>
+<a href="{{ path('inscription', { 'id': idformation }) }}">Retour à la liste</a>
 
 {% endblock %}

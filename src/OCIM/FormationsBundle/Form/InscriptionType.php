@@ -42,15 +42,17 @@ class InscriptionType extends AbstractType
 						->setParameter('idformation', $this->idformation);
 					},
 				))
-            ->add('dateInscription', 'text', array(
-				'data_class' => 'DateTime',
+            ->add('dateInscription', 'datetime', array(
+				'widget' => 'single_text',
+				'format' => 'yyyy-MM-dd HH:mm:ss',
+				'required' => false,
 				'read_only' => true,
-				//'disabled' => true,
-				'attr' => array('value'=> new \DateTime("now"), 'class'=>'text-centered width-100')
+				'attr' => array('class' => 'width-100')
 				))
             ->add('statut','choice', array(
 				'choices'   => array('en attente' => 'En attente', 'accepté' => 'Accepté', "annulé" => "Annulé"),
 				//'preferred_choices' => array('en attente')
+				'attr' => array('class' => 'width-100')
 				))
             ->add('attentes', "textarea", array(
 				'attr' => array("class"=>"width-100")
@@ -69,7 +71,7 @@ class InscriptionType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'OCIM\FormationsBundle\Entity\Inscription',
-			'em' => null
+			'em' => null,
         ));
 		
 		$resolver->setRequired(array(
