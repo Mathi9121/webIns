@@ -1,10 +1,73 @@
 {% extends '::app.html.twig' %}
+{% form_theme form '::form.html.twig' %}
 
 {% block body -%}
-    <h1>Inscription edit</h1>
+    <h1>Nouvel inscription à la formation</h1>
+<hr/>
+    <form action="{{ path('inscription_edit', { 'idformation': idformation, 'id': entity.id }) }}" method="post" class="forms units-row" {{ form_enctype(form) }}>
 
-    {{ form(form) }}
+<h2>Le stagiaire</h2>
+<div class="units-row end">
+    <div class="unit-10">
+	{{ form_row(form.personne.civilite) }}
+	</div>
+	<div class="unit-90">
+		<div class="units-row end">
+			<div class="unit-50">{{ form_row(form.personne.prenom) }}</div>
+			<div class="unit-50">{{ form_row(form.personne.nom) }}</div>
+		</div>
+	</div>
+</div>
 
-{{ form(delete_form) }}
+<div class="units-row end">
+    <div class="unit-33">{{ form_row(form.personne.fonction) }}</div>
+    <div class="unit-33">{{ form_row(form.personne.tel) }}</div>
+    <div class="unit-33">{{ form_row(form.personne.fax) }}</div>
+</div>
+
+<div class="units-row end">
+    <div class="unit-50">{{ form_row(form.personne.mail) }}</div>
+    <div class="unit-50">{{ form_row(form.personne.mailAdmin) }}</div>
+</div>
+
+<h2>Adresse</h2>
+<div class="units-row end">
+    <div class="unit-100">{{ form_row(form.personne.adresse.nomStructure) }}</div>
+</div>
+
+<div class="units-row end">
+    <div class="unit-100">{{ form_row(form.personne.adresse.nomStructure) }}</div>
+</div>
+
+<div class="units-row end">
+    <div class="unit-50">{{ form_row(form.personne.adresse.adresse) }}</div>
+    <div class="unit-50">{{ form_row(form.personne.adresse.adresseComplement) }}</div>
+</div>
+
+<div class="units-row end">
+    <div class="unit-33">{{ form_row(form.personne.adresse.cP) }}</div>
+    <div class="unit-33">{{ form_row(form.personne.adresse.ville) }}</div>
+    <div class="unit-33">{{ form_row(form.personne.adresse.pays) }}</div>
+</div>
+
+<h2>Inscription</h2>
+<div class="units-row end">
+    <div class="unit-66">{{ form_row(form.formationformule) }}</div>
+    <div class="unit-33">
+		<div class='units-row end'>
+			<div class='unit-66'>{{ form_row(form.dateInscription) }}</div>
+			<div class='unit-33'>{{ form_row(form.statut) }}</div>
+		</div>
+	</div>
+</div>
+<div class="units-row end">
+    <div class="unit-100">{{ form_row(form.attentes) }}</div>
+</div>
+{{ form_widget(form.personne.type) }}
+
+{{ form_end(form)}}
+
+{{ form_row(form.personne) }}
+<a href="{{ path('inscription', { 'id': idformation }) }}">Retour à la liste</a>
 
 {% endblock %}

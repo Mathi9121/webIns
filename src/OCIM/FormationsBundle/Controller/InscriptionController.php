@@ -115,7 +115,7 @@ class InscriptionController extends Controller
             throw $this->createNotFoundException('Unable to find Inscription entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
+        $deleteForm = $this->createDeleteForm($id, $idformation);
 
         return $this->render('OCIMFormationsBundle:Inscription:show.html.twig', array(
             'entity'      => $entity,
@@ -141,7 +141,7 @@ class InscriptionController extends Controller
 		$entity->setPersonne($entity->getPersonnes()[0]);
 		
         $editForm = $this->createEditForm($entity, $idformation);
-        $deleteForm = $this->createDeleteForm($id);
+        $deleteForm = $this->createDeleteForm($id, $idformation);
 
         return $this->render('OCIMFormationsBundle:Inscription:edit.html.twig', array(
             'entity'    	=> $entity,
@@ -185,7 +185,7 @@ class InscriptionController extends Controller
             throw $this->createNotFoundException('Unable to find Inscription entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
+        $deleteForm = $this->createDeleteForm($id, $idformation);
         $editForm = $this->createEditForm($entity, $idformation);
         $editForm->handleRequest($request);
 
@@ -207,9 +207,9 @@ class InscriptionController extends Controller
      * Deletes a Inscription entity.
      *
      */
-    public function deleteAction(Request $request, $id)
+    public function deleteAction(Request $request, $id, $idformation)
     {
-        $form = $this->createDeleteForm($id);
+        $form = $this->createDeleteForm($id, $idformation);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -224,7 +224,7 @@ class InscriptionController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('inscription'));
+        return $this->redirect($this->generateUrl('inscription', array('id'=> $idformation)));
     }
 
     /**
@@ -234,10 +234,10 @@ class InscriptionController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm($id)
+    private function createDeleteForm($id, $idformation)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('inscription_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('inscription_delete', array('id' => $id, 'idformation'=> $idformation)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => ' Supprimer', 'attr'=> array('class'=>'oi btn btn-red') ))
             ->getForm()
