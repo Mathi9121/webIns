@@ -19,12 +19,12 @@ class InscriptionController extends Controller
      * liste toutes les entités en fonction d'une formation (id passé en paramètre)
      *
      */
-    public function indexAction($id)
+    public function indexAction($idformation)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('OCIMFormationsBundle:Inscription')->findAllByFormation($id);
-		$formation = $em->getRepository('OCIMFormationsBundle:Formation')->find($id);
+        $entities = $em->getRepository('OCIMFormationsBundle:Inscription')->findAllByFormation($idformation);
+		$formation = $em->getRepository('OCIMFormationsBundle:Formation')->find($idformation);
 		
         return $this->render('OCIMFormationsBundle:Inscription:index.html.twig', array(
             'entities' => $entities,
@@ -80,7 +80,7 @@ class InscriptionController extends Controller
 			'em' => $this->getDoctrine()->getManager(),
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Ajouter le stagiaire'));
+        $form->add('submit', 'submit', array('label' => 'Ajouter le stagiaire', 'attr'=> array('class' => 'btn btn-green')));
 
         return $form;
     }
@@ -167,7 +167,7 @@ class InscriptionController extends Controller
 			'em' => $this->getDoctrine()->getManager(),
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Enregistrer'));
+        $form->add('submit', 'submit', array('label' => 'Enregistrer', 'attr'=> array('class'=> 'btn btn-green')));
 
         return $form;
     }
@@ -239,7 +239,7 @@ class InscriptionController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('inscription_delete', array('id' => $id, 'idformation'=> $idformation)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => ' Supprimer', 'attr'=> array('class'=>'oi btn btn-red') ))
+            ->add('submit', 'submit', array('label' => ' Supprimer', 'attr'=> array('class'=>'btn btn-red') ))
             ->getForm()
         ;
     }

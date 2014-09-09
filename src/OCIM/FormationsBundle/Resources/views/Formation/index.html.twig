@@ -44,16 +44,12 @@ filter='cssrewrite' %}
 		</div>
 		<div class="unit-50">
 			<br/><br/>
-			<label class="input-groups">
-				<input type="text" name="search" value="" placeholder="Rechercher dans les formations" id="recherche"/>
-				<span class="btn-append">
-					<button class="btn" style="height:2.3em"><span class="oi" data-glyph="magnifying-glass"></span></button>
-				</span>
-			</label>
+			<input type="search" class="width-100" placeholder="Rechercher dans les formations" id="recherche">
 		</div>
+		
 	</form>
 </div>
-<table class="table-striped width-100">
+<table class="table-hovered width-100">
         <thead>
             <tr>
                 <th>Intitulé</th>
@@ -75,28 +71,29 @@ filter='cssrewrite' %}
 						{% set text = '' %}
 						{% for statut in formation._count %}
 							{% if statut.statut == 'en attente' %}
-								{% set spanclass = 'attente' %}
+								{% set spanclass = 'badge-yellow' %}
 								{% set text = 'Inscriptions en attente de validation' %}
 							{% endif %}
 							{% if statut.statut == 'accepté' %}
-								{% set spanclass = 'valide' %}
+								{% set spanclass = 'badge-green' %}
 								{% set text = 'Inscriptions validées' %}
 							{% endif %}
 							{% if statut.statut == 'annulé' %}
-								{% set spanclass = 'annule' %}
+								{% set spanclass = 'badge-red' %}
 								{% set text = "Nombre d'inscriptions annulées" %}
 							{% endif %}
-							<span title="{{ text }}" class="statut {{ spanclass }}">{{ statut.1 }}</span>
+							<span title="{{ text }}" class="badge {{ spanclass }}">{{ statut.1 }}</span>
 						{% endfor %}
 					</div>
 				</td>
                 <td>
 					<div class="group right">
-						<a title="Exporter" class="btn btn-small" href=""><span class="oi" data-glyph="data-transfer-download"></span></a>
-						<a title="Voir les inscriptions/personnes associées" class="btn btn-small" href="{{ path('inscription', { 'id': formation.id }) }}"><span class="oi" data-glyph="people"></span></a>
-						<a title="Voir la fiche" class="btn btn-small" href="{{ path('formation_show', { 'id': formation.id }) }}"><span class="oi" data-glyph="info"></span></a>
-						<a title="Configurer la logistique de la formation" class="btn btn-small" href=""><span class="oi" data-glyph="calendar"></span></a>
-						<a title="Configuration" class="btn btn-small" href="{{ path('formation_edit', { 'id': formation.id }) }}"><span class="oi" data-glyph="cog"></span></a>
+					<span class="btn-group">
+						<a title="Voir les inscriptions/personnes associées" class="btn btn-smaller" href="{{ path('inscription', { 'idformation': formation.id }) }}"><span class="oi" data-glyph="people"></span></a>
+						<a title="Voir la fiche" class="btn btn-smaller" href="{{ path('formation_show', { 'id': formation.id }) }}"><span class="oi" data-glyph="info"></span></a>
+						<a title="Configurer la logistique de la formation" class="btn btn-smaller" href=""><span class="oi" data-glyph="calendar"></span></a>
+						<a title="Configuration" class="btn btn-smaller" href="{{ path('formation_edit', { 'id': formation.id }) }}"><span class="oi" data-glyph="cog"></span></a>
+					</span>
 					</div>
 				</td>
             </tr>

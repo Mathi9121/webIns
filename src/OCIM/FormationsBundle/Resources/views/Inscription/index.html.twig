@@ -134,10 +134,18 @@ filter='cssrewrite' %}
     </table>
 {% else %}
 	<p class="text-centered"><span class="oi" data-glyph="info"></span> Aucune inscription pour le moment...</p>
-{% endif %}
-
-		<a href="{{ path('inscription_new', { 'idformation': formation.id }) }}" class="btn btn-green">
+	<div class="text-centered">
+		<a href="{{ path('inscription_new', { 'idformation': formation.id }) }}" class="btn btn-green btn-big">
 			<span class="oi" data-glyph="plus"></span> Nouvelle inscription
 		</a>
+	</div>
+{% endif %}
+
+
 </div>
+{% if entities != null %}
+<a href="{{ path('inscription_new', { 'idformation': formation.id }) }}" class="btn btn-green">
+	<span class="oi" data-glyph="plus"></span> Nouvelle inscription
+</a>
+{% endif %}
 {% endblock %}

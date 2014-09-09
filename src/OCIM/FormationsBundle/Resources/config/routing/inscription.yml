@@ -1,30 +1,30 @@
 inscription:
-    path:     /formation-{id}
+    path:     /formation
     defaults: { _controller: "OCIMFormationsBundle:Inscription:index" }
 
 inscription_show:
-    path:     /formation-{idformation}/{id}/show
+    path:     /formation/{id}/show
     defaults: { _controller: "OCIMFormationsBundle:Inscription:show" }
 
 inscription_new:
-    path:     /new/formation-{idformation}
+    path:     /new/formation
     defaults: { _controller: "OCIMFormationsBundle:Inscription:new" }
 
 inscription_create:
-    path:     /create/formation-{idformation}
+    path:     /create/formation
     defaults: { _controller: "OCIMFormationsBundle:Inscription:create" }
     requirements: { _method: post }
 
 inscription_edit:
-    path:     /formation-{idformation}/edit-{id}
+    path:     /formation/edit-{id}
     defaults: { _controller: "OCIMFormationsBundle:Inscription:edit" }
 
 inscription_update:
-    path:     /formation-{idformation}/{id}/update
+    path:     /formation/{id}/update
     defaults: { _controller: "OCIMFormationsBundle:Inscription:update" }
     requirements: { _method: post|put }
 
 inscription_delete:
-    path:     /formation-{idformation}/inscription-{id}/delete
+    path:     /formation/inscription-{id}/delete
     defaults: { _controller: "OCIMFormationsBundle:Inscription:delete" }
     requirements: { _method: post|delete }

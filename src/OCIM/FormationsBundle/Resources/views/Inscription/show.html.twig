@@ -38,13 +38,13 @@
 
         <ul class="record_actions">
     <li>
-        <a href="{{ path('inscription', {'id':idformation}) }}">
+        <a href="{{ path('inscription', {'idformation':idformation}) }}" class="btn">
             Back to the list
         </a>
     </li>
     <li>
-        <a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation': idformation }) }}">
-            Edit
+        <a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation': idformation }) }}" class="btn">
+            Modifier
         </a>
     </li>
     <li>{{ form(delete_form) }}</li>
