@@ -77,7 +77,7 @@ class FormationController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Créer la formation', 'attr' => array('class'=>'btn btn-green oi', 'data-glyph'=>"circle-check")));
+        $form->add('submit', 'submit', array('label' => 'Créer la formation', 'attr' => array('class'=>'btn btn-green')));
 
         return $form;
     }

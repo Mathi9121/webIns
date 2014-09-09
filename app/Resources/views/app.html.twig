@@ -19,19 +19,48 @@
 </head>
 <body>
 
-{{include('::appHeader.html.twig')}}
 
-<!-- MAIN -->
-<div class="units-row">
-	<div role="main" id="content" class="unit-centered unit-70">
+<header class="group" id="header">
+<a href="{{path('home')}}"><img src="{{ asset('../app/Resources/Public/img/logo-ocim.png') }}" class="logo" alt="OCIM"/></a>
+	<nav class="navbar navbar-right end">
+		<ul>
+			<li>
+				<a href="#"><div id="user-img"><span class="oi" data-glyph="person"></span></div> {{app.user.prenom |capitalize}} {{app.user.nom |capitalize}} <span class="oi" data-glyph="caret-bottom"></span></a>
+				<ul>
+					<li><a href="{{path('user')}}"><span class="oi" data-glyph="people"></span> Gestion des utilisateurs</a></li>
+					<li><a href="{{ path('deconnexion') }}"><span class="oi" data-glyph="power-standby"></span> Deconnexion</a></li>
+				</ul>
+			</li>
+		</ul>
+	</nav>
+</header>
+
+<div class="units-row units-split">
+	<div class="unit-20">
+		<nav class="nav nav-stacked">
+			<ul>
+				<li><a href="{{path('formation')}}">Formations</a></li>
+				<li><a href="{{path('formule')}}">Formules</a></li>
+				<li><a href="{{path('personne')}}">Contacts</a></li>
+				<li><a href="#">Export et Gabarits</a></li>
+				<li><a href="#">Rechercher</a></li>
+			</ul>
+		</nav> 
+	</div>
+
+
+	<div role="main" id="content" class="unit-80">
+		<div class="unit-container" style="padding:25px">
 		{% if block('titre') %}
 				<h1>{% block titre %}{% endblock %}</h1>
 				<hr/>
 		{% endif %}
 
 		{% block body %}{% endblock %}
+		</div>
 	</div>
 </div>
+
 
 
 <!-- FOOTER -->
@@ -42,6 +71,9 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="Public/js/jquery.js"><\/script>')</script>
 {% block javascripts %}
+	{% javascripts '../app/Resources/Public/js/kube.min.js' %}
+		<script src="{{ asset_url }}"/>
+	{% endjavascripts %}
 {% endblock  %}
 
 

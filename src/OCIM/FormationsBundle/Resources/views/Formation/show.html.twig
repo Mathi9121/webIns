@@ -6,6 +6,8 @@
 <h2><span class="oi" data-glyph="book"></span> {{ entity.intitule }}</h2>
 <hr/>
 
+<div class="units-row">
+<div class="unit-66">
 <table class="width-100">
 <caption>Informations sur la formation</caption>
 <tr>
@@ -37,7 +39,8 @@
 	<td>{{ entity.nbHeures }}</td>
 </tr>
 </table>
-
+</div>
+<div class="unit-33">
 <table class="width-100">
 	<caption>Formules liées à la formation</caption>
 	<thead>
@@ -51,7 +54,7 @@
 	{% for formule in formules %}
 		<tr>
 			<td>{{ formule.description }}</td>
-			<td>{{ formule.tarif}}{% if formule.tarif|number_format %} €{% endif %}</td>
+			<td>{{ formule.tarif}}{% if formule.tarif|number_format %}€{% endif %}</td>
 			<td>
 				{% if formule.midi %}
 					<strong>Midi</strong>
@@ -77,6 +80,8 @@
 	{% endfor %}
 	</tbody>
 </table>
+</div>
+</div>
 
 <hr/>
 <div class="group">

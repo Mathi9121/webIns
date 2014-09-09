@@ -65,9 +65,9 @@
 </div>
 {{ form_widget(form.personne.type) }}
 
+
+
+{{ form_widget(form.submit) }}
+<a href="{{ path('inscription', { 'idformation': idformation }) }}" class="btn btn-smaller">Retour à la liste</a>
 {{ form_end(form)}}
-
-{{ form_row(form.personne) }}
-<a href="{{ path('inscription', { 'idformation': idformation }) }}">Retour à la liste</a>
-
 {% endblock %}
