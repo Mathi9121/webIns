@@ -59,7 +59,7 @@ class FormationController extends Controller
 
         return $this->render('OCIMFormationsBundle:Formation:new.html.twig', array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'edit_form'   => $form->createView(),
         ));
     }
 

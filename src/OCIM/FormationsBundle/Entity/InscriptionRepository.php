@@ -33,4 +33,15 @@ class InscriptionRepository extends EntityRepository
             )->setParameter('id', $formation_id)
             ->getResult();
 	}
+	
+	public function lastInscriptions(){
+		return $this->getEntityManager()
+            ->createQuery(
+                'SELECT p.nom, p.prenom, i.dateInscription FROM OCIMContactsBundle:Personne p
+				JOIN OCIMFormationsBundle:inscription i
+				WITH p.id = i.id
+				ORDER BY i.dateInscription DESC'				
+            )->setMaxResults(10)
+            ->getResult();
+	}
 }

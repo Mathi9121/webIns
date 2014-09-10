@@ -35,29 +35,36 @@
 	</nav>
 </header>
 
-<div class="units-row units-split">
-	<div class="unit-20">
-		<nav class="nav nav-stacked">
+<div class="units-row">
+	<div id="sidebar" class="unit-20">
+		<form action="" class="forms">
+				<div class="input-groups unit-centered width-80">
+					<input type="text" name="go" placeholder="Rechercher" class="width-90"/>
+					<span class="btn-append">
+						<button class="btn"><i class="oi" data-glyph="magnifying-glass"></i></button>
+					</span>
+				</div>
+		</form>
+		<nav class="nav nav-stacked">			
 			<ul>
-				<li><a href="{{path('formation')}}">Formations</a></li>
-				<li><a href="{{path('formule')}}">Formules</a></li>
-				<li><a href="{{path('personne')}}">Contacts</a></li>
-				<li><a href="#">Export et Gabarits</a></li>
-				<li><a href="#">Rechercher</a></li>
+				<li><a href="{{path('home')}}"><i class="oi" data-glyph="dashboard"></i>Dashboard</a></li>
+				<li><a href="{{path('formation')}}"><i class="oi" data-glyph="book"></i>Formations</a></li>
+				<li><a href="{{path('formule')}}"><i class="oi" data-glyph="tags"></i>Formules</a></li>
+				<li><a href="{{path('personne')}}"><i class="oi" data-glyph="people"></i>Contacts</a></li>
+				<li><a href="#"><i class="oi" data-glyph="file"></i>Export et Gabarits</a></li>
+				<li><a href="#"><i class="oi" data-glyph="magnifying-glass"></i>Rechercher</a></li>
 			</ul>
 		</nav> 
 	</div>
 
 
-	<div role="main" id="content" class="unit-80">
-		<div class="unit-container" style="padding:25px">
+	<div role="main" id="content" class="unit-80 ">
 		{% if block('titre') %}
 				<h1>{% block titre %}{% endblock %}</h1>
 				<hr/>
 		{% endif %}
 
 		{% block body %}{% endblock %}
-		</div>
 	</div>
 </div>
 
@@ -72,10 +79,9 @@
 <script>window.jQuery || document.write('<script src="Public/js/jquery.js"><\/script>')</script>
 {% block javascripts %}
 	{% javascripts '../app/Resources/Public/js/kube.min.js' %}
-		<script src="{{ asset_url }}"/>
+		<script src="{{ asset_url }}"></script>
 	{% endjavascripts %}
 {% endblock  %}
-
 
 </body>
 </html>

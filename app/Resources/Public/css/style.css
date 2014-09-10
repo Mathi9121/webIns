@@ -1,6 +1,7 @@
 /*********HEADER*******/
 header img.logo{
 	height:50px;
+	margin-left: 50px
 }
 header nav ul li a{
 	height: 50px; line-height: 50px;
@@ -14,14 +15,22 @@ header nav span.oi[data-glyph='caret-bottom']{
 	padding-left: 10px;
 }
 header{
-	background-color: rgba(233, 233, 233, 1);
-	border-bottom: 2px solid #fff;
+	background-color: #F6F6F6;
+	border-bottom: 1px solid #fefefe;
 }
+
+/** Menu **/
 header nav.navbar ul li a {
 	padding: 0 15px;
 	}
 header nav.navbar a {
 	color: grey
+}
+header #user-img{
+	height:50px;width:50px;
+	display:inline-block;
+	text-align:center;
+	background-color:rgba(200, 200, 200, 1);
 }
 /** sous menu ***/
 header nav.navbar ul li ul{
@@ -49,16 +58,31 @@ header nav.navbar-right ul li a{
 }
 
 
-header #user-img{
-	height:50px;width:50px;
-	display:inline-block;
-	text-align:center;
-	background-color:rgba(200, 200, 200, 1);
+
+
+/** positionnement **/
+#sidebar{
+	padding-top: 50px;
+	background-color: #F9F9F9;
+}
+
+#content{
+	padding: 50px 50px 0 0;
+}
+#sidebar nav{
+	padding-top: 25px;
+}
+#sidebar nav ul li i{
+	margin-right:10px
 }
 
 
 
+/** Styles **/
 table tr td{vertical-align:middle}
+
+
+
 
 /*
 

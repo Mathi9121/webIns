@@ -2,7 +2,7 @@
 
 {% block stylesheets %}
 {{parent()}}
-{% stylesheets '@OCIMFormationsBundle/Resources/public/css/formations.css' filter='cssrewrite' %}
+{% stylesheets '@OCIMFormationsBundle/Resources/public/css/accueil.css' filter='cssrewrite' %}
 	<link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset_url }}"/>
 {% endstylesheets %}
 {% endblock %}
@@ -11,5 +11,96 @@
 
 
 {% block body  %}
+<h1>Bonjour {{app.user.username|capitalize}} !</h1>
+<hr/>
 
+<div class="units-row" id="indicateurs">
+	<div class="unit-20">
+		<div class="units-row end">
+			<div class="left">
+				<span class="oi" data-glyph="book"></span>
+			</div>
+			<span class="right count">{{countFormations}}</span>
+		</div>
+		<div class="right">Formations</div>
+	</div>
+	<div class="unit-20">
+		<div class="units-row end">
+			<div class="left">
+				<span class="oi" data-glyph="tag"></span>
+			</div>
+			<span class="right count">{{countFormules}}</span>
+		</div>
+		<div class="right">Formules</div>
+	</div>
+	<div class="unit-20">
+		<div class="units-row end">
+			<div class="left">
+				<span class="oi" data-glyph="people"></span>
+			</div>
+			<span class="right count">{{countInscriptions}}</span>
+		</div>
+		<div class="right">Inscriptions</div>
+	</div>
+	<div class="unit-20">
+		<div class="units-row end">
+			<div class="left">
+				<span class="oi" data-glyph="chat"></span>
+			</div>
+			<span class="right count">10</span>
+		</div>
+		<div class="right">Message</div>
+	</div>
+	<div class="unit-20">
+		<div class="units-row end">
+			<div class="left">
+				<span class="oi" data-glyph="file"></span>
+			</div>
+			<span class="right count">10</span>
+		</div>
+		<div class="right">Gabarits de document</div>
+	</div>
+</div>
+
+<div class="units-row">
+	<div class="unit-60" id="formations">
+		<h3>Formations à venir</h3>
+		<table class="table-hovered">
+			<tbody>
+				{% for formation in formations %}
+				<tr>
+				<td>{{formation.intitule}}</td>
+				<td><div class="group">
+						{% set spanclass = '' %}
+						{% set text = '' %}
+						{% for statut in formation._count %}
+							{% if statut.statut == 'en attente' %}
+								{% set spanclass = 'badge-yellow' %}
+								{% set text = 'Inscriptions en attente de validation' %}
+							{% endif %}
+							{% if statut.statut == 'accepté' %}
+								{% set spanclass = 'badge-green' %}
+								{% set text = 'Inscriptions validées' %}
+							{% endif %}
+							{% if statut.statut == 'annulé' %}
+								{% set spanclass = 'badge-red' %}
+								{% set text = "Nombre d'inscriptions annulées" %}
+							{% endif %}
+							<span title="{{ text }}" class="badge {{ spanclass }}">{{ statut.1 }}</span>
+						{% endfor %}
+					</div></td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+	<div class="unit-40" id="inscriptions">
+		<h3>10 dernières inscriptions</h3>
+		<table class="">
+		{% for inscription in inscriptions %}
+			<tr><td>{{inscription.nom|capitalize}} {{inscription.prenom|capitalize}}<span class="right color-gray-30">{{inscription.dateInscription|date('d/m/Y')}}</span></td></tr>
+		{% endfor %}
+		</table>
+	</div>
+</div>
 {% endblock  %}

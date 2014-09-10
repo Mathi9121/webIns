@@ -16,4 +16,13 @@ class FormationRepository extends EntityRepository
     {
         return $this->findBy(array(), array('dateDebut' => 'ASC'));
     }
+	
+	public function findAllFutursFormations(){
+		return $this->getEntityManager()
+            ->createQuery(
+                'SELECT f FROM OCIMFormationsBundle:Formation f
+				WHERE f.dateFin >= :date' 
+            )->setParameter('date', new \DateTime('now'))
+            ->getResult();
+	}
 }
