@@ -1,0 +1,19 @@
+#indicateurs>div{
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	background-color: #f6f6f6;
+	padding: 10px;
+}
+#indicateurs span.oi{
+	font-size: 50px;
+	}
+#indicateurs .count{
+	font-weight: bold;
+	font-size: 50px;
+	height:50px;
+	line-height:50px;
+}
+
+#formations{
+}
+
