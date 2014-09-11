@@ -21,9 +21,12 @@
 
 
 <header class="group" id="header">
-<a href="{{path('home')}}"><img src="{{ asset('../app/Resources/Public/img/logo-ocim.png') }}" class="logo" alt="OCIM"/></a>
+<a href="{{path('home')}}" class="logo"><img src="{{ asset('../app/Resources/Public/img/logo-ocim.png') }}" class="logo" alt="OCIM"/></a>
 	<nav class="navbar navbar-right end">
-		<ul>
+		<div class="navigation-toggle" data-tools="navigation-toggle" data-target="#sidebar">
+			<span>Menu<img src="{{ asset('../app/Resources/Public/img/logo-ocim.png') }}" class="logo" alt="OCIM"/></span>
+		</div>
+		<ul id="session-top">
 			<li>
 				<a href="#"><div id="user-img"><span class="oi" data-glyph="person"></span></div> {{app.user.prenom |capitalize}} {{app.user.nom |capitalize}} <span class="oi" data-glyph="caret-bottom"></span></a>
 				<ul>
@@ -33,6 +36,7 @@
 			</li>
 		</ul>
 	</nav>
+	
 </header>
 
 <div class="units-row">
@@ -53,17 +57,34 @@
 				<li><a href="{{path('personne')}}"><i class="oi" data-glyph="people"></i>Contacts</a></li>
 				<li><a href="#"><i class="oi" data-glyph="file"></i>Export et Gabarits</a></li>
 				<li><a href="#"><i class="oi" data-glyph="magnifying-glass"></i>Rechercher</a></li>
+					<ul id="session-side">
+						<li><a href="{{path('user')}}"><i class="oi" data-glyph="people"></i> Gestion des utilisateurs</a></li>
+						<li><a href="{{ path('deconnexion') }}"><i class="oi" data-glyph="power-standby"></i> Deconnexion</a></li>
+					</ul>
 			</ul>
 		</nav> 
 	</div>
 
 
 	<div role="main" id="content" class="unit-80 ">
+	
+	{% macro message(text, classes) %}
+		<div class="tools-message {{ classes|default('') }}">
+			{{text}}
+		</div>
+	{% endmacro %}
+	{% macro alert(text, classes) %}
+		<div class="tools-alert {{ classes|default('') }}">
+			{{text}}
+		</div>
+	{% endmacro %}
+	
 		{% if block('titre') %}
-				<h1>{% block titre %}{% endblock %}</h1>
-				<hr/>
+			<div id="titre" class="group">
+			<h1 class="left">{% block titre %}{% endblock %}</h1><div id="controls" class="group right">{% block controls %}{% endblock %}</div>
+			</div>
 		{% endif %}
-
+		
 		{% block body %}{% endblock %}
 	</div>
 </div>
@@ -78,7 +99,10 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="Public/js/jquery.js"><\/script>')</script>
 {% block javascripts %}
-	{% javascripts '../app/Resources/Public/js/kube.min.js' %}
+	{% javascripts 
+		'../app/Resources/Public/js/kube.min.js'
+		'../app/Resources/Public/js/main.js'
+	%}
 		<script src="{{ asset_url }}"></script>
 	{% endjavascripts %}
 {% endblock  %}

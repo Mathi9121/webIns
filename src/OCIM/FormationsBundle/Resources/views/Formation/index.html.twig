@@ -11,6 +11,7 @@ filter='cssrewrite' %}
 {% endblock %}
 
 {% block  javascripts %}
+{{parent()}}
 {% javascripts
 	'@OCIMFormationsBundle/Resources/public/js/Formation/jquery.nouislider.min.js'
 	'@OCIMFormationsBundle/Resources/public/js/Formation/filtresFormation.js'
@@ -19,10 +20,15 @@ filter='cssrewrite' %}
 {% endjavascripts %}
 {% endblock %}
 
-{% block title %}Bonjour {{app.user.username|capitalize}} !{% endblock %}
+{% block title %} Formations{% endblock %}
+{% block titre %}Toutes les formations{% endblock %}
+{% block controls %}
+<a href="{{ path('formation_new') }}" class="btn"><span class="oi" data-glyph="plus"></span> Nouvelle formation</a>
+{% endblock %}
+
+
 
 {% block body  %}
-<a href="{{ path('formation_new') }}" class="btn"><span class="oi" data-glyph="plus"></span> Nouvelle formation</a>
 <div class="units-row end filtres">
 	<form class="forms" onsubmit="return false">
 		<div class="unit-25">

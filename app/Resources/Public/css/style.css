@@ -15,7 +15,7 @@ header nav span.oi[data-glyph='caret-bottom']{
 	padding-left: 10px;
 }
 header{
-	background-color: #F6F6F6;
+	background-color: #f9f9f9;
 	border-bottom: 1px solid #fefefe;
 }
 
@@ -77,14 +77,15 @@ header nav.navbar-right ul li a{
 }
 
 
+#titre{border-bottom: 1px solid #f3f3f3}
+#controls{}
+
 
 /** Styles **/
 table tr td{vertical-align:middle}
 
+#sidebar #session-side{display:none;}
 
-
-
-/*
 
 form select{
 	height: 2.3em;
@@ -93,5 +94,16 @@ form select[multiple]{
 	height: auto;
 }
 
- */
 
+/************** MEDIA ******************/
+@media only screen and (max-width:767px){
+	#content{padding: 10px 20px;}
+	#header{text-align:center}
+	#header #session-top{display:none;}
+	#sidebar #session-side{display:block;}
+	#header a.logo{display:none;}
+	#header img.logo{margin-left: calc(100% - 160px); height: 40px}
+	#sidebar form{display:none;}
+	#sidebar{padding-top: 0}
+	
+}
