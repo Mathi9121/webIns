@@ -20,49 +20,53 @@ filter='cssrewrite' %}
 {% endjavascripts %}
 {% endblock %}
 
+{# Titres #}
 {% block title %} Formations{% endblock %}
 {% block titre %}Toutes les formations{% endblock %}
+
+{# Controls #}
 {% block controls %}
 <a href="{{ path('formation_new') }}" class="btn"><span class="oi" data-glyph="plus"></span> Nouvelle formation</a>
 {% endblock %}
 
-
-
+{# CONTENT #}
 {% block body  %}
-<div class="units-row end filtres">
-	<form class="forms" onsubmit="return false">
-		<div class="unit-25">
-			<label>Filtrer par date</label>
-			<div id="datefilter"></div>
-			<div id="event-start" class="left"></div>
-			<div id="event-end" class="right"></div>
-		</div>
-		<div class="unit-25">
-		    <label for="select_multi">
-				Types de formation
-			<select name="select_multi" multiple="multiple"  class="width-100">
-				<option value="tous" selected>Tous</option>
-			{% for type in types %}
-				<option value="{{type.id}}">{{type.type}}</option>
-			{% endfor %}
-			</select>
-			</label>
-		</div>
-		<div class="unit-50">
-			<br/><br/>
-			<input type="search" class="width-100" placeholder="Rechercher dans les formations" id="recherche">
-		</div>
-		
-	</form>
+
+{# filtres #}
+
+<div class="units-row units-padding end filtres">
+<form class="forms" onsubmit="return false">
+<div class="unit-10"><p>Filtres:</p></div>
+
+<div class="unit-50">
+	{# date #}
+	<div id="date">
+		<div id="datefilter"></div>
+		<div id="event-start" class="left"></div>
+		<div id="event-end" class="right"></div>
+	</div>
 </div>
+<div class="unit-40">
+	{# select #}
+		<select name="select_multi" id="selectfilter" class="width-100">
+			<option value="tous" selected>Tous</option>
+			{% for type in types %}
+			<option value="{{type.id}}">{{type.type}}</option>
+			{% endfor %}
+		</select>
+</div>
+</form>
+</div>
+
+
+{# listes formations #}
 <table class="table-hovered width-100">
         <thead>
             <tr>
                 <th>Intitulé</th>
                 <th>Lieu</th>
                 <th>Date</th>
-                <th></th>
-                <th></th>
+                <th colspan="2"><input type="search" class="width-100" placeholder="Rechercher dans les formations" id="recherche"/></th>
             </tr>
         </thead>
         <tbody>
@@ -93,13 +97,14 @@ filter='cssrewrite' %}
 					</div>
 				</td>
                 <td>
-					<div class="group right">
-					<span class="btn-group">
-						<a title="Voir les inscriptions/personnes associées" class="btn btn-smaller" href="{{ path('inscription', { 'idformation': formation.id }) }}"><span class="oi" data-glyph="people"></span></a>
-						<a title="Voir la fiche" class="btn btn-smaller" href="{{ path('formation_show', { 'id': formation.id }) }}"><span class="oi" data-glyph="info"></span></a>
-						<a title="Configurer la logistique de la formation" class="btn btn-smaller" href=""><span class="oi" data-glyph="calendar"></span></a>
-						<a title="Configuration" class="btn btn-smaller" href="{{ path('formation_edit', { 'id': formation.id }) }}"><span class="oi" data-glyph="cog"></span></a>
-					</span>
+					<div class="">
+						<a href="#" class="btn btn-smaller btn-white" data-tools="dropdown" data-target="#dropdown-{{loop.index}}"></a>
+						<ul id="dropdown-{{loop.index}}" class="dropdown">
+							<li><a href="{{ path('inscription', { 'idformation': formation.id }) }}"><span class="oi" data-glyph="people"></span> Incriptions</a></li>
+							<li><a href="{{ path('formation_show', { 'id': formation.id }) }}"><span class="oi" data-glyph="info"></span> Détails</a></li>
+							<li><a href=""><span class="oi" data-glyph="calendar"></span> Logistique</a></li>
+							<li><a href="{{ path('formation_edit', { 'id': formation.id }) }}"><span class="oi" data-glyph="cog"></span> Configuration</a></li>
+						</ul>
 					</div>
 				</td>
             </tr>
@@ -107,3 +112,6 @@ filter='cssrewrite' %}
         </tbody>
     </table>
 {% endblock %}
+
+
+

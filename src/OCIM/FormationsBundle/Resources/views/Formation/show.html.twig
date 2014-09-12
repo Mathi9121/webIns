@@ -7,80 +7,80 @@
 <hr/>
 
 <div class="units-row">
-<div class="unit-66">
-<table class="width-100">
-<caption>Informations sur la formation</caption>
-<tr>
-	<th><span class="oi" data-glyph="badge"></span> Intitulé</th>
-	<td>{{ entity.intitule }}</td>
-</tr>
-<tr>
-	<th><span class="oi" data-glyph="tag"></span> Type</th>
-	<td>{{ entity.type }}</td>
-</tr>
-<tr>
-	<th><span class="oi" data-glyph="map-marker"></span> Lieu</th>
-	<td>{{ entity.lieu }}</td>
-</tr>
-<tr>
-	<th><span class="oi" data-glyph="calendar"></span> Date</th>
-	<td>{{entity.dateText}}</td>
-</tr>
-<tr>
-	<th><span class="oi" data-glyph="calendar"></span> Date de début</th>
-	<td>{{ entity.dateDebut|date('d/m/Y') }}</td>
-</tr>
-<tr>
-	<th><span class="oi" data-glyph="calendar"></span> Date de fin</th>
-	<td>{{ entity.dateFin|date('d/m/Y') }}</td>
-</tr>
-<tr>
-	<th><span class="oi" data-glyph="timer"></span> Nombre d'heures</th>
-	<td>{{ entity.nbHeures }}</td>
-</tr>
-</table>
-</div>
-<div class="unit-33">
-<table class="width-100">
-	<caption>Formules liées à la formation</caption>
-	<thead>
+	<div class="unit-60">
+		<table class="width-100">
+		<caption>Informations sur la formation</caption>
 		<tr>
-			<th>Description</th>
-			<th>Tarif</th>
-			<th colspan="3">Logistique</th>
+			<th><span class="oi" data-glyph="badge"></span> Intitulé</th>
+			<td>{{ entity.intitule }}</td>
 		</tr>
-	</thead>
-	<tbody>
-	{% for formule in formules %}
 		<tr>
-			<td>{{ formule.description }}</td>
-			<td>{{ formule.tarif}}{% if formule.tarif|number_format %}€{% endif %}</td>
-			<td>
-				{% if formule.midi %}
-					<strong>Midi</strong>
-				{% else %}
-					<small class="color-gray-light"><del>Midi</del></small>
-				{% endif%}
-			</td>
-			<td>
-				{% if formule.soir %}
-					<strong>Soir</strong>
-				{% else %}
-					<small class="color-gray-light"><del>Soir</del></small>
-				{% endif%}
-			</td>
-			<td>
-				{% if formule.nuit %}
-					<strong>Nuit</strong>
-				{% else %}
-					<small class="color-gray-light"><del>Nuit</del></small>
-				{% endif%}
-			</td>
+			<th><span class="oi" data-glyph="tag"></span> Type</th>
+			<td>{{ entity.type }}</td>
 		</tr>
-	{% endfor %}
-	</tbody>
-</table>
-</div>
+		<tr>
+			<th><span class="oi" data-glyph="map-marker"></span> Lieu</th>
+			<td>{{ entity.lieu }}</td>
+		</tr>
+		<tr>
+			<th><span class="oi" data-glyph="calendar"></span> Date</th>
+			<td>{{entity.dateText}}</td>
+		</tr>
+		<tr>
+			<th><span class="oi" data-glyph="calendar"></span> Date de début</th>
+			<td>{{ entity.dateDebut|date('d/m/Y') }}</td>
+		</tr>
+		<tr>
+			<th><span class="oi" data-glyph="calendar"></span> Date de fin</th>
+			<td>{{ entity.dateFin|date('d/m/Y') }}</td>
+		</tr>
+		<tr>
+			<th><span class="oi" data-glyph="timer"></span> Nombre d'heures</th>
+			<td>{{ entity.nbHeures }}</td>
+		</tr>
+		</table>
+	</div>
+	<div class="unit-40">
+		<table class="width-100">
+			<caption>Formules liées à la formation</caption>
+			<thead>
+				<tr>
+					<th>Description</th>
+					<th>Tarif</th>
+					<th colspan="3">Logistique</th>
+				</tr>
+			</thead>
+			<tbody>
+			{% for formule in formules %}
+				<tr>
+					<td>{{ formule.description }}</td>
+					<td>{{ formule.tarif}}{% if formule.tarif|number_format %}€{% endif %}</td>
+					<td>
+						{% if formule.midi %}
+							<strong>Midi</strong>
+						{% else %}
+							<small class="color-gray-light"><del>Midi</del></small>
+						{% endif%}
+					</td>
+					<td>
+						{% if formule.soir %}
+							<strong>Soir</strong>
+						{% else %}
+							<small class="color-gray-light"><del>Soir</del></small>
+						{% endif%}
+					</td>
+					<td>
+						{% if formule.nuit %}
+							<strong>Nuit</strong>
+						{% else %}
+							<small class="color-gray-light"><del>Nuit</del></small>
+						{% endif%}
+					</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+	</div>
 </div>
 
 <hr/>

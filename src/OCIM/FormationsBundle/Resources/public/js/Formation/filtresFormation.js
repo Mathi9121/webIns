@@ -41,7 +41,7 @@ var dateMax = parseInt($("tbody>tr:last-child").attr("data-finstamp")) * 1000;
     step: 24 * 60 * 60 * 1000,
 	
 // Two more timestamps indicate the handle starting positions.
-    start: [ dateMin-3600, dateMax+3600],
+    start: [ dateMin - 86400000, dateMax + 86400000],
 	connect: true,
 // The setDate function will display the current values.
     serialization: {
@@ -73,7 +73,7 @@ var dateMax = parseInt($("tbody>tr:last-child").attr("data-finstamp")) * 1000;
 	});
 
 	// filtre par type de formation
-	$('.filtres select').on('change', function(){
+	$('#selectfilter').on('change', function(){
 		$("tbody tr").css("display", "none");
 			$( ".filtres select option:selected" ).each(function() {
 				var typeId = $(this).attr('value');
@@ -100,4 +100,5 @@ $.expr[":"].contains = $.expr.createPseudo(function(arg) {
 		$("tbody tr").css("display", "none");
 		$('tbody tr td:contains("'+recherche+'")').parent("tr").css("display", "table-row");
 	});
+
 });

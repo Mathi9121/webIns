@@ -98,7 +98,14 @@
 		<h3>10 dernières inscriptions</h3>
 		<table class="">
 		{% for inscription in inscriptions %}
-			<tr><td>{{inscription.nom|capitalize}} {{inscription.prenom|capitalize}}<span class="right color-gray-30">{{inscription.dateInscription|date('d/m/Y')}}</span></td></tr>
+			<tr>
+				<td>
+					{{inscription.nom|capitalize}} {{inscription.prenom|capitalize}}
+				</td>
+				<td>
+					<span class="right color-gray-30">{{inscription.dateInscription|date('d/m/Y')}}</span>
+				</td>
+			</tr>
 		{% endfor %}
 		</table>
 	</div>
