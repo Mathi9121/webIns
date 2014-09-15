@@ -16,9 +16,11 @@ OCIM\ContactsBundle\Entity\Adresse:
         nomStructure:
             type: string
             length: 255
+            nullable: true
         adresse:
             type: string
             length: 255
+            nullable: true
         adresseComplement:
             type: string
             length: 255
@@ -27,10 +29,13 @@ OCIM\ContactsBundle\Entity\Adresse:
             type: string
             length: 255
             column: CP
+            nullable: true
         ville:
             type: string
             length: 255
+            nullable: true
         pays:
             type: string
             length: 255
+            nullable: true
     lifecycleCallbacks: {  }

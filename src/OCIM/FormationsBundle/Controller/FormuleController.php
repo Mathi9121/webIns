@@ -24,6 +24,25 @@ class FormuleController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('OCIMFormationsBundle:Formule')->findAll();
+		
+		foreach($entities as $entity){
+			//nombre d'inscriptions liées à la formule
+			$qb = $em->createQueryBuilder();
+			$qb->select('count(i.id)');
+			$qb->from('OCIMFormationsBundle:Inscription','i');
+			$qb->join('OCIMFormationsBundle:formationFormule', 'f', 'WITH', 'f.id = i.formationformule');
+			$qb->where('f.formule = :id');
+			$qb->setParameter('id', $entity->getId());
+			$entity->_countInscriptions = $qb->getQuery()->getSingleResult();
+			
+			// nombre de formations liées à la formule
+			$qb = $em->createQueryBuilder();
+			$qb->select('count(ff.id)');
+			$qb->from('OCIMFormationsBundle:formationFormule','ff');
+			$qb->where('ff.formule = :id');
+			$qb->setParameter('id', $entity->getId());
+			$entity->_countFormations = $qb->getQuery()->getSingleResult();
+		}
 
         return $this->render('OCIMFormationsBundle:Formule:index.html.twig', array(
             'entities' => $entities,
@@ -68,7 +87,7 @@ class FormuleController extends Controller
 			'attr' => array('class' => 'forms')
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Créer', 'attr'=> array('class'=> 'btn')));
+        $form->add('submit', 'submit', array('label' => 'Créer', 'attr'=> array('class'=> 'btn btn-green')));
 
         return $form;
     }
@@ -148,7 +167,7 @@ class FormuleController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Enregistrer', 'attr'=> array('class'=>'btn btn-green')));
 
         return $form;
     }
@@ -218,7 +237,7 @@ class FormuleController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('formule_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Supprimer', 'attr'=> array('class'=>'btn btn-red')))
             ->getForm()
         ;
     }

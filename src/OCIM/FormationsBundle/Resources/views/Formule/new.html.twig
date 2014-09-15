@@ -1,7 +1,10 @@
 {% extends '::app.html.twig' %}
 {% form_theme form '::form.html.twig' %}
+
+{% block title %}Nouvelle Formule{% endblock %}
+{% block titre %}Création nouvelle formule{% endblock %}
+
 {% block body %}
-    <h1>Formule creation</h1>
 
 <form action="{{ path('formule_create') }}" method="post" class="forms units-row" {{ form_enctype(form) }}>
 <div class="units-row">
@@ -15,17 +18,20 @@
 	{{ form_row(form.tarif) }}
 	</div>
 	<div class="unit-66">
-	<label>La formule inclut :
-		<ul class="forms-inline-list">
+	<label for="list-logi">La formule inclut :</label>
+		<ul class="forms-inline-list" id="list-logi">
 			<li>{{ form_widget(form.midi) }}{{ form_label(form.midi) }}</li>
 			<li>{{ form_widget(form.soir) }}{{ form_label(form.soir) }}</li>
 			<li>{{ form_widget(form.nuit) }}{{ form_label(form.nuit) }}</li>
 		</ul>
-	</label>
 	</div>
 </div>
 
-{{ form_end(form)}}
-<a href="{{ path('formule') }}">Retour à la liste</a>
 
+<div class="group">
+	<div class="left"><a href="{{ path('formule') }}" class="btn btn-smaller"><span class="oi" data-glyph="arrow-left"></span> Retour à la liste</a></div>
+	<div class="right">{{form_widget(form.submit)}}</div>
+</div>
+
+{{ form_end(form)}}
 {% endblock %}

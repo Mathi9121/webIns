@@ -1,16 +1,42 @@
 {% extends '::app.html.twig' %}
 {% form_theme edit_form '::form.html.twig' %}
+
+{% block title %}Formule - modification formule {{entity.id}}{% endblock %}
+
+{% block titre %}Modification formule n°{{entity.id}}{% endblock %}
+
 {% block body -%}
-    <h1>Formule edit</h1>
 
-    {{ form(edit_form) }}
+<form action="{{ path('formule_create') }}" method="post" class="forms units-row" {{ form_enctype(edit_form) }}>
+<div class="units-row">
+    <div class="unit-100">
+	{{ form_row(edit_form.description) }}
+	</div>
+</div>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('formule') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+<div class="units-row">
+    <div class="unit-33">
+	{{ form_row(edit_form.tarif) }}
+	</div>
+	<div class="unit-66">
+	<label for="list-logi">La formule inclut :</label>
+		<ul class="forms-inline-list" id="list-logi">
+			<li>{{ form_widget(edit_form.midi) }}{{ form_label(edit_form.midi) }}</li>
+			<li>{{ form_widget(edit_form.soir) }}{{ form_label(edit_form.soir) }}</li>
+			<li>{{ form_widget(edit_form.nuit) }}{{ form_label(edit_form.nuit) }}</li>
+		</ul>
+
+	</div>
+</div>
+
+<div class="group">
+	<div class="left">
+		<a href="{{ path('formule') }}" class="btn btn-smaller"><span class="oi" data-glyph="arrow-left"></span> Retour à la liste</a>
+	</div>
+	<div class="right">
+		{{form_widget(edit_form.submit)}}{{form_end(edit_form)}}<div style="display:inline-block">{{form(delete_form)}}</div>
+	</div>
+</div>
+
+
 {% endblock %}

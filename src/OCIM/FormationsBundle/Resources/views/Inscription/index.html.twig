@@ -10,12 +10,12 @@ filter='cssrewrite' %}
 {% endblock %}
 
 {% block title %}Inscriptions pour {% endblock %}
+{% block titre %}{{ formation.intitule }}{% endblock %}
+{% block controls %}<a href="{{ path('inscription_new', { 'idformation': formation.id }) }}" class="btn btn-green"><span class="oi" data-glyph="plus"></span> Nouvelle inscription</a>{% endblock %}
 
 {% block body -%}
-<h2>{{ formation.intitule }}</h2>
-<hr/>
-</div>
-<div class="unit-90 unit-centered">
+
+
 {% if entities != null %}
 <div class="table-container">
     <table class="">
@@ -94,13 +94,21 @@ filter='cssrewrite' %}
 					<td>{{ personne.fax}}</td>
 					<td>{{ personne.mail}}</td>
 					<td>{{ personne.mailAdmin}}</td>
-
+				{% endif %}
+				{% if personne.adresse %}
 					<td>{{ personne.adresse.nomStructure }}</td>
 					<td>{{ personne.adresse.adresse }}</td>
 					<td>{{ personne.adresse.adresseComplement }}</td>
 					<td>{{ personne.adresse.CP }}</td>
 					<td>{{ personne.adresse.ville }}</td>
 					<td>{{ personne.adresse.pays }}</td>
+				{% else %}
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
 				{% endif %}
 				{% endfor %}
 				{% if entity.convention %}
@@ -132,20 +140,15 @@ filter='cssrewrite' %}
         {% endfor %}
         </tbody>
     </table>
+</div>
 {% else %}
 	<p class="text-centered"><span class="oi" data-glyph="info"></span> Aucune inscription pour le moment...</p>
 	<div class="text-centered">
-		<a href="{{ path('inscription_new', { 'idformation': formation.id }) }}" class="btn btn-green btn-big">
-			<span class="oi" data-glyph="plus"></span> Nouvelle inscription
-		</a>
+		<a href="{{ path('inscription_new', { 'idformation': formation.id }) }}" class="btn btn-green btn-big"><span class="oi" data-glyph="plus"></span> Nouvelle inscription</a>
 	</div>
 {% endif %}
 
-
-</div>
 {% if entities != null %}
-<a href="{{ path('inscription_new', { 'idformation': formation.id }) }}" class="btn btn-green">
-	<span class="oi" data-glyph="plus"></span> Nouvelle inscription
-</a>
+<a href="{{ path('inscription_new', { 'idformation': formation.id }) }}" class="btn btn-green"><span class="oi" data-glyph="plus"></span> Nouvelle inscription</a>
 {% endif %}
 {% endblock %}

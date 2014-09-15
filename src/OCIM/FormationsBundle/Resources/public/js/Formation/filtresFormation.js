@@ -100,5 +100,9 @@ $.expr[":"].contains = $.expr.createPseudo(function(arg) {
 		$("tbody tr").css("display", "none");
 		$('tbody tr td:contains("'+recherche+'")').parent("tr").css("display", "table-row");
 	});
-
+	
+	//rendre les filtres visibles
+	$('#controls a.toggleFiltres').on('click', function(){
+		$('.filtres').toggleClass('hide');
+	});
 });

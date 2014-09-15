@@ -27,6 +27,7 @@ filter='cssrewrite' %}
 {# Controls #}
 {% block controls %}
 <a href="{{ path('formation_new') }}" class="btn"><span class="oi" data-glyph="plus"></span> Nouvelle formation</a>
+<a href="#" class="btn btn-smaller toggleFiltres" data-tools="buttons" data-type="toggle">Filtrer</a>
 {% endblock %}
 
 {# CONTENT #}
@@ -34,11 +35,10 @@ filter='cssrewrite' %}
 
 {# filtres #}
 
-<div class="units-row units-padding end filtres">
+<div class="units-row units-padding filtres hide">
 <form class="forms" onsubmit="return false">
-<div class="unit-10"><p>Filtres:</p></div>
 
-<div class="unit-50">
+<div class="unit-70">
 	{# date #}
 	<div id="date">
 		<div id="datefilter"></div>
@@ -46,7 +46,7 @@ filter='cssrewrite' %}
 		<div id="event-end" class="right"></div>
 	</div>
 </div>
-<div class="unit-40">
+<div class="unit-30">
 	{# select #}
 		<select name="select_multi" id="selectfilter" class="width-100">
 			<option value="tous" selected>Tous</option>

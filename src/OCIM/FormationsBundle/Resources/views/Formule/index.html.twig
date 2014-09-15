@@ -1,41 +1,57 @@
 {% extends '::app.html.twig' %}
 
-{% block body -%}
-    <h1>Liste des Formules</h1>
+{% block title %}
+Formules
+{% endblock %}
 
-    <table class="table-flat table-striped width-100">
+{% block titre %}
+Toutes les formules
+{% endblock %}
+
+{% block controls %}
+<a href="{{ path('formule_new') }}" class="btn btn-green"><span class="oi" data-glyph="plus"></span> Nouvelle Formule</a>
+{% endblock %}
+
+{% block body -%}
+
+
+
+    <table class="table-hovered width-100">
         <thead>
             <tr>
-                <th></th>
+				<th> </th>
                 <th>Description</th>
                 <th>Tarif</th>
                 <th>Midi</th>
                 <th>Soir</th>
                 <th>Nuit</th>
+				<th></th>
             </tr>
         </thead>
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('formule_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.description }}</td>
+                {# <td><a href="{{ path('formule_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td> #}
+				<td>
+					<span class="label label-outline" title="Nombre d'inscriptions à cette formule"><i class="oi" data-glyph="people"></i> {{ entity._countInscriptions.1}}</span>
+					<span class="label label-outline" title="Nombre de formations proposant cette formule"><i class="oi" data-glyph="book"></i> {{ entity._countFormations.1}}</span>
+				</td>
+                <td>{{ entity.description|capitalize }}</td>
                 <td>{{ entity.tarif }}</td>
-                <td>{% if entity.midi == 1 %}<span class="oi" data-glyph="check"></span>{% endif %}</td>
-                <td>{% if entity.soir == 1 %}<span class="oi" data-glyph="check"></span>{% endif %}</td>
-                <td>{% if entity.nuit == 1 %}<span class="oi" data-glyph="check"></span>{% endif %}</td>
+                <td class="text-centered">{% if entity.midi == 1 %}<span class="oi" data-glyph="check"></span>{% endif %}</td>
+                <td class="text-centered">{% if entity.soir == 1 %}<span class="oi" data-glyph="check"></span>{% endif %}</td>
+                <td class="text-centered">{% if entity.nuit == 1 %}<span class="oi" data-glyph="check"></span>{% endif %}</td>
                 <td>
-					<a class="btn btn-small" href="{{ path('formule_edit', { 'id': entity.id }) }}"><span class="oi" data-glyph="pencil"></span></a>
+					<a class="btn btn-smaller btn-white" href="{{ path('formule_edit', { 'id': entity.id }) }}"><span class="oi" data-glyph="pencil"></span> Modifier</a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
-    </table>
-
-        <ul>
-        <li>
-            <a href="{{ path('formule_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
+		<tfoot>
+			<tr>
+				<td colspan="3" class="text-right">Nombre total de formules</td>
+				<td colspan="3">{{entities|length}}</td>
+			</tr>
+		</tfoot>
+	</table>
     {% endblock %}
