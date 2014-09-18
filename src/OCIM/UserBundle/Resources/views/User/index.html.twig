@@ -1,34 +1,36 @@
 {% extends '::app.html.twig' %}
 
+{% block title %}Administrateurs{% endblock %}
+{% block titre %}Administrateurs de l'application{% endblock %}
+{% block controls %}<a class='btn btn-green' href="{{ path('user_new') }}"><span class="oi" data-glyph="plus"></span> Nouvel Utilisateur</a>{% endblock %}
+
 {% block body -%}
-    <h1>Administrateurs de l'application</h1>
-    <a class='btn' href="{{ path('user_new') }}"><span class="oi" data-glyph="plus"></span> Nouvel Utilisateur</a>
-    <table class="table-striped table-flat width-100">
+    <table class="table-striped table width-80">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Prenom/Nom</th>
+                <th>#</th>
+                <th>Prenom / Nom</th>
                 <th>Login</th>
-                <th>Mail</th>
-                <th>Admin</th>
-                <th>Actions</th>
+                <th>Adresse Mail</th>
+                <th class="text-centered">Administrateur?</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('user_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.prenom }} {{ entity.nom|capitalize}}</td>
+                <td>{{ entity.id }}</td>
+                <td>{{ entity.prenom|capitalize }} {{ entity.nom|capitalize}}</td>
                 <td>{{ entity.login }}</td>
                 <td><a href="mailto:{{ entity.mail }}">{{ entity.mail }}</a></td>
-                <td>{% if entity.admin == 1 %}<span class="oi" data-glyph="check"></span>{% endif %}</td>
+                <td class="text-centered">{% if entity.admin == 1 %}<span class="oi" data-glyph="check"></span>{% endif %}</td>
                 <td>
-                        <a href="{{ path('user_show', { 'id': entity.id }) }}">show</a>
-                        <a href="{{ path('user_edit', { 'id': entity.id }) }}">edit</a>
+                        {# <a href="{{ path('user_show', { 'id': entity.id }) }}">show</a> #}
+                        <a href="{{ path('user_edit', { 'id': entity.id }) }}" class="btn btn-smaller"><span class="oi" data-glyph="pencil"></span> Modifier</a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-    <a class='btn' href="{{ path('user_new') }}"><span class="oi" data-glyph="plus"></span> Nouvel Utilisateur</a>
+    
 {% endblock %}

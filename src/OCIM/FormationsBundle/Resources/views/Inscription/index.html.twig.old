@@ -1,0 +1,153 @@
+{% extends '::app.html.twig' %}
+
+{% block stylesheets %}
+{{ parent() }}
+{% stylesheets 
+	'@OCIMFormationsBundle/Resources/public/css/inscriptions.css'
+filter='cssrewrite' %}
+	<link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset_url }}"/>
+{% endstylesheets %}
+{% endblock %}
+
+{% block title %}Inscriptions pour {% endblock %}
+
+{% block body -%}
+<h2>{{ formation.intitule }}</h2>
+<hr/>
+{% if entities != null %}
+<div class="table-container">
+    <table class="">
+	<caption>Liste des candidats à la formation</caption>
+
+	<colgroup>
+		<col span="1" style="background-color:#ffffff">
+		<col span="8" style="background-color:#FFFCD1">
+		<col span="6" style="background-color:#FFEED1">
+		<col span="7" style="background-color:#FFD1D1">
+		<col span="4" style="background-color:#D1FAFF">
+	</colgroup>
+
+        <thead>
+			<tr>
+				<th class="statut"> </th>
+				<th colspan="8">Contact</th>
+				<th colspan="6">Adresse</th>
+				<th colspan="7">Convention</th>
+				<th colspan="4">Inscription</th>
+			</tr>
+            <tr>
+				<th class="statut"></th>
+				<th>Nom</th>
+				<th>Prénom</th>
+				<th>Formule</th>
+				<th>Fonction</th>
+				<th>Tel</th>
+				<th>Fax</th>
+				<th>Mail</th>
+				<th>Mail Admin</th>
+				
+				<th>Structure</th>
+				<th>Adresse</th>
+				<th>Complément</th>
+				<th>Code postal</th>
+				<th>Ville</th>
+				<th>Pays</th>
+				
+				<th>Numéro</th>
+				<th>Edition</th>
+				<th>Envoi Président 2 ex</th>
+				<th>Retour Président 2 ex</th>
+				<th>Envoi organisme 2 ex</th>
+				<th>Retour organisme 1 ex</th>
+				<th>Envoi Président 1 ex</th>
+
+                <th>Inscription le</th>
+                <th>Attentes</th>
+                <th>Financement</th>
+                <th>Convention</th>
+                <th>Actions</th>
+				
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+				{% set class = "" %}
+				{% if entity.statut == 'en attente' %}
+					{% set class = "attente" %}
+				{% elseif entity.statut == 'accepté' %}
+					{% set class = "valide" %}
+				{% elseif entity.statut == 'annulé' %}
+					{% set class = "annule" %}
+				{% endif %}
+				<td class="statut {{class}}"></td>
+
+				{% for personne in entity.personnes %}
+				{% if personne.type == 'Stagiaire' %}
+					<td>{{ personne.nom }} ({{ personne.civilite }})</td>
+					<td>{{ personne.prenom }}</td>
+					<td><abbr title="{{ entity.formationFormule.formule }}">{{ entity.formationFormule.formule.id }}</abbr></td>
+					<td>{{ personne.fonction }}</td>
+					<td>{{ personne.tel }}</td>
+					<td>{{ personne.fax}}</td>
+					<td>{{ personne.mail}}</td>
+					<td>{{ personne.mailAdmin}}</td>
+				{% endif %}
+				{% if personne.adresse %}
+					<td>{{ personne.adresse.nomStructure }}</td>
+					<td>{{ personne.adresse.adresse }}</td>
+					<td>{{ personne.adresse.adresseComplement }}</td>
+					<td>{{ personne.adresse.CP }}</td>
+					<td>{{ personne.adresse.ville }}</td>
+					<td>{{ personne.adresse.pays }}</td>
+				{% else %}
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				{% endif %}
+				{% endfor %}
+				{% if entity.convention %}
+					<td>{{ entity.convention.numero }}</td>
+					<td>{{ entity.convention.edition|date('d/m/Y') }}</td>
+					<td>{{ entity.convention.envoiPresidentU2ex|date('d/m/Y') }}</td>
+					<td>{{ entity.convention.retourPresidentU2ex|date('d/m/Y')}}</td>
+					<td>{{ entity.convention.envoiOrganisme2ex|date('d/m/Y') }}</td>
+					<td>{{ entity.convention.retourOrganisme1ex|date('d/m/Y') }}</td>
+					<td>{{ entity.convention.envoiPresidentU1ex|date('d/m/Y')}}</td>
+				{% else %}
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				{% endif %}
+                <td>{% if entity.dateInscription %}{{ entity.dateInscription|date('d/m/Y') }}{% endif %}</td>
+                <td>{{ entity.attentes|slice(0, 55)}}{% if entity.attentes|length > 55 %}...{% endif %}</td>
+                <td>{{ entity.statutOrgFinanceur }}</td>
+                <td>{{ entity.statutConvention }}</td>
+                <td>
+					<a href="{{ path('inscription_show', { 'id': entity.id, 'idformation':formation.id }) }}">show</a>
+					<a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation':formation.id }) }}">edit</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+	<p class="text-centered"><span class="oi" data-glyph="info"></span> Aucune inscription pour le moment...</p>
+	<div class="text-centered">
+		<a href="{{ path('inscription_new', { 'idformation': formation.id }) }}" class="btn btn-green btn-big">
+			<span class="oi" data-glyph="plus"></span> Nouvelle inscription
+		</a>
+	</div>
+{% endif %}
+
+{% if entities != null %}
+<a href="{{ path('inscription_new', { 'idformation': formation.id }) }}" class="btn btn-green"><span class="oi" data-glyph="plus"></span> Nouvelle inscription</a>
+{% endif %}
+{% endblock %}

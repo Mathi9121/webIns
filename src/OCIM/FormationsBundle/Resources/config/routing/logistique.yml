@@ -1,0 +1,30 @@
+logistique:
+    path:     /
+    defaults: { _controller: "OCIMFormationsBundle:Logistique:index" }
+
+logistique_show:
+    path:     /{id}/show
+    defaults: { _controller: "OCIMFormationsBundle:Logistique:show" }
+
+logistique_new:
+    path:     /new
+    defaults: { _controller: "OCIMFormationsBundle:Logistique:new" }
+
+logistique_create:
+    path:     /create
+    defaults: { _controller: "OCIMFormationsBundle:Logistique:create" }
+    requirements: { _method: post }
+
+logistique_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "OCIMFormationsBundle:Logistique:edit" }
+
+logistique_update:
+    path:     /{id}/update
+    defaults: { _controller: "OCIMFormationsBundle:Logistique:update" }
+    requirements: { _method: post|put }
+
+logistique_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "OCIMFormationsBundle:Logistique:delete" }
+    requirements: { _method: post|delete }

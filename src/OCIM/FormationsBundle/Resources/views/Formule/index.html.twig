@@ -22,9 +22,9 @@ Toutes les formules
 				<th> </th>
                 <th>Description</th>
                 <th>Tarif</th>
-                <th>Midi</th>
-                <th>Soir</th>
-                <th>Nuit</th>
+                <th class="text-centered">Midi</th>
+                <th class="text-centered">Soir</th>
+                <th class="text-centered">Nuit</th>
 				<th></th>
             </tr>
         </thead>
@@ -32,15 +32,15 @@ Toutes les formules
         {% for entity in entities %}
             <tr>
                 {# <td><a href="{{ path('formule_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td> #}
-				<td>
+				<td style="padding:0">
 					<span class="label label-outline" title="Nombre d'inscriptions à cette formule"><i class="oi" data-glyph="people"></i> {{ entity._countInscriptions.1}}</span>
 					<span class="label label-outline" title="Nombre de formations proposant cette formule"><i class="oi" data-glyph="book"></i> {{ entity._countFormations.1}}</span>
 				</td>
                 <td>{{ entity.description|capitalize }}</td>
-                <td>{{ entity.tarif }}</td>
-                <td class="text-centered">{% if entity.midi == 1 %}<span class="oi" data-glyph="check"></span>{% endif %}</td>
-                <td class="text-centered">{% if entity.soir == 1 %}<span class="oi" data-glyph="check"></span>{% endif %}</td>
-                <td class="text-centered">{% if entity.nuit == 1 %}<span class="oi" data-glyph="check"></span>{% endif %}</td>
+                <td>{{ entity.tarif }} {% if entity.tarif|number_format %}€{% endif %}</td>
+                {% if entity.midi == 1 %}<td class="text-centered" style="background-color: #f6f6f6"><span class="oi" data-glyph="check"></span>{% else %}<td>{% endif %}</td>
+                {% if entity.soir == 1 %}<td class="text-centered" style="background-color: #f6f6f6"><span class="oi" data-glyph="check"></span>{% else %}<td>{% endif %}</td>
+                {% if entity.nuit == 1 %}<td class="text-centered" style="background-color: #f6f6f6"><span class="oi" data-glyph="check"></span>{% else %}<td>{% endif %}</td>
                 <td>
 					<a class="btn btn-smaller btn-white" href="{{ path('formule_edit', { 'id': entity.id }) }}"><span class="oi" data-glyph="pencil"></span> Modifier</a>
                 </td>

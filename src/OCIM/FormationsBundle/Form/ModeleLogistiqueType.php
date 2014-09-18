@@ -1,12 +1,12 @@
 <?php
 
-namespace OCIM\UserBundle\Form;
+namespace OCIM\FormationsBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class UserType extends AbstractType
+class ModeleLogistiqueType extends AbstractType
 {
         /**
      * @param FormBuilderInterface $builder
@@ -15,26 +15,16 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom', 'text', array(
-				'label'=> 'Nom',
+            ->add('date', 'date', array(
+				'widget' => 'single_text',
+				'format' => 'dd/MM/yyyy',
 			))
-            ->add('prenom', 'text', array(
-				'label'=> 'Prénom',
-			))
-			->add('mail', 'text', array(
-				'label'=> '',
-			))
-            ->add('login', 'text', array(
-				'label'=> 'Login',
-			))
-            ->add('password', 'password', array(
-				'label'=> 'Mot de passe',
-			))
-            ->add('admin', 'checkbox', array(
-				'label'=> "La personne est-elle Super-Administrateur?",
-				'required' => false,
-			))
-        ;
+            ->add('description')
+            ->add('typeReponse', 'choice', array(
+				'choices'   => array(
+					'text'	=> 'Texte',
+					'bool'	=> 'Oui/Non',
+			)));
     }
     
     /**
@@ -43,9 +33,8 @@ class UserType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'OCIM\UserBundle\Entity\User',
+            'data_class' => 'OCIM\FormationsBundle\Entity\ModeleLogistique',
 			'attr' => array('class'=> 'forms'),
-			
         ));
     }
 
@@ -54,6 +43,6 @@ class UserType extends AbstractType
      */
     public function getName()
     {
-        return 'ocim_userbundle_user';
+        return 'ocim_formationsbundle_modelelogistique';
     }
 }

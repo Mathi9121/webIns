@@ -1,6 +1,14 @@
+td.statut, th.statut{}
+
 td.statut, th.statut{
-	padding: 2px;
-}
+	padding-left: 0px;
+	padding-right: 0px;
+	position:absolute; 
+	top:auto;
+	margin-left: -4px;
+	}
+
+
 td.statut.attente{
 	background-color: #FFA500;
 }
@@ -11,9 +19,31 @@ td.statut.annule{
 	background-color: rgba(255, 54, 0, 0.89);
 }
 
-table thead>tr:first-child th{
+table thead tr th{
 	text-align:center
 }
-h2{
-	text-align:center
-}
+
+/*********/
+
+th.insc.info			{background-color: rgba(80, 245, 12, 0.7)}
+th.insc.contact		{background-color: rgba(222, 172, 0, 0.7)}
+th.insc.convention	{background-color: rgba(245, 67, 12, 0.7)}
+th.insc.attentes		{background-color: rgba(195, 12, 235,0.7)}
+
+
+td.insc.info			{background-color: rgba(80, 245, 12, 0.2)}
+td.insc.contact			{background-color: rgba(222, 172, 0, 0.2);}
+td.insc.convention		{background-color: rgba(245, 67, 12, 0.2)}
+td.insc.attentes		{background-color: rgba(195, 12, 235,0.2); min-width: 400px}
+
+/*  
+.insc.contact span {display:none;}
+.insc.contact {padding:0;}
+
+.insc.convention span {display:none;}
+.insc.convention {padding:0;}
+
+.insc.attentes span {display:none;}
+td.insc.attentes {padding:0; min-width: 0} */
+
+td{white-space:nowrap}

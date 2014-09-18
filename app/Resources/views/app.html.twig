@@ -28,8 +28,8 @@
 		</div>
 		<ul id="session-top">
 			<li>
-				<a href="#"><div id="user-img"><span class="oi" data-glyph="person"></span></div> {{app.user.prenom |capitalize}} {{app.user.nom |capitalize}} <span class="oi" data-glyph="caret-bottom"></span></a>
-				<ul>
+				<a href="#" data-tools="dropdown" data-target="#dropdownmenu"><div id="user-img"><span class="oi" data-glyph="person"></span></div> {{app.user.prenom |capitalize}} {{app.user.nom |capitalize}}</a>
+				<ul id="dropdownmenu" class="dropdown">
 					<li><a href="{{path('user')}}"><span class="oi" data-glyph="people"></span> Gestion des utilisateurs</a></li>
 					<li><a href="{{ path('deconnexion') }}"><span class="oi" data-glyph="power-standby"></span> Deconnexion</a></li>
 				</ul>
@@ -54,6 +54,8 @@
 				<li><a href="{{path('home')}}"><i class="oi" data-glyph="dashboard"></i>Dashboard</a></li>
 				<li><a href="{{path('formation')}}"><i class="oi" data-glyph="book"></i>Formations</a></li>
 				<li><a href="{{path('formule')}}"><i class="oi" data-glyph="tags"></i>Formules</a></li>
+				<li><a href="{{path('logistique')}}"><i class="oi" data-glyph="fork"></i>Logistique</a></li>
+				<li><a href="{{path('convention')}}"><i class="oi" data-glyph="script"></i>Conventions</a></li>
 				<li><a href="{{path('personne')}}"><i class="oi" data-glyph="people"></i>Contacts</a></li>
 				<li><a href="#"><i class="oi" data-glyph="file"></i>Export et Gabarits</a></li>
 				<li><a href="#"><i class="oi" data-glyph="magnifying-glass"></i>Rechercher</a></li>

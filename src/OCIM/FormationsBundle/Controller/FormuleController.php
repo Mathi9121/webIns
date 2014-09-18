@@ -192,7 +192,7 @@ class FormuleController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('formule_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('formule_show', array('id' => $id)));
         }
 
         return $this->render('OCIMFormationsBundle:Formule:edit.html.twig', array(

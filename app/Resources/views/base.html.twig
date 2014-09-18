@@ -10,7 +10,18 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 		{% stylesheets '../app/Resources/Public/css/*' %}
 			<link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset_url }}"/>
-		{% endstylesheets %}	
+		{% endstylesheets %}
+	<style>
+		{% image '../app/Resources/Public/img/schoolboard.jpg' %}
+			html, body{height: 100%; overflow: hidden;}
+			body{
+				height: 100%;
+				background-image: url({{ asset_url }});
+				background-position: center bottom;
+				background-size: 100%
+			}
+		{% endimage %}
+	</style>
 </head>
 <body>
 		<div style="width: 350px; margin:50px auto">

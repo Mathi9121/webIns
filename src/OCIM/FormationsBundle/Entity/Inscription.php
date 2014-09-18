@@ -369,4 +369,8 @@ class Inscription
 	function onPrePersist() {
 		$this->dateInscription = new \DateTime("now");
 	}
+	
+	function __toString(){
+		return $this->getPersonnes()[0]->getNom();
+	}
 }

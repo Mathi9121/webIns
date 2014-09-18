@@ -295,4 +295,8 @@ class ModeleLogistique
     {
         return $this->formationformule;
     }
+	
+	public function __toString(){
+		return $this->date->format('Y m d')."  ".$this->description." ".$this->typeReponse;
+	}
 }
