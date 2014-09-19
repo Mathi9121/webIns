@@ -7,13 +7,16 @@
 {% endjavascripts %}
 {% endblock %}
 
+{# Titres #}
+{% block title %}Modification - {{ entity.intitule }}{% endblock %}
+{% block titre %}Edition{% endblock %}
+
+{# Controls #}
+{% block controls %}
+{{ form(delete_form) }}
+{% endblock %}
 
 {% block body %}
-<hgroup>
-    <h1>Formation</h1>
-    <h1 class="subheading">Modification</h1>
-	<hr/>
-</hgroup>
 
 <form action="{{ path('formation_update', {'id' : entity.id}) }}" method="post" class="forms units-row" {{ form_enctype(edit_form) }}>
 <input type="hidden" name="_method" value="PUT" />
@@ -40,14 +43,11 @@
 	<div class="unit-33"></div>
 </div>
 
+<hr/>
+<div class="group">
+	<div class="left"><a href="{{ path('formation') }}" class="btn btn-smaller"><span class="oi" data-glyph="arrow-left"></span> Retour à la liste des formations</a></div>
+	<div class="right">{{ form_widget(edit_form.submit) }}</div>
+</div>
 {{ form_rest(edit_form) }}
-
-{{ form_row(edit_form.submit) }}
-
 </form>
-
-	<a href="{{ path('formation') }}">
-	Retour à la liste des formations
-	</a>
-{{ form(delete_form) }}
 {% endblock %}

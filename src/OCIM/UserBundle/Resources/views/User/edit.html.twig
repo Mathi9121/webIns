@@ -2,20 +2,26 @@
 {% form_theme edit_form '::form.html.twig' %}
 
 {% block title %}Utilisateur - Edition{% endblock %}
-{% block titre %}Modification de l'utilisateur {{entity.prenom}}{% endblock %}
-{% block controls %}{% endblock %}
+{% block titre %}Modification de l'utilisateur: {{entity.prenom}}{% endblock %}
+{% block controls %}{{ form(delete_form) }}{% endblock %}
 
 {% block body -%}
-    <h1>User edit</h1>
-
-    {{ form(edit_form) }}
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('user') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+{{form_start(edit_form)}}
+<div class="units-row">
+    <div class="unit-50 unit-centered">
+		{{ form_row(edit_form.nom) }}
+		{{ form_row(edit_form.prenom) }}
+		{{ form_row(edit_form.mail) }}
+		{{ form_row(edit_form.login) }}
+		{{ form_row(edit_form.password) }}
+		{{ form_row(edit_form.admin) }}
+	</div>
+</div>
+<hr/>
+<div class="group">
+	<div class="left"><a href="{{ path('user') }}" class="btn btn-smaller">Retour</a></div>
+	<div class="right">{{form_widget(edit_form.submit)}}</div>
+</div>
+{{ form_rest(edit_form) }}
+{{ form_end(edit_form) }}
 {% endblock %}

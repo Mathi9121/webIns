@@ -1,50 +1,45 @@
 {% extends '::app.html.twig' %}
 
+
+{% block titre %}Inscription - {{entity.personnes.0.civilite|capitalize}} {{entity.personnes.0.prenom|capitalize}} {{entity.personnes.0.nom|capitalize}}{% endblock %}
+
+{% block title %}Inscription - {{entity.personnes.0.civilite}} {{entity.personnes.0.prenom}} {{entity.personnes.0.nom}}{% endblock %}
+{% block controls %}{{form(delete_form)}}{% endblock %}
+
 {% block body -%}
-    <h1>Inscription</h1>
 
-    <table class="record_properties">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-            <tr>
-                <th>Dateinscription</th>
-                <td>{{ entity.dateInscription|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>Statut</th>
-                <td>{{ entity.statut }}</td>
-            </tr>
-            <tr>
-                <th>Attentes</th>
-                <td>{{ entity.attentes }}</td>
-            </tr>
-            <tr>
-                <th>Statutorgfinanceur</th>
-                <td>{{ entity.statutOrgFinanceur }}</td>
-            </tr>
-            <tr>
-                <th>Statutconvention</th>
-                <td>{{ entity.statutConvention }}</td>
-            </tr>
-            <tr>
-                <th>Hash</th>
-                <td>{{ entity.hash }}</td>
-            </tr>
-        </tbody>
-    </table>
+<blockquote class="lead text-centered">{{ entity.attentes }}</blockquote>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('inscription', {'idformation':idformation}) }}" class="btn">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation': idformation }) }}" class="btn">Modifier</a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+<div class="units-row">
+	<div class="unit-60">
+		<table>
+			<caption>Inscription</caption>
+			<tr>
+				<th>Inscription le</th>
+				<td>{{ entity.dateInscription|date('d/m/Y') }} à {{ entity.dateInscription|date('H:i:s') }}</td>
+			</tr>
+			<tr>
+				<th>Statut</th>
+				{% set couleur = "" %}
+				{% if entity.statut == 'accepté'%}
+					{% set couleur = "label-green" %}
+				{% elseif entity.statut == 'annulé'%}
+					{% set couleur = "label-red" %}
+				{% elseif entity.statut == 'en attente'%}
+					{% set couleur = "label-yellow" %}
+				{% endif %}
+				<td><span class="label {{couleur}}">{{ entity.statut }}</span></td>
+			</tr>
+			<tr>
+				<th>Formule</th>
+				<td><strong>{{entity.formationFormule.formule.id}}</strong> - {{entity.formationFormule.formule.description|capitalize}}</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<div class="group">
+    <div class="left"><a href="{{ path('inscription', {'idformation':idformation}) }}" class="btn btn-smaller">Retour</a></div>
+    <div class="right"><a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation': idformation }) }}" class="btn btn-green">Modifier</a></div>
+</div>
 {% endblock %}

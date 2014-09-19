@@ -64,10 +64,12 @@
     <div class="unit-100">{{ form_row(form.attentes) }}</div>
 </div>
 {{ form_widget(form.personne.type) }}
+<hr/>
+<div class="group">
+	<div class="left"><a href="{{ path('inscription', { 'idformation': idformation }) }}" class="btn btn-smaller"><span class="oi" data-glyph="arrow-left"></span> Retour à la liste</a></div>
+	<div class="right">{{ form_widget(form.submit) }}</div>
+</div>
 
 
-
-{{ form_widget(form.submit) }}
-<a href="{{ path('inscription', { 'idformation': idformation }) }}" class="btn btn-smaller">Retour à la liste</a>
 {{ form_end(form)}}
 {% endblock %}

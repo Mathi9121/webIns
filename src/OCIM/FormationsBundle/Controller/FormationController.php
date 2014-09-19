@@ -32,6 +32,7 @@ class FormationController extends Controller
 		
 		foreach($formations as $formation){
 			$formation->_count = $em->getRepository('OCIMFormationsBundle:Inscription')->countInscriptionsByFormation($formation->getId());
+			$formation->_nbJours = $formation->getDateDebut()->diff($formation->getDateFin(), true)->format('%a') + 1;
 		}
 		
 		return $this->render('OCIMFormationsBundle:Formation:index.html.twig', array(

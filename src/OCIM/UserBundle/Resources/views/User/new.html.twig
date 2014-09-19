@@ -1,20 +1,28 @@
 {% extends '::app.html.twig' %}
 {% form_theme form '::form.html.twig' %}
 
-{% block title %}{% endblock %}
-{% block titre %}{% endblock %}
+{% block title %}Utilisateur - Ajout{% endblock %}
+{% block titre %}Nouvel Utilisateur{% endblock %}
 {% block controls %}{% endblock %}
 
 {% block body -%}
-    <h1>User creation</h1>
-
-    {{ form(form) }}
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('user') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+{{form_start(form)}}
+<div class="units-row">
+    <div class="unit-50 unit-centered">
+		{{ form_row(form.nom) }}
+		{{ form_row(form.prenom) }}
+		{{ form_row(form.mail) }}
+		{{ form_row(form.login) }}
+		{{ form_row(form.password) }}
+		{{ form_row(form.admin) }}
+		<div class="big">{{form_widget(form.submit)}}</div>
+	</div>
+	
+</div>
+<hr/>
+<div class="group">
+	<div class="left"><a href="{{ path('user') }}" class="btn btn-smaller">Retour</a></div>
+</div>
+{{ form_rest(form) }}
+{{ form_end(form) }}
 {% endblock %}

@@ -43,7 +43,11 @@ class Inscription
      * @var string
      */
     private $hash;
-
+	
+	/**
+     * @var string
+     */
+    private $ordre;
 
     /**
      * Get id
@@ -373,4 +377,23 @@ class Inscription
 	function __toString(){
 		return $this->getPersonnes()[0]->getNom();
 	}
+	
+	
+	public function setOrdre($personne = null)
+    {
+        $this->ordre = $ordre;
+
+        return $this;
+    }
+
+    /**
+     * Get personne
+     *
+     * @return \OCIM\ContactsBundle\Entity\Personne 
+     */
+    public function getOrdre()
+    {
+        return $this->ordre;
+    }
+
 }

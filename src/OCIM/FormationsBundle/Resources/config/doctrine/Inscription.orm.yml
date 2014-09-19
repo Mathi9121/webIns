@@ -64,5 +64,8 @@ OCIM\FormationsBundle\Entity\Inscription:
             type: string
             length: 255
             nullable: true
+        ordre:
+            type: integer
+            nullable: true
     lifecycleCallbacks: 
         prePersist: [ onPrePersist ]

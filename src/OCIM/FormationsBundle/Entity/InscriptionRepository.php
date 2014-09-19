@@ -18,7 +18,8 @@ class InscriptionRepository extends EntityRepository
             ->createQuery(
                 'SELECT i, f FROM OCIMFormationsBundle:Inscription i
 				JOIN i.formationformule f
-				WHERE f.formation = :id'
+				WHERE f.formation = :id
+				ORDER BY i.statut ASC, i.ordre DESC'
             )->setParameter('id', $formation_id)
             ->getResult();
     }

@@ -1,13 +1,16 @@
 {% extends '::app.html.twig' %}
 
-{% block body -%}
-    <h1>Personne list</h1>
+{% block controls %}
+<a href="{{ path('personne_new') }}" class="btn btn-green"><span class="oi" data-glyph="plus"></span> Nouveau contact</a>
+{% endblock %}
 
-    <table class="records_list">
+{% block title %}Liste des contacts{% endblock %}
+{% block titre %}Liste des contacts{% endblock %}
+
+{% block body -%}
+    <table class="table-stripped">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Civilite</th>
                 <th>Nom</th>
                 <th>Prenom</th>
                 <th>Fonction</th>
@@ -15,15 +18,13 @@
                 <th>Fax</th>
                 <th>Mail</th>
                 <th>Mailadmin</th>
-                <th>Actions</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('personne_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.civilite }}</td>
-                <td>{{ entity.nom }}</td>
+                <td>{{ entity.nom }} ({{ entity.civilite }})</td>
                 <td>{{ entity.prenom }}</td>
                 <td>{{ entity.fonction }}</td>
                 <td>{{ entity.tel }}</td>
@@ -31,25 +32,19 @@
                 <td>{{ entity.mail }}</td>
                 <td>{{ entity.mailAdmin }}</td>
                 <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('personne_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('personne_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
+				    <button class="btn btn-white btn-smaller" data-tools="dropdown" data-target="#dropdown-2"></button>
+					<ul id="dropdown-{{loop.index}}" class="dropdown">
+						<li>
+							<a href="{{ path('personne_show', { 'id': entity.id }) }}"><span class="oi" data-glyph="info"></span> Détails</a>
+						</li>
+						<li>
+							<a href="{{ path('personne_edit', { 'id': entity.id }) }}"><span class="oi" data-glyph="pencil"></span> Modifier</a>
+						</li>
+					</ul>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-        <ul>
-        <li>
-            <a href="{{ path('personne_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
     {% endblock %}
