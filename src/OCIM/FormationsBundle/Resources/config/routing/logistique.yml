@@ -16,8 +16,10 @@ logistique_create:
     requirements: { _method: post }
 
 logistique_edit:
-    path:     /{id}/edit
-    defaults: { _controller: "OCIMFormationsBundle:Logistique:edit" }
+    path:     /{id}/{generation}
+    defaults: { _controller: "OCIMFormationsBundle:Logistique:edit", generation : edit}
+    requirements: 
+        generation: generate|edit
 
 logistique_update:
     path:     /{id}/update

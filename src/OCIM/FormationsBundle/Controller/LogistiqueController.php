@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use OCIM\FormationsBundle\Entity\formationFormule;
+use OCIM\FormationsBundle\Entity\ModeleLogistique;
 use OCIM\FormationsBundle\Form\LogistiqueType;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -30,6 +31,7 @@ class LogistiqueController extends Controller
             'entities' => $entities,
         ));
     }
+	
     /**
      * Creates a new formationFormule entity.
      *
@@ -114,7 +116,7 @@ class LogistiqueController extends Controller
      * Displays a form to edit an existing formationFormule entity.
      *
      */
-    public function editAction($id)
+    public function editAction($id, $generation)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -123,7 +125,35 @@ class LogistiqueController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find formationFormule entity.');
         }
+		
+		if($generation == "generate"){
+			
+			// On détermine les variables nécessaires à la génération des objets ModeleLogistique
+			$dateDebut = $entity->getFormation()->getDateDebut();
+			$dateFin = $entity->getFormation()->getDateFin();
+			$journee = array();
+			
+			if($entity->getFormule()->getMidi()){$journee[] = 'Midi';}
+			if($entity->getFormule()->getSoir()){$journee[] = 'Soir';}
+			if($entity->getFormule()->getNuit()){$journee[] = 'Nuit';}
 
+			$datediff = $dateFin->diff($dateDebut, true)->format('%a');
+			$datediff++;
+			
+			for($i = 0; $i < $datediff; $i++){
+				
+				foreach($journee as $value)
+				{
+					$m = new ModeleLogistique();
+					$m->setDate($dateDebut->modify('+'.$i.' day'));
+					$m->setDescription($value);
+					$m->setTypeReponse("bool");
+					
+					$entity->addModele($m);
+				}
+			}
+			
+		}
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
@@ -166,20 +196,29 @@ class LogistiqueController extends Controller
             throw $this->createNotFoundException('Unable to find formationFormule entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity);
-        $editForm->handleRequest($request);
-		
 		$anciensModeles = new ArrayCollection();
 		foreach ($entity->getModeles() as $mo) {
 			$anciensModeles->add($mo);
 		}
+		
+        $deleteForm = $this->createDeleteForm($id);
+        $editForm = $this->createEditForm($entity);
+        $editForm->handleRequest($request);
+		
+		
 		
         if ($editForm->isValid()) {
 			foreach ($entity->getModeles() as $mo) {
 					$mo->setFormationformule($entity);
 					$em->persist($mo);
 				}
+				
+			foreach ($anciensModeles as $mo){
+				if($entity->getModeles()->contains($mo) == false){
+						$em->remove($mo);
+					}
+			}
+
             $em->flush();
 
             return $this->redirect($this->generateUrl('logistique_edit', array('id' => $id)));

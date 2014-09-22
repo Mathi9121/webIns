@@ -38,10 +38,9 @@
 {# GENERAL #}
 <div id="general">
 <div class="table-container">
-	<table class="table-hovered">
+	<table class="">
 		<thead>
 			<tr>
-				<th class="statut"></th>
 				<th class="insc info"><span>Nom</span></th>
 				<th class="insc info"><span>Prénom</span></th>
 				<th class="insc info"><span>Formule</span></th>
@@ -54,17 +53,15 @@
 		</thead>
 		<tbody>
         {% for entity in entities %}
-            <tr>
-				{% set class = "" %}
-				{% if entity.statut == 'en attente' %}
-					{% set class = "attente" %}
-				{% elseif entity.statut == 'accepté' %}
-					{% set class = "valide" %}
-				{% elseif entity.statut == 'annulé' %}
-					{% set class = "annule" %}
-				{% endif %}
-				<td class="statut {{class}}">&nbsp;</td>
-				
+			{% set class = "" %}
+			{% if entity.statut == 'en attente' %}
+				{% set class = "attente" %}
+			{% elseif entity.statut == 'accepté' %}
+				{% set class = "valide" %}
+			{% elseif entity.statut == 'annulé' %}
+				{% set class = "annule" %}
+			{% endif %}
+			<tr class="statut {{class}}">
 				{% for personne in entity.personnes %}
 					{% if personne.type == 'Stagiaire' %}
 						<td class="insc info"><span>{{ personne.nom }} ({{ personne.civilite }})</span></td>
@@ -90,10 +87,9 @@
 {# CONTACT #}
 <div id="contact">
 <div class="table-container">
-	<table class="table-hovered">
+	<table class="">
 		<thead>
 			<tr>
-				<th class="statut"></th>
 				<th class="insc info"><span>Nom</span></th>
 				<th class="insc info"><span>Prénom</span></th>
 				<th class="insc contact"><span>Tel</span></th>
@@ -111,16 +107,15 @@
 		</thead>
 		<tbody>
         {% for entity in entities %}
-            <tr>
-				{% set class = "" %}
-				{% if entity.statut == 'en attente' %}
-					{% set class = "attente" %}
-				{% elseif entity.statut == 'accepté' %}
-					{% set class = "valide" %}
-				{% elseif entity.statut == 'annulé' %}
-					{% set class = "annule" %}
-				{% endif %}
-				<td class="statut {{class}}">&nbsp;</td>
+			{% set class = "" %}
+			{% if entity.statut == 'en attente' %}
+				{% set class = "attente" %}
+			{% elseif entity.statut == 'accepté' %}
+				{% set class = "valide" %}
+			{% elseif entity.statut == 'annulé' %}
+				{% set class = "annule" %}
+			{% endif %}
+			<tr class="statut {{class}}">
 				
 				{% for personne in entity.personnes %}
 					{% if personne.type == 'Stagiaire' %}
@@ -162,10 +157,9 @@
 {# CONVENTION #}
 <div id="convention">
 <div class="table-container">
-	<table class="table-hovered">
+	<table class="">
 		<thead>
 			<tr>
-				<th class="statut"></th>
 				<th class="insc info"><span>Nom</span></th>
 				<th class="insc info"><span>Prénom</span></th>
 				<th class="insc convention"><span>Numéro</span></th>
@@ -180,16 +174,15 @@
 		</thead>
 		<tbody>
         {% for entity in entities %}
-            <tr>
-				{% set class = "" %}
-				{% if entity.statut == 'en attente' %}
-					{% set class = "attente" %}
-				{% elseif entity.statut == 'accepté' %}
-					{% set class = "valide" %}
-				{% elseif entity.statut == 'annulé' %}
-					{% set class = "annule" %}
-				{% endif %}
-				<td class="statut {{class}}">&nbsp;</td>
+			{% set class = "" %}
+			{% if entity.statut == 'en attente' %}
+				{% set class = "attente" %}
+			{% elseif entity.statut == 'accepté' %}
+				{% set class = "valide" %}
+			{% elseif entity.statut == 'annulé' %}
+				{% set class = "annule" %}
+			{% endif %}
+			<tr class="statut {{class}}">
 				
 				{% for personne in entity.personnes %}
 						{% if personne.type == 'Stagiaire' %}
@@ -228,10 +221,9 @@
 {# ATTENTES #}
 <div id="attentes">
 <div class="table-container">
-	<table class="table-hovered">
+	<table class="">
 		<thead>
 			<tr>
-				<th class="statut"></th>
 				<th class="insc info"><span>Nom</span></th>
 				<th class="insc info"><span>Prénom</span></th>
 				<th class="insc attentes"><span>Attentes</span></th>
@@ -240,17 +232,16 @@
 		</thead>
 		<tbody>
         {% for entity in entities %}
-            <tr>
-				{% set class = "" %}
-				{% if entity.statut == 'en attente' %}
-					{% set class = "attente" %}
-				{% elseif entity.statut == 'accepté' %}
-					{% set class = "valide" %}
-				{% elseif entity.statut == 'annulé' %}
-					{% set class = "annule" %}
-				{% endif %}
-				<td class="statut {{class}}">&nbsp;</td>
-				
+			{% set class = "" %}
+			{% if entity.statut == 'en attente' %}
+				{% set class = "attente" %}
+			{% elseif entity.statut == 'accepté' %}
+				{% set class = "valide" %}
+			{% elseif entity.statut == 'annulé' %}
+				{% set class = "annule" %}
+			{% endif %}
+			<tr class="statut {{class}}">
+			
 				{% for personne in entity.personnes %}
 						{% if personne.type == 'Stagiaire' %}
 							<td class="insc info"><span>{{ personne.nom }} ({{ personne.civilite }})</span></td>
