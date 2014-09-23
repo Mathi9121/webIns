@@ -160,7 +160,7 @@ class FormationController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Enregistrer', 'attr' => array('class'=>'btn btn-green oi', 'data-glyph'=>"circle-check")));
+        $form->add('submit', 'submit', array('label' => ' Enregistrer', 'attr' => array('class'=>'btn btn-green oi', 'data-glyph'=>"circle-check")));
 
         return $form;
     }

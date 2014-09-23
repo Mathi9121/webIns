@@ -2,36 +2,53 @@
 {% form_theme edit_form '::form.html.twig' %}
 
 {% block  javascripts %}
-{% javascripts '@OCIMFormationsBundle/Resources/public/js/Logistique/formModele.js'%}
+{{ parent() }}
+{% javascripts '@OCIMFormationsBundle/Resources/public/js/Logistique/formModele.js'
+	'@OCIMFormationsBundle/Resources/public/js/Logistique/jquery-ui-1.9.2.custom.min.js'%}
          <script type="text/javascript" src="{{ asset_url }}"></script>
 {% endjavascripts %}
 {% endblock %}
 
+{% block stylesheets %}
+{{parent()}}
+{% stylesheets 
+	'@OCIMFormationsBundle/Resources/public/css/editionlogistique.css'
+	filter='cssrewrite' %}
+	<link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset_url }}"/>
+{% endstylesheets %}
+{% endblock %}
+
+{% block title %}Edition logistique{% endblock %}
+{% block titre %}Edition logistique{% endblock %}
+{% block controls %}
+	{{ form(delete_form) }}
+{% endblock %}
 
 {% block body -%}
-    <h1>formationFormule edit</h1>
-	<a href="#" class="btn btn-big ajoutPrototype" data-prototype='{{form_row(edit_form.modeles.vars.prototype)}}'>Ajouter un modèle</a>
+	<div class="units-row"><a href="#" class="btn ajoutPrototype" data-prototype='{{form_row(edit_form.modeles.vars.prototype)}}'><span class="oi" data-glyph="plus"></span> Ajouter un champ</a></div>
 
 {{form_start(edit_form)}}
-
+<div id="place">
 	{% for modele in edit_form.modeles %}
-	<div>
 		<ul class="forms-inline-list">
+			<li></li>
 			<li>{{ form_widget(modele.date) }}</li>
 			<li>{{ form_widget(modele.description) }}</li>
 			<li>{{ form_widget(modele.typeReponse) }}</li>
 			<li></li>
 		</ul>
-	</div>
 	{% endfor %}
+</div>
+<hr/>
+<div class="group">
+	<div class="left"><a href="{{ path('logistique') }}" class="btn oi arrow-left" data-glyph="arrow-left"> Retour</a></div>
+	<div class="right">{{ form_widget(edit_form.submit) }}</div>
+</div>
 
-	
 
-{{ form_widget(edit_form.submit) }}
+
 {{ form_rest(edit_form)}}
 {{ form_end(edit_form)}}
 
-<a href="{{ path('logistique') }}">Retour</a>
-{{ form(delete_form) }}
-
+    <a class="btn" id="show-modal" data-tools="modal" data-width="700" data-title="Modal Header" data-content="/index.html">Open Modal</a>
 {% endblock %}

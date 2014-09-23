@@ -1,7 +1,14 @@
 {% extends '::app.html.twig' %}
 
+{% block title %}Détails de la logistique{% endblock %}
+{% block titre %}Informations logistiques{% endblock %}
+
+{% block controls %}
+	{{ form(delete_form) }}
+{% endblock %}
+
 {% block body -%}
-    <h1>formationFormule</h1>
+
 
     <table class="record_properties">
         <tbody>
@@ -12,17 +19,7 @@
         </tbody>
     </table>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('logistique') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('logistique_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+	<a href="{{ path('logistique') }}"><span class="oi" data-glyph="arrow-thick-left"></span> Retour à la logistique</a>
+	<a href="{{ path('logistique_edit', { 'id': entity.id }) }}"><span class="oi" data-glyph="pencil"></span> Edit</a>
+
 {% endblock %}

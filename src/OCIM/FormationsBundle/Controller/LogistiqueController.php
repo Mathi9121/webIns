@@ -70,7 +70,7 @@ class LogistiqueController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Créer'));
 
         return $form;
     }
@@ -133,22 +133,24 @@ class LogistiqueController extends Controller
 			$dateFin = $entity->getFormation()->getDateFin();
 			$journee = array();
 			
+			$dateDebut->setTime(00, 00);
+			$dateFin->setTime(24, 00);
+			
 			if($entity->getFormule()->getMidi()){$journee[] = 'Midi';}
 			if($entity->getFormule()->getSoir()){$journee[] = 'Soir';}
 			if($entity->getFormule()->getNuit()){$journee[] = 'Nuit';}
-
-			$datediff = $dateFin->diff($dateDebut, true)->format('%a');
-			$datediff++;
 			
-			for($i = 0; $i < $datediff; $i++){
-				
+			$period = new \DatePeriod($dateDebut, new \DateInterval('P1D'), $dateFin);
+
+			
+			foreach($period as $date)
+			{
 				foreach($journee as $value)
 				{
 					$m = new ModeleLogistique();
-					$m->setDate($dateDebut->modify('+'.$i.' day'));
+					$m->setDate($date);
 					$m->setDescription($value);
 					$m->setTypeReponse("bool");
-					
 					$entity->addModele($m);
 				}
 			}
@@ -178,7 +180,7 @@ class LogistiqueController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => ' Enregistrer', 'attr'=> array('class'=>'btn btn-green oi','data-glyph'=>"check")));
 
         return $form;
     }
@@ -246,8 +248,11 @@ class LogistiqueController extends Controller
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find formationFormule entity.');
             }
-
-            $em->remove($entity);
+			
+			foreach($entity->getModeles() as $mo){
+				$em->remove($mo);
+			}
+			
             $em->flush();
         }
 
@@ -266,7 +271,7 @@ class LogistiqueController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('logistique_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Supprimer', 'attr'=>array('class'=>'btn btn-red oi', 'data-glyph'=>'trash')))
             ->getForm()
         ;
     }

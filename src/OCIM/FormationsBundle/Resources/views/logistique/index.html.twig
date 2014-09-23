@@ -1,7 +1,10 @@
 {% extends '::app.html.twig' %}
 
+
+{% block title %}Logistique des formations{% endblock %}
+{% block titre %}Logistique des formations{% endblock %}
+
 {% block body -%}
-    <h1>formationFormule list</h1>
 		
 {% set idformation = "" %}
 <table>
@@ -18,7 +21,7 @@
 			<tr>
 				<td>
 					<div data-tools="accordion">
-						<a href="#panel-{{ loop.index }}" class="accordion-title">{{ entity.formule.id }} - {{ entity.formule.description }}</a>
+						<a href="#panel-{{ loop.index }}" class="accordion-title">{{ entity.formule.id }} - {{ entity.formule.description|capitalize }}</a>
 						<div id="panel-{{ loop.index }}" class="accordion-panel">
 							
 							{% if entity.modeles|length != 0 %}
@@ -29,8 +32,8 @@
 										<th class="text-centered">{{ modele.date|date('d / m / Y')}}<br/>{{ modele.description }}</th>
 									{% endfor %}
 										<td rowspan="2">
-											<a class="btn btn-smaller" href="{{ path('logistique_show', { 'id': entity.id }) }}">show</a>
-											<a class="btn btn-smaller" href="{{ path('logistique_edit', { 'id': entity.id }) }}">edit</a>
+											<a class="btn btn-smaller" href="{{ path('logistique_show', { 'id': entity.id }) }}">Détails</a>
+											<a class="btn btn-smaller" href="{{ path('logistique_edit', { 'id': entity.id }) }}">Modifier</a>
 										</td>
 									</tr>
 									<tr>
