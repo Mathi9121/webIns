@@ -48,8 +48,12 @@ class InscriptionController extends Controller
 			
 			$type = $em->getRepository('OCIMContactsBundle:TypePersonne')->findOneByType("Stagiaire");
 			
-			$entity->getPersonne()->setType($type);
-			$entity->addPersonne($entity->getPersonne());
+			$entity->getStagiaire()->setType($type);
+			
+			$ordre = $em->getRepository('OCIMFormationsBundle:Inscription')->getOrdreMaxByFormation($idformation);
+
+			$nouvelordre = (!is_null($ordre))? $ordre + 1000 : 0;
+			$entity->setOrdre($nouvelordre);
 			
             $em->persist($entity);
 
@@ -137,8 +141,6 @@ class InscriptionController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Inscription entity.');
         }
-		
-		$entity->setPersonne($entity->getPersonnes()[0]);
 		
         $editForm = $this->createEditForm($entity, $idformation);
         $deleteForm = $this->createDeleteForm($id, $idformation);

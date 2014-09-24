@@ -203,6 +203,7 @@ class Inscription
     public function __construct()
     {
         $this->reponsesInscription = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->personnes = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -306,7 +307,7 @@ class Inscription
     /**
      * @var \OCIM\ContactsBundle\Entity\Personne
      */
-    private $personne;
+    private $stagiaire;
 
 
     /**
@@ -315,10 +316,13 @@ class Inscription
      * @param \OCIM\ContactsBundle\Entity\Personne $personne
      * @return Inscription
      */
-    public function setPersonne(\OCIM\ContactsBundle\Entity\Personne $personne = null)
+    public function setStagiaire(\OCIM\ContactsBundle\Entity\Personne $stagiaire = null)
     {
-        $this->personne = $personne;
-
+        
+		$this->stagiaire = $stagiaire;
+		
+		$this->addPersonne($stagiaire);
+		
         return $this;
     }
 
@@ -327,10 +331,16 @@ class Inscription
      *
      * @return \OCIM\ContactsBundle\Entity\Personne 
      */
-    public function getPersonne()
+    public function getStagiaire()
     {
-        return $this->personne;
+		foreach($this->personnes as $personne){
+			if($personne->getType() == 'Stagiaire'){
+				$this->stagiaire = $personne ;
+			}
+		}
+		return $this->stagiaire;
     }
+	
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
@@ -372,6 +382,7 @@ class Inscription
 	
 	function onPrePersist() {
 		$this->dateInscription = new \DateTime("now");
+		$this->hash = hash("sha256", substr($this->getStagiaire()->getNom(), 0, 5).$this->dateInscription->format("d/m/Y"));
 	}
 	
 	function __toString(){
@@ -379,18 +390,13 @@ class Inscription
 	}
 	
 	
-	public function setOrdre($personne = null)
+	public function setOrdre($ordre = null)
     {
         $this->ordre = $ordre;
 
         return $this;
     }
 
-    /**
-     * Get personne
-     *
-     * @return \OCIM\ContactsBundle\Entity\Personne 
-     */
     public function getOrdre()
     {
         return $this->ordre;

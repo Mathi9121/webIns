@@ -19,7 +19,7 @@ class InscriptionRepository extends EntityRepository
                 'SELECT i, f FROM OCIMFormationsBundle:Inscription i
 				JOIN i.formationformule f
 				WHERE f.formation = :id
-				ORDER BY i.statut ASC, i.ordre DESC'
+				ORDER BY i.statut ASC, i.ordre ASC'
             )->setParameter('id', $formation_id)
             ->getResult();
     }
@@ -44,5 +44,15 @@ class InscriptionRepository extends EntityRepository
 				ORDER BY i.dateInscription DESC'				
             )->setMaxResults(10)
             ->getResult();
+	}
+	
+	public function getOrdreMaxByFormation($formation_id){
+		return $this->getEntityManager()
+			->createQuery(
+					'SELECT MAX(i.ordre) FROM OCIMFormationsBundle:Inscription i
+					JOIN i.formationformule f
+					WHERE f.formation = :id'
+				)->setParameter('id', $formation_id)
+				->getSingleScalarResult();
 	}
 }

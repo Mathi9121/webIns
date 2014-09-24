@@ -34,7 +34,7 @@ $(document).ready(function(){
 		$.each($('#place ul'), function(i, n){
 			$(this).find('li').first().html("<span class='oi' data-glyph='move'></span>&nbsp;&nbsp;&nbsp;"+i);
 			$(this).html().replace(/[0-9]+/g, '['+i+']');
-			$(this).find('input').each(function(){
+			$(this).find('input, select').each(function(){
 				$(this).attr('name', $(this).attr('name').replace(/[[0-9]+]/g, '['+i+']'));
 				});
 		})

@@ -9,14 +9,14 @@
 	{% endstylesheets %}
 {% endblock %}
 
-{# {% block  javascripts %}
+{% block  javascripts %}
 {{parent()}}
 {% javascripts
-	'@OCIMFormationsBundle/Resources/public/js/Inscription/inscription.js'
-	%}
+	'@OCIMFormationsBundle/Resources/public/js/Logistique/jquery-ui-1.9.2.custom.min.js'
+	'@OCIMFormationsBundle/Resources/public/js/Inscription/inscription.js' %}
          <script type="text/javascript" src="{{ asset_url }}"></script>
 {% endjavascripts %}
-{% endblock %} #}
+{% endblock %}
 
 
 
@@ -32,6 +32,7 @@
 		<li><a href="#contact">Contacts</a></li>
 		<li><a href="#convention">Conventions</a></li>
 		<li><a href="#attentes">Attentes</a></li>
+		<li><a href="#intervenants">Intervenants</a></li>
 	</ul>
 </nav>
 
@@ -45,9 +46,9 @@
 				<th class="insc info"><span>Prénom</span></th>
 				<th class="insc info"><span>Formule</span></th>
 				<th class="insc info"><span>Fonction</span></th>
-				<th class="insc info"><span>Inscription le</span></th>
-				<th class="insc info"><span>Statut Financement</span></th>
-				<th class="insc info"><span>Statut Convention</span></th>
+				<th class="insc info"><span>Inscription</span></th>
+				<th class="insc info"><span>Financement</span></th>
+				<th class="insc info"><span>Convention</span></th>
 				<th></th>
 			</tr>
 		</thead>
@@ -61,21 +62,20 @@
 			{% elseif entity.statut == 'annulé' %}
 				{% set class = "annule" %}
 			{% endif %}
-			<tr class="statut {{class}}">
-				{% for personne in entity.personnes %}
-					{% if personne.type == 'Stagiaire' %}
-						<td class="insc info"><span>{{ personne.nom }} ({{ personne.civilite }})</span></td>
-						<td class="insc info"><span>{{ personne.prenom }}</span></td>
+			<tr class="statut {{class}}" data-ordre="{{entity.ordre}}" data-idinscription="{{entity.id}}">
+						<td class="insc info"><span>{{ entity.stagiaire.nom }} ({{ entity.stagiaire.civilite }})</span></td>
+						<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
 						<td class="insc info"><span><abbr title="{{ entity.formationFormule.formule }}">{{ entity.formationFormule.formule.id }}</abbr></span></td>
-						<td class="insc info"><span>{{ personne.fonction }}</span></td>
+						<td class="insc info"><span>{{ entity.stagiaire.fonction }}</span></td>
 						<td class="insc info"><span>{% if entity.dateInscription %}{{ entity.dateInscription|date('d/m/Y') }}{% endif %}</span></td>
 						<td class="insc info"><span>{{ entity.statutOrgFinanceur }}</span></td>
 						<td class="insc info"><span>{{ entity.statutConvention }}</span></td>
-					{% endif %}
-				{% endfor %}
                 <td class="insc actions">
-						<a href="{{ path('inscription_show', { 'id': entity.id, 'idformation':formation.id }) }}">show</a>
-						<a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation':formation.id }) }}">edit</a>
+					<a href="#" data-tools="dropdown" data-target="#dropdown1-{{loop.index}}"></a>
+					<ul id="dropdown1-{{loop.index}}" class="dropdown">
+						<li><a href="{{ path('inscription_show', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><span class="oi" data-glyph="info"></span> Détails</a></li>
+						<li><a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><span class="oi" data-glyph="pencil"></span> Modifier</a></li>
+					</ul>
 				</td>
             </tr>
         {% endfor %}
@@ -99,7 +99,7 @@
 				<th class="insc contact"><span>Structure</span></th>
 				<th class="insc contact"><span>Adresse</span></th>
 				<th class="insc contact"><span>Complément</span></th>
-				<th class="insc contact"><span>Code postal</span></th>
+				<th class="insc contact"><span>C-P</span></th>
 				<th class="insc contact"><span>Ville</span></th>
 				<th class="insc contact"><span>Pays</span></th>
 				<th></th>
@@ -115,25 +115,21 @@
 			{% elseif entity.statut == 'annulé' %}
 				{% set class = "annule" %}
 			{% endif %}
-			<tr class="statut {{class}}">
-				
-				{% for personne in entity.personnes %}
-					{% if personne.type == 'Stagiaire' %}
-						<td class="insc info"><span>{{ personne.nom }} ({{ personne.civilite }})</span></td>
-						<td class="insc info"><span>{{ personne.prenom }}</span></td>
+			<tr class="statut {{class}}" data-ordre="{{entity.ordre}}" data-idinscription="{{entity.id}}">
+						<td class="insc info"><span>{{ entity.stagiaire.nom }} ({{ entity.stagiaire.civilite }})</span></td>
+						<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
 						
-						<td class="insc contact"><span>{{ personne.tel }}</span></td>
-						<td class="insc contact"><span>{{ personne.fax}}</span></td>
-						<td class="insc contact"><span>{{ personne.mail}}</span></td>
-						<td class="insc contact"><span>{{ personne.mailAdmin}}</span></td>
-					{% endif %}
-					{% if personne.adresse %}
-						<td class="insc contact"><span>{{ personne.adresse.nomStructure }}</span></td>
-						<td class="insc contact"><span>{{ personne.adresse.adresse }}</span></td>
-						<td class="insc contact"><span>{{ personne.adresse.adresseComplement }}</span></td>
-						<td class="insc contact"><span>{{ personne.adresse.CP }}</span></td>
-						<td class="insc contact"><span>{{ personne.adresse.ville }}</span></td>
-						<td class="insc contact"><span>{{ personne.adresse.pays }}</span></td>
+						<td class="insc contact"><span>{{ entity.stagiaire.tel }}</span></td>
+						<td class="insc contact"><span>{{ entity.stagiaire.fax}}</span></td>
+						<td class="insc contact"><span>{{ entity.stagiaire.mail}}</span></td>
+						<td class="insc contact"><span>{{ entity.stagiaire.mailAdmin}}</span></td>
+					{% if entity.stagiaire.adresse %}
+						<td class="insc contact"><span>{{ entity.stagiaire.adresse.nomStructure }}</span></td>
+						<td class="insc contact"><span>{{ entity.stagiaire.adresse.adresse }}</span></td>
+						<td class="insc contact"><span>{{ entity.stagiaire.adresse.adresseComplement }}</span></td>
+						<td class="insc contact"><span>{{ entity.stagiaire.adresse.CP }}</span></td>
+						<td class="insc contact"><span>{{ entity.stagiaire.adresse.ville }}</span></td>
+						<td class="insc contact"><span>{{ entity.stagiaire.adresse.pays }}</span></td>
 					{% else %}
 						<td class="insc contact"><span></span></td>
 						<td class="insc contact"><span></span></td>
@@ -142,10 +138,12 @@
 						<td class="insc contact"><span></span></td>
 						<td class="insc contact"><span></span></td>
 					{% endif %}
-				{% endfor %}
                 <td class="insc actions">
-						<a href="{{ path('inscription_show', { 'id': entity.id, 'idformation':formation.id }) }}">show</a>
-						<a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation':formation.id }) }}">edit</a>
+					<a href="#" data-tools="dropdown" data-target="#dropdown2-{{loop.index}}"></a>
+						<ul id="dropdown2-{{loop.index}}" class="dropdown">
+							<li><a href="{{ path('inscription_show', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><span class="oi" data-glyph="info"></span> Détails</a></li>
+							<li><a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><span class="oi" data-glyph="pencil"></span> Modifier</a></li>
+						</ul>
 				</td>
             </tr>
         {% endfor %}
@@ -164,11 +162,11 @@
 				<th class="insc info"><span>Prénom</span></th>
 				<th class="insc convention"><span>Numéro</span></th>
 				<th class="insc convention"><span>Edition</span></th>
-				<th class="insc convention"><span>Envoi Président 2 ex</span></th>
-				<th class="insc convention"><span>Retour Président 2 ex</span></th>
-				<th class="insc convention"><span>Envoi organisme 2 ex</span></th>
-				<th class="insc convention"><span>Retour organisme 1 ex</span></th>
-				<th class="insc convention"><span>Envoi Président 1 ex</span></th>
+				<th class="insc convention"><span><abbr title="Envoi au Président de l'Université en 2 exemplaires">Etape-1</abbr></span></th>
+				<th class="insc convention"><span><abbr title="Retour des 2 exemplaires">Etape-2</abbr></span></th>
+				<th class="insc convention"><span><abbr title="Envoi à l'Organisme en 2 exemplaires">Etape-3</abbr></span></th>
+				<th class="insc convention"><span><abbr title="Retour d'1 exemplaire">Etape-4</abbr></span></th>
+				<th class="insc convention"><span><abbr title="Envoi au Président de l'Université d'1 exemplaire">Etape-5</abbr></span></th>
 				<th></th>
 			</tr>
 		</thead>
@@ -182,13 +180,9 @@
 			{% elseif entity.statut == 'annulé' %}
 				{% set class = "annule" %}
 			{% endif %}
-			<tr class="statut {{class}}">
-				
-				{% for personne in entity.personnes %}
-						{% if personne.type == 'Stagiaire' %}
-							<td class="insc info"><span>{{ personne.nom }} ({{ personne.civilite }})</span></td>
-							<td class="insc info"><span>{{ personne.prenom }}</span></td>
-						{% endif %}
+			<tr class="statut {{class}}" data-ordre="{{entity.ordre}}" data-idinscription="{{entity.id}}">
+						<td class="insc info"><span>{{ entity.stagiaire.nom }} ({{ entity.stagiaire.civilite }})</span></td>
+						<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
 					{% if entity.convention %}
 						<td class="insc convention"><span>{{ entity.convention.numero }}</span></td>
 						<td class="insc convention"><span>{{ entity.convention.edition|date('d/m/Y') }}</span></td>
@@ -206,10 +200,12 @@
 						<td class="insc convention"><span></span></td>
 						<td class="insc convention"><span></span></td>
 					{% endif %}
-				{% endfor %}
                 <td class="insc actions">
-						<a href="{{ path('inscription_show', { 'id': entity.id, 'idformation':formation.id }) }}">show</a>
-						<a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation':formation.id }) }}">edit</a>
+						<a href="#" data-tools="dropdown" data-target="#dropdown3-{{loop.index}}"></a>
+						<ul id="dropdown3-{{loop.index}}" class="dropdown">
+							<li><a href="{{ path('inscription_show', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><span class="oi" data-glyph="info"></span> Détails</a></li>
+							<li><a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><span class="oi" data-glyph="pencil"></span> Modifier</a></li>
+						</ul>
 				</td>
             </tr>
         {% endfor %}
@@ -240,24 +236,25 @@
 			{% elseif entity.statut == 'annulé' %}
 				{% set class = "annule" %}
 			{% endif %}
-			<tr class="statut {{class}}">
-			
-				{% for personne in entity.personnes %}
-						{% if personne.type == 'Stagiaire' %}
-							<td class="insc info"><span>{{ personne.nom }} ({{ personne.civilite }})</span></td>
-							<td class="insc info"><span>{{ personne.prenom }}</span></td>
-						{% endif %}
-				{% endfor %}
+			<tr class="statut {{class}}" data-ordre="{{entity.ordre}}" data-idinscription="{{entity.id}}">
+				<td class="insc info"><span>{{ entity.stagiaire.nom }} ({{ entity.stagiaire.civilite }})</span></td>
+				<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
 				<td class="insc attentes"><span>{{ entity.attentes|slice(0, 70)}}{% if entity.attentes|length > 70 %}...{% endif %}</span></td>
                 <td class="insc actions">
-						<a href="{{ path('inscription_show', { 'id': entity.id, 'idformation':formation.id }) }}">show</a>
-						<a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation':formation.id }) }}">edit</a>
+					<a href="#" data-tools="dropdown" data-target="#dropdown4-{{loop.index}}"></a>
+					<ul id="dropdown4-{{loop.index}}" class="dropdown">
+						<li><a href="{{ path('inscription_show', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><span class="oi" data-glyph="info"></span> Détails</a></li>
+						<li><a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><span class="oi" data-glyph="pencil"></span> Modifier</a></li>
+					</ul>
 				</td>
             </tr>
         {% endfor %}
         </tbody>
 	</table>
 </div>
+</div>
+
+<div id="intervenants">
 </div>
 
 {% else %}
