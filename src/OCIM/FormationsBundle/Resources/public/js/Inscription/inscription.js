@@ -12,8 +12,8 @@ $(document).ready(function(){
 			var ordrePrec =  ui.item.prev().attr('data-ordre');
 			var ordreSuiv =  ui.item.next().attr('data-ordre');
 			
-			console.log("idprev : "+idPrec+"   idsuiv : "+idSuiv);
-			console.log("ordreprec : "+ordrePrec+"   ordresuiv : "+ordreSuiv);
+			console.log("idPrec : "+idPrec+"   "+"ordreprec : "+ordrePrec);
+			console.log("idSuiv : "+idSuiv+"   ordresuiv : "+ordreSuiv);
 			
 		}
 	});

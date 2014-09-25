@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Jeu 18 Septembre 2014 à 18:07
+-- Généré le: Jeu 25 Septembre 2014 à 10:31
 -- Version du serveur: 5.5.37
 -- Version de PHP: 5.4.4-14+deb7u11
 
@@ -35,20 +35,20 @@ CREATE TABLE IF NOT EXISTS `Adresse` (
   `ville` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `pays` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=38 ;
 
 --
 -- Contenu de la table `Adresse`
 --
 
 INSERT INTO `Adresse` (`id`, `nomStructure`, `adresse`, `adresseComplement`, `CP`, `ville`, `pays`) VALUES
-(1, 'OCIM', '36, rue chabot charny', 'OCIM', '21000', 'Dijon', 'France'),
-(2, 'test', 'test', 'test', 'test', 'test', 'test'),
-(3, 'test', 'test', 'test', 'test', 'test', 'test'),
-(4, 'testNOUVEAU', 'testNOUVEAU', 'testNOUVEAU', 'testNOUVEAU', 'testNOUVEAU', 'testNOUVEAU'),
-(5, 'OCIm', NULL, NULL, NULL, NULL, NULL),
-(6, 'roundge', NULL, NULL, NULL, NULL, NULL),
-(7, 'qveqdf', 'vqverdfv', 'qdrvqevdfq', 'qdfvqdf', 'dqvqevdfq', 'qrevdqfvdq');
+(31, 'testordre', 'testordre', 'testordre', 'testordre', 'testordre', 'testordre'),
+(32, 'testordre', 'testordre', 'testordre', 'testordre', 'testordre', 'testordre'),
+(33, 'testordre', 'testordre', 'testordre', 'testordre', 'testordre', 'testordre'),
+(34, 'testordre', 'testordre', 'testordre', 'testordre', 'testordre', 'testordre'),
+(35, 'testordre', 'testordre', 'testordre', 'testordre', 'testordre', 'testordre'),
+(36, 'testordre autre formation', 'testordre autre formation', 'testordre autre formation', 'testordre autre formation', 'testordre autre formation', 'testordre autre formation'),
+(37, 'b', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `Convention` (
   `retourOrganisme1ex` date NOT NULL,
   `envoiPresidentU1ex` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -85,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `Formation` (
   `nbHeures` decimal(5,1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_C2B1A31CC54C8C93` (`type_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=48 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=49 ;
 
 --
 -- Contenu de la table `Formation`
@@ -98,8 +98,7 @@ INSERT INTO `Formation` (`id`, `type_id`, `intitule`, `lieu`, `dateDebut`, `date
 (42, 1, 'Connaître et analyser ses publics', 'Lyon', '2015-01-20', '2015-01-22', 'les 20,21 et 22 janvier 2015', 0.0),
 (43, 1, 'Ecrire les textes autour de l''exposition', 'Dijon', '2014-12-02', '2014-12-04', 'les 2,3 et 4 décembre 2014', 0.0),
 (44, 1, 'Construire et développer le partenariat dans le territoire', 'Saint-Etienne', '2014-11-18', '2014-11-20', 'les 18, 19 et 20 novembre 2014', 0.0),
-(45, 5, 'Intégrer l’itinérance dans la conception d’une exposition', 'Paris', '2014-10-16', '2014-10-16', 'le 16 octobre 2014', 0.0),
-(46, 1, 'Formation >>> test', 'Dijon', '2015-02-18', '2015-02-18', 'Le 18 février 2015', 8.0);
+(45, 5, 'Intégrer l’itinérance dans la conception d’une exposition', 'Paris', '2014-10-16', '2014-10-16', 'le 16 octobre 2014', 0.0);
 
 -- --------------------------------------------------------
 
@@ -114,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `formation_formule` (
   PRIMARY KEY (`id`),
   KEY `IDX_25A3D9E32A68F4D1` (`formule_id`),
   KEY `IDX_25A3D9E35200282E` (`formation_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=367 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=374 ;
 
 --
 -- Contenu de la table `formation_formule`
@@ -132,8 +131,7 @@ INSERT INTO `formation_formule` (`id`, `formule_id`, `formation_id`) VALUES
 (360, 15, 43),
 (361, 16, 44),
 (362, 15, 44),
-(363, 14, 45),
-(364, 14, 46);
+(363, 14, 45);
 
 -- --------------------------------------------------------
 
@@ -149,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `Formule` (
   `soir` tinyint(1) NOT NULL,
   `nuit` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=27 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=29 ;
 
 --
 -- Contenu de la table `Formule`
@@ -158,7 +156,8 @@ CREATE TABLE IF NOT EXISTS `Formule` (
 INSERT INTO `Formule` (`id`, `description`, `tarif`, `midi`, `soir`, `nuit`) VALUES
 (14, 'repas du midi inclus', '110', 1, 0, 0),
 (15, 'avec hébergement, repas du midi et du soir inclus', '960', 1, 1, 1),
-(16, 'sans hébergement, repas du midi inclus', '700', 1, 0, 0);
+(16, 'sans hébergement, repas du midi inclus', '700', 1, 0, 0),
+(28, 'formule test suppression', '1561542160', 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -176,24 +175,11 @@ CREATE TABLE IF NOT EXISTS `Inscription` (
   `statutConvention` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `hash` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `formationformule_id` int(11) DEFAULT NULL,
+  `ordre` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_D80C7901A2ACEBCC` (`convention_id`),
   KEY `IDX_D80C7901AD890511` (`formationformule_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
-
---
--- Contenu de la table `Inscription`
---
-
-INSERT INTO `Inscription` (`id`, `convention_id`, `dateInscription`, `statut`, `attentes`, `statutOrgFinanceur`, `statutConvention`, `hash`, `formationformule_id`) VALUES
-(1, NULL, '2014-09-08 15:02:44', 'accepté', 'Voici mes attentes au format texte long texte... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed convallis vel ante sed sollicitudin. Ut ut est ornare, pharetra dui ac, vehicula lorem. Ut sed lectus eu diam tempus suscipit eget id nunc. Proin consequat vestibulum viverra. Maecenas sed semper arcu. Nullam eu dolor odio. Nulla vitae fermentum tellus.', NULL, NULL, NULL, 364),
-(2, NULL, '2014-09-09 09:38:50', 'en attente', 'test', NULL, NULL, NULL, 364),
-(3, NULL, '2014-09-09 09:39:54', 'annulé', 'test', NULL, NULL, NULL, 364),
-(4, NULL, '2014-09-10 14:39:37', 'annulé', 'testNOUVEAU', NULL, NULL, NULL, 352),
-(5, NULL, '2014-09-15 12:18:49', 'accepté', 'hahaha', NULL, NULL, NULL, 362),
-(6, NULL, '2014-09-15 14:22:40', 'annulé', 'feqgde', NULL, NULL, NULL, 361),
-(7, NULL, '2014-09-17 11:53:27', 'annulé', 'roundge', NULL, NULL, NULL, 364),
-(8, NULL, '2014-09-17 16:37:09', 'accepté', 'rfqregeqsgeqs', NULL, NULL, NULL, 364);
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=34 ;
 
 -- --------------------------------------------------------
 
@@ -209,20 +195,6 @@ CREATE TABLE IF NOT EXISTS `inscription_personnes` (
   KEY `IDX_8DA13C335DAC5993` (`inscription_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Contenu de la table `inscription_personnes`
---
-
-INSERT INTO `inscription_personnes` (`inscription_id`, `personne_id`) VALUES
-(1, 1),
-(2, 2),
-(3, 3),
-(4, 4),
-(5, 5),
-(6, 6),
-(7, 7),
-(8, 8);
-
 -- --------------------------------------------------------
 
 --
@@ -237,15 +209,7 @@ CREATE TABLE IF NOT EXISTS `ModeleLogistique` (
   `formationformule_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_697A9921AD890511` (`formationformule_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=32 ;
-
---
--- Contenu de la table `ModeleLogistique`
---
-
-INSERT INTO `ModeleLogistique` (`id`, `date`, `description`, `typeReponse`, `formationformule_id`) VALUES
-(20, '2015-02-18', 'Matin', 'text', 364),
-(31, '2015-02-18', 'Soir', 'bool', 364);
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=69 ;
 
 -- --------------------------------------------------------
 
@@ -268,21 +232,7 @@ CREATE TABLE IF NOT EXISTS `Personne` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_F6B8ABB94DE7DC5C` (`adresse_id`),
   KEY `IDX_F6B8ABB9C54C8C93` (`type_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
-
---
--- Contenu de la table `Personne`
---
-
-INSERT INTO `Personne` (`id`, `adresse_id`, `type_id`, `civilite`, `nom`, `prenom`, `fonction`, `tel`, `fax`, `mail`, `mailAdmin`) VALUES
-(1, 1, 2, 'Mr', 'Runge', 'Etienne', 'Web developpeur', '0678644210', '0678644210', 'etienne.runge@gmail.com', 'etienne.runge@u-bourgogne.fr'),
-(2, 2, 2, 'Mlle', 'test', 'test', 'test', 'test', 'test', 'test', 'test'),
-(3, 3, 2, 'Mlle', 'test', 'test', 'test', 'test', 'test', 'test', 'test'),
-(4, 4, 2, 'Mlle', 'testNOUVEAU', 'testNOUVEAU', 'testNOUVEAU', 'testNOUVEAU', 'testNOUVEAU', 'testNOUVEAU', 'testNOUVEAU'),
-(5, 5, 2, 'Mme', 'Etienne', 'Runge', 'web', '0678644210', NULL, 'etienne.runge@gmail.com', 'etienne.runge@gmail.com'),
-(6, NULL, 2, 'Mlle', 'rshrsh', 'ertsghsrh', 'rsthsr', 'thrshfstg', NULL, 'rshsr@vsvfs.com', 'rshsr@vsvfs.com'),
-(7, 6, 2, 'Mlle', 'roundge', 'roundge', 'roundge', 'roundge', 'roundge', 'roundge', 'roundge'),
-(8, 7, 2, 'Mlle', 'qergqergqe', 'qregqegqeg', 'gqergqe', 'gqergqe', NULL, 'qqergqeg', 'qregqdfgqd');
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=39 ;
 
 -- --------------------------------------------------------
 
