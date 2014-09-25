@@ -386,7 +386,7 @@ class Inscription
 	}
 	
 	function __toString(){
-		return $this->getPersonnes()[0]->getNom();
+		return $this->stagiaire->getNom();
 	}
 	
 	

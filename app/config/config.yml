@@ -38,6 +38,22 @@ assetic:
     use_controller: false
     bundles:        [OCIMFormationsBundle]
     #java: /usr/bin/java
+    assets:
+        open-iconic-otf:
+            inputs: '%kernel.root_dir%/Resources/Public/fonts/open-iconic.otf'
+            output: 'fonts/open-iconic.otf'
+        open-iconic-eot:
+            inputs: '%kernel.root_dir%/Resources/Public/fonts/open-iconic.eot'
+            output: 'fonts/open-iconic.eot'
+        open-iconic-svg:
+            inputs: '%kernel.root_dir%/Resources/Public/fonts/open-iconic.svg'
+            output: 'fonts/open-iconic.svg'
+        open-iconic-ttf:
+            inputs: '%kernel.root_dir%/Resources/Public/fonts/open-iconic.ttf'
+            output: 'fonts/open-iconic.ttf'
+        open-iconic-woff:
+            inputs: '%kernel.root_dir%/Resources/Public/fonts/open-iconic.woff'
+            output: 'fonts/open-iconic.woff'
     filters:
         cssrewrite: ~
         #closure:

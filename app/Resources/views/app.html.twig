@@ -12,7 +12,7 @@
 
 <!-- STYLES -->
 	{% block stylesheets %}
-		{% stylesheets '../app/Resources/Public/css/*' filter='cssrewrite' %}
+		{% stylesheets '%kernel.root_dir%/Resources/Public/css/*' filter='cssrewrite' %}
 			<link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset_url }}"/>
 		{% endstylesheets %}
 	{% endblock %}
@@ -27,7 +27,11 @@
 
 
 <header class="group" id="header">
-<a href="{{path('home')}}" class="logo"><img src="{{ asset('../app/Resources/Public/img/logo-ocim.png') }}" class="logo" alt="OCIM"/></a>
+	<a href="{{path('home')}}" class="logo">
+		{% image '../app/Resources/Public/img/logo-ocim.png' %}
+			<img src="{{ asset_url }}" class="logo" alt="OCIM"/>
+		{% endimage %}
+	</a>
 	<nav class="navbar navbar-right end">
 		<div class="navigation-toggle" data-tools="navigation-toggle" data-target="#sidebar">
 			<span>Menu<img src="{{ asset('../app/Resources/Public/img/logo-ocim.png') }}" class="logo" alt="OCIM"/></span>
