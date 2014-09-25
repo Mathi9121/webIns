@@ -27,11 +27,6 @@
 
 
 <header class="group" id="header">
-	<a href="{{path('home')}}" class="logo">
-		{% image '../app/Resources/Public/img/logo-ocim.png' %}
-			<img src="{{ asset_url }}" class="logo" alt="OCIM"/>
-		{% endimage %}
-	</a>
 	<nav class="navbar navbar-right end">
 		<div class="navigation-toggle" data-tools="navigation-toggle" data-target="#sidebar">
 			<span>Menu<img src="{{ asset('../app/Resources/Public/img/logo-ocim.png') }}" class="logo" alt="OCIM"/></span>
@@ -51,6 +46,15 @@
 
 <div class="units-row">
 	<div id="sidebar" class="unit-20">
+
+		<div>
+			<a href="{{path('home')}}" class="logo">
+				{% image '../app/Resources/Public/img/logo-ocim.png' %}
+					<img src="{{ asset_url }}" class="logo" alt="OCIM"/>
+				{% endimage %}
+			</a>
+		</div>
+		
 		<form action="" class="forms">
 				<div class="input-groups unit-centered width-80">
 					<input type="text" name="go" placeholder="Rechercher" class="width-90"/>

@@ -1,9 +1,4 @@
 /*********HEADER*******/
-header img.logo{
-	height:50px;
-	margin-left: 50px
-}
-
 header nav ul li a span.oi{
 	display: inline;
 	color: inherit;
@@ -35,9 +30,10 @@ nav #dropdownmenu ul li a {width: auto; height: auto; text-align: left}
 
 /** positionnement **/
 #sidebar{
-	padding-top: 50px;
 	background-color: #F9F9F9;
 }
+
+#sidebar .logo{display: block; margin: -50px auto 50px;  width:100%; max-width: 250px}
 
 #session-top{
 	padding-right: 25px;
@@ -86,7 +82,7 @@ form select[multiple]{
 	#sidebar #session-side{display:block;}
 	#header a.logo{display:none;}
 	#header img.logo{margin-left: calc(100% - 160px); height: 40px}
-	#sidebar form{display:none;}
+	#sidebar form, #sidebar .logo{display:none;}
 	#sidebar{padding-top: 0}
  	#titre h1{float: left}
 	#titre #controls{float: right} 
