@@ -18,18 +18,20 @@
 				height: 100%;
 				background-image: url({{ asset_url }});
 				background-position: center bottom;
-				background-size: 100%
 			}
 		{% endimage %}
 	</style>
 </head>
 <body>
-		<div style="width: 350px; margin:50px auto">
-		{% image '../app/Resources/Public/img/logo-ocim.png' %}
-			<img src="{{ asset_url }}" alt="OCIM - Formations" style="display:block;text-align:center; margin:25px auto 0;"/>
-		{% endimage %}
-		
-		{% block body %}{% endblock %}
+		<div style="margin:100px auto; background-color: rgba(255,255,255,0.5); width: 400px;">
+			<div style="padding: 25px 50px;">
+			{% image '../app/Resources/Public/img/logo-ocim.png' %}
+				<img src="{{ asset_url }}" alt="OCIM - Formations" style="display:block;text-align:center; margin:25px auto 0;"/>
+			{% endimage %}
+			
+			{% block body %}{% endblock %}
+			</div>
+		</div>
 </body>
 </html>
 
