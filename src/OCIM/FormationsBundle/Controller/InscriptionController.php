@@ -3,6 +3,7 @@
 namespace OCIM\FormationsBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use OCIM\FormationsBundle\Entity\Inscription;
@@ -31,6 +32,24 @@ class InscriptionController extends Controller
 			'formation' => $formation,
         ));
     }
+	
+	public function ordreAction(Request $request, $idformation){
+		if($request->isXmlHttpRequest()){
+			
+			$em = $this->getDoctrine()->getManager();
+			
+			$data = json_decode($request->getContent());
+			
+			foreach($data as $d){
+				$inscription = $em->getRepository('OCIMFormationsBundle:Inscription')->find($d->id);
+				$inscription->setOrdre($d->ordre);
+			}
+			
+			$em->flush();	
+			return new Response( 'ok' , Response::HTTP_OK);
+
+		}
+	}
 	
 	
     /**

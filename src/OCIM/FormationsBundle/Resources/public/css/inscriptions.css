@@ -10,3 +10,6 @@ table thead tr th{text-align:center}
 td.insc.actions{background-color: #f6f6f6}
 
 td{white-space:nowrap}
+
+td.handle, th.handle{padding-right:0}
+td.handle{color: #6f6f6f; cursor: move}

@@ -28,3 +28,8 @@ inscription_delete:
     path:     /formation/inscription-{id}/delete
     defaults: { _controller: "OCIMFormationsBundle:Inscription:delete" }
     requirements: { _method: post|delete }
+
+inscription_edit_ordre:
+    path: /ordre
+    defaults: { _controller: "OCIMFormationsBundle:Inscription:ordre" }
+    requirements: { _method: post }

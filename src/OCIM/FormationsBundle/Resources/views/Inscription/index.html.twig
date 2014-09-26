@@ -25,6 +25,7 @@
 {% block controls %}<a href="{{ path('inscription_new', { 'idformation': formation.id }) }}" class="btn btn-green"><span class="oi" data-glyph="plus"></span> Nouvelle inscription</a>{% endblock %}
 
 {% block body -%}
+<div id="lienAjax" class="hide">{{ path('inscription_edit_ordre', {'idformation': formation.id}) }}</div>
 {% if entities != null %}
 <nav class="nav-tabs" data-tools="tabs" data-equals="true">
 	<ul>
@@ -37,11 +38,12 @@
 </nav>
 
 {# GENERAL #}
-<div id="general">
+<div id="general" class="tab">
 <div class="table-container">
 	<table class="">
 		<thead>
 			<tr>
+				<th class="handle"></th>
 				<th class="insc info"><span>Nom</span></th>
 				<th class="insc info"><span>Prénom</span></th>
 				<th class="insc info"><span>Formule</span></th>
@@ -63,6 +65,7 @@
 				{% set class = "annule" %}
 			{% endif %}
 			<tr class="statut {{class}}" data-ordre="{{entity.ordre}}" data-idinscription="{{entity.id}}">
+						{% if class == "attente" %}<td class="handle"><span class="oi" data-glyph="move"></span></td>{% else %}<td></td>{% endif %}
 						<td class="insc info"><span>{{ entity.stagiaire.nom }} ({{ entity.stagiaire.civilite }})</span></td>
 						<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
 						<td class="insc info"><span><abbr title="{{ entity.formationFormule.formule }}">{{ entity.formationFormule.formule.id }}</abbr></span></td>
@@ -85,11 +88,12 @@
 </div>
 
 {# CONTACT #}
-<div id="contact">
+<div id="contact" class="tab">
 <div class="table-container">
 	<table class="">
 		<thead>
 			<tr>
+				<th class="handle"></th>
 				<th class="insc info"><span>Nom</span></th>
 				<th class="insc info"><span>Prénom</span></th>
 				<th class="insc contact"><span>Tel</span></th>
@@ -116,6 +120,7 @@
 				{% set class = "annule" %}
 			{% endif %}
 			<tr class="statut {{class}}" data-ordre="{{entity.ordre}}" data-idinscription="{{entity.id}}">
+						{% if class == "attente" %}<td class="handle"><span class="oi" data-glyph="move"></span></td>{% else %}<td></td>{% endif %}
 						<td class="insc info"><span>{{ entity.stagiaire.nom }} ({{ entity.stagiaire.civilite }})</span></td>
 						<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
 						
@@ -153,11 +158,12 @@
 </div>
 
 {# CONVENTION #}
-<div id="convention">
+<div id="convention" class="tab">
 <div class="table-container">
 	<table class="">
 		<thead>
 			<tr>
+				<th class="handle"></th>
 				<th class="insc info"><span>Nom</span></th>
 				<th class="insc info"><span>Prénom</span></th>
 				<th class="insc convention"><span>Numéro</span></th>
@@ -181,6 +187,7 @@
 				{% set class = "annule" %}
 			{% endif %}
 			<tr class="statut {{class}}" data-ordre="{{entity.ordre}}" data-idinscription="{{entity.id}}">
+						{% if class == "attente" %}<td class="handle"><span class="oi" data-glyph="move"></span></td>{% else %}<td></td>{% endif %}
 						<td class="insc info"><span>{{ entity.stagiaire.nom }} ({{ entity.stagiaire.civilite }})</span></td>
 						<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
 					{% if entity.convention %}
@@ -215,11 +222,12 @@
 </div>
 
 {# ATTENTES #}
-<div id="attentes">
+<div id="attentes" class="tab">
 <div class="table-container">
 	<table class="">
 		<thead>
 			<tr>
+				<th class="handle"></th>
 				<th class="insc info"><span>Nom</span></th>
 				<th class="insc info"><span>Prénom</span></th>
 				<th class="insc attentes"><span>Attentes</span></th>
@@ -237,6 +245,7 @@
 				{% set class = "annule" %}
 			{% endif %}
 			<tr class="statut {{class}}" data-ordre="{{entity.ordre}}" data-idinscription="{{entity.id}}">
+				{% if class == "attente" %}<td class="handle"><span class="oi" data-glyph="move"></span></td>{% else %}<td></td>{% endif %}
 				<td class="insc info"><span>{{ entity.stagiaire.nom }} ({{ entity.stagiaire.civilite }})</span></td>
 				<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
 				<td class="insc attentes"><span>{{ entity.attentes|slice(0, 70)}}{% if entity.attentes|length > 70 %}...{% endif %}</span></td>
