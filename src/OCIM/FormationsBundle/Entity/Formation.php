@@ -286,4 +286,42 @@ class Formation
 		}
 		return $formules;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $intervenants;
+
+
+    /**
+     * Add intervenants
+     *
+     * @param \OCIM\ContactsBundle\Entity\Intervenant $intervenants
+     * @return Formation
+     */
+    public function addIntervenant(\OCIM\ContactsBundle\Entity\Intervenant $intervenants)
+    {
+        $this->intervenants[] = $intervenants;
+
+        return $this;
+    }
+
+    /**
+     * Remove intervenants
+     *
+     * @param \OCIM\ContactsBundle\Entity\Intervenant $intervenants
+     */
+    public function removeIntervenant(\OCIM\ContactsBundle\Entity\Intervenant $intervenants)
+    {
+        $this->intervenants->removeElement($intervenants);
+    }
+
+    /**
+     * Get intervenants
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getIntervenants()
+    {
+        return $this->intervenants;
+    }
 }

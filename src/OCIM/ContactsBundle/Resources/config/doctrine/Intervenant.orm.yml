@@ -1,0 +1,30 @@
+OCIM\ContactsBundle\Entity\Intervenant:
+    type: entity
+    manyToOne:
+        personne:
+            targetEntity: Personne
+            cascade: ["persist"]
+            inversedBy: intervenant
+            joinColumn:
+                name: personne_id
+                referencedColumnName: id
+                onDelete: CASCADE
+        formation:
+            targetEntity: OCIM\FormationsBundle\Entity\Formation
+            inversedBy: intervenants
+            joinColumn:
+                name: formation_id
+                referencedColumnName: id
+                onDelete: CASCADE
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        commentaire:
+            type: text
+            nullable: true
+    lifecycleCallbacks: {  }

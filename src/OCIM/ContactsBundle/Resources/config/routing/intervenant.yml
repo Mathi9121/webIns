@@ -1,0 +1,30 @@
+intervenants:
+    path:     /
+    defaults: { _controller: "OCIMContactsBundle:Intervenant:index" }
+
+intervenants_show:
+    path:     /{id}/show
+    defaults: { _controller: "OCIMContactsBundle:Intervenant:show" }
+
+intervenants_new:
+    path:     formation-{idformation}/new
+    defaults: { _controller: "OCIMContactsBundle:Intervenant:new" }
+
+intervenants_create:
+    path:     /{idformation}/create/
+    defaults: { _controller: "OCIMContactsBundle:Intervenant:create" }
+    requirements: { _method: post }
+
+intervenants_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "OCIMContactsBundle:Intervenant:edit" }
+
+intervenants_update:
+    path:     /{id}/update
+    defaults: { _controller: "OCIMContactsBundle:Intervenant:update" }
+    requirements: { _method: post|put }
+
+intervenants_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "OCIMContactsBundle:Intervenant:delete" }
+    requirements: { _method: post|delete }

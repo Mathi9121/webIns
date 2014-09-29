@@ -13,6 +13,9 @@ OCIM\FormationsBundle\Entity\Formation:
             fetch: EAGER
             mappedBy: formation
             cascade: ["all"]
+        intervenants:
+            targetEntity: OCIM\ContactsBundle\Entity\Intervenant
+            mappedBy: formation
     table: null
     repositoryClass: OCIM\FormationsBundle\Entity\FormationRepository
     id:

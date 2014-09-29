@@ -336,4 +336,49 @@ class Personne
     {
         return $this->inscription;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $intervenant;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->intervenant = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add intervenant
+     *
+     * @param \OCIM\ContactsBundle\Entity\Intervenant $intervenant
+     * @return Personne
+     */
+    public function addIntervenant(\OCIM\ContactsBundle\Entity\Intervenant $intervenant)
+    {
+        $this->intervenant[] = $intervenant;
+
+        return $this;
+    }
+
+    /**
+     * Remove intervenant
+     *
+     * @param \OCIM\ContactsBundle\Entity\Intervenant $intervenant
+     */
+    public function removeIntervenant(\OCIM\ContactsBundle\Entity\Intervenant $intervenant)
+    {
+        $this->intervenant->removeElement($intervenant);
+    }
+
+    /**
+     * Get intervenant
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getIntervenant()
+    {
+        return $this->intervenant;
+    }
 }

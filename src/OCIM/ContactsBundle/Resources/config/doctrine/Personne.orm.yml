@@ -1,5 +1,9 @@
 OCIM\ContactsBundle\Entity\Personne:
     type: entity
+    oneToMany:
+        intervenant:
+            targetEntity: Intervenant
+            mappedBy: personne
     oneToOne:
         adresse:
             targetEntity: Adresse
@@ -49,4 +53,5 @@ OCIM\ContactsBundle\Entity\Personne:
         mailAdmin:
             type: string
             length: 255
+            nullable: true
     lifecycleCallbacks: {  }

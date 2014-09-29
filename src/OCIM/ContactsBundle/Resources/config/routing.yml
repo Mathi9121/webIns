@@ -1,3 +1,7 @@
+ocim_contacts_intervenants:
+    resource: "@OCIMContactsBundle/Resources/config/routing/intervenant.yml"
+    prefix:   /intervenants
+
 ocim_contacts_homepage:
     path:     /hello/{name}
     defaults: { _controller: OCIMContactsBundle:Default:index }

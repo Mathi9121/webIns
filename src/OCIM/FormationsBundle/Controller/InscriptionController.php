@@ -50,7 +50,7 @@ class InscriptionController extends Controller
 
 		}
 	}
-	
+
 	
     /**
      * Creates a new Inscription entity.
