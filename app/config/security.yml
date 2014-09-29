@@ -29,3 +29,5 @@ security:
                 target: /
     access_control:
         - { path: ^/connexion, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    acl:
+        connection: default
