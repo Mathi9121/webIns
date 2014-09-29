@@ -4,5 +4,5 @@ $(document).ready(function(){
 });
 
 function setSidebarSize(){
-	$("#sidebar").css('height', $("#content").innerHeight());
+	$("#sidebar").css('height', $(document).innerHeight());
 }

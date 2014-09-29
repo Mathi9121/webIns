@@ -5,10 +5,6 @@ header nav ul li a span.oi{
 	cursor: inherit;
 }
 
-header{
-	background-color: #f9f9f9;
-	border-bottom: 1px solid #fefefe;
-}
 
 /** Menu **/
 
@@ -31,16 +27,17 @@ nav #dropdownmenu ul li a {width: auto; height: auto; text-align: left}
 /** positionnement **/
 #sidebar{
 	background-color: #F9F9F9;
+	margin-top: -50px
 }
 
-#sidebar .logo{display: block; margin: -50px auto 50px;  width:100%; max-width: 250px}
+#sidebar .logo{display: block; margin: 0px auto 50px;  width:100%; max-width: 250px}
 
 #session-top{
 	padding-right: 25px;
 }
-
+.navbar a:hover {text-decoration:none;}
 #content{
-	padding: 50px 50px 0 0;
+	padding: 10px 50px 0 0;
 }
 #sidebar nav{
 	padding-top: 25px;
