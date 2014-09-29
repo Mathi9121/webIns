@@ -5,55 +5,42 @@
 {% block titre %}Logistique des formations{% endblock %}
 
 {% block body -%}
-		
-{% set idformation = "" %}
-<table>
-	
-	{% for entity in entities %}
-		{# titre formation #}
-		{% if entity.formation.id != idformation %}
-			<tr>
-				<td><h4><span class="oi" data-glyph="book"></span> {{ entity.formation.intitule }}</h4></td>
-			</tr>
-		{% endif %}
-		
-		{# formules #}	
-			<tr>
-				<td>
-					<div data-tools="accordion">
-						<a href="#panel-{{ loop.index }}" class="accordion-title">{{ entity.formule.id }} - {{ entity.formule.description|capitalize }}</a>
-						<div id="panel-{{ loop.index }}" class="accordion-panel">
-							
-							{% if entity.modeles|length != 0 %}
-								<div class="table-container">
-								<table class="table-bordered">
-									<tr>
-									{% for modele in entity.modeles %}
-										<th class="text-centered">{{ modele.date|date('d / m / Y')}}<br/>{{ modele.description }}</th>
-									{% endfor %}
-										<td rowspan="2">
-											<a class="btn btn-smaller" href="{{ path('logistique_show', { 'id': entity.id }) }}">Détails</a>
-											<a class="btn btn-smaller" href="{{ path('logistique_edit', { 'id': entity.id }) }}">Modifier</a>
-										</td>
-									</tr>
-									<tr>
-									{% for modele in entity.modeles %}
-										<td class="text-centered">{% if modele.typeReponse == "bool" %}Oui/Non{% else %}Texte{% endif %}</td>
-									{% endfor %}
-									</tr>
-								</table>
-								</div>
-							{% else %}
-								<p class="lead text-centered">Aucune logistique n'est encore créée pour cette formule.<br/><a class="btn btn-green btn-big" href="{{ path('logistique_edit', { 'id': entity.id, 'generation': 'generate' }) }}">Générer la logistique</a></p>
-								
-							{% endif %}
-						</div>
-					</div>
-				</td>
-			</tr>
-		{% set idformation = entity.formation.id %}
-	{% endfor %}
 
-</table>
+{% for entity in entities %}
+<div class="units-row">
+	<h4><span class="oi" data-glyph="book"></span> {{ entity.intitule }}</h4>
+		
+		{% for ff in entity.formationformule %}
+		<div data-tools="accordion">
+			<a href="#souspanel-{{ff.id}}" class="accordion-title">{{ ff.formule.id }} - {{ ff.formule.description|capitalize }} <span class="label right">{{ ff.modeles|length }} Questions</span></a>
+			<div id="souspanel-{{ff.id}}" class="accordion-panel">
+			
+			{% if ff.modeles|length != 0 %}
+				<div class="table-container">
+					<table class="table-bordered">
+						<tr>
+						{% for modele in ff.modeles %}
+							<th class="text-centered">{{ modele.date|date('d/m/Y')}}<br/>{{ modele.description }}</th>
+						{% endfor %}
+							<td rowspan="2">
+								<a class="btn btn-smaller" href="{{ path('logistique_show', { 'id': ff.id }) }}">Détails</a>
+								<a class="btn btn-smaller" href="{{ path('logistique_edit', { 'id': ff.id }) }}">Modifier</a>
+							</td>
+						</tr>
+						<tr>
+						{% for modele in ff.modeles %}
+							<td class="text-centered">{% if modele.typeReponse == "bool" %}Oui/Non{% else %}Texte{% endif %}</td>
+						{% endfor %}
+						</tr>
+					</table>
+				</div>
+			{% else %}
+				<p class="lead text-centered">Aucune logistique n'est encore créée pour cette formule.<br/><a class="btn btn-green btn-big" href="{{ path('logistique_edit', { 'id': ff.id, 'generation': 'generate' }) }}">Générer la logistique</a></p>
+			{% endif %}
+			</div>
+		</div>
+		{% endfor %}
+</div>
+{% endfor %}
 
 {% endblock %}

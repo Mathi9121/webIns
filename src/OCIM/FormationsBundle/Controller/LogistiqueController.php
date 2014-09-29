@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use OCIM\FormationsBundle\Entity\formationFormule;
+use OCIM\FormationsBundle\Entity\Formation;
 use OCIM\FormationsBundle\Entity\ModeleLogistique;
 use OCIM\FormationsBundle\Form\LogistiqueType;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -25,8 +26,15 @@ class LogistiqueController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('OCIMFormationsBundle:formationFormule')->findAll();
-
+        $entities = $em->getRepository('OCIMFormationsBundle:Formation')->findAll();
+		
+		foreach($entities as $entity){
+			foreach($entity->getFormationformule() as $ff){
+				$ff->getFormule();
+				$ff->getModeles();
+			}
+		}
+		
         return $this->render('OCIMFormationsBundle:logistique:index.html.twig', array(
             'entities' => $entities,
         ));
