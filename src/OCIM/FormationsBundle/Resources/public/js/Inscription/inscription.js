@@ -77,7 +77,9 @@ $(document).ready(function(){
 			tri(idDiv);
 		}
 	});
-
+	
+	// retouche des dropdown sur chaque lignes
+	$("a[data-tools='dropdown']").css({'display':'block','text-align':'center'}).parent().css('padding', 0);
 });
 
 function changeOrdre(id, ordre){

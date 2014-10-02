@@ -15,7 +15,7 @@
 			<a href="#souspanel-{{ff.id}}" class="accordion-title">{{ ff.formule.id }} - {{ ff.formule.description|capitalize }} <span class="label right">{{ ff.modeles|length }} Questions</span></a>
 			<div id="souspanel-{{ff.id}}" class="accordion-panel">
 			
-			{% if ff.modeles|length != 0 %}
+			{% if ff.modeles|length > 0 %}
 				<div class="table-container">
 					<table class="table-bordered">
 						<tr>
