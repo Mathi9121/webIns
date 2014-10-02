@@ -282,8 +282,8 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					{% for intervenant in formation.intervenants %}
+				{% for intervenant in formation.intervenants %}
+					<tr>
 						<td>{{intervenant.personne.nom|capitalize}} ({{intervenant.personne.civilite}})</td>
 						<td>{{intervenant.personne.prenom|capitalize}}</td>
 						<td>{{intervenant.personne.fonction}}</td>
@@ -294,8 +294,8 @@
 						<td>
 							<a href="{{path('intervenants_edit', {'id': intervenant.id})}}"><span class="oi" data-glyph="pencil"></span></a>
 						</td>
-					{% endfor %}
-				</tr>
+					</tr>
+				{% endfor %}
 			</tbody>
 		</table>
 	</div>
