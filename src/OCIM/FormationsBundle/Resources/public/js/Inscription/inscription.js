@@ -31,6 +31,7 @@ $(document).ready(function(){
 					if(ordreSuiv == 0){
 						var nouvelOrdre = 0;
 						var ordreSuiv = parseInt(parseInt(ui.item.next().next().attr('data-ordre')) / 2);
+						if(isNaN(ordreSuiv)){ordreSuiv = 1000;}
 						changeOrdre(id, nouvelOrdre);
 						changeOrdre(idSuiv, ordreSuiv);
 						data.push({'id':id, 'ordre':nouvelOrdre});

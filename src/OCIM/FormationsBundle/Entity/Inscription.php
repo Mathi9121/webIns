@@ -334,7 +334,7 @@ class Inscription
     public function getStagiaire()
     {
 		foreach($this->personnes as $personne){
-			if($personne->getType() == 'Stagiaire'){
+			if($personne->getType() == 'stagiaire'){
 				$this->stagiaire = $personne ;
 			}
 		}

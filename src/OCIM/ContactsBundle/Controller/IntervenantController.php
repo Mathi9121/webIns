@@ -41,7 +41,7 @@ class IntervenantController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-			$entity->setFormation($em->getReference('OCIMFormationsBundle:Formation', $idformation));
+			$em->getRepository('OCIMFormationsBundle:Formation')->find($idformation)->addIntervenant($entity);
             $em->persist($entity);
             $em->flush();
 

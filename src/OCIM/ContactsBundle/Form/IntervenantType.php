@@ -17,7 +17,6 @@ class IntervenantType extends AbstractType
     {
 	
         $builder
-			->add($builder->create('personne', 'form', array('by_reference' => false, 'data_class'=> "OCIM\ContactsBundle\Entity\Personne"))
 				->add('civilite', 'choice', array(
 					'choices' => array(
 					'Mlle' => 'Mlle',
@@ -46,8 +45,7 @@ class IntervenantType extends AbstractType
 				$builder->create('adresse', 'form', array('by_reference' => false, "data_class"=> "OCIM\ContactsBundle\Entity\Adresse"))
 					->add('nomStructure')
 				)
-			)
-            ->add('commentaire')
+				->add('commentaire')
         ;
     }
 

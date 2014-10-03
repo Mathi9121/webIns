@@ -5,11 +5,11 @@ namespace OCIM\ContactsBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Intervenant
+ * Stagiaire
  */
-class Intervenant extends Personne
+class Stagiaire extends Personne
 {
 	public function __construct(){
-		parent::__construct('intervenant');
+		parent::__construct('stagiaire');
 	}
 }

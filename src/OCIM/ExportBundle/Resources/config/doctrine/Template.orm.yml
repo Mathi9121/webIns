@@ -1,10 +1,7 @@
-OCIM\ContactsBundle\Entity\TypePersonne:
+OCIM\ExportBundle\Entity\Template:
     type: entity
-    oneToMany:
-      personnes:
-        targetEntity: Personne
-        mappedBy: type
     table: null
+    repositoryClass: OCIM\ExportBundle\Entity\TemplateRepository
     id:
         id:
             type: integer
@@ -12,7 +9,14 @@ OCIM\ContactsBundle\Entity\TypePersonne:
             generator:
                 strategy: AUTO
     fields:
+        nom:
+            type: string
+            length: 255
         type:
             type: string
             length: 255
+        date:
+            type: datetime
+        contenu:
+            type: text
     lifecycleCallbacks: {  }
