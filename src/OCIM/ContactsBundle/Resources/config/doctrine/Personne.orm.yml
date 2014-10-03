@@ -1,23 +1,19 @@
 OCIM\ContactsBundle\Entity\Personne:
     type: entity
-    oneToMany:
-        intervenant:
-            targetEntity: Intervenant
-            mappedBy: personne
+    inheritanceType: SINGLE_TABLE
+    discriminatorColumn:
+        name: discr
+        type: string
+    discriminatorMap:
+        signataire: Signataire
+        stagiaire: Stagiaire
+        intervenant: Intervenant
     oneToOne:
         adresse:
             targetEntity: Adresse
             cascade: ["persist", 'remove']
             joinColumn:
                 name: adresse_id
-                referencedColumnName: id
-    manyToOne:
-        type:
-            targetEntity: TypePersonne
-            inversedBy: personnes
-            fetch: EAGER
-            joinColumn:
-                name: type_id
                 referencedColumnName: id
     table: null
     repositoryClass: OCIM\ContactsBundle\Entity\PersonneRepository
@@ -53,5 +49,8 @@ OCIM\ContactsBundle\Entity\Personne:
         mailAdmin:
             type: string
             length: 255
+            nullable: true
+        commentaire:
+            type: text
             nullable: true
     lifecycleCallbacks: {  }

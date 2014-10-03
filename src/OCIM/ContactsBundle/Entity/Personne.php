@@ -381,4 +381,30 @@ class Personne
     {
         return $this->intervenant;
     }
+	
+	private $commentaire;
+	
+	/**
+     * Set commentaire
+     *
+     * @param string $commentaire
+     * @return Personne
+     */
+    public function setCommentaire($commentaire)
+    {
+        $this->commentaire = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Get commentaire
+     *
+     * @return $commentaire 
+     */
+    public function getCommentaire()
+    {
+        return $this->commentaire;
+    }
+	
 }
