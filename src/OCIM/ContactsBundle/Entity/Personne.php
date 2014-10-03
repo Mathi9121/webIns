@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Personne
  */
-class Personne
+abstract class Personne
 {
     /**
      * @var integer
@@ -48,7 +48,8 @@ class Personne
      * @var string
      */
     private $mailAdmin;
-
+	
+	private $type;
 
     /**
      * Get id
@@ -220,34 +221,21 @@ class Personne
     {
         return $this->mailAdmin;
     }
-    /**
-     * @var \OCIM\ContactsBundle\Entity\TypePersonne
-     */
-    private $type;
 
-
-    /**
-     * Set type
-     *
-     * @param \OCIM\ContactsBundle\Entity\TypePersonne $type
-     * @return Personne
-     */
-    public function setType(\OCIM\ContactsBundle\Entity\TypePersonne $type = null)
+	
+    public function setType($type = null)
     {
         $this->type = $type;
 
         return $this;
     }
 
-    /**
-     * Get type
-     *
-     * @return \OCIM\ContactsBundle\Entity\TypePersonne 
-     */
+    
     public function getType()
     {
         return $this->type;
     }
+	
     /**
      * @var string
      */
@@ -344,9 +332,10 @@ class Personne
     /**
      * Constructor
      */
-    public function __construct()
+    public function __construct($type = null)
     {
         $this->intervenant = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->type = $type;
     }
 
     /**

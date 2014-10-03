@@ -1,4 +1,5 @@
 OCIM\ContactsBundle\Entity\Intervenant:
     type: entity
     table: null
-    lifecycleCallbacks: {  }
+    lifecycleCallbacks:
+        postLoad: [__construct]

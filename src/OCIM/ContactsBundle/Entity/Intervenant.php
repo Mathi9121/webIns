@@ -9,5 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Intervenant extends Personne
 {
-
+	public function __construct(){
+		parent::__construct('intervenant');
+	}
 }

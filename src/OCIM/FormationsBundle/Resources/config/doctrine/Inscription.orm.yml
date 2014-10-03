@@ -24,7 +24,6 @@ OCIM\FormationsBundle\Entity\Inscription:
         personnes:
             targetEntity: OCIM\ContactsBundle\Entity\Personne
             cascade: ["all"]
-            fetch: EAGER
             joinTable:
                 name: inscription_personnes
                 cascade: ["persist", "remove"]

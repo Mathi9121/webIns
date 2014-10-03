@@ -16,6 +16,7 @@ use OCIM\FormationsBundle\Form\InscriptionType;
 class InscriptionController extends Controller
 {
 
+
     /**
      * liste toutes les entités en fonction d'une formation (id passé en paramètre)
      *
@@ -64,11 +65,7 @@ class InscriptionController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-			
-			$type = $em->getRepository('OCIMContactsBundle:TypePersonne')->findOneByType("Stagiaire");
-			
-			$entity->getStagiaire()->setType($type);
-			
+
 			$ordre = $em->getRepository('OCIMFormationsBundle:Inscription')->getOrdreMaxByFormation($idformation);
 
 			$nouvelordre = (!is_null($ordre))? $ordre + 1000 : 0;
@@ -100,7 +97,6 @@ class InscriptionController extends Controller
         $form = $this->createForm(new InscriptionType($idformation), $entity, array(
             'action' => $this->generateUrl('inscription_create', array('idformation'=>$idformation)),
             'method' => 'POST',
-			'em' => $this->getDoctrine()->getManager(),
         ));
 
         $form->add('submit', 'submit', array('label' => 'Ajouter le stagiaire', 'attr'=> array('class' => 'btn btn-green')));
@@ -185,7 +181,6 @@ class InscriptionController extends Controller
         $form = $this->createForm(new InscriptionType($idformation), $entity, array(
             'action' => $this->generateUrl('inscription_update', array('id' => $entity->getId(), 'idformation'=> $idformation)),
             'method' => 'PUT',
-			'em' => $this->getDoctrine()->getManager(),
         ));
 
         $form->add('submit', 'submit', array('label' => 'Enregistrer', 'attr'=> array('class'=> 'btn btn-green')));
