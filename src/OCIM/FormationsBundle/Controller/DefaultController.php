@@ -35,6 +35,10 @@ class DefaultController extends Controller
 		$qb->from('OCIMFormationsBundle:Formule','i');
 		$countFormules = $qb->getQuery()->getSingleScalarResult();
 		
+		$qb = $em->createQueryBuilder();
+		$qb->select('count(t.id)');
+		$qb->from('OCIMExportBundle:Template','t');
+		$countTemplate = $qb->getQuery()->getSingleScalarResult();
 		
 		foreach($formations as $formation){
 			$formation->_count = $em->getRepository('OCIMFormationsBundle:Inscription')->countInscriptionsByFormation($formation->getId());
@@ -45,7 +49,8 @@ class DefaultController extends Controller
 			'inscriptions'=> $inscriptions,
 			'countFormations' => $countFormations,
 			'countInscriptions' => $countInscriptions,
-			'countFormules' => $countFormules
+			'countFormules' => $countFormules,
+			'countTemplate' => $countTemplate
 		));
 	}
 }

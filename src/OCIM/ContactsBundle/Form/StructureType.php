@@ -16,7 +16,6 @@ class StructureType extends AbstractType
     {
         $builder
             ->add('nom')
-            ->add('adresse')
             ->add('type')
             ->add('tags')
         ;

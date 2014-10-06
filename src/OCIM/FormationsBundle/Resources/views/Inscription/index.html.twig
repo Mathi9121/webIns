@@ -32,6 +32,7 @@
 		<li class="active"><a href="#general">Informations Générales</a></li>
 		<li><a href="#contact">Contacts</a></li>
 		<li><a href="#convention">Conventions</a></li>
+		<li><a href="#financement">Financement</a></li>
 		<li><a href="#attentes">Attentes</a></li>
 		<li><a href="#intervenants">Intervenants</a></li>
 	</ul>
@@ -221,6 +222,48 @@
 </div>
 </div>
 
+{# financement #}
+<div id="financement" class="tab">
+<div class="table-container">
+	<table class="">
+		<thead>
+			<tr>
+				<th class="handle"></th>
+				<th class="insc info"><span>Nom</span></th>
+				<th class="insc info"><span>Prénom</span></th>
+
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+        {% for entity in entities %}
+			{% set class = "" %}
+			{% if entity.statut == 'en attente' %}
+				{% set class = "attente" %}
+			{% elseif entity.statut == 'accepté' %}
+				{% set class = "valide" %}
+			{% elseif entity.statut == 'annulé' %}
+				{% set class = "annule" %}
+			{% endif %}
+			<tr class="statut {{class}}" data-ordre="{{entity.ordre}}" data-idinscription="{{entity.id}}">
+						{% if class == "attente" %}<td class="handle"><span class="oi" data-glyph="move"></span></td>{% else %}<td></td>{% endif %}
+						<td class="insc info"><span>{{ entity.stagiaire.nom }} ({{ entity.stagiaire.civilite }})</span></td>
+						<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
+
+                <td class="insc actions">
+					{% if entity.signataire == null %}
+						<a href="{{path('signataire_new', {'idinscription':entity.id})}}" class=""><span class="oi" data-glyph="plus"></span> Ajouter un signataire</a>
+					{% else %}
+						<a href="{{path('signataire_edit', {'id': entity.signataire.id})}}" class=""><span class="oi" data-glyph="pencil"></span> Modifier</a>
+					{% endif %}
+				</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+	</table>
+</div>
+</div>
+
 {# ATTENTES #}
 <div id="attentes" class="tab">
 <div class="table-container">
@@ -250,8 +293,8 @@
 				<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
 				<td class="insc attentes"><span>{{ entity.attentes|slice(0, 70)}}{% if entity.attentes|length > 70 %}...{% endif %}</span></td>
                 <td class="insc actions">
-					<a href="#" data-tools="dropdown" data-target="#dropdown4-{{loop.index}}"></a>
-					<ul id="dropdown4-{{loop.index}}" class="dropdown">
+					<a href="#" data-tools="dropdown" data-target="#dropdown5-{{loop.index}}"></a>
+					<ul id="dropdown5-{{loop.index}}" class="dropdown">
 						<li><a href="{{ path('inscription_show', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><span class="oi" data-glyph="info"></span> Détails</a></li>
 						<li><a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><span class="oi" data-glyph="pencil"></span> Modifier</a></li>
 					</ul>

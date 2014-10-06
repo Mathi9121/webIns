@@ -8,6 +8,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use OCIM\FormationsBundle\Entity\Inscription;
 use OCIM\FormationsBundle\Form\InscriptionType;
+use OCIM\FormationsBundle\Form\FinancementType;
+use OCIM\ContactsBundle\Entity\Signataire;
 
 /**
  * Inscription controller.
@@ -51,7 +53,7 @@ class InscriptionController extends Controller
 
 		}
 	}
-
+	
 	
     /**
      * Creates a new Inscription entity.

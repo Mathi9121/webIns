@@ -1,0 +1,30 @@
+structures:
+    path:     /
+    defaults: { _controller: "OCIMContactsBundle:Structure:index" }
+
+structures_show:
+    path:     /{id}/show
+    defaults: { _controller: "OCIMContactsBundle:Structure:show" }
+
+structures_new:
+    path:     /new
+    defaults: { _controller: "OCIMContactsBundle:Structure:new" }
+
+structures_create:
+    path:     /create
+    defaults: { _controller: "OCIMContactsBundle:Structure:create" }
+    requirements: { _method: post }
+
+structures_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "OCIMContactsBundle:Structure:edit" }
+
+structures_update:
+    path:     /{id}/update
+    defaults: { _controller: "OCIMContactsBundle:Structure:update" }
+    requirements: { _method: post|put }
+
+structures_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "OCIMContactsBundle:Structure:delete" }
+    requirements: { _method: post|delete }

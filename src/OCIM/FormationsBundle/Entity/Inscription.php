@@ -341,6 +341,44 @@ class Inscription
 		return $this->stagiaire;
     }
 	
+	 /**
+     * @var \OCIM\ContactsBundle\Entity\Personne
+     */
+    private $signataire;
+
+
+    /**
+     * Set personne
+     *
+     * @param \OCIM\ContactsBundle\Entity\Personne $personne
+     * @return Inscription
+     */
+    public function setSignataire(\OCIM\ContactsBundle\Entity\Personne $signataire = null)
+    {
+        
+		$this->signataire = $signataire;
+		
+		$this->addPersonne($signataire);
+		
+        return $this;
+    }
+
+    /**
+     * Get personne
+     *
+     * @return \OCIM\ContactsBundle\Entity\Personne 
+     */
+    public function getSignataire()
+    {
+		foreach($this->personnes as $personne){
+			if($personne->getType() == 'signataire'){
+				$this->signataire = $personne ;
+			}
+		}
+		return $this->signataire;
+    }
+	
+	
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
