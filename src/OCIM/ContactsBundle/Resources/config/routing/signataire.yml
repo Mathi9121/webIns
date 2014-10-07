@@ -7,16 +7,16 @@ signataire_show:
     defaults: { _controller: "OCIMContactsBundle:Signataire:show" }
 
 signataire_new:
-    path:     /{idinscription}/new
+    path:     /formation-{idformation}/inscription-{idinscription}/new
     defaults: { _controller: "OCIMContactsBundle:Signataire:new" }
 
 signataire_create:
-    path:     /{idinscription}/create
+    path:     /formation-{idformation}/{idinscription}/create
     defaults: { _controller: "OCIMContactsBundle:Signataire:create" }
     requirements: { _method: post }
 
 signataire_edit:
-    path:     /{id}/edit
+    path:     /formation-{idformation}/{id}/edit
     defaults: { _controller: "OCIMContactsBundle:Signataire:edit" }
 
 signataire_update:

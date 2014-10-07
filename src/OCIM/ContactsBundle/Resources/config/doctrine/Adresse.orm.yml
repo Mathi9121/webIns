@@ -2,6 +2,7 @@ OCIM\ContactsBundle\Entity\Adresse:
     type: entity
     oneToOne:
         structure:
+            cascade: ['all']
             targetEntity: Structure
             mappedBy: adresse
     table: null

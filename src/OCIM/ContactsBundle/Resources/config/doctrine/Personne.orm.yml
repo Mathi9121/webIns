@@ -39,6 +39,7 @@ OCIM\ContactsBundle\Entity\Personne:
         tel:
             type: string
             length: 255
+            nullable: true
         fax:
             type: string
             length: 255
@@ -46,6 +47,7 @@ OCIM\ContactsBundle\Entity\Personne:
         mail:
             type: string
             length: 255
+            nullable: true
         mailAdmin:
             type: string
             length: 255

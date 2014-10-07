@@ -33,10 +33,10 @@ class SignataireController extends Controller
      * Creates a new Signataire entity.
      *
      */
-    public function createAction(Request $request, $idinscription)
+    public function createAction(Request $request, $idinscription, $idformation)
     {
         $entity = new Signataire();
-        $form = $this->createCreateForm($entity, $idinscription);
+        $form = $this->createCreateForm($entity, $idinscription, $idformation);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -44,15 +44,19 @@ class SignataireController extends Controller
             $inscription = $em->getRepository('OCIMFormationsBundle:Inscription')->find($idinscription);
 			$inscription->setSignataire($entity);
 			$em->persist($entity);
+			$structure = $entity->getAdresse()->getStructure();
+			$structure->setAdresse($entity->getAdresse());
+			$em->persist($structure);
 			$em->persist($inscription);
             $em->flush();
 
             return $this->redirect($this->generateUrl('signataire_show', array('id' => $entity->getId())));
         }
 
-        return $this->render('OCIMContactsBundle:signataire:new.html.twig', array(
+        return $this->render('OCIMContactsBundle:Signataire:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
+			'idformation' => $idformation
         ));
     }
 
@@ -63,14 +67,15 @@ class SignataireController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Signataire $entity, $idinscription)
+    private function createCreateForm(Signataire $entity, $idinscription, $idformation)
     {
         $form = $this->createForm(new SignataireType(), $entity, array(
-            'action' => $this->generateUrl('signataire_create', array('idinscription'=>$idinscription)),
+            'action' => $this->generateUrl('signataire_create', array('idinscription'=>$idinscription, 'idformation'=> $idformation)),
             'method' => 'POST',
+			'em' => $this->getDoctrine()->getManager(),
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Enregistrer'));
 
         return $form;
     }
@@ -79,14 +84,15 @@ class SignataireController extends Controller
      * Displays a form to create a new Signataire entity.
      *
      */
-    public function newAction($idinscription)
+    public function newAction($idinscription, $idformation)
     {
         $entity = new Signataire();
-        $form   = $this->createCreateForm($entity, $idinscription);
+        $form   = $this->createCreateForm($entity, $idinscription, $idformation);
 
         return $this->render('OCIMContactsBundle:Signataire:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
+			'idformation' => $idformation
         ));
     }
 
@@ -116,7 +122,7 @@ class SignataireController extends Controller
      * Displays a form to edit an existing Signataire entity.
      *
      */
-    public function editAction($id)
+    public function editAction($id, $idformation)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -126,13 +132,14 @@ class SignataireController extends Controller
             throw $this->createNotFoundException('Unable to find Signataire entity.');
         }
 
-        $editForm = $this->createEditForm($entity);
+        $editForm = $this->createEditForm($entity, $idformation);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('OCIMContactsBundle:Signataire:edit.html.twig', array(
+        return $this->render('OCIMContactsBundle:Signataire:new.html.twig', array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+			'idformation' => $idformation
         ));
     }
 
@@ -143,11 +150,12 @@ class SignataireController extends Controller
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(Signataire $entity)
+    private function createEditForm(Signataire $entity, $idformation)
     {
         $form = $this->createForm(new SignataireType(), $entity, array(
             'action' => $this->generateUrl('signataire_update', array('id' => $entity->getId())),
             'method' => 'PUT',
+			'em' => $this->getDoctrine()->getManager(),
         ));
 
         $form->add('submit', 'submit', array('label' => 'Update'));

@@ -7,7 +7,7 @@ OCIM\ContactsBundle\Entity\Structure:
             cascade: ["all"]
             joinColumn:
                 adresse_id:
-                    referencedColumnName: id    
+                    referencedColumnName: id
     manyToOne:
         type:
             targetEntity: TypeStructure
@@ -19,6 +19,7 @@ OCIM\ContactsBundle\Entity\Structure:
         tags:
             targetEntity: TagStructure
             inversedBy: structures
+            cascade: ["all"]
             joinTable:
                 name: structures_tags
                 joinColumns:

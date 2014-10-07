@@ -14,6 +14,8 @@ class AdresseSignataireType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+		$entityManager = $options['em'];
+		
         $builder
             ->add('adresse', 'text', array(
 				'attr' => array('class' => 'width-100'),
@@ -35,6 +37,8 @@ class AdresseSignataireType extends AbstractType
 			))
 			->add('structure', new StructureType(), array(
 				'attr' => array('class' => 'width-100'),
+				'data_class' => 'OCIM\ContactsBundle\Entity\Structure',
+				'em' => $entityManager
 			))
         ;
     }
@@ -45,7 +49,15 @@ class AdresseSignataireType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'OCIM\ContactsBundle\Entity\Adresse'
+            'data_class' => 'OCIM\ContactsBundle\Entity\Adresse',
+			'attr' => array('class'=>'forms')
+        ));
+		$resolver->setRequired(array(
+            'em',
+        ));
+
+        $resolver->setAllowedTypes(array(
+            'em' => 'Doctrine\Common\Persistence\ObjectManager',
         ));
     }
 

@@ -24,7 +24,7 @@ class Structure
 	private $tags;
 	
     public function __construct() {
-        $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->tags = new ArrayCollection();
     }
 	
     /**
@@ -180,5 +180,12 @@ class Structure
     public function getTags()
     {
         return $this->tags;
+    }
+	
+	public function setTags($tags)
+    {
+        $this->tags = $tags;
+		
+		return $this;
     }
 }

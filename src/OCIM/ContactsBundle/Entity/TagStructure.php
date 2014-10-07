@@ -25,7 +25,7 @@ class TagStructure
 	
 	
 	public function __construct() {
-        $this->structures = new Doctrine\Common\Collections\ArrayCollection();
+        $this->structures = new ArrayCollection();
     }
 
 	
@@ -94,4 +94,8 @@ class TagStructure
     {
         return $this->structures;
     }
+	
+	public function __toString(){
+		return $this->tag;
+	}
 }
