@@ -36,7 +36,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [OCIMFormationsBundle]
+    bundles:        [OCIMFormationsBundle, OCIMExportBundle]
     #java: /usr/bin/java
     assets:
         open-iconic-otf:
@@ -90,9 +90,9 @@ swiftmailer:
 knp_snappy:
     pdf:
         enabled:    true
-        binary:     /usr/local/bin/wkhtmltopdf
+        binary:     /usr/local/bin/wkhtmltopdf.sh
         options:    []
     image:
         enabled:    true
-        binary:     /usr/local/bin/wkhtmltoimage
+        binary:     /usr/local/bin/wkhtmltopdf
         options:    []

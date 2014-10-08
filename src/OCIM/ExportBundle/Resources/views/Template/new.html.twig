@@ -1,4 +1,60 @@
 {% extends '::app.html.twig' %}
+{% form_theme form '::form.html.twig' %}
+
+{% block javascripts %}
+{{parent()}}
+<script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
+<script>
+tinymce.init({
+    selector: "textarea",
+    theme: "modern",
+    height: 600,
+    plugins: [
+         "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+         "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+         "save table contextmenu directionality emoticons template paste textcolor"
+   ],
+	toolbar: ["insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | print preview media fullpage | forecolor backcolor emoticons", 
+			"Inscription Stagiaire"],
+	setup: function(editor) {
+        editor.addButton('Inscription', {
+            type: 'menubutton',
+            text: 'Inscription',
+            icon: false,
+            menu: [
+                {text: "Date d'inscription", onclick: function() 	{editor.insertContent("{{ '{{' }}entity.dateInscription{{ '}}' }}");}},
+                {text: 'Statut', onclick: function() 				{editor.insertContent('');}},
+                {text: 'Attentes', onclick: function() 				{editor.insertContent('');}}
+            ]
+        });
+		editor.addButton('Stagiaire', {
+			type: 'menubutton',
+			text: 'Stagiaire',
+			icon: false,
+			menu: [
+				{text: 'Civilité', onclick: function() 					{editor.insertContent('');}},
+				{text: 'Nom', onclick: function() 						{editor.insertContent('');}},
+				{text: 'Prénom', onclick: function() 					{editor.insertContent('');}},
+				{text: 'Fonction', onclick: function() 					{editor.insertContent('');}},
+				{text: 'Téléphone', onclick: function() 				{editor.insertContent('');}},
+				{text: 'Fax', onclick: function() 						{editor.insertContent('');}},
+				{text: 'Mail', onclick: function() 						{editor.insertContent('');}},
+				{text: 'Mail Administrateur', onclick: function()		{editor.insertContent('');}},
+				{text: 'Nom Strucuture (adresse)', onclick: function()	{editor.insertContent('');}},
+				{text: 'Adresse', onclick: function()					{editor.insertContent('');}},
+				{text: 'Complément adresse', onclick: function()		{editor.insertContent('');}},
+				{text: 'Code postal', onclick: function()				{editor.insertContent('');}},
+				{text: 'Ville', onclick: function()						{editor.insertContent('');}},
+				{text: 'Pays', onclick: function()						{editor.insertContent('');}},
+				{text: 'Commentaire', onclick: function() 				{editor.insertContent('');}}
+			]
+		});
+	},
+ }); 
+</script>
+
+
+{% endblock %}
 
 {% block body -%}
     <h1>Template creation</h1>

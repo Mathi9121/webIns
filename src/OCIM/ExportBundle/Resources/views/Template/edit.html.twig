@@ -1,4 +1,13 @@
 {% extends '::app.html.twig' %}
+{% form_theme edit_form '::form.html.twig' %}
+
+{% block javascripts %}
+{{parent()}}
+	<script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
+	{% javascripts '@OCIMExportBundle/Resources/public/js/template/*' %}
+		<script type="text/javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+{% endblock %}
 
 {% block body -%}
     <h1>Template edit</h1>

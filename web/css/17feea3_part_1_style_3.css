@@ -1,19 +1,10 @@
 /*********HEADER*******/
-header img.logo{
-	height:50px;
-	margin-left: 50px
-}
-
 header nav ul li a span.oi{
 	display: inline;
 	color: inherit;
 	cursor: inherit;
 }
 
-header{
-	background-color: #f9f9f9;
-	border-bottom: 1px solid #fefefe;
-}
 
 /** Menu **/
 
@@ -35,16 +26,18 @@ nav #dropdownmenu ul li a {width: auto; height: auto; text-align: left}
 
 /** positionnement **/
 #sidebar{
-	padding-top: 50px;
 	background-color: #F9F9F9;
+	margin-top: -50px
 }
+
+#sidebar .logo{display: block; margin: 0px auto 50px;  width:100%; max-width: 250px}
 
 #session-top{
 	padding-right: 25px;
 }
-
+.navbar a:hover {text-decoration:none;}
 #content{
-	padding: 50px 50px 0 0;
+	padding: 10px 50px 0 0;
 }
 #sidebar nav{
 	padding-top: 25px;
@@ -86,7 +79,7 @@ form select[multiple]{
 	#sidebar #session-side{display:block;}
 	#header a.logo{display:none;}
 	#header img.logo{margin-left: calc(100% - 160px); height: 40px}
-	#sidebar form{display:none;}
+	#sidebar form, #sidebar .logo{display:none;}
 	#sidebar{padding-top: 0}
  	#titre h1{float: left}
 	#titre #controls{float: right} 

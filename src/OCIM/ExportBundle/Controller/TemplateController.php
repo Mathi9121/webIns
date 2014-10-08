@@ -3,6 +3,7 @@
 namespace OCIM\ExportBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use OCIM\ExportBundle\Entity\Template;
@@ -96,17 +97,34 @@ class TemplateController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('OCIMExportBundle:Template')->find($id);
+        $formation = $em->getRepository('OCIMFormationsBundle:Formation')->find(49);
+        $inscription = $em->getRepository('OCIMFormationsBundle:Inscription')->find(2);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Template entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
-
-        return $this->render('OCIMExportBundle:Template:show.html.twig', array(
+		
+		// TEST ///////////////////////////////////////////////////////////////
+		$env = new \Twig_Environment(new \Twig_Loader_String());
+		$contenu = $env->render(
+			$entity->getContenu(),
+			array("formation" => $formation, "inscription" => $inscription)
+		);
+		
+		return new Response(
+			$this->get('knp_snappy.pdf')->getOutputFromHtml($contenu),
+			200,
+			array(
+				'Content-Type'          => 'application/pdf',
+				'Content-Disposition'   => 'attachment; filename="file.pdf"'
+			)
+		);
+        /* return $this->render('OCIMExportBundle:Template:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
-        ));
+        )); */
     }
 
     /**
