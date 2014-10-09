@@ -17,6 +17,9 @@ OCIM\ExportBundle\Entity\Template:
             length: 255
         date:
             type: datetime
+        filename:
+            type: string
+            length: 255
         contenu:
             type: text
     lifecycleCallbacks: {  }

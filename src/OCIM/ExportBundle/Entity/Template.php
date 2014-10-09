@@ -136,4 +136,32 @@ class Template
     {
         return $this->contenu;
     }
+    /**
+     * @var string
+     */
+    private $filename;
+
+
+    /**
+     * Set filename
+     *
+     * @param string $filename
+     * @return Template
+     */
+    public function setFilename($filename)
+    {
+        $this->filename = $filename;
+
+        return $this;
+    }
+
+    /**
+     * Get filename
+     *
+     * @return string 
+     */
+    public function getFilename()
+    {
+        return $this->filename;
+    }
 }

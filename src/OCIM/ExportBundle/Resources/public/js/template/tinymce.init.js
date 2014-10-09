@@ -8,7 +8,7 @@ tinymce.init({
          "save table contextmenu directionality emoticons template paste textcolor"
    ],
 	toolbar: ["insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | print preview media fullpage | forecolor backcolor emoticons", 
-			"Formation | Inscription | Stagiaire"],
+			"Formation | Inscription | Stagiaire | Formule | Convention"],
 	setup: function(editor) {
         editor.addButton('Inscription', {
             type: 'menubutton',
@@ -25,17 +25,17 @@ tinymce.init({
 			text: 'Stagiaire',
 			icon: false,
 			menu: [
-				{text: 'Civilité', onclick: function() 					{editor.insertContent("{{ inscription.stagiaire.civilite }}"); }},
+				{text: 'Civilite', onclick: function() 					{editor.insertContent("{{ inscription.stagiaire.civilite }}"); }},
 				{text: 'Nom', onclick: function() 						{editor.insertContent("{{ inscription.stagiaire.nom }}"); }},
-				{text: 'Prénom', onclick: function() 					{editor.insertContent("{{ inscription.stagiaire.prenom }}"); }},
+				{text: 'Prenom', onclick: function() 					{editor.insertContent("{{ inscription.stagiaire.prenom }}"); }},
 				{text: 'Fonction', onclick: function() 					{editor.insertContent("{{ inscription.stagiaire.fonction }}"); }},
-				{text: 'Téléphone', onclick: function() 				{editor.insertContent("{{ inscription.stagiaire.tel }}"); }},
+				{text: 'Telephone', onclick: function() 				{editor.insertContent("{{ inscription.stagiaire.tel }}"); }},
 				{text: 'Fax', onclick: function() 						{editor.insertContent("{{ inscription.stagiaire.fax }}"); }},
 				{text: 'Mail', onclick: function() 						{editor.insertContent("{{ inscription.stagiaire.mail }}"); }},
 				{text: 'Mail Administrateur', onclick: function()		{editor.insertContent("{{ inscription.stagiaire.mailAdmin }}"); }},
 				{text: 'Nom Strucuture (adresse)', onclick: function()	{editor.insertContent("{{ inscription.stagiaire.adresse.nomStructure }}"); }},
 				{text: 'Adresse', onclick: function()					{editor.insertContent("{{ inscription.stagiaire.adresse.adresse }}"); }},
-				{text: 'Complément adresse', onclick: function()		{editor.insertContent("{{ inscription.stagiaire.adresse.adresseComplement }}"); }},
+				{text: 'Complement adresse', onclick: function()		{editor.insertContent("{{ inscription.stagiaire.adresse.adresseComplement }}"); }},
 				{text: 'Code postal', onclick: function()				{editor.insertContent("{{ inscription.stagiaire.adresse.CP }}"); }},
 				{text: 'Ville', onclick: function()						{editor.insertContent("{{ inscription.stagiaire.adresse.ville }}"); }},
 				{text: 'Pays', onclick: function()						{editor.insertContent("{{ inscription.stagiaire.adresse.pays }}"); }},
@@ -49,12 +49,49 @@ tinymce.init({
 			menu: [
 				{text: 'Intitule', onclick: function() 					{editor.insertContent("{{ formation.intitule }}"); }},
 				{text: 'Lieu', onclick: function() 						{editor.insertContent("{{ formation.lieu }}"); }},
-				{text: 'Date de début', onclick: function() 			{editor.insertContent("{{ formation.dateDebut }}"); }},
+				{text: 'Date de debut', onclick: function() 			{editor.insertContent("{{ formation.dateDebut }}"); }},
 				{text: 'Date de fin', onclick: function() 				{editor.insertContent("{{ formation.dateFin }}"); }},
-				{text: 'Durée (jours)', onclick: function() 			{editor.insertContent(""); }},
+				{text: 'Duree (jours)', onclick: function() 			{editor.insertContent("{{ date_difference(formation.dateDebut, formation.dateFin) }}"); }},
 				{text: 'Date au format text', onclick: function() 		{editor.insertContent("{{ formation.dateText }}"); }},
 				{text: "Nombre d'heures", onclick: function() 			{editor.insertContent("{{ formation.nbHeures }}"); }},
 				{text: "Type de formation", onclick: function() 		{editor.insertContent("{{ formation.type }}"); }},
+			]
+		});
+		editor.addButton('Convention', {
+			type: 'menubutton',
+			text: 'Convention',
+			icon: false,
+			menu: [
+				{text: 'Numero', onclick: function() 							{editor.insertContent("{{ inscription.convention.numero }}"); }},
+				{text: "Date d'edition", onclick: function() 					{editor.insertContent("{{ inscription.convention.edition|date('d/m/Y') }}"); }},
+				{text: "Signataire", 
+					menu: [
+						{text: "Civilite", onclick: function() 			{editor.insertContent("{{ inscription.signataire.civilite }}"); }},
+						{text: "Nom", onclick: function() 				{editor.insertContent("{{ inscription.signataire.nom }}"); }},
+						{text: "Prenom", onclick: function() 			{editor.insertContent("{{ inscription.signataire.prenom }}"); }},
+						{text: "Fonction", onclick: function() 			{editor.insertContent("{{ inscription.signataire.fonction }}"); }},
+						
+					]},
+				{text: "Organisme Financeur", 
+					menu: [
+						{text: "Nom de la structure", onclick: function() 		{editor.insertContent("{{ inscription.signataire.adresse.structure.nom }}"); }},
+						{text: "Cdresse", onclick: function() 					{editor.insertContent("{{ inscription.signataire.adresse.adresse }}"); }},
+						{text: "Complement d'adresse", onclick: function() 		{editor.insertContent("{{ inscription.signataire.adresse.adresseComplement }}"); }},
+						{text: "Code postal", onclick: function() 				{editor.insertContent("{{ inscription.signataire.adresse.CP }}"); }},
+						{text: "Ville", onclick: function() 					{editor.insertContent("{{ inscription.signataire.adresse.ville }}"); }},
+						{text: "Pays", onclick: function() 						{editor.insertContent("{{ inscription.signataire.adresse.pays }}"); }},
+						
+						
+					]},
+			]
+		});
+		editor.addButton('Formule', {
+			type: 'menubutton',
+			text: 'Formule',
+			icon: false,
+			menu: [
+				{text: 'Description', onclick: function() 					{editor.insertContent("{{ inscription.formationformule.formule.description }}"); }},
+				{text: 'Tarif', onclick: function() 						{editor.insertContent("{{ inscription.formationformule.formule.tarif }}"); }},
 			]
 		});
 	},

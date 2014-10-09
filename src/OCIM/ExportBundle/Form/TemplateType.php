@@ -15,9 +15,13 @@ class TemplateType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom')
+            ->add('nom', 'text', array(
+				'attr' => array('class'=>'width-100')
+			))
             ->add('type')
-            ->add('date')
+            ->add('filename', 'text', array(
+				'attr' => array('class'=>'width-100')
+			))
             ->add('contenu')
         ;
     }

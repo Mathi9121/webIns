@@ -106,25 +106,41 @@ class TemplateController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 		
-		// TEST ///////////////////////////////////////////////////////////////
+		// Nom du fichier
+		$filename = $entity->getFilename();
+		$filename = str_replace('{{formation.intitule}}', $formation->getIntitule(), $filename);
+		$filename = str_replace('{{formation.id}}', $formation->getId(), $filename);
+		$filename = str_replace('{{inscription.stagiaire.nom}}', $inscription->getStagiaire()->getNom(), $filename);
+		$filename = str_replace('{{inscription.stagiaire.prenom}}', $inscription->getStagiaire()->getPrenom(), $filename);
+		$filename = str_replace('{{inscription.convention.numero}}', $inscription->getConvention()->getNumero(), $filename);
+		
+		
+		// Ajout de la fonction twig pour calculer la durée entre deux date
 		$env = new \Twig_Environment(new \Twig_Loader_String());
+		$function = new \Twig_SimpleFunction('date_difference', function ($start, $end) {
+			return $start->diff($end, true)->format('%a') + 1;
+		});
+		
+		// ajout à l'environnement
+		$env->addFunction($function);
+		
+		$contenu = "<html><head><meta charset='utf-8'/>
+					</head><body>".$entity->getContenu()."</body></html>";
+
+		// contenu et valeurs
 		$contenu = $env->render(
-			$entity->getContenu(),
+			$contenu,
 			array("formation" => $formation, "inscription" => $inscription)
 		);
-		
+
 		return new Response(
 			$this->get('knp_snappy.pdf')->getOutputFromHtml($contenu),
 			200,
 			array(
 				'Content-Type'          => 'application/pdf',
-				'Content-Disposition'   => 'attachment; filename="file.pdf"'
+				'Content-Disposition'   => 'attachment; filename="'.$filename.'.pdf"'
 			)
 		);
-        /* return $this->render('OCIMExportBundle:Template:show.html.twig', array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-        )); */
     }
 
     /**
