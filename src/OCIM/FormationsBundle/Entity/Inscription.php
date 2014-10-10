@@ -424,7 +424,7 @@ class Inscription
 	}
 	
 	function __toString(){
-		return $this->stagiaire->getNom();
+		return $this->getStagiaire()->getNom();
 	}
 	
 	

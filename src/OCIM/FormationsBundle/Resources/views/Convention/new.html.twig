@@ -1,15 +1,11 @@
 {% extends '::app.html.twig' %}
 
 {% block body -%}
-    <h1>Convention creation</h1>
 
-    {{ form(form) }}
+    {% include 'OCIMFormationsBundle:Convention:form-convention.html.twig' %}
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('convention') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+
+<a href="{{ path('convention') }}">
+	Back to the list
+</a>
 {% endblock %}

@@ -18,14 +18,20 @@ OCIM\FormationsBundle\Entity\Convention:
             length: 255
         edition:
             type: date
+            nullable: true
         envoiPresidentU2ex:
             type: date
+            nullable: true
         retourPresidentU2ex:
             type: date
+            nullable: true
         envoiOrganisme2ex:
             type: date
+            nullable: true
         retourOrganisme1ex:
             type: date
+            nullable: true
         envoiPresidentU1ex:
             type: date
+            nullable: true
     lifecycleCallbacks: {  }

@@ -20,7 +20,7 @@ signataire_edit:
     defaults: { _controller: "OCIMContactsBundle:Signataire:edit" }
 
 signataire_update:
-    path:     /{id}/update
+    path:     /formation-{idformation}/{id}/update
     defaults: { _controller: "OCIMContactsBundle:Signataire:update" }
     requirements: { _method: post|put }
 

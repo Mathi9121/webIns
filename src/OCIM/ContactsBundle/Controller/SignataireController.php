@@ -153,7 +153,7 @@ class SignataireController extends Controller
     private function createEditForm(Signataire $entity, $idformation)
     {
         $form = $this->createForm(new SignataireType(), $entity, array(
-            'action' => $this->generateUrl('signataire_update', array('id' => $entity->getId())),
+            'action' => $this->generateUrl('signataire_update', array('id' => $entity->getId(), 'idformation'=>$idformation)),
             'method' => 'PUT',
 			'em' => $this->getDoctrine()->getManager(),
         ));
@@ -166,7 +166,7 @@ class SignataireController extends Controller
      * Edits an existing Signataire entity.
      *
      */
-    public function updateAction(Request $request, $id)
+    public function updateAction(Request $request, $id, $idformation)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -177,13 +177,13 @@ class SignataireController extends Controller
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity);
+        $editForm = $this->createEditForm($entity, $idformation);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('signataire_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('signataire_edit', array('id' => $id, 'idformation'=>$idformation)));
         }
 
         return $this->render('OCIMContactsBundle:Signataire:edit.html.twig', array(

@@ -15,14 +15,47 @@ class ConventionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('numero')
-            ->add('edition')
-            ->add('envoiPresidentU2ex')
-            ->add('retourPresidentU2ex')
-            ->add('envoiOrganisme2ex')
-            ->add('retourOrganisme1ex')
-            ->add('envoiPresidentU1ex')
-            ->add('inscription')
+            ->add('numero', 'text', array(
+				'required' => false,
+				'attr'=> array('class'=>'input-big text-centered')
+				))
+            ->add('edition', 'date', array(
+				'label' => "Date d'édition",
+				'widget' => 'single_text',
+				'required' => false,
+				'attr'=> array('class'=>'input-big text-centered'),
+				'format' => 'dd/MM/yyyy'
+				))
+            ->add('envoiPresidentU2ex', 'date', array(
+				'widget' => 'single_text',
+				'required' => false,
+				'label' => "Envoi au Président de l'UB en 2 ex",
+				'format' => 'dd/MM/yyyy'
+				))
+            ->add('retourPresidentU2ex', 'date', array(
+				'widget' => 'single_text',
+				'required' => false,
+				'label' => "Retour de l'UB en 2 ex",
+				'format' => 'dd/MM/yyyy'
+				))
+            ->add('envoiOrganisme2ex', 'date', array(
+				'widget' => 'single_text',
+				'required' => false,
+				'label' => "Envoi à l'organisme financeur en 2 ex",
+				'format' => 'dd/MM/yyyy'
+				))
+            ->add('retourOrganisme1ex', 'date', array(
+				'widget' => 'single_text',
+				'required' => false,
+				'label' => "Retour de l'organisme en 1 ex",
+				'format' => 'dd/MM/yyyy'
+				))
+            ->add('envoiPresidentU1ex', 'date', array(
+				'widget' => 'single_text',
+				'required' => false,
+				'label' => "Envoi au Président de l'UB 1 ex",
+				'format' => 'dd/MM/yyyy'
+				))
         ;
     }
     
@@ -32,7 +65,8 @@ class ConventionType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'OCIM\FormationsBundle\Entity\Convention'
+            'data_class' => 'OCIM\FormationsBundle\Entity\Convention',
+			'attr' => array('class'=> "forms")
         ));
     }
 

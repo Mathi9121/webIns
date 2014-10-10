@@ -33,15 +33,21 @@ class ConventionController extends Controller
      * Creates a new Convention entity.
      *
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request, $idinscription)
     {
         $entity = new Convention();
-        $form = $this->createCreateForm($entity);
+		$inscription = $this->getDoctrine()->getManager()->getRepository('OCIMFormationsBundle:Inscription')->find($idinscription);
+		
+        $form = $this->createCreateForm($entity, $idinscription);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+			
+			$entity->setInscription($em->getReference('OCIMFormationsBundle:Inscription', $idinscription));
+			$inscription->setConvention($entity);
             $em->persist($entity);
+            $em->persist($inscription);
             $em->flush();
 
             return $this->redirect($this->generateUrl('convention_show', array('id' => $entity->getId())));
@@ -60,10 +66,10 @@ class ConventionController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Convention $entity)
+    private function createCreateForm(Convention $entity, $idinscription)
     {
         $form = $this->createForm(new ConventionType(), $entity, array(
-            'action' => $this->generateUrl('convention_create'),
+            'action' => $this->generateUrl('convention_create', array('idinscription'=> $idinscription)),
             'method' => 'POST',
         ));
 
@@ -76,10 +82,10 @@ class ConventionController extends Controller
      * Displays a form to create a new Convention entity.
      *
      */
-    public function newAction()
+    public function newAction($idinscription)
     {
         $entity = new Convention();
-        $form   = $this->createCreateForm($entity);
+        $form   = $this->createCreateForm($entity, $idinscription);
 
         return $this->render('OCIMFormationsBundle:Convention:new.html.twig', array(
             'entity' => $entity,
@@ -128,7 +134,7 @@ class ConventionController extends Controller
 
         return $this->render('OCIMFormationsBundle:Convention:edit.html.twig', array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }

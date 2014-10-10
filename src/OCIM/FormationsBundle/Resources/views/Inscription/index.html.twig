@@ -194,11 +194,11 @@
 					{% if entity.convention %}
 						<td class="insc convention"><span>{{ entity.convention.numero }}</span></td>
 						<td class="insc convention"><span>{{ entity.convention.edition|date('d/m/Y') }}</span></td>
-						<td class="insc convention"><span>{{ entity.convention.envoiPresidentU2ex|date('d/m/Y') }}</span></td>
-						<td class="insc convention"><span>{{ entity.convention.retourPresidentU2ex|date('d/m/Y')}}</span></td>
-						<td class="insc convention"><span>{{ entity.convention.envoiOrganisme2ex|date('d/m/Y') }}</span></td>
-						<td class="insc convention"><span>{{ entity.convention.retourOrganisme1ex|date('d/m/Y') }}</span></td>
-						<td class="insc convention"><span>{{ entity.convention.envoiPresidentU1ex|date('d/m/Y')}}</span></td>
+						<td class="insc convention text-centered"><span>{% if entity.convention.envoiPresidentU2ex %}<span class="oi" data-glyph="check" title="{{ entity.convention.envoiPresidentU2ex|date('d/m/Y') }}"></span></span>{% endif %}</td>
+						<td class="insc convention text-centered"><span>{% if entity.convention.retourPresidentU2ex %}<span class="oi" data-glyph="check" title="{{ entity.convention.retourPresidentU2ex|date('d/m/Y') }}"></span></span>{% endif %}</td>
+						<td class="insc convention text-centered"><span>{% if entity.convention.envoiOrganisme2ex %}<span class="oi" data-glyph="check" title="{{ entity.convention.envoiOrganisme2ex|date('d/m/Y') }}"></span></span>{% endif %}</td>
+						<td class="insc convention text-centered"><span>{% if entity.convention.retourOrganisme1ex %}<span class="oi" data-glyph="check" title="{{ entity.convention.retourOrganisme1ex|date('d/m/Y') }}"></span></span>{% endif %}</td>
+						<td class="insc convention text-centered"><span>{% if entity.convention.envoiPresidentU1ex %}<span class="oi" data-glyph="check" title="{{ entity.convention.envoiPresidentU1ex|date('d/m/Y') }}"></span></span>{% endif %}</td>
 					{% else %}
 						<td class="insc convention"><span></span></td>
 						<td class="insc convention"><span></span></td>
@@ -213,6 +213,11 @@
 						<ul id="dropdown3-{{loop.index}}" class="dropdown">
 							<li><a href="{{ path('inscription_show', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><span class="oi" data-glyph="info"></span> Détails</a></li>
 							<li><a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><span class="oi" data-glyph="pencil"></span> Modifier</a></li>
+							<li>
+								{% if entity.convention %}<a href="{{ path('convention_edit', { 'id': entity.convention.id, 'idformation':formation.id }) }}" class="">{% else %}<a href="{{ path('convention_new', { 'idinscription': entity.id, 'idformation':formation.id }) }}" class="">{% endif %}
+									<span class="oi" data-glyph="pencil"></span> Convention
+								</a>
+							</li>
 						</ul>
 				</td>
             </tr>

@@ -7,11 +7,11 @@ convention_show:
     defaults: { _controller: "OCIMFormationsBundle:Convention:show" }
 
 convention_new:
-    path:     /new
+    path:     /inscription-{idinscription}/new
     defaults: { _controller: "OCIMFormationsBundle:Convention:new" }
 
 convention_create:
-    path:     /create
+    path:     /inscription-{idinscription}/create
     defaults: { _controller: "OCIMFormationsBundle:Convention:create" }
     requirements: { _method: post }
 
