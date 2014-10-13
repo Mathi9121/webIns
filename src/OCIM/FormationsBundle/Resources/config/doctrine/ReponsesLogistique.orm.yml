@@ -3,13 +3,13 @@ OCIM\FormationsBundle\Entity\ReponsesLogistique:
     manyToOne:
         modele:
             targetEntity: ModeleLogistique
-            inversedBy: reponsesLog
+            inversedBy: reponses
             joinColumn:
                 name: modele_id
                 referencedColumnName: id
-        inscrit:
+        inscription:
             targetEntity: Inscription
-            inversedBy: reponsesInscription
+            inversedBy: reponsesLogistique
             joinColumn:
                 name: inscription_id
                 referencedColumnName: id

@@ -440,4 +440,42 @@ class Inscription
         return $this->ordre;
     }
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $reponsesLogistique;
+
+
+    /**
+     * Add reponsesLogistique
+     *
+     * @param \OCIM\FormationsBundle\Entity\ReponsesLogistique $reponsesLogistique
+     * @return Inscription
+     */
+    public function addReponsesLogistique(\OCIM\FormationsBundle\Entity\ReponsesLogistique $reponsesLogistique)
+    {
+        $this->reponsesLogistique[] = $reponsesLogistique;
+
+        return $this;
+    }
+
+    /**
+     * Remove reponsesLogistique
+     *
+     * @param \OCIM\FormationsBundle\Entity\ReponsesLogistique $reponsesLogistique
+     */
+    public function removeReponsesLogistique(\OCIM\FormationsBundle\Entity\ReponsesLogistique $reponsesLogistique)
+    {
+        $this->reponsesLogistique->removeElement($reponsesLogistique);
+    }
+
+    /**
+     * Get reponsesLogistique
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getReponsesLogistique()
+    {
+        return $this->reponsesLogistique;
+    }
 }

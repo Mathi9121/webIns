@@ -228,6 +228,19 @@ class LogistiqueController extends Controller
 						$em->remove($mo);
 					}
 			}
+			foreach($entity->getModeles() as $e){
+				switch($e->getDescription()){
+					case "Midi":
+						$e->getDate()->setTime(12, 00);
+						break;
+					case "Soir":
+						$e->getDate()->setTime(19, 00);
+						break;
+					case "Nuit":
+						$e->getDate()->setTime(22, 00);
+						break;
+				}
+			}
 
             $em->flush();
 

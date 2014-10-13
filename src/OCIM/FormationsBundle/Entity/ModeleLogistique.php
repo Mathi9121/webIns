@@ -108,94 +108,28 @@ class ModeleLogistique
     {
         return $this->typeReponse;
     }
+ 
+	
+	public function __toString(){
+		return $this->date->format('Y m d')."  ".$this->description." ".$this->typeReponse;
+	}
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $responses;
+    private $reponses;
+
+    /**
+     * @var \OCIM\FormationsBundle\Entity\formationFormule
+     */
+    private $formationformule;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->responses = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->reponses = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
-    /**
-     * Add responses
-     *
-     * @param \OCIM\FormationsBundle\Entity\ReponsesLogistique $responses
-     * @return ModeleLogistique
-     */
-    public function addResponse(\OCIM\FormationsBundle\Entity\ReponsesLogistique $responses)
-    {
-        $this->responses[] = $responses;
-
-        return $this;
-    }
-
-    /**
-     * Remove responses
-     *
-     * @param \OCIM\FormationsBundle\Entity\ReponsesLogistique $responses
-     */
-    public function removeResponse(\OCIM\FormationsBundle\Entity\ReponsesLogistique $responses)
-    {
-        $this->responses->removeElement($responses);
-    }
-
-    /**
-     * Get responses
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getResponses()
-    {
-        return $this->responses;
-    }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $responsesL;
-
-
-    /**
-     * Add responsesL
-     *
-     * @param \OCIM\FormationsBundle\Entity\ReponsesLogistique $responsesL
-     * @return ModeleLogistique
-     */
-    public function addResponsesL(\OCIM\FormationsBundle\Entity\ReponsesLogistique $responsesL)
-    {
-        $this->responsesL[] = $responsesL;
-
-        return $this;
-    }
-
-    /**
-     * Remove responsesL
-     *
-     * @param \OCIM\FormationsBundle\Entity\ReponsesLogistique $responsesL
-     */
-    public function removeResponsesL(\OCIM\FormationsBundle\Entity\ReponsesLogistique $responsesL)
-    {
-        $this->responsesL->removeElement($responsesL);
-    }
-
-    /**
-     * Get responsesL
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getResponsesL()
-    {
-        return $this->responsesL;
-    }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $reponses;
-
 
     /**
      * Add reponses
@@ -229,49 +163,6 @@ class ModeleLogistique
     {
         return $this->reponses;
     }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $reponsesLog;
-
-
-    /**
-     * Add reponsesLog
-     *
-     * @param \OCIM\FormationsBundle\Entity\ReponsesLogistique $reponsesLog
-     * @return ModeleLogistique
-     */
-    public function addReponsesLog(\OCIM\FormationsBundle\Entity\ReponsesLogistique $reponsesLog)
-    {
-        $this->reponsesLog[] = $reponsesLog;
-
-        return $this;
-    }
-
-    /**
-     * Remove reponsesLog
-     *
-     * @param \OCIM\FormationsBundle\Entity\ReponsesLogistique $reponsesLog
-     */
-    public function removeReponsesLog(\OCIM\FormationsBundle\Entity\ReponsesLogistique $reponsesLog)
-    {
-        $this->reponsesLog->removeElement($reponsesLog);
-    }
-
-    /**
-     * Get reponsesLog
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getReponsesLog()
-    {
-        return $this->reponsesLog;
-    }
-    /**
-     * @var \OCIM\FormationsBundle\Entity\formationFormule
-     */
-    private $formationformule;
-
 
     /**
      * Set formationformule
@@ -295,8 +186,4 @@ class ModeleLogistique
     {
         return $this->formationformule;
     }
-	
-	public function __toString(){
-		return $this->date->format('Y m d')."  ".$this->description." ".$this->typeReponse;
-	}
 }

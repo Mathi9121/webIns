@@ -10,7 +10,6 @@ OCIM\FormationsBundle\Entity\Formation:
     oneToMany:
         formationFormule:
             targetEntity: formationFormule
-            fetch: EAGER
             mappedBy: formation
             cascade: ["all"]
     manyToMany:

@@ -17,9 +17,9 @@ OCIM\FormationsBundle\Entity\Inscription:
                 formationformule_id:
                     referencedColumnName: id
     oneToMany:
-        reponsesInscription:
+        reponsesLogistique:
             targetEntity: ReponsesLogistique
-            mappedBy: inscrit
+            mappedBy: inscription
     manyToMany:
         personnes:
             targetEntity: OCIM\ContactsBundle\Entity\Personne

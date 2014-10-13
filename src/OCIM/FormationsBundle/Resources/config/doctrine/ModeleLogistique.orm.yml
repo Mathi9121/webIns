@@ -1,7 +1,7 @@
 OCIM\FormationsBundle\Entity\ModeleLogistique:
     type: entity
     oneToMany:
-        reponsesLog:
+        reponses:
             targetEntity: ReponsesLogistique
             mappedBy: modele
     manyToOne:
@@ -21,7 +21,7 @@ OCIM\FormationsBundle\Entity\ModeleLogistique:
                 strategy: AUTO
     fields:
         date:
-            type: date
+            type: datetime
         description:
             type: string
             length: 255

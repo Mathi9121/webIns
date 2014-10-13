@@ -30,9 +30,31 @@ class InscriptionController extends Controller
         $entities = $em->getRepository('OCIMFormationsBundle:Inscription')->findAllByFormation($idformation);
 		$formation = $em->getRepository('OCIMFormationsBundle:Formation')->find($idformation);
 		
+		$modeles = array();
+		$dates = array();
+		$i = 0;
+		
+		foreach($formation->getFormationFormule() as $ff){
+			$dates[$i] = array();
+			foreach($ff->getModeles() as $m){
+				$d = $m->getDate()->format('m-d-Y:H:i');
+				$dates[$i][$d] = $m;
+			}
+			$i++;
+		}
+		
+		$datesLogistique = array();
+		
+		for($j = 0 ; $j < $i-1 ; $j++){
+			$datesLogistique = array_merge($datesLogistique, $dates[$j], $dates[$j+1]);
+		}
+		
+		ksort($datesLogistique);
+		
         return $this->render('OCIMFormationsBundle:Inscription:index.html.twig', array(
             'entities' => $entities,
 			'formation' => $formation,
+			'logistique' => $datesLogistique
         ));
     }
 	
@@ -48,7 +70,7 @@ class InscriptionController extends Controller
 				$inscription->setOrdre($d->ordre);
 			}
 			
-			$em->flush();	
+			$em->flush();
 			return new Response( 'ok' , Response::HTTP_OK);
 
 		}
