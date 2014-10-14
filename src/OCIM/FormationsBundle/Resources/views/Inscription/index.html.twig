@@ -13,7 +13,8 @@
 {{parent()}}
 {% javascripts
 	'@OCIMFormationsBundle/Resources/public/js/Logistique/jquery-ui-1.9.2.custom.min.js'
-	'@OCIMFormationsBundle/Resources/public/js/Inscription/inscription.js' %}
+	'@OCIMFormationsBundle/Resources/public/js/Inscription/inscription.js'
+	'@OCIMFormationsBundle/Resources/public/js/Inscription/reponseslogistique.js' %}
          <script type="text/javascript" src="{{ asset_url }}"></script>
 {% endjavascripts %}
 {% endblock %}
@@ -161,15 +162,16 @@
 
 {# Logistique #}
 <div id="logistique" class="tab">
+	<div class="hide" id="majLogistique">{{path('logistique_reponse')}}</div>
 <div class="table-container">
-	<table class="">
+	<table class="table-bordered">
 		<thead>
 			<tr>
 				<th class="handle"></th>
 				<th class="insc info"><span>Nom</span></th>
 				<th class="insc info"><span>Prénom</span></th>
 				{% for log in logistique %}
-					<th>{{log.date|date('d')}} {{log.description}}</th>
+					<th>{{log.date|date('d/m')}} {{log.description}}</th>
 				{% endfor %}
 				<th></th>
 			</tr>
@@ -189,7 +191,27 @@
 						<td class="insc info"><span>{{ entity.stagiaire.nom }} ({{ entity.stagiaire.civilite }})</span></td>
 						<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
 					
-					{# TODO #}
+					{% for log in logistique %}
+						{% set d = log.date|date('m-d-Y:H:i') %}
+						
+						{% set defini = false %}
+						{% for modele in entity.formationFormule.modeles %}
+							{% if modele.date == log.date %}{% set defini = true %}{% endif %}
+						{% endfor %}
+						{% if defini %}
+							<td class="logistique text-centered" data-type="{{log.typeReponse}}" data-idreponse="{% if attribute(entity._presence, d) is defined %}{{ attribute(entity._presence, d).id}}{% endif %}" data-date='{{log.date|date('Y-m-d H:i')}}'>
+								{% if attribute(entity._presence, d) is defined %}
+									{% if log.typeReponse == 'bool' %}
+										{% if attribute(entity._presence, d).reponse == '1' %}<span class="oi" data-glyph='check'></span>{% endif %}
+									{% elseif log.typeReponse == 'text'  %}
+										{{attribute(entity._presence, d).reponseText}}
+									{% endif %}
+								{% endif %}
+							</td>
+						{% else %}
+							<td class="undefined"></td>
+						{% endif %}
+					{% endfor %}
 				
                 <td class="insc actions">
 						<a href="#" data-tools="dropdown" data-target="#dropdown9-{{loop.index}}"></a>

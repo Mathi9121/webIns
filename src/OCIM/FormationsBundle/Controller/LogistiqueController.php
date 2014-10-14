@@ -3,6 +3,7 @@
 namespace OCIM\FormationsBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use OCIM\FormationsBundle\Entity\formationFormule;
@@ -39,6 +40,30 @@ class LogistiqueController extends Controller
             'entities' => $entities,
         ));
     }
+	
+	public function reponseAction(Request $request){
+		if($request->isXmlHttpRequest()){
+		
+			$em = $this->getDoctrine()->getManager();
+			
+			$data = json_decode($request->getContent());
+			
+				$inscription = $em->getRepository('OCIMFormationsBundle:Inscription')->find($data[0]->id);
+				$date = new \DateTime($data[0]->date);
+				
+				$modele = 0;
+				foreach($inscription->getFormationFormule()->getModeles() as $mo){
+					if($mo->getDate() == $date){
+						$modele = $mo;
+					}
+				}
+				
+				
+			
+			//$em->flush();
+			return new Response( $modele , Response::HTTP_OK);
+		}
+	}
 	
     /**
      * Creates a new formationFormule entity.

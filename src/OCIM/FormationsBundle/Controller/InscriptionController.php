@@ -51,6 +51,12 @@ class InscriptionController extends Controller
 		
 		ksort($datesLogistique);
 		
+		foreach($entities as $entity){
+			foreach($entity->getReponsesLogistique() as $rlog){
+				$entity->_presence[$rlog->getModele()->getDate()->format('m-d-Y:H:i')] = $rlog;
+			}
+		}
+		
         return $this->render('OCIMFormationsBundle:Inscription:index.html.twig', array(
             'entities' => $entities,
 			'formation' => $formation,

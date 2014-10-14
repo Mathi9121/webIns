@@ -13,3 +13,8 @@ td{white-space:nowrap}
 
 td.handle, th.handle{padding-right:0}
 td.handle{color: #6f6f6f; cursor: move}
+
+
+td.logistique{cursor: pointer}
+td.undefined{cursor: not-allowed; background-color: rgba(125,125,125, 0.2)}
+td.logistique[data-type="text"]{cursor: text}

@@ -30,3 +30,8 @@ logistique_delete:
     path:     /{id}/delete
     defaults: { _controller: "OCIMFormationsBundle:Logistique:delete" }
     requirements: { _method: post|delete }
+
+logistique_reponse:
+    path:     /update/reponse
+    defaults: { _controller: "OCIMFormationsBundle:Logistique:reponse" }
+    requirements: { _method: post }
