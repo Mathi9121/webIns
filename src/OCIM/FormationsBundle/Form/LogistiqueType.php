@@ -8,6 +8,10 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class LogistiqueType extends AbstractType
 {
+
+	public function __construct($idformation){
+		$this->idformation = $idformation;
+	}
         /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -16,7 +20,7 @@ class LogistiqueType extends AbstractType
     {
         $builder
 			->add('modeles', 'collection', array(
-				'type' => new ModeleLogistiqueType(),
+				'type' => new ModeleLogistiqueType($this->idformation),
 				'allow_add' => true,
 			));
     }

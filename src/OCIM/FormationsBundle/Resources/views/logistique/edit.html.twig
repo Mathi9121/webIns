@@ -25,7 +25,7 @@
 {% endblock %}
 
 {% block body -%}
-{# 	<div class="units-row"><a href="#" class="btn ajoutPrototype" data-prototype='{{form_row(edit_form.modeles.vars.prototype)}}'><span class="oi" data-glyph="plus"></span> Ajouter un champ</a></div>
+	<div class="units-row"><a href="#" class="btn ajoutPrototype" data-prototype='{{form_row(edit_form.modeles.vars.prototype)}}'><span class="oi" data-glyph="plus"></span> Ajouter un champ</a></div>
 
 {{form_start(edit_form)}}
 <div id="place">
@@ -35,6 +35,7 @@
 			<li>{{ form_widget(modele.date) }}</li>
 			<li>{{ form_widget(modele.description) }}</li>
 			<li>{{ form_widget(modele.typeReponse) }}</li>
+			<li>{{ form_widget(modele.formationFormule) }}</li>
 			<li></li>
 		</ul>
 	{% endfor %}
@@ -49,6 +50,5 @@
 
 {{ form_rest(edit_form)}}
 {{ form_end(edit_form)}}
- #}
- {{form(edit_form)}}
+
 {% endblock %}

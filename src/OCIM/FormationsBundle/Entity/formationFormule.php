@@ -171,4 +171,8 @@ class formationFormule
     {
         return $this->inscriptions;
     }
+	
+	public function getFormuleId(){
+		return $this->getFormule()->getId();
+	}
 }

@@ -5,9 +5,14 @@ namespace OCIM\FormationsBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Doctrine\ORM\EntityRepository;
 
 class ModeleLogistiqueType extends AbstractType
 {
+	function __construct($idformation){
+		$this->idformation = $idformation;
+	}
+	
         /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -26,7 +31,16 @@ class ModeleLogistiqueType extends AbstractType
 					'bool'	=> 'Oui/Non',
 			)))
 			->add('formationFormule', 'entity', array(
-				'class' => 'OCIM\FormationsBundle\Entity\formationFormule'
+				'class' => 'OCIM\FormationsBundle\Entity\formationFormule',
+				'multiple' => true,
+				'expanded' => true,
+				'query_builder' => function(EntityRepository $er)
+					{
+						return $er->createQueryBuilder('u')
+						->where('u.formation = :idformation')
+						->setParameter('idformation', $this->idformation);
+					},
+				'property' => "FormuleId",
 			));
     }
     

@@ -1,8 +1,8 @@
 $(document).ready(function(){
 
 	var place = $('#place');
-	var modele = "<ul id='ocim_formationsbundle_formationformule_modeles___name__' class='forms-inline-list'><li></li> <li><input type='text' id='ocim_formationsbundle_formationformule_modeles___name___date' placeholder='jj/mm/aaaa' name='ocim_formationsbundle_formationformule[modeles][__name__][date]' required='required' /></li> <li><input type='text' id='ocim_formationsbundle_formationformule_modeles___name___description'  placeholder='description' name='ocim_formationsbundle_formationformule[modeles][__name__][description]' required='required' maxlength='255' /></li> <li><select id='ocim_formationsbundle_formationformule_modeles___name___typeReponse' name='ocim_formationsbundle_formationformule[modeles][__name__][typeReponse]'><option value='text'>Texte</option><option value='bool'>Oui/Non</option></select></li> <li></li></ul>";
-
+	//var modele = "<ul id='ocim_formationsbundle_formationformule_modeles___name__' class='forms-inline-list'><li></li> <li><input type='text' id='ocim_formationsbundle_formationformule_modeles___name___date' placeholder='jj/mm/aaaa' name='ocim_formationsbundle_formationformule[modeles][__name__][date]' required='required' /></li> <li><input type='text' id='ocim_formationsbundle_formationformule_modeles___name___description'  placeholder='description' name='ocim_formationsbundle_formationformule[modeles][__name__][description]' required='required' maxlength='255' /></li> <li><select id='ocim_formationsbundle_formationformule_modeles___name___typeReponse' name='ocim_formationsbundle_formationformule[modeles][__name__][typeReponse]'><option value='text'>Texte</option><option value='bool'>Oui/Non</option></select></li> <li></li></ul>";
+	var modele = $('a.ajoutPrototype').attr('data-prototype');
 	setOrdreUl();
 	$('#place').sortable({
 		stop: setOrdreUl,

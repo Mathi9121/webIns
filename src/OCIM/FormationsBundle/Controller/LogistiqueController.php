@@ -210,7 +210,7 @@ class LogistiqueController extends Controller
     */
     private function createEditForm($entity)
     {
-        $form = $this->createForm(new LogistiqueType(), $entity, array(
+        $form = $this->createForm(new LogistiqueType($entity->getId()), $entity, array(
             'action' => $this->generateUrl('logistique_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
@@ -227,7 +227,7 @@ class LogistiqueController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('OCIMFormationsBundle:formationFormule')->find($id);
+        $entity = $em->getRepository('OCIMFormationsBundle:Formation')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find formationFormule entity.');
@@ -245,7 +245,7 @@ class LogistiqueController extends Controller
 		
 		
         if ($editForm->isValid()) {
-			foreach ($entity->getModeles() as $mo) {
+			/* foreach ($entity->getModeles() as $mo) {
 					$mo->setFormationformule($entity);
 					$em->persist($mo);
 				}
@@ -254,8 +254,8 @@ class LogistiqueController extends Controller
 				if($entity->getModeles()->contains($mo) == false){
 						$em->remove($mo);
 					}
-			}
-			foreach($entity->getModeles() as $e){
+			} */
+			/* foreach($entity->getModeles() as $e){
 				switch($e->getDescription()){
 					case "Midi":
 						$e->getDate()->setTime(12, 00);
@@ -267,7 +267,7 @@ class LogistiqueController extends Controller
 						$e->getDate()->setTime(22, 00);
 						break;
 				}
-			}
+			} */
 
             $em->flush();
 
