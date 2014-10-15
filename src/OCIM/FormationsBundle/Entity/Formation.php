@@ -324,4 +324,14 @@ class Formation
     {
         return $this->intervenants;
     }
+	
+	public function getModeles(){
+		$tab = new ArrayCollection();
+		foreach($this->getFormationFormule() as $ff){
+			foreach($ff->getModeles() as $mo){
+				$tab->add($mo);
+			}
+		}
+		return $tab;
+	}
 }

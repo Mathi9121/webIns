@@ -19,10 +19,13 @@ OCIM\FormationsBundle\Entity\ModeleLogistique:
     fields:
         date:
             type: datetime
+            nullable: true
         description:
             type: string
             length: 255
         typeReponse:
             type: string
             length: 255
+        ordre:
+            type: integer
     lifecycleCallbacks: {  }

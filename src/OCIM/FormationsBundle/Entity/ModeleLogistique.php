@@ -186,4 +186,55 @@ class ModeleLogistique
     {
         return $this->formationformule;
     }
+    /**
+     * @var integer
+     */
+    private $ordre;
+
+
+    /**
+     * Set ordre
+     *
+     * @param integer $ordre
+     * @return ModeleLogistique
+     */
+    public function setOrdre($ordre)
+    {
+        $this->ordre = $ordre;
+
+        return $this;
+    }
+
+    /**
+     * Get ordre
+     *
+     * @return integer 
+     */
+    public function getOrdre()
+    {
+        return $this->ordre;
+    }
+
+    /**
+     * Add formationformule
+     *
+     * @param \OCIM\FormationsBundle\Entity\formationFormule $formationformule
+     * @return ModeleLogistique
+     */
+    public function addFormationformule(\OCIM\FormationsBundle\Entity\formationFormule $formationformule)
+    {
+        $this->formationformule[] = $formationformule;
+
+        return $this;
+    }
+
+    /**
+     * Remove formationformule
+     *
+     * @param \OCIM\FormationsBundle\Entity\formationFormule $formationformule
+     */
+    public function removeFormationformule(\OCIM\FormationsBundle\Entity\formationFormule $formationformule)
+    {
+        $this->formationformule->removeElement($formationformule);
+    }
 }

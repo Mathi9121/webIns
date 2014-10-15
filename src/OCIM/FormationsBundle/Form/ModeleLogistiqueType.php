@@ -24,7 +24,10 @@ class ModeleLogistiqueType extends AbstractType
 				'choices'   => array(
 					'text'	=> 'Texte',
 					'bool'	=> 'Oui/Non',
-			)));
+			)))
+			->add('formationFormule', 'entity', array(
+				'class' => 'OCIM\FormationsBundle\Entity\formationFormule'
+			));
     }
     
     /**

@@ -15,15 +15,10 @@ class LogistiqueType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            //->add('formule')
-            //->add('formation')
 			->add('modeles', 'collection', array(
 				'type' => new ModeleLogistiqueType(),
 				'allow_add' => true,
-				'allow_delete' => true,
-				'by_reference' => false,
-			))
-        ;
+			));
     }
     
     /**
@@ -32,7 +27,7 @@ class LogistiqueType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'OCIM\FormationsBundle\Entity\formationFormule',
+            'data_class' =>  'OCIM\FormationsBundle\Entity\Formation',
 			'attr' => array('class'=> 'forms'),
         ));
     }
@@ -42,6 +37,7 @@ class LogistiqueType extends AbstractType
      */
     public function getName()
     {
-        return 'ocim_formationsbundle_formationformule';
+        return 'ocim_formationsbundle_formationModeles';
     }
 }
+

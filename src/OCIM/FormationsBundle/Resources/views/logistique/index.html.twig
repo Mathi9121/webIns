@@ -6,41 +6,26 @@
 
 {% block body -%}
 
-{% for entity in entities %}
-<div class="units-row">
-	<h4><span class="oi" data-glyph="book"></span> {{ entity.intitule }}</h4>
-		
-		{% for ff in entity.formationformule %}
-		<div data-tools="accordion">
-			<a href="#souspanel-{{ff.id}}" class="accordion-title">{{ ff.formule.id }} - {{ ff.formule.description|capitalize }} <span class="label right">{{ ff.modeles|length }} Questions</span></a>
-			<div id="souspanel-{{ff.id}}" class="accordion-panel">
-			
-			{% if ff.modeles|length > 0 %}
+	{% for entity in entities %}
+		<div class="accordion" data-tools="accordion">
+			<a href="#accordion-{{entity.id}}" class="accordion-title"><span class="oi" data-glyph="book"></span> {{ entity.intitule }}</a>
+			<div id="accordion-{{entity.id}}" class="accordion-panel">
 				<div class="table-container">
 					<table class="table-bordered">
-						<tr>
-						{% for modele in ff.modeles %}
-							<th class="text-centered">{{ modele.date|date('d/m/Y')}}<br/>{{ modele.description }}</th>
+						{% for ff in entity.formationformule %}
+							<tr>
+								<th class="text-centered"><abbr title="{{ff.formule.description|capitalize}} - {{ff.formule.tarif}}{% if ff.formule.tarif|number_format %}€{% endif %}">Formule {{ff.formule.id}}</abbr></th>
+								{% if (entity._logistique == 0) and (loop.index == 1) %}
+									<td class="text-centered" rowspan="{{entity.formationformule|length}}">
+										<a href="{{path('logistique_edit', {'generation':'generate', 'idformation': entity.id})}}" class="btn btn-big btn-green"><span class="oi" data-glyph="fork"></span> Créer la logistique</a>
+									</td>
+								{% endif %}
+							</tr>
 						{% endfor %}
-							<td rowspan="2">
-								<a class="btn btn-smaller" href="{{ path('logistique_show', { 'id': ff.id }) }}">Détails</a>
-								<a class="btn btn-smaller" href="{{ path('logistique_edit', { 'id': ff.id }) }}">Modifier</a>
-							</td>
-						</tr>
-						<tr>
-						{% for modele in ff.modeles %}
-							<td class="text-centered">{% if modele.typeReponse == "bool" %}Oui/Non{% else %}Texte{% endif %}</td>
-						{% endfor %}
-						</tr>
 					</table>
 				</div>
-			{% else %}
-				<p class="lead text-centered">Aucune logistique n'est encore créée pour cette formule.<br/><a class="btn btn-green btn-big" href="{{ path('logistique_edit', { 'id': ff.id, 'generation': 'generate' }) }}">Générer la logistique</a></p>
-			{% endif %}
 			</div>
 		</div>
-		{% endfor %}
-</div>
-{% endfor %}
+	{% endfor %}
 
 {% endblock %}
