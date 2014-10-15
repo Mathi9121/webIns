@@ -20,14 +20,23 @@ OCIM\FormationsBundle\Entity\formationFormule:
                 referencedColumnName: id
                 onDelete: CASCADE
     oneToMany:
-        modeles:
-            targetEntity: ModeleLogistique
-            mappedBy: formationformule
-            cascade: ["persist"]
         inscriptions:
             targetEntity: Inscription
             mappedBy: formationformule
             cascade: ["persist"]
+    manyToMany:
+        modeles:
+            targetEntity: ModeleLogistique
+            inversedBy: formationformule
+            cascade: ["persist"]
+            joinTable:
+                name: formationformule_modele
+                joinColumns:
+                    formationformule_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    modele_id:
+                        referencedColumnName: id
     table: formation_formule
     id:
         id:

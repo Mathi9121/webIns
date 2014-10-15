@@ -4,13 +4,10 @@ OCIM\FormationsBundle\Entity\ModeleLogistique:
         reponses:
             targetEntity: ReponsesLogistique
             mappedBy: modele
-    manyToOne:
+    manyToMany:
         formationformule:
             targetEntity: formationFormule
-            inversedBy: modeles
-            joinColumn:
-                name: formationformule_id
-                referencedColumnName: id
+            mappedBy: modeles
     table: null
     repositoryClass: OCIM\FormationsBundle\Entity\ModeleLogistiqueRepository
     id:
