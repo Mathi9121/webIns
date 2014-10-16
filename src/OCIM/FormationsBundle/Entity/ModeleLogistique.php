@@ -118,17 +118,14 @@ class ModeleLogistique
      */
     private $reponses;
 
-    /**
-     * @var \OCIM\FormationsBundle\Entity\formationFormule
-     */
-    private $formationformule;
-
+    
     /**
      * Constructor
      */
     public function __construct()
     {
         $this->reponses = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->formationFormule = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -164,28 +161,7 @@ class ModeleLogistique
         return $this->reponses;
     }
 
-    /**
-     * Set formationformule
-     *
-     * @param \OCIM\FormationsBundle\Entity\formationFormule $formationformule
-     * @return ModeleLogistique
-     */
-    public function setFormationformule(\OCIM\FormationsBundle\Entity\formationFormule $formationformule = null)
-    {
-        $this->formationformule = $formationformule;
-
-        return $this;
-    }
-
-    /**
-     * Get formationformule
-     *
-     * @return \OCIM\FormationsBundle\Entity\formationFormule 
-     */
-    public function getFormationformule()
-    {
-        return $this->formationformule;
-    }
+ 
     /**
      * @var integer
      */
@@ -215,26 +191,43 @@ class ModeleLogistique
         return $this->ordre;
     }
 
+	
     /**
-     * Add formationformule
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $formationFormule;
+
+
+    /**
+     * Add formationFormule
      *
-     * @param \OCIM\FormationsBundle\Entity\formationFormule $formationformule
+     * @param \OCIM\FormationsBundle\Entity\formationFormule $formationFormule
      * @return ModeleLogistique
      */
-    public function addFormationformule(\OCIM\FormationsBundle\Entity\formationFormule $formationformule)
+    public function addFormationFormule(\OCIM\FormationsBundle\Entity\formationFormule $formationFormule)
     {
-        $this->formationformule[] = $formationformule;
+        $this->formationFormule[] = $formationFormule;
 
         return $this;
     }
 
     /**
-     * Remove formationformule
+     * Remove formationFormule
      *
-     * @param \OCIM\FormationsBundle\Entity\formationFormule $formationformule
+     * @param \OCIM\FormationsBundle\Entity\formationFormule $formationFormule
      */
-    public function removeFormationformule(\OCIM\FormationsBundle\Entity\formationFormule $formationformule)
+    public function removeFormationFormule(\OCIM\FormationsBundle\Entity\formationFormule $formationFormule)
     {
-        $this->formationformule->removeElement($formationformule);
+        $this->formationFormule->removeElement($formationFormule);
+    }
+
+    /**
+     * Get formationFormule
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFormationFormule()
+    {
+        return $this->formationFormule;
     }
 }

@@ -155,21 +155,22 @@ class LogistiqueController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('OCIMFormationsBundle:Formation')->find($idformation);
+        $modeles = $em->getRepository('OCIMFormationsBundle:ModeleLogistique')->findModelesByIdFormation($idformation);
+        $formation = $em->getRepository('OCIMFormationsBundle:Formation')->find($idformation);
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find formationFormule entity.');
-        }
+		$formation->setModeles($modeles);
+		
+		//exit(\Doctrine\Common\Util\Debug::dump($formation->getModeles()[0]));
 		
 		if($generation == "generate"){
 			
 			// On détermine les variables nécessaires à la génération des objets ModeleLogistique
-			$dateDebut = $entity->getDateDebut();
+			/* $dateDebut = $entity->getDateDebut();
 			$dateFin = $entity->getDateFin();
 			$journee = array();
 			
 			$dateDebut->setTime(00, 00);
-			$dateFin->setTime(24, 00);
+			$dateFi n->setTime(24, 00);*/
 		/* 	
 			if($entity->getFormule()->getMidi()){$journee[] = 'Midi';}
 			if($entity->getFormule()->getSoir()){$journee[] = 'Soir';}
@@ -191,11 +192,11 @@ class LogistiqueController extends Controller
 			}
 			 */
 		}
-        $editForm = $this->createEditForm($entity);
+        $editForm = $this->createEditForm($formation);
         $deleteForm = $this->createDeleteForm($idformation);
 
         return $this->render('OCIMFormationsBundle:logistique:edit.html.twig', array(
-            'entity'      => $entity,
+            'entity'      => $formation,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
@@ -232,46 +233,25 @@ class LogistiqueController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find formationFormule entity.');
         }
-
-		$anciensModeles = new ArrayCollection();
-		foreach ($entity->getModeles() as $mo) {
-			$anciensModeles->add($mo);
-		}
 		
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
 		
-		
+		//exit(\Doctrine\Common\Util\Debug::dump($entity->getModeles()[0]->getFormationFormule()[0]->getFormule()->getId()));
 		
         if ($editForm->isValid()) {
-			/* foreach ($entity->getModeles() as $mo) {
-					$mo->setFormationformule($entity);
-					$em->persist($mo);
+			foreach($entity->getModeles() as $modele){
+				foreach($modele->getFormationFormule() as $ff){
+					$ff->addModele($modele);
+					$modele->addFormationFormule($ff);
+					$em->persist($modele);
 				}
-				
-			foreach ($anciensModeles as $mo){
-				if($entity->getModeles()->contains($mo) == false){
-						$em->remove($mo);
-					}
-			} */
-			/* foreach($entity->getModeles() as $e){
-				switch($e->getDescription()){
-					case "Midi":
-						$e->getDate()->setTime(12, 00);
-						break;
-					case "Soir":
-						$e->getDate()->setTime(19, 00);
-						break;
-					case "Nuit":
-						$e->getDate()->setTime(22, 00);
-						break;
-				}
-			} */
-
+			}
+			
             $em->flush();
 
-            return $this->redirect($this->generateUrl('logistique_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('logistique_edit', array('idformation' => $id)));
         }
 
         return $this->render('OCIMFormationsBundle:logistique:edit.html.twig', array(

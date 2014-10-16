@@ -27,8 +27,8 @@ OCIM\FormationsBundle\Entity\formationFormule:
     manyToMany:
         modeles:
             targetEntity: ModeleLogistique
-            inversedBy: formationformule
-            cascade: ["persist"]
+            inversedBy: formationFormule
+            cascade: ["all"]
             joinTable:
                 name: formationformule_modele
                 joinColumns:

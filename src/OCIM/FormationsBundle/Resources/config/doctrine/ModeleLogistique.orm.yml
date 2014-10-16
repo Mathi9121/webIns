@@ -5,7 +5,8 @@ OCIM\FormationsBundle\Entity\ModeleLogistique:
             targetEntity: ReponsesLogistique
             mappedBy: modele
     manyToMany:
-        formationformule:
+        formationFormule:
+            cascade: ['persist']
             targetEntity: formationFormule
             mappedBy: modeles
     table: null
@@ -28,4 +29,5 @@ OCIM\FormationsBundle\Entity\ModeleLogistique:
             length: 255
         ordre:
             type: integer
+            nullable: true
     lifecycleCallbacks: {  }

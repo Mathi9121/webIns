@@ -22,7 +22,7 @@ class LogistiqueType extends AbstractType
 			->add('modeles', 'collection', array(
 				'type' => new ModeleLogistiqueType($this->idformation),
 				'allow_add' => true,
-			));
+				));
     }
     
     /**
@@ -41,7 +41,7 @@ class LogistiqueType extends AbstractType
      */
     public function getName()
     {
-        return 'ocim_formationsbundle_formationModeles';
+        return 'ocim_formationsbundle_formation';
     }
 }
 

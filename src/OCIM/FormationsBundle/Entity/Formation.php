@@ -5,6 +5,7 @@ namespace OCIM\FormationsBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use OCIM\FormationsBundle\Entity\TypeFormation;
+use OCIM\FormationsBundle\Entity\ModeleLogistique;
 
 /**
  * Formation
@@ -236,12 +237,21 @@ class Formation
      * @var \Doctrine\Common\Collections\Collection
      */
     private $formationFormule;
+	private $modeles;
     /**
      * Constructor
      */
     public function __construct()
     {
         $this->formationFormule = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->modeles = new \Doctrine\Common\Collections\ArrayCollection();
+		
+		/* foreach($this->formationFormule() as $ff){
+			foreach($ff->getModeles() as $mo){
+				$this->modeles[] = $mo;
+			}
+		} */
+		
     }
 
     /**
@@ -326,12 +336,22 @@ class Formation
     }
 	
 	public function getModeles(){
-		$tab = new ArrayCollection();
-		foreach($this->getFormationFormule() as $ff){
-			foreach($ff->getModeles() as $mo){
-				$tab->add($mo);
-			}
-		}
-		return $tab;
+		return $this->modeles;
+	}
+	
+	public function addModele(\OCIM\FormationsBundle\Entity\ModeleLogistique $ml)
+    {	
+		$this->modeles[] = $ml;
+        return $this;
+    }
+	
+	public function removeModele(\OCIM\ContactsBundle\Entity\Intervenant $ml)
+    {
+        $this->modeles->removeElement($ml);
+		
+    }
+	
+	public function setModeles($modeles){
+		$this->modeles = $modeles;
 	}
 }

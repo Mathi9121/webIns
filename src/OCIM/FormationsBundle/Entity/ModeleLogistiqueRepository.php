@@ -12,4 +12,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class ModeleLogistiqueRepository extends EntityRepository
 {
+	public function findModelesByIdFormation($idformation){
+			return $this->getEntityManager()
+				->createQuery(
+					'SELECT mo FROM OCIMFormationsBundle:ModeleLogistique mo
+					JOIN mo.formationFormule ff
+					WHERE ff.formation = :id' 
+				)->setParameter('id', $idformation)
+				->getResult();
+		}
 }
