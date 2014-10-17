@@ -57,7 +57,10 @@ class formationFormule
      */
     public function addModele(\OCIM\FormationsBundle\Entity\ModeleLogistique $modeles)
     {
-        $this->modeles[] = $modeles;
+		if(!$this->modeles->contains($modeles)){
+			$this->modeles[] = $modeles;
+		}
+        
 
         return $this;
     }

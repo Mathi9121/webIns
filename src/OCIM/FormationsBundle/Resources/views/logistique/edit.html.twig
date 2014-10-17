@@ -30,14 +30,15 @@
 {{form_start(edit_form)}}
 <div id="place">
 	{% for modele in edit_form.modeles %}
-		<ul class="forms-inline-list">
+		{# <ul class="forms-inline-list">
 			<li></li>
 			<li>{{ form_widget(modele.date) }}</li>
 			<li>{{ form_widget(modele.description) }}</li>
 			<li>{{ form_widget(modele.typeReponse) }}</li>
 			<li>{{ form_widget(modele.formationFormule) }}</li>
 			<li></li>
-		</ul>
+		</ul> #}
+		{{form_row(modele)}}
 	{% endfor %}
 </div>
 <hr/>

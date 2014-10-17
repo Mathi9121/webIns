@@ -253,7 +253,12 @@ class LogistiqueController extends Controller
 		//exit(\Doctrine\Common\Util\Debug::dump($anciensModeles).\Doctrine\Common\Util\Debug::dump($entity->getModeles()));
 		
         if ($editForm->isValid()) {
-		
+			foreach($entity->getModeles() as $modele){
+				foreach($modele->getFormationFormule() as $ff){
+					$ff->addModele($modele);
+				}
+			}
+			
 			/* foreach($entity->getModeles() as $modele){
 				foreach($modele->getFormationFormule() as $ff){
 					// Suppression dun modele plus existant
