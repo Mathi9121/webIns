@@ -81,6 +81,7 @@
 					<ul id="dropdown1-{{loop.index}}" class="dropdown">
 						<li><a href="{{ path('inscription_show', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><span class="oi" data-glyph="info"></span> Détails</a></li>
 						<li><a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><span class="oi" data-glyph="pencil"></span> Modifier</a></li>
+						<li><a href="{{ path('documents_show', { 'id': 2, 'idinscription': entity.id }) }}"><span class="oi" data-glyph="file"></span> Exporter</a></li>
 					</ul>
 				</td>
             </tr>

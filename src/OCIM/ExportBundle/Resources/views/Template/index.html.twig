@@ -1,7 +1,19 @@
 {% extends '::app.html.twig' %}
 
+{% block title %}
+Gabarits
+{% endblock %}
+
+{% block titre %}
+<span class='oi' data-glyph='file'> Gabarits
+{% endblock %}
+
+{% block controls %}
+<a href="{{ path('documents_new') }}" class="btn btn-green"><span class='oi' data-glyph="plus"> Nouveau Gabarit</a>
+{% endblock %}
+
 {% block body -%}
-    <h1>Template list</h1>
+   
 
     <table class="records_list">
         <thead>
@@ -10,7 +22,6 @@
                 <th>Nom</th>
                 <th>Type</th>
                 <th>Date</th>
-                <th>Contenu</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -21,27 +32,11 @@
                 <td>{{ entity.nom }}</td>
                 <td>{{ entity.type }}</td>
                 <td>{% if entity.date %}{{ entity.date|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ entity.contenu }}</td>
                 <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('documents_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('documents_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
+				    <a href="{{ path('documents_edit', { 'id': entity.id }) }}">edit</a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-        <ul>
-        <li>
-            <a href="{{ path('documents_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
-    {% endblock %}
+{% endblock %}

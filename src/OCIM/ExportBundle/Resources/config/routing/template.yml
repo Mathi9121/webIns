@@ -3,7 +3,7 @@ documents:
     defaults: { _controller: "OCIMExportBundle:Template:index" }
 
 documents_show:
-    path:     /{id}/show
+    path:     /{id}/inscription-{idinscription}/show
     defaults: { _controller: "OCIMExportBundle:Template:show" }
 
 documents_new:

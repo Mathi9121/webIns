@@ -341,12 +341,19 @@ class Formation
 	
 	public function addModele(\OCIM\FormationsBundle\Entity\ModeleLogistique $ml)
     {	
+		foreach($ml->getFormationFormule() as $ff){
+			$ff->addModele($ml);
+		}
 		$this->modeles[] = $ml;
         return $this;
     }
 	
 	public function removeModele(\OCIM\ContactsBundle\Entity\Intervenant $ml)
     {
+		foreach($ml->getFormationFormule() as $ff){
+			$ff->removeModele($ml);
+		}
+		
         $this->modeles->removeElement($ml);
 		
     }

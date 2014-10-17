@@ -165,32 +165,36 @@ class LogistiqueController extends Controller
 		if($generation == "generate"){
 			
 			// On détermine les variables nécessaires à la génération des objets ModeleLogistique
-			/* $dateDebut = $entity->getDateDebut();
-			$dateFin = $entity->getDateFin();
+			$dateDebut = $formation->getDateDebut();
+			$dateFin = $formation->getDateFin();
 			$journee = array();
 			
 			$dateDebut->setTime(00, 00);
-			$dateFi n->setTime(24, 00);*/
-		/* 	
-			if($entity->getFormule()->getMidi()){$journee[] = 'Midi';}
-			if($entity->getFormule()->getSoir()){$journee[] = 'Soir';}
-			if($entity->getFormule()->getNuit()){$journee[] = 'Nuit';}
+			$dateFin->setTime(24, 00);
+			
+			foreach($formation->getFormationFormule() as $ff){
+				if($ff->getFormule()->getMidi()){$journee[$ff->getId()] = 'Midi';}
+				if($ff->getFormule()->getSoir()){$journee[$ff->getId()] = 'Soir';}
+				if($ff->getFormule()->getNuit()){$journee[$ff->getId()] = 'Nuit';}
+			}
+			
 			
 			$period = new \DatePeriod($dateDebut, new \DateInterval('P1D'), $dateFin);
 
 			
 			foreach($period as $date)
 			{
-				foreach($journee as $value)
+				foreach($journee as $key=>$value)
 				{
 					$m = new ModeleLogistique();
+					$m->addFormationFormule($em->getReference('OCIMFormationsBundle:formationFormule' , $key));
 					$m->setDate($date);
 					$m->setDescription($value);
 					$m->setTypeReponse("bool");
-					$entity->addModele($m);
+					$formation->addModele($m);
 				}
 			}
-			 */
+			
 		}
         $editForm = $this->createEditForm($formation);
         $deleteForm = $this->createDeleteForm($idformation);
@@ -234,20 +238,33 @@ class LogistiqueController extends Controller
             throw $this->createNotFoundException('Unable to find formationFormule entity.');
         }
 		
+		$anciensModeles = new ArrayCollection();
+		
+		foreach($entity->getFormationFormule() as $ff){
+			foreach($ff->getModeles() as $modele){
+				$anciensModeles->add($modele); 
+			}
+		}
+		
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
 		
-		//exit(\Doctrine\Common\Util\Debug::dump($entity->getModeles()[0]->getFormationFormule()[0]->getFormule()->getId()));
+		//exit(\Doctrine\Common\Util\Debug::dump($anciensModeles).\Doctrine\Common\Util\Debug::dump($entity->getModeles()));
 		
         if ($editForm->isValid()) {
-			foreach($entity->getModeles() as $modele){
+		
+			/* foreach($entity->getModeles() as $modele){
 				foreach($modele->getFormationFormule() as $ff){
-					$ff->addModele($modele);
-					$modele->addFormationFormule($ff);
+					// Suppression dun modele plus existant
+					if(!$anciensModeles->contains($modele)){
+						$ff->removeModele($modele);
+						$modele->removeFormationFormule($ff);
+						$em->remove($modele);
+					}
 					$em->persist($modele);
 				}
-			}
+			} */
 			
             $em->flush();
 

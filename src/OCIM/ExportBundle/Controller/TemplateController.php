@@ -92,14 +92,15 @@ class TemplateController extends Controller
      * Finds and displays a Template entity.
      *
      */
-    public function showAction($id)
+    public function showAction($id, $idinscription)
     {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('OCIMExportBundle:Template')->find($id);
-        $formation = $em->getRepository('OCIMFormationsBundle:Formation')->find(49);
-        $inscription = $em->getRepository('OCIMFormationsBundle:Inscription')->find(2);
-
+        
+        $inscription = $em->getRepository('OCIMFormationsBundle:Inscription')->find($idinscription);
+		$formation = $em->getRepository('OCIMFormationsBundle:Formation')->find($inscription->getFormationFormule()->getFormation()->getId());
+		
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Template entity.');
         }
