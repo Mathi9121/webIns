@@ -17,7 +17,8 @@ class ModeleLogistiqueRepository extends EntityRepository
 				->createQuery(
 					'SELECT mo FROM OCIMFormationsBundle:ModeleLogistique mo
 					JOIN mo.formationFormule ff
-					WHERE ff.formation = :id' 
+					WHERE ff.formation = :id
+					ORDER BY mo.ordre ASC'
 				)->setParameter('id', $idformation)
 				->getResult();
 		}

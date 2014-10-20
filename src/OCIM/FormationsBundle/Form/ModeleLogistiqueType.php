@@ -20,9 +20,14 @@ class ModeleLogistiqueType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+			->add('ordre', 'hidden', array(
+				'attr' => array('class' => 'ordreModeles'),
+				'required'=> true,
+			))
             ->add('date', 'date', array(
 				'widget' => 'single_text',
 				'format' => 'dd/MM/yyyy',
+				'required'=> false,
 			))
             ->add('description')
             ->add('typeReponse', 'choice', array(

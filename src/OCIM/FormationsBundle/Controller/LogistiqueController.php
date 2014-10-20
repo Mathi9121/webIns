@@ -158,11 +158,14 @@ class LogistiqueController extends Controller
         $modeles = $em->getRepository('OCIMFormationsBundle:ModeleLogistique')->findModelesByIdFormation($idformation);
         $formation = $em->getRepository('OCIMFormationsBundle:Formation')->find($idformation);
 
+		if(!$modeles){
+			$modeles[] = new ModeleLogistique();
+		}
 		$formation->setModeles($modeles);
 		
 		//exit(\Doctrine\Common\Util\Debug::dump($formation->getModeles()[0]));
 		
-		if($generation == "generate"){
+		/* if($generation == "generate"){
 			
 			// On détermine les variables nécessaires à la génération des objets ModeleLogistique
 			$dateDebut = $formation->getDateDebut();
@@ -195,7 +198,8 @@ class LogistiqueController extends Controller
 				}
 			}
 			
-		}
+		} */
+		
         $editForm = $this->createEditForm($formation);
         $deleteForm = $this->createDeleteForm($idformation);
 
@@ -233,24 +237,19 @@ class LogistiqueController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('OCIMFormationsBundle:Formation')->find($id);
+        $modeles = $em->getRepository('OCIMFormationsBundle:ModeleLogistique')->findModelesByIdFormation($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find formationFormule entity.');
         }
 		
-		$anciensModeles = new ArrayCollection();
-		
-		foreach($entity->getFormationFormule() as $ff){
-			foreach($ff->getModeles() as $modele){
-				$anciensModeles->add($modele); 
-			}
-		}
+		$entity->setModeles($modeles);
 		
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
 		
-		//exit(\Doctrine\Common\Util\Debug::dump($anciensModeles).\Doctrine\Common\Util\Debug::dump($entity->getModeles()));
+		//exit(\Doctrine\Common\Util\Debug::dump($modeles).\Doctrine\Common\Util\Debug::dump($entity->getModeles()));
 		
         if ($editForm->isValid()) {
 			foreach($entity->getModeles() as $modele){
@@ -258,18 +257,6 @@ class LogistiqueController extends Controller
 					$ff->addModele($modele);
 				}
 			}
-			
-			/* foreach($entity->getModeles() as $modele){
-				foreach($modele->getFormationFormule() as $ff){
-					// Suppression dun modele plus existant
-					if(!$anciensModeles->contains($modele)){
-						$ff->removeModele($modele);
-						$modele->removeFormationFormule($ff);
-						$em->remove($modele);
-					}
-					$em->persist($modele);
-				}
-			} */
 			
             $em->flush();
 

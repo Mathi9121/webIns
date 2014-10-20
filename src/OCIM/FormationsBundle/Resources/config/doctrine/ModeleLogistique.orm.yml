@@ -30,4 +30,7 @@ OCIM\FormationsBundle\Entity\ModeleLogistique:
         ordre:
             type: integer
             nullable: true
+        intervenant:
+            type: boolean
+            nullable: true
     lifecycleCallbacks: {  }

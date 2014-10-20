@@ -25,20 +25,20 @@
 {% endblock %}
 
 {% block body -%}
-	<div class="units-row"><a href="#" class="btn ajoutPrototype" data-prototype='{{form_row(edit_form.modeles.vars.prototype)}}'><span class="oi" data-glyph="plus"></span> Ajouter un champ</a></div>
+	<div class="units-row"><a href="#" class="btn ajoutPrototype"><span class="oi" data-glyph="plus"></span> Ajouter un champ</a></div>
 
 {{form_start(edit_form)}}
 <div id="place">
 	{% for modele in edit_form.modeles %}
-		{# <ul class="forms-inline-list">
+		<ul class="forms-inline-list" data-prototype="{% filter escape %}{% include 'OCIMFormationsBundle:logistique:prototypeFormModeleLogistique.html.twig' with {'form': edit_form.modeles.vars.prototype} %}{% endfilter %}">
+			{{ form_widget(modele.ordre) }}
 			<li></li>
 			<li>{{ form_widget(modele.date) }}</li>
 			<li>{{ form_widget(modele.description) }}</li>
 			<li>{{ form_widget(modele.typeReponse) }}</li>
 			<li>{{ form_widget(modele.formationFormule) }}</li>
 			<li></li>
-		</ul> #}
-		{{form_row(modele)}}
+		</ul>
 	{% endfor %}
 </div>
 <hr/>

@@ -230,4 +230,32 @@ class ModeleLogistique
     {
         return $this->formationFormule;
     }
+    /**
+     * @var bool
+     */
+    private $intervenant;
+
+
+    /**
+     * Set intervenant
+     *
+     * @param \bool $intervenant
+     * @return ModeleLogistique
+     */
+    public function setIntervenant(\bool $intervenant)
+    {
+        $this->intervenant = $intervenant;
+
+        return $this;
+    }
+
+    /**
+     * Get intervenant
+     *
+     * @return \bool 
+     */
+    public function getIntervenant()
+    {
+        return $this->intervenant;
+    }
 }
