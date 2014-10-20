@@ -361,4 +361,42 @@ class Formation
 	public function setModeles($modeles){
 		$this->modeles = $modeles;
 	}
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $modelesIntervenants;
+
+
+    /**
+     * Add modelesIntervenants
+     *
+     * @param \OCIM\FormationsBundle\Entity\ModeleLogistique $modelesIntervenants
+     * @return Formation
+     */
+    public function addModelesIntervenant(\OCIM\FormationsBundle\Entity\ModeleLogistique $modelesIntervenants)
+    {
+        $this->modelesIntervenants[] = $modelesIntervenants;
+
+        return $this;
+    }
+
+    /**
+     * Remove modelesIntervenants
+     *
+     * @param \OCIM\FormationsBundle\Entity\ModeleLogistique $modelesIntervenants
+     */
+    public function removeModelesIntervenant(\OCIM\FormationsBundle\Entity\ModeleLogistique $modelesIntervenants)
+    {
+        $this->modelesIntervenants->removeElement($modelesIntervenants);
+    }
+
+    /**
+     * Get modelesIntervenants
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getModelesIntervenants()
+    {
+        return $this->modelesIntervenants;
+    }
 }

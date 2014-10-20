@@ -5,6 +5,7 @@ namespace OCIM\FormationsBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use OCIM\FormationsBundle\Entity\TypeFormation;
+use OCIM\FormationsBundle\Entity\ModeleLogistique;
 
 /**
  * Formation
@@ -339,31 +340,25 @@ class Formation
 	}
 	
 	public function addModele(\OCIM\FormationsBundle\Entity\ModeleLogistique $ml)
-    {	
-		/* $mlff = $ml->getFormationFormule();
-		foreach($this->getFormationFormule() as $ff){
-			foreach($mlff as $mlf){
-				if($ff->getId() == $mlf->getId()){
-					$ff->addModele($ml);
-					$ml->addFormationFormule($ff);
-				}
-			}
+    {	/* 
+		foreach($ml->getFormationFormule() as $ff){
+			$ff->addModele($ml);
 		} */
 		$this->modeles[] = $ml;
-		
         return $this;
     }
 	
 	public function removeModele(\OCIM\ContactsBundle\Entity\Intervenant $ml)
     {
+		/* foreach($ml->getFormationFormule() as $ff){
+			$ff->removeModele($ml);
+		} */
+		
         $this->modeles->removeElement($ml);
 		
     }
 	
-	
-	/* function setModeles($modeles){
-	
+	public function setModeles($modeles){
 		$this->modeles = $modeles;
-		return $this;
-	} */
+	}
 }

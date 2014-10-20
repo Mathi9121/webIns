@@ -258,4 +258,32 @@ class ModeleLogistique
     {
         return $this->intervenant;
     }
+    /**
+     * @var \OCIM\FormationsBundle\Entity\Formation
+     */
+    private $formation;
+
+
+    /**
+     * Set formation
+     *
+     * @param \OCIM\FormationsBundle\Entity\Formation $formation
+     * @return ModeleLogistique
+     */
+    public function setFormation(\OCIM\FormationsBundle\Entity\Formation $formation = null)
+    {
+        $this->formation = $formation;
+
+        return $this;
+    }
+
+    /**
+     * Get formation
+     *
+     * @return \OCIM\FormationsBundle\Entity\Formation 
+     */
+    public function getFormation()
+    {
+        return $this->formation;
+    }
 }

@@ -12,6 +12,9 @@ OCIM\FormationsBundle\Entity\Formation:
             targetEntity: formationFormule
             mappedBy: formation
             cascade: ["all"]
+        modelesIntervenants:
+            targetEntity: ModeleLogistique
+            mappedBy: formation
     manyToMany:
         intervenants:
             targetEntity: OCIM\ContactsBundle\Entity\Intervenant
