@@ -9,6 +9,8 @@ use Doctrine\ORM\EntityRepository;
 
 class ModeleLogistiqueType extends AbstractType
 {
+	public $idformation;
+	
 	function __construct($idformation){
 		$this->idformation = $idformation;
 	}
@@ -49,6 +51,10 @@ class ModeleLogistiqueType extends AbstractType
 						->setParameter('idformation', $this->idformation);
 					},
 				'property' => "FormuleId",
+			))
+			->add('intervenant', 'checkbox', array(
+				'label' => 'Intervenant',
+				'required' => false,
 			));
     }
     

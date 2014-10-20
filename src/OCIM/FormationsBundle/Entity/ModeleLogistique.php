@@ -230,34 +230,8 @@ class ModeleLogistique
     {
         return $this->formationFormule;
     }
-    /**
-     * @var bool
-     */
-    private $intervenant;
-
-
-    /**
-     * Set intervenant
-     *
-     * @param \bool $intervenant
-     * @return ModeleLogistique
-     */
-    public function setIntervenant(\bool $intervenant)
-    {
-        $this->intervenant = $intervenant;
-
-        return $this;
-    }
-
-    /**
-     * Get intervenant
-     *
-     * @return \bool 
-     */
-    public function getIntervenant()
-    {
-        return $this->intervenant;
-    }
+   
+   
     /**
      * @var \OCIM\FormationsBundle\Entity\Formation
      */
@@ -286,4 +260,19 @@ class ModeleLogistique
     {
         return $this->formation;
     }
+	
+	private $intervenant;
+	// ASTUCE -> pour les intervenant : boolean. Dans le controleur à l'update, on test, si cest vrai on attribut la formation.(pas possible ici)
+	public function setIntervenant($bool){
+		$this->intervenant = $bool;
+		
+		return $this;
+	}
+	
+	public function getIntervenant(){
+		if($this->getFormation()){
+			$this->intervenant = true;
+		}
+		return $this->intervenant;
+	}
 }

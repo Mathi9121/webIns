@@ -18,11 +18,11 @@ $(document).ready(function(){
 			var form = modele.replace(/__name__/g, place.children('ul').length);
 		}
 		place.append(form);
-		addTagFormDeleteLink(place.find('ul').last().find('li').last());
+		addTagFormDeleteLink(place.find('form ul').last().find('li').last());
 		setOrdreUl();
 	});
 
-	$("ul").each(function() {
+	$("form ul").each(function() {
         addTagFormDeleteLink($(this).find('li').last());
     });
 	
