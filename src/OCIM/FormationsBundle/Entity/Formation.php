@@ -246,12 +246,6 @@ class Formation
         $this->formationFormule = new \Doctrine\Common\Collections\ArrayCollection();
         $this->modeles = new \Doctrine\Common\Collections\ArrayCollection();
 		
-		/* foreach($this->formationFormule() as $ff){
-			foreach($ff->getModeles() as $mo){
-				$this->modeles[] = $mo;
-			}
-		} */
-		
     }
 
     /**
@@ -340,26 +334,19 @@ class Formation
 	}
 	
 	public function addModele(\OCIM\FormationsBundle\Entity\ModeleLogistique $ml)
-    {	/* 
-		foreach($ml->getFormationFormule() as $ff){
-			$ff->addModele($ml);
-		} */
+    {
 		$this->modeles[] = $ml;
         return $this;
     }
 	
-	public function removeModele(\OCIM\ContactsBundle\Entity\Intervenant $ml)
+	public function removeModele(\OCIM\FormationsBundle\Entity\ModeleLogistique $ml)
     {
-		/* foreach($ml->getFormationFormule() as $ff){
-			$ff->removeModele($ml);
-		} */
-		
-        $this->modeles->removeElement($ml);
-		
+        $this->modeles->removeElement($ml);	
     }
 	
-	public function setModeles($modeles){
+	public function setModeles(ArrayCollection $modeles){
 		$this->modeles = $modeles;
+		return $this;
 	}
     /**
      * @var \Doctrine\Common\Collections\Collection

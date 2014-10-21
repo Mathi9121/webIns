@@ -22,6 +22,7 @@ class LogistiqueType extends AbstractType
 			->add('modeles', 'collection', array(
 				'type' => new ModeleLogistiqueType($this->idformation),
 				'allow_add' => true,
+				'allow_delete' => true,
 				));
     }
     

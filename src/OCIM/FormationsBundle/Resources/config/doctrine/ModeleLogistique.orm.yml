@@ -6,7 +6,7 @@ OCIM\FormationsBundle\Entity\ModeleLogistique:
             mappedBy: modele
     manyToMany:
         formationFormule:
-            cascade: ['persist']
+            cascade: ['all']
             targetEntity: formationFormule
             mappedBy: modeles
     manyToOne:
@@ -36,8 +36,5 @@ OCIM\FormationsBundle\Entity\ModeleLogistique:
             length: 255
         ordre:
             type: integer
-            nullable: true
-        intervenant:
-            type: boolean
             nullable: true
     lifecycleCallbacks: {  }

@@ -155,50 +155,77 @@ class LogistiqueController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $modeles = $em->getRepository('OCIMFormationsBundle:ModeleLogistique')->findModelesByIdFormation($idformation);
+        
         $formation = $em->getRepository('OCIMFormationsBundle:Formation')->find($idformation);
 
-		if(!$modeles){
-			$modeles[] = new ModeleLogistique();
-		}
-		$formation->setModeles($modeles);
+		
 		
 		//exit(\Doctrine\Common\Util\Debug::dump($formation->getModeles()[0]));
 		
-		/* if($generation == "generate"){
+		if($generation == "generate"){
+			
+			$modeles = new ArrayCollection();
 			
 			// On détermine les variables nécessaires à la génération des objets ModeleLogistique
 			$dateDebut = $formation->getDateDebut();
 			$dateFin = $formation->getDateFin();
-			$journee = array();
 			
 			$dateDebut->setTime(00, 00);
 			$dateFin->setTime(24, 00);
 			
-			foreach($formation->getFormationFormule() as $ff){
-				if($ff->getFormule()->getMidi()){$journee[$ff->getId()] = 'Midi';}
-				if($ff->getFormule()->getSoir()){$journee[$ff->getId()] = 'Soir';}
-				if($ff->getFormule()->getNuit()){$journee[$ff->getId()] = 'Nuit';}
-			}
-			
-			
 			$period = new \DatePeriod($dateDebut, new \DateInterval('P1D'), $dateFin);
 
+			$journee = array();
+			
+			foreach($formation->getFormationFormule() as $ff){
+				$journee['midi'][] = ($ff->getFormule()->getMidi())? $ff : false;
+				$journee['soir'][] = ($ff->getFormule()->getSoir())? $ff : false;
+				$journee['nuit'][] = ($ff->getFormule()->getNuit())? $ff : false;
+			}
+			
+			//arrivée pour les intervenants
+			$m = new ModeleLogistique();
+			$m->setDescription('Arrivée');
+			$m->setTypeReponse('dateTime');
+			$m->setIntervenant(true);
+			$formation->addModele($m);
 			
 			foreach($period as $date)
 			{
-				foreach($journee as $key=>$value)
-				{
+				foreach($journee as $key=>$j){
 					$m = new ModeleLogistique();
-					$m->addFormationFormule($em->getReference('OCIMFormationsBundle:formationFormule' , $key));
+					
+					foreach($j as $ff){
+						if($ff){
+							$m->addFormationFormule($ff);
+						}
+					}
+					$m->setIntervenant(true);
 					$m->setDate($date);
-					$m->setDescription($value);
+					$m->setDescription(ucfirst($key));
 					$m->setTypeReponse("bool");
 					$formation->addModele($m);
 				}
 			}
 			
-		} */
+			//départ pour les intervenants
+			$m = new ModeleLogistique();
+			$m->setDescription('Départ');
+			$m->setTypeReponse('dateTime');
+			$m->setIntervenant(true);
+			$formation->addModele($m);
+			
+		}
+		else{
+			$modeles = $em->getRepository('OCIMFormationsBundle:ModeleLogistique')->findModelesByIdFormation($idformation);
+			if(!$modeles){
+				$modeles[] = new ModeleLogistique();
+				$formation->setModeles(new ArrayCollection($modeles));
+			}
+			else{
+				$formation->setModeles(new ArrayCollection($modeles));
+			}
+		}
 		
         $editForm = $this->createEditForm($formation);
         $deleteForm = $this->createDeleteForm($idformation);
@@ -243,18 +270,48 @@ class LogistiqueController extends Controller
             throw $this->createNotFoundException('Unable to find formationFormule entity.');
         }
 		
-		$entity->setModeles($modeles);
+		$entity->setModeles(new ArrayCollection($modeles));
 		
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
 		
-		//exit(\Doctrine\Common\Util\Debug::dump($modeles).\Doctrine\Common\Util\Debug::dump($entity->getModeles()));
+		
 		
         if ($editForm->isValid()) {
+			
+			//suppression des anciens modeles
+			foreach($modeles as $modele){
+				if(!$entity->getModeles()->contains($modele)){
+					// le modele a été supprimé, on supprime ses relations
+					foreach($modele->getFormationFormule() as $ff){
+						$modele->removeFormationFormule($ff);
+						$ff->removeModele($modele);
+					}
+					$entity->removeModele($modele);
+					$modele->setFormation(null);
+					$em->remove($modele);
+				}
+				else{
+					//On recherche les modification sur les formationFormule des modeles
+					foreach($entity->getFormationFormule() as $ff){
+						if(!$modele->getFormationFormule()->contains($ff)){
+							$ff->removeModele($modele);
+						}
+					}
+				}
+			}
+
+			
+			// exit( \Doctrine\Common\Util\Debug::dump());
+			
 			foreach($entity->getModeles() as $modele){
 				foreach($modele->getFormationFormule() as $ff){
 					$ff->addModele($modele);
+				}
+				$modele->setFormation(($modele->getIntervenant())? $entity : null);
+				if($modele->getFormationFormule()->count() == 0){
+					$em->persist($modele);
 				}
 			}
 			

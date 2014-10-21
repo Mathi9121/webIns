@@ -36,14 +36,14 @@ class ModeleLogistiqueType extends AbstractType
 				'choices'   => array(
 					'text'	=> 'Texte',
 					'bool'	=> 'Oui/Non',
+					'dateTime'	=> 'Date/Heure',
 				)
 			))
-			->add('formationFormule', null, array(
+			->add('formationFormule', 'entity', array(
 				'class' => 'OCIM\FormationsBundle\Entity\formationFormule',
-				// 'data_class' => 'OCIM\FormationsBundle\Entity\ModeleLogistique',
 				'multiple' => true,
 				'expanded' => true,
-				'by_reference' => true,
+				'by_reference' => false,
 				'query_builder' => function(EntityRepository $er)
 					{
 						return $er->createQueryBuilder('u')
