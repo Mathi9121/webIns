@@ -479,12 +479,22 @@ class Inscription
         return $this->reponsesLogistique;
     }
 	
-	public function getReponseByModeleId($modeleId){
+	public function getReponseByModeleId($modeleId, $return = null){
 		
-		return $this->getReponsesLogistique()->filter(
+		$reponse =  $this->getReponsesLogistique()->filter(
 			function($reponse) use ($modeleId){
 				return ($reponse->getModele()->getId() == $modeleId);
 			}
 		)[0];
+		
+		if(!is_null($return)){
+			$return = ($return == "bool")? "getReponse" : "getReponseText";
+			if($reponse){
+				return ($reponse->$return())? '1' : '0' ;
+			}
+		}
+		else{
+			return $reponse;
+		}
 	}
 }

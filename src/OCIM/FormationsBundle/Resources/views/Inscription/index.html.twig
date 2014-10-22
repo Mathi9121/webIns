@@ -195,7 +195,19 @@
 					{% for log in logistique %}
 						{% if log.formationformule|length > 0 %}
 							{% if entity.formationFormule in log.formationFormule %}
-								<td class="logistique" data-type="{{log.typeReponse}}" data-date="{{log.date|date('timestamp')}}" data-idmodele="{{log.id}}">{{ attribute(entity, 'getReponseByModeleId', [log.id])}}</td>
+								<td class="logistique" data-type="{{log.typeReponse}}" data-date="{{log.date|date('timestamp')}}" data-idmodele="{{log.id}}" data-reponse="{{attribute(entity, 'getReponseByModeleId', [log.id, log.typeReponse]) }}">
+									{% if attribute(entity, 'getReponseByModeleId', [log.id]) %}
+										{% if log.typeReponse == 'bool' %}
+											{% if (attribute(entity, 'getReponseByModeleId', [log.id])) %}
+												<span class="oi" data-glyph="check"></span>
+											{% else %}
+												<span style="color: rgba(255,0,0,0.5)" class="oi" data-glyph="x"></span>
+											{% endif %}
+										{% elseif log.typeReponse == 'text' %}
+											{{ (attribute(entity, 'getReponseByModeleId', [log.id]))}}
+										{% endif %}
+									{% endif %}
+								</td>
 							{% else %}
 								<td class="undefined"></td>
 							{% endif %}
@@ -210,15 +222,28 @@
 							<li><a href="{{ path('inscription_show', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><span class="oi" data-glyph="info"></span> Détails</a></li>
 							<li><a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><span class="oi" data-glyph="pencil"></span> Modifier</a></li>
 							<li>
-								{% if entity.convention %}<a href="{{ path('convention_edit', { 'id': entity.convention.id, 'idformation':formation.id }) }}" class="">{% else %}<a href="{{ path('convention_new', { 'idinscription': entity.id, 'idformation':formation.id }) }}" class="">{% endif %}
-									<span class="oi" data-glyph="pencil"></span> Convention
-								</a>
+								{% if entity.convention %}
+									<a href="{{ path('convention_edit', { 'id': entity.convention.id, 'idformation':formation.id }) }}" class="">
+								{% else %}
+									<a href="{{ path('convention_new', { 'idinscription': entity.id, 'idformation':formation.id }) }}" class="">
+								{% endif %}
+									<span class="oi" data-glyph="pencil"></span> Convention</a>
 							</li>
 						</ul>
 				</td>
             </tr>
         {% endfor %}
         </tbody>
+		<tfoot>
+			<td></td>
+			<th colspan="2">Totaux</th>
+			{% for log in logistique %}
+				{% if log.formationformule|length > 0 %}
+					<td>{{ log.reponses|length }}</td>
+				{% endif %}
+			{% endfor %}
+			<td></td>
+		</tfoot>
 	</table>
 </div>
 </div>
