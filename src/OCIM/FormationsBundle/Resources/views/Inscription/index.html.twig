@@ -172,7 +172,7 @@
 				<th class="insc info"><span>Nom</span></th>
 				<th class="insc info"><span>Prénom</span></th>
 				{% for log in logistique %}
-					<th>{{log.date|date('d/m')}} {{log.description}}</th>
+					{% if log.formationformule|length > 0 %}<th>{{log.date|date('d/m')}} {{log.description}}</th>{% endif %}
 				{% endfor %}
 				<th></th>
 			</tr>
@@ -193,27 +193,17 @@
 						<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
 					
 					{% for log in logistique %}
-						{% set d = log.date|date('m-d-Y:H:i') %}
-						
-						{% set defini = false %}
-						{% for modele in entity.formationFormule.modeles %}
-							{% if modele.date == log.date %}{% set defini = true %}{% endif %}
-						{% endfor %}
-						{% if defini %}
-							<td class="logistique text-centered" data-type="{{log.typeReponse}}" data-idreponse="{% if attribute(entity._presence, d) is defined %}{{ attribute(entity._presence, d).id}}{% endif %}" data-date='{{log.date|date('Y-m-d H:i')}}'>
-								{% if attribute(entity._presence, d) is defined %}
-									{% if log.typeReponse == 'bool' %}
-										{% if attribute(entity._presence, d).reponse == '1' %}<span class="oi" data-glyph='check'></span>{% endif %}
-									{% elseif log.typeReponse == 'text'  %}
-										{{attribute(entity._presence, d).reponseText}}
-									{% endif %}
-								{% endif %}
-							</td>
-						{% else %}
-							<td class="undefined"></td>
+						{% if log.formationformule|length > 0 %}
+							{% if entity.formationFormule in log.formationFormule %}
+								<td class="logistique" data-type="{{log.typeReponse}}" data-date="{{log.date|date('timestamp')}}" data-idmodele="{{log.id}}">{{ attribute(entity, 'getReponseByModeleId', [log.id])}}</td>
+							{% else %}
+								<td class="undefined"></td>
+							{% endif %}
 						{% endif %}
 					{% endfor %}
-				
+					
+					
+					
                 <td class="insc actions">
 						<a href="#" data-tools="dropdown" data-target="#dropdown9-{{loop.index}}"></a>
 						<ul id="dropdown9-{{loop.index}}" class="dropdown">

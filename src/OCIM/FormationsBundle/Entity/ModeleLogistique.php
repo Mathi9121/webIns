@@ -262,17 +262,14 @@ class ModeleLogistique
     }
 	
 	private $intervenant;
-	// ASTUCE -> pour les intervenant : boolean. Dans le controleur à l'update, on test, si cest vrai on attribut la formation.(pas possible ici)
+	
 	public function setIntervenant($bool){
 		$this->intervenant = $bool;
-		
 		return $this;
 	}
 	
 	public function getIntervenant(){
-		if($this->getFormation()){
-			$this->intervenant = true;
-		}
+		
 		return $this->intervenant;
 	}
 }

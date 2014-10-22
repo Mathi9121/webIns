@@ -301,9 +301,8 @@ class LogistiqueController extends Controller
 					}
 				}
 			}
-
+			//exit( \Doctrine\Common\Util\Debug::dump($entity->getModeles()[0]->getIntervenant()));
 			
-			// exit( \Doctrine\Common\Util\Debug::dump());
 			
 			foreach($entity->getModeles() as $modele){
 				foreach($modele->getFormationFormule() as $ff){
@@ -311,7 +310,12 @@ class LogistiqueController extends Controller
 				}
 				$modele->setFormation(($modele->getIntervenant())? $entity : null);
 				if($modele->getFormationFormule()->count() == 0){
-					$em->persist($modele);
+					if($modele->getIntervenant() === false){
+						$em->remove($modele);
+					}
+					else{
+						$em->persist($modele);
+					}
 				}
 			}
 			

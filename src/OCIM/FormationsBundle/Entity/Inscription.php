@@ -478,4 +478,13 @@ class Inscription
     {
         return $this->reponsesLogistique;
     }
+	
+	public function getReponseByModeleId($modeleId){
+		
+		return $this->getReponsesLogistique()->filter(
+			function($reponse) use ($modeleId){
+				return ($reponse->getModele()->getId() == $modeleId);
+			}
+		)[0];
+	}
 }

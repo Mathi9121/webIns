@@ -1,10 +1,5 @@
 $(document).ready(function(){
 	$('td.logistique[data-type="text"]').attr('contenteditable', 'true');
-	/* $('td.logistique[data-type="bool"]').hover(function(){
-			$(this).html($('<span style="color:grey" class="oi" data-glyph="check"></span>'))
-		}, function(){
-			$(this).find('span').remove()
-		}); */
 	$('td.logistique[data-type="bool"]').click(function(){
 		if(!$(this).find('span').is(":empty")){
 			$(this).html($('<span class="oi" data-glyph="check"></span>'))

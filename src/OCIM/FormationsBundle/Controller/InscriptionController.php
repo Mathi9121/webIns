@@ -29,38 +29,14 @@ class InscriptionController extends Controller
 
         $entities = $em->getRepository('OCIMFormationsBundle:Inscription')->findAllByFormation($idformation);
 		$formation = $em->getRepository('OCIMFormationsBundle:Formation')->find($idformation);
+		$logistique = $em->getRepository('OCIMFormationsBundle:ModeleLogistique')->findModelesByIdFormation($idformation);
 		
-		$modeles = array();
-		$dates = array();
-		$i = 0;
-		
-		foreach($formation->getFormationFormule() as $ff){
-			$dates[$i] = array();
-			foreach($ff->getModeles() as $m){
-				$d = $m->getDate()->format('m-d-Y:H:i');
-				$dates[$i][$d] = $m;
-			}
-			$i++;
-		}
-		
-		$datesLogistique = array();
-		
-		for($j = 0 ; $j < $i-1 ; $j++){
-			$datesLogistique = array_merge($datesLogistique, $dates[$j], $dates[$j+1]);
-		}
-		
-		ksort($datesLogistique);
-		
-		foreach($entities as $entity){
-			foreach($entity->getReponsesLogistique() as $rlog){
-				$entity->_presence[$rlog->getModele()->getDate()->format('m-d-Y:H:i')] = $rlog;
-			}
-		}
+		//exit(\Doctrine\Common\Util\Debug::dump($logistique));
 		
         return $this->render('OCIMFormationsBundle:Inscription:index.html.twig', array(
             'entities' => $entities,
 			'formation' => $formation,
-			'logistique' => $datesLogistique
+			'logistique' => $logistique
         ));
     }
 	

@@ -346,6 +346,13 @@ class Formation
 	
 	public function setModeles(ArrayCollection $modeles){
 		$this->modeles = $modeles;
+		
+		foreach($this->modeles as $modele){
+			if($modele->getFormation() != null){
+				$modele->setIntervenant(true);
+			}
+		}
+		
 		return $this;
 	}
     /**
