@@ -136,37 +136,8 @@ class ReponsesLogistique
     {
         return $this->modele;
     }
-    /**
-     * @var \OCIM\FormationsBundle\Entity\Inscription
-     */
-    private $inscrit;
 
-
-    /**
-     * Set inscrit
-     *
-     * @param \OCIM\FormationsBundle\Entity\Inscription $inscrit
-     * @return ReponsesLogistique
-     */
-    public function setInscrit(\OCIM\FormationsBundle\Entity\Inscription $inscrit = null)
-    {
-        $this->inscrit = $inscrit;
-
-        return $this;
-    }
-
-    /**
-     * Get inscrit
-     *
-     * @return \OCIM\FormationsBundle\Entity\Inscription 
-     */
-    public function getInscrit()
-    {
-        return $this->inscrit;
-    }
-    /**
-     * @var \OCIM\FormationsBundle\Entity\Inscription
-     */
+	
     private $inscription;
 
 

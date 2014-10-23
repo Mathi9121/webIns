@@ -9,6 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use OCIM\FormationsBundle\Entity\formationFormule;
 use OCIM\FormationsBundle\Entity\Formation;
 use OCIM\FormationsBundle\Entity\ModeleLogistique;
+use OCIM\FormationsBundle\Entity\ReponsesLogistique;
+use OCIM\FormationsBundle\Entity\Inscription;
 use OCIM\FormationsBundle\Form\LogistiqueType;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -50,20 +52,37 @@ class LogistiqueController extends Controller
 			
 			$data = json_decode($request->getContent());
 			
-				$inscription = $em->getRepository('OCIMFormationsBundle:Inscription')->find($data[0]->id);
-				$date = new \DateTime($data[0]->date);
-				
-				$modele = 0;
-				foreach($inscription->getFormationFormule()->getModeles() as $mo){
-					if($mo->getDate() == $date){
-						$modele = $mo;
-					}
-				}
-				
-				
+			$inscription = new Inscription();
+			$inscription = $em->getRepository('OCIMFormationsBundle:Inscription')->find($data[0]->idinscription);
 			
-			//$em->flush();
-			return new Response( $modele , Response::HTTP_OK);
+			$reponseLogistique = new ReponsesLogistique;
+			// un objet ReponseLogistique existe
+			if($data[0]->idreponse){
+				$reponseLogistique = $em->getRepository('OCIMFormationsBundle:ReponsesLogistique')->find($data[0]->idreponse);
+			}
+			
+			// construction et enregistrement de la nouvelle reponse
+			$nouvelleReponse;
+		 	if($data[0]->type == "bool"){
+				$nouvelleReponse = (($data[0]->reponse == "0") OR ($data[0]->reponse == ""))? true : false;
+				$reponseLogistique->setReponse($nouvelleReponse);
+			}
+			elseif($data[0]->type == "text"){
+				$reponseLogistique->setReponseText($nouvelleReponse);
+			}
+			
+
+			if($reponseLogistique->getId() == null){
+				$reponseLogistique->setInscription($inscription);
+				$reponseLogistique->setModele($em->getReference('OCIMFormationsBundle:ModeleLogistique', $data[0]->idmodele));
+				$inscription->addReponsesLogistique($reponseLogistique);
+				$em->persist($reponseLogistique);
+			}
+			
+			$em->flush();
+			
+			return new Response( \Doctrine\Common\Util\Debug::dump($inscription->getId()) , Response::HTTP_OK);
+			
 		}
 	}
 	

@@ -3,6 +3,7 @@
 namespace OCIM\FormationsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Criteria;
 
 /**
  * Inscription
@@ -202,7 +203,7 @@ class Inscription
      */
     public function __construct()
     {
-        $this->reponsesInscription = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->reponsesLogistique = new \Doctrine\Common\Collections\ArrayCollection();
         $this->personnes = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -236,47 +237,6 @@ class Inscription
     }
 
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $reponsesInscription;
-
-
-    /**
-     * Add reponsesInscription
-     *
-     * @param \OCIM\FormationsBundle\Entity\ReponsesLogistique $reponsesInscription
-     * @return Inscription
-     */
-    public function addReponsesInscription(\OCIM\FormationsBundle\Entity\ReponsesLogistique $reponsesInscription)
-    {
-        $this->reponsesInscription[] = $reponsesInscription;
-
-        return $this;
-    }
-
-    /**
-     * Remove reponsesInscription
-     *
-     * @param \OCIM\FormationsBundle\Entity\ReponsesLogistique $reponsesInscription
-     */
-    public function removeReponsesInscription(\OCIM\FormationsBundle\Entity\ReponsesLogistique $reponsesInscription)
-    {
-        $this->reponsesInscription->removeElement($reponsesInscription);
-    }
-
-    /**
-     * Get reponsesInscription
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getReponsesInscription()
-    {
-        return $this->reponsesInscription;
-    }
-    /**
-     * @var \OCIM\FormationsBundle\Entity\formationFormule
-     */
     private $formationformule;
 
 
@@ -481,12 +441,23 @@ class Inscription
 	
 	public function getReponseByModeleId($modeleId, $return = null){
 		
+		$key = 0;
 		$reponse =  $this->getReponsesLogistique()->filter(
-			function($reponse) use ($modeleId){
-				return ($reponse->getModele()->getId() == $modeleId);
+			function($rl) use ($modeleId){
+				if($rl->getModele()->getId() == $modeleId){
+					return true;
+					}
 			}
-		)[0];
+		)->first();
 		
+		/* $criteria = Criteria::create()
+			->where(Criteria::expr()->in("modele", [$modeleId]))
+			->setFirstResult(0)
+		;
+		
+		$reponse = $this->getReponsesLogistique()->matching($criteria)[0];
+		 */
+		 
 		if(!is_null($return)){
 			$return = ($return == "bool")? "getReponse" : "getReponseText";
 			if($reponse){

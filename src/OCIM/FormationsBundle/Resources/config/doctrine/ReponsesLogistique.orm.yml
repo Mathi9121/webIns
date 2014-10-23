@@ -24,9 +24,12 @@ OCIM\FormationsBundle\Entity\ReponsesLogistique:
     fields:
         reponse:
             type: boolean
+            nullable: true
         reponseText:
             type: string
             length: 255
+            nullable: true
         date:
             type: datetime
+            nullable: true
     lifecycleCallbacks: {  }

@@ -195,16 +195,16 @@
 					{% for log in logistique %}
 						{% if log.formationformule|length > 0 %}
 							{% if entity.formationFormule in log.formationFormule %}
-								<td class="logistique" data-type="{{log.typeReponse}}" data-date="{{log.date|date('timestamp')}}" data-idmodele="{{log.id}}" data-reponse="{{attribute(entity, 'getReponseByModeleId', [log.id, log.typeReponse]) }}">
+								<td class="logistique" data-type="{{log.typeReponse}}" data-idreponse="{{ (attribute(entity, 'getReponseByModeleId', [log.id]))? attribute(entity, 'getReponseByModeleId', [log.id]).id }}" data-date="{{log.date|date('')}}" data-idmodele="{{log.id}}" data-reponse="{{attribute(entity, 'getReponseByModeleId', [log.id, log.typeReponse]) }}">
 									{% if attribute(entity, 'getReponseByModeleId', [log.id]) %}
 										{% if log.typeReponse == 'bool' %}
-											{% if (attribute(entity, 'getReponseByModeleId', [log.id])) %}
+											{% if (attribute(entity, 'getReponseByModeleId', [log.id, log.typeReponse]) == '1') %}
 												<span class="oi" data-glyph="check"></span>
-											{% else %}
+											{% elseif (attribute(entity, 'getReponseByModeleId', [log.id, log.typeReponse]) == '0') %}
 												<span style="color: rgba(255,0,0,0.5)" class="oi" data-glyph="x"></span>
 											{% endif %}
 										{% elseif log.typeReponse == 'text' %}
-											{{ (attribute(entity, 'getReponseByModeleId', [log.id]))}}
+											{{ (attribute(entity, 'getReponseByModeleId', [log.id, log.typeReponse]))}}
 										{% endif %}
 									{% endif %}
 								</td>
