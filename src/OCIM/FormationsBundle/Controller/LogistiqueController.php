@@ -32,6 +32,11 @@ class LogistiqueController extends Controller
         $entities = $em->getRepository('OCIMFormationsBundle:Formation')->findAll();
 		
 		foreach($entities as $entity){
+			$logistique = $em->getRepository('OCIMFormationsBundle:ModeleLogistique')->findModelesByIdFormation($entity->getId());
+			$entity->setModeles(new ArrayCollection($logistique));
+		}
+		
+		foreach($entities as $entity){
 			$countmodeles = 0;
 			
 			foreach($entity->getFormationFormule() as $ff){
@@ -68,6 +73,7 @@ class LogistiqueController extends Controller
 				$reponseLogistique->setReponse($nouvelleReponse);
 			}
 			elseif($data[0]->type == "text"){
+				$nouvelleReponse = $data[0]->reponse;
 				$reponseLogistique->setReponseText($nouvelleReponse);
 			}
 			
@@ -81,7 +87,10 @@ class LogistiqueController extends Controller
 			
 			$em->flush();
 			
-			return new Response( \Doctrine\Common\Util\Debug::dump($inscription->getId()) , Response::HTTP_OK);
+			$data[0]->idreponse = $reponseLogistique->getId();
+			$data[0]->reponse = $nouvelleReponse;
+			
+			return new Response( json_encode($data) , Response::HTTP_OK);
 			
 		}
 	}

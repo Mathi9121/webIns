@@ -441,31 +441,25 @@ class Inscription
 	
 	public function getReponseByModeleId($modeleId, $return = null){
 		
-		$key = 0;
 		$reponse =  $this->getReponsesLogistique()->filter(
 			function($rl) use ($modeleId){
 				if($rl->getModele()->getId() == $modeleId){
 					return true;
-					}
+				}
 			}
 		)->first();
 		
-		/* $criteria = Criteria::create()
-			->where(Criteria::expr()->in("modele", [$modeleId]))
-			->setFirstResult(0)
-		;
-		
-		$reponse = $this->getReponsesLogistique()->matching($criteria)[0];
-		 */
-		 
-		if(!is_null($return)){
-			$return = ($return == "bool")? "getReponse" : "getReponseText";
-			if($reponse){
-				return ($reponse->$return())? '1' : '0' ;
+		if($reponse){
+			if(!is_null($return)){
+				if($return == 'bool'){
+					return ($reponse->getReponse())? '1' : '0' ;
+				}
+				else return $reponse->getReponseText();
+			}
+			else{
+				return $reponse;
 			}
 		}
-		else{
-			return $reponse;
-		}
+		else return 0;
 	}
 }

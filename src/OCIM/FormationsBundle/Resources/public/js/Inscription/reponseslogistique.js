@@ -30,10 +30,18 @@ $(document).ready(function(){
 
 	$('td.logistique[data-type="text"]').blur(function(){
 		var data = new Array();
-		data.push({'id': $(this).parent('tr').attr('data-idinscription'), 'date': $(this).attr('data-date'), 'reponse': $(this).html()});
-		enregistre(data);
+		data.push({
+			'type' : $(this).attr('data-type'),
+			'reponse' : $.trim($(this).text()),
+			'idmodele' : $(this).attr('data-idmodele'),
+			'idinscription' : $(this).parent('tr').attr('data-idinscription'),
+			'idreponse' : $(this).attr('data-idreponse'),
+		});
+		
+		enregistre(data, this);
 	});
 });
+
 
 
 function enregistre(data, td){
@@ -43,14 +51,44 @@ function enregistre(data, td){
 		data: JSON.stringify(data),
 	})
 	.done(function( msg ) {
+		
+		//message succes
+		$('#message-save').message({'delay': 1});
+		
+		msg = JSON.parse(msg);
+		$(td).attr('data-idreponse', msg[0].idreponse);
+		
+		
 		console.log(msg);
+		console.log(td);
+		
+		if(msg[0].type == 'bool'){
+			if(msg[0].reponse){
+				$(td).attr('data-reponse', 1);
+				$(td).html('<span class="oi" data-glyph="check"></span>');
+			}
+			else{
+				$(td).attr('data-reponse', 0);
+				$(td).html('<span style="color: rgba(255,0,0,0.5)" class="oi" data-glyph="x"></span>');
+			}
+		}
+		else{
+			$(td).attr('data-reponse', msg[0].reponse);
+		}
+	
+	// update du total
+	var index = $(td).index();
+	var tableau = $(td).closest($('.tab'));
+	var count = 0;
+	$(tableau).find('tbody tr').each(function(i){
+		count += parseInt($(this).find('td').eq(index).attr('data-reponse'));
 	});
-}
-
-function updateTotaux(){
-
-}
-
-function updateValues(){
-
+	
+	$(tableau).find('tfoot tr').find('td').eq(index-1).html(count);
+	
+	
+	})
+	.error(function() {
+		$('#message-error').message({'delay': 10});
+	});
 }

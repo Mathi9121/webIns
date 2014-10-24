@@ -272,4 +272,11 @@ class ModeleLogistique
 		
 		return $this->intervenant;
 	}
+	
+	public function nombreReponsesPositives(){
+		$nb = $this->getReponses()->filter(function($rep){
+			if($rep->getReponse()) {return true;}
+		});
+		return $nb->count();
+	}
 }

@@ -164,6 +164,8 @@
 {# Logistique #}
 <div id="logistique" class="tab">
 	<div class="hide" id="majLogistique">{{path('logistique_reponse')}}</div>
+	<div id="message-save" class="tools-message tools-message-green">Enregistré !</div>
+	<div id="message-error" class="tools-message tools-message-red">Erreur. <a href="{{ path('inscription', { 'idformation': formation.id }) }}">Recharger la page</a></div>
 <div class="table-container">
 	<table class="table-bordered">
 		<thead>
@@ -209,7 +211,7 @@
 									{% endif %}
 								</td>
 							{% else %}
-								<td class="undefined"></td>
+								<td data-reponse="0" class="undefined"></td>
 							{% endif %}
 						{% endif %}
 					{% endfor %}
@@ -236,10 +238,14 @@
         </tbody>
 		<tfoot>
 			<td></td>
-			<th colspan="2">Totaux</th>
+			<td colspan="2">Totaux</td>
 			{% for log in logistique %}
 				{% if log.formationformule|length > 0 %}
-					<td>{{ log.reponses|length }}</td>
+					{% if log.typeReponse == 'bool' %}
+						<td>{{ log.nombreReponsesPositives }}</td>
+					{% else %}
+						<td style="background-color: rgba(125,125,125, 0.2)"></td>
+					{% endif %}
 				{% endif %}
 			{% endfor %}
 			<td></td>
