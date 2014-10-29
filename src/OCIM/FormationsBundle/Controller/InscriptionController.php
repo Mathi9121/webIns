@@ -11,6 +11,8 @@ use OCIM\FormationsBundle\Form\InscriptionType;
 use OCIM\FormationsBundle\Form\FinancementType;
 use OCIM\ContactsBundle\Entity\Signataire;
 
+
+
 /**
  * Inscription controller.
  *
@@ -31,6 +33,7 @@ class InscriptionController extends Controller
 		$formation = $em->getRepository('OCIMFormationsBundle:Formation')->find($idformation);
 		$logistique = $em->getRepository('OCIMFormationsBundle:ModeleLogistique')->findModelesByIdFormation($idformation);
 		
+	
 		//exit(\Doctrine\Common\Util\Debug::dump($logistique));
 		
         return $this->render('OCIMFormationsBundle:Inscription:index.html.twig', array(

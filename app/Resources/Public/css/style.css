@@ -1,65 +1,68 @@
-/*********HEADER*******/
-header nav ul li a span.oi{
-	display: inline;
-	color: inherit;
-	cursor: inherit;
-}
-
 
 /** Menu **/
 
 header nav.navbar a {
 	color: grey
 }
-header #user-img{
-	height:50px;width:50px;
-	display:inline-block;
-	line-height: 50px;
-	text-align:center;
-	background-color:rgba(200, 200, 200, 1);
-}
-nav #dropdownmenu ul li a {width: auto; height: auto; text-align: left}
-.navbar.navbar-right #dropdownmenu li{margin-left:0; float:none}
-.navbar.navbar-right #dropdownmenu a{display: block}
 
 
 
-/** positionnement **/
+/** sidebar **/
 #sidebar{
 	background-color: #F9F9F9;
-	margin-top: -50px
 }
 
-#sidebar .logo{display: block; margin: 0px auto 50px;  width:100%; max-width: 250px}
+#sidebar .logo{display: block; margin: 25px auto;  width:85%; max-width: 250px}
 
-#session-top{
-	padding-right: 25px;
+#sidebar #user{width:100%;}
+#sidebar #user span.user{
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	line-height:50px;
+	text-align:center;
+	background-color: rgba(200,200,200,0.5);
+	margin-right: 5px;
+
 }
-.navbar a:hover {text-decoration:none;}
+#sidebar #user a{display:block;color: inherit}
+#sidebar #user span.caret{display:none;}
+#sidebar #user a:hover>span.caret{display:inline-block;}
+#sidebar #user a{text-decoration: none;}
+#sidebar #user ul{display:none; list-style:none;padding-left:0px; margin-left: 0px; background-color: #fcfcfc}
+
+#sidebar #user:hover>a{background-color: #fcfcfc}
+
+#sidebar i{margin-right: 5px}
+
+
+#sidebar hr{
+	width:80%
+}
+
+#sidebar nav{
+	margin-top: 50px
+}
+
+
+
 #content{
 	padding: 10px 50px 0 0;
 }
-#sidebar nav{
-	padding-top: 25px;
-}
-#sidebar nav ul li i{
-	margin-right:10px
-}
-
-
 #titre{
 	border-bottom: 1px solid #f3f3f3;
 	margin-bottom: 25px;
 	}
 
+	#sidebar form{display:none;}
 
 #controls{}
 
 
+
+
 /** Styles **/
 table tr td{vertical-align:middle}
-
-#sidebar #session-side{display:none;}
 
 
 form select{
@@ -75,9 +78,7 @@ form select[multiple]{
 @media only screen and (max-width:767px){
 	#content{padding: 10px 20px;}
 	#header{text-align:center}
-	#header #session-top{display:none;}
-	#sidebar #session-side{display:block;}
-	#header a.logo{display:none;}
+
 	#header img.logo{margin-left: calc(100% - 160px); height: 40px}
 	#sidebar form, #sidebar .logo{display:none;}
 	#sidebar{padding-top: 0}

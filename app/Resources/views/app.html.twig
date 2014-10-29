@@ -31,22 +31,12 @@
 		<div class="navigation-toggle" data-tools="navigation-toggle" data-target="#sidebar">
 			<span>Menu<img src="{{ asset('../app/Resources/Public/img/logo-ocim.png') }}" class="logo" alt="OCIM"/></span>
 		</div>
-		<ul id="session-top">
-			<li>
-				<a href="#" data-tools="dropdown" data-target="#dropdownmenu"><div id="user-img"><span class="oi" data-glyph="person"></span></div> {{app.user.prenom |capitalize}} {{app.user.nom |capitalize}}</a>
-				<ul id="dropdownmenu" class="dropdown">
-					<li><a href="{{path('user')}}"><span class="oi" data-glyph="people"></span> Gestion des utilisateurs</a></li>
-					<li><a href="{{ path('deconnexion') }}"><span class="oi" data-glyph="power-standby"></span> Deconnexion</a></li>
-				</ul>
-			</li>
-		</ul>
 	</nav>
-	
 </header>
 
 <div class="units-row">
 	<div id="sidebar" class="unit-20">
-
+		
 		<div>
 			<a href="{{path('home')}}" class="logo">
 				{% image '../app/Resources/Public/img/logo-ocim.png' %}
@@ -54,6 +44,17 @@
 				{% endimage %}
 			</a>
 		</div>
+		
+		<hr/>
+		
+		<div id="user" class="">
+			<a href="#"><span class="oi user" data-glyph="person"></span>{{app.user.prenom |capitalize}} {{app.user.nom |capitalize}} <span class="oi caret"></span></a>
+				<ul class="nav-stacked">
+					<li><a href="{{path('user')}}"><i class="oi" data-glyph="people"></i>Gestion des utilisateurs</a></li>
+					<li><a href="{{ path('deconnexion') }}"><i class="oi" data-glyph="power-standby"></i>Deconnexion</a></li>
+				</ul>
+		</div> 
+
 		
 		<form action="" class="forms">
 				<div class="input-groups unit-centered width-80">
@@ -63,20 +64,17 @@
 					</span>
 				</div>
 		</form>
-		<nav class="nav nav-stacked" data-tools="navigation-fixed">			
+		<nav class="nav nav-stacked" data-tools="navigation-fixed">
+
 			<ul>
 				<li><a href="{{path('home')}}"><i class="oi" data-glyph="dashboard"></i>Tableau de bord</a></li>
 				<li><a href="{{path('formation')}}"><i class="oi" data-glyph="book"></i>Formations</a></li>
 				<li><a href="{{path('formule')}}"><i class="oi" data-glyph="tags"></i>Formules</a></li>
 				<li><a href="{{path('logistique')}}"><i class="oi" data-glyph="fork"></i>Logistique</a></li>
-				<li><a href="{{path('convention')}}"><i class="oi" data-glyph="script"></i>Conventions</a></li>
+				{# <li><a href="{{path('convention')}}"><i class="oi" data-glyph="script"></i>Conventions</a></li> #}
 				<li><a href="{{path('structures')}}"><i class="oi" data-glyph="home"></i>Structures</a></li>
 				<li><a href="{{path('personne')}}"><i class="oi" data-glyph="people"></i>Contacts</a></li>
 				<li><a href="{{path('documents')}}"><i class="oi" data-glyph="file"></i>Export et Gabarits</a></li>
-					<ul id="session-side">
-						<li><a href="{{path('user')}}"><i class="oi" data-glyph="people"></i>Gestion des utilisateurs</a></li>
-						<li><a href="{{ path('deconnexion') }}"><i class="oi" data-glyph="power-standby"></i>Deconnexion</a></li>
-					</ul>
 			</ul>
 		</nav> 
 	</div>
