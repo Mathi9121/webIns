@@ -39,21 +39,21 @@ assetic:
     bundles:        [OCIMFormationsBundle, OCIMExportBundle]
     #java: /usr/bin/java
     assets:
-        open-iconic-otf:
-            inputs: '%kernel.root_dir%/Resources/Public/fonts/open-iconic.otf'
-            output: 'fonts/open-iconic.otf'
-        open-iconic-eot:
-            inputs: '%kernel.root_dir%/Resources/Public/fonts/open-iconic.eot'
-            output: 'fonts/open-iconic.eot'
-        open-iconic-svg:
-            inputs: '%kernel.root_dir%/Resources/Public/fonts/open-iconic.svg'
-            output: 'fonts/open-iconic.svg'
-        open-iconic-ttf:
-            inputs: '%kernel.root_dir%/Resources/Public/fonts/open-iconic.ttf'
-            output: 'fonts/open-iconic.ttf'
-        open-iconic-woff:
-            inputs: '%kernel.root_dir%/Resources/Public/fonts/open-iconic.woff'
-            output: 'fonts/open-iconic.woff'
+        FontAwesome-otf:
+            inputs: '%kernel.root_dir%/Resources/Public/fonts/FontAwesome.otf'
+            output: 'fonts/FontAwesome.otf'
+        fontawesome-webfont-eot:
+            inputs: '%kernel.root_dir%/Resources/Public/fonts/fontawesome-webfont.eot'
+            output: 'fonts/fontawesome-webfont.eot'
+        fontawesome-webfont-svg:
+            inputs: '%kernel.root_dir%/Resources/Public/fonts/fontawesome-webfont.svg'
+            output: 'fonts/fontawesome-webfont.svg'
+        fontawesome-webfont-ttf:
+            inputs: '%kernel.root_dir%/Resources/Public/fonts/fontawesome-webfont.ttf'
+            output: 'fonts/fontawesome-webfont.ttf'
+        fontawesome-webfont-woff:
+            inputs: '%kernel.root_dir%/Resources/Public/fonts/fontawesome-webfont.woff'
+            output: 'fonts/fontawesome-webfont.woff'
     filters:
         cssrewrite: ~
         #closure:

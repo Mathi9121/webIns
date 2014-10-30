@@ -1,50 +1,67 @@
-/*********HEADER*******/
-header nav ul li a span.oi{
-	display: inline;
-	color: inherit;
-	cursor: inherit;
+/************ HTML BODY ***************/
+html, body{background-color: #f1f2f1}
+
+
+/************* HEADER ***************/
+header{
+	background-color: #ffffff;
+	height: 65px
+}
+header #logo{
+	height: 60px;
+	margin-left: 25px
+}
+header a.logo{
+	text-decoration: none;
+	line-height: 65px;
+	font-size: 25px;
+	font-variant: small-caps;
+	color: #E2001A;
 }
 
-
-/** Menu **/
-
-header nav.navbar a {
-	color: grey
-}
-header #user-img{
-	height:50px;width:50px;
-	display:inline-block;
-	line-height: 50px;
-	text-align:center;
-	background-color:rgba(200, 200, 200, 1);
-}
-nav #dropdownmenu ul li a {width: auto; height: auto; text-align: left}
-.navbar.navbar-right #dropdownmenu li{margin-left:0; float:none}
-.navbar.navbar-right #dropdownmenu a{display: block}
-
-
-
-/** positionnement **/
-#sidebar{
-	background-color: #F9F9F9;
-	margin-top: -50px
-}
-
-#sidebar .logo{display: block; margin: 0px auto 50px;  width:100%; max-width: 250px}
-
-#session-top{
-	padding-right: 25px;
-}
-.navbar a:hover {text-decoration:none;}
+/************* CONTENT ****************/
 #content{
 	padding: 10px 50px 0 0;
 }
+
+/************** sidebar *************/
+#sidebar{
+}
+
+#sidebar .logo{display: block; margin: 25px auto;  width:85%; max-width: 250px}
+
+#sidebar #user{
+	width:100%;
+}
+#sidebar #user span.user{
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	line-height:50px;
+	text-align:center;
+	margin-right: 5px;
+
+}
+#sidebar #user a{display:block;color: inherit}
+#sidebar #user span.caret{display:none;}
+#sidebar #user a:hover>span.caret{display:inline-block;}
+#sidebar #user a{text-decoration: none;}
+#sidebar #user ul{display:none; list-style:none;padding-left:0px; margin-left: 0px; background-color: #fcfcfc}
+
+#sidebar #user:hover>a{background-color: #fcfcfc}
+
+#sidebar i{margin-right: 5px}
+
+
+#sidebar hr{
+	width:80%
+}
+
 #sidebar nav{
-	padding-top: 25px;
+	margin-top: 50px
 }
-#sidebar nav ul li i{
-	margin-right:10px
-}
+
+
 
 
 #titre{
@@ -52,14 +69,13 @@ nav #dropdownmenu ul li a {width: auto; height: auto; text-align: left}
 	margin-bottom: 25px;
 	}
 
-
 #controls{}
+
+
 
 
 /** Styles **/
 table tr td{vertical-align:middle}
-
-#sidebar #session-side{display:none;}
 
 
 form select{
@@ -75,9 +91,7 @@ form select[multiple]{
 @media only screen and (max-width:767px){
 	#content{padding: 10px 20px;}
 	#header{text-align:center}
-	#header #session-top{display:none;}
-	#sidebar #session-side{display:block;}
-	#header a.logo{display:none;}
+
 	#header img.logo{margin-left: calc(100% - 160px); height: 40px}
 	#sidebar form, #sidebar .logo{display:none;}
 	#sidebar{padding-top: 0}
