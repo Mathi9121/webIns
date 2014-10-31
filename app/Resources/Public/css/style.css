@@ -1,29 +1,26 @@
 /************ HTML BODY ***************/
-html, body{background-color: #f1f2f1}
+/************************************/
+html, body{}
 
 
 /************* HEADER ***************/
+/************************************/
 header{
 	background-color: #ffffff;
-	height: 65px
+	height: 65px;
+	border-bottom: 2px solid #e52f23;
 }
-header #logo{
-	height: 60px;
-}
+/**** Logo****/
 header a.logo{
 	text-decoration: none;
 	line-height: 65px;
 	font-size: 25px;
 	font-variant: small-caps;
 }
-header a.logo span{
-	color: #E2001A;
-	background-color: #f2f2f2;
-	padding: 2px 8px;
-}
 
-/**** NAV TOGGLE****/
+/**** nav toggle****/
 header a#nav-toggle{color: #aaaaaa; padding: 0px 15px}
+header a#nav-toggle:hover{color: #e52f23}
 
 /**** USER ****/
 #user{padding: 0px 10px}
@@ -61,48 +58,66 @@ header a#nav-toggle{color: #aaaaaa; padding: 0px 15px}
 }
 
 
+/************** SIDEBAR *************/
+/************************************/
+#sidebar{
+	position: absolute;
+	width: 215px;
+	background-color: #f5f5f5;
+	border-right: 1px solid #d2d2d2;
+	height: 100%;
+	overflow: hidden;
+	padding-top: 50px
+}
+/***** Nav FIXED******/
+#sidebar .navigation-fixed{
+	width: 214px;
+}
+
 
 
 
 /************* CONTENT ****************/
+/************************************/
+#contentwrapper{width:100%}
 #content{
-	padding: 10px 50px 0 0;
+	margin-left: 215px;
+	background-color:#f9f9f9;
+	padding: 25px;
 }
 
-/************** sidebar *************/
-#sidebar{
-background-color: #f5f5f5; border-right: 1px solid #d2d2d2;
+/***** Panel ******/
+.panel{
+	background-color: #ffffff;
 }
-
-#sidebar .logo{display: block; margin: 25px auto;  width:85%; max-width: 250px}
-
-
-
-#sidebar i{margin-right: 5px}
-
-
-#sidebar hr{
-	width:80%
-}
-
-#sidebar nav{
-	margin-top: 50px
+.panel h3, panel h2{
+color: #e52f23;
+	padding: 0.5em 1.1em;
+	border-bottom: 1px solid #e52f23;
 }
 
 
-
-
+/***** titre ****/
 #titre{
-	border-bottom: 1px solid #f3f3f3;
-	margin-bottom: 25px;
-	}
+	margin: 15px 0 25px;
+	background-color: #ffffff;
+	border-left: 7px solid #e52f23;
+	padding: 4px 25px;
+}
 
+#titre h2{margin: 0px; color: #777777}
+
+/***** breadcrumbs ******/
+#titre nav.breadcrumbs{
+	margin-bottom: 0px
+}
+#titre nav.breadcrumbs a:hover {color: #e52f23; }
 #controls{}
 
 
 
 
-/** Styles **/
+/** CORRECTION KUBE **/
 table tr td{vertical-align:middle}
 
 
@@ -112,7 +127,7 @@ form select{
 form select[multiple]{
 	height: auto;
 }
-
+h2, h3, h4, h5, h6{color: #777777 }
 
 
 /************** MEDIA ******************/

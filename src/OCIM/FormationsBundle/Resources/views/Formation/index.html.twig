@@ -21,20 +21,22 @@ filter='cssrewrite' %}
 {% endblock %}
 
 {# Titres #}
-{% block title %} Formations{% endblock %}
+{% block title %}Formations{% endblock %}
 {% block titre %}Toutes les formations{% endblock %}
+{% block breadcrumbs %}
+<li>Formations</li>
+{% endblock %}
 
 {# Controls #}
 {% block controls %}
-<a href="{{ path('formation_new') }}" class="btn btn-green"><span class="oi" data-glyph="plus"></span> Nouvelle formation</a>
-<a href="#" class="btn btn-smaller toggleFiltres" data-tools="buttons" data-type="toggle">Filtrer</a>
+<a href="{{ path('formation_new') }}" class="btn btn-green btn-outline"><i class="fa fa-plus"></i>  Nouvelle formation</a>
+<a href="#" class="btn btn-outline btn-smaller toggleFiltres" data-tools="buttons" data-type="toggle">Filtrer</a>
 {% endblock %}
 
 {# CONTENT #}
 {% block body  %}
 
 {# filtres #}
-
 <div class="units-row units-padding filtres hide">
 <form class="forms" onsubmit="return false">
 
@@ -60,6 +62,8 @@ filter='cssrewrite' %}
 
 
 {# listes formations #}
+<div class="panel">
+<h3>Toutes les formations</h3>
 <table class="table-hovered width-100">
         <thead>
             <tr>
@@ -111,6 +115,7 @@ filter='cssrewrite' %}
         {% endfor %}
         </tbody>
     </table>
+</div>
 {% endblock %}
 
 

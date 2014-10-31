@@ -30,8 +30,8 @@
 	<div class="left">
 		<a href="#" id="nav-toggle"><i class="fa fa-bars fa-2x"></i></a>
 		<a href="{{path('home')}}" class="logo">
-			{% image '../app/Resources/Public/img/logo-ocim.png' %}
-				<img src="{{ asset_url }}" id="logo" alt="OCIM"/><span>Formations</span>
+			{% image '../app/Resources/Public/img/logo-header.png' %}
+				<img src="{{ asset_url }}" id="logo" alt="OCIM"/>
 			{% endimage %}
 		</a>
 	</div>
@@ -47,51 +47,63 @@
 	{# NAVIGATION MOBILE #}
 	<nav class="navbar navbar-right end">
 		<div class="navigation-toggle" data-tools="navigation-toggle" data-target="#sidebar">
-			<span>Menu<img src="{{ asset('../app/Resources/Public/img/logo-ocim.png') }}" class="logo" alt="OCIM"/></span>
+			<span>Menu<img src="{{ asset('../app/Resources/Public/img/logo-header.png') }}" class="logo" alt="OCIM"/></span>
 		</div>
 	</nav>
 </header>
 
-<div class="units-row">
-	<div id="sidebar" class="unit-20">
+<div id="page" class="group">
+	<div id="sidebar">
 		
 		<nav class="nav nav-stacked" data-tools="navigation-fixed">
 
 			<ul>
-				<li><a href="{{path('home')}}"><i class="oi" data-glyph="dashboard"></i>Tableau de bord</a></li>
-				<li><a href="{{path('formation')}}"><i class="oi" data-glyph="book"></i>Formations</a></li>
-				<li><a href="{{path('formule')}}"><i class="oi" data-glyph="tags"></i>Formules</a></li>
-				<li><a href="{{path('logistique')}}"><i class="oi" data-glyph="fork"></i>Logistique</a></li>
-				{# <li><a href="{{path('convention')}}"><i class="oi" data-glyph="script"></i>Conventions</a></li> #}
-				<li><a href="{{path('structures')}}"><i class="oi" data-glyph="home"></i>Structures</a></li>
-				<li><a href="{{path('personne')}}"><i class="oi" data-glyph="people"></i>Contacts</a></li>
-				<li><a href="{{path('documents')}}"><i class="oi" data-glyph="file"></i>Export et Gabarits</a></li>
+				<li><a href="{{path('home')}}"><i class="fa fa-tachometer"></i>Tableau de bord</a></li>
+				<li><a href="{{path('formation')}}"><i class="fa fa-graduation-cap"></i>Formations</a></li>
+				<li><a href="{{path('formule')}}"><i class="fa fa-cutlery"></i>Formules</a></li>
+				<li><a href="{{path('logistique')}}"><i class="fa fa-truck"></i>Logistique</a></li>
+				<li><a href="{{path('structures')}}"><i class="fa fa-university"></i>Structures</a></li>
+				<li><a href="{{path('personne')}}"><i class="fa fa-phone"></i>Contacts</a></li>
+				<li><a href="{{path('documents')}}"><i class="fa fa-files-o"></i>Export et Gabarits</a></li>
 			</ul>
 		</nav> 
 	</div>
 
-
-	<div role="main" id="content" class="unit-80 ">
-	
-	{% macro message(text, classes) %}
-		<div class="tools-message {{ classes|default('') }}">
-			{{text}}
-		</div>
-	{% endmacro %}
-	{% macro alert(text, classes) %}
-		<div class="tools-alert {{ classes|default('') }}">
-			{{text}}
-		</div>
-	{% endmacro %}
+	<div role="main" class="contentwrapper">
+	<div role="main" id="content">
+		{% macro message(text, classes) %}
+			<div class="tools-message {{ classes|default('') }}">
+				{{text}}
+			</div>
+		{% endmacro %}
+		{% macro alert(text, classes) %}
+			<div class="tools-alert {{ classes|default('') }}">
+				{{text}}
+			</div>
+		{% endmacro %}
 	
 		{% if block('titre') %}
 			<div id="titre" class="group">
-			<h1 class="left">{% block titre %}{% endblock %}</h1>
-			<div id="controls" class="group right">{% block controls %}{% endblock %}</div>
+				<div class="left">
+					<h2 class="">{% block titre %}{% endblock %}</h2>
+					{% if block('breadcrumbs') %}
+					<nav class="breadcrumbs">
+						<ul>
+							<li><a href="{{path('home')}}"><i class="fa fa-home"></i></a></li>
+							{% block breadcrumbs %}{% endblock %}
+						</ul>
+					</nav>
+					{% endif %}
+				</div>
+				<div id="controls" class="group right">{% block controls %}{% endblock %}</div>
 			</div>
 		{% endif %}
-		
-		{% block body %}{% endblock %}
+	
+	
+	{# contenu #}
+		{% block body %}
+		{% endblock %}
+	</div>
 	</div>
 </div>
 
