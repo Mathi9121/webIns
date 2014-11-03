@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-{% image '../app/Resources/Public/img/flamme.png' %}
+{% image '../app/Resources/public/img/flamme.png' %}
 	<link rel="shortcut icon" type="image/png" href="{{ asset_url }}" />
 {% endimage %}
 	
@@ -12,7 +12,7 @@
 
 <!-- STYLES -->
 	{% block stylesheets %}
-		{% stylesheets '%kernel.root_dir%/Resources/Public/css/*' filter='cssrewrite' %}
+		{% stylesheets '%kernel.root_dir%/Resources/public/css/*' filter='cssrewrite' %}
 			<link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset_url }}"/>
 		{% endstylesheets %}
 	{% endblock %}
@@ -30,7 +30,7 @@
 	<div class="left">
 		<a href="#" id="nav-toggle"><i class="fa fa-bars fa-2x"></i></a>
 		<a href="{{path('home')}}" class="logo">
-			{% image '../app/Resources/Public/img/logo-header.png' %}
+			{% image '../app/Resources/public/img/logo-header.png' %}
 				<img src="{{ asset_url }}" id="logo" alt="OCIM"/>
 			{% endimage %}
 		</a>
@@ -38,10 +38,12 @@
 	<div class="right">
 		<div id="user" class="">
 			<a href="#"><i class="fa fa-user fa-2x"></i><span class="username">{{app.user.prenom |capitalize}} {{app.user.nom |capitalize}}</span> <span class="caret"></span></a>
+			<nav class="nav nav-stacked">	
 				<ul>
-					<li><a href="{{path('user')}}"><i class="oi" data-glyph="people"></i>Gestion des utilisateurs</a></li>
-					<li><a href="{{ path('deconnexion') }}"><i class="oi" data-glyph="power-standby"></i>Deconnexion</a></li>
+					<li><a href="{{path('user')}}"><i class="fa fa-users"></i>Gestion des utilisateurs</a></li>
+					<li><a href="{{ path('deconnexion') }}"><i class="fa fa-power-off "></i>Deconnexion</a></li>
 				</ul>
+			</nav>
 		</div>
 	</div>
 	{# NAVIGATION MOBILE #}
@@ -52,24 +54,40 @@
 	</nav>
 </header>
 
+{# MENU TWIG #}
+{% set menu = [
+	{'route': 'home' ,'iconclass' : "fa fa-tachometer", 'menuText': 'Tableau de bord'},
+	{'route': 'formation' ,'iconclass' : "fa fa-graduation-cap", 'menuText': 'Formations'},
+	{'route': 'formule' ,'iconclass' : "fa fa-cutlery", 'menuText': 'Formules'},
+	{'route': 'logistique' ,'iconclass' : "fa fa-truck", 'menuText': 'Logistique'},
+	{'route': 'structures' ,'iconclass' : "fa fa-university", 'menuText': 'Structures'},
+	{'route': 'personne' ,'iconclass' : "fa fa-phone", 'menuText': 'Contacts'},
+	{'route': 'documents' ,'iconclass' : "fa fa-files-o", 'menuText': 'Export et gabarits'},
+] %}
+
+{% set pagevars = '' %}
+
+
 <div id="page" class="group">
 	<div id="sidebar">
 		
 		<nav class="nav nav-stacked" data-tools="navigation-fixed">
-
 			<ul>
-				<li><a href="{{path('home')}}"><i class="fa fa-tachometer"></i>Tableau de bord</a></li>
-				<li><a href="{{path('formation')}}"><i class="fa fa-graduation-cap"></i>Formations</a></li>
-				<li><a href="{{path('formule')}}"><i class="fa fa-cutlery"></i>Formules</a></li>
-				<li><a href="{{path('logistique')}}"><i class="fa fa-truck"></i>Logistique</a></li>
-				<li><a href="{{path('structures')}}"><i class="fa fa-university"></i>Structures</a></li>
-				<li><a href="{{path('personne')}}"><i class="fa fa-phone"></i>Contacts</a></li>
-				<li><a href="{{path('documents')}}"><i class="fa fa-files-o"></i>Export et Gabarits</a></li>
+				{% for item in menu %}
+					<li>
+						{% if app.request.attributes.get("_route") starts with item.route  %}
+							<span><i class="fa {{item.iconclass}}"></i> {{item.menuText}}</span>
+							{% set pagevars = item %}
+						{% else %}
+							<a href="{{path(item.route)}}"><i class="fa {{item.iconclass}}"></i> {{item.menuText}}</a>
+						{% endif %}
+					</li>
+				{% endfor %}
 			</ul>
-		</nav> 
+		</nav>
 	</div>
 
-	<div role="main" class="contentwrapper">
+	<div class="contentwrapper">
 	<div role="main" id="content">
 		{% macro message(text, classes) %}
 			<div class="tools-message {{ classes|default('') }}">
@@ -81,23 +99,33 @@
 				{{text}}
 			</div>
 		{% endmacro %}
-	
+
+		
+		
 		{% if block('titre') %}
 			<div id="titre" class="group">
 				<div class="left">
-					<h2 class="">{% block titre %}{% endblock %}</h2>
-					{% if block('breadcrumbs') %}
+				
+				<i class="icon {{pagevars.iconclass}} fa-2x"></i>
+				
+					<h2>{% block titre %}{% endblock %}</h2>
 					<nav class="breadcrumbs">
 						<ul>
 							<li><a href="{{path('home')}}"><i class="fa fa-home"></i></a></li>
-							{% block breadcrumbs %}{% endblock %}
+							<li><a href="{{path(pagevars.route)}}"> {{pagevars.menuText}}</a></li>
+							{% if block('breadcrumbs') %}{% block breadcrumbs %}{% endblock %}{% endif %}
 						</ul>
 					</nav>
-					{% endif %}
 				</div>
 				<div id="controls" class="group right">{% block controls %}{% endblock %}</div>
 			</div>
 		{% endif %}
+		
+		
+		
+		
+		
+		
 	
 	
 	{# contenu #}
@@ -115,11 +143,11 @@
 
 <!-- SCRIPTS -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="Public/js/jquery.js"><\/script>')</script>
+<script>window.jQuery || document.write('<script src="public/js/jquery.js"><\/script>')</script>
 {% block javascripts %}
 	{% javascripts 
-		'../app/Resources/Public/js/kube.min.js'
-		'../app/Resources/Public/js/main.js'
+		'../app/Resources/public/js/kube.min.js'
+		'../app/Resources/public/js/main.js'
 	%}
 		<script src="{{ asset_url }}"></script>
 	{% endjavascripts %}

@@ -40,20 +40,23 @@ assetic:
     #java: /usr/bin/java
     assets:
         FontAwesome-otf:
-            inputs: '%kernel.root_dir%/Resources/Public/fonts/FontAwesome.otf'
+            inputs: '%kernel.root_dir%/Resources/public/fonts/FontAwesome.otf'
             output: 'fonts/FontAwesome.otf'
         fontawesome-webfont-eot:
-            inputs: '%kernel.root_dir%/Resources/Public/fonts/fontawesome-webfont.eot'
+            inputs: '%kernel.root_dir%/Resources/public/fonts/fontawesome-webfont.eot'
             output: 'fonts/fontawesome-webfont.eot'
         fontawesome-webfont-svg:
-            inputs: '%kernel.root_dir%/Resources/Public/fonts/fontawesome-webfont.svg'
+            inputs: '%kernel.root_dir%/Resources/public/fonts/fontawesome-webfont.svg'
             output: 'fonts/fontawesome-webfont.svg'
         fontawesome-webfont-ttf:
-            inputs: '%kernel.root_dir%/Resources/Public/fonts/fontawesome-webfont.ttf'
+            inputs: '%kernel.root_dir%/Resources/public/fonts/fontawesome-webfont.ttf'
             output: 'fonts/fontawesome-webfont.ttf'
         fontawesome-webfont-woff:
-            inputs: '%kernel.root_dir%/Resources/Public/fonts/fontawesome-webfont.woff'
+            inputs: '%kernel.root_dir%/Resources/public/fonts/fontawesome-webfont.woff'
             output: 'fonts/fontawesome-webfont.woff'
+        images:
+            inputs: '%kernel.root_dir%/Resources/public/img/coin_rouge.png'
+            output: 'images/coin_rouge.png'
     filters:
         cssrewrite: ~
         #closure:

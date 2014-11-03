@@ -94,6 +94,18 @@ $.expr[":"].contains = $.expr.createPseudo(function(arg) {
     };
 });
 
+	//recherche par mot clef joli
+	$("a.recherche").click(function(e){
+		e.preventDefault();
+		$('#recherche').animate({width: 'auto'});
+		$('#recherche').focus();
+	});
+	$('#recherche').blur(function(){
+		$('#recherche').focusout();
+		$('#recherche').hide();
+	});
+
+	
 	// filtre par mot clé
 	$('#recherche').on('keyup', function(){
 		var recherche = $(this).val();
@@ -102,7 +114,9 @@ $.expr[":"].contains = $.expr.createPseudo(function(arg) {
 	});
 	
 	//rendre les filtres visibles
-	$('#controls a.toggleFiltres').on('click', function(){
-		$('.filtres').toggleClass('hide');
+	$('.panel .controls a.toggleFiltres').on('click', function(e){
+		e.preventDefault();
+		$(this).toggleClass('active');
+		$('.filtres').slideToggle();
 	});
 });

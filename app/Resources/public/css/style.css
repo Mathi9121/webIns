@@ -3,6 +3,17 @@
 html, body{}
 
 
+/******** COULEURS **********/
+/*
+color: #8A9808;
+color: #3B93E9;
+color: #e52f23;
+color: #D1E523;
+color: #981810;
+
+
+*/
+
 /************* HEADER ***************/
 /************************************/
 header{
@@ -48,13 +59,14 @@ header a#nav-toggle:hover{color: #e52f23}
 #user span.username{display: inline-block; height:50px; line-height: 50px}
 #user>a:hover>span.caret{display:inline-block;}
 #user:hover>a{ border: 1px solid #f2f2f2}
-#user ul{
+#user nav{
 	position: absolute;
 	display:none;
 	list-style:none;
 	padding-left:0px;
 	margin-left: 0px;
 	background-color: #fcfcfc;
+	white-space: nowrap;
 }
 
 
@@ -88,34 +100,70 @@ header a#nav-toggle:hover{color: #e52f23}
 
 /***** Panel ******/
 .panel{
+	background: url(images/coin_rouge.png) no-repeat;
 	background-color: #ffffff;
+	border-radiu:2px;
 }
-.panel h3, panel h2{
-color: #e52f23;
-	padding: 0.5em 1.1em;
-	border-bottom: 1px solid #e52f23;
+.panel .header{
+	border-bottom: 1px solid #f4f4f4;
+	line-height: 2em;
+	color: #777777
+}
+.panel .titre{
+	font-family: "Josefin Sans",sans-serif;
+	font-size: 1.5em;
+	margin-left: 20px;
+}
+.panel .controls{
+	padding-right: 10px;
+}
+.panel .controls a{
+	display:inline-block;
+	line-height: 2em;
+	vertical-align:middle;
+	color: #777777;
+	text-decoration:none;
+	padding: 0 5px;
+}
+.panel .controls a:hover{
+	color:#e52f23;
+}
+.panel .controls a.active{
+
 }
 
-
+.panel-body{
+	padding: 16px;
+}
 /***** titre ****/
 #titre{
-	margin: 15px 0 25px;
+	border-left: 50px solid #e52f23;
 	background-color: #ffffff;
-	border-left: 7px solid #e52f23;
-	padding: 4px 25px;
+	margin-bottom: 25px;
+	padding: 4px 0px 4px 10px;
 }
-
-#titre h2{margin: 0px; color: #777777}
+#titre i.icon{
+	position: absolute;
+	margin-left: -52px;
+	color: #f7f7f7;
+	margin-top: 8px;
+}
+#titre h2{margin: 0px;}
 
 /***** breadcrumbs ******/
+
 #titre nav.breadcrumbs{
-	margin-bottom: 0px
+	margin-bottom: 0px;
 }
 #titre nav.breadcrumbs a:hover {color: #e52f23; }
-#controls{}
 
+/**** controls ****/
+#controls{
 
+}
+ 
 
+ 
 
 /** CORRECTION KUBE **/
 table tr td{vertical-align:middle}

@@ -21,100 +21,106 @@ filter='cssrewrite' %}
 {% endblock %}
 
 {# Titres #}
-{% block title %}Formations{% endblock %}
+{% block title %} Formations{% endblock %}
 {% block titre %}Toutes les formations{% endblock %}
+{% block icon %}<i class="fa fa-graduation-cap fa-2x"></i>{% endblock %}
 {% block breadcrumbs %}
-<li>Formations</li>
+
 {% endblock %}
 
 {# Controls #}
 {% block controls %}
 <a href="{{ path('formation_new') }}" class="btn btn-green btn-outline"><i class="fa fa-plus"></i>  Nouvelle formation</a>
-<a href="#" class="btn btn-outline btn-smaller toggleFiltres" data-tools="buttons" data-type="toggle">Filtrer</a>
 {% endblock %}
 
 {# CONTENT #}
 {% block body  %}
 
-{# filtres #}
-<div class="units-row units-padding filtres hide">
-<form class="forms" onsubmit="return false">
-
-<div class="unit-70">
-	{# date #}
-	<div id="date">
-		<div id="datefilter"></div>
-		<div id="event-start" class="left"></div>
-		<div id="event-end" class="right"></div>
-	</div>
-</div>
-<div class="unit-30">
-	{# select #}
-		<select name="select_multi" id="selectfilter" class="width-100">
-			<option value="tous" selected>Tous</option>
-			{% for type in types %}
-			<option value="{{type.id}}">{{type.type}}</option>
-			{% endfor %}
-		</select>
-</div>
-</form>
-</div>
-
 
 {# listes formations #}
 <div class="panel">
-<h3>Toutes les formations</h3>
-<table class="table-hovered width-100">
-        <thead>
-            <tr>
-                <th>Intitulé</th>
-                <th>Lieu</th>
-                <th>Date</th>
-                <th colspan="2"><input type="search" class="width-100" placeholder="Rechercher dans les formations" id="recherche"/></th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for formation in formations %}
-            <tr data-idformation="{{formation.id}}" data-typeformation="{{formation.type.id}}" data-debutstamp="{{ formation.dateDebut|date("U") }}" data-finstamp="{{ formation.dateFin|date("U") }}" data-debut="{{ formation.dateDebut|date("d/m/Y") }}" data-fin="{{ formation.dateFin|date("d/m/Y") }}">
-                <td>{{ formation.intitule }} <span class="label" title="Durée de la formation">{{ formation._nbJours }} J</span></td>
-                <td>{{ formation.lieu }}</td>
-                <td>{{ formation.dateDebut|date("d/m/Y") }}</td>
-                <td>
-					<div class="group">
-						{% set spanclass = '' %}
-						{% set text = '' %}
-						{% for statut in formation._count %}
-							{% if statut.statut == 'en attente' %}
-								{% set spanclass = 'badge-yellow' %}
-								{% set text = 'Inscriptions en attente de validation' %}
-							{% endif %}
-							{% if statut.statut == 'accepté' %}
-								{% set spanclass = 'badge-green' %}
-								{% set text = 'Inscriptions validées' %}
-							{% endif %}
-							{% if statut.statut == 'annulé' %}
-								{% set spanclass = 'badge-red' %}
-								{% set text = "Nombre d'inscriptions annulées" %}
-							{% endif %}
-							<span title="{{ text }}" class="badge {{ spanclass }}">{{ statut.1 }}</span>
-						{% endfor %}
-					</div>
-				</td>
-                <td>
-					<div class="">
-						<a href="#" class="btn btn-smaller btn-white" data-tools="dropdown" data-target="#dropdown-{{loop.index}}"></a>
-						<ul id="dropdown-{{loop.index}}" class="dropdown">
-							<li><a href="{{ path('inscription', { 'idformation': formation.id }) }}"><span class="oi" data-glyph="people"></span> Incriptions</a></li>
-							<li><a href="{{ path('formation_show', { 'id': formation.id }) }}"><span class="oi" data-glyph="info"></span> Détails</a></li>
-							<li><a href=""><span class="oi" data-glyph="calendar"></span> Logistique</a></li>
-							<li><a href="{{ path('formation_edit', { 'id': formation.id }) }}"><span class="oi" data-glyph="pencil"></span> Modifier</a></li>
-						</ul>
-					</div>
-				</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<div class="header">
+		<span class="titre">Toutes les formations</span>
+			<span class="controls right group">
+				<a href="#" class="recherche"><i class="fa fa-search"></i></a><input type="text" class="" placeholder="Rechercher" id="recherche"/>
+				<a href="#" class="toggleFiltres"><i class="fa fa-filter"></i> Filtrer</a>
+			</span>
+	</div>
+	
+	{# filtres #}
+	<div class="units-row units-padding filtres hide">
+	<div class="unit-70">
+		{# date #}
+		<div id="date">
+			<div id="datefilter"></div>
+			<div id="event-start" class="left"></div>
+			<div id="event-end" class="right"></div>
+		</div>
+	</div>
+	<div class="unit-30">
+		{# select #}
+			<select name="select_multi" id="selectfilter" class="width-100">
+				<option value="tous" selected>Tous</option>
+				{% for type in types %}
+				<option value="{{type.id}}">{{type.type}}</option>
+				{% endfor %}
+			</select>
+	</div>
+	</div>
+
+<div class="panel-body">
+	<table class="table-hovered width-100">
+			<thead>
+				<tr>
+					<th>Intitulé</th>
+					<th>Lieu</th>
+					<th>Date</th>
+					<th colspan="2"></th>
+				</tr>
+			</thead>
+			<tbody>
+			{% for formation in formations %}
+				<tr data-idformation="{{formation.id}}" data-typeformation="{{formation.type.id}}" data-debutstamp="{{ formation.dateDebut|date("U") }}" data-finstamp="{{ formation.dateFin|date("U") }}" data-debut="{{ formation.dateDebut|date("d/m/Y") }}" data-fin="{{ formation.dateFin|date("d/m/Y") }}">
+					<td>{{ formation.intitule }} <span class="label" title="Durée de la formation">{{ formation._nbJours }} J</span></td>
+					<td>{{ formation.lieu }}</td>
+					<td>{{ formation.dateDebut|date("d/m/Y") }}</td>
+					<td>
+						<div class="group">
+							{% set spanclass = '' %}
+							{% set text = '' %}
+							{% for statut in formation._count %}
+								{% if statut.statut == 'en attente' %}
+									{% set spanclass = 'badge-yellow' %}
+									{% set text = 'Inscriptions en attente de validation' %}
+								{% endif %}
+								{% if statut.statut == 'accepté' %}
+									{% set spanclass = 'badge-green' %}
+									{% set text = 'Inscriptions validées' %}
+								{% endif %}
+								{% if statut.statut == 'annulé' %}
+									{% set spanclass = 'badge-red' %}
+									{% set text = "Nombre d'inscriptions annulées" %}
+								{% endif %}
+								<span title="{{ text }}" class="badge {{ spanclass }}">{{ statut.1 }}</span>
+							{% endfor %}
+						</div>
+					</td>
+					<td>
+						<div class="">
+							<a href="#" class="btn btn-smaller btn-white" data-tools="dropdown" data-target="#dropdown-{{loop.index}}"></a>
+							<ul id="dropdown-{{loop.index}}" class="dropdown">
+								<li><a href="{{ path('inscription', { 'idformation': formation.id }) }}"><span class="oi" data-glyph="people"></span> Incriptions</a></li>
+								<li><a href="{{ path('formation_show', { 'id': formation.id }) }}"><span class="oi" data-glyph="info"></span> Détails</a></li>
+								<li><a href=""><span class="oi" data-glyph="calendar"></span> Logistique</a></li>
+								<li><a href="{{ path('formation_edit', { 'id': formation.id }) }}"><span class="oi" data-glyph="pencil"></span> Modifier</a></li>
+							</ul>
+						</div>
+					</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+	</div>
 </div>
 {% endblock %}
 

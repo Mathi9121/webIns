@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	
 	$('#user a').click(function(){
-		$(this).next('ul').animate({ height: "toggle"}, 300);
+		$(this).next('nav').animate({ height: "toggle"}, 300);
 	});
 	
 	$("#nav-toggle").click(function(){
