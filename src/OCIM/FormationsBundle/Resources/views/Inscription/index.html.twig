@@ -201,9 +201,9 @@
 									{% if attribute(entity, 'getReponseByModeleId', [log.id]) %}
 										{% if log.typeReponse == 'bool' %}
 											{% if (attribute(entity, 'getReponseByModeleId', [log.id, log.typeReponse]) == '1') %}
-												<span class="oi" data-glyph="check"></span>
+												<i class="fa fa-check fa-2x"></i>
 											{% elseif (attribute(entity, 'getReponseByModeleId', [log.id, log.typeReponse]) == '0') %}
-												<span style="color: rgba(255,0,0,0.5)" class="oi" data-glyph="x"></span>
+												<i style="color: rgba(255,0,0,0.5)" class="fa fa-times fa-2x"></i>
 											{% endif %}
 										{% elseif log.typeReponse == 'text' %}
 											{{ (attribute(entity, 'getReponseByModeleId', [log.id, log.typeReponse]))}}

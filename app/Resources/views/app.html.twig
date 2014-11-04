@@ -58,6 +58,7 @@
 {% set menu = [
 	{'route': 'home' ,'iconclass' : "fa fa-tachometer", 'menuText': 'Tableau de bord'},
 	{'route': 'formation' ,'iconclass' : "fa fa-graduation-cap", 'menuText': 'Formations'},
+	{'route': 'inscription' ,'iconclass' : "fa fa-users", 'menuText': ''},
 	{'route': 'formule' ,'iconclass' : "fa fa-cutlery", 'menuText': 'Formules'},
 	{'route': 'logistique' ,'iconclass' : "fa fa-truck", 'menuText': 'Logistique'},
 	{'route': 'structures' ,'iconclass' : "fa fa-university", 'menuText': 'Structures'},
@@ -74,14 +75,16 @@
 		<nav class="nav nav-stacked" data-tools="navigation-fixed">
 			<ul>
 				{% for item in menu %}
-					<li>
-						{% if app.request.attributes.get("_route") starts with item.route  %}
-							<span><i class="fa {{item.iconclass}}"></i> {{item.menuText}}</span>
-							{% set pagevars = item %}
-						{% else %}
-							<a href="{{path(item.route)}}"><i class="fa {{item.iconclass}}"></i> {{item.menuText}}</a>
-						{% endif %}
-					</li>
+					{% if item.menuText != ""%}
+						<li>
+							{% if (app.request.attributes.get("_route") starts with item.route) %}
+								<span><i class="fa {{item.iconclass}}"></i> {{item.menuText}}</span>
+							{% else %}
+								<a href="{{path(item.route)}}"><i class="fa {{item.iconclass}}"></i> {{item.menuText}}</a>
+							{% endif %}
+						</li>
+					{% endif %}
+					{% if app.request.attributes.get("_route") starts with item.route %}{% set pagevars = item %}{% endif %}
 				{% endfor %}
 			</ul>
 		</nav>
@@ -112,7 +115,7 @@
 					<nav class="breadcrumbs">
 						<ul>
 							<li><a href="{{path('home')}}"><i class="fa fa-home"></i></a></li>
-							<li><a href="{{path(pagevars.route)}}"> {{pagevars.menuText}}</a></li>
+							{% if pagevars.menuText != ""%}<li><a href="{{path(pagevars.route)}}"> {{pagevars.menuText}}</a></li>{% endif %}
 							{% if block('breadcrumbs') %}{% block breadcrumbs %}{% endblock %}{% endif %}
 						</ul>
 					</nav>

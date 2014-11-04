@@ -107,7 +107,8 @@ class FormationController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('OCIMFormationsBundle:Formation')->find($id);
-
+		$entity->_count = $em->getRepository('OCIMFormationsBundle:Inscription')->countInscriptionsByFormation($id);
+		
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Formation entity.');
         }

@@ -23,6 +23,8 @@ $(document).ready(function(){
 		    'idreponse' : idreponse,
 			});
 		
+		// on met un icone dans la case pour montrer le chargement
+		$(this).html('<i class="fa fa-refresh fa-spin"></i>');
 		// on envoit pour enregistrement
 		enregistre(data, this);
 		
@@ -65,11 +67,11 @@ function enregistre(data, td){
 		if(msg[0].type == 'bool'){
 			if(msg[0].reponse){
 				$(td).attr('data-reponse', 1);
-				$(td).html('<span class="oi" data-glyph="check"></span>');
+				$(td).html('<i class="fa fa-check fa-2x"></i>');
 			}
 			else{
 				$(td).attr('data-reponse', 0);
-				$(td).html('<span style="color: rgba(255,0,0,0.5)" class="oi" data-glyph="x"></span>');
+				$(td).html('<i style="color: rgba(255,0,0,0.5)" class="fa fa-times fa-2x"></i>');
 			}
 		}
 		else{

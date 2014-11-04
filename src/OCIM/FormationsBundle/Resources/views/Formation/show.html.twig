@@ -1,95 +1,221 @@
 {% extends '::app.html.twig' %}
 
+{% block stylesheets %}
+{{parent()}}
+{% stylesheets 
+	'@OCIMFormationsBundle/Resources/public/css/formations.css'
+filter='cssrewrite' %}
+	<link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset_url }}"/>
+{% endstylesheets %}
+{% endblock %}
+
+{% block  javascripts %}
+{{parent()}}
+{% javascripts
+	'@OCIMFormationsBundle/Resources/public/js/Formation/jquery.nouislider.min.js'
+	"%kernel.root_dir%/Resources/public/js/Chart.min.js"
+	%}
+         <script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+<script>
+
+var couleurs = [];
+couleurs['en attente'] = 	"rgba(255,165,0, 0.3)";
+couleurs['accepté'] = 		"rgba(3, 207, 3,  0.3)";
+couleurs['annulé']	= 		"rgba(255, 54, 0, 0.3)";
+	
+	var dataStatus = [
+    {% for stat in entity._count %}
+		{
+			value: {{stat.1}},
+			color: couleurs['{{stat.statut}}'],
+			highlight: "",
+			label: "{{stat.statut}}"
+		},
+	{% endfor %}
+	];
+	var dataDates = {
+    labels: ["January", "February", "March", "April", "May", "June", "July"],
+    datasets: [
+        {
+            label: "My First dataset",
+            fillColor: "rgba(220,220,220,0.2)",
+            strokeColor: "rgba(220,220,220,1)",
+            pointColor: "rgba(220,220,220,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(220,220,220,1)",
+            data: [65, 59, 80, 81, 56, 55, 40]
+        },
+        {
+            label: "My Second dataset",
+            fillColor: "rgba(151,187,205,0.2)",
+            strokeColor: "rgba(151,187,205,1)",
+            pointColor: "rgba(151,187,205,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(151,187,205,1)",
+            data: [28, 48, 40, 19, 86, 27, 90]
+        }
+    ]
+};
+	var canvas1 = $("#statuts-inscriptions").get(0).getContext("2d");
+	var ratioInscriptions = new Chart(canvas1).Doughnut(dataStatus, {});
+	var canvas2 = $("#dates-inscriptions").get(0).getContext("2d");
+	var ratioInscriptions = new Chart(canvas2).Line(dataDates, {responsive: true, maintainAspectRatio: false});
+	
+</script>
+{% endblock %}
+
+
+{# Titres #}
+{% block title %} Formations{% endblock %}
+{% block titre %}Détail de la formation{% endblock %}
+{% block breadcrumbs %}
+	<li><span>{{entity.intitule}}</span></li>
+{% endblock %}
+
+{# Controls #}
+{% block controls %}
+<a href="{{ path('formation_edit', { 'id': entity.id }) }}" class="btn btn-green btn-outline"><i class="fa fa-pencil"></i></a>
+<div style='display:inline-block'>{{ form(delete_form) }}</div>
+{% endblock %}
+
+{# CONTENT #}
 {% block body -%}
 
+<div class="units-row">
+	
+	<div class="unit-60 panel">
+		<div class="header">
+			<span class="titre">Progression des inscriptions</span>
+			<span class="controls right group">
+				
+			</span>
+		</div>
+		<div class="panel-body">
+			<canvas id="dates-inscriptions" height="350"></canvas>
+		</div>
+	</div>
+	
+	<div class="unit-40 panel">
+		<div class="header">
+			<span class="titre">Statuts des inscriptions</span>
+			<span class="controls right group">
+				
+			</span>
+		</div>
+		<div class="panel-body">
+			<canvas id="statuts-inscriptions" height="400"></canvas>
+		</div>
+	</div>
+	
+</div>
 
-<h2><span class="oi" data-glyph="book"></span> {{ entity.intitule }}</h2>
-<hr/>
 
 <div class="units-row">
-	<div class="unit-60">
-		<table class="width-100">
-		<caption>Informations sur la formation</caption>
-		<tr>
-			<th><span class="oi" data-glyph="badge"></span> Intitulé</th>
-			<td>{{ entity.intitule }}</td>
-		</tr>
-		<tr>
-			<th><span class="oi" data-glyph="tag"></span> Type</th>
-			<td>{{ entity.type }}</td>
-		</tr>
-		<tr>
-			<th><span class="oi" data-glyph="map-marker"></span> Lieu</th>
-			<td>{{ entity.lieu }}</td>
-		</tr>
-		<tr>
-			<th><span class="oi" data-glyph="calendar"></span> Date</th>
-			<td>{{entity.dateText}}</td>
-		</tr>
-		<tr>
-			<th><span class="oi" data-glyph="calendar"></span> Date de début</th>
-			<td>{{ entity.dateDebut|date('d/m/Y') }}</td>
-		</tr>
-		<tr>
-			<th><span class="oi" data-glyph="calendar"></span> Date de fin</th>
-			<td>{{ entity.dateFin|date('d/m/Y') }}</td>
-		</tr>
-		<tr>
-			<th><span class="oi" data-glyph="timer"></span> Nombre d'heures</th>
-			<td>{{ entity.nbHeures }}</td>
-		</tr>
-		</table>
+	<div class="unit-60 panel">
+		<div class="header">
+			<span class="titre">Information sur la formation</span>
+				<span class="controls right group">
+					
+				</span>
+		</div>
+		
+		<div class="panel-body">
+			<table class="width-100 ">
+			<tr>
+				<th><i class="fa fa-graduation-cap"></i> Intitulé</th>
+				<td>{{ entity.intitule }}</td>
+			</tr>
+			<tr>
+				<th><i class="fa fa-cube"></i> Type</th>
+				<td>{{ entity.type }}</td>
+			</tr>
+			<tr>
+				<th><i class="fa fa-map-marker"></i> Lieu</th>
+				<td>{{ entity.lieu }}</td>
+			</tr>
+			<tr>
+				<th><i class='fa fa-calendar'></i> Date</th>
+				<td>{{entity.dateText}}</td>
+			</tr>
+			<tr>
+				<th><i class='fa fa-calendar'></i> Date de début</th>
+				<td>{{ entity.dateDebut|date('d/m/Y') }}</td>
+			</tr>
+			<tr>
+				<th><i class='fa fa-calendar'></i> Date de fin</th>
+				<td>{{ entity.dateFin|date('d/m/Y') }}</td>
+			</tr>
+			<tr>
+				<th><i class="fa fa-tachometer"></i> Nombre d&apos;heures</th>
+				<td>{{ entity.nbHeures }}</td>
+			</tr>
+			</table>
+		</div>
 	</div>
+	
 	<div class="unit-40">
-		<table class="width-100">
-			<caption>Formules liées à la formation</caption>
-			<thead>
-				<tr>
-					<th>Description</th>
-					<th>Tarif</th>
-					<th colspan="3">Logistique</th>
-				</tr>
-			</thead>
-			<tbody>
-			{% for formule in formules %}
-				<tr>
-					<td>{{ formule.description }}</td>
-					<td>{{ formule.tarif}}{% if formule.tarif|number_format %}€{% endif %}</td>
-					<td>
-						{% if formule.midi %}
-							<strong>Midi</strong>
-						{% else %}
-							<small class="color-gray-light"><del>Midi</del></small>
-						{% endif%}
-					</td>
-					<td>
-						{% if formule.soir %}
-							<strong>Soir</strong>
-						{% else %}
-							<small class="color-gray-light"><del>Soir</del></small>
-						{% endif%}
-					</td>
-					<td>
-						{% if formule.nuit %}
-							<strong>Nuit</strong>
-						{% else %}
-							<small class="color-gray-light"><del>Nuit</del></small>
-						{% endif%}
-					</td>
-				</tr>
-			{% endfor %}
-			</tbody>
-		</table>
+	<div class="panel">
+		<div class="header">
+			<span class="titre">Formules liées</span>
+				<span class="controls right group">
+					
+				</span>
+		</div>
+		<div class="panel-body">
+				{% for formule in formules %}
+						<div data-tools="accordion">
+							<a href="#panel-{{ formule.id }}" class="accordion-title">{{ formule.description }}</a>
+							<div id="panel-{{ formule.id }}" class="accordion-panel">
+								
+								<ul class="blocks-4 details-formules" >
+									<li><i class="fa fa-eur fa-2x"></i>{{ formule.tarif}}</li>
+
+									{% if formule.midi %}
+										<li><i class="fa fa-cutlery fa-2x"></i>Midi</li>
+									{% else %}
+										<li class="noncompris"><del><i class="fa fa-cutlery fa-2x"></i>Midi</del></li>
+									{% endif%}
+									{% if formule.soir %}
+										<li><i class="fa fa-cutlery fa-2x"></i>Soir</li>
+									{% else %}
+										<li class="noncompris"><del><i class="fa fa-cutlery fa-2x"></i>Soir</del></li>
+									{% endif%}
+
+									{% if formule.nuit %}
+										<li><i class="fa fa-moon-o fa-2x"></i>Nuit</li>
+									{% else %}
+										<li class="noncompris"><del><i class="fa fa-moon-o fa-2x"></i>Nuit</del></li>
+									{% endif%}
+								</ul>
+								<span class="btn-group width-100 text-centered">
+									<a href="{{path('formule_edit', {'id': formule.id})}}" class="btn btn-blue btn-small"><i class="fa fa-pencil"></i> Modifier la formule</a>
+									<a href="" class="btn btn-red btn-small"><i class="fa fa-times"></i></a>
+								</span>
+							</div>
+						</div>
+							
+				{% endfor %}
+			<br/>
+			<a href="" class="btn width-100"><i class="fa fa-plus"></i> Ajouter une formule</a>
+		</div>
+	</div>
+	
+	<p class="text-centered" style="margin-top: 70px;">
+		<a href="{{path('inscription', {'idformation': entity.id})}}" class="btn btn-green btn-big"><i class="fa fa-users"></i> Consulter les inscriptions à cette formation</a>
+	</p>
 	</div>
 </div>
 
 <hr/>
 <div class="group">
 	<div class="left">
-		<a href="{{ path('formation') }}" class="btn"><span class="oi" data-glyph="arrow-thick-left"></span> Retour à la liste</a>
+		<a href="{{ path('formation') }}" class="btn">Retour à la liste</a>
 	</div>
 	<div class="right">
-		<a href="{{ path('formation_edit', { 'id': entity.id }) }}" class="btn"><span class="oi" data-glyph="pencil"></span> Modifier</a>
+		<a href="{{ path('formation_edit', { 'id': entity.id }) }}" class="btn">Modifier</a>
 		<div style='display:inline-block'>{{ form(delete_form) }}</div>
 	</div>
 </div>
