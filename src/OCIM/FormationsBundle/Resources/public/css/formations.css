@@ -26,6 +26,22 @@ label.recherche>i{
 	width: 160px;
 
 }
+.filtres{
+border-bottom: 1px solid #f4f4f4
+}
+
+tbody tr.titre-formation{
+	cursor: pointer;
+}
+
+tbody tr td span.fa-conteneur{
+	width: 15px;
+	display: inline-block;
+}
+tbody tr.selected *{
+	font-weight: 700;
+	color: #e52f23;
+}
 
 /******** Détails formation **********/
 

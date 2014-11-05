@@ -26,8 +26,8 @@ function setDate( value ){
 
 
 $(document).ready(function(){
-var dateMin = parseInt($("tbody>tr:first-child").attr("data-debutstamp")) * 1000;
-var dateMax = parseInt($("tbody>tr:last-child").attr("data-finstamp")) * 1000;
+var dateMin = parseInt($("tbody>tr.titre-formation:first-child").attr("data-debutstamp")) * 1000;
+var dateMax = parseInt($("tbody>tr.titre-formation").last().attr("data-finstamp")) * 1000;
 
 	$("#datefilter").noUiSlider({
 // Create two timestamps to define a range.
@@ -108,4 +108,29 @@ $.expr[":"].contains = $.expr.createPseudo(function(arg) {
 		$(this).toggleClass('active');
 		$('.filtres').slideToggle();
 	});
+	
+	
+	// affichage des infos quand click sur une ligne (tr)
+	$('tbody tr.titre-formation').hover(function(){
+		$(this).children('td').first().find('i.fa.fa-angle-right').toggleClass("hide");
+	}).click(function(){
+
+		$('tbody tr td').css("border-bottom", '');
+		$('tbody tr.details-formation').hide();
+		$('tbody tr.titre-formation').not(this).removeClass('selected');
+		$("tbody tr").css("background-color", '');
+		
+		
+		if( $(this).is('.selected') == false){
+			$(this).next('tr.details-formation').slideToggle();
+			$(this).addClass('selected');
+			$(this).find("td").css("border-bottom","0");
+			$(this).add($(this).next('tr.details-formation')).css("background-color", '#F4F4F4');
+		}
+		else{
+			$('tbody tr.titre-formation').removeClass('selected');
+		}
+	});
+	
+	
 });

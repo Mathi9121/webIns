@@ -48,40 +48,40 @@ filter='cssrewrite' %}
 	</div>
 	
 	{# filtres #}
-	<div class="units-row units-padding filtres hide">
-	<div class="unit-70">
-		{# date #}
-		<div id="date">
-			<div id="datefilter"></div>
-			<div id="event-start" class="left"></div>
-			<div id="event-end" class="right"></div>
+	<div class="units-row end units-padding filtres hide">
+		<div class="unit-70">
+			{# date #}
+			<div id="date">
+				<div id="datefilter"></div>
+				<div id="event-start" class="left"></div>
+				<div id="event-end" class="right"></div>
+			</div>
 		</div>
-	</div>
-	<div class="unit-30">
-		{# select #}
-			<select name="select_multi" id="selectfilter" class="width-100">
-				<option value="tous" selected>Tous</option>
-				{% for type in types %}
-				<option value="{{type.id}}">{{type.type}}</option>
-				{% endfor %}
-			</select>
-	</div>
+		<div class="unit-30">
+			{# select #}
+				<select name="select_multi" id="selectfilter" class="width-100">
+					<option value="tous" selected>Tous</option>
+					{% for type in types %}
+					<option value="{{type.id}}">{{type.type}}</option>
+					{% endfor %}
+				</select>
+		</div>
 	</div>
 
 <div class="panel-body">
 	<table class="table-hovered width-100">
 			<thead>
 				<tr>
-					<th>Intitulé</th>
-					<th>Lieu</th>
-					<th>Date</th>
-					<th colspan="2"></th>
+					<th><i class="fa fa-graduation-cap"></i> Intitulé</th>
+					<th><i class="fa fa-map-marker"></i> Lieu</th>
+					<th><i class="fa fa-calendar"></i> Dates</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
 			{% for formation in formations %}
-				<tr data-idformation="{{formation.id}}" data-typeformation="{{formation.type.id}}" data-debutstamp="{{ formation.dateDebut|date("U") }}" data-finstamp="{{ formation.dateFin|date("U") }}" data-debut="{{ formation.dateDebut|date("d/m/Y") }}" data-fin="{{ formation.dateFin|date("d/m/Y") }}">
-					<td>{{ formation.intitule }} <span class="label" title="Durée de la formation">{{ formation._nbJours }} J</span></td>
+				<tr class="titre-formation" data-idformation="{{formation.id}}" data-typeformation="{{formation.type.id}}" data-debutstamp="{{ formation.dateDebut|date("U") }}" data-finstamp="{{ formation.dateFin|date("U") }}" data-debut="{{ formation.dateDebut|date("d/m/Y") }}" data-fin="{{ formation.dateFin|date("d/m/Y") }}">
+					<td><span class="fa-conteneur"><i class="fa fa-angle-right hide"></i></span>{{ formation.intitule }} <span class="label right" title="Durée de la formation">{{ formation._nbJours }}J</span></td>
 					<td>{{ formation.lieu }}</td>
 					<td>{{ formation.dateDebut|date("d/m/Y") }}</td>
 					<td>
@@ -105,18 +105,23 @@ filter='cssrewrite' %}
 							{% endfor %}
 						</div>
 					</td>
-					<td>
-						<div class="">
-							<a href="#" class="btn btn-smaller btn-white" data-tools="dropdown" data-target="#dropdown-{{loop.index}}"></a>
-							<ul id="dropdown-{{loop.index}}" class="dropdown">
-								<li><a href="{{ path('inscription', { 'idformation': formation.id }) }}"><span class="oi" data-glyph="people"></span> Incriptions</a></li>
-								<li><a href="{{ path('formation_show', { 'id': formation.id }) }}"><span class="oi" data-glyph="info"></span> Détails</a></li>
-								<li><a href=""><span class="oi" data-glyph="calendar"></span> Logistique</a></li>
-								<li><a href="{{ path('formation_edit', { 'id': formation.id }) }}"><span class="oi" data-glyph="pencil"></span> Modifier</a></li>
-							</ul>
+				</tr>
+				
+				{# details #}
+				<tr class="details-formation hide">
+					<td colspan="4">
+						<div class="units-row">
+							
 						</div>
+						<span class="btn-group">
+								<a class="btn small" href="{{ path('inscription', { 'idformation': formation.id }) }}"><i class="fa fa-users"></i><br/>Incriptions</a>
+								<a class="btn small" href="{{ path('formation_show', { 'id': formation.id }) }}"><i class="fa fa-info"></i><br/>Détails</a>
+								<a class="btn small" href="#"><i class="fa fa-truck"></i><br/>Logistique</a>
+								<a class="btn small" href="{{ path('formation_edit', { 'id': formation.id }) }}"><i class="fa fa-pencil"></i><br/>Modifier</a>
+							</span>
 					</td>
 				</tr>
+				
 			{% endfor %}
 			</tbody>
 		</table>
