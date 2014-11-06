@@ -65,9 +65,9 @@ var dateMax = parseInt($("tbody>tr.titre-formation").last().attr("data-finstamp"
 	
 	// filtre par date
 	$("#datefilter").change(function(){
-		$("tbody tr").css("display", "table-row");
+		$("tbody tr.titre-formation").css("display", "table-row");
 		$('.filtres select option').eq(0).prop('selected', true);
-		$("tbody tr").filter(function(index){
+		$("tbody tr.titre-formation").filter(function(index){
 			return ($("#datefilter").val()[0] > $(this).attr("data-debutstamp")*1000) || ($("#datefilter").val()[1] < $(this).attr("data-debutstamp")*1000)
 		}).css("display", "none");
 	});
@@ -83,7 +83,7 @@ var dateMax = parseInt($("tbody>tr.titre-formation").last().attr("data-finstamp"
 						}).css("display", "table-row");
 					}
 					else {
-						$("tbody tr").css("display", "table-row");
+						$("tbody tr.titre-formation").css("display", "table-row");
 					}
 			});
 	});
