@@ -5,10 +5,18 @@
 {% block titre %}Logistique des formations{% endblock %}
 
 {% block body -%}
-
+<div class="panel">
+	<div class="header">
+		<span class="titre">Liste des questions concernant la logistique</span>
+		<span class="controls right group">
+			
+		</span>
+	</div>
+	<div class="panel-body">
+	
 	{% for entity in entities %}
 		<div class="accordion" data-tools="accordion">
-			<a href="#accordion-{{entity.id}}" class="accordion-title"><span class="oi" data-glyph="book"></span> {{ entity.intitule }}</a>
+			<a href="#accordion-{{entity.id}}" class="accordion-title"><span class="oi" data-glyph="book"></span> {{ entity.intitule }} <span class="right">{{ entity.modeles|length }}</span></a>
 			<div id="accordion-{{entity.id}}" class="accordion-panel">
 				
 				
@@ -26,14 +34,14 @@
 							<tr>
 							<th><abbr title="{{ff.formule.tarif}} - {{ff.formule.description|capitalize}}">Formule {{ff.id}}</abbr></th>
 							{% for modele in entity.modeles %}
-								{% if ff in modele.formationformule %}<td class="text-centered" style="background-color: #f6f6f6"><span class="oi" data-glyph="check"></td>{% else %}<td></td>{% endif %}
+								{% if ff in modele.formationformule %}<td class="text-centered" style="background-color: #f6f6f6"><i class="fa fa-check"></i></td>{% else %}<td></td>{% endif %}
 							{% endfor %}
 							</tr>
 						{% endfor %}
 							<tr>
 								<th><abbr title="Logistique concerant les intervenants">Intervenants</abbr></th>
 								{% for modele in entity.modeles %}
-									{% if modele.formation %}<td class="text-centered" style="background-color: #f6f6f6"><span class="oi" data-glyph="check"></td>{% else %}<td></td>{% endif %}
+									{% if modele.formation %}<td class="text-centered" style="background-color: #f6f6f6"><i class="fa fa-check"></i></td>{% else %}<td></td>{% endif %}
 								{% endfor %}
 							</tr>
 					</table>
@@ -54,7 +62,7 @@
 							</p>
 						</div>
 						<div class="unit-30">
-							<a href="{{path('logistique_edit', {'idformation':entity.id, 'generation': 'generate'})}}" class="btn btn-green"><span class="oi" data-glyph="fork"></span> Générer la logistique</a>
+							<a href="{{path('logistique_edit', {'idformation':entity.id, 'generation': 'generate'})}}" class="btn btn-green"><i class="fa fa-truck"></i> Générer la logistique</a>
 						</div>
 						</div>
 					{% endif %}
@@ -64,5 +72,6 @@
 			</div>
 		</div>
 	{% endfor %}
-
+</div>
+</div>
 {% endblock %}

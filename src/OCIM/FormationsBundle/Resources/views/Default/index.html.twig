@@ -1,5 +1,6 @@
 {% extends "::app.html.twig" %}
 
+
 {% block stylesheets %}
 {{parent()}}
 {% stylesheets '@OCIMFormationsBundle/Resources/public/css/accueil.css' filter='cssrewrite' %}
@@ -7,107 +8,137 @@
 {% endstylesheets %}
 {% endblock %}
 
-{% block title %}Bonjour {{app.user.username|capitalize}} !{% endblock %}
+{#
+{% block  javascripts %}
+{{parent()}}
+{% javascripts
+
+	%}
+         <script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+{% endblock %} #}
+
+{# Titres #}
+{% block title %}Accueil{% endblock %}
+{% block titre %}Bonjour {{app.user.username|capitalize}} !{% endblock %}
+
+
+{# Controls #}
+{% block controls %}
+{% endblock %}
+
+
+
 
 
 {% block body  %}
-<h1>Bonjour {{app.user.username|capitalize}} !</h1>
-<hr/>
+
 
 <div class="units-row units-mobile-33" id="indicateurs">
-	<div class="unit-20">
-		<div class="units-row end">
-			<div class="left">
-				<span class="oi" data-glyph="book"></span>
-			</div>
-			<span class="right count">{{countFormations}}</span>
+	<div class="unit-25 group">
+		<i class="fa fa-graduation-cap fa-3x left"></i>
+		<div class="count-container left">
+			<p>
+				<span class="count">{{countFormations}}</span>
+				<span class="nomcount">Formations</span>
+			</p>
 		</div>
-		<div class="right">Formations</div>
 	</div>
-	<div class="unit-20">
-		<div class="units-row end">
-			<div class="left">
-				<span class="oi" data-glyph="tag"></span>
-			</div>
-			<span class="right count">{{countFormules}}</span>
+	
+	<div class="unit-25 group">
+		<i class="fa fa-cutlery fa-3x left"></i>
+		<div class="count-container left">
+			<p>
+				<span class="count">{{countFormules}}</span>
+				<span class="nomcount">Formules</span>
+			</p>
 		</div>
-		<div class="right">Formules</div>
 	</div>
-	<div class="unit-20">
-		<div class="units-row end">
-			<div class="left">
-				<span class="oi" data-glyph="people"></span>
-			</div>
-			<span class="right count">{{countInscriptions}}</span>
+	
+	<div class="unit-25 group">
+		<i class="fa fa-users fa-3x left"></i>
+		<div class="count-container left">
+			<p>
+				<span class="count">{{countInscriptions}}</span>
+				<span class="nomcount">Inscriptions</span>
+			</p>
 		</div>
-		<div class="right">Inscriptions</div>
 	</div>
-	<div class="unit-20">
-		<div class="units-row end">
-			<div class="left">
-				<span class="oi" data-glyph="chat"></span>
-			</div>
-			<span class="right count">10</span>
+	
+	<div class="unit-25 group">
+		<i class="fa fa-files-o fa-3x left"></i>
+		<div class="count-container left">
+			<p>
+				<span class="count">{{countTemplate}}</span>
+				<span class="nomcount">Gabarits</span>
+			</p>
 		</div>
-		<div class="right">Messages</div>
-	</div>
-	<div class="unit-20">
-		<div class="units-row end">
-			<div class="left">
-				<span class="oi" data-glyph="file"></span>
-			</div>
-			<span class="right count">{{countTemplate}}</span>
-		</div>
-		<div class="right">Gabarits</div>
 	</div>
 </div>
 
+
 <div class="units-row">
-	<div class="unit-60" id="formations">
-		<h3>Formations à venir</h3>
-		<table class="table-hovered">
-			<tbody>
-				{% for formation in formations %}
-				<tr>
-				<td>{{formation.intitule}}</td>
-				<td><div class="group">
-						{% set spanclass = '' %}
-						{% set text = '' %}
-						{% for statut in formation._count %}
-							{% if statut.statut == 'en attente' %}
-								{% set spanclass = 'badge-yellow' %}
-								{% set text = 'Inscriptions en attente de validation' %}
-							{% endif %}
-							{% if statut.statut == 'accepté' %}
-								{% set spanclass = 'badge-green' %}
-								{% set text = 'Inscriptions validées' %}
-							{% endif %}
-							{% if statut.statut == 'annulé' %}
-								{% set spanclass = 'badge-red' %}
-								{% set text = "Nombre d'inscriptions annulées" %}
-							{% endif %}
-							<span title="{{ text }}" class="badge {{ spanclass }}">{{ statut.1 }}</span>
-						{% endfor %}
-					</div></td>
-				</tr>
-				{% endfor %}
-			</tbody>
-		</table>
+	<div class="unit-60 panel" id="formations">
+		<div class="header">
+			<span class="titre">Formations à venir</span>
+				<span class="controls right group">
+					
+				</span>
+		</div>
+		
+		<div class="panel-body">
+			<table class="table-hovered">
+				<tbody>
+					{% for formation in formations %}
+					<tr>
+					<td>{{formation.intitule}}</td>
+					<td><div class="group">
+							{% set spanclass = '' %}
+							{% set text = '' %}
+							{% for statut in formation._count %}
+								{% if statut.statut == 'en attente' %}
+									{% set spanclass = 'badge-yellow' %}
+									{% set text = 'Inscriptions en attente de validation' %}
+								{% endif %}
+								{% if statut.statut == 'accepté' %}
+									{% set spanclass = 'badge-green' %}
+									{% set text = 'Inscriptions validées' %}
+								{% endif %}
+								{% if statut.statut == 'annulé' %}
+									{% set spanclass = 'badge-red' %}
+									{% set text = "Nombre d'inscriptions annulées" %}
+								{% endif %}
+								<span title="{{ text }}" class="badge {{ spanclass }}">{{ statut.1 }}</span>
+							{% endfor %}
+						</div></td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
 	</div>
-	<div class="unit-40" id="inscriptions">
-		<h3>10 dernières inscriptions</h3>
-		<table class="">
-		{% for inscription in inscriptions %}
-			<tr>
-				<td>
-					{{inscription.nom|capitalize}} {{inscription.prenom|capitalize}}
-				</td>
-				<td>
-					<span class="right color-gray-30">{{inscription.dateInscription|date('d/m/Y')}}</span>
-				</td>
-			</tr>
-		{% endfor %}
-		</table>
+	<div class="unit-40 panel" id="inscriptions">
+		<div class="header">
+			<span class="titre">10 derniers inscrits</span>
+				<span class="controls right group">
+					
+				</span>
+		</div>
+		
+		<div class="panel-body">
+			<table class="table-flat table-hovered">
+			{% for inscription in inscriptions %}
+				<tr>
+					<td>
+						{{inscription.nom|capitalize}} {{inscription.prenom|capitalize}}
+					</td>
+					<td>
+						<span class="right color-gray-30">{{inscription.dateInscription|date('d/m/Y')}}</span>
+					</td>
+				</tr>
+			{% endfor %}
+			</table>
+		</div>
 	</div>
 </div>
 {% endblock  %}

@@ -18,7 +18,7 @@ $(document).ready(function(){
 			var form = modele.replace(/__name__/g, place.children('ul').length);
 		}
 		place.append(form);
-		addTagFormDeleteLink(place.find('form ul').last().find('li').last());
+		addTagFormDeleteLink(place.find('ul').last().find('li').last());
 		setOrdreUl();
 	});
 
@@ -27,18 +27,18 @@ $(document).ready(function(){
     });
 	
 	function addTagFormDeleteLink($endroit) {
-    var $removeFormA = $('<a href="#" class="btn btn-smaller"><span class="oi" data-glyph="trash"></span></a>');
-    $endroit.append($removeFormA);
+		var $removeFormA = $('<a href="#" class="btn btn-smaller btn-red btn-outline"><i class="fa fa-times"></i></a>');
+		$endroit.append($removeFormA);
 
-    $removeFormA.on('click', function(e) {
-        e.preventDefault();
-        $endroit.parent().remove();
-		});
+		$removeFormA.on('click', function(e) {
+			e.preventDefault();
+			$endroit.parent().remove();
+			});
 	}
 	
 	function setOrdreUl(){
 		$.each($('#place ul'), function(i, n){
-			$(this).find('li').first().html("<span class='oi' data-glyph='move'></span>");
+			$(this).find('li').first().html("<i class='fa fa-arrows'></i>");
 			$(this).find('input.ordreModeles').val(i);
 		})
 	}

@@ -1,4 +1,8 @@
 #place ul{
 	background-color: #f6f6f6;
-	padding: 10px 25px;
+	display:table;
+}
+
+#place ul li:first-of-type {
+	background-color: red;padding: 15px
 }

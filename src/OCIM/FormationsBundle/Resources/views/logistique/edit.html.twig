@@ -25,23 +25,40 @@
 {% endblock %}
 
 {% block body -%}
-	<div class="units-row"><a href="#" class="btn ajoutPrototype"><span class="oi" data-glyph="plus"></span> Ajouter un champ</a></div>
+	
+
 
 {{form_start(edit_form)}}
-<div id="place">
-	{% for modele in edit_form.modeles %}
-		<ul class="forms-inline-list" data-prototype="{% filter escape %}{% include 'OCIMFormationsBundle:logistique:prototypeFormModeleLogistique.html.twig' with {'form': edit_form.modeles.vars.prototype} %}{% endfilter %}">
-			{{ form_widget(modele.ordre) }}
-			<li></li>
-			<li>{{ form_widget(modele.date) }}</li>
-			<li>{{ form_widget(modele.description) }}</li>
-			<li>{{ form_widget(modele.typeReponse) }}</li>
-			<li>{{ form_widget(modele.formationFormule) }}</li>
-			<li>{{ form_widget(modele.intervenant) }}</li>
-			<li></li>
-		</ul>
-	{% endfor %}
+<div class="panel">
+	<div class="header">
+		<span class="titre">Liste des questions concernant la logistique</span>
+		<span class="controls right group">
+			<a href="#" class="btn ajoutPrototype"><i class="fa fa-plus"></i> Ajouter une question</a>
+		</span>
+	</div>
+	<div class="panel-body">
+		<div class="units-row">
+			<div class="unit-60" id="place">
+				{% for modele in edit_form.modeles %}
+					<ul class="forms-inline-list" data-prototype="{% filter escape %}{% include 'OCIMFormationsBundle:logistique:prototypeFormModeleLogistique.html.twig' with {'form': edit_form.modeles.vars.prototype} %}{% endfilter %}">
+						{{ form_widget(modele.ordre) }}
+						<li></li>
+						<li>{{ form_widget(modele.date) }}</li>
+						<li>{{ form_widget(modele.description) }}</li>
+						<li>{{ form_widget(modele.typeReponse) }}</li>
+						<li>{{ form_widget(modele.formationFormule) }}</li>
+						<li>{{ form_widget(modele.intervenant) }}</li>
+						<li></li>
+					</ul>
+				{% endfor %}
+			</div>
+			<div class="unit-40">
+				<p>Coucou </p>
+			</div>
+		</div>
+	</div>
 </div>
+
 <hr/>
 <div class="group">
 	<div class="left"><a href="{{ path('logistique') }}" class="btn oi arrow-left" data-glyph="arrow-left"> Retour</a></div>

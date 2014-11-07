@@ -29,15 +29,20 @@ class ModeleLogistiqueType extends AbstractType
             ->add('date', 'date', array(
 				'widget' => 'single_text',
 				'format' => 'dd/MM/yyyy',
+				'attr' => array('placeholder'=>'JJ/MM/AAAA', 'class'=>'datepicker'),
 				'required'=> false,
 			))
-            ->add('description')
+            ->add('description', 'text', array(
+				'attr' => array('placeholder' => "Description")
+			))
             ->add('typeReponse', 'choice', array(
 				'choices'   => array(
 					'text'	=> 'Texte',
 					'bool'	=> 'Oui/Non',
 					'dateTime'	=> 'Date/Heure',
-				)
+				),
+				'empty_value' => 'Type de réponse',
+				'required' => true,
 			))
 			->add('formationFormule', 'entity', array(
 				'class' => 'OCIM\FormationsBundle\Entity\formationFormule',

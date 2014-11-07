@@ -1,5 +1,8 @@
 $(document).ready(function(){
 
+//input date
+$('input.datepicker').wrap('<div class="input-groups"></div>').before('<span class="input-prepend"><i class="fa fa-calendar"></i></span>');
+
 var place = $('#ocim_formationsbundle_formation_formationFormule');
 var modele = place.attr('data-prototype');
 
@@ -15,7 +18,7 @@ var modele = place.attr('data-prototype');
     });
 	
 	function addTagFormDeleteLink($endroit) {
-    var $removeFormA = $('<span class="input-append"><a href="#" class=""><span class="oi" data-glyph="delete"></span></a></span>');
+    var $removeFormA = $('<span class="input-append"><a href="#" class="" title="Supprimer cette formule"><i class="fa fa-times"></i></a></span>');
     $endroit.after($removeFormA);
 	$endroit.parent().addClass('input-groups');
 
@@ -24,4 +27,4 @@ var modele = place.attr('data-prototype');
         $endroit.parent().remove();
 		});
 	}
-});
+});  

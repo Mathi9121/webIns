@@ -32,16 +32,18 @@ class FormationType extends AbstractType
 				'required' => true,
 				'widget' => 'single_text',
 				'label'  => 'Date de début',
+				'format' => 'dd/MM/yyyy',
 				'attr' => array(
-					'placeholder'=>'AAAA-MM-JJ',
+					'placeholder'=>'JJ/MM/AAAA',
 					'size' => '10',
-					'class' => 'width-100'
+					'class' => 'width-100 datepicker',
 				)))
             ->add('dateFin', 'date', array(
 				'required' => true,
 				'widget' => 'single_text',
+				'format' => 'dd/MM/yyyy',
 				'label'  => 'Date de fin',
-				'attr' => array('placeholder'=>'AAAA-MM-JJ','size' => '10', 'max-length'=>'10', 'class'=>'width-100')
+				'attr' => array('placeholder'=>'JJ/MM/AAAA','size' => '10', 'max-length'=>'10', 'class'=>'width-100 datepicker')
 				))
             ->add('dateText', null, array(
 				'required' => true,
@@ -58,7 +60,7 @@ class FormationType extends AbstractType
 				'label'  => 'Type de formation',
 				'attr' => array('class'=>'width-100')
 				))
-             ->add('formationFormule', 'collection', array(
+            ->add('formationFormule', 'collection', array(
 				'type'   => new formationFormuleType(),
 				'label' => 'Formules liées à la formation',
 				'options' => array('label' => false),
