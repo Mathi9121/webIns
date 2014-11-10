@@ -33,6 +33,18 @@ header a.logo{
 header a#nav-toggle{color: #aaaaaa; padding: 0px 15px}
 header a#nav-toggle:hover{color: #e52f23}
 
+/**** main-btn (plein ecran...) ****/
+#main-btn{
+	height: 65px; 
+	line-height: 65px;
+}
+#main-btn a{
+	display:block;
+	padding: 0 10px;
+	color: #999999;
+	font-size: 1.4em
+}
+
 /**** USER ****/
 #user{padding: 0px 10px}
 #user i.fa-user{
@@ -175,7 +187,7 @@ form select{
 form select[multiple]{
 	height: auto;
 }
-h2, h3, h4, h5, h6{color: #777777 }
+h1, h2, h3, h4, h5, h6{color: #777777 }
 
 /** delete form **/
 form[action$="delete"]{margin-bottom: 0px}

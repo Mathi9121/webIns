@@ -99,7 +99,7 @@ $.expr[":"].contains = $.expr.createPseudo(function(arg) {
 	$('#recherche').on('keyup', function(){
 		var recherche = $(this).val();
 		$("tbody tr").css("display", "none");
-		$('tbody tr td:contains("'+recherche+'")').parent("tr").css("display", "table-row");
+		$('tbody tr.titre-formation td:contains("'+recherche+'")').parent("tr").css("display", "table-row");
 	});
 	
 	//rendre les filtres visibles

@@ -16,7 +16,7 @@
 	
 	{% for entity in entities %}
 		<div class="accordion" data-tools="accordion">
-			<a href="#accordion-{{entity.id}}" class="accordion-title"><span class="oi" data-glyph="book"></span> {{ entity.intitule }} <span class="right">{{ entity.modeles|length }}</span></a>
+			<a href="#accordion-{{entity.id}}" class="accordion-title"><span class="oi" data-glyph="book"></span> {{ entity.intitule }}<span class="right">{% if entity.modeles|length > 0 %}<span class="label label-green"><i class="fa fa-truck"></i> Logistique OK</span>{% else %}<span class="label label-red"><i class="fa fa-truck"></i> Non défini{% endif %}</span></a>
 			<div id="accordion-{{entity.id}}" class="accordion-panel">
 				
 				
@@ -24,7 +24,7 @@
 					<div class="table-container">
 					<table class="table-bordered">
 						<tr>
-							<th><a href="{{path('logistique_edit', {'idformation':entity.id})}}" class="btn"><span class="oi" data-glyph='pencil'>Edition</a></th>
+							<th><a href="{{path('logistique_edit', {'idformation':entity.id})}}" class="btn"><i class="fa fa-pencil"></i> Edition</a></th>
 							{% for modele in entity.modeles %}
 								<th>{{modele.date|date('d/m/Y')}} {{modele.description}}</th>
 							{% endfor %}

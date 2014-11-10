@@ -24,9 +24,14 @@
 	{{ form(delete_form) }}
 {% endblock %}
 
+{% block breadcrumbs %}
+<li><span>{{entity.intitule}}</span></li>
+{% endblock %}
+
 {% block body -%}
 	
-
+<h1 class="text-centered"><i class="fa fa-graduation-cap"></i>{{entity.intitule}}</h1><hr/>
+<p class="text-centered"><i class="fa fa-calendar"></i> {{entity.dateText|capitalize}}</p>
 
 {{form_start(edit_form)}}
 <div class="panel">
@@ -42,8 +47,10 @@
 				{% for modele in edit_form.modeles %}
 					<ul class="forms-inline-list" data-prototype="{% filter escape %}{% include 'OCIMFormationsBundle:logistique:prototypeFormModeleLogistique.html.twig' with {'form': edit_form.modeles.vars.prototype} %}{% endfilter %}">
 						{{ form_widget(modele.ordre) }}
-						<li></li>
-						<li>{{ form_widget(modele.date) }}</li>
+						<li class="ui-handle"></li>
+						<li>
+							<span class="input-prepend"><i class="fa fa-calendar"></i></span> {{ form_widget(modele.date) }}
+						</li>
 						<li>{{ form_widget(modele.description) }}</li>
 						<li>{{ form_widget(modele.typeReponse) }}</li>
 						<li>{{ form_widget(modele.formationFormule) }}</li>
@@ -53,7 +60,12 @@
 				{% endfor %}
 			</div>
 			<div class="unit-40">
-				<p>Coucou </p>
+				Formules attachées à la formation :
+				<ul>
+					{% for ff in entity.formationFormule %}
+						<li><span class="label label-blue">{{ ff.formule.id }}</span> {{ff.formule.description|capitalize}}</li>
+					{% endfor %}
+				</ul>
 			</div>
 		</div>
 	</div>
@@ -61,7 +73,7 @@
 
 <hr/>
 <div class="group">
-	<div class="left"><a href="{{ path('logistique') }}" class="btn oi arrow-left" data-glyph="arrow-left"> Retour</a></div>
+	<div class="left"><a href="{{ path('logistique') }}" class="btn"> Retour</a></div>
 	<div class="right">{{ form_widget(edit_form.submit) }}</div>
 </div>
 

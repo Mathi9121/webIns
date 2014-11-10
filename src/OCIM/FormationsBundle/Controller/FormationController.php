@@ -161,7 +161,7 @@ class FormationController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => ' Enregistrer', 'attr' => array('class'=>'btn btn-green oi', 'data-glyph'=>"circle-check")));
+        $form->add('submit', 'submit', array('label' => ' Enregistrer', 'attr' => array('class'=>'btn btn-green')));
 
         return $form;
     }
@@ -243,7 +243,7 @@ class FormationController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('formation_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Supprimer', 'attr'=> array('class'=>'oi btn btn-red', 'data-glyph'=> 'trash')))
+            ->add('submit', 'submit', array('label' => 'Supprimer', 'attr'=> array('class'=>'btn btn-red')))
             ->getForm()
         ;
     }

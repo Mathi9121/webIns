@@ -4,8 +4,10 @@ $(document).ready(function(){
 	var modele = $('.forms-inline-list').attr('data-prototype');
 	setOrdreUl();
 	$('#place').sortable({
+		handle : '.ui-handle',
 		stop: setOrdreUl,
-		axis: 'y'
+		axis: 'y',
+
 	});
 
 	$('a.ajoutPrototype').on('click', function(e){
@@ -22,7 +24,7 @@ $(document).ready(function(){
 		setOrdreUl();
 	});
 
-	$("form ul").each(function() {
+	$("form #place ul").each(function() {
         addTagFormDeleteLink($(this).find('li').last());
     });
 	

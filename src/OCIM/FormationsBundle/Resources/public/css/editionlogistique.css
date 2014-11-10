@@ -4,5 +4,7 @@
 }
 
 #place ul li:first-of-type {
-	background-color: red;padding: 15px
+	background-color: #aaaaaa;
+	color: #fff;
+	padding: 8px 15px;
 }

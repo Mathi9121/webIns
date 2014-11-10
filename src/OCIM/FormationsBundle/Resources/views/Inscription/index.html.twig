@@ -19,26 +19,35 @@
 {% endjavascripts %}
 {% endblock %}
 
+{% block breadcrumbs %}
+<li><a href="{{path('formation')}}">Formations</a></li>
+<li><span>Inscriptions - {{ formation.intitule }}</span></li>
+{% endblock %}
 
 
-{% block title %}Inscriptions pour {% endblock %}
+{% block title %}Inscriptions : {{ formation.intitule }}{% endblock %}
 {% block titre %}{{ formation.intitule }}{% endblock %}
-{% block controls %}<a href="{{ path('inscription_new', { 'idformation': formation.id }) }}" class="btn btn-green"><span class="oi" data-glyph="plus"></span> Nouvelle inscription</a>{% endblock %}
+{% block controls %}<a href="{{ path('inscription_new', { 'idformation': formation.id }) }}" class="btn btn-green"><i class="fa fa-plus"></i> Nouvelle inscription</a>{% endblock %}
 
 {% block body -%}
 <div id="lienAjax" class="hide">{{ path('inscription_edit_ordre', {'idformation': formation.id}) }}</div>
 {% if entities != null %}
-<nav class="nav-tabs" data-tools="tabs" data-equals="true">
-	<ul>
-		<li class="active"><a href="#general">Informations Générales</a></li>
-		<li><a href="#contact">Contacts</a></li>
-		<li><a href="#logistique">Logistique</a></li>
-		<li><a href="#convention">Convention</a></li>
-		<li><a href="#financement">Financement</a></li>
-		<li><a href="#attentes">Attentes</a></li>
-		<li><a href="#intervenants">Intervenants</a></li>
-	</ul>
-</nav>
+
+<div class="panel">
+	<nav class="nav-tabs" data-tools="tabs" data-equals="true" style="padding-left: 25px;">
+		<ul>
+			<li class="active"><a href="#general">Informations Générales</a></li>
+			<li><a href="#contact">Contacts</a></li>
+			<li><a href="#logistique">Logistique</a></li>
+			<li><a href="#convention">Convention</a></li>
+			<li><a href="#financement">Financement</a></li>
+			<li><a href="#attentes">Attentes</a></li>
+			<li><a href="#intervenants">Intervenants</a></li>
+		</ul>
+	</nav>
+<div class="panel-body">
+
+
 
 {# GENERAL #}
 <div id="general" class="tab">
@@ -68,7 +77,7 @@
 				{% set class = "annule" %}
 			{% endif %}
 			<tr class="statut {{class}}" data-ordre="{{entity.ordre}}" data-idinscription="{{entity.id}}">
-						{% if class == "attente" %}<td class="handle"><span class="oi" data-glyph="move"></span></td>{% else %}<td></td>{% endif %}
+						{% if class == "attente" %}<td class="handle"><i class="fa fa-arrows"></i></td>{% else %}<td></td>{% endif %}
 						<td class="insc info"><span>{{ entity.stagiaire.nom }} ({{ entity.stagiaire.civilite }})</span></td>
 						<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
 						<td class="insc info"><span><abbr title="{{ entity.formationFormule.formule }}">{{ entity.formationFormule.formule.id }}</abbr></span></td>
@@ -79,8 +88,8 @@
                 <td class="insc actions">
 					<a href="#" data-tools="dropdown" data-target="#dropdown1-{{loop.index}}"></a>
 					<ul id="dropdown1-{{loop.index}}" class="dropdown">
-						<li><a href="{{ path('inscription_show', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><span class="oi" data-glyph="info"></span> Détails</a></li>
-						<li><a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><span class="oi" data-glyph="pencil"></span> Modifier</a></li>
+						<li><a href="{{ path('inscription_show', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><i class="fa fa-info"></i> Détails</a></li>
+						<li><a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><i class="fa fa-pencil"></i> Modifier</a></li>
 						<li><a href="{{ path('documents_show', { 'id': 2, 'idinscription': entity.id }) }}"><span class="oi" data-glyph="file"></span> Exporter</a></li>
 					</ul>
 				</td>
@@ -124,7 +133,7 @@
 				{% set class = "annule" %}
 			{% endif %}
 			<tr class="statut {{class}}" data-ordre="{{entity.ordre}}" data-idinscription="{{entity.id}}">
-						{% if class == "attente" %}<td class="handle"><span class="oi" data-glyph="move"></span></td>{% else %}<td></td>{% endif %}
+						{% if class == "attente" %}<td class="handle"><i class="fa fa-arrows"></i></td>{% else %}<td></td>{% endif %}
 						<td class="insc info"><span>{{ entity.stagiaire.nom }} ({{ entity.stagiaire.civilite }})</span></td>
 						<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
 						
@@ -150,8 +159,8 @@
                 <td class="insc actions">
 					<a href="#" data-tools="dropdown" data-target="#dropdown2-{{loop.index}}"></a>
 						<ul id="dropdown2-{{loop.index}}" class="dropdown">
-							<li><a href="{{ path('inscription_show', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><span class="oi" data-glyph="info"></span> Détails</a></li>
-							<li><a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><span class="oi" data-glyph="pencil"></span> Modifier</a></li>
+							<li><a href="{{ path('inscription_show', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><i class="fa fa-info"></i> Détails</a></li>
+							<li><a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><i class="fa fa-pencil"></i> Modifier</a></li>
 						</ul>
 				</td>
             </tr>
@@ -190,7 +199,7 @@
 				{% set class = "annule" %}
 			{% endif %}
 			<tr class="statut {{class}}" data-ordre="{{entity.ordre}}" data-idinscription="{{entity.id}}">
-						{% if class == "attente" %}<td class="handle"><span class="oi" data-glyph="move"></span></td>{% else %}<td></td>{% endif %}
+						{% if class == "attente" %}<td class="handle"><i class="fa fa-arrows"></i></td>{% else %}<td></td>{% endif %}
 						<td class="insc info"><span>{{ entity.stagiaire.nom }} ({{ entity.stagiaire.civilite }})</span></td>
 						<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
 					
@@ -201,9 +210,9 @@
 									{% if attribute(entity, 'getReponseByModeleId', [log.id]) %}
 										{% if log.typeReponse == 'bool' %}
 											{% if (attribute(entity, 'getReponseByModeleId', [log.id, log.typeReponse]) == '1') %}
-												<i class="fa fa-check fa-2x"></i>
+												<i class="fa fa-check"></i>
 											{% elseif (attribute(entity, 'getReponseByModeleId', [log.id, log.typeReponse]) == '0') %}
-												<i style="color: rgba(255,0,0,0.5)" class="fa fa-times fa-2x"></i>
+												<i style="color: rgba(255,0,0,0.5)" class="fa fa-times"></i>
 											{% endif %}
 										{% elseif log.typeReponse == 'text' %}
 											{{ (attribute(entity, 'getReponseByModeleId', [log.id, log.typeReponse]))}}
@@ -221,15 +230,15 @@
                 <td class="insc actions">
 						<a href="#" data-tools="dropdown" data-target="#dropdown9-{{loop.index}}"></a>
 						<ul id="dropdown9-{{loop.index}}" class="dropdown">
-							<li><a href="{{ path('inscription_show', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><span class="oi" data-glyph="info"></span> Détails</a></li>
-							<li><a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><span class="oi" data-glyph="pencil"></span> Modifier</a></li>
+							<li><a href="{{ path('inscription_show', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><i class="fa fa-info"></i> Détails</a></li>
+							<li><a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><i class="fa fa-pencil"></i> Modifier</a></li>
 							<li>
 								{% if entity.convention %}
 									<a href="{{ path('convention_edit', { 'id': entity.convention.id, 'idformation':formation.id }) }}" class="">
 								{% else %}
 									<a href="{{ path('convention_new', { 'idinscription': entity.id, 'idformation':formation.id }) }}" class="">
 								{% endif %}
-									<span class="oi" data-glyph="pencil"></span> Convention</a>
+									<i class="fa fa-pencil"></i> Convention</a>
 							</li>
 						</ul>
 				</td>
@@ -284,17 +293,17 @@
 				{% set class = "annule" %}
 			{% endif %}
 			<tr class="statut {{class}}" data-ordre="{{entity.ordre}}" data-idinscription="{{entity.id}}">
-						{% if class == "attente" %}<td class="handle"><span class="oi" data-glyph="move"></span></td>{% else %}<td></td>{% endif %}
+						{% if class == "attente" %}<td class="handle"><i class="fa fa-arrows"></i></td>{% else %}<td></td>{% endif %}
 						<td class="insc info"><span>{{ entity.stagiaire.nom }} ({{ entity.stagiaire.civilite }})</span></td>
 						<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
 					{% if entity.convention %}
 						<td class="insc convention"><span>{{ entity.convention.numero }}</span></td>
 						<td class="insc convention"><span>{{ entity.convention.edition|date('d/m/Y') }}</span></td>
-						<td class="insc convention text-centered"><span>{% if entity.convention.envoiPresidentU2ex %}<span class="oi" data-glyph="check" title="{{ entity.convention.envoiPresidentU2ex|date('d/m/Y') }}"></span></span>{% endif %}</td>
-						<td class="insc convention text-centered"><span>{% if entity.convention.retourPresidentU2ex %}<span class="oi" data-glyph="check" title="{{ entity.convention.retourPresidentU2ex|date('d/m/Y') }}"></span></span>{% endif %}</td>
-						<td class="insc convention text-centered"><span>{% if entity.convention.envoiOrganisme2ex %}<span class="oi" data-glyph="check" title="{{ entity.convention.envoiOrganisme2ex|date('d/m/Y') }}"></span></span>{% endif %}</td>
-						<td class="insc convention text-centered"><span>{% if entity.convention.retourOrganisme1ex %}<span class="oi" data-glyph="check" title="{{ entity.convention.retourOrganisme1ex|date('d/m/Y') }}"></span></span>{% endif %}</td>
-						<td class="insc convention text-centered"><span>{% if entity.convention.envoiPresidentU1ex %}<span class="oi" data-glyph="check" title="{{ entity.convention.envoiPresidentU1ex|date('d/m/Y') }}"></span></span>{% endif %}</td>
+						<td class="insc convention text-centered"><span>{% if entity.convention.envoiPresidentU2ex %}<i class="fa fa-check" title="{{ entity.convention.envoiPresidentU2ex|date('d/m/Y') }}"></i></span>{% endif %}</td>
+						<td class="insc convention text-centered"><span>{% if entity.convention.retourPresidentU2ex %}<i class="fa fa-check" title="{{ entity.convention.retourPresidentU2ex|date('d/m/Y') }}"></i></span>{% endif %}</td>
+						<td class="insc convention text-centered"><span>{% if entity.convention.envoiOrganisme2ex %}<i class="fa fa-check" title="{{ entity.convention.envoiOrganisme2ex|date('d/m/Y') }}"></i></span>{% endif %}</td>
+						<td class="insc convention text-centered"><span>{% if entity.convention.retourOrganisme1ex %}<i class="fa fa-check" title="{{ entity.convention.retourOrganisme1ex|date('d/m/Y') }}"></i></span>{% endif %}</td>
+						<td class="insc convention text-centered"><span>{% if entity.convention.envoiPresidentU1ex %}<i class="fa fa-check" title="{{ entity.convention.envoiPresidentU1ex|date('d/m/Y') }}"></i></span>{% endif %}</td>
 					{% else %}
 						<td class="insc convention"><span></span></td>
 						<td class="insc convention"><span></span></td>
@@ -307,11 +316,11 @@
                 <td class="insc actions">
 						<a href="#" data-tools="dropdown" data-target="#dropdown3-{{loop.index}}"></a>
 						<ul id="dropdown3-{{loop.index}}" class="dropdown">
-							<li><a href="{{ path('inscription_show', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><span class="oi" data-glyph="info"></span> Détails</a></li>
-							<li><a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><span class="oi" data-glyph="pencil"></span> Modifier</a></li>
+							<li><a href="{{ path('inscription_show', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><i class="fa fa-info"></i> Détails</a></li>
+							<li><a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><i class="fa fa-pencil"></i> Modifier</a></li>
 							<li>
 								{% if entity.convention %}<a href="{{ path('convention_edit', { 'id': entity.convention.id, 'idformation':formation.id }) }}" class="">{% else %}<a href="{{ path('convention_new', { 'idinscription': entity.id, 'idformation':formation.id }) }}" class="">{% endif %}
-									<span class="oi" data-glyph="pencil"></span> Convention
+									<i class="fa fa-pencil"></i> Convention
 								</a>
 							</li>
 						</ul>
@@ -351,7 +360,7 @@
 				{% set class = "annule" %}
 			{% endif %}
 			<tr class="statut {{class}}" data-ordre="{{entity.ordre}}" data-idinscription="{{entity.id}}">
-						{% if class == "attente" %}<td class="handle"><span class="oi" data-glyph="move"></span></td>{% else %}<td></td>{% endif %}
+						{% if class == "attente" %}<td class="handle"><i class="fa fa-arrows"></i></td>{% else %}<td></td>{% endif %}
 						<td class="insc info"><span>{{ entity.stagiaire.nom }} ({{ entity.stagiaire.civilite }})</span></td>
 						<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
 						{% if entity.signataire %}
@@ -368,9 +377,9 @@
 						
                 <td class="insc actions">
 					{% if entity.signataire == null %}
-						<a href="{{path('signataire_new', {'idinscription':entity.id, 'idformation': formation.id})}}" class=""><span class="oi" data-glyph="plus"></span> Ajouter un signataire</a>
+						<a href="{{path('signataire_new', {'idinscription':entity.id, 'idformation': formation.id})}}" class=""><i class="fa fa-plus"></i> Ajouter un signataire</a>
 					{% else %}
-						<a href="{{path('signataire_edit', {'id': entity.signataire.id, 'idformation': formation.id})}}" class=""><span class="oi" data-glyph="pencil"></span> Modifier</a>
+						<a href="{{path('signataire_edit', {'id': entity.signataire.id, 'idformation': formation.id})}}" class=""><i class="fa fa-pencil"></i> Modifier</a>
 					{% endif %}
 				</td>
             </tr>
@@ -404,15 +413,15 @@
 				{% set class = "annule" %}
 			{% endif %}
 			<tr class="statut {{class}}" data-ordre="{{entity.ordre}}" data-idinscription="{{entity.id}}">
-				{% if class == "attente" %}<td class="handle"><span class="oi" data-glyph="move"></span></td>{% else %}<td></td>{% endif %}
+				{% if class == "attente" %}<td class="handle"><span class="fa fa-arrows"></span></td>{% else %}<td></td>{% endif %}
 				<td class="insc info"><span>{{ entity.stagiaire.nom }} ({{ entity.stagiaire.civilite }})</span></td>
 				<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
 				<td class="insc attentes"><span>{{ entity.attentes|slice(0, 70)}}{% if entity.attentes|length > 70 %}...{% endif %}</span></td>
                 <td class="insc actions">
 					<a href="#" data-tools="dropdown" data-target="#dropdown5-{{loop.index}}"></a>
 					<ul id="dropdown5-{{loop.index}}" class="dropdown">
-						<li><a href="{{ path('inscription_show', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><span class="oi" data-glyph="info"></span> Détails</a></li>
-						<li><a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><span class="oi" data-glyph="pencil"></span> Modifier</a></li>
+						<li><a href="{{ path('inscription_show', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><span class="fa fa-info"></span> Détails</a></li>
+						<li><a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><span class="fa fa-pencil"></span> Modifier</a></li>
 					</ul>
 				</td>
             </tr>
@@ -424,7 +433,7 @@
 
 <div id="intervenants">
 	<div class="group">
-		<a href="{{path('intervenants_new', { 'idformation': formation.id }) }}" class='btn btn-small right'><span class="oi" data-glyph="plus"></span> Ajouter un intervenant</a>
+		<a href="{{path('intervenants_new', { 'idformation': formation.id }) }}" class='btn btn-small right'><span class="fa fa-plus"></span> Ajouter un intervenant</a>
 	</div>
 	<div class="table-container">
 		<table>
@@ -451,7 +460,7 @@
 						<td>{{intervenant.adresse.nomStructure}}</td>
 						<td>{{intervenant.commentaire}}</td>
 						<td>
-							<a href="{{path('intervenants_edit', {'id': intervenant.id})}}"><span class="oi" data-glyph="pencil"></span></a>
+							<a href="{{path('intervenants_edit', {'id': intervenant.id})}}"><i class="fa fa-pencil"></i></a>
 						</td>
 					</tr>
 				{% endfor %}
@@ -459,11 +468,12 @@
 		</table>
 	</div>
 </div>
+</div>
 
 {% else %}
-	<p class="text-centered"><span class="oi" data-glyph="info"></span> Aucune inscription pour le moment...</p>
+	<p class="text-centered"><i class="fa fa-info"></i> Aucune inscription pour le moment...</p>
 	<div class="text-centered">
-		<a href="{{ path('inscription_new', { 'idformation': formation.id }) }}" class="btn btn-green btn-big"><span class="oi" data-glyph="plus"></span> Nouvelle inscription</a>
+		<a href="{{ path('inscription_new', { 'idformation': formation.id }) }}" class="btn btn-green btn-big"><i class="fa fa-plus"></i> Nouvelle inscription</a>
 	</div>
 {% endif %}
 

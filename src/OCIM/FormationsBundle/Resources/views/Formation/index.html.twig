@@ -113,7 +113,7 @@ filter='cssrewrite' %}
 						<span class="btn-group">
 								<a class="btn small" href="{{ path('inscription', { 'idformation': formation.id }) }}"><i class="fa fa-users"></i><br/>Incriptions</a>
 								<a class="btn small" href="{{ path('formation_show', { 'id': formation.id }) }}"><i class="fa fa-info"></i><br/>Détails</a>
-								<a class="btn small" href="#"><i class="fa fa-truck"></i><br/>Logistique</a>
+								<a class="btn small" href="{{path('logistique_edit', {'idformation': formation.id })}}"><i class="fa fa-truck"></i><br/>Logistique</a>
 								<a class="btn small" href="{{ path('formation_edit', { 'id': formation.id }) }}"><i class="fa fa-pencil"></i><br/>Modifier</a>
 							</span>
 					</td>

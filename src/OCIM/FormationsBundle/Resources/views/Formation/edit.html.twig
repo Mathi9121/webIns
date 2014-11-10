@@ -3,44 +3,66 @@
 
 {% block  javascripts %}
 {% javascripts '@OCIMFormationsBundle/Resources/public/js/Formation/formFormation.js'%}
+		{{parent()}}
          <script type="text/javascript" src="{{ asset_url }}"></script>
 {% endjavascripts %}
 {% endblock %}
 
 {# Titres #}
 {% block title %}Modification - {{ entity.intitule }}{% endblock %}
-{% block titre %}Edition{% endblock %}
+{% block titre %}Edition Formation{% endblock %}
 
 {# Controls #}
 {% block controls %}
 {{ form(delete_form) }}
 {% endblock %}
 
+{% block breadcrumbs %}
+<li><span>Edition - {{ entity.intitule }}</span></li>
+{% endblock %}
+
 {% block body %}
 
 <form action="{{ path('formation_update', {'id' : entity.id}) }}" method="post" class="forms units-row" {{ form_enctype(edit_form) }}>
 <input type="hidden" name="_method" value="PUT" />
-<div class="units-row end">
-	<div class="unit-75">{{ form_row(edit_form.intitule) }}</div>
-	<div class="unit-25">{{ form_row(edit_form.type) }}</div>
-</div>
-
-<div class="units-row end">
-	<div class="unit-33">{{ form_row(edit_form.lieu) }}</div>
-	<div class="unit-33">{{ form_row(edit_form.dateDebut) }}</div>
-	<div class="unit-33">{{ form_row(edit_form.dateFin) }}</div>
-</div>
-	
-<div class="units-row end">
-	<div class="unit-33">{{ form_row(edit_form.nbHeures) }}</div>
-	<div class="unit-66">{{ form_row(edit_form.dateText) }}</div>
-</div>
-
-<h3>Formules liées à la formation <a href="#" class="btn btn-small ajouterFormule"><span class="oi" data-glyph="plus"></span> Ajouter une formule</a></h3>
 
 <div class="units-row">
-	<div class="unit-66">{{ form_widget(edit_form.formationFormule) }}</div>
-	<div class="unit-33"></div>
+
+	<div class="unit-60 panel">
+			<div class="header">
+			<span class="titre">Formation</span>
+				<span class="controls right group">
+					
+				</span>
+		</div>
+		<div class="panel-body">
+			{{ form_row(edit_form.intitule) }}
+			{{ form_row(edit_form.type) }}
+			{{ form_row(edit_form.lieu) }}
+			<div class="units-row end">
+				<div class="unit-50">{{ form_row(edit_form.dateDebut) }}</div>
+				<div class="unit-50">{{ form_row(edit_form.dateFin) }}</div>
+			</div>
+			<div class="units-row end">
+				<div class="unit-70">{{ form_row(edit_form.dateText) }}</div>
+				<div class="unit-30">{{ form_row(edit_form.nbHeures) }}</div>
+			</div>
+			
+			
+		</div>
+	</div>
+	
+	<div class="unit-40 panel">
+		<div class="header">
+				<span class="titre">Formules liées à la formation</span>
+					<span class="controls right group">
+						<a href="#" class="btn btn-small ajouterFormule"><i class="fa fa-plus"></i></a>
+					</span>
+		</div>
+		<div class="panel-body">
+			{{ form_widget(edit_form.formationFormule) }}
+		</div>
+	</div>
 </div>
 
 <hr/>
