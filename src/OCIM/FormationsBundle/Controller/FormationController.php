@@ -108,6 +108,7 @@ class FormationController extends Controller
 
         $entity = $em->getRepository('OCIMFormationsBundle:Formation')->find($id);
 		$entity->_count = $em->getRepository('OCIMFormationsBundle:Inscription')->countInscriptionsByFormation($id);
+		$inscriptions = $em->getRepository('OCIMFormationsBundle:Inscription')->findAllByFormation($id);
 		
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Formation entity.');
@@ -115,10 +116,24 @@ class FormationController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 		
+		// Stats des inscriptions
+		$statsInscriptions = array();
+		foreach($inscriptions as $inscription){
+		
+			if( !isset($statsInscriptions[$inscription->getDateInscription()->format('d-m-Y')])){
+				$statsInscriptions[$inscription->getDateInscription()->format('d-m-Y')] = 1 ;
+			}
+			else{
+				$statsInscriptions[$inscription->getDateInscription()->format('d-m-Y')] += 1 ;
+			}
+			ksort($statsInscriptions);
+		}
+		
         return $this->render('OCIMFormationsBundle:Formation:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
-			'formules' => $entity->getFormules()
+			'formules' => $entity->getFormules(),
+			'inscriptions' => $statsInscriptions
         ));
     }
 

@@ -84,7 +84,7 @@
 							{% if (app.request.attributes.get("_route") starts with item.route) %}
 								<span><i class="fa {{item.iconclass}}"></i> {{item.menuText}}</span>
 							{% else %}
-								<a href="{{path(item.route)}}"><i class="fa {{item.iconclass}}"></i> {{item.menuText}}</a>
+								<a href="{{path(item.route)}}"><i class="fa {{item.iconclass}} fa-fw"></i>{{item.menuText}}</a>
 							{% endif %}
 						</li>
 					{% endif %}

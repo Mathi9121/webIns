@@ -6,7 +6,7 @@
 }
 
 #indicateurs i{
-	background-color: #ed1599;
+	background-color: #e52f23;
 	border-radius: 4px 0 0 4px;
 	color: white;
 }
@@ -35,6 +35,13 @@
 	font-size: 3em;
 }
 
+.formation-raccourcis a{
+	color:#999999;
+}
+
+.formation-raccourcis a:hover{
+	color:#e52f23;
+}
 
 @media only screen and (max-width:767px){
 	#indicateurs>div:nth-child(2n+1){margin-left: 0;}

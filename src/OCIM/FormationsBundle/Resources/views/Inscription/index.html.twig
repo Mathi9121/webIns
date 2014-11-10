@@ -12,8 +12,9 @@
 {% block  javascripts %}
 {{parent()}}
 {% javascripts
-	'@OCIMFormationsBundle/Resources/public/js/Logistique/jquery-ui-1.9.2.custom.min.js'
+	'%kernel.root_dir%/Resources/public/js/jquery-ui.min.js'
 	'@OCIMFormationsBundle/Resources/public/js/Inscription/inscription.js'
+	'@OCIMFormationsBundle/Resources/public/js/Inscription/showDetailsInscriptions.js'
 	'@OCIMFormationsBundle/Resources/public/js/Inscription/reponseslogistique.js' %}
          <script type="text/javascript" src="{{ asset_url }}"></script>
 {% endjavascripts %}
@@ -50,7 +51,7 @@
 
 
 {# GENERAL #}
-<div id="general" class="tab">
+<div id="general" class="tab unit-100">
 <div class="table-container">
 	<table class="">
 		<thead>
@@ -90,7 +91,21 @@
 					<ul id="dropdown1-{{loop.index}}" class="dropdown">
 						<li><a href="{{ path('inscription_show', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><i class="fa fa-info"></i> Détails</a></li>
 						<li><a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><i class="fa fa-pencil"></i> Modifier</a></li>
-						<li><a href="{{ path('documents_show', { 'id': 2, 'idinscription': entity.id }) }}"><span class="oi" data-glyph="file"></span> Exporter</a></li>
+						<li>
+							{% if entity.convention %}
+								<a href="{{ path('convention_edit', { 'id': entity.convention.id, 'idformation':formation.id }) }}" class="">
+							{% else %}
+								<a href="{{ path('convention_new', { 'idinscription': entity.id, 'idformation':formation.id }) }}" class="">
+							{% endif %}
+								<i class="fa fa-pencil"></i> Convention</a>
+						</li>
+						<li>
+							{% if entity.signataire == null %}
+								<a href="{{path('signataire_new', {'idinscription':entity.id, 'idformation': formation.id})}}" class=""><i class="fa fa-plus"></i> Ajouter un signataire</a>
+							{% else %}
+								<a href="{{path('signataire_edit', {'id': entity.signataire.id, 'idformation': formation.id})}}" class=""><i class="fa fa-pencil"></i> Modifier</a>
+							{% endif %}
+						</li>
 					</ul>
 				</td>
             </tr>
@@ -101,7 +116,7 @@
 </div>
 
 {# CONTACT #}
-<div id="contact" class="tab">
+<div id="contact" class="tab unit-100">
 <div class="table-container">
 	<table class="">
 		<thead>
@@ -119,7 +134,6 @@
 				<th class="insc contact"><span>C-P</span></th>
 				<th class="insc contact"><span>Ville</span></th>
 				<th class="insc contact"><span>Pays</span></th>
-				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -156,13 +170,6 @@
 						<td class="insc contact"><span></span></td>
 						<td class="insc contact"><span></span></td>
 					{% endif %}
-                <td class="insc actions">
-					<a href="#" data-tools="dropdown" data-target="#dropdown2-{{loop.index}}"></a>
-						<ul id="dropdown2-{{loop.index}}" class="dropdown">
-							<li><a href="{{ path('inscription_show', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><i class="fa fa-info"></i> Détails</a></li>
-							<li><a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><i class="fa fa-pencil"></i> Modifier</a></li>
-						</ul>
-				</td>
             </tr>
         {% endfor %}
         </tbody>
@@ -171,7 +178,7 @@
 </div>
 
 {# Logistique #}
-<div id="logistique" class="tab">
+<div id="logistique" class="tab unit-100">
 	<div class="hide" id="majLogistique">{{path('logistique_reponse')}}</div>
 	<div id="message-save" class="tools-message tools-message-green">Enregistré !</div>
 	<div id="message-error" class="tools-message tools-message-red">Erreur. <a href="{{ path('inscription', { 'idformation': formation.id }) }}">Recharger la page</a></div>
@@ -185,7 +192,6 @@
 				{% for log in logistique %}
 					{% if log.formationformule|length > 0 %}<th>{{log.date|date('d/m')}} {{log.description}}</th>{% endif %}
 				{% endfor %}
-				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -224,24 +230,6 @@
 							{% endif %}
 						{% endif %}
 					{% endfor %}
-					
-					
-					
-                <td class="insc actions">
-						<a href="#" data-tools="dropdown" data-target="#dropdown9-{{loop.index}}"></a>
-						<ul id="dropdown9-{{loop.index}}" class="dropdown">
-							<li><a href="{{ path('inscription_show', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><i class="fa fa-info"></i> Détails</a></li>
-							<li><a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><i class="fa fa-pencil"></i> Modifier</a></li>
-							<li>
-								{% if entity.convention %}
-									<a href="{{ path('convention_edit', { 'id': entity.convention.id, 'idformation':formation.id }) }}" class="">
-								{% else %}
-									<a href="{{ path('convention_new', { 'idinscription': entity.id, 'idformation':formation.id }) }}" class="">
-								{% endif %}
-									<i class="fa fa-pencil"></i> Convention</a>
-							</li>
-						</ul>
-				</td>
             </tr>
         {% endfor %}
         </tbody>
@@ -257,14 +245,13 @@
 					{% endif %}
 				{% endif %}
 			{% endfor %}
-			<td></td>
 		</tfoot>
 	</table>
 </div>
 </div>
 
 {# CONVENTION #}
-<div id="convention" class="tab">
+<div id="convention" class="tab unit-100">
 <div class="table-container">
 	<table class="">
 		<thead>
@@ -279,7 +266,6 @@
 				<th class="insc convention"><span><abbr title="Envoi à l'Organisme en 2 exemplaires">Etape-3</abbr></span></th>
 				<th class="insc convention"><span><abbr title="Retour d'1 exemplaire">Etape-4</abbr></span></th>
 				<th class="insc convention"><span><abbr title="Envoi au Président de l'Université d'1 exemplaire">Etape-5</abbr></span></th>
-				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -305,26 +291,10 @@
 						<td class="insc convention text-centered"><span>{% if entity.convention.retourOrganisme1ex %}<i class="fa fa-check" title="{{ entity.convention.retourOrganisme1ex|date('d/m/Y') }}"></i></span>{% endif %}</td>
 						<td class="insc convention text-centered"><span>{% if entity.convention.envoiPresidentU1ex %}<i class="fa fa-check" title="{{ entity.convention.envoiPresidentU1ex|date('d/m/Y') }}"></i></span>{% endif %}</td>
 					{% else %}
-						<td class="insc convention"><span></span></td>
-						<td class="insc convention"><span></span></td>
-						<td class="insc convention"><span></span></td>
-						<td class="insc convention"><span></span></td>
-						<td class="insc convention"><span></span></td>
-						<td class="insc convention"><span></span></td>
-						<td class="insc convention"><span></span></td>
+						<td class="insc convention text-centered" colspan="7">
+							<a href="{{ path('convention_new', { 'idinscription': entity.id, 'idformation':formation.id }) }}" class="btn btn-green"><i class="fa fa-plus"></i> Entrer des informations concernant la convention</a>
+						</td>
 					{% endif %}
-                <td class="insc actions">
-						<a href="#" data-tools="dropdown" data-target="#dropdown3-{{loop.index}}"></a>
-						<ul id="dropdown3-{{loop.index}}" class="dropdown">
-							<li><a href="{{ path('inscription_show', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><i class="fa fa-info"></i> Détails</a></li>
-							<li><a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><i class="fa fa-pencil"></i> Modifier</a></li>
-							<li>
-								{% if entity.convention %}<a href="{{ path('convention_edit', { 'id': entity.convention.id, 'idformation':formation.id }) }}" class="">{% else %}<a href="{{ path('convention_new', { 'idinscription': entity.id, 'idformation':formation.id }) }}" class="">{% endif %}
-									<i class="fa fa-pencil"></i> Convention
-								</a>
-							</li>
-						</ul>
-				</td>
             </tr>
         {% endfor %}
         </tbody>
@@ -333,7 +303,7 @@
 </div>
 
 {# financement #}
-<div id="financement" class="tab">
+<div id="financement" class="tab unit-100">
 <div class="table-container">
 	<table class="">
 		<thead>
@@ -346,7 +316,6 @@
 				<th class="insc finance">Nom du Signataire</th>
 				<th class="insc finance">Prenom du Signataire</th>
 				<th class="insc finance">Fonction du Signataire</th>
-				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -374,14 +343,6 @@
 							<td class="insc finance"></td>
 							<td class="insc finance"></td>
 						{% endif %}
-						
-                <td class="insc actions">
-					{% if entity.signataire == null %}
-						<a href="{{path('signataire_new', {'idinscription':entity.id, 'idformation': formation.id})}}" class=""><i class="fa fa-plus"></i> Ajouter un signataire</a>
-					{% else %}
-						<a href="{{path('signataire_edit', {'id': entity.signataire.id, 'idformation': formation.id})}}" class=""><i class="fa fa-pencil"></i> Modifier</a>
-					{% endif %}
-				</td>
             </tr>
         {% endfor %}
         </tbody>
@@ -390,7 +351,7 @@
 </div>
 
 {# ATTENTES #}
-<div id="attentes" class="tab">
+<div id="attentes" class="tab unit-100">
 <div class="table-container">
 	<table class="">
 		<thead>
@@ -399,7 +360,6 @@
 				<th class="insc info"><span>Nom</span></th>
 				<th class="insc info"><span>Prénom</span></th>
 				<th class="insc attentes"><span>Attentes</span></th>
-				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -417,13 +377,6 @@
 				<td class="insc info"><span>{{ entity.stagiaire.nom }} ({{ entity.stagiaire.civilite }})</span></td>
 				<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
 				<td class="insc attentes"><span>{{ entity.attentes|slice(0, 70)}}{% if entity.attentes|length > 70 %}...{% endif %}</span></td>
-                <td class="insc actions">
-					<a href="#" data-tools="dropdown" data-target="#dropdown5-{{loop.index}}"></a>
-					<ul id="dropdown5-{{loop.index}}" class="dropdown">
-						<li><a href="{{ path('inscription_show', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><span class="fa fa-info"></span> Détails</a></li>
-						<li><a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><span class="fa fa-pencil"></span> Modifier</a></li>
-					</ul>
-				</td>
             </tr>
         {% endfor %}
         </tbody>
@@ -431,7 +384,7 @@
 </div>
 </div>
 
-<div id="intervenants">
+<div id="intervenants" class="tab unit-100">
 	<div class="group">
 		<a href="{{path('intervenants_new', { 'idformation': formation.id }) }}" class='btn btn-small right'><span class="fa fa-plus"></span> Ajouter un intervenant</a>
 	</div>
