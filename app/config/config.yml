@@ -57,7 +57,7 @@ assetic:
             output: 'fonts/fontawesome-webfont.woff'
         images:
             inputs: '%kernel.root_dir%/Resources/public/img/coin_rouge.png'
-            output: 'images/coin_rouge.png'
+            output: 'img/coin_rouge.png'
     filters:
         cssrewrite: ~
         #closure:

@@ -112,7 +112,7 @@ header a#nav-toggle:hover{color: #e52f23}
 
 /***** Panel ******/
 .panel{
-	background: url(images/coin_rouge.png) no-repeat;
+	background: url(../img/coin_rouge.png) no-repeat;
 	background-color: #ffffff;
 	border-radiu:2px;
 }
