@@ -46,9 +46,7 @@
 			<li><a href="#intervenants">Intervenants</a></li>
 		</ul>
 	</nav>
-<div class="panel-body">
-
-
+<div class="panel-body units-row units-split">
 
 {# GENERAL #}
 <div id="general" class="tab unit-100">
@@ -64,7 +62,6 @@
 				<th class="insc info"><span>Inscription</span></th>
 				<th class="insc info"><span>Financement</span></th>
 				<th class="insc info"><span>Convention</span></th>
-				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -89,21 +86,21 @@
                 <td class="insc actions">
 					<a href="#" data-tools="dropdown" data-target="#dropdown1-{{loop.index}}"></a>
 					<ul id="dropdown1-{{loop.index}}" class="dropdown">
-						<li><a href="{{ path('inscription_show', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><i class="fa fa-info"></i> Détails</a></li>
-						<li><a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation':formation.id }) }}" class=""><i class="fa fa-pencil"></i> Modifier</a></li>
+						<li><a href="{{ path('inscription_show', { 'id': entity.id, 'idformation':formation.id }) }}" class="inscription-href"><i class="fa fa-info"></i> Détails</a></li>
+						<li><a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation':formation.id }) }}" class="inscription-href"><i class="fa fa-pencil"></i> Modifier</a></li>
 						<li>
 							{% if entity.convention %}
-								<a href="{{ path('convention_edit', { 'id': entity.convention.id, 'idformation':formation.id }) }}" class="">
+								<a href="{{ path('convention_edit', { 'id': entity.convention.id, 'idformation':formation.id }) }}" class="inscription-href">
 							{% else %}
-								<a href="{{ path('convention_new', { 'idinscription': entity.id, 'idformation':formation.id }) }}" class="">
+								<a href="{{ path('convention_new', { 'idinscription': entity.id, 'idformation':formation.id }) }}" class="inscription-href">
 							{% endif %}
 								<i class="fa fa-pencil"></i> Convention</a>
 						</li>
 						<li>
 							{% if entity.signataire == null %}
-								<a href="{{path('signataire_new', {'idinscription':entity.id, 'idformation': formation.id})}}" class=""><i class="fa fa-plus"></i> Ajouter un signataire</a>
+								<a href="{{path('signataire_new', {'idinscription':entity.id, 'idformation': formation.id})}}" class="inscription-href"><i class="fa fa-plus"></i> Ajouter un signataire</a>
 							{% else %}
-								<a href="{{path('signataire_edit', {'id': entity.signataire.id, 'idformation': formation.id})}}" class=""><i class="fa fa-pencil"></i> Modifier</a>
+								<a href="{{path('signataire_edit', {'id': entity.signataire.id, 'idformation': formation.id})}}" class="inscription-href"><i class="fa fa-pencil"></i> Modifier</a>
 							{% endif %}
 						</li>
 					</ul>
@@ -204,6 +201,8 @@
 			{% elseif entity.statut == 'annulé' %}
 				{% set class = "annule" %}
 			{% endif %}
+			
+			{% if entity.statut == 'accepté' %}
 			<tr class="statut {{class}}" data-ordre="{{entity.ordre}}" data-idinscription="{{entity.id}}">
 						{% if class == "attente" %}<td class="handle"><i class="fa fa-arrows"></i></td>{% else %}<td></td>{% endif %}
 						<td class="insc info"><span>{{ entity.stagiaire.nom }} ({{ entity.stagiaire.civilite }})</span></td>
@@ -231,6 +230,7 @@
 						{% endif %}
 					{% endfor %}
             </tr>
+			{% endif %}
         {% endfor %}
         </tbody>
 		<tfoot>

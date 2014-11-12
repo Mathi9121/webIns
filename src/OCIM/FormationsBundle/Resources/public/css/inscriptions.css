@@ -18,3 +18,10 @@ td.handle{color: #6f6f6f; cursor: move}
 td.logistique{cursor: pointer; text-align:center;}
 td.undefined{cursor: not-allowed; background-color: rgba(125,125,125, 0.2)}
 td.logistique[data-type="text"]{cursor: text}
+
+
+
+/* boite détails dune inscription */
+div.details-inscription{
+	background-color: #ffeeee;
+}
