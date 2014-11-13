@@ -76,7 +76,9 @@
 	{# NAVIGATION MOBILE #}
 	<nav class="navbar navbar-right end">
 		<div class="navigation-toggle" data-tools="navigation-toggle" data-target="#nav-mobile">
-			<span>Menu</span>
+			<span>Menu	{% image '../app/Resources/public/img/logo-header.png' %}
+							<img src="{{ asset_url }}" alt="OCIM" style='height: 40px; margin-left: calc(100% - 280px)'/>
+						{% endimage %}</span>
 		</div>
 	</nav>
 </header>

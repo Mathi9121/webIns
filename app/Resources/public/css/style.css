@@ -208,15 +208,21 @@ form[action$="delete"]{margin-bottom: 0px}
 	#sidebar{width: 0px;}
 	#header .left, #header .right{display:none;}
 	#page, #content{
-		width: 100%
+		width: 100%; float:none;
 	}
-	#content{margin-left: 0px}
+	#content{margin-left: 0px; float:none;}
 	#sidebar{
 		padding-top: 0;
 		left: 0 !important;
 		display:block;
 		width:100%;
 		height: auto;
+		float:none;
+		position: relative !important;
+	}
+	.contentwrapper{
+		float:none;
+		margin-left: 0px
 	}
 	.showonmobile{
 		display: block;
