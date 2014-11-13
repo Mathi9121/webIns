@@ -97,15 +97,15 @@
 							{% set spanclass = '' %}
 							{% set text = '' %}
 							{% for statut in formation._count %}
-								{% if statut.statut == 'en attente' %}
+								{% if statut.statut == '2' %}
 									{% set spanclass = 'badge-yellow' %}
 									{% set text = 'Inscriptions en attente de validation' %}
 								{% endif %}
-								{% if statut.statut == 'accepté' %}
+								{% if statut.statut == '1' %}
 									{% set spanclass = 'badge-green' %}
 									{% set text = 'Inscriptions validées' %}
 								{% endif %}
-								{% if statut.statut == 'annulé' %}
+								{% if statut.statut == '3' %}
 									{% set spanclass = 'badge-red' %}
 									{% set text = "Nombre d'inscriptions annulées" %}
 								{% endif %}

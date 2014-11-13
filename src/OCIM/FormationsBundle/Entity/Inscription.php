@@ -103,7 +103,20 @@ class Inscription
      */
     public function getStatut()
     {
-        return $this->statut;
+        
+		$s = $this->statut;
+		switch($s){
+			case '1':
+				$s = "accepté";
+				break;
+			case '2':
+				$s = "en attente";
+				break;
+			case '3':
+				$s = "annulé";
+				break;
+			}
+		return $s;
     }
 
     /**
@@ -461,5 +474,24 @@ class Inscription
 			}
 		}
 		else return 0;
+	}
+	
+	public function setNumberStatut( $str){
+	
+		$this->statut = $str;
+		
+		if($str == '2'){
+			if($this->ordre == null){
+				$this->setOrdre(15000);
+			}
+		}
+		
+		return $this;
+	}
+	
+	public function getNumberStatut(){
+	
+		return $this->statut;
+		
 	}
 }

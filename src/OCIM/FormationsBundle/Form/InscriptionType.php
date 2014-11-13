@@ -7,6 +7,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use OCIM\ContactsBundle\Form\PersonneType;
 use Doctrine\ORM\EntityRepository;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 
 class InscriptionType extends AbstractType
 {
@@ -47,8 +49,8 @@ class InscriptionType extends AbstractType
 				'read_only' => true,
 				'attr' => array('class' => 'width-100')
 				))
-            ->add('statut','choice', array(
-				'choices'   => array('en attente' => 'En attente', 'accepté' => 'Accepté', "annulé" => "Annulé"),
+            ->add('numberStatut','choice', array(
+				'choices'   => array( '1' => 'Accepté', '2' => 'En attente', "3" => "Annulé"),
 				//'preferred_choices' => array('en attente')
 				'attr' => array('class' => 'width-100')
 				))
@@ -59,6 +61,14 @@ class InscriptionType extends AbstractType
             //->add('statutConvention')
             //->add('hash')
             //->add('convention')
+			
+			->addEventListener(
+				FormEvents::POST_SUBMIT,
+				function(FormEvent $event) {
+					$entity = $event->getForm()->getData();
+					$entity->setStatut($event->getForm()->get('numberStatut')->getData());
+				}
+			)
         ;
     }
     
