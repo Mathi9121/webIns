@@ -85,25 +85,27 @@
 						<td class="insc info"><span>{{ entity.statutConvention }}</span></td>
                 <td class="insc actions">
 					<a href="#" data-tools="dropdown" data-target="#dropdown1-{{loop.index}}"></a>
+					{% spaceless %}
 					<ul id="dropdown1-{{loop.index}}" class="dropdown">
-						<li><a href="{{ path('inscription_show', { 'id': entity.id, 'idformation':formation.id }) }}" class="inscription-href"><i class="fa fa-info"></i> Détails</a></li>
-						<li><a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation':formation.id }) }}" class="inscription-href"><i class="fa fa-pencil"></i> Modifier</a></li>
+						<li><a href="{{ path('inscription_show', { 'id': entity.id, 'idformation':formation.id }) }}" class="inscription-href"><i class="fa fa-info fa-fw"></i>Détails</a></li>
+						<li><a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation':formation.id }) }}" class="inscription-href"><i class="fa fa-pencil fa-fw"></i>Modifier</a></li>
 						<li>
 							{% if entity.convention %}
-								<a href="{{ path('convention_edit', { 'id': entity.convention.id, 'idformation':formation.id }) }}" class="inscription-href">
+								<a href="{{ path('convention_edit', { 'id': entity.convention.id, 'idformation':formation.id }) }}" class="inscription-href"><i class="fa fa-pencil fa-fw"></i>
 							{% else %}
-								<a href="{{ path('convention_new', { 'idinscription': entity.id, 'idformation':formation.id }) }}" class="inscription-href">
+								<a href="{{ path('convention_new', { 'idinscription': entity.id, 'idformation':formation.id }) }}" class="inscription-href"><i class="fa fa-plus fa-fw"></i>
 							{% endif %}
-								<i class="fa fa-pencil"></i> Convention</a>
+								Convention</a>
 						</li>
 						<li>
 							{% if entity.signataire == null %}
-								<a href="{{path('signataire_new', {'idinscription':entity.id, 'idformation': formation.id})}}" class="inscription-href"><i class="fa fa-plus"></i> Ajouter un signataire</a>
+								<a href="{{path('signataire_new', {'idinscription':entity.id, 'idformation': formation.id})}}" class="inscription-href"><i class="fa fa-plus fa-fw"></i>Ajouter un signataire</a>
 							{% else %}
-								<a href="{{path('signataire_edit', {'id': entity.signataire.id, 'idformation': formation.id})}}" class="inscription-href"><i class="fa fa-pencil"></i> Modifier</a>
+								<a href="{{path('signataire_edit', {'id': entity.signataire.id, 'idformation': formation.id})}}" class="inscription-href"><i class="fa fa-pencil fa-fw"></i>Modifier signataire</a>
 							{% endif %}
 						</li>
 					</ul>
+					{% endspaceless %}
 				</td>
             </tr>
         {% endfor %}
@@ -215,9 +217,9 @@
 									{% if attribute(entity, 'getReponseByModeleId', [log.id]) %}
 										{% if log.typeReponse == 'bool' %}
 											{% if (attribute(entity, 'getReponseByModeleId', [log.id, log.typeReponse]) == '1') %}
-												<i class="fa fa-check"></i>
+												<span class="logistique ok">1</span>
 											{% elseif (attribute(entity, 'getReponseByModeleId', [log.id, log.typeReponse]) == '0') %}
-												<i style="color: rgba(255,0,0,0.5)" class="fa fa-times"></i>
+												<span class="logistique zero">0</span>
 											{% endif %}
 										{% elseif log.typeReponse == 'text' %}
 											{{ (attribute(entity, 'getReponseByModeleId', [log.id, log.typeReponse]))}}

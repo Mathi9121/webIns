@@ -67,11 +67,11 @@ function enregistre(data, td){
 		if(msg[0].type == 'bool'){
 			if(msg[0].reponse){
 				$(td).attr('data-reponse', 1);
-				$(td).html('<i class="fa fa-check fa-2x"></i>');
+				$(td).html('<span class="logistique ok">1</span>');
 			}
 			else{
 				$(td).attr('data-reponse', 0);
-				$(td).html('<i style="color: rgba(255,0,0,0.5)" class="fa fa-times fa-2x"></i>');
+				$(td).html('<span class="logistique zero">0</span>');
 			}
 		}
 		else{
