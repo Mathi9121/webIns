@@ -1,69 +1,107 @@
 {% extends '::app.html.twig' %}
 {% form_theme form '::form.html.twig' %}
 
+
+   
+
+{# Titres #}
+{% block title %}Edition Inscription n° {{entity.id}} - {{entity.stagiaire.prenom|capitalize}} {{entity.stagiaire.nom|capitalize}}{% endblock %}
+{% block titre %}Edition Inscription n° {{entity.id}} - {{entity.stagiaire.prenom|capitalize}} {{entity.stagiaire.nom|capitalize}}{% endblock %}
+
+{% block breadcrumbs %}
+<li><a href="{{ path('formation_show', { 'id': idformation }) }}">Formation : {{entity.formationformule.formation.intitule}}</a></li>
+<li><a href="{{ path('inscription', { 'idformation': idformation }) }}">Inscriptions</a></li>
+<li><span>Inscription n° {{entity.id}}</span></li>
+{% endblock %}
+
+
+{# Controls #}
+{% block controls %}
+{% endblock %}
+
 {% block body -%}
-    <h1>Ezdition inscription à la formation</h1>
-<hr/>
+
 {{ form_errors(form) }}
 {{form_start(form)}}
-<h2>Le stagiaire</h2>
-<div class="units-row end">
-    <div class="unit-10">
-	{{ form_row(form.stagiaire.civilite) }}
+
+<h2 class="text-centered"><i class="fa fa-graduation-cap"></i> {{entity.formationformule.formation.intitule}}</h2><hr/>
+
+<div class="units-row">
+	<div class="unit-50 panel">
+		<div class="header">
+			<span class="titre">Inscription</span>
+				<span class="controls right group">
+				</span>
+		</div>
+		
+		<div class="panel-body">
+		{{ form_row(form.dateInscription) }}
+		{{ form_row(form.formationformule) }}
+		{{ form_row(form.numberStatut) }}
+		</div>
 	</div>
-	<div class="unit-90">
-		<div class="units-row end">
-			<div class="unit-50">{{ form_row(form.stagiaire.prenom) }}</div>
-			<div class="unit-50">{{ form_row(form.stagiaire.nom) }}</div>
+	<div class="unit-50 panel">
+		<div class="header">
+			<span class="titre">Attentes du stagiaire</span>
+				<span class="controls right group">
+				</span>
+		</div>
+		
+		<div class="panel-body">
+			{{ form_widget(form.attentes) }}
+		</div>
+	</div>
+	
+</div>
+
+
+
+<div class="units-row">
+	<div class="unit-50 panel">
+		<div class="header">
+			<span class="titre">Le stagiaire</span>
+				<span class="controls right group">
+				</span>
+		</div>
+		
+		<div class="panel-body">
+			{{ form_row(form.stagiaire.civilite) }}
+			{{ form_row(form.stagiaire.prenom) }}
+			{{ form_row(form.stagiaire.nom) }}
+			{{ form_row(form.stagiaire.fonction) }}
+			{{ form_row(form.stagiaire.tel) }}
+			{{ form_row(form.stagiaire.fax) }}
+			{{ form_row(form.stagiaire.mail) }}
+			{{ form_row(form.stagiaire.mailAdmin) }}
+			
+		</div>
+		
+
+	</div>
+	
+	<div class="panel unit-50">
+		<div class="header">
+			<span class="titre">Adresse</span>
+				<span class="controls right group">
+				
+				</span>
+		</div>
+		
+		<div class="panel-body">
+			{{ form_row(form.stagiaire.adresse.nomStructure) }}
+			{{ form_row(form.stagiaire.adresse.nomStructure) }}
+			{{ form_row(form.stagiaire.adresse.adresse) }}
+			{{ form_row(form.stagiaire.adresse.adresseComplement) }}
+			{{ form_row(form.stagiaire.adresse.cP) }}
+			{{ form_row(form.stagiaire.adresse.ville) }}
+			{{ form_row(form.stagiaire.adresse.pays) }}
 		</div>
 	</div>
 </div>
 
-<div class="units-row end">
-    <div class="unit-33">{{ form_row(form.stagiaire.fonction) }}</div>
-    <div class="unit-33">{{ form_row(form.stagiaire.tel) }}</div>
-    <div class="unit-33">{{ form_row(form.stagiaire.fax) }}</div>
-</div>
 
-<div class="units-row">
-    <div class="unit-50">{{ form_row(form.stagiaire.mail) }}</div>
-    <div class="unit-50">{{ form_row(form.stagiaire.mailAdmin) }}</div>
-</div>
 
-<h2>Adresse</h2>
-<div class="units-row end">
-    <div class="unit-100">{{ form_row(form.stagiaire.adresse.nomStructure) }}</div>
-</div>
 
-<div class="units-row end">
-    <div class="unit-100">{{ form_row(form.stagiaire.adresse.nomStructure) }}</div>
-</div>
-
-<div class="units-row end">
-    <div class="unit-50">{{ form_row(form.stagiaire.adresse.adresse) }}</div>
-    <div class="unit-50">{{ form_row(form.stagiaire.adresse.adresseComplement) }}</div>
-</div>
-
-<div class="units-row">
-    <div class="unit-33">{{ form_row(form.stagiaire.adresse.cP) }}</div>
-    <div class="unit-33">{{ form_row(form.stagiaire.adresse.ville) }}</div>
-    <div class="unit-33">{{ form_row(form.stagiaire.adresse.pays) }}</div>
-</div>
-
-<h2>Inscription</h2>
-<div class="units-row end">
-    <div class="unit-66">{{ form_row(form.formationformule) }}</div>
-    <div class="unit-33">
-		<div class='units-row end'>
-			<div class='unit-66'>{{ form_row(form.dateInscription) }}</div>
-			<div class='unit-33'>{{ form_row(form.numberStatut) }}</div>
-		</div>
-	</div>
-</div>
-<div class="units-row">
-    <div class="unit-100">{{ form_row(form.attentes) }}</div>
-</div>
-<hr/>
 <div class="group">
 	<div class="left"><a href="{{ path('inscription', { 'idformation': idformation }) }}" class="btn btn-smaller"><span class="oi" data-glyph="arrow-left"></span> Retour à la liste</a></div>
 	<div class="right">{{ form_widget(form.submit) }}</div>

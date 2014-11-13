@@ -98,7 +98,9 @@ header a#nav-toggle:hover{color: #e52f23}
 	width: 214px;
 }
 
-
+#sidebar .navigation-fixed.disparu{
+	display:none !important;
+}
 
 
 /************* CONTENT ****************/
@@ -182,7 +184,7 @@ table tr td{vertical-align:middle}
 
 
 form select{
-	height: 2.3em;
+	height: 2.4em;
 }
 form select[multiple]{
 	height: auto;
@@ -210,7 +212,7 @@ form[action$="delete"]{margin-bottom: 0px}
 	#page, #content{
 		width: 100%; float:none;
 	}
-	#content{margin-left: 0px; float:none;}
+	#content{margin-left: 0px !important; float:none;}
 	#sidebar{
 		padding-top: 0;
 		left: 0 !important;
@@ -222,7 +224,7 @@ form[action$="delete"]{margin-bottom: 0px}
 	}
 	.contentwrapper{
 		float:none;
-		margin-left: 0px
+		margin-left: 0px !important
 	}
 	.showonmobile{
 		display: block;

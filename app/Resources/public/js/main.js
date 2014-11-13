@@ -13,6 +13,13 @@ $(document).ready(function(){
 		$("#content").animate({
 			"margin-left": (state ? 0 : 215)
 		});
+		if(state){
+			$("#sidebar nav").addClass("disparu");
+		}
+		else{
+			$("#sidebar nav").removeClass("disparu");
+		}
+		
 	});
 	
 	//eventlistener plein ecran
