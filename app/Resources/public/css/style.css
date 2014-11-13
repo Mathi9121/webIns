@@ -193,14 +193,36 @@ h1, h2, h3, h4, h5, h6{color: #777777 }
 form[action$="delete"]{margin-bottom: 0px}
 
 
+/**** Menu mobile ****/
+#menu-mobile{display: none;}
+
+.showonmobile{
+	display: none;
+	}
+
+
 /************** MEDIA ******************/
 @media only screen and (max-width:767px){
 	#content{padding: 10px 20px;}
 	#header{text-align:center}
-
-	#header img.logo{margin-left: calc(100% - 160px); height: 40px}
-	#sidebar form, #sidebar .logo{display:none;}
-	#sidebar{padding-top: 0}
+	#sidebar{width: 0px;}
+	#header .left, #header .right{display:none;}
+	#page, #content{
+		width: 100%
+	}
+	#content{margin-left: 0px}
+	#sidebar{
+		padding-top: 0;
+		left: 0 !important;
+		display:block;
+		width:100%;
+		height: auto;
+	}
+	.showonmobile{
+		display: block;
+	}
+	
  	#titre h1{float: left}
-	#titre #controls{float: right} 
+	#titre #controls{float: right}
+	#menu-mobile{display: block;}
 }

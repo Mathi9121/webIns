@@ -31,6 +31,24 @@
 <body>
 
 
+{# MENU TWIG #}
+{% set menu = [
+	{'route': 'home' ,'iconclass' : "fa fa-tachometer", 'menuText': 'Tableau de bord'},
+	{'route': 'formation' ,'iconclass' : "fa fa-graduation-cap", 'menuText': 'Formations'},
+	{'route': 'inscription' ,'iconclass' : "fa fa-users", 'menuText': ''},
+	{'route': 'user' ,'iconclass' : "fa fa-users", 'menuText': ''},
+	{'route': 'formule' ,'iconclass' : "fa fa-cutlery", 'menuText': 'Formules'},
+	{'route': 'logistique' ,'iconclass' : "fa fa-truck", 'menuText': 'Logistique'},
+	{'route': 'structures' ,'iconclass' : "fa fa-university", 'menuText': 'Structures'},
+	{'route': 'personne' ,'iconclass' : "fa fa-phone", 'menuText': 'Contacts'},
+	{'route': 'documents' ,'iconclass' : "fa fa-files-o", 'menuText': 'Export et gabarits'},
+] %}
+
+{% set pagevars = '' %}
+
+
+
+
 <header class="group" id="header">
 	<div class="left">
 		<a href="#" id="nav-toggle"><i class="fa fa-bars fa-2x"></i></a>
@@ -54,34 +72,20 @@
 			</nav>
 		</div>
 	</div>
+	
 	{# NAVIGATION MOBILE #}
 	<nav class="navbar navbar-right end">
-		<div class="navigation-toggle" data-tools="navigation-toggle" data-target="#sidebar">
-			<span>Menu<img src="{{ asset('../app/Resources/public/img/logo-header.png') }}" class="logo" alt="OCIM"/></span>
+		<div class="navigation-toggle" data-tools="navigation-toggle" data-target="#nav-mobile">
+			<span>Menu</span>
 		</div>
 	</nav>
 </header>
-
-{# MENU TWIG #}
-{% set menu = [
-	{'route': 'home' ,'iconclass' : "fa fa-tachometer", 'menuText': 'Tableau de bord'},
-	{'route': 'formation' ,'iconclass' : "fa fa-graduation-cap", 'menuText': 'Formations'},
-	{'route': 'inscription' ,'iconclass' : "fa fa-users", 'menuText': ''},
-	{'route': 'user' ,'iconclass' : "fa fa-users", 'menuText': ''},
-	{'route': 'formule' ,'iconclass' : "fa fa-cutlery", 'menuText': 'Formules'},
-	{'route': 'logistique' ,'iconclass' : "fa fa-truck", 'menuText': 'Logistique'},
-	{'route': 'structures' ,'iconclass' : "fa fa-university", 'menuText': 'Structures'},
-	{'route': 'personne' ,'iconclass' : "fa fa-phone", 'menuText': 'Contacts'},
-	{'route': 'documents' ,'iconclass' : "fa fa-files-o", 'menuText': 'Export et gabarits'},
-] %}
-
-{% set pagevars = '' %}
 
 
 <div id="page" class="group">
 	<div id="sidebar">
 		
-		<nav class="nav nav-stacked" data-tools="navigation-fixed">
+		<nav id="nav-mobile" class="nav nav-stacked" data-tools="navigation-fixed">
 			<ul>
 				{% for item in menu %}
 					{% if item.menuText != ""%}
@@ -95,6 +99,10 @@
 					{% endif %}
 					{% if app.request.attributes.get("_route") starts with item.route %}{% set pagevars = item %}{% endif %}
 				{% endfor %}
+			</ul>
+			<ul class="showonmobile">
+				<li><a href="{{path('user')}}"><i class="fa fa-users"></i>Gestion des utilisateurs</a></li>
+				<li><a href="{{ path('deconnexion') }}"><i class="fa fa-power-off "></i>Deconnexion</a></li>
 			</ul>
 		</nav>
 	</div>

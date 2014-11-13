@@ -44,9 +44,9 @@
 }
 
 @media only screen and (max-width:767px){
-	#indicateurs>div:nth-child(2n+1){margin-left: 0;}
+	#indicateurs>div:nth-child(2n){margin-left: 0;}
 	#indicateurs .right{float: right;}
 	#indicateurs .left{float: left;}
-	#indicateurs.units-mobile-33>div{width:32.3%; float:left;margin-left: 1%;}
-	#indicateurs.units-mobile-33>div:nth-child(3n+1){margin-left: 0}
+	#indicateurs>div{width:50%; float:left;margin-left: 1%;}
+	#indicateurs>div:nth-child(2n+1){margin-left: 0}
 }
