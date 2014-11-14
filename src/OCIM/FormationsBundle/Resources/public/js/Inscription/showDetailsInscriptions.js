@@ -46,7 +46,7 @@ $(document).ready(function(){
 			formuleid : formuleId,
 			liens : liens,
 			trPosition : trPosition,
-			tableH, tableH,
+			tableH: tableH,
 			date : dateInscription,
 		}
 		
