@@ -35,11 +35,11 @@ class InscriptionType extends AbstractType
 			->add('formationformule', "entity", array(
 				'class' => 'OCIM\FormationsBundle\Entity\formationFormule',
 				"attr" => array('class'=>'width-100'),
-				"query_builder" => function(EntityRepository $er) 
+				"query_builder" => function(EntityRepository $er) use ($idformation)
 					{
 						return $er->createQueryBuilder('u')
 						->where('u.formation = :idformation')
-						->setParameter('idformation', $this->idformation);
+						->setParameter('idformation', $idformation);
 					},
 				))
             ->add('dateInscription', 'datetime', array(
