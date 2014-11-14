@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Ven 07 Novembre 2014 à 17:47
+-- Généré le: Ven 14 Novembre 2014 à 09:20
 -- Version du serveur: 5.5.37
 -- Version de PHP: 5.4.4-14+deb7u11
 
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `Adresse` (
   `ville` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `pays` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=16 ;
 
 --
 -- Contenu de la table `Adresse`
@@ -55,7 +55,8 @@ INSERT INTO `Adresse` (`id`, `nomStructure`, `adresse`, `adresseComplement`, `CP
 (11, 'Universcience - Cité des Sciences et de l''industrie', 'DMSE-DSIT - 30 avenue Corentin Cariou (Niv 0)', NULL, '75930', 'PARIS', NULL),
 (12, 'Universcience', '30 avenue Corentin Cariou', NULL, '75930', 'PARIS Cedex 19', NULL),
 (13, NULL, '46 Rue des Iles', '', '74000', 'Annecy', NULL),
-(14, 'La Turbine Sciences', '3, rue des Tisserands', NULL, '74960', 'CRAN-GEVRIER', NULL);
+(14, 'La Turbine Sciences', '3, rue des Tisserands', NULL, '74960', 'CRAN-GEVRIER', NULL),
+(15, 'OCIM', '36 rue chabot charny', 'Fac de musico', '21000', 'Dijon', 'France');
 
 -- --------------------------------------------------------
 
@@ -150,7 +151,15 @@ INSERT INTO `formationformule_modele` (`formationformule_id`, `modele_id`) VALUE
 (353, 8),
 (353, 9),
 (353, 10),
-(353, 11);
+(353, 11),
+(354, 25),
+(354, 26),
+(355, 25),
+(355, 26),
+(355, 27),
+(355, 28),
+(355, 29),
+(355, 30);
 
 -- --------------------------------------------------------
 
@@ -165,7 +174,7 @@ CREATE TABLE IF NOT EXISTS `formation_formule` (
   PRIMARY KEY (`id`),
   KEY `IDX_25A3D9E32A68F4D1` (`formule_id`),
   KEY `IDX_25A3D9E35200282E` (`formation_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=376 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=378 ;
 
 --
 -- Contenu de la table `formation_formule`
@@ -181,7 +190,9 @@ INSERT INTO `formation_formule` (`id`, `formule_id`, `formation_id`) VALUES
 (358, 15, 42),
 (361, 16, 44),
 (362, 15, 44),
-(363, 14, 45);
+(363, 14, 45),
+(376, 15, 43),
+(377, 16, 43);
 
 -- --------------------------------------------------------
 
@@ -228,24 +239,26 @@ CREATE TABLE IF NOT EXISTS `Inscription` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_D80C7901A2ACEBCC` (`convention_id`),
   KEY `IDX_D80C7901AD890511` (`formationformule_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=14 ;
 
 --
 -- Contenu de la table `Inscription`
 --
 
 INSERT INTO `Inscription` (`id`, `convention_id`, `formationformule_id`, `dateInscription`, `statut`, `attentes`, `statutOrgFinanceur`, `statutConvention`, `hash`, `ordre`) VALUES
-(1, 1, 353, '2014-10-29 16:14:56', 'accepté', 'Avec cette formation j''espère pouvoir développer des compétences dans la gestion de projets spécifiques de type participatifs. J''aimerai aussi avoir une vision globale du réseau national des acteurs des projets participatifs. ', NULL, NULL, 'e88eccfd2aeb9ad4d3f3d7aa18e064770f904ac66c7421264dbf64704e7edde5', NULL),
-(2, NULL, 353, '2014-10-29 16:14:56', 'accepté', 'Savoir mettre en place et projet participatif et l''évaluer dans le cadre du secteur de médiation culturelle. ', NULL, NULL, '708e0f51d6cb0df50a90f0e7eff57ed71b3231262b2653e9da2df3580a077d5e', NULL),
-(3, NULL, 352, '2014-10-29 16:14:56', 'en attente', 'En savoir plus sur ce sujet et découvrir des expériences réalisées autour de ce thème. Quelles sont aussi les limites d''un projet participatif ?', NULL, NULL, 'ab29469d63b3f5eaad987a13a4baf0331e69dd258778ea442434c3b598837ed1', NULL),
-(4, NULL, 352, '2014-10-29 16:14:56', 'accepté', 'Développement des compétences. ', NULL, NULL, 'f50e0a20ac1e7fda0f8d6608b3f5925f82890428d4773a3f878c93a790f8d518', NULL),
-(5, 2, 352, '2014-10-29 16:14:56', 'accepté', 'Repérer les motivations pour savoir quand, comment et sur quoi mobiliser. découvrir les expériences réussies et avortées (benchmark). Aborder la question des évaluations de ces pratiques et de la reconnaissance à offrir en retour. ', NULL, NULL, 'c2f08869b23d62f48d741a609162746350512acd5164bad18d3c42e8e9be154f', NULL),
-(6, NULL, 353, '2014-10-29 16:14:56', 'accepté', 'Au sein d''un musée de société, nous désirons développer les projets participatifs et leur donner de nouvelles directions. Cette formation enrichira nos pratiques professionnelles et permettra des échanges très riches de sens, comme lors de chacune des formations. ', NULL, NULL, 'ae57fc329b55b889510b6f746b9df2d5ba525122c5b97b1603ec6e3b33ee947c', NULL),
-(7, NULL, 353, '2014-10-29 16:14:56', 'accepté', 'Apprendre à penser et concevoir un projet participatif cohérent, qui permettrait de travailler sur certains aspects de la promotion du Château-Fort de Guise avec les habitants de la ville et des environs ; tout en les impliquant dans la conservation et la valorisation de leur patrimoine. ', NULL, NULL, '338a08a657c3ffd297197a24994179b064956114c807fe30c492f29325754a68', NULL),
-(8, NULL, 353, '2014-10-29 16:14:56', 'annulé', 'Découvrir des méthodes de participation active autour d''expositions comme la mienne sur le Développement Durable, et la Biodiversité Malgache destinée aux Jeunes et moins jeunes Français et Européens.', NULL, NULL, '2e1350888f42ae4e52eeb08ea5258c6e06096d33874d9e7f8dcb28d156aa8a5e', NULL),
-(9, NULL, 353, '2014-10-29 16:14:56', 'accepté', '* Décortiquer le processus de construction d’un projet culturel participatif * Analyser les enjeux, les avantages, les inconvénients et les limites de ce type de projet * Expérimenter et acquérir de nouvelles pratiques méthodologiques et pratiques éprouvées sur le terrain ', NULL, NULL, '0c3b268d1f21cf01d347333bd05afae57bbdc81fc412130ddbd16a4ab58efb3e', NULL),
-(10, NULL, 353, '2014-10-29 16:14:56', 'accepté', '* Connaitre les différentes étapes et outils à mettre en place * Connaître Les différents types de projet participatif * Cerner les publics envisageables\n* Connaître les différents acteurs à intégrer * Quels sont les partenaires envisageables à solliciter ', NULL, NULL, '1067b6cb6a3293180a5f56bb29598685056ea50ab741b017b88348727459d606', NULL),
-(11, 3, 353, '2014-10-29 16:14:56', 'accepté', 'Appréhender avec plus de précision les différentes typologies de projets et/ou actions participatifs, ainsi que les échelles d''application possibles.\nConnaître le(s) processus d''organisation et construction d''un projet participatif. ', NULL, NULL, '1f760d89250fee57287704a750cc482244d02a57cc103df4c91d95b5fcc05cdd', NULL);
+(1, 1, 353, '2014-10-28 16:14:56', '1', 'Avec cette formation j''espère pouvoir développer des compétences dans la gestion de projets spécifiques de type participatifs. J''aimerai aussi avoir une vision globale du réseau national des acteurs des projets participatifs. ', NULL, NULL, 'e88eccfd2aeb9ad4d3f3d7aa18e064770f904ac66c7421264dbf64704e7edde5', NULL),
+(2, NULL, 353, '2014-10-30 16:14:56', '2', 'Savoir mettre en place et projet participatif et l''évaluer dans le cadre du secteur de médiation culturelle.', NULL, NULL, '708e0f51d6cb0df50a90f0e7eff57ed71b3231262b2653e9da2df3580a077d5e', 10625),
+(3, NULL, 352, '2014-10-29 16:14:56', '3', 'En savoir plus sur ce sujet et découvrir des expériences réalisées autour de ce thème. Quelles sont aussi les limites d''un projet participatif ?', NULL, NULL, 'ab29469d63b3f5eaad987a13a4baf0331e69dd258778ea442434c3b598837ed1', NULL),
+(4, NULL, 352, '2014-10-29 16:14:56', '1', 'Développement des compétences. ', NULL, NULL, 'f50e0a20ac1e7fda0f8d6608b3f5925f82890428d4773a3f878c93a790f8d518', NULL),
+(5, 2, 352, '2014-10-02 16:14:56', '1', 'Repérer les motivations pour savoir quand, comment et sur quoi mobiliser. découvrir les expériences réussies et avortées (benchmark). Aborder la question des évaluations de ces pratiques et de la reconnaissance à offrir en retour. ', NULL, NULL, 'c2f08869b23d62f48d741a609162746350512acd5164bad18d3c42e8e9be154f', NULL),
+(6, NULL, 353, '2014-09-29 16:14:56', '2', 'Au sein d''un musée de société, nous désirons développer les projets participatifs et leur donner de nouvelles directions. Cette formation enrichira nos pratiques professionnelles et permettra des échanges très riches de sens, comme lors de chacune des formations.', NULL, NULL, 'ae57fc329b55b889510b6f746b9df2d5ba525122c5b97b1603ec6e3b33ee947c', 0),
+(7, NULL, 353, '2014-10-29 16:14:56', '1', 'Apprendre à penser et concevoir un projet participatif cohérent, qui permettrait de travailler sur certains aspects de la promotion du Château-Fort de Guise avec les habitants de la ville et des environs ; tout en les impliquant dans la conservation et la valorisation de leur patrimoine. ', NULL, NULL, '338a08a657c3ffd297197a24994179b064956114c807fe30c492f29325754a68', NULL),
+(8, NULL, 353, '2014-10-27 16:14:56', '3', 'Découvrir des méthodes de participation active autour d''expositions comme la mienne sur le Développement Durable, et la Biodiversité Malgache destinée aux Jeunes et moins jeunes Français et Européens.', NULL, NULL, '2e1350888f42ae4e52eeb08ea5258c6e06096d33874d9e7f8dcb28d156aa8a5e', NULL),
+(9, NULL, 353, '2014-10-02 16:14:56', '1', '* Décortiquer le processus de construction d’un projet culturel participatif * Analyser les enjeux, les avantages, les inconvénients et les limites de ce type de projet * Expérimenter et acquérir de nouvelles pratiques méthodologiques et pratiques éprouvées sur le terrain ', NULL, NULL, '0c3b268d1f21cf01d347333bd05afae57bbdc81fc412130ddbd16a4ab58efb3e', NULL),
+(10, NULL, 353, '2014-10-29 16:14:56', '1', '* Connaitre les différentes étapes et outils à mettre en place * Connaître Les différents types de projet participatif * Cerner les publics envisageables\n* Connaître les différents acteurs à intégrer * Quels sont les partenaires envisageables à solliciter ', NULL, NULL, '1067b6cb6a3293180a5f56bb29598685056ea50ab741b017b88348727459d606', NULL),
+(11, 3, 353, '2014-11-29 16:14:56', '2', 'Appréhender avec plus de précision les différentes typologies de projets et/ou actions participatifs, ainsi que les échelles d''application possibles.\r\nConnaître le(s) processus d''organisation et construction d''un projet participatif.', NULL, NULL, '1f760d89250fee57287704a750cc482244d02a57cc103df4c91d95b5fcc05cdd', 5312),
+(12, NULL, 356, '2014-11-11 14:26:49', '1', 'Attentes', NULL, NULL, '8d7d2b19a1ee6eb43a87f054d4c9a1d8a1526add260122618a92fddc51b84ccc', 0),
+(13, NULL, 353, '2014-11-13 15:38:53', '2', 'efqerg', NULL, NULL, '2b641e6091b8d4d91fdc5af9c062fd626effa9abfaa190707a67db4942996809', 7968);
 
 -- --------------------------------------------------------
 
@@ -279,7 +292,9 @@ INSERT INTO `inscription_personnes` (`inscription_id`, `personne_id`) VALUES
 (11, 11),
 (1, 12),
 (5, 13),
-(11, 14);
+(11, 14),
+(12, 15),
+(13, 16);
 
 -- --------------------------------------------------------
 
@@ -310,7 +325,7 @@ CREATE TABLE IF NOT EXISTS `ModeleLogistique` (
   `formation_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_697A99215200282E` (`formation_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=31 ;
 
 --
 -- Contenu de la table `ModeleLogistique`
@@ -327,7 +342,15 @@ INSERT INTO `ModeleLogistique` (`id`, `date`, `description`, `typeReponse`, `ord
 (8, '2014-09-17 00:00:00', 'Nuit', 'bool', 4, 39),
 (9, '2014-09-17 00:00:00', 'Soir', 'bool', 6, 39),
 (10, '2014-09-18 00:00:00', 'Nuit', 'bool', 7, 39),
-(11, '2014-09-18 00:00:00', 'Nuit', 'bool', 9, 39);
+(11, '2014-09-18 00:00:00', 'Nuit', 'bool', 9, 39),
+(23, NULL, 'Arrivée', 'dateTime', 0, 40),
+(24, NULL, 'Départ', 'dateTime', 10, 40),
+(25, '2014-10-08 00:00:00', 'Midi', 'bool', 3, 40),
+(26, '2014-10-07 00:00:00', 'Midi', 'bool', 6, 40),
+(27, '2014-10-07 00:00:00', 'Soir', 'bool', 1, 40),
+(28, '2014-10-07 00:00:00', 'Nuit', 'bool', 2, 40),
+(29, '2014-10-08 00:00:00', 'Soir', 'bool', 4, 40),
+(30, '2014-10-09 00:00:00', 'Soir', 'bool', 8, 40);
 
 -- --------------------------------------------------------
 
@@ -350,7 +373,7 @@ CREATE TABLE IF NOT EXISTS `Personne` (
   `commentaire` longtext COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`),
   KEY `IDX_F6B8ABB94DE7DC5C` (`adresse_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=17 ;
 
 --
 -- Contenu de la table `Personne`
@@ -362,15 +385,17 @@ INSERT INTO `Personne` (`id`, `adresse_id`, `civilite`, `nom`, `prenom`, `foncti
 (3, 4, 'Mlle', 'CHERY', 'Anaïs', 'Stagiaire', '06 74 11 15 70', NULL, 'anais.chery.mail@gmail.com', 'anais.chery.mail@gmail.com', 'stagiaire', NULL),
 (4, 5, 'Mr', 'DECORPS', 'Pascal', 'Responsable des publics', '04 76 44 95 33', NULL, 'pascal.decorps@ville-grenoble.fr', '', 'stagiaire', NULL),
 (5, 7, 'Mlle', 'DRAHE', 'Charlotte', 'Responsable des Publics', '01 42 92 26 39', NULL, 'charlotte.drahe@banque-france.fr', 'martine.baraduc@banque-France.fr', 'stagiaire', NULL),
-(6, 8, 'Mme', 'DRECHSEL', 'Anne', 'Attachée - responsable service Médiation culturelle', '04 237 90 85', NULL, 'anne.drechsel@provincedeliege.be', '', 'stagiaire', NULL),
+(6, 8, 'Mme', 'DRECHSEL', 'Anne', 'Attachée - responsable service Médiation culturelle', '04 237 90 85', NULL, 'anne.drechsel@provincedeliege.be', 'anne.drechsel@provincedeliege.be', 'stagiaire', NULL),
 (7, 9, 'Mlle', 'MATHOT', 'Emilie', 'Animatrice du patrimoine', '03 23 61 11 76', NULL, 'chateaudeguise@clubduvieuxmanoir.fr', 'compta@clubduvieuxmanoir.fr', 'stagiaire', NULL),
 (8, 10, 'Mme', 'PAYEN', 'Françoise', 'Exposition personnelle Madagascar', '04 50 25 52 31', NULL, 'payen-francoise@wanadoo.fr', 'payen-francoise@wanadoo.fr', 'stagiaire', NULL),
 (9, 11, 'Mlle', 'PONCET', 'Anaïs', 'Médiatrice scientifique', '01 40 05 80 99', NULL, 'anais.poncet@universcience.fr', '', 'stagiaire', NULL),
 (10, 12, 'Mme', 'VERGÉ-FERRERI', 'Isabelle', 'Chargée de médiation scientifique', '01 40 05 83 75', NULL, 'isabelle.verge-ferreri@universcience.fr', 'olivier.persenot@universcience.fr', 'stagiaire', NULL),
-(11, 14, 'Mr', 'VERJUS', 'Pierre-Marie', 'Médiateur scientifique', '04 50 08 17 00', NULL, 'pmverjus@agglo-annecy.fr', '', 'stagiaire', NULL),
+(11, 14, 'Mr', 'VERJUS', 'Pierre-Marie', 'Médiateur scientifique', '04 50 08 17 00', NULL, 'pmverjus@agglo-annecy.fr', 'pmverjus@agglo-annecy.fr', 'stagiaire', NULL),
 (12, 1, 'Mme', 'BLANC', 'Marie', 'Directrice', NULL, NULL, NULL, NULL, 'signataire', NULL),
 (13, 6, 'Mme', 'DUCRUEZET', 'Françoise', 'Directrice', NULL, NULL, NULL, NULL, 'signataire', NULL),
-(14, 13, 'Mr', 'LENOIR', 'Sébastien', 'Directeur Général', NULL, NULL, NULL, NULL, 'signataire', NULL);
+(14, 13, 'Mr', 'LENOIR', 'Sébastien', 'Directeur Général', NULL, NULL, NULL, NULL, 'signataire', NULL),
+(15, 15, 'Mlle', 'Runge', 'Etienne', 'web développeur', '0678644210', NULL, 'etienne.runge@gmail.com', 'etienne.runge@u-bourgogne.fr', 'stagiaire', NULL),
+(16, NULL, 'Mlle', 'Runge', 'Etienne', 'web dev', '067812584', '32165erge54', 'reqrg@qerg.com', 'gqreqg156@qer.com', 'stagiaire', NULL);
 
 -- --------------------------------------------------------
 
@@ -388,7 +413,7 @@ CREATE TABLE IF NOT EXISTS `ReponsesLogistique` (
   PRIMARY KEY (`id`),
   KEY `IDX_1106717FAC14B70A` (`modele_id`),
   KEY `IDX_1106717F5DAC5993` (`inscription_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=264 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=286 ;
 
 --
 -- Contenu de la table `ReponsesLogistique`
@@ -404,58 +429,80 @@ INSERT INTO `ReponsesLogistique` (`id`, `modele_id`, `inscription_id`, `reponse`
 (209, 10, 2, 0, NULL, NULL),
 (210, 8, 6, 1, NULL, NULL),
 (211, 7, 6, 1, NULL, NULL),
-(212, 3, 2, 1, NULL, NULL),
-(213, 6, 8, 1, NULL, NULL),
-(214, 8, 8, 1, NULL, NULL),
+(212, 3, 2, 0, NULL, NULL),
+(213, 6, 8, 0, NULL, NULL),
+(214, 8, 8, 0, NULL, NULL),
 (215, 10, 7, 0, NULL, NULL),
-(216, 11, 6, 1, NULL, NULL),
+(216, 11, 6, 0, NULL, NULL),
 (217, 5, 10, 1, NULL, NULL),
 (218, 8, 9, 0, NULL, NULL),
 (219, 6, 10, 1, NULL, NULL),
 (220, 8, 11, 1, NULL, NULL),
-(221, 10, 11, 1, NULL, NULL),
+(221, 10, 11, 0, NULL, NULL),
 (222, 9, 9, 1, NULL, NULL),
 (223, 4, 2, 0, NULL, NULL),
 (224, 9, 2, 0, NULL, NULL),
 (225, 4, 5, 1, NULL, NULL),
-(226, 8, 1, 1, NULL, NULL),
+(226, 8, 1, 0, NULL, NULL),
 (227, 6, 1, 1, NULL, NULL),
 (228, 5, 1, 1, NULL, NULL),
 (229, 11, 1, 1, NULL, NULL),
-(230, 5, 6, 1, NULL, NULL),
+(230, 5, 6, 0, NULL, NULL),
 (231, 3, 3, 1, NULL, NULL),
 (232, 8, 7, 1, NULL, NULL),
 (233, 8, 10, 0, NULL, NULL),
 (234, 3, 1, 0, NULL, NULL),
 (235, 7, 1, 1, NULL, NULL),
-(236, 3, 9, 0, NULL, NULL),
+(236, 3, 9, 1, NULL, NULL),
 (237, 3, 7, 1, NULL, NULL),
-(238, 7, 7, 1, NULL, NULL),
+(238, 7, 7, 0, NULL, NULL),
 (239, 6, 7, 1, NULL, NULL),
 (240, 6, 6, 1, NULL, NULL),
 (241, 6, 6, 1, NULL, NULL),
-(242, 3, 6, 1, NULL, NULL),
+(242, 3, 6, 0, NULL, NULL),
 (243, 7, 9, 1, NULL, NULL),
 (244, 7, 10, 1, NULL, NULL),
 (245, 4, 10, 1, NULL, NULL),
 (246, 4, 9, 1, NULL, NULL),
 (247, 9, 10, 1, NULL, NULL),
-(248, 10, 10, 1, NULL, NULL),
+(248, 10, 10, 0, NULL, NULL),
 (249, 10, 9, 0, NULL, NULL),
 (250, 9, 7, 1, NULL, NULL),
-(251, 9, 6, 1, NULL, NULL),
+(251, 9, 6, 0, NULL, NULL),
 (252, 10, 1, 0, NULL, NULL),
 (253, 3, 5, 1, NULL, NULL),
 (254, 7, 2, 0, NULL, NULL),
 (255, 9, 8, 1, NULL, NULL),
 (256, 10, 8, 0, NULL, NULL),
 (257, 5, 8, 1, NULL, NULL),
-(258, 2, 4, NULL, '', NULL),
-(259, 2, 5, NULL, '', NULL),
-(260, 2, 1, NULL, '', NULL),
-(261, 8, 2, 1, NULL, NULL),
-(262, 4, 1, 1, NULL, NULL),
-(263, 10, 6, 1, NULL, NULL);
+(258, 2, 4, NULL, 'viendra en train', NULL),
+(259, 2, 5, NULL, 'réponse au format texte', NULL),
+(260, 2, 1, NULL, 'coucou', NULL),
+(261, 8, 2, 0, NULL, NULL),
+(262, 4, 1, 0, NULL, NULL),
+(263, 10, 6, 1, NULL, NULL),
+(264, 3, 10, 0, NULL, NULL),
+(265, 3, 11, 0, NULL, NULL),
+(266, 5, 2, 1, NULL, NULL),
+(267, 4, 7, 1, NULL, NULL),
+(268, 7, 11, 0, NULL, NULL),
+(269, 3, 8, 0, NULL, NULL),
+(270, 7, 8, 0, NULL, NULL),
+(271, 11, 2, 1, NULL, NULL),
+(272, 5, 5, 1, NULL, NULL),
+(273, 4, 8, 1, NULL, NULL),
+(274, 4, 11, 1, NULL, NULL),
+(275, 11, 7, 0, NULL, NULL),
+(276, 11, 9, 1, NULL, NULL),
+(277, 5, 9, 1, NULL, NULL),
+(278, 11, 10, 1, NULL, NULL),
+(279, 5, 7, 1, NULL, NULL),
+(280, 2, 2, NULL, 'Nouveau text', NULL),
+(281, 2, 6, NULL, 'Test avec caractères 123458951 &é"''-(-èè_', NULL),
+(282, 2, 7, NULL, 'coucou', NULL),
+(283, 2, 9, NULL, '"', NULL),
+(284, 2, 10, NULL, '""', NULL),
+(285, 2, 11, NULL, 'û1♦♣♠•◘○☺☻♥', NULL);
 
 -- --------------------------------------------------------
 
