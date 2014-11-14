@@ -90,12 +90,12 @@
 						<li><a href="{{ path('inscription_show', { 'id': entity.id, 'idformation':formation.id }) }}" class="inscription-href"><i class="fa fa-info fa-fw"></i>Détails</a></li>
 						<li><a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation':formation.id }) }}" class="inscription-href"><i class="fa fa-pencil fa-fw"></i>Modifier</a></li>
 						<li>
+						{% spaceless %}
 							{% if entity.convention %}
 								<a href="{{ path('convention_edit', { 'id': entity.convention.id, 'idformation':formation.id }) }}" class="inscription-href"><i class="fa fa-pencil fa-fw"></i>
 							{% else %}
-								<a href="{{ path('convention_new', { 'idinscription': entity.id, 'idformation':formation.id }) }}" class="inscription-href"><i class="fa fa-plus fa-fw"></i>
-							{% endif %}
-								Convention</a>
+								<a href="{{ path('convention_new', { 'idinscription': entity.id, 'idformation':formation.id }) }}" class="inscription-href"><i class="fa fa-plus fa-fw"></i>{% endif %}Convention</a>
+						{% endspaceless %}
 						</li>
 						<li>
 							{% if entity.signataire == null %}

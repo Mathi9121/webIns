@@ -40,6 +40,8 @@
 		{{ form_row(form.numberStatut) }}
 		</div>
 	</div>
+	
+	
 	<div class="unit-50 panel">
 		<div class="header">
 			<span class="titre">Attentes du stagiaire</span>
@@ -65,8 +67,15 @@
 		</div>
 		
 		<div class="panel-body">
-			{{ form_row(form.stagiaire.civilite) }}
-			{{ form_row(form.stagiaire.prenom) }}
+			<div class="units-row end">
+				<div class="unit-20">
+					{{ form_row(form.stagiaire.civilite) }}
+				</div>
+				<div class="unit-80">
+					{{ form_row(form.stagiaire.prenom) }}
+				</div>
+				
+			</div>
 			{{ form_row(form.stagiaire.nom) }}
 			{{ form_row(form.stagiaire.fonction) }}
 			{{ form_row(form.stagiaire.tel) }}
