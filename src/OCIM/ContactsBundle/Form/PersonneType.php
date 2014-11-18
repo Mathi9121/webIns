@@ -5,7 +5,6 @@ namespace OCIM\ContactsBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use OCIM\ContactsBundle\Form\DataTransformer\StringToTypePersonneTransformer;
 
 class PersonneType extends AbstractType
 {

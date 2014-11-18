@@ -8,6 +8,7 @@ OCIM\ContactsBundle\Entity\Personne:
         signataire: Signataire
         stagiaire: Stagiaire
         intervenant: Intervenant
+        admin: Admin
     oneToOne:
         adresse:
             targetEntity: Adresse

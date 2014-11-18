@@ -289,7 +289,7 @@ class Inscription
      * @param \OCIM\ContactsBundle\Entity\Personne $personne
      * @return Inscription
      */
-    public function setStagiaire(\OCIM\ContactsBundle\Entity\Personne $stagiaire = null)
+    public function setStagiaire(\OCIM\ContactsBundle\Entity\Stagiaire $stagiaire = null)
     {
         
 		$this->stagiaire = $stagiaire;
@@ -326,7 +326,7 @@ class Inscription
      * @param \OCIM\ContactsBundle\Entity\Personne $personne
      * @return Inscription
      */
-    public function setSignataire(\OCIM\ContactsBundle\Entity\Personne $signataire = null)
+    public function setSignataire(\OCIM\ContactsBundle\Entity\Signataire $signataire = null)
     {
         
 		$this->signataire = $signataire;
@@ -349,6 +349,44 @@ class Inscription
 			}
 		}
 		return $this->signataire;
+    }
+	
+	
+	 /**
+     * @var \OCIM\ContactsBundle\Entity\Personne
+     */
+    private $admin;
+
+
+    /**
+     * Set personne
+     *
+     * @param \OCIM\ContactsBundle\Entity\Personne $personne
+     * @return Inscription
+     */
+    public function setAdmin(\OCIM\ContactsBundle\Entity\Admin $admin = null)
+    {
+        
+		$this->admin = $admin;
+		
+		$this->addPersonne($admin);
+		
+        return $this;
+    }
+
+    /**
+     * Get personne
+     *
+     * @return \OCIM\ContactsBundle\Entity\Personne 
+     */
+    public function getAdmin()
+    {
+		foreach($this->personnes as $personne){
+			if($personne->getType() == 'admin'){
+				$this->admin = $personne ;
+			}
+		}
+		return $this->admin;
     }
 	
 	

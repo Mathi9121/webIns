@@ -23,7 +23,7 @@ class AdresseSignataireType extends AbstractType
 			))
             ->add('adresseComplement', 'text', array(
 				'attr' => array('class' => 'width-100'),
-				'label' => "Complément d'adresse",
+				'label' => "ComplÃ©ment d'adresse",
 			))
             ->add('cP', 'text', array(
 				'attr' => array('class' => 'width-100'),

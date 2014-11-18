@@ -25,7 +25,7 @@ class InscriptionType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-		
+		$entityManager = $options['em'];
 		$idformation = $this->idformation;
         $builder
 			->add('stagiaire', new \OCIM\ContactsBundle\Form\PersonneType(), array(
@@ -61,6 +61,10 @@ class InscriptionType extends AbstractType
             //->add('statutConvention')
             //->add('hash')
             //->add('convention')
+			->add('Signataire', new \OCIM\ContactsBundle\Form\SignataireType(), array(
+				'data_class' => 'OCIM\ContactsBundle\Entity\Signataire',
+				'em' => $entityManager
+			))
 			
 			->addEventListener(
 				FormEvents::POST_SUBMIT,
@@ -81,7 +85,13 @@ class InscriptionType extends AbstractType
             'data_class' => 'OCIM\FormationsBundle\Entity\Inscription',
 			'attr' => array('class' => 'forms')
         ));
+		$resolver->setRequired(array(
+            'em',
+        ));
 
+        $resolver->setAllowedTypes(array(
+            'em' => 'Doctrine\Common\Persistence\ObjectManager',
+        ));
     }
 
     /**
