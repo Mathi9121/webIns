@@ -21,6 +21,7 @@ class ModeleLogistiqueType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+		$idformation = $this->idformation;
         $builder
 			->add('ordre', 'hidden', array(
 				'attr' => array('class' => 'ordreModeles'),
@@ -49,11 +50,11 @@ class ModeleLogistiqueType extends AbstractType
 				'multiple' => true,
 				'expanded' => true,
 				'by_reference' => false,
-				'query_builder' => function(EntityRepository $er)
+				'query_builder' => function(EntityRepository $er) use($idformation)
 					{
 						return $er->createQueryBuilder('u')
 						->where('u.formation = :idformation')
-						->setParameter('idformation', $this->idformation);
+						->setParameter('idformation', $idformation);
 					},
 				'property' => "FormuleId",
 			))

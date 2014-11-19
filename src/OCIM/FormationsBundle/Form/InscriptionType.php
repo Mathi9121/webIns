@@ -61,7 +61,10 @@ class InscriptionType extends AbstractType
             //->add('statutConvention')
             //->add('hash')
             //->add('convention')
-			->add('Signataire', new \OCIM\ContactsBundle\Form\SignataireType(), array(
+			->add('admin', new \OCIM\ContactsBundle\Form\AdminType(), array(
+				'data_class' => 'OCIM\ContactsBundle\Entity\Admin',
+			))
+			->add('signataire', new \OCIM\ContactsBundle\Form\SignataireType(), array(
 				'data_class' => 'OCIM\ContactsBundle\Entity\Signataire',
 				'em' => $entityManager
 			))

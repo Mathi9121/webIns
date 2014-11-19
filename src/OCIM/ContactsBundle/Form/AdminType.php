@@ -35,13 +35,10 @@ class AdminType extends AbstractType
 			))
             ->add('tel', 'text', array(
 				'attr' => array('class'=> 'width-100'),
-				'label' => 'Téléphone',
+				'label' => 'TÃ©lÃ©phone',
 			))
             ->add('mail', 'text', array(
 				'attr' => array('class'=> 'width-100')
-			))
-			->add('adresse', new AdresseType(),array(
-				'required' => false,
 			))
         ;
     }
