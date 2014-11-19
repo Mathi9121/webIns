@@ -51,6 +51,7 @@ OCIM\FormationsBundle\Entity\Inscription:
             length: 255
         attentes:
             type: text
+            nullable: true
         statutOrgFinanceur:
             type: string
             length: 255

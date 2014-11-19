@@ -126,7 +126,6 @@
 				<th class="insc contact"><span>Tel</span></th>
 				<th class="insc contact"><span>Fax</span></th>
 				<th class="insc contact"><span>Mail</span></th>
-				<th class="insc contact"><span>Mail Admin</span></th>
 				<th class="insc contact"><span>Structure</span></th>
 				<th class="insc contact"><span>Adresse</span></th>
 				<th class="insc contact"><span>Complément</span></th>
@@ -146,14 +145,14 @@
 				{% set class = "annule" %}
 			{% endif %}
 			<tr class="statut {{class}}" data-ordre="{{entity.ordre}}" data-idinscription="{{entity.id}}">
+			
 						{% if class == "attente" %}<td class="handle"><i class="fa fa-arrows"></i></td>{% else %}<td></td>{% endif %}
 						<td class="insc info"><span>{{ entity.stagiaire.nom }} ({{ entity.stagiaire.civilite }})</span></td>
 						<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
-						
 						<td class="insc contact"><span>{{ entity.stagiaire.tel }}</span></td>
 						<td class="insc contact"><span>{{ entity.stagiaire.fax}}</span></td>
 						<td class="insc contact"><span>{{ entity.stagiaire.mail}}</span></td>
-						<td class="insc contact"><span>{{ entity.stagiaire.mailAdmin}}</span></td>
+						
 					{% if entity.stagiaire.adresse %}
 						<td class="insc contact"><span>{{ entity.stagiaire.adresse.nomStructure }}</span></td>
 						<td class="insc contact"><span>{{ entity.stagiaire.adresse.adresse }}</span></td>
@@ -335,7 +334,7 @@
 						<td class="insc info"><span>{{ entity.stagiaire.nom }} ({{ entity.stagiaire.civilite }})</span></td>
 						<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
 						{% if entity.signataire %}
-							<td class="insc finance"><abbr title="{{entity.signataire.adresse.ville}} {{entity.signataire.adresse.CP}} {{entity.signataire.adresse.pays}}">{{entity.signataire.adresse.structure.nom}}</abbr></td>
+							<td class="insc finance">{% if entity.signataire.adresse %}<abbr title="{{entity.signataire.adresse.ville}} {{entity.signataire.adresse.CP}} {{entity.signataire.adresse.pays}}">{{entity.signataire.adresse.structure.nom}}</abbr>{% endif %}</td>
 							<td class="insc finance">{{entity.signataire.nom|capitalize}} ({{entity.signataire.civilite}})</td>
 							<td class="insc finance">{{entity.signataire.prenom|capitalize}}</td>
 							<td class="insc finance">{{entity.signataire.fonction|capitalize}}</td>

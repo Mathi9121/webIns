@@ -28,15 +28,19 @@ OCIM\ContactsBundle\Entity\Personne:
         civilite:
             type: string
             length: 255
+            nullable: true
         nom:
             type: string
             length: 255
+            nullable: true
         prenom:
             type: string
             length: 255
+            nullable: true
         fonction:
             type: string
             length: 255
+            nullable: true
         tel:
             type: string
             length: 255

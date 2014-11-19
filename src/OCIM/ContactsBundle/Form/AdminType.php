@@ -22,23 +22,32 @@ class AdminType extends AbstractType
 					'Mme' => 'Mme',
 					'Mr' => 'Mr',
 					),
-				'attr' => array('class'=> 'width-100')
+				'attr' => array('class'=> 'width-100'),
+				'label' => 'Civilité',
+				'required' => false,
 			))
             ->add('nom', 'text', array(
-				'attr' => array('class'=> 'width-100')
+				'attr' => array('class'=> 'width-100'),
+				'required' => false,
 			))
             ->add('prenom', 'text', array(
-				'attr' => array('class'=> 'width-100')
+				'attr' => array('class'=> 'width-100'),
+				'label' => 'Prénom',
+				'required' => false,
 			))
             ->add('fonction', 'text', array(
-				'attr' => array('class'=> 'width-100')
+				'attr' => array('class'=> 'width-100'),
+				'required' => false,
 			))
             ->add('tel', 'text', array(
 				'attr' => array('class'=> 'width-100'),
 				'label' => 'Téléphone',
+				'required' => false,
 			))
             ->add('mail', 'text', array(
-				'attr' => array('class'=> 'width-100')
+				'attr' => array('class'=> 'width-100'),
+				'label' => 'Adresse Mail',
+				'required' => false,
 			))
         ;
     }

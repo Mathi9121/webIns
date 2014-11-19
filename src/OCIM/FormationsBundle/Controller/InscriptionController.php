@@ -122,11 +122,14 @@ class InscriptionController extends Controller
     {
         $entity = new Inscription();
         $form   = $this->createCreateForm($entity, $idformation);
-
+		$em = $this->getDoctrine()->getManager();
+		$formation = $em->getRepository("OCIMFormationsBundle:Formation")->find($idformation);
+		
         return $this->render('OCIMFormationsBundle:Inscription:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
-			'idformation' => $idformation,
+			'formation' => $formation,
+			
         ));
     }
 
@@ -251,7 +254,7 @@ class InscriptionController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('inscription', array('id'=> $idformation)));
+        return $this->redirect($this->generateUrl('inscription', array('idformation'=> $idformation)));
     }
 
     /**

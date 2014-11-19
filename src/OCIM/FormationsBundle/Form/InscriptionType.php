@@ -41,21 +41,25 @@ class InscriptionType extends AbstractType
 						->where('u.formation = :idformation')
 						->setParameter('idformation', $idformation);
 					},
+				'label' => "Formule et Tarif"
 				))
             ->add('dateInscription', 'datetime', array(
 				'widget' => 'single_text',
-				'format' => 'yyyy-MM-dd HH:mm:ss',
+				'format' => 'dd/MM/yyyy HH:mm:ss',
 				'required' => false,
 				'read_only' => true,
-				'attr' => array('class' => 'width-100')
+				'attr' => array('class' => 'width-100'),
+				'label' => "Date d'inscription"
 				))
             ->add('numberStatut','choice', array(
 				'choices'   => array( '1' => 'Accepté', '2' => 'En attente', "3" => "Annulé"),
 				//'preferred_choices' => array('en attente')
-				'attr' => array('class' => 'width-100')
+				'attr' => array('class' => 'width-100'),
+				"label" => "Statut de l'inscription"
 				))
             ->add('attentes', "textarea", array(
-				'attr' => array("class"=>"width-100")
+				'attr' => array("class"=>"width-100", 'rows'=> 5),
+				'required' => false,
 				))
             //->add('statutOrgFinanceur')
             //->add('statutConvention')
@@ -63,9 +67,12 @@ class InscriptionType extends AbstractType
             //->add('convention')
 			->add('admin', new \OCIM\ContactsBundle\Form\AdminType(), array(
 				'data_class' => 'OCIM\ContactsBundle\Entity\Admin',
+				'required' => false,
+				
 			))
 			->add('signataire', new \OCIM\ContactsBundle\Form\SignataireType(), array(
 				'data_class' => 'OCIM\ContactsBundle\Entity\Signataire',
+				'required' => false,
 				'em' => $entityManager
 			))
 			

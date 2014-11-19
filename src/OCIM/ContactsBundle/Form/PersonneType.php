@@ -22,27 +22,39 @@ class PersonneType extends AbstractType
 					'Mme' => 'Mme',
 					'Mr' => 'Mr',
 					),
-				'attr' => array('class'=> 'width-100')
+				//'empty_value' => 'Choisissez une option',
+				'attr' => array('class'=> 'width-100'),
+				'required' => false,
+				'label' => "Civilité"
 			))
             ->add('nom', 'text', array(
-				'attr' => array('class'=> 'width-100')
+				'attr' => array('class'=> 'width-100'),
+				'required' => false
 			))
             ->add('prenom', 'text', array(
-				'attr' => array('class'=> 'width-100')
+				'attr' => array('class'=> 'width-100'),
+				'required' => false,
+				'label' => "Prénom"
 			))
             ->add('fonction', 'text', array(
-				'attr' => array('class'=> 'width-100')
+				'attr' => array('class'=> 'width-100'),
+				'required' => false,
+				'label' => "Fonction",
 			))
             ->add('tel', 'text', array(
 				'attr' => array('class'=> 'width-100'),
 				'label' => 'Téléphone',
+				'required' => false,
 			))
             ->add('fax', 'text', array(
 				'required' => false,
-				'attr' => array('class'=> 'width-100')
+				'attr' => array('class'=> 'width-100'),
+				'required' => false,
 			))
             ->add('mail', 'text', array(
-				'attr' => array('class'=> 'width-100')
+				'attr' => array('class'=> 'width-100'),
+				'label' => "Adresse Mail",
+				'required' => false
 			))
 			->add('adresse', new AdresseType(),array(
 				'required' => false,

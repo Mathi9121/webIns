@@ -8,15 +8,6 @@
 {% endstylesheets %}
 {% endblock %}
 
-{#
-{% block  javascripts %}
-{{parent()}}
-{% javascripts
-
-	%}
-         <script type="text/javascript" src="{{ asset_url }}"></script>
-{% endjavascripts %}
-{% endblock %} #}
 
 {# Titres #}
 {% block title %}Accueil{% endblock %}
@@ -82,7 +73,7 @@
 		<div class="header">
 			<span class="titre">Formations à venir</span>
 				<span class="controls right group">
-					
+					<a href="{{ path('formation') }}"><i class="fa fa-angle-double-right"></i> Toutes les formations</a>
 				</span>
 		</div>
 		
