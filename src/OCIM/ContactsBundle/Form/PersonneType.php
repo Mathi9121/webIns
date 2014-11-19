@@ -44,9 +44,6 @@ class PersonneType extends AbstractType
             ->add('mail', 'text', array(
 				'attr' => array('class'=> 'width-100')
 			))
-            ->add('mailAdmin', 'text', array(
-				'attr' => array('class'=> 'width-100')
-			))
 			->add('adresse', new AdresseType(),array(
 				'required' => false,
 			))

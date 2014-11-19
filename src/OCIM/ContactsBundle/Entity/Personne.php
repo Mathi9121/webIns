@@ -47,7 +47,7 @@ abstract class Personne
     /**
      * @var string
      */
-    private $mailAdmin;
+
 	
 	private $type;
 
@@ -199,29 +199,7 @@ abstract class Personne
         return $this->mail;
     }
 
-    /**
-     * Set mailAdmin
-     *
-     * @param string $mailAdmin
-     * @return Personne
-     */
-    public function setMailAdmin($mailAdmin)
-    {
-        $this->mailAdmin = $mailAdmin;
-
-        return $this;
-    }
-
-    /**
-     * Get mailAdmin
-     *
-     * @return string 
-     */
-    public function getMailAdmin()
-    {
-        return $this->mailAdmin;
-    }
-
+  
 	
     public function setType($type = null)
     {

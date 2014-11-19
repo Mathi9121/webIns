@@ -49,10 +49,6 @@ OCIM\ContactsBundle\Entity\Personne:
             type: string
             length: 255
             nullable: true
-        mailAdmin:
-            type: string
-            length: 255
-            nullable: true
         commentaire:
             type: text
             nullable: true
