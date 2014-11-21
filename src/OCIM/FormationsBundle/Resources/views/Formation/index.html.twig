@@ -83,6 +83,7 @@ filter='cssrewrite' %}
 					<td>{{ formation.dateDebut|date("d/m/Y") }}</td>
 					<td>
 						<div class="group">
+							{% set nbParticipants = 0 %}
 							{% set spanclass = '' %}
 							{% set text = '' %}
 							{% for statut in formation._count %}
@@ -99,6 +100,7 @@ filter='cssrewrite' %}
 									{% set text = "Nombre d'inscriptions annulées" %}
 								{% endif %}
 								<span title="{{ text }}" class="badge {{ spanclass }}">{{ statut.1 }}</span>
+								{% set nbParticipants = nbParticipants + statut.1 %}
 							{% endfor %}
 						</div>
 					</td>
@@ -107,21 +109,34 @@ filter='cssrewrite' %}
 				{# details #}
 				<tr class="details-formation hide">
 					<td colspan="4">
-						<div class="units-row">
-							
+						<div class="units-row units-split end">
+							<div class="unit-25 end">
+								<ul class="no-margin">
+									<li class="fa-ul">
+										<span class="fa-stack fa-lg">
+											<i class="fa fa-square fa-stack-2x"></i>
+											<span style="color: white" class=" fa-stack-1x fa-inverse">{{ nbParticipants }}</span>
+										</span>
+										Participants
+									</li>
+									<li class="fa-ul">
+										<span class="fa-stack fa-lg">
+											<i class="fa fa-square fa-stack-2x"></i>
+											<span style="color: white" class=" fa-stack-1x fa-inverse">{{formation.intervenants|length}}</span>
+										</span>
+										Intervenants
+									</li>
+								</ul>
+							</div>
+							<div class="unit-75 end">
+								<ul class="blocks-4 blocks-mobile-50 end no-margin">
+									<li><a class="options-formation" href="{{ path('inscription', { 'idformation': formation.id }) }}">	<span class="fa-stack fa-2x"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-users fa-stack-1x fa-inverse"></i></span>Incriptions</a></li>
+									<li><a class="options-formation" href="{{ path('formation_show', { 'id': formation.id }) }}">			<span class="fa-stack fa-2x"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-info fa-stack-1x fa-inverse"></i></span>Détails</a></li>
+									<li><a class="options-formation" href="{{path('logistique_edit', {'idformation': formation.id })}}">	<span class="fa-stack fa-2x"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-truck fa-stack-1x fa-inverse"></i></span>Logistique</a></li>
+									<li><a class="options-formation" href="{{ path('formation_edit', { 'id': formation.id }) }}">			<span class="fa-stack fa-2x"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-pencil fa-stack-1x fa-inverse"></i></span>Modifier</a></li>
+								</ul>
+							</div>
 						</div>
-						    <ul class="blocks-4 blocks-mobile-50">
-								<li><a class="btn small" href="{{ path('inscription', { 'idformation': formation.id }) }}"><i class="fa fa-users"></i><br/>Incriptions</a></li>
-								<li><a class="btn small" href="{{ path('formation_show', { 'id': formation.id }) }}"><i class="fa fa-info"></i><br/>Détails</a></li>
-								<li><a class="btn small" href="{{path('logistique_edit', {'idformation': formation.id })}}"><i class="fa fa-truck"></i><br/>Logistique</a></li>
-								<li><a class="btn small" href="{{ path('formation_edit', { 'id': formation.id }) }}"><i class="fa fa-pencil"></i><br/>Modifier</a></li>
-							</ul>
-						<span class="btn-group">
-							<a class="btn small" href="{{ path('inscription', { 'idformation': formation.id }) }}"><i class="fa fa-users"></i><br/>Incriptions</a>
-							<a class="btn small" href="{{ path('formation_show', { 'id': formation.id }) }}"><i class="fa fa-info"></i><br/>Détails</a>
-							<a class="btn small" href="{{path('logistique_edit', {'idformation': formation.id })}}"><i class="fa fa-truck"></i><br/>Logistique</a>
-							<a class="btn small" href="{{ path('formation_edit', { 'id': formation.id }) }}"><i class="fa fa-pencil"></i><br/>Modifier</a>
-						</span>
 					</td>
 				</tr>
 				

@@ -28,3 +28,8 @@ structures_delete:
     path:     /{id}/delete
     defaults: { _controller: "OCIMContactsBundle:Structure:delete" }
     requirements: { _method: post|delete }
+
+structure_ajout:
+    path: /ajoutstructure
+    defaults: { _controller: "OCIMContactsBundle:Structure:ajoutTypeStructure" }
+    requirements: { _method: post }

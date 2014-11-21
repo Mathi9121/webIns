@@ -1,10 +1,37 @@
 {% extends '::app.html.twig' %}
 {% form_theme form '::form.html.twig' %}
 
+{% block  javascripts %}
+{{parent()}}
+{% javascripts
+	'@OCIMContactsBundle/Resources/public/js/Structure/ajoutStructure.js' %}
+         <script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+{% endblock %}
+
+
+{# Titres #}
+{% block title %}Nouvelle Inscription à la formation{% endblock %}
+{% block titre %}Nouvelle Inscription à la formation : {{formation.intitule}}{% endblock %}
+
+{% block breadcrumbs %}
+<li><a href="{{ path('formation_show', { 'id': formation.id }) }}">Formation : {{formation.intitule}}</a></li>
+<li><a href="{{ path('inscription', { 'idformation': formation.id }) }}">Inscriptions</a></li>
+<li><span>Nouvelle inscription</span></li>
+{% endblock %}
+
+
+{# Controls #}
+{% block controls %}
+{% endblock %}
+
+
+
 {% block body -%}
 
 {{form_start(form)}}
 {{ form_errors(form) }}
+
 <h2 class="text-centered"><i class="fa fa-graduation-cap"></i> {{formation.intitule}}</h2><hr/>
 
 <div class="units-row">
@@ -16,9 +43,11 @@
 		</div>
 		
 		<div class="panel-body">
-		{{ form_row(form.dateInscription) }}
-		{{ form_row(form.formationformule) }}
-		{{ form_row(form.numberStatut) }}
+			<div class="units-row end">
+				<div class="unit-50">{{ form_row(form.dateInscription) }}</div>
+				<div class="unit-50">{{ form_row(form.numberStatut) }}</div>
+			</div>
+			{{ form_row(form.formationformule) }}
 		</div>
 	</div>
 	
@@ -55,7 +84,6 @@
 				<div class="unit-80">
 					{{ form_row(form.stagiaire.nom) }}
 				</div>
-				
 			</div>
 			{{ form_row(form.stagiaire.prenom) }}
 			{{ form_row(form.stagiaire.fonction) }}
@@ -70,14 +98,13 @@
 	
 	<div class="panel unit-50">
 		<div class="header">
-			<span class="titre">Adresse</span>
+			<span class="titre">Adresse du stagiaire</span>
 				<span class="controls right group">
 				
 				</span>
 		</div>
 		
 		<div class="panel-body">
-			{{ form_row(form.stagiaire.adresse.nomStructure) }}
 			{{ form_row(form.stagiaire.adresse.nomStructure) }}
 			{{ form_row(form.stagiaire.adresse.adresse) }}
 			{{ form_row(form.stagiaire.adresse.adresseComplement) }}
@@ -98,8 +125,14 @@
 		</div>
 		
 		<div class="panel-body">
-			{{ form_row(form.admin.civilite) }}
-			{{ form_row(form.admin.nom) }}
+			<div class="units-row end">
+				<div class="unit-20">
+					{{ form_row(form.admin.civilite) }}
+				</div>
+				<div class="unit-80">
+					{{ form_row(form.admin.nom) }}
+				</div>
+			</div>
 			{{ form_row(form.admin.prenom) }}
 			{{ form_row(form.admin.fonction) }}
 			{{ form_row(form.admin.tel) }}
@@ -117,8 +150,14 @@
 		</div>
 		
 		<div class="panel-body">
-			{{ form_row(form.signataire.civilite) }}
-			{{ form_row(form.signataire.nom) }}
+			<div class="units-row end">
+				<div class="unit-20">
+					{{ form_row(form.signataire.civilite) }}
+				</div>
+				<div class="unit-80">
+					{{ form_row(form.signataire.nom) }}
+				</div>
+			</div>
 			{{ form_row(form.signataire.prenom) }}
 			{{ form_row(form.signataire.fonction) }}
 			{{ form_row(form.signataire.mail) }}
@@ -127,8 +166,17 @@
 			{{ form_row(form.signataire.adresse.cP) }}
 			{{ form_row(form.signataire.adresse.ville) }}
 			{{ form_row(form.signataire.adresse.pays) }}
-			{{ form_row(form.signataire.adresse.structure) }}
-			{{ form_row(form.signataire.adresse.structure.type) }}
+			{{ form_row(form.signataire.adresse.structure.nom) }}
+			<div class="units-row end">
+				<div class="unit-70">
+					{{ form_row(form.signataire.adresse.structure.type) }}
+				</div>
+				<div class="unit-30">
+					<label for="ajouttypes">&nbsp;
+						<a id="ajouttypes" href="#" class="btn btn-smaller" style="display:block" data-url="{{path('structure_ajout')}}"><i class="fa fa-plus"></i> Ajouter un type</a>
+					</label>
+				</div>
+			</div>
 			{{ form_row(form.signataire.adresse.structure.tags) }}
 		</div>
 	</div>
@@ -141,5 +189,6 @@
 </div>
 
 {{ form_end(form)}}
+
 
 {% endblock %}

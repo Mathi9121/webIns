@@ -48,8 +48,9 @@ class InscriptionType extends AbstractType
 				'format' => 'dd/MM/yyyy HH:mm:ss',
 				'required' => false,
 				'read_only' => true,
+				'disabled' => true,
 				'attr' => array('class' => 'width-100'),
-				'label' => "Date d'inscription"
+				'label' => "Date d'inscription",
 				))
             ->add('numberStatut','choice', array(
 				'choices'   => array( '1' => 'Accepté', '2' => 'En attente', "3" => "Annulé"),

@@ -6,6 +6,7 @@ use OCIM\ContactsBundle\Form\DataTransformer\StringToTagsTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Doctrine\ORM\EntityRepository;
 
 class StructureType extends AbstractType
 {
@@ -25,9 +26,11 @@ class StructureType extends AbstractType
 			'label' => "Nom de la structure"
 			))
             ->add('type', null, array(
-				'attr' => array('class'=>'width-100', 'data-tools'=>'filterbox'),
+				'attr' => array('class'=>'width-100'),
 				'required' => false,
-				
+				'query_builder' => function(EntityRepository $repository) { 
+					return $repository->createQueryBuilder('u')->orderBy('u.type', 'ASC');
+				}
 			))
             ->add(
 				$builder->create('tags', 'text', array(

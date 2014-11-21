@@ -40,7 +40,28 @@ tbody tr td span.fa-conteneur{
 }
 tbody tr.selected *{
 	font-weight: 700;
-	color: #e52f23;
+}
+
+tbody tr.selected{
+	border: 2px solid #f1f1f1;
+	border-bottom: 0px;
+}
+tbody tr.details-formation{
+	border: 2px solid #f1f1f1;
+	border-top: 0px;
+}
+a.options-formation{
+	color: grey;
+	text-align:center;
+	text-decoration: none;
+}
+a.options-formation:hover{
+	color: #DE2C3B;
+	text-align:center;
+}
+
+.no-margin{
+	margin-left: 0px
 }
 
 /******** Détails formation **********/
@@ -67,3 +88,5 @@ tbody tr.selected *{
 .details-formules li.noncompris{
 	opacity: 0.5;
 }
+
+
