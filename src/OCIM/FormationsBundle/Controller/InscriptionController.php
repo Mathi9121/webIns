@@ -76,9 +76,12 @@ class InscriptionController extends Controller
             $em = $this->getDoctrine()->getManager();
 
 			$ordre = $em->getRepository('OCIMFormationsBundle:Inscription')->getOrdreMaxByFormation($idformation);
+		
 
 			$nouvelordre = (!is_null($ordre))? $ordre + 1000 : 0;
 			$entity->setOrdre($nouvelordre);
+		
+			//exit(\Doctrine\Common\Util\Debug::dump($entity->getSignataire()->getAdresse()->getStructure()));
 			
             $em->persist($entity);
 

@@ -58,6 +58,7 @@ class PersonneType extends AbstractType
 			))
 			->add('adresse', new AdresseType(),array(
 				'required' => false,
+				'label' => false
 			))
         ;
     }

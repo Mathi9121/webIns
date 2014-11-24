@@ -192,32 +192,86 @@ class Adresse
     {
         return $this->pays;
     }
+
     /**
-     * @var \OCIM\ContactsBundle\Entity\Structure
+     * @var \OCIM\ContactsBundle\Entity\TypeStructure
      */
-    private $structure;
-
+    private $type;
 
     /**
-     * Set structure
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $tags;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set type
      *
-     * @param \OCIM\ContactsBundle\Entity\Structure $structure
+     * @param \OCIM\ContactsBundle\Entity\TypeStructure $type
      * @return Adresse
      */
-    public function setStructure(\OCIM\ContactsBundle\Entity\Structure $structure = null)
+    public function setType(\OCIM\ContactsBundle\Entity\TypeStructure $type = null)
     {
-        $this->structure = $structure;
+        $this->type = $type;
 
         return $this;
     }
 
     /**
-     * Get structure
+     * Get type
      *
-     * @return \OCIM\ContactsBundle\Entity\Structure 
+     * @return \OCIM\ContactsBundle\Entity\TypeStructure 
      */
-    public function getStructure()
+    public function getType()
     {
-        return $this->structure;
+        return $this->type;
     }
+
+    /**
+     * Add tags
+     *
+     * @param \OCIM\ContactsBundle\Entity\TagStructure $tag
+     * @return Adresse
+     */
+    public function addTag(\OCIM\ContactsBundle\Entity\TagStructure $tag)
+    {
+        $this->tags[] = $tag;
+
+        return $this;
+    }
+
+    /**
+     * Remove tags
+     *
+     * @param \OCIM\ContactsBundle\Entity\TagStructure $tag
+     */
+    public function removeTag(\OCIM\ContactsBundle\Entity\TagStructure $tag)
+    {
+        $this->tags->removeElement($tag);
+    }
+
+    /**
+     * Get tags
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+	
+	public function setTags($tags)
+    {
+        $this->tags = $tags;
+		
+		return $this;
+    }
+	
 }

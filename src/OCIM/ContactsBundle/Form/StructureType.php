@@ -21,10 +21,6 @@ class StructureType extends AbstractType
         $transformer = new StringToTagsTransformer($entityManager);
 		
         $builder
-            ->add('nom', 'text', array(
-			'attr'=> array("class" => 'width-100'),
-			'label' => "Nom de la structure"
-			))
             ->add('type', null, array(
 				'attr' => array('class'=>'width-100'),
 				'required' => false,

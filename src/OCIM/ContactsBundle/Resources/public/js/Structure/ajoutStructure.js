@@ -16,11 +16,11 @@ $(document).ready(function(){
 				if( !isNaN(id) ){
 					
 					//on ajout au dropdown
-					$('#ocim_formationsbundle_inscription_signataire_adresse_structure_type').append($('<option>', {
+					$('#ocim_formationsbundle_inscription_signataire_adresse_type').append($('<option>', {
 						value: id,
 						text: nouveautype,
 					}));
-					$('select#ocim_formationsbundle_inscription_signataire_adresse_structure_type').val(id);
+					$('select#ocim_formationsbundle_inscription_signataire_adresse_type').val(id);
 					
 				}
 			});

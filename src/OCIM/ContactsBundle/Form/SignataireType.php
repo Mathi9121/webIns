@@ -23,7 +23,8 @@ class SignataireType extends AbstractType
 					'Mme' => 'Mme',
 					'Mr' => 'Mr',
 					),
-				'attr' => array('class'=> 'width-100')
+				'attr' => array('class'=> 'width-100'),
+				'required' => false
 			))
             ->add('nom', 'text', array(
 				'attr' => array('class'=> 'width-100')

@@ -5,6 +5,8 @@ namespace OCIM\ContactsBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use OCIM\ContactsBundle\Form\DataTransformer\StringToTagsTransformer;
+use Doctrine\ORM\EntityRepository;
 
 class AdresseSignataireType extends AbstractType
 {
@@ -15,8 +17,13 @@ class AdresseSignataireType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 		$entityManager = $options['em'];
+		$transformer = new StringToTagsTransformer($entityManager);
 		
         $builder
+			->add('nomStructure', 'text', array(
+				'attr' => array('class' => 'width-100'),
+				'label' => 'Nom de la Structure',
+			))
             ->add('adresse', 'text', array(
 				'attr' => array('class' => 'width-100'),
 				'label' => 'Adresse',
@@ -35,11 +42,19 @@ class AdresseSignataireType extends AbstractType
             ->add('pays', 'text', array(
 				'attr' => array('class' => 'width-100'),
 			))
-			->add('structure', new StructureType(), array(
-				'attr' => array('class' => 'width-100'),
-				'data_class' => 'OCIM\ContactsBundle\Entity\Structure',
-				'em' => $entityManager
+			->add('type', null, array(
+				'attr' => array('class'=>'width-100'),
+				'required' => false,
+				'query_builder' => function(EntityRepository $repository) { 
+					return $repository->createQueryBuilder('u')->orderBy('u.type', 'ASC');
+				}
 			))
+            ->add(
+				$builder->create('tags', 'text', array(
+				'attr' => array('class'=>'width-100'),
+				'required' => false,
+				// 'data_class' => 'OCIM\ContactsBundle\Entity\TagStructure'
+			))->addModelTransformer($transformer))
         ;
     }
     

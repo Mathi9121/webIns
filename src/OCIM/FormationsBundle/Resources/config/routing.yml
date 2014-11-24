@@ -5,3 +5,12 @@ ocim_formations_convention:
 OCIMFormationsBundle_logistique:
     resource: "@OCIMFormationsBundle/Resources/config/routing/logistique.yml"
     prefix:   /logistique
+
+inscriptionpublique:
+    path:     /inscription/{idformation}/
+    defaults: { _controller: OCIMFormationsBundle:InscriptionPublique:inscription }
+
+inscriptionpublique_creation:
+    path:     /inscription-creation{idformation}
+    defaults: { _controller: OCIMFormationsBundle:InscriptionPublique:createInscription }
+    requirements: { _method: post }

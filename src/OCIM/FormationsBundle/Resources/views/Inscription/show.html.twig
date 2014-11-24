@@ -1,14 +1,14 @@
 {% extends '::app.html.twig' %}
 
 
-{% block titre %}Inscription - {{entity.personnes.0.civilite|capitalize}} {{entity.personnes.0.prenom|capitalize}} {{entity.personnes.0.nom|capitalize}}{% endblock %}
+{% block titre %}Inscription - {{entity.stagiaire.civilite|capitalize}} {{entity.stagiaire.prenom|capitalize}} {{entity.stagiaire.nom|capitalize}}{% endblock %}
 
-{% block title %}Inscription - {{entity.personnes.0.civilite}} {{entity.personnes.0.prenom}} {{entity.personnes.0.nom}}{% endblock %}
+{% block title %}Inscription - {{entity.stagiaire.civilite}} {{entity.stagiaire.prenom}} {{entity.stagiaire.nom}}{% endblock %}
 {% block controls %}{{form(delete_form)}}{% endblock %}
 
 {% block body -%}
 
-<blockquote class="lead text-centered">{{ entity.attentes }}</blockquote>
+<p class="lead text-centered"><i class="fa fa-quote-left"></i> {{ entity.attentes }} <i class="fa fa-quote-right"></i></p>
 
 <div class="units-row">
 	<div class="unit-60">
@@ -32,7 +32,7 @@
 			</tr>
 			<tr>
 				<th>Formule</th>
-				<td><strong>{{entity.formationFormule.formule.id}}</strong> - {{entity.formationFormule.formule.description|capitalize}}</td>
+				<td><strong>{{entity.formationFormule.formule.id}}</strong> - {{entity.formationFormule.formule.description|capitalize}} ({{entity.formationFormule.formule.tarif}}{{(entity.formationFormule.formule.tarif|number_format)? ' €'}})</td>
 			</tr>
 		</table>
 	</div>
