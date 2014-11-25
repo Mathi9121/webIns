@@ -1,5 +1,7 @@
 $(document).ready(function(){
 	
+	initTotaux();
+	
 	// rend le contenu des cases de type text editable
 	$('td.logistique[data-type="text"]').attr('contenteditable', 'true');
 	
@@ -93,4 +95,23 @@ function enregistre(data, td){
 	.error(function() {
 		$('#message-error').message({'delay': 10});
 	});
+	
 }
+
+function initTotaux(){
+		var count = new Array();
+		$("#logistique").find('tbody tr:first-child td').each(function(i){
+			var to = 0;
+			var index = i;
+			
+			$("#logistique").find('tbody tr').each(function(j){
+				to += parseInt($(this).find('td').eq(index).attr('data-reponse'));
+			});
+			count.push(to);
+		});
+		
+		for(var i = 3 ; i <= (count.length+1) ; i++){
+			$("#logistique").find('tfoot tr td').eq(i-1).text(count[i]);
+		}
+
+	}

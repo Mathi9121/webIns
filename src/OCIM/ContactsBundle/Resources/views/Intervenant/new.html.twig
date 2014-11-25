@@ -1,15 +1,31 @@
 {% extends '::app.html.twig' %}
 
+
+
+{% block title %}Formation : Ajout d'un intervenant{% endblock %}
+{% block titre %}Formation : Ajout d'un intervenant{% endblock %}
+{% block controls %}{% endblock %}
+
+
+{% block breadcrumbs %}
+<li><a href="{{path('formation')}}">Formations</a></li>
+<li><a>Formation - </a></li>
+<li><a>Inscriptions</a></li>
+<li><span>Intervenants</span></li>
+{% endblock %}
+
+
 {% block body -%}
-    <h1>Intervenant creation</h1>
 
-    {{ form(form) }}
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('intervenants') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+<div class="units-row">
+    <div class="unit-50">
+		{{ form(form) }}
+	</div>
+	
+	<div class="unit-50">
+		{{ form(form) }}
+	</div>
+</div>
+<hr/>
+<a href="{{ path('formation') }}">Retour aux inscriptions</a>
 {% endblock %}

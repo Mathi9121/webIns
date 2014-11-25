@@ -40,8 +40,10 @@ class InscriptionRepository extends EntityRepository
             ->createQuery(
                 'SELECT p.nom, p.prenom, i.dateInscription FROM OCIMFormationsBundle:Inscription i
 				JOIN i.personnes p
+				WHERE p INSTANCE OF OCIMContactsBundle:Stagiaire
 				ORDER BY i.dateInscription DESC'
-            )->setMaxResults(10)
+            )
+			->setMaxResults(10)
             ->getResult();
 	}
 	

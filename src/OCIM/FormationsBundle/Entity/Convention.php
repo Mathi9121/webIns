@@ -252,4 +252,88 @@ class Convention
 	public function __toString(){
 		return $this->numero;
 	}
+    /**
+     * @var \DateTime
+     */
+    private $etape1;
+
+    /**
+     * @var \DateTime
+     */
+    private $etape2;
+
+    /**
+     * @var \DateTime
+     */
+    private $etape3;
+
+
+    /**
+     * Set etape1
+     *
+     * @param \DateTime $etape1
+     * @return Convention
+     */
+    public function setEtape1($etape1)
+    {
+        $this->etape1 = $etape1;
+
+        return $this;
+    }
+
+    /**
+     * Get etape1
+     *
+     * @return \DateTime 
+     */
+    public function getEtape1()
+    {
+        return $this->etape1;
+    }
+
+    /**
+     * Set etape2
+     *
+     * @param \DateTime $etape2
+     * @return Convention
+     */
+    public function setEtape2($etape2)
+    {
+        $this->etape2 = $etape2;
+
+        return $this;
+    }
+
+    /**
+     * Get etape2
+     *
+     * @return \DateTime 
+     */
+    public function getEtape2()
+    {
+        return $this->etape2;
+    }
+
+    /**
+     * Set etape3
+     *
+     * @param \DateTime $etape3
+     * @return Convention
+     */
+    public function setEtape3($etape3)
+    {
+        $this->etape3 = $etape3;
+
+        return $this;
+    }
+
+    /**
+     * Get etape3
+     *
+     * @return \DateTime 
+     */
+    public function getEtape3()
+    {
+        return $this->etape3;
+    }
 }

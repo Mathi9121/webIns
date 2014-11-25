@@ -77,7 +77,7 @@ class InscriptionPubliqueType extends AbstractType
 					->add('fax', 'text', array(
 						'required' => false,
 						'attr' => array('class'=> 'width-100'),
-						'required' => true,
+						'required' => false,
 					))
 					->add('mail', 'text', array(
 						'attr' => array('class'=> 'width-100'),
@@ -89,34 +89,41 @@ class InscriptionPubliqueType extends AbstractType
 							->add('nomStructure', 'text', array(
 								'attr' => array('class' => 'width-100'),
 								'label' => 'Nom de la structure',
+								'required' => true
 							))
 							->add('adresse', 'text', array(
 								'attr' => array('class' => 'width-100'),
 								'label' => 'Adresse',
+								'required' => true
 							))
 							->add('adresseComplement', 'text', array(
 								'attr' => array('class' => 'width-100'),
 								'label' => "Complément d'adresse",
+								'required' => false
 							))
 							->add('cP', 'text', array(
 								'attr' => array('class' => 'width-100'),
 								'label' => 'Code postal',
+								'required' => true
 							))
 							->add('ville', 'text', array(
 								'attr' => array('class' => 'width-100'),
+								'required' => true
 							))
 							->add('pays', 'text', array(
 								'attr' => array('class' => 'width-100'),
+								'required' => false
 							))
 						)
 				)
             ->add('attentes', "textarea", array(
 				'attr' => array("class"=>"width-100", 'rows'=> 5),
+				'required' => true
 				))
 
 			->add(
 				$builder->create('admin', 'form', array('by_reference' => false, 'label' => false, "data_class"=> 'OCIM\ContactsBundle\Entity\Admin'))
-					->add('mail', 'text', array('label' => "Mail du contact administratif"))
+					->add('mail', 'text', array('label' => "Mail du contact administratif", 'required' => false))
 			)
         ;
     }

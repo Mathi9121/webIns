@@ -4,9 +4,10 @@ OCIM\FormationsBundle\Entity\ModeleLogistique:
         reponses:
             targetEntity: ReponsesLogistique
             mappedBy: modele
+            cascade: ['all']
     manyToMany:
         formationFormule:
-            cascade: ['all']
+            cascade: ['persist']
             targetEntity: formationFormule
             mappedBy: modeles
     manyToOne:

@@ -78,11 +78,11 @@
 						{% if class == "attente" %}<td class="handle"><i class="fa fa-arrows"></i></td>{% else %}<td></td>{% endif %}
 						<td class="insc info"><span>{{ entity.stagiaire.nom }} ({{ entity.stagiaire.civilite }})</span></td>
 						<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
-						<td class="insc info"><span><abbr title="{{ entity.formationFormule.formule }}">{{ entity.formationFormule.formule.id }}</abbr></span></td>
-						<td class="insc info"><span>{{ entity.stagiaire.fonction }}</span></td>
-						<td class="insc info"><span>{% if entity.dateInscription %}{{ entity.dateInscription|date('d/m/Y') }}{% endif %}</span></td>
-						<td class="insc info"><span>{{ entity.statutOrgFinanceur }}</span></td>
-						<td class="insc info"><span>{{ entity.statutConvention }}</span></td>
+						<td class=""><span><abbr title="{{ entity.formationFormule.formule }}">{{ entity.formationFormule.formule.id }}</abbr></span></td>
+						<td class=""><span>{{ entity.stagiaire.fonction }}</span></td>
+						<td class=""><span>{% if entity.dateInscription %}{{ entity.dateInscription|date('d/m/Y') }}{% endif %}</span></td>
+						<td class=""><span>{{ entity.statutOrgFinanceur }}</span></td>
+						<td class=""><span>{{ entity.statutConvention }}</span></td>
                 <td class="insc actions">
 					<a href="#" data-tools="dropdown" data-target="#dropdown1-{{loop.index}}"></a>
 					{% spaceless %}
@@ -92,18 +92,18 @@
 						<li>
 						{% spaceless %}
 							{% if entity.convention %}
-								<a href="{{ path('convention_edit', { 'id': entity.convention.id, 'idformation':formation.id }) }}" class="inscription-href"><i class="fa fa-pencil fa-fw"></i>
+								<a href="{{ path('convention_edit', { 'id': entity.convention.id, 'idformation':formation.id }) }}" class="inscription-href">
 							{% else %}
-								<a href="{{ path('convention_new', { 'idinscription': entity.id, 'idformation':formation.id }) }}" class="inscription-href"><i class="fa fa-plus fa-fw"></i>{% endif %}Convention</a>
+								<a href="{{ path('convention_new', { 'idinscription': entity.id, 'idformation':formation.id }) }}" class="inscription-href">{% endif %}<i class="fa fa-pencil fa-fw"></i>Convention</a>
 						{% endspaceless %}
 						</li>
-						<li>
+						{# <li>
 							{% if entity.signataire == null %}
 								<a href="{{path('signataire_new', {'idinscription':entity.id, 'idformation': formation.id})}}" class="inscription-href"><i class="fa fa-plus fa-fw"></i>Ajouter un signataire</a>
 							{% else %}
 								<a href="{{path('signataire_edit', {'id': entity.signataire.id, 'idformation': formation.id})}}" class="inscription-href"><i class="fa fa-pencil fa-fw"></i>Modifier signataire</a>
 							{% endif %}
-						</li>
+						</li> #}
 					</ul>
 					{% endspaceless %}
 				</td>
@@ -235,6 +235,36 @@
             </tr>
 			{% endif %}
         {% endfor %}
+		
+		{# logistique des intervenants #}
+		
+		<tr class="statut {{class}}" data-ordre="{{entity.ordre}}" data-idinscription="{{entity.id}}">
+						{% if class == "attente" %}<td class="handle"><i class="fa fa-arrows"></i></td>{% else %}<td></td>{% endif %}
+						<td class="insc info"><span>{{ entity.stagiaire.nom }} ({{ entity.stagiaire.civilite }})</span></td>
+						<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
+					
+					{% for log in logistique %}
+						{% if log.formationformule|length > 0 %}
+							{% if entity.formationFormule in log.formationFormule %}
+								<td class="logistique" data-type="{{log.typeReponse}}" data-idreponse="{{ (attribute(entity, 'getReponseByModeleId', [log.id]))? attribute(entity, 'getReponseByModeleId', [log.id]).id }}" data-date="{{log.date|date('')}}" data-idmodele="{{log.id}}" data-reponse="{{attribute(entity, 'getReponseByModeleId', [log.id, log.typeReponse]) }}">
+									{% if attribute(entity, 'getReponseByModeleId', [log.id]) %}
+										{% if log.typeReponse == 'bool' %}
+											{% if (attribute(entity, 'getReponseByModeleId', [log.id, log.typeReponse]) == '1') %}
+												<span class="logistique ok">1</span>
+											{% elseif (attribute(entity, 'getReponseByModeleId', [log.id, log.typeReponse]) == '0') %}
+												<span class="logistique zero">0</span>
+											{% endif %}
+										{% elseif log.typeReponse == 'text' %}
+											{{ (attribute(entity, 'getReponseByModeleId', [log.id, log.typeReponse]))}}
+										{% endif %}
+									{% endif %}
+								</td>
+							{% else %}
+								<td data-reponse="0" class="undefined"></td>
+							{% endif %}
+						{% endif %}
+					{% endfor %}
+            </tr>
         </tbody>
 		<tfoot>
 			<td></td>
@@ -242,7 +272,7 @@
 			{% for log in logistique %}
 				{% if log.formationformule|length > 0 %}
 					{% if log.typeReponse == 'bool' %}
-						<td>{{ log.nombreReponsesPositives }}</td>
+						<td></td>
 					{% else %}
 						<td style="background-color: rgba(125,125,125, 0.2)"></td>
 					{% endif %}
@@ -273,11 +303,9 @@
 				<th class="insc info"><span>Prénom</span></th>
 				<th class="insc convention"><span>Numéro</span></th>
 				<th class="insc convention"><span>Edition</span></th>
-				<th class="insc convention"><span><abbr title="Envoi au Président de l'Université en 2 exemplaires">Etape-1</abbr></span></th>
-				<th class="insc convention"><span><abbr title="Retour des 2 exemplaires">Etape-2</abbr></span></th>
-				<th class="insc convention"><span><abbr title="Envoi à l'Organisme en 2 exemplaires">Etape-3</abbr></span></th>
-				<th class="insc convention"><span><abbr title="Retour d'1 exemplaire">Etape-4</abbr></span></th>
-				<th class="insc convention"><span><abbr title="Envoi au Président de l'Université d'1 exemplaire">Etape-5</abbr></span></th>
+				<th class="insc convention"><span>Etape-1</span></th>
+				<th class="insc convention"><span>Etape-2</span></th>
+				<th class="insc convention"><span>Etape-3</span></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -304,7 +332,7 @@
 						<td class="insc convention text-centered"><span>{% if entity.convention.envoiPresidentU1ex %}<i class="fa fa-check" title="{{ entity.convention.envoiPresidentU1ex|date('d/m/Y') }}"></i></span>{% endif %}</td>
 					{% else %}
 						<td class="insc convention text-centered" colspan="7">
-							<a href="{{ path('convention_new', { 'idinscription': entity.id, 'idformation':formation.id }) }}" class="btn btn-green"><i class="fa fa-plus"></i> Entrer des informations concernant la convention</a>
+							<a href="{{ path('convention_new', { 'idinscription': entity.id, 'idformation':formation.id }) }}" class=""><i class="fa fa-plus"></i> Entrer des informations concernant la convention</a>
 						</td>
 					{% endif %}
             </tr>

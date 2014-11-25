@@ -8,7 +8,10 @@ tr.statut.annule:hover{background-color: rgba(255, 54, 0, 0.5);-webkit-box-shado
 #logistique table thead tr th{text-align:center;}
 
 td.insc.actions{background-color: #f6f6f6}
-
+td.insc.info{
+	font-weight: 600;
+	text-shadow: 0 0 2px #B5B5B5;
+}
 td{white-space:nowrap}
 
 td.handle, th.handle{padding-right:0}
@@ -29,6 +32,9 @@ span.logistique.zero{color: rgba(255, 54, 0, 1);}
 tr.selected{
 	background-color: #f1f1f1 !important;
 }
+
+tfoot tr td{text-align:center;}
+
 
 /* boite détails dune inscription */
 div.details-inscription{
