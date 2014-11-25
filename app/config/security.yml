@@ -20,6 +20,7 @@ security:
 
         admin:
             pattern: ^/
+            anonymous:  ~
             form_login:
                 check_path: /check
                 login_path: /connexion
@@ -28,8 +29,8 @@ security:
                 path:   /deconnexion
                 target: /
     access_control:
+        - { path: ^/inscription , roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/connexion, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/inscription, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-
+        - { path: ^/, roles: ROLE_ADMIN }
     acl:
         connection: default
