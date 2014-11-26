@@ -12,7 +12,7 @@ $(document).ready(function(){
 		var type = $(this).attr('data-type');
 		var reponse = $(this).attr('data-reponse');
 		var idmodele = $(this).attr('data-idmodele');
-		var idinscription = $(this).parent('tr').attr('data-idinscription');
+		var idpersonne = $(this).parent('tr').attr('data-idpersonne');
 		var idreponse = $(this).attr('data-idreponse');
 		
 		// on met dans un tableau 
@@ -21,7 +21,7 @@ $(document).ready(function(){
 			'type' : type,
 			'reponse' : reponse,
 			'idmodele' : idmodele,
-		    'idinscription' : idinscription,
+		    'idpersonne' : idpersonne,
 		    'idreponse' : idreponse,
 			});
 		
@@ -38,7 +38,7 @@ $(document).ready(function(){
 			'type' : $(this).attr('data-type'),
 			'reponse' : $.trim($(this).text()),
 			'idmodele' : $(this).attr('data-idmodele'),
-			'idinscription' : $(this).parent('tr').attr('data-idinscription'),
+			'idpersonne' : $(this).parent('tr').attr('data-idpersonne'),
 			'idreponse' : $(this).attr('data-idreponse'),
 		});
 		
@@ -55,7 +55,7 @@ function enregistre(data, td){
 		data: JSON.stringify(data),
 	})
 	.done(function( msg ) {
-		
+
 		//message succes
 		$('#message-save').message({'delay': 1});
 		
@@ -110,8 +110,10 @@ function initTotaux(){
 			count.push(to);
 		});
 		
-		for(var i = 3 ; i <= (count.length+1) ; i++){
-			$("#logistique").find('tfoot tr td').eq(i-1).text(count[i]);
+		for(var i = 2 ; i <= (count.length+1) ; i++){
+			if($("#logistique").find('tfoot tr td').eq(i-1).attr('data-typereponse') == "bool"){
+				$("#logistique").find('tfoot tr td').eq(i-1).text(count[i]);
+			}
 		}
 
 	}

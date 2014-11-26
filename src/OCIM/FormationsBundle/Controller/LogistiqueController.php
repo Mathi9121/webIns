@@ -13,6 +13,8 @@ use OCIM\FormationsBundle\Entity\ReponsesLogistique;
 use OCIM\FormationsBundle\Entity\Inscription;
 use OCIM\FormationsBundle\Form\LogistiqueType;
 use Doctrine\Common\Collections\ArrayCollection;
+use OCIM\ContactsBundle\Entity\Personne;
+
 
 /**
  * formationFormule controller.
@@ -57,10 +59,10 @@ class LogistiqueController extends Controller
 			
 			$data = json_decode($request->getContent());
 			
-			$inscription = new Inscription();
-			$inscription = $em->getRepository('OCIMFormationsBundle:Inscription')->find($data[0]->idinscription);
+			$personne = new Personne();
+			$personne = $em->getRepository('OCIMContactsBundle:Personne')->find($data[0]->idpersonne);
 			
-			$reponseLogistique = new ReponsesLogistique;
+			$reponseLogistique = new ReponsesLogistique();
 			// un objet ReponseLogistique existe
 			if($data[0]->idreponse){
 				$reponseLogistique = $em->getRepository('OCIMFormationsBundle:ReponsesLogistique')->find($data[0]->idreponse);
@@ -79,9 +81,9 @@ class LogistiqueController extends Controller
 			
 
 			if($reponseLogistique->getId() == null){
-				$reponseLogistique->setInscription($inscription);
+				$reponseLogistique->setPersonne($personne);
 				$reponseLogistique->setModele($em->getReference('OCIMFormationsBundle:ModeleLogistique', $data[0]->idmodele));
-				$inscription->addReponsesLogistique($reponseLogistique);
+				$personne->addReponsesLogistique($reponseLogistique);
 				$em->persist($reponseLogistique);
 			}
 			

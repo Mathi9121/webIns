@@ -163,4 +163,32 @@ class ReponsesLogistique
     {
         return $this->inscription;
     }
+    /**
+     * @var \OCIM\ContactsBundle\Entity\Personne
+     */
+    private $personne;
+
+
+    /**
+     * Set personne
+     *
+     * @param \OCIM\ContactsBundle\Entity\Personne $personne
+     * @return ReponsesLogistique
+     */
+    public function setPersonne(\OCIM\ContactsBundle\Entity\Personne $personne = null)
+    {
+        $this->personne = $personne;
+
+        return $this;
+    }
+
+    /**
+     * Get personne
+     *
+     * @return \OCIM\ContactsBundle\Entity\Personne 
+     */
+    public function getPersonne()
+    {
+        return $this->personne;
+    }
 }

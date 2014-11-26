@@ -16,6 +16,10 @@ OCIM\ContactsBundle\Entity\Personne:
             joinColumn:
                 name: adresse_id
                 referencedColumnName: id
+    oneToMany:
+        reponsesLogistique:
+            targetEntity: OCIM\FormationsBundle\Entity\ReponsesLogistique
+            mappedBy: personne
     table: null
     repositoryClass: OCIM\ContactsBundle\Entity\PersonneRepository
     id:

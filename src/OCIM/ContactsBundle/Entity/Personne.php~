@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Personne
  */
-class Personne
+abstract class Personne
 {
     /**
      * @var integer
@@ -47,8 +47,9 @@ class Personne
     /**
      * @var string
      */
-    private $mailAdmin;
 
+	
+	private $type;
 
     /**
      * Get id
@@ -198,56 +199,21 @@ class Personne
         return $this->mail;
     }
 
-    /**
-     * Set mailAdmin
-     *
-     * @param string $mailAdmin
-     * @return Personne
-     */
-    public function setMailAdmin($mailAdmin)
-    {
-        $this->mailAdmin = $mailAdmin;
-
-        return $this;
-    }
-
-    /**
-     * Get mailAdmin
-     *
-     * @return string 
-     */
-    public function getMailAdmin()
-    {
-        return $this->mailAdmin;
-    }
-    /**
-     * @var \OCIM\ContactsBundle\Entity\TypePersonne
-     */
-    private $type;
-
-
-    /**
-     * Set type
-     *
-     * @param \OCIM\ContactsBundle\Entity\TypePersonne $type
-     * @return Personne
-     */
-    public function setType(\OCIM\ContactsBundle\Entity\TypePersonne $type = null)
+  
+	
+    public function setType($type = null)
     {
         $this->type = $type;
 
         return $this;
     }
 
-    /**
-     * Get type
-     *
-     * @return \OCIM\ContactsBundle\Entity\TypePersonne 
-     */
+    
     public function getType()
     {
         return $this->type;
     }
+	
     /**
      * @var string
      */
@@ -336,4 +302,76 @@ class Personne
     {
         return $this->inscription;
     }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $intervenant;
+
+    /**
+     * Constructor
+     */
+    public function __construct($type = null)
+    {
+        $this->intervenant = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->type = $type;
+    }
+
+    /**
+     * Add intervenant
+     *
+     * @param \OCIM\ContactsBundle\Entity\Intervenant $intervenant
+     * @return Personne
+     */
+    public function addIntervenant(\OCIM\ContactsBundle\Entity\Intervenant $intervenant)
+    {
+        $this->intervenant[] = $intervenant;
+
+        return $this;
+    }
+
+    /**
+     * Remove intervenant
+     *
+     * @param \OCIM\ContactsBundle\Entity\Intervenant $intervenant
+     */
+    public function removeIntervenant(\OCIM\ContactsBundle\Entity\Intervenant $intervenant)
+    {
+        $this->intervenant->removeElement($intervenant);
+    }
+
+    /**
+     * Get intervenant
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getIntervenant()
+    {
+        return $this->intervenant;
+    }
+	
+	private $commentaire;
+	
+	/**
+     * Set commentaire
+     *
+     * @param string $commentaire
+     * @return Personne
+     */
+    public function setCommentaire($commentaire)
+    {
+        $this->commentaire = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Get commentaire
+     *
+     * @return $commentaire 
+     */
+    public function getCommentaire()
+    {
+        return $this->commentaire;
+    }
+	
 }

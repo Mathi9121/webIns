@@ -186,11 +186,10 @@
 	<table class="table-bordered">
 		<thead>
 			<tr>
-				<th class="handle"></th>
 				<th class="insc info"><span>Nom</span></th>
 				<th class="insc info"><span>Prénom</span></th>
 				{% for log in logistique %}
-					{% if log.formationformule|length > 0 %}<th>{{log.date|date('d/m')}} {{log.description}}</th>{% endif %}
+					<th>{{log.date|date('d/m')}} {{log.description}}</th>
 				{% endfor %}
 			</tr>
 		</thead>
@@ -206,77 +205,74 @@
 			{% endif %}
 			
 			{% if entity.statut == 'accepté' %}
-			<tr class="statut {{class}}" data-ordre="{{entity.ordre}}" data-idinscription="{{entity.id}}">
-						{% if class == "attente" %}<td class="handle"><i class="fa fa-arrows"></i></td>{% else %}<td></td>{% endif %}
+			<tr class="statut {{class}}" data-ordre="{{entity.ordre}}" data-idinscription="{{entity.id}}" data-idpersonne="{{entity.stagiaire.id}}">
 						<td class="insc info"><span>{{ entity.stagiaire.nom }} ({{ entity.stagiaire.civilite }})</span></td>
 						<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
 					
 					{% for log in logistique %}
 						{% if log.formationformule|length > 0 %}
 							{% if entity.formationFormule in log.formationFormule %}
-								<td class="logistique" data-type="{{log.typeReponse}}" data-idreponse="{{ (attribute(entity, 'getReponseByModeleId', [log.id]))? attribute(entity, 'getReponseByModeleId', [log.id]).id }}" data-date="{{log.date|date('')}}" data-idmodele="{{log.id}}" data-reponse="{{attribute(entity, 'getReponseByModeleId', [log.id, log.typeReponse]) }}">
-									{% if attribute(entity, 'getReponseByModeleId', [log.id]) %}
+								<td class="logistique" data-type="{{log.typeReponse}}" data-idreponse="{{ (attribute(entity.stagiaire, 'getReponseByModeleId', [log.id]))? attribute(entity.stagiaire, 'getReponseByModeleId', [log.id]).id }}" data-date="{{log.date|date('')}}" data-idmodele="{{log.id}}" data-reponse="{{attribute(entity.stagiaire, 'getReponseByModeleId', [log.id, log.typeReponse]) }}">
+									{% if attribute(entity.stagiaire, 'getReponseByModeleId', [log.id]) %}
 										{% if log.typeReponse == 'bool' %}
-											{% if (attribute(entity, 'getReponseByModeleId', [log.id, log.typeReponse]) == '1') %}
+											{% if (attribute(entity.stagiaire, 'getReponseByModeleId', [log.id, log.typeReponse]) == '1') %}
 												<span class="logistique ok">1</span>
-											{% elseif (attribute(entity, 'getReponseByModeleId', [log.id, log.typeReponse]) == '0') %}
+											{% elseif (attribute(entity.stagiaire, 'getReponseByModeleId', [log.id, log.typeReponse]) == '0') %}
 												<span class="logistique zero">0</span>
 											{% endif %}
 										{% elseif log.typeReponse == 'text' %}
-											{{ (attribute(entity, 'getReponseByModeleId', [log.id, log.typeReponse]))}}
+											{{ (attribute(entity.stagiaire, 'getReponseByModeleId', [log.id, log.typeReponse]))}}
 										{% endif %}
 									{% endif %}
 								</td>
 							{% else %}
 								<td data-reponse="0" class="undefined"></td>
 							{% endif %}
+						{% else %}
+							{# modele uniquement intervenant #}
+							<td data-reponse="0" class="undefined"></td>
 						{% endif %}
 					{% endfor %}
             </tr>
 			{% endif %}
         {% endfor %}
 		
-		{# logistique des intervenants #}
-		
-		<tr class="statut {{class}}" data-ordre="{{entity.ordre}}" data-idinscription="{{entity.id}}">
-						{% if class == "attente" %}<td class="handle"><i class="fa fa-arrows"></i></td>{% else %}<td></td>{% endif %}
-						<td class="insc info"><span>{{ entity.stagiaire.nom }} ({{ entity.stagiaire.civilite }})</span></td>
-						<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
-					
-					{% for log in logistique %}
-						{% if log.formationformule|length > 0 %}
-							{% if entity.formationFormule in log.formationFormule %}
-								<td class="logistique" data-type="{{log.typeReponse}}" data-idreponse="{{ (attribute(entity, 'getReponseByModeleId', [log.id]))? attribute(entity, 'getReponseByModeleId', [log.id]).id }}" data-date="{{log.date|date('')}}" data-idmodele="{{log.id}}" data-reponse="{{attribute(entity, 'getReponseByModeleId', [log.id, log.typeReponse]) }}">
-									{% if attribute(entity, 'getReponseByModeleId', [log.id]) %}
-										{% if log.typeReponse == 'bool' %}
-											{% if (attribute(entity, 'getReponseByModeleId', [log.id, log.typeReponse]) == '1') %}
-												<span class="logistique ok">1</span>
-											{% elseif (attribute(entity, 'getReponseByModeleId', [log.id, log.typeReponse]) == '0') %}
-												<span class="logistique zero">0</span>
-											{% endif %}
-										{% elseif log.typeReponse == 'text' %}
-											{{ (attribute(entity, 'getReponseByModeleId', [log.id, log.typeReponse]))}}
-										{% endif %}
+		{# Logistique des intervenants #}
+		{% for intervenant in formation.intervenants %}
+			<tr data-idpersonne="{{intervenant.id}}">
+				<td class="insc info">{{intervenant.nom}} ({{intervenant.civilite}})</td>
+				<td class="insc info">{{intervenant.prenom}}</td>
+				{% for log in logistique %}
+					{% if log.formation %}
+						<td class="logistique" data-type="{{log.typeReponse}}" data-idreponse="{{ (attribute(intervenant, 'getReponseByModeleId', [log.id]))? attribute(intervenant, 'getReponseByModeleId', [log.id]).id }}" data-date="{{log.date|date('')}}" data-idmodele="{{log.id}}" data-reponse="{{attribute(intervenant, 'getReponseByModeleId', [log.id, log.typeReponse]) }}">
+							{% if attribute(intervenant, 'getReponseByModeleId', [log.id]) %}
+								{% if log.typeReponse == 'bool' %}
+									{% if (attribute(intervenant, 'getReponseByModeleId', [log.id, log.typeReponse]) == '1') %}
+										<span class="logistique ok">1</span>
+									{% elseif (attribute(intervenant, 'getReponseByModeleId', [log.id, log.typeReponse]) == '0') %}
+										<span class="logistique zero">0</span>
 									{% endif %}
-								</td>
-							{% else %}
-								<td data-reponse="0" class="undefined"></td>
+								{% elseif log.typeReponse == 'text' %}
+									{{ (attribute(intervenant, 'getReponseByModeleId', [log.id, log.typeReponse]))}}
+								{% endif %}
 							{% endif %}
-						{% endif %}
-					{% endfor %}
-            </tr>
+						</td>
+					{% else %}
+						<td data-reponse="0" class="undefined"></td>
+					{% endif %}
+				{% endfor %}
+			</tr>
+		{% endfor %}
+		
         </tbody>
 		<tfoot>
-			<td></td>
 			<td colspan="2">Totaux</td>
 			{% for log in logistique %}
-				{% if log.formationformule|length > 0 %}
 					{% if log.typeReponse == 'bool' %}
-						<td></td>
+						<td data-typereponse="{{log.typeReponse}}"></td>
 					{% else %}
 						<td style="background-color: rgba(125,125,125, 0.2)"></td>
 					{% endif %}
-				{% endif %}
 			{% endfor %}
 		</tfoot>
 	</table>

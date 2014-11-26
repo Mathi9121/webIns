@@ -3,6 +3,7 @@
 namespace OCIM\FormationsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Criteria;
 
 /**
  * Inscription
@@ -102,7 +103,20 @@ class Inscription
      */
     public function getStatut()
     {
-        return $this->statut;
+        
+		$s = $this->statut;
+		switch($s){
+			case '1':
+				$s = "accepté";
+				break;
+			case '2':
+				$s = "en attente";
+				break;
+			case '3':
+				$s = "annulé";
+				break;
+			}
+		return $s;
     }
 
     /**
@@ -202,7 +216,7 @@ class Inscription
      */
     public function __construct()
     {
-        $this->reponsesInscription = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->reponsesLogistique = new \Doctrine\Common\Collections\ArrayCollection();
         $this->personnes = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -236,47 +250,6 @@ class Inscription
     }
 
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $reponsesInscription;
-
-
-    /**
-     * Add reponsesInscription
-     *
-     * @param \OCIM\FormationsBundle\Entity\ReponsesLogistique $reponsesInscription
-     * @return Inscription
-     */
-    public function addReponsesInscription(\OCIM\FormationsBundle\Entity\ReponsesLogistique $reponsesInscription)
-    {
-        $this->reponsesInscription[] = $reponsesInscription;
-
-        return $this;
-    }
-
-    /**
-     * Remove reponsesInscription
-     *
-     * @param \OCIM\FormationsBundle\Entity\ReponsesLogistique $reponsesInscription
-     */
-    public function removeReponsesInscription(\OCIM\FormationsBundle\Entity\ReponsesLogistique $reponsesInscription)
-    {
-        $this->reponsesInscription->removeElement($reponsesInscription);
-    }
-
-    /**
-     * Get reponsesInscription
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getReponsesInscription()
-    {
-        return $this->reponsesInscription;
-    }
-    /**
-     * @var \OCIM\FormationsBundle\Entity\formationFormule
-     */
     private $formationformule;
 
 
@@ -316,7 +289,7 @@ class Inscription
      * @param \OCIM\ContactsBundle\Entity\Personne $personne
      * @return Inscription
      */
-    public function setStagiaire(\OCIM\ContactsBundle\Entity\Personne $stagiaire = null)
+    public function setStagiaire(\OCIM\ContactsBundle\Entity\Stagiaire $stagiaire = null)
     {
         
 		$this->stagiaire = $stagiaire;
@@ -353,7 +326,7 @@ class Inscription
      * @param \OCIM\ContactsBundle\Entity\Personne $personne
      * @return Inscription
      */
-    public function setSignataire(\OCIM\ContactsBundle\Entity\Personne $signataire = null)
+    public function setSignataire(\OCIM\ContactsBundle\Entity\Signataire $signataire = null)
     {
         
 		$this->signataire = $signataire;
@@ -376,6 +349,44 @@ class Inscription
 			}
 		}
 		return $this->signataire;
+    }
+	
+	
+	 /**
+     * @var \OCIM\ContactsBundle\Entity\Personne
+     */
+    private $admin;
+
+
+    /**
+     * Set personne
+     *
+     * @param \OCIM\ContactsBundle\Entity\Personne $personne
+     * @return Inscription
+     */
+    public function setAdmin(\OCIM\ContactsBundle\Entity\Admin $admin = null)
+    {
+        
+		$this->admin = $admin;
+		
+		$this->addPersonne($admin);
+		
+        return $this;
+    }
+
+    /**
+     * Get personne
+     *
+     * @return \OCIM\ContactsBundle\Entity\Personne 
+     */
+    public function getAdmin()
+    {
+		foreach($this->personnes as $personne){
+			if($personne->getType() == 'admin'){
+				$this->admin = $personne ;
+			}
+		}
+		return $this->admin;
     }
 	
 	
@@ -440,4 +451,85 @@ class Inscription
         return $this->ordre;
     }
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $reponsesLogistique;
+
+
+    /**
+     * Add reponsesLogistique
+     *
+     * @param \OCIM\FormationsBundle\Entity\ReponsesLogistique $reponsesLogistique
+     * @return Inscription
+     */
+    public function addReponsesLogistique(\OCIM\FormationsBundle\Entity\ReponsesLogistique $reponsesLogistique)
+    {
+        $this->reponsesLogistique[] = $reponsesLogistique;
+
+        return $this;
+    }
+
+    /**
+     * Remove reponsesLogistique
+     *
+     * @param \OCIM\FormationsBundle\Entity\ReponsesLogistique $reponsesLogistique
+     */
+    public function removeReponsesLogistique(\OCIM\FormationsBundle\Entity\ReponsesLogistique $reponsesLogistique)
+    {
+        $this->reponsesLogistique->removeElement($reponsesLogistique);
+    }
+
+    /**
+     * Get reponsesLogistique
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getReponsesLogistique()
+    {
+        return $this->reponsesLogistique;
+    }
+	
+	public function getReponseByModeleId($modeleId, $return = null){
+		
+		$reponse =  $this->getReponsesLogistique()->filter(
+			function($rl) use ($modeleId){
+				if($rl->getModele()->getId() == $modeleId){
+					return true;
+				}
+			}
+		)->first();
+		
+		if($reponse){
+			if(!is_null($return)){
+				if($return == 'bool'){
+					return ($reponse->getReponse())? '1' : '0' ;
+				}
+				else return $reponse->getReponseText();
+			}
+			else{
+				return $reponse;
+			}
+		}
+		else return 0;
+	}
+	
+	public function setNumberStatut( $str){
+	
+		$this->statut = $str;
+		
+		if($str == '2'){
+			if($this->ordre == null){
+				$this->setOrdre(15000);
+			}
+		}
+		
+		return $this;
+	}
+	
+	public function getNumberStatut(){
+	
+		return $this->statut;
+		
+	}
 }

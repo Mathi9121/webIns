@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Personne
  */
-abstract class Personne
+class Personne
 {
     /**
      * @var integer
@@ -373,5 +373,68 @@ abstract class Personne
     {
         return $this->commentaire;
     }
+	
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $reponsesLogistique;
+
+
+    /**
+     * Add reponsesLogistique
+     *
+     * @param \OCIM\FormationsBundle\Entity\ReponsesLogistique $reponsesLogistique
+     * @return Personne
+     */
+    public function addReponsesLogistique(\OCIM\FormationsBundle\Entity\ReponsesLogistique $reponsesLogistique)
+    {
+        $this->reponsesLogistique[] = $reponsesLogistique;
+
+        return $this;
+    }
+
+    /**
+     * Remove reponsesLogistique
+     *
+     * @param \OCIM\FormationsBundle\Entity\ReponsesLogistique $reponsesLogistique
+     */
+    public function removeReponsesLogistique(\OCIM\FormationsBundle\Entity\ReponsesLogistique $reponsesLogistique)
+    {
+        $this->reponsesLogistique->removeElement($reponsesLogistique);
+    }
+
+    /**
+     * Get reponsesLogistique
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getReponsesLogistique()
+    {
+        return $this->reponsesLogistique;
+    }
+	
+	public function getReponseByModeleId($modeleId, $return = null){
+		
+		$reponse =  $this->getReponsesLogistique()->filter(
+			function($rl) use ($modeleId){
+				if($rl->getModele()->getId() == $modeleId){
+					return true;
+				}
+			}
+		)->first();
+		
+		if($reponse){
+			if(!is_null($return)){
+				if($return == 'bool'){
+					return ($reponse->getReponse())? '1' : '0' ;
+				}
+				else return $reponse->getReponseText();
+			}
+			else{
+				return $reponse;
+			}
+		}
+		else return 0;
+	}
 	
 }

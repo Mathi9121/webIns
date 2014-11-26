@@ -16,10 +16,6 @@ OCIM\FormationsBundle\Entity\Inscription:
                 onDelete: CASCADE
                 formationformule_id:
                     referencedColumnName: id
-    oneToMany:
-        reponsesLogistique:
-            targetEntity: ReponsesLogistique
-            mappedBy: inscription
     manyToMany:
         personnes:
             targetEntity: OCIM\ContactsBundle\Entity\Personne
