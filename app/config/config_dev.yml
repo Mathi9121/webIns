@@ -32,5 +32,10 @@ monolog:
 assetic:
     use_controller: %use_assetic_controller%
 
-#swiftmailer:
-#    delivery_address: me@example.com
+swiftmailer:
+    transport:  smtp
+    username:   et6549ru
+    password:   gK6Sz7RE
+    auth_mode:  login
+    host:       smtp.u-bourgogne.fr
+

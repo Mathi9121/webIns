@@ -7,7 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use OCIM\ContactsBundle\Form\PersonneType;
 use Doctrine\ORM\EntityRepository;
-
+use Symfony\Component\Validator\Constraints\Email;
 
 class InscriptionPubliqueType extends AbstractType
 {
@@ -82,7 +82,10 @@ class InscriptionPubliqueType extends AbstractType
 					->add('mail', 'text', array(
 						'attr' => array('class'=> 'width-100'),
 						'label' => "Adresse Mail",
-						'required' => true
+						'required' => true,
+						'constraints' => new Email(array(
+							'message' => "'{{ value }}' n'est pas une adresse mail valide.",
+							'checkMX' => true))
 					))
 					->add(
 						$builder->create("adresse", 'form', array("by_reference"=>false, "label" => false, "data_class" => 'OCIM\ContactsBundle\Entity\Adresse',))
@@ -123,7 +126,13 @@ class InscriptionPubliqueType extends AbstractType
 
 			->add(
 				$builder->create('admin', 'form', array('by_reference' => false, 'label' => false, "data_class"=> 'OCIM\ContactsBundle\Entity\Admin'))
-					->add('mail', 'text', array('label' => "Mail du contact administratif", 'required' => false))
+					->add('mail', 'text', array(
+						'label' => "Mail du contact administratif",
+						'required' => false,
+						'constraints' => new Email(array(
+							'message' => "'{{ value }}' n'est pas une adresse mail valide.",
+							'checkMX' => true))
+					))
 			)
         ;
     }

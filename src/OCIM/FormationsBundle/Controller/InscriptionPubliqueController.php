@@ -46,7 +46,20 @@ class InscriptionPubliqueController extends Controller
             $em->persist($entity);
 
             $em->flush();
-
+			
+			// envoi de mails
+			$message = \Swift_Message::newInstance()
+				->setSubject('[OCIM] Inscription à la formation : '.$entity->getFormationFormule()->getFormation()->getIntitule())
+				->setFrom('formation.ocim@u-bourgogne.fr')
+				->setContentType("text/html")
+				->setTo($entity->getStagiaire()->getMail())
+				->setBody($this->renderView('OCIMFormationsBundle:Inscription:email-inscription.html.twig', array('inscription' => $entity)))
+				//->setCharset('utf-8')
+			;
+			$this->get('mailer')->send($message);
+			
+			
+			
             return $this->render('OCIMFormationsBundle:InscriptionPublique:confirmation.html.twig', array(
 			
 			));
