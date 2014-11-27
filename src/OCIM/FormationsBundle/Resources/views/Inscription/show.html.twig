@@ -167,29 +167,19 @@
 			
 			<p class="text-centered"><em>{{entity.signataire.fonction}}</em></p>
 			<p class="text-centered"><i class="fa fa-envelope"></i> {{entity.signataire.mail}}</p>
-			
-			{{entity.signataire.adresse.adresse}}
-			{{entity.signataire.adresse.adresseComplement}}
-			{{entity.signataire.adresse.cP}}
-			{{entity.signataire.adresse.ville}}
-			{{entity.signataire.adresse.pays}}
-			{{entity.signataire.adresse.nomStructure}}
-			{{entity.signataire.adresse.type}}
-			{% for tag in entity.signataire.adresse.tags %}
-				<p>{{tag.tag}}</p>
-			{% endfor %}
 		</div>
 	</div>
 	
 	<div class="panel unit-33">
 		<div class="header">
-			<span class="titre">Adresse du signataire</span>
+			<span class="titre">Structure du signataire</span>
 				<span class="controls right group">
 				
 				</span>
 		</div>
 		
 		<div class="panel-body">
+		<span class="label label-outline">{{entity.signataire.adresse.type}}</span>
 			<address>
 				<strong>{{entity.signataire.adresse.nomStructure}}</strong><br/>
 				{{entity.signataire.adresse.adresse}}<br/>
@@ -199,10 +189,26 @@
 				{{entity.signataire.adresse.pays}}
 			</address>
 			
-			{{entity.signataire.adresse.type}}
-			{% for tag in entity.signataire.adresse.tags %}
-				<p>{{tag.tag}}</p>
-			{% endfor %}
+			
+			
+			<p> <strong>Tags :</strong> 
+				{% for tag in entity.signataire.adresse.tags %}
+					<span class="label">{{tag.tag}}</span> &nbsp;
+				{% endfor %}
+			</p>
+		</div>
+	</div>
+	
+	<div class="panel unit-33">
+		<div class="header">
+			<span class="titre">Convention</span>
+				<span class="controls right group">
+				
+				</span>
+		</div>
+		
+		<div class="panel-body">
+			
 		</div>
 	</div>
 
