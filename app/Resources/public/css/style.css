@@ -91,7 +91,7 @@ header a#nav-toggle:hover{color: #e52f23}
 	border-right: 1px solid #d2d2d2;
 	height: 100%;
 	overflow: hidden;
-	padding-top: 50px
+	padding-top: 25px;
 }
 /***** Nav FIXED******/
 #sidebar .navigation-fixed{

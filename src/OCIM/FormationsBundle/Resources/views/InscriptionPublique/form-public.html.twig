@@ -1,5 +1,9 @@
+{% form_theme form '::form.html.twig' %}
+
 {{form_start(form)}}
-{{form(form)}}
+{{form_widget(form.formationformule)}}
+
+{{form_rest(form)}}
 
 {{form_rest(form)}}
 {{form_end(form)}}
