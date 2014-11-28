@@ -1,5 +1,5 @@
 {% extends '::app.html.twig' %}
-
+{% form_theme form '::form.html.twig' %}
 
 
 {% block title %}Formation : Ajout d'un intervenant{% endblock %}
@@ -11,21 +11,62 @@
 <li><a href="{{path('formation')}}">Formations</a></li>
 <li><a>Formation - </a></li>
 <li><a>Inscriptions</a></li>
-<li><span>Intervenants</span></li>
+<li><span>Nouvel intervenant</span></li>
 {% endblock %}
 
 
 {% block body -%}
-
+{{form_start(form)}}
 <div class="units-row">
-    <div class="unit-50">
-		{{ form(form) }}
+
+	<div class="panel unit-50">
+		<div class="header">
+			<span class="titre">Intervenant</span>
+		</div>
+		
+		<div class="panel-body">
+			<div class="units-row end">
+				<div class="unit-20">{{ form_row(form.civilite) }}</div>
+				<div class="unit-80">{{ form_row(form.nom) }}</div>
+			</div>
+				{{form_row(form.prenom)}}
+				{{form_row(form.fonction)}}
+				{{form_row(form.tel)}}
+				{{form_row(form.mail)}}
+			
+		</div>
 	</div>
 	
 	<div class="unit-50">
-		{{ form(form) }}
+	<div class="panel" style="margin-bottom:1.65em">
+		<div class="header">
+			<span class="titre">Structure</span>
+		</div>
+		
+		<div class="panel-body">
+			{{form_row(form.adresse.nomStructure)}}
+			<label> Tags
+				{{form_widget(form.adresse.tags)}}
+				<div class="forms-desc">Liste de mots clés, séparés par des virgules. Ex : Collectivité territoriale, Association, Société Anonyme, Bourgogne...</div>
+			</label>
+		</div>
+	</div>
+	
+	<div class="panel">
+		<div class="header">
+			<span class="titre">Commentaires/Observations</span>
+		</div>
+		
+		<div class="panel-body">
+			{{form_widget(form.commentaire)}}
+		</div>
+	</div>
+	
 	</div>
 </div>
+
+{{form_rest(form)}}
+{{form_end(form)}}
 <hr/>
-<a href="{{ path('formation') }}">Retour aux inscriptions</a>
+<a href="{{ path('inscription', {'idformation': idformation}) }}">Retour aux inscriptions</a>
 {% endblock %}

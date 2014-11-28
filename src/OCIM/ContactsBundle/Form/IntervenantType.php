@@ -5,7 +5,7 @@ namespace OCIM\ContactsBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use OCIM\ContactsBundle\Form\DataTransformer\StringToTypePersonneTransformer;
+use OCIM\ContactsBundle\Form\DataTransformer\StringToTagsTransformer;
 
 class IntervenantType extends AbstractType
 {
@@ -15,7 +15,8 @@ class IntervenantType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-	
+		$entityManager = $options['em'];
+		$transformer = new StringToTagsTransformer($entityManager);
         $builder
 				->add('civilite', 'choice', array(
 					'choices' => array(
@@ -23,29 +24,48 @@ class IntervenantType extends AbstractType
 					'Mme' => 'Mme',
 					'Mr' => 'Mr',
 					),
-					'attr' => array('class'=> 'width-100')
+					'attr' => array('class'=> 'width-100'),
+					'required' => false
 				))
 				->add('nom', 'text', array(
-					'attr' => array('class'=> 'width-100')
+					'attr' => array('class'=> 'width-100'),
+					'required' => false
 				))
 				->add('prenom', 'text', array(
-					'attr' => array('class'=> 'width-100')
+					'attr' => array('class'=> 'width-100'),
+					'required' => false
 				))
 				->add('fonction', 'text', array(
-					'attr' => array('class'=> 'width-100')
+					'attr' => array('class'=> 'width-100'),
+					'required' => false
 				))
 				->add('tel', 'text', array(
 					'attr' => array('class'=> 'width-100'),
+					'required' => false,
 					'label' => 'Téléphone',
 				))
 				->add('mail', 'text', array(
-					'attr' => array('class'=> 'width-100')
+					'attr' => array('class'=> 'width-100'),
+					'required' => false
 				))
 				->add(
 				$builder->create('adresse', 'form', array('by_reference' => false, "data_class"=> "OCIM\ContactsBundle\Entity\Adresse"))
-					->add('nomStructure')
+					->add('nomStructure', 'text', array(
+						'label' => "Nom de la Structure",
+						'required' => false,
+						'attr' => array("class"=>"width-100")
+					))
+					->add(
+					$builder->create('tags', 'text', array(
+						'attr' => array('class'=>'width-100'),
+						'required' => false,
+						// 'data_class' => 'OCIM\ContactsBundle\Entity\TagStructure'
+					))->addModelTransformer($transformer))
 				)
-				->add('commentaire')
+				->add('commentaire', null, array(
+					'attr' => array('class'=> 'width-100'),
+					'required' => false,
+				))
         ;
     }
 
@@ -57,6 +77,14 @@ class IntervenantType extends AbstractType
         $resolver->setDefaults(array(
 			'data_class' => 'OCIM\ContactsBundle\Entity\Intervenant',
 			'attr' => array('class'=> 'forms'),
+        ));
+		
+		$resolver->setRequired(array(
+            'em',
+        ));
+
+        $resolver->setAllowedTypes(array(
+            'em' => 'Doctrine\Common\Persistence\ObjectManager',
         ));
     }
 

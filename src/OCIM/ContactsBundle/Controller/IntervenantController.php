@@ -45,12 +45,13 @@ class IntervenantController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('intervenants_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('intervenants_show', array('id' => $entity->getId(), 'idformation' => $idformation)));
         }
 
         return $this->render('OCIMContactsBundle:Intervenant:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
+			'idformation' => $idformation
         ));
     }
 
@@ -66,6 +67,7 @@ class IntervenantController extends Controller
         $form = $this->createForm(new IntervenantType(), $entity, array(
             'action' => $this->generateUrl('intervenants_create', array('idformation'=> $idformation)),
             'method' => 'POST',
+			'em' => $this->getDoctrine()->getManager(),
         ));
 
         $form->add('submit', 'submit', array('label' => 'Enregistrer'));
@@ -85,6 +87,7 @@ class IntervenantController extends Controller
         return $this->render('OCIMContactsBundle:Intervenant:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
+			'idformation' => $idformation
         ));
     }
 
@@ -92,7 +95,7 @@ class IntervenantController extends Controller
      * Finds and displays a Intervenant entity.
      *
      */
-    public function showAction($id)
+    public function showAction($id, $idformation)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -107,6 +110,7 @@ class IntervenantController extends Controller
         return $this->render('OCIMContactsBundle:Intervenant:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
+			'idformation' => $idformation
         ));
     }
 
@@ -114,7 +118,7 @@ class IntervenantController extends Controller
      * Displays a form to edit an existing Intervenant entity.
      *
      */
-    public function editAction($id)
+    public function editAction($id, $idformation)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -124,13 +128,14 @@ class IntervenantController extends Controller
             throw $this->createNotFoundException('Unable to find Intervenant entity.');
         }
 
-        $editForm = $this->createEditForm($entity);
+        $editForm = $this->createEditForm($entity, $idformation);
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('OCIMContactsBundle:Intervenant:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+			'idformation' => $idformation
         ));
     }
 
@@ -141,11 +146,12 @@ class IntervenantController extends Controller
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(Intervenant $entity)
+    private function createEditForm(Intervenant $entity, $idformation)
     {
         $form = $this->createForm(new IntervenantType(), $entity, array(
-            'action' => $this->generateUrl('intervenants_update', array('id' => $entity->getId())),
+            'action' => $this->generateUrl('intervenants_update', array('id' => $entity->getId(), 'idformation' => $idformation)),
             'method' => 'PUT',
+			'em' => $this->getDoctrine()->getManager()
         ));
 
         $form->add('submit', 'submit', array('label' => 'Update'));
@@ -156,7 +162,7 @@ class IntervenantController extends Controller
      * Edits an existing Intervenant entity.
      *
      */
-    public function updateAction(Request $request, $id)
+    public function updateAction(Request $request, $id, $idformation)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -167,13 +173,13 @@ class IntervenantController extends Controller
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity);
+        $editForm = $this->createEditForm($entity, $idformation);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('intervenants_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('intervenants_edit', array('id' => $id, 'idformation' => $idformation)));
         }
 
         return $this->render('OCIMContactsBundle:Intervenant:edit.html.twig', array(

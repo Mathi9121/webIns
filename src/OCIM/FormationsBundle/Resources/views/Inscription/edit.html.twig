@@ -175,7 +175,10 @@
 					</label>
 				</div>
 			</div>
-			{{ form_row(form.signataire.adresse.tags) }}
+			<label>Tags
+				{{form_widget(form.signataire.adresse.tags)}}
+				<div class="forms-desc">Liste de mots clés, séparés par des virgules. Ex : Collectivité territoriale, Association, Société Anonyme</div>
+			</label>
 		</div>
 	</div>
 </div>

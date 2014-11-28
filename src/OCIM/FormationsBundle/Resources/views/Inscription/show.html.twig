@@ -203,12 +203,18 @@
 		<div class="header">
 			<span class="titre">Convention</span>
 				<span class="controls right group">
-				
+					
 				</span>
 		</div>
 		
 		<div class="panel-body">
-			
+			{% if entity.statutConvention == null %}
+				NULL
+			{% elseif entity.statutConvention == false %}
+				false
+			{% else %}
+				true
+			{% endif %}
 		</div>
 	</div>
 

@@ -53,8 +53,7 @@ OCIM\FormationsBundle\Entity\Inscription:
             length: 255
             nullable: true
         statutConvention:
-            type: string
-            length: 255
+            type: boolean
             nullable: true
         hash:
             type: string

@@ -1,16 +1,72 @@
 {% extends '::app.html.twig' %}
+{% form_theme edit_form '::form.html.twig' %}
+
+
+{% block title %}Formation Modification fiche Intervenant{% endblock %}
+{% block titre %}Formation Edition Intervenant{% endblock %}
+{% block controls %}{% endblock %}
+
+
+{% block breadcrumbs %}
+<li><a href="{{path('formation')}}">Formations</a></li>
+<li><a>Formation - </a></li>
+<li><a>Inscriptions</a></li>
+<li><span>Edition : Intervenants</span></li>
+{% endblock %}
+
 
 {% block body -%}
-    <h1>Intervenant edit</h1>
+{{form_start(edit_form)}}
+<div class="units-row">
 
-    {{ form(edit_form) }}
+	<div class="panel unit-50">
+		<div class="header">
+			<span class="titre">Intervenant</span>
+		</div>
+		
+		<div class="panel-body">
+			<div class="units-row end">
+				<div class="unit-20">{{ form_row(edit_form.civilite) }}</div>
+				<div class="unit-80">{{ form_row(edit_form.nom) }}</div>
+			</div>
+				{{form_row(edit_form.prenom)}}
+				{{form_row(edit_form.fonction)}}
+				{{form_row(edit_form.tel)}}
+				{{form_row(edit_form.mail)}}
+			
+		</div>
+	</div>
+	
+	<div class="unit-50">
+	<div class="panel" style="margin-bottom:1.65em">
+		<div class="header">
+			<span class="titre">Structure</span>
+		</div>
+		
+		<div class="panel-body">
+			{{form_row(edit_form.adresse.nomStructure)}}
+			<label> Tags
+				{{form_widget(edit_form.adresse.tags)}}
+				<div class="forms-desc">Liste de mots clés, séparés par des virgules. Ex : Collectivité territoriale, Association, Société Anonyme, Bourgogne...</div>
+			</label>
+		</div>
+	</div>
+	
+	<div class="panel">
+		<div class="header">
+			<span class="titre">Commentaires/Observations</span>
+		</div>
+		
+		<div class="panel-body">
+			{{form_widget(edit_form.commentaire)}}
+		</div>
+	</div>
+	
+	</div>
+</div>
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('intervenants') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+{{form_rest(edit_form)}}
+{{form_end(edit_form)}}
+<hr/>
+<a href="{{ path('inscription', {'idformation': idformation}) }}">Retour aux inscriptions</a>
 {% endblock %}

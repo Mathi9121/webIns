@@ -30,6 +30,7 @@
 {% block titre %}{{ formation.intitule }}{% endblock %}
 {% block controls %}<a href="{{ path('inscription_new', { 'idformation': formation.id }) }}" class="btn btn-green"><i class="fa fa-plus"></i> Nouvelle inscription</a>{% endblock %}
 
+
 {% block body -%}
 <div id="lienAjax" class="hide">{{ path('inscription_edit_ordre', {'idformation': formation.id}) }}</div>
 {% if entities != null %}
@@ -282,7 +283,7 @@
 		La logistique pour cette formation n&apos;a pas été configurée.
 	</p>
 	<p class="text-centered">
-		<a class="btn btn-big" href="{{ path('logistique_edit', {idformation: formation.id}) }}"><i class="fa fa-truck fa-fw"></i> Configurer maintenant</a>
+		<a class="btn btn-big" href="{{ path('logistique_edit', {idformation: formation.id}) }}"><i class="fa fa-truck fa-fw"></i> Générer maintenant</a>
 	</p>
 {% endif %}
 
@@ -420,10 +421,12 @@
 </div>
 </div>
 
+{# intervenants #}
 <div id="intervenants" class="tab unit-100">
 	<div class="group">
 		<a href="{{path('intervenants_new', { 'idformation': formation.id }) }}" class='btn btn-small right'><span class="fa fa-plus"></span> Ajouter un intervenant</a>
 	</div>
+	
 	<div class="table-container">
 		<table>
 			<thead>
@@ -449,7 +452,7 @@
 						<td>{{intervenant.adresse.nomStructure}}</td>
 						<td>{{intervenant.commentaire}}</td>
 						<td>
-							<a href="{{path('intervenants_edit', {'id': intervenant.id})}}"><i class="fa fa-pencil"></i></a>
+							<a href="{{path('intervenants_edit', {'id': intervenant.id, 'idformation': formation.id})}}"><i class="fa fa-pencil"></i></a>
 						</td>
 					</tr>
 				{% endfor %}
@@ -457,13 +460,56 @@
 		</table>
 	</div>
 </div>
+
 </div>
 
 {% else %}
-	<p class="text-centered"><i class="fa fa-info"></i> Aucune inscription pour le moment...</p>
-	<div class="text-centered">
+	<p class="text-centered lead"><i class="fa fa-info"></i> Aucune inscription pour le moment...</p>
+	<div class="units-row text-centered">
 		<a href="{{ path('inscription_new', { 'idformation': formation.id }) }}" class="btn btn-green btn-big"><i class="fa fa-plus"></i> Nouvelle inscription</a>
+		<a href="{{path('intervenants_new', { 'idformation': formation.id }) }}" class='btn btn-big'><span class="fa fa-plus"></span> Ajouter un intervenant</a>
 	</div>
+	
+	{% if formation.intervenants|length > 0 %}
+		
+		<div class="table-container panel">
+			<table>
+				<thead>
+					<tr>
+						<th>Nom (Civilité)</th>
+						<th>Prénom</th>
+						<th>Fonction</th>
+						<th>Téléphone</th>
+						<th>Email</th>
+						<th>Structure</th>
+						<th>Commentaire</th>
+						<th></td>
+					</tr>
+				</thead>
+				<tbody>
+					{% for intervenant in formation.intervenants %}
+						<tr>
+							<td>{{intervenant.nom|capitalize}} ({{intervenant.civilite}})</td>
+							<td>{{intervenant.prenom|capitalize}}</td>
+							<td>{{intervenant.fonction}}</td>
+							<td>{{intervenant.tel}}</td>
+							<td>{{intervenant.mail}}</td>
+							<td>{{intervenant.adresse.nomStructure}}</td>
+							<td>{{intervenant.commentaire}}</td>
+							<td>
+								<a href="{{path('intervenants_edit', {'id': intervenant.id, 'idformation': formation.id})}}"><i class="fa fa-pencil"></i></a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	{% endif %}
+	
 {% endif %}
+
+
+
+
 
 {% endblock %}

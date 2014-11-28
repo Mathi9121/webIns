@@ -3,7 +3,7 @@ intervenants:
     defaults: { _controller: "OCIMContactsBundle:Intervenant:index" }
 
 intervenants_show:
-    path:     /{id}/show
+    path:     /formation-{idformation}/{id}/show
     defaults: { _controller: "OCIMContactsBundle:Intervenant:show" }
 
 intervenants_new:
@@ -11,16 +11,16 @@ intervenants_new:
     defaults: { _controller: "OCIMContactsBundle:Intervenant:new" }
 
 intervenants_create:
-    path:     /{idformation}/create/
+    path:     /formation-{idformation}/create/
     defaults: { _controller: "OCIMContactsBundle:Intervenant:create" }
     requirements: { _method: post }
 
 intervenants_edit:
-    path:     /{id}/edit
+    path:     /formation-{idformation}/{id}/edit
     defaults: { _controller: "OCIMContactsBundle:Intervenant:edit" }
 
 intervenants_update:
-    path:     /{id}/update
+    path:     /formation-{idformation}/{id}/update
     defaults: { _controller: "OCIMContactsBundle:Intervenant:update" }
     requirements: { _method: post|put }
 
