@@ -6,9 +6,9 @@ OCIM\ContactsBundle\Entity\Adresse:
             inversedBy: structures
             cascade: ["all"]
             joinTable:
-                name: structures_tags
+                name: adresses_tags
                 joinColumns:
-                    structure_id:
+                    adresse_id:
                         referencedColumnName: id
                 inverseJoinColumns:
                     tagStructure_id:

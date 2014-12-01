@@ -49,7 +49,7 @@ class IntervenantType extends AbstractType
 					'required' => false
 				))
 				->add(
-				$builder->create('adresse', 'form', array('by_reference' => false, "data_class"=> "OCIM\ContactsBundle\Entity\Adresse"))
+				$builder->create('adresse', 'form', array('by_reference' => true, "data_class"=> "OCIM\ContactsBundle\Entity\Adresse"))
 					->add('nomStructure', 'text', array(
 						'label' => "Nom de la Structure",
 						'required' => false,

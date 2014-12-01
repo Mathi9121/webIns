@@ -131,19 +131,26 @@
 		</div>
 		
 		<div class="panel-body">
+			{% if ((entity.admin.nom)or(entity.admin.prenom)) %}	
 			<p class="lead text-centered">
 				<i class="fa fa-user"></i> <strong>{{entity.admin.civilite}} {{entity.admin.nom}} {{entity.admin.prenom}}</strong>
 			</p>
+			{% endif %}
+			{% if entity.admin.fonction %}
 			<p class="text-centered">
 				<em>{{entity.admin.fonction}}</em>
 			</p>
+			{% endif %}
+			{% if entity.admin.tel %}
 			<p class="text-centered end">
 				<i class="fa fa-phone"></i> {{entity.admin.tel}}
 			</p>
+			{% endif %}
+			{% if entity.admin.mail %}
 			<p class="text-centered end">
 				<i class="fa fa-envelope"></i> {{entity.admin.mail}}
 			</p>
-			
+			{% endif %}
 		
 		</div>
 	</div>
@@ -161,12 +168,14 @@
 		</div>
 		
 		<div class="panel-body">
-			<p class="text-centered lead">
-				<i class="fa fa-user"></i> <strong>{{entity.signataire.civilite}} {{entity.signataire.nom}} {{entity.signataire.prenom}}</strong>
-			</p>
-			
-			<p class="text-centered"><em>{{entity.signataire.fonction}}</em></p>
-			<p class="text-centered"><i class="fa fa-envelope"></i> {{entity.signataire.mail}}</p>
+			{% if entity.signataire %}
+				<p class="text-centered lead">
+					<i class="fa fa-user"></i> <strong>{{entity.signataire.civilite}} {{entity.signataire.nom}} {{entity.signataire.prenom}}</strong>
+				</p>
+				
+				<p class="text-centered"><em>{{entity.signataire.fonction}}</em></p>
+				<p class="text-centered"><i class="fa fa-envelope"></i> {{entity.signataire.mail}}</p>
+			{% endif %}
 		</div>
 	</div>
 	
@@ -179,6 +188,7 @@
 		</div>
 		
 		<div class="panel-body">
+		{% if entity.signataire %}
 		<span class="label label-outline">{{entity.signataire.adresse.type}}</span>
 			<address>
 				<strong>{{entity.signataire.adresse.nomStructure}}</strong><br/>
@@ -196,6 +206,7 @@
 					<span class="label">{{tag.tag}}</span> &nbsp;
 				{% endfor %}
 			</p>
+			{% endif %}
 		</div>
 	</div>
 	
@@ -207,13 +218,14 @@
 				</span>
 		</div>
 		
-		<div class="panel-body">
+		<div class="panel-body group">
+			L'inscription bénéficie d&apos;une convention ?
 			{% if entity.statutConvention == null %}
-				NULL
+				<span class="label label-outline label-blue">Ne sais pas</span>
 			{% elseif entity.statutConvention == false %}
-				false
+				<span class="label label-outline label-red">NON</span>
 			{% else %}
-				true
+				<span class="label label-outline label-green">OUI</span>
 			{% endif %}
 		</div>
 	</div>

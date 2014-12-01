@@ -141,6 +141,23 @@
 	
 	<div class="panel unit-50">
 		<div class="header">
+			<span class="titre">Convention</span>
+				<span class="controls right group">
+				
+				</span>
+		</div>
+		
+		<div class="panel-body">
+			{{form_row(form.statutConvention)}}
+		</div>
+	</div>
+	
+</div>
+
+
+<div class="units-row">
+	<div class="panel unit-50">
+		<div class="header">
 			<span class="titre">Signataire</span>
 				<span class="controls right group">
 				
@@ -159,6 +176,17 @@
 			{{ form_row(form.signataire.prenom) }}
 			{{ form_row(form.signataire.fonction) }}
 			{{ form_row(form.signataire.mail) }}
+		</div>
+		
+	</div>
+	<div class="panel unit-50">
+		<div class="header">
+			<span class="titre">Structure du Signataire</span>
+				<span class="controls right group">
+				
+				</span>
+		</div>
+		<div class="panel-body">
 			{{ form_row(form.signataire.adresse.adresse) }}
 			{{ form_row(form.signataire.adresse.adresseComplement) }}
 			{{ form_row(form.signataire.adresse.cP) }}
@@ -182,7 +210,6 @@
 		</div>
 	</div>
 </div>
-
 
 
 <div class="group">

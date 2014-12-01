@@ -63,7 +63,15 @@ class InscriptionType extends AbstractType
 				'required' => false,
 				))
             //->add('statutOrgFinanceur')
-            //->add('statutConvention')
+            ->add('statutConvention', 'choice', array(
+				'choices' => array(
+					true => 'OUI',
+					false => 'NON',
+					),
+				'required' => false,
+				'empty_value' => "Ne sais pas",
+				'label' => "Le stagiaire a-t-il besoin d'une convention?"
+			))
             //->add('hash')
             //->add('convention')
 			->add('admin', new \OCIM\ContactsBundle\Form\AdminType(), array(

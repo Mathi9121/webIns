@@ -154,7 +154,7 @@ class IntervenantController extends Controller
 			'em' => $this->getDoctrine()->getManager()
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Enregistrer'));
 
         return $form;
     }
