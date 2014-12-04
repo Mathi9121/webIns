@@ -1,53 +1,75 @@
 {% extends '::app.html.twig' %}
 
-{% block body -%}
-    <h1>Convention list</h1>
+{% block controls %}
+filtres
+{% endblock %}
 
-    <table class="records_list">
+{% block title %}
+Gestion des conventions
+{% endblock %}
+
+{% block titre %}
+Gestion des conventions
+{% endblock %}
+
+{% block body -%}
+
+<div class="panel">
+  <div class="panel-body">
+    <table class="table-striped">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>Civilité</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Convention</th>
                 <th>Numero</th>
-                <th>Edition</th>
-                <th>Envoipresidentu2ex</th>
-                <th>Retourpresidentu2ex</th>
-                <th>Envoiorganisme2ex</th>
-                <th>Retourorganisme1ex</th>
-                <th>Envoipresidentu1ex</th>
-                <th>Actions</th>
+                <th>Date d'édition</th>
+                <th>Etape 1</th>
+                <th>Etape 2</th>
+                <th>Etape 3</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('convention_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.numero }}</td>
-                <td>{% if entity.edition %}{{ entity.edition|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if entity.envoiPresidentU2ex %}{{ entity.envoiPresidentU2ex|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if entity.retourPresidentU2ex %}{{ entity.retourPresidentU2ex|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if entity.envoiOrganisme2ex %}{{ entity.envoiOrganisme2ex|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if entity.retourOrganisme1ex %}{{ entity.retourOrganisme1ex|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if entity.envoiPresidentU1ex %}{{ entity.envoiPresidentU1ex|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{entity.stagiaire.civilite}}</td>
+                <td>{{entity.stagiaire.nom}}</td>
+                <td>{{entity.stagiaire.prenom}}</td>
                 <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('convention_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('convention_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
+                  {% if entity.statutConvention is null %}
+                    Null
+                  {% elseif entity.statutConvention %}
+                    Demande Confirmée
+                  {% elseif entity.statutConvention == false %}
+                    NON
+                  {% endif %}
                 </td>
+                {% if entity.convention %}
+                  <td><span style="color: #ccc">{{ entity.convention.edition|date('Y/m') }}</span>/{{ entity.convention.numero }}</td>
+                  <td>{{ entity.convention.edition|date('d/m/Y') }}</td>
+                  <td>{{ entity.convention.etape1|date('d/m/Y') }}</td>
+                  <td>{{ entity.convention.etape2|date('d/m/Y') }}</td>
+                  <td>{{ entity.convention.etape3|date('d/m/Y') }}</td>
+                {% else %}
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                {% endif %}
+                  <td>
+                    {% if entity.convention %}
+                      <a class="right" href="{{ path('convention_edit', { 'id': entity.id }) }}"><i class="fa fa-pencil fa-fw"></i>Editer</a>
+                    {% else %}
+                      <a class="right" href="{{ path('convention_new', { 'idinscription': entity.id }) }}"><i class="fa fa-pencil fa-fw"></i>Editer</a>
+                    {% endif %}
+                  </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-        <ul>
-        <li>
-            <a href="{{ path('convention_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
-    {% endblock %}
+</div>
+</div>
+{% endblock %}

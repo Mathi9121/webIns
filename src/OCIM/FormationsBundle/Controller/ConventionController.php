@@ -23,7 +23,7 @@ class ConventionController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('OCIMFormationsBundle:Convention')->findAll();
+        $entities = $em->getRepository('OCIMFormationsBundle:Inscription')->findAll();
 
         return $this->render('OCIMFormationsBundle:Convention:index.html.twig', array(
             'entities' => $entities,
@@ -37,13 +37,13 @@ class ConventionController extends Controller
     {
         $entity = new Convention();
 		$inscription = $this->getDoctrine()->getManager()->getRepository('OCIMFormationsBundle:Inscription')->find($idinscription);
-		
+
         $form = $this->createCreateForm($entity, $idinscription);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-			
+
 			$entity->setInscription($em->getReference('OCIMFormationsBundle:Inscription', $idinscription));
 			$inscription->setConvention($entity);
             $em->persist($entity);
@@ -59,8 +59,8 @@ class ConventionController extends Controller
         ));
     }
 
-	
-	
+
+
     /**
      * Creates a form to create a Convention entity.
      *

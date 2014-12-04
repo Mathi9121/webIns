@@ -7,40 +7,27 @@
 		{{form_row(form.numero)}}
 		{{form_row(form.edition)}}
 	</div>
-	
+
 	<div class="unit-50">
 		<h2>Cycle de vie de la convention</h2>
 		<label>
-			{{ form.envoiPresidentU2ex.vars.label }}
+			{{ form.etape1.vars.label }}
 			<div class="input-groups">
-				<span class="input-prepend">1</span>{{form_widget(form.envoiPresidentU2ex)}}
+				<span class="input-prepend">1</span>{{form_widget(form.etape1)}}
 			</div>
 		</label>
 		<label>
-			{{ form.retourPresidentU2ex.vars.label }}
+			{{ form.etape2.vars.label }}
 			<div class="input-groups">
-				<span class="input-prepend">2</span>{{form_widget(form.retourPresidentU2ex)}}
+				<span class="input-prepend">2</span>{{form_widget(form.etape2)}}
 			</div>
 		</label>
 		<label>
-			{{ form.envoiOrganisme2ex.vars.label }}
+			{{ form.etape3.vars.label }}
 			<div class="input-groups">
-				<span class="input-prepend">3</span>{{form_widget(form.envoiOrganisme2ex)}}
-			</div>
-		</label>
-		<label>
-			{{ form.retourOrganisme1ex.vars.label }}
-			<div class="input-groups">
-				<span class="input-prepend">4</span>{{form_widget(form.retourOrganisme1ex)}}
-			</div>
-		</label>
-		<label>
-			{{ form.envoiPresidentU1ex.vars.label }}
-			<div class="input-groups">
-				<span class="input-prepend">5</span>{{form_widget(form.envoiPresidentU1ex)}}
+				<span class="input-prepend">3</span>{{form_widget(form.etape3)}}
 			</div>
 		</label>
 	</div>
 </div>
 {{form_end(form)}}
-

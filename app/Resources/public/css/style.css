@@ -35,7 +35,7 @@ header a#nav-toggle:hover{color: #e52f23}
 
 /**** main-btn (plein ecran...) ****/
 #main-btn{
-	height: 65px; 
+	height: 65px;
 	line-height: 65px;
 }
 #main-btn a{
@@ -76,9 +76,10 @@ header a#nav-toggle:hover{color: #e52f23}
 	display:none;
 	list-style:none;
 	padding-left:0px;
-	margin-left: 0px;
+	margin-left: -30px;
 	background-color: #fcfcfc;
 	white-space: nowrap;
+
 }
 
 
@@ -176,9 +177,9 @@ header a#nav-toggle:hover{color: #e52f23}
 #controls{
 
 }
- 
 
- 
+
+
 
 /** CORRECTION KUBE **/
 table tr td{vertical-align:middle}
@@ -230,7 +231,7 @@ form[action$="delete"]{margin-bottom: 0px}
 	.showonmobile{
 		display: block;
 	}
-	
+
  	#titre h1{float: left}
 	#titre #controls{float: right}
 	#menu-mobile{display: block;}

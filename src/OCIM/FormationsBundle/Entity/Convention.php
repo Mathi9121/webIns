@@ -25,35 +25,9 @@ class Convention
     private $edition;
 
     /**
-     * @var \DateTime
-     */
-    private $envoiPresidentU2ex;
-
-    /**
-     * @var \DateTime
-     */
-    private $retourPresidentU2ex;
-
-    /**
-     * @var \DateTime
-     */
-    private $envoiOrganisme2ex;
-
-    /**
-     * @var \DateTime
-     */
-    private $retourOrganisme1ex;
-
-    /**
-     * @var \DateTime
-     */
-    private $envoiPresidentU1ex;
-
-
-    /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -76,7 +50,7 @@ class Convention
     /**
      * Get numero
      *
-     * @return string 
+     * @return string
      */
     public function getNumero()
     {
@@ -99,127 +73,14 @@ class Convention
     /**
      * Get edition
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getEdition()
     {
         return $this->edition;
     }
 
-    /**
-     * Set envoiPresidentU2ex
-     *
-     * @param \DateTime $envoiPresidentU2ex
-     * @return Convention
-     */
-    public function setEnvoiPresidentU2ex($envoiPresidentU2ex)
-    {
-        $this->envoiPresidentU2ex = $envoiPresidentU2ex;
 
-        return $this;
-    }
-
-    /**
-     * Get envoiPresidentU2ex
-     *
-     * @return \DateTime 
-     */
-    public function getEnvoiPresidentU2ex()
-    {
-        return $this->envoiPresidentU2ex;
-    }
-
-    /**
-     * Set retourPresidentU2ex
-     *
-     * @param \DateTime $retourPresidentU2ex
-     * @return Convention
-     */
-    public function setRetourPresidentU2ex($retourPresidentU2ex)
-    {
-        $this->retourPresidentU2ex = $retourPresidentU2ex;
-
-        return $this;
-    }
-
-    /**
-     * Get retourPresidentU2ex
-     *
-     * @return \DateTime 
-     */
-    public function getRetourPresidentU2ex()
-    {
-        return $this->retourPresidentU2ex;
-    }
-
-    /**
-     * Set envoiOrganisme2ex
-     *
-     * @param \DateTime $envoiOrganisme2ex
-     * @return Convention
-     */
-    public function setEnvoiOrganisme2ex($envoiOrganisme2ex)
-    {
-        $this->envoiOrganisme2ex = $envoiOrganisme2ex;
-
-        return $this;
-    }
-
-    /**
-     * Get envoiOrganisme2ex
-     *
-     * @return \DateTime 
-     */
-    public function getEnvoiOrganisme2ex()
-    {
-        return $this->envoiOrganisme2ex;
-    }
-
-    /**
-     * Set retourOrganisme1ex
-     *
-     * @param \DateTime $retourOrganisme1ex
-     * @return Convention
-     */
-    public function setRetourOrganisme1ex($retourOrganisme1ex)
-    {
-        $this->retourOrganisme1ex = $retourOrganisme1ex;
-
-        return $this;
-    }
-
-    /**
-     * Get retourOrganisme1ex
-     *
-     * @return \DateTime 
-     */
-    public function getRetourOrganisme1ex()
-    {
-        return $this->retourOrganisme1ex;
-    }
-
-    /**
-     * Set envoiPresidentU1ex
-     *
-     * @param \DateTime $envoiPresidentU1ex
-     * @return Convention
-     */
-    public function setEnvoiPresidentU1ex($envoiPresidentU1ex)
-    {
-        $this->envoiPresidentU1ex = $envoiPresidentU1ex;
-
-        return $this;
-    }
-
-    /**
-     * Get envoiPresidentU1ex
-     *
-     * @return \DateTime 
-     */
-    public function getEnvoiPresidentU1ex()
-    {
-        return $this->envoiPresidentU1ex;
-    }
     /**
      * @var \OCIM\FormationsBundle\Entity\Inscription
      */
@@ -242,13 +103,13 @@ class Convention
     /**
      * Get inscription
      *
-     * @return \OCIM\FormationsBundle\Entity\Inscription 
+     * @return \OCIM\FormationsBundle\Entity\Inscription
      */
     public function getInscription()
     {
         return $this->inscription;
     }
-	
+
 	public function __toString(){
 		return $this->numero;
 	}
@@ -284,7 +145,7 @@ class Convention
     /**
      * Get etape1
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getEtape1()
     {
@@ -307,7 +168,7 @@ class Convention
     /**
      * Get etape2
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getEtape2()
     {
@@ -330,7 +191,7 @@ class Convention
     /**
      * Get etape3
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getEtape3()
     {

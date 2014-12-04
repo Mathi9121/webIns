@@ -26,39 +26,27 @@ class ConventionType extends AbstractType
 				'attr'=> array('class'=>'input-big text-centered'),
 				'format' => 'dd/MM/yyyy'
 				))
-            ->add('envoiPresidentU2ex', 'date', array(
+            ->add('etape1', 'date', array(
 				'widget' => 'single_text',
 				'required' => false,
-				'label' => "Envoi au Président de l'UB en 2 ex",
+				'label' => "Etape 1",
 				'format' => 'dd/MM/yyyy'
 				))
-            ->add('retourPresidentU2ex', 'date', array(
+            ->add('etape2', 'date', array(
 				'widget' => 'single_text',
 				'required' => false,
-				'label' => "Retour de l'UB en 2 ex",
+				'label' => "Etape 2",
 				'format' => 'dd/MM/yyyy'
 				))
-            ->add('envoiOrganisme2ex', 'date', array(
+            ->add('etape3', 'date', array(
 				'widget' => 'single_text',
 				'required' => false,
-				'label' => "Envoi à l'organisme financeur en 2 ex",
-				'format' => 'dd/MM/yyyy'
-				))
-            ->add('retourOrganisme1ex', 'date', array(
-				'widget' => 'single_text',
-				'required' => false,
-				'label' => "Retour de l'organisme en 1 ex",
-				'format' => 'dd/MM/yyyy'
-				))
-            ->add('envoiPresidentU1ex', 'date', array(
-				'widget' => 'single_text',
-				'required' => false,
-				'label' => "Envoi au Président de l'UB 1 ex",
+				'label' => "Etape 3",
 				'format' => 'dd/MM/yyyy'
 				))
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
