@@ -29,14 +29,14 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
-    form: 
+    form:
         resources:
             - '::form.html.twig'
 
 # Assetic Configuration
 assetic:
     debug:          "%kernel.debug%"
-    use_controller: false
+    use_controller: true
     bundles:        [OCIMFormationsBundle, OCIMExportBundle]
     #java: /usr/bin/java
     assets:

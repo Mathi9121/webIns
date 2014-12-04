@@ -35,15 +35,15 @@
 					<span class="label {{couleur}}">{{ entity.statut }}</span>
 				</span>
 		</div>
-		
-		<div class="panel-body">			
+
+		<div class="panel-body">
 			<p class="text-centered lead"><i class="fa fa-graduation-cap"></i> {{entity.formationformule.formation.intitule}}</p><hr/>
 			<table>
 				<tr>
 					<th><i class="fa fa-calendar"></i> Date d&apos;inscription</th>
 					<td>le {{entity.dateInscription|date('d/M/Y')}} à {{entity.dateInscription|date('H:i:s')}}</td>
 				</tr>
-				
+
 				<tr>
 					<th><i class="fa fa-cutlery"></i> Formule d&apos;hébergement</th>
 					<td>{{ entity.formationformule.formule.id }} - {{ entity.formationformule.formule.description|capitalize }} ({{entity.formationformule.formule.tarif}} {{ (entity.formationformule.formule.tarif|number_format)? "&euro;" }})</td>
@@ -52,20 +52,20 @@
 			</table>
 		</div>
 	</div>
-	
-	
+
+
 	<div class="unit-50 panel">
 		<div class="header">
 			<span class="titre">Attentes du stagiaire</span>
 				<span class="controls right group">
 				</span>
 		</div>
-		
+
 		<div class="panel-body">
 			<p class="end"><i class="fa fa-quote-left fa-2x" style="color: #f1f1f1"></i> {{ entity.attentes }} <i class="fa fa-quote-right fa-2x" style="color: #f1f1f1"></i></p>
 		</div>
 	</div>
-	
+
 </div>
 
 
@@ -77,7 +77,7 @@
 				<span class="controls right group">
 				</span>
 		</div>
-		
+
 		<div class="panel-body">
 			<p class="lead text-centered">
 				<i class="fa fa-user"></i> <strong>{{entity.stagiaire.civilite}} {{entity.stagiaire.nom}} {{entity.stagiaire.prenom}}</strong>
@@ -85,53 +85,60 @@
 			<p class="text-centered">
 				<em>{{entity.stagiaire.fonction}}</em>
 			</p>
+			{% if entity.stagiaire.tel %}
 			<p class="text-centered end">
 				<i class="fa fa-phone"></i> {{entity.stagiaire.tel}}
 			</p>
+			{% endif %}
 			{% if entity.stagiaire.fax %}
 			<p class="text-centered end">
 				<i class="fa fa-fax"></i> {{entity.stagiaire.fax}}
 			</p>
 			{% endif %}
+			{% if entity.stagiaire.mail %}
 			<p class="text-centered end">
 				<i class="fa fa-envelope"></i> {{entity.stagiaire.mail}}
 			</p>
+			{% endif %}
 		</div>
 	</div>
-	
+
 	<div class="panel unit-33">
 		<div class="header">
 			<span class="titre">Adresse du stagiaire</span>
 				<span class="controls right group">
-				
+
 				</span>
 		</div>
-		
+
 		<div class="panel-body units-row">
+			{% if entity.stagiaire.adresse %}
 			<address>
 				<strong>{{entity.stagiaire.adresse.nomStructure}}</strong><br/>
 				{{entity.stagiaire.adresse.adresse}}<br/>
 				{{entity.stagiaire.adresse.adresseComplement}}<br/>
-				{{entity.stagiaire.adresse.cP}} - 
+				{{entity.stagiaire.adresse.cP}} -
 				{{entity.stagiaire.adresse.ville}}<br/>
 				{{entity.stagiaire.adresse.pays}}
 			</address>
 			<a class="btn end width-100" target="_blank" href="https://www.google.fr/maps/place/{{entity.stagiaire.adresse.nomStructure|replace({' ': '+','"':''})}},+{{entity.stagiaire.adresse.adresse|replace({' ': '+','"':''})}},+{{entity.stagiaire.adresse.cP|replace({' ': '+','"':''})}},+{{entity.stagiaire.adresse.ville|replace({' ': '+','"':''})}},+{{entity.stagiaire.adresse.pays|replace({' ': '+','"':''})}}">
 				<i class="fa fa-map-marker"></i> Voir sur Google Map
 			</a>
+		{% endif %}
 		</div>
 	</div>
-	
+
 	<div class="panel unit-33">
 		<div class="header">
 			<span class="titre">Contact Administratif</span>
 				<span class="controls right group">
-				
+
 				</span>
 		</div>
-		
+
 		<div class="panel-body">
-			{% if ((entity.admin.nom)or(entity.admin.prenom)) %}	
+		{% if entity.admin %}
+			{% if ((entity.admin.nom)or(entity.admin.prenom)) %}
 			<p class="lead text-centered">
 				<i class="fa fa-user"></i> <strong>{{entity.admin.civilite}} {{entity.admin.nom}} {{entity.admin.prenom}}</strong>
 			</p>
@@ -151,42 +158,42 @@
 				<i class="fa fa-envelope"></i> {{entity.admin.mail}}
 			</p>
 			{% endif %}
-		
+		{% endif %}
 		</div>
 	</div>
 </div>
 
 <div class="units-row">
-	
-	
+
+
 	<div class="panel unit-33">
 		<div class="header">
 			<span class="titre">Signataire</span>
 				<span class="controls right group">
-				
+
 				</span>
 		</div>
-		
+
 		<div class="panel-body">
 			{% if entity.signataire %}
 				<p class="text-centered lead">
 					<i class="fa fa-user"></i> <strong>{{entity.signataire.civilite}} {{entity.signataire.nom}} {{entity.signataire.prenom}}</strong>
 				</p>
-				
+
 				<p class="text-centered"><em>{{entity.signataire.fonction}}</em></p>
 				<p class="text-centered"><i class="fa fa-envelope"></i> {{entity.signataire.mail}}</p>
 			{% endif %}
 		</div>
 	</div>
-	
+
 	<div class="panel unit-33">
 		<div class="header">
 			<span class="titre">Structure du signataire</span>
 				<span class="controls right group">
-				
+
 				</span>
 		</div>
-		
+
 		<div class="panel-body">
 		{% if entity.signataire %}
 		<span class="label label-outline">{{entity.signataire.adresse.type}}</span>
@@ -198,10 +205,10 @@
 				{{entity.signataire.adresse.ville}}<br/>
 				{{entity.signataire.adresse.pays}}
 			</address>
-			
-			
-			
-			<p> <strong>Tags :</strong> 
+
+
+
+			<p> <strong>Tags :</strong>
 				{% for tag in entity.signataire.adresse.tags %}
 					<span class="label">{{tag.tag}}</span> &nbsp;
 				{% endfor %}
@@ -209,18 +216,18 @@
 			{% endif %}
 		</div>
 	</div>
-	
+
 	<div class="panel unit-33">
 		<div class="header">
 			<span class="titre">Convention</span>
 				<span class="controls right group">
-					
+
 				</span>
 		</div>
-		
+
 		<div class="panel-body group">
 			L'inscription bénéficie d&apos;une convention ?
-			{% if entity.statutConvention == null %}
+			{% if entity.statutConvention is null %}
 				<span class="label label-outline label-blue">Ne sais pas</span>
 			{% elseif entity.statutConvention == false %}
 				<span class="label label-outline label-red">NON</span>

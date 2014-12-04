@@ -13,12 +13,12 @@ class InscriptionPubliqueController extends Controller
 {
     public function inscriptionAction($idformation)
     {
-		
+
 		$inscription = new Inscription();
         $form = $this->createCreateForm($inscription, $idformation);
 		$em = $this->getDoctrine()->getManager();
 		$formation = $em->getRepository("OCIMFormationsBundle:Formation")->find($idformation);
-		
+
         return $this->render('OCIMFormationsBundle:InscriptionPublique:form-public.html.twig', array(
 			'form'   => $form->createView(),
             ));
@@ -26,52 +26,66 @@ class InscriptionPubliqueController extends Controller
 
     public function createInscriptionAction(Request $request, $idformation)
     {
-		$entity = new Inscription();
+		    $entity = new Inscription();
         $form = $this->createCreateForm($entity, $idformation);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+          $em = $this->getDoctrine()->getManager();
 
-			$ordre = $em->getRepository('OCIMFormationsBundle:Inscription')->getOrdreMaxByFormation($idformation);
-		
+    			$ordre = $em->getRepository('OCIMFormationsBundle:Inscription')->getOrdreMaxByFormation($idformation);
 
-			$nouvelordre = (!is_null($ordre))? $ordre + 1000 : 0;
-			$entity->setOrdre($nouvelordre);
-		
-			//exit(\Doctrine\Common\Util\Debug::dump($entity->getSignataire()->getAdresse()->getStructure()));
-			
-			$entity->setStatut(2);
-			
-            $em->persist($entity);
 
+    			$nouvelordre = (!is_null($ordre))? $ordre + 1000 : 0;
+    			$entity->setOrdre($nouvelordre);
+
+    			//exit(\Doctrine\Common\Util\Debug::dump($entity->getSignataire()->getAdresse()->getStructure()));
+
+    			$entity->setStatut(2);
+          $em->persist($entity);
+
+          // bool pour vérification du bon déroulement de l'inscription
+          $inscription_success = true;
+          $mail_success = true;
+
+          try{
             $em->flush();
-			
-			// envoi de mails
-			$message = \Swift_Message::newInstance()
-				->setSubject('[OCIM] Inscription à la formation : '.$entity->getFormationFormule()->getFormation()->getIntitule())
-				->setFrom('formation.ocim@u-bourgogne.fr')
-				->setContentType("text/html")
-				->setTo($entity->getStagiaire()->getMail())
-				->setBody($this->renderView('OCIMFormationsBundle:Inscription:email-inscription.html.twig', array('inscription' => $entity)))
-				//->setCharset('utf-8')
-			;
-			$this->get('mailer')->send($message);
-			
-			
-			
-            return $this->render('OCIMFormationsBundle:InscriptionPublique:confirmation.html.twig', array(
-			
-			));
+          }
+          catch(Exception $e){
+            $inscription_success = false;
+          }
+
+          // on envoit le mail que si l'inscription a réussi
+          if($inscription_success){
+            // envoi de mails
+            $message = \Swift_Message::newInstance()
+            ->setSubject('[OCIM] Inscription à la formation : '.$entity->getFormationFormule()->getFormation()->getIntitule())
+            ->setFrom('formation.ocim@u-bourgogne.fr')
+            ->setContentType("text/html")
+            ->setTo($entity->getStagiaire()->getMail())
+            ->setBody($this->renderView('OCIMFormationsBundle:InscriptionPublique:email-inscription.html.twig', array('inscription' => $entity)))
+            //->setCharset('utf-8')
+            ;
+
+            if(!$this->get('mailer')->send($message)){
+              $mail_success = false;
+            }
+          }
+
+
+          return $this->render('OCIMFormationsBundle:InscriptionPublique:confirmation.html.twig', array(
+            'success_mail' => $mail_success,
+            'success_inscription' => $inscription_success
+    			));
         }
-	
+
 		return $this->render('OCIMFormationsBundle:InscriptionPublique:form-public.html.twig', array(
 			'form'   => $form->createView(),
         ));
 	}
-	
-	
-	
+
+
+
 	private function createCreateForm(Inscription $entity, $idformation)
     {
         $form = $this->createForm(new InscriptionPubliqueType($idformation), $entity, array(
@@ -84,9 +98,9 @@ class InscriptionPubliqueController extends Controller
 
         return $form;
     }
-	
+
 	public function confirmationAction(){
-		
+
 	}
 
 }

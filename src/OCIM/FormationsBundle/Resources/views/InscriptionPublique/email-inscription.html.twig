@@ -4,7 +4,7 @@
 <p>Vous venez de vous inscrire &agrave; la formation <strong>{{ inscription.formationformule.formation.intitule }}</strong>.</p>
 <p>Voici un r&eacute;capitulatif des informations que vous nous avez communiqu&eacute;es :</p>
 
-<table width="700" border="1">
+<table width="700" border="1" style="border-collapse: collapse;border: 1px solid grey">
 	<tr>
 		<th>Votre nom</th>
 		<td>{{ inscription.stagiaire.civilite }} {{ inscription.stagiaire.nom|capitalize }} {{ inscription.stagiaire.prenom|capitalize }}</td>
@@ -38,7 +38,11 @@
 				{% if inscription.stagiaire.fax %}Fax : {{inscription.stagiaire.fax}}{% endif %}
 		</td>
 	</tr>
-	
+	<tr>
+		<th>Date d'enregistrement de l'inscription</th>
+		<td>{{inscription.dateInscription|date('d/m/Y')}} à {{inscription.dateInscription|date('H:i:s')}}</td>
+	</tr>
+
 	{% if inscription.admin.mail %}
 	<tr>
 		<th>Adresse mail du contact administratif</th>
@@ -47,7 +51,7 @@
 		</td>
 	</tr>
 	{% endif %}
-	
+
 	<tr>
 		<th>Vos attentes</th>
 		<td>
@@ -56,4 +60,9 @@
 	</tr>
 </table>
 
+<p>L'équipe de l'Ocim se tient disponible pour toute information complémentaire.</p>
+<p></p>
 
+<p>
+
+</p>
