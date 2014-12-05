@@ -17,7 +17,8 @@ class ConventionType extends AbstractType
         $builder
             ->add('numero', 'text', array(
 				'required' => false,
-				'attr'=> array('class'=>'input-big text-centered')
+				'attr'=> array('class'=>'input-big text-centered','size' => 3 )
+
 				))
             ->add('edition', 'date', array(
 				'label' => "Date d'édition",
@@ -42,6 +43,12 @@ class ConventionType extends AbstractType
 				'widget' => 'single_text',
 				'required' => false,
 				'label' => "Etape 3",
+				'format' => 'dd/MM/yyyy'
+				))
+            ->add('etape4', 'date', array(
+				'widget' => 'single_text',
+				'required' => false,
+				'label' => "Etape 4",
 				'format' => 'dd/MM/yyyy'
 				))
         ;

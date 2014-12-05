@@ -27,4 +27,7 @@ OCIM\FormationsBundle\Entity\Convention:
         etape3:
             type: date
             nullable: true
+        etape4:
+            type: date
+            nullable: true
     lifecycleCallbacks: {  }

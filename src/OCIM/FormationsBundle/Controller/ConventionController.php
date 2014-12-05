@@ -19,14 +19,18 @@ class ConventionController extends Controller
      * Lists all Convention entities.
      *
      */
-    public function indexAction()
+    public function indexAction($slug)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('OCIMFormationsBundle:Inscription')->findAll();
+        $entities = $em->getRepository('OCIMFormationsBundle:Convention')->findConventionsByInscriptions($slug);
+        $slugmax = $em->getRepository('OCIMFormationsBundle:Convention')->countConventionsByInscriptions();
 
         return $this->render('OCIMFormationsBundle:Convention:index.html.twig', array(
             'entities' => $entities,
+            'slug' => $slug,
+            'slugmax' => $slugmax
+
         ));
     }
     /**
@@ -88,10 +92,13 @@ class ConventionController extends Controller
     {
         $entity = new Convention();
         $form   = $this->createCreateForm($entity, $idinscription);
+        $em = $this->getDoctrine()->getManager();
+        $num_convention = $em->getRepository('OCIMFormationsBundle:Convention')->lastConventionNumber();
 
         return $this->render('OCIMFormationsBundle:Convention:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
+            'derniere_convention' => $num_convention,
         ));
     }
 
@@ -126,6 +133,7 @@ class ConventionController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('OCIMFormationsBundle:Convention')->find($id);
+        $num_convention = $em->getRepository('OCIMFormationsBundle:Convention')->lastConventionNumber();
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Convention entity.');
@@ -138,6 +146,7 @@ class ConventionController extends Controller
             'entity'      => $entity,
             'form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'derniere_convention' => $num_convention,
         ));
     }
 

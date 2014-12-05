@@ -197,4 +197,32 @@ class Convention
     {
         return $this->etape3;
     }
+    /**
+     * @var \DateTime
+     */
+    private $etape4;
+
+
+    /**
+     * Set etape4
+     *
+     * @param \DateTime $etape4
+     * @return Convention
+     */
+    public function setEtape4($etape4)
+    {
+        $this->etape4 = $etape4;
+
+        return $this;
+    }
+
+    /**
+     * Get etape4
+     *
+     * @return \DateTime 
+     */
+    public function getEtape4()
+    {
+        return $this->etape4;
+    }
 }

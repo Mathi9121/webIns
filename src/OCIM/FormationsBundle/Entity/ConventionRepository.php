@@ -4,6 +4,7 @@ namespace OCIM\FormationsBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
+
 /**
  * ConventionRepository
  *
@@ -12,4 +13,36 @@ use Doctrine\ORM\EntityRepository;
  */
 class ConventionRepository extends EntityRepository
 {
+  public function lastConventionNumber(){
+    return $this->getEntityManager()
+      ->createQuery(
+        'SELECT MAX(c.numero) as num FROM OCIMFormationsBundle:Convention c
+        WHERE c.edition <= :date'
+      )
+      ->setParameter('date', new \DateTime('now'))
+      ->getSingleResult();
+  }
+
+  public function findConventionsByInscriptions($slug){
+    return $this->getEntityManager()
+      ->createQuery(
+        'SELECT i FROM OCIMFormationsBundle:Inscription i
+          WHERE i.statutConvention is null
+          OR i.statutConvention = 1
+          ORDER BY i.statutConvention DESC, i.dateInscription DESC'
+      )
+      ->setMaxResults(10)
+      ->setFirstResult(10 * ($slug-1))
+      ->getResult();
+  }
+  public function countConventionsByInscriptions(){
+    return $this->getEntityManager()
+      ->createQuery(
+        'SELECT count(i.id) FROM OCIMFormationsBundle:Inscription i
+        WHERE i.statutConvention is null
+        OR i.statutConvention = 1
+        '
+      )
+    ->getSingleResult();
+  }
 }

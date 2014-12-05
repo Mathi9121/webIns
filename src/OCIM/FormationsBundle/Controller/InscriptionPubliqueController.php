@@ -16,11 +16,16 @@ class InscriptionPubliqueController extends Controller
 
 		$inscription = new Inscription();
         $form = $this->createCreateForm($inscription, $idformation);
-		$em = $this->getDoctrine()->getManager();
-		$formation = $em->getRepository("OCIMFormationsBundle:Formation")->find($idformation);
+		    $em = $this->getDoctrine()->getManager();
+		    $formation = $em->getRepository("OCIMFormationsBundle:Formation")->find($idformation);
+        if (!$formation) {
+          throw $this->createNotFoundException(
+          "Aucune formation ne correspond à l'id : ".$idformation
+          );
+        }
 
         return $this->render('OCIMFormationsBundle:InscriptionPublique:form-public.html.twig', array(
-			'form'   => $form->createView(),
+			      'form'   => $form->createView(),
             ));
 	}
 

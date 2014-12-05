@@ -75,7 +75,7 @@ $(document).ready(function(){
 				//on crée la boite
 
 				var details = $("<div class='unit-20 details-inscription'><a href='#' class='right close-box'><i class='fa fa-times'></i></a></div>");
-				$("<h2>"+ data.nom +" "+ data.prenom +"</h2><hr/><p class='text-centered'>Inscription le <strong>"+ data.date +"</strong><br/><span>"+ data.formule +"</span></p>").appendTo(details);
+				$("<h2>"+ data.nom +" "+ data.prenom +"</h2><hr/><p class='text-centered'>Inscription le <strong>"+ data.date +"</strong><br/><br/><span class='label' ><strong>"+ data.formuleid +"</strong> : "+ data.formule +"</span></p>").appendTo(details);
 				$(data.liens).appendTo(details);
 				$(data.liens).wrap('<nav class="nav nav-stacked"></nav>');
 

@@ -1,6 +1,6 @@
 convention:
-    path:     /
-    defaults: { _controller: "OCIMFormationsBundle:Convention:index" }
+    path:     /{slug}
+    defaults: { _controller: "OCIMFormationsBundle:Convention:index", slug:1}
 
 convention_show:
     path:     /{id}/show

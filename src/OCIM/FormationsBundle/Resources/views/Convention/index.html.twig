@@ -22,7 +22,7 @@ Gestion des conventions
                 <th>Civilité</th>
                 <th>Nom</th>
                 <th>Prénom</th>
-                <th>Convention</th>
+                <th class="text-centered">Convention</th>
                 <th>Numero</th>
                 <th>Date d'édition</th>
                 <th>Etape 1</th>
@@ -37,21 +37,36 @@ Gestion des conventions
                 <td>{{entity.stagiaire.civilite}}</td>
                 <td>{{entity.stagiaire.nom}}</td>
                 <td>{{entity.stagiaire.prenom}}</td>
-                <td>
+                <td class="text-centered">
                   {% if entity.statutConvention is null %}
-                    Null
+                    <span class="label label-yellow label-outline">En attente</span>
                   {% elseif entity.statutConvention %}
-                    Demande Confirmée
+                  <span class="label label-green">Confirmée</span>
                   {% elseif entity.statutConvention == false %}
                     NON
                   {% endif %}
                 </td>
                 {% if entity.convention %}
                   <td><span style="color: #ccc">{{ entity.convention.edition|date('Y/m') }}</span>/{{ entity.convention.numero }}</td>
-                  <td>{{ entity.convention.edition|date('d/m/Y') }}</td>
-                  <td>{{ entity.convention.etape1|date('d/m/Y') }}</td>
-                  <td>{{ entity.convention.etape2|date('d/m/Y') }}</td>
-                  <td>{{ entity.convention.etape3|date('d/m/Y') }}</td>
+                  <td>
+                      {{ entity.convention.edition|date('d/m/Y') }}
+                  </td>
+                  <td>
+                    {% if entity.convention.etape1 is not null %}
+                      {{ entity.convention.etape1|date('d/m/Y') }}
+                    {% else %}
+                      NULL
+                    {% endif %}
+                  </td>
+                  <td>
+                      {{ entity.convention.etape2|date('d/m/Y') }}
+                  </td>
+                  <td>
+                      {{ entity.convention.etape3|date('d/m/Y') }}
+                  </td>
+                  <td>
+                      {{ entity.convention.etape4|date('d/m/Y') }}
+                  </td>
                 {% else %}
                   <td></td>
                   <td></td>
@@ -61,7 +76,7 @@ Gestion des conventions
                 {% endif %}
                   <td>
                     {% if entity.convention %}
-                      <a class="right" href="{{ path('convention_edit', { 'id': entity.id }) }}"><i class="fa fa-pencil fa-fw"></i>Editer</a>
+                      <a class="right" href="{{ path('convention_edit', { 'id': entity.convention.id }) }}"><i class="fa fa-pencil fa-fw"></i>Editer</a>
                     {% else %}
                       <a class="right" href="{{ path('convention_new', { 'idinscription': entity.id }) }}"><i class="fa fa-pencil fa-fw"></i>Editer</a>
                     {% endif %}
@@ -70,6 +85,24 @@ Gestion des conventions
         {% endfor %}
         </tbody>
     </table>
+
+    {# pagination #}
+  <div style="display:table; margin: 10px auto">
+    <ul class="pagination">
+      {% if slug != 1 %}<li><a href="{{path('convention', {'slug': slug-1})}}">&larr;</a></li>{% endif %}
+
+      {% for i in 1..(slugmax.1/10)|round+1 %}
+        {% if i == slug %}
+          <li><span>{{i}}</span></li>
+        {% else %}
+          <li><a href="{{path('convention', {'slug': i})}}">{{i}}</a></li>
+        {% endif %}
+      {% endfor %}
+
+      {% if slug < (slugmax.1 / 10) %}<li><a href="{{path('convention', {'slug': slug+1})}}">&rarr;</a></li>{% endif %}
+    </ul>
+  </div>
+
 </div>
 </div>
 {% endblock %}
