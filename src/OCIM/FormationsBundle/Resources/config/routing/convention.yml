@@ -28,3 +28,16 @@ convention_delete:
     path:     /{id}/delete
     defaults: { _controller: "OCIMFormationsBundle:Convention:delete" }
     requirements: { _method: post|delete }
+
+convention_derniernumero:
+    path:     /ajax/derniernumero
+    defaults: { _controller: "OCIMFormationsBundle:Convention:derniernumero" }
+    requirements: { _method: post }
+
+
+
+
+convention_createConvention:
+    path:     /ajax/createConvention
+    defaults: { _controller: "OCIMFormationsBundle:Convention:createConvention" }
+    requirements: { _method: post }

@@ -3,6 +3,7 @@
 namespace OCIM\FormationsBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use OCIM\FormationsBundle\Entity\Convention;
@@ -63,6 +64,49 @@ class ConventionController extends Controller
         ));
     }
 
+
+    public function derniernumeroAction(Request $request){
+      if($request->isXMLHttpRequest()){
+
+        $num_convention = $this->getDoctrine()->getManager()->getRepository('OCIMFormationsBundle:Convention')->lastConventionNumber();
+
+        return new Response($num_convention['num'], 200);
+      }
+    }
+
+
+    public function createConventionAction(Request $request){
+
+      if($request->isXMLHttpRequest()){
+
+        $convention = new Convention();
+        $em = $this->getDoctrine()->getManager();
+
+        $data = json_decode($request->getContent());
+        $idinscription = $data[0]->idinscription;
+        $numconvention = (int) $data[1]->numconvention;
+        $inscription = $em->getRepository('OCIMFormationsBundle:Inscription')->find($idinscription);
+        $convention->setNumero($numconvention);
+        $convention->setEdition(new \DateTime('now'));
+        $convention->setInscription($inscription);
+        $inscription->setConvention($convention);
+
+        $em->persist($convention);
+
+        try{
+          $em->flush();
+        }
+        catch(Exception $e){
+          return new Response( "erreur", 200);
+        }
+
+        $reponse;
+        $reponse['numconvention'] = $convention->getNumero();
+        $reponse['edition'] = $convention->getEdition()->format('d/m/Y');
+        $reponse['idconvention'] = $convention->getId();
+        return new Response( json_encode($reponse) , 200);
+      }
+    }
 
 
     /**

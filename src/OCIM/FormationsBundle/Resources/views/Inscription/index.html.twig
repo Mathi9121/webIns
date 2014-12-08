@@ -323,13 +323,13 @@
 					{% if entity.convention %}
 						<td class="insc convention"><span>{{ entity.convention.numero }}</span></td>
 						<td class="insc convention"><span>{{ entity.convention.edition|date('d/m/Y') }}</span></td>
-						<td class="insc convention text-centered"><span>{% if entity.convention.envoiPresidentU2ex %}<i class="fa fa-check" title="{{ entity.convention.envoiPresidentU2ex|date('d/m/Y') }}"></i></span>{% endif %}</td>
-						<td class="insc convention text-centered"><span>{% if entity.convention.retourPresidentU2ex %}<i class="fa fa-check" title="{{ entity.convention.retourPresidentU2ex|date('d/m/Y') }}"></i></span>{% endif %}</td>
-						<td class="insc convention text-centered"><span>{% if entity.convention.envoiOrganisme2ex %}<i class="fa fa-check" title="{{ entity.convention.envoiOrganisme2ex|date('d/m/Y') }}"></i></span>{% endif %}</td>
-						<td class="insc convention text-centered"><span>{% if entity.convention.retourOrganisme1ex %}<i class="fa fa-check" title="{{ entity.convention.retourOrganisme1ex|date('d/m/Y') }}"></i></span>{% endif %}</td>
-						<td class="insc convention text-centered"><span>{% if entity.convention.envoiPresidentU1ex %}<i class="fa fa-check" title="{{ entity.convention.envoiPresidentU1ex|date('d/m/Y') }}"></i></span>{% endif %}</td>
+						<td class="insc convention text-centered"><span>{% if entity.convention.etape1 %}<i class="fa fa-check" title="{{ entity.convention.etape1|date('d/m/Y') }}"></i></span>{% endif %}</td>
+						<td class="insc convention text-centered"><span>{% if entity.convention.etape2 %}<i class="fa fa-check" title="{{ entity.convention.etape2|date('d/m/Y') }}"></i></span>{% endif %}</td>
+						<td class="insc convention text-centered"><span>{% if entity.convention.etape3 %}<i class="fa fa-check" title="{{ entity.convention.etape3|date('d/m/Y') }}"></i></span>{% endif %}</td>
+						<td class="insc convention text-centered"><span>{% if entity.convention.etape4 %}<i class="fa fa-check" title="{{ entity.convention.etape4|date('d/m/Y') }}"></i></span>{% endif %}</td>
+
 					{% else %}
-						<td class="insc convention text-centered" colspan="7">
+						<td class="insc convention text-centered" colspan="6">
 							<a href="{{ path('convention_new', { 'idinscription': entity.id, 'idformation':formation.id }) }}" class=""><i class="fa fa-plus"></i> Entrer des informations concernant la convention</a>
 						</td>
 					{% endif %}
