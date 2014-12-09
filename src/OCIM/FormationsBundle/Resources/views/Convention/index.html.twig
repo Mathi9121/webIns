@@ -50,6 +50,7 @@ Gestion des conventions
                 <th class="text-centered">Etape-2</th>
                 <th class="text-centered">Etape-3</th>
                 <th class="text-centered">Etape-4</th>
+                <th class="text-centered">DL</th>
             </tr>
         </thead>
         <tbody>
@@ -96,13 +97,9 @@ Gestion des conventions
                 {% else %}
                   <td colspan="6" class="no-convention text-centered"></td>
                 {% endif %}
-                  {#<td>
-                    {% if entity.convention %}
-                      <a class="right" href="{{ path('convention_edit', { 'id': entity.convention.id }) }}"><i class="fa fa-pencil fa-fw"></i></a>
-                    {% else %}
-                      <a class="right" href="{{ path('convention_new', { 'idinscription': entity.id }) }}"><i class="fa fa-pencil fa-fw"></i></a>
-                    {% endif %}
-                  </td>#}
+                  <td>
+                    <a href="{{path('documents_show', {'id': '2', 'idinscription': entity.id})}}" target='blank'>Export</a>
+                  </td>
             </tr>
         {% endfor %}
         </tbody>
