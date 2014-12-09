@@ -33,6 +33,7 @@ Gestion des conventions
 {% block body -%}
 <div class='hide' id="href-derniernumero" data-href="{{path('convention_derniernumero')}}"></div>
 <div class='hide' id="href-createConvention" data-href="{{path('convention_createConvention')}}"></div>
+<div class='hide' id="href-updateConvention" data-href="{{path('convention_updateetape')}}"></div>
 <div class="panel">
   <div class="panel-body">
     <div class="table-container">
@@ -72,22 +73,22 @@ Gestion des conventions
                   <td class="edition-convention text-centered">
                       {{ entity.convention.edition|date('d/m/Y') }}
                   </td>
-                  <td data-etape="1" class="etape-convention text-centered">
+                  <td data-etape="1" class="etape-convention text-centered {{(entity.convention.etape1 is not null)?'valide'}}">
                     {% if entity.convention.etape1 is not null %}
                       {{ entity.convention.etape1|date('d/m/Y') }}
                     {% endif %}
                   </td>
-                  <td data-etape="2" class="etape-convention text-centered">
+                  <td data-etape="2" class="etape-convention text-centered {{(entity.convention.etape2 is not null)?'valide'}}">
                     {% if entity.convention.etape2 is not null %}
                       {{ entity.convention.etape2|date('d/m/Y') }}
                     {% endif %}
                   </td>
-                  <td data-etape="3" class="etape-convention text-centered">
+                  <td data-etape="3" class="etape-convention text-centered {{(entity.convention.etape3 is not null)?'valide'}}">
                     {% if entity.convention.etape3 is not null %}
                       {{ entity.convention.etape3|date('d/m/Y') }}
                     {% endif %}
                   </td>
-                  <td data-etape="4" class="etape-convention text-centered">
+                  <td data-etape="4" class="etape-convention text-centered {{(entity.convention.etape4 is not null)?'valide'}}">
                     {% if entity.convention.etape4 is not null %}
                       {{ entity.convention.etape4|date('d/m/Y') }}
                     {% endif %}

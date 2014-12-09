@@ -82,6 +82,9 @@ doctrine:
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
+        dql:
+            datetime_functions:
+                year: OCIM\FormationsBundle\DQL\Year
 
 # Swiftmailer Configuration
 swiftmailer:

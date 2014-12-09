@@ -109,6 +109,68 @@ class ConventionController extends Controller
     }
 
 
+    public function updateConventionAction(Request $request){
+      if($request->isXMLHttpRequest()){
+        $data = $request->getContent();
+
+        $data = json_decode($data);
+
+        $em = $this->getDoctrine()->getManager();
+        $convention = $em->getRepository('OCIMFormationsBundle:Convention')->find($data['0']->idconvention);
+
+        $reponse;
+
+        // update de letape
+        if(isset($data['0']->numetape)){
+          $etape = $data['0']->numetape;
+          // on récupère letat
+          $getnomfct = "getEtape".$etape;
+          $setnomfct = "setEtape".$etape;
+          $date = $convention->$getnomfct();
+
+          if(is_null($date)){
+            $convention->$setnomfct(new \DateTime('now'));
+          }
+          else{
+            $convention->$setnomfct(null);
+          }
+          $em->persist($convention);
+          $em->flush();
+
+          $reponse = (is_null($convention->$getnomfct()))? null : $convention->$getnomfct()->format('d/m/Y');
+
+        }
+        elseif(isset($data['0']->edition)){
+          $date= $data['0']->edition;
+          $jour = substr($date, 0, 2);
+          $mois = substr($date, 3, 2);
+          $annee = substr($date, 6, 4);
+
+          $date = new \DateTime();
+          $date->setDate($annee, $mois, $jour);
+
+          $convention->setEdition($date);
+          $em->persist($convention);
+          $em->flush();
+
+          $reponse = $date->format('d/m/Y');
+
+        }
+        elseif(isset($data['0']->numconvention)){
+          $convention->setNumero($data['0']->numconvention);
+          $em->persist($convention);
+          $em->flush();
+
+          $reponse = $convention->getNumero();
+        }
+        else{
+          return new Response( 'fail', 400);
+        }
+
+        return new Response( $reponse, 200);
+      }
+    }
+
     /**
      * Creates a form to create a Convention entity.
      *

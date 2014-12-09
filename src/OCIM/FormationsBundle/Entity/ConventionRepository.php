@@ -3,6 +3,7 @@
 namespace OCIM\FormationsBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use OCIM\FormationsBundle\DQL\Year;
 
 
 /**
@@ -17,7 +18,7 @@ class ConventionRepository extends EntityRepository
     return $this->getEntityManager()
       ->createQuery(
         'SELECT MAX(c.numero) as num FROM OCIMFormationsBundle:Convention c
-        WHERE c.edition <= :date'
+        WHERE YEAR(c.edition) = YEAR(:date)'
       )
       ->setParameter('date', new \DateTime('now'))
       ->getSingleResult();
