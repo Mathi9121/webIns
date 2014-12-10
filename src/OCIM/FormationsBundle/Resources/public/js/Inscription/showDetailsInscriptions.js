@@ -24,7 +24,7 @@ $(document).ready(function(){
 		var prenom = $(this).closest('tr').children().eq(2).text();
 		var formule = $("#general table tbody tr[data-idinscription='"+idinscription+"']").children().eq(3).find("abbr").attr('title');
 		var formuleId = $("#general table tbody tr[data-idinscription='"+idinscription+"']").children().eq(3).text();
-		var liens = $("#general table tbody tr[data-idinscription='"+idinscription+"']").children().last().find('ul').clone();
+		var liens = $("#general table tbody tr[data-idinscription='"+idinscription+"']").children().last().find('ul').clone(true);
 		$(liens).removeClass('dropdown');
 		$(liens).show();
 

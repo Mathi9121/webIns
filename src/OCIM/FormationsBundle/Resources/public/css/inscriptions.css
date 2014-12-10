@@ -48,3 +48,38 @@ div.details-inscription h2{
 	font-variant: normal;
 	color: #555555;
 }
+
+/***** popup ******/
+
+.white-popup{
+	position: relative;
+	background: #FFF;
+	padding: 20px;
+	width: auto;
+	max-width: 500px;
+	margin: 20px auto;
+}
+
+.white-popup .choix span{
+	padding: 5px 15px;
+	margin : 5px;
+	cursor: pointer;
+}
+.white-popup .choix span.attente{background-color:rgba(255,165,0, 0.5)}
+.white-popup .choix span.valide{background-color:rgba(3, 207, 3,  0.5)}
+.white-popup .choix span.annule{background-color:rgba(255, 54, 0, 0.5)}
+.white-popup .choix span.attente:hover{background-color: rgba(255,165,0, 0.5);-webkit-box-shadow: 0 0 5px 2px #B8B4B4;box-shadow: 0 0 5px 2px rgba(255,165,0,  0.2);}
+.white-popup .choix span.valide:hover{background-color: rgba(3, 207, 3,  0.5);-webkit-box-shadow: 0 0 5px 2px #B8B4B4;box-shadow: 0 0 5px 2px rgba(3, 207, 3,  0.2)}
+.white-popup .choix span.annule:hover{background-color: rgba(255, 54, 0, 0.5);-webkit-box-shadow: 0 0 5px 2px #B8B4B4;box-shadow: 0 0 5px 2px rgba(255, 54, 0, 0.2)}
+
+
+.white-popup .choix span.selected{
+	outline: 5px solid grey
+}
+
+.white-popup .choix span.saispas{background-color:rgba(255,165,0, 0.5)}
+.white-popup .choix span.oui{background-color:rgba(3, 207, 3,  0.5)}
+.white-popup .choix span.non{background-color:rgba(255, 54, 0, 0.5)}
+.white-popup .choix span.saispas:hover{background-color: rgba(255,165,0, 0.5);-webkit-box-shadow: 0 0 5px 2px #B8B4B4;box-shadow: 0 0 5px 2px rgba(255,165,0,  0.2);}
+.white-popup .choix span.oui:hover{background-color: rgba(3, 207, 3,  0.5);-webkit-box-shadow: 0 0 5px 2px #B8B4B4;box-shadow: 0 0 5px 2px rgba(3, 207, 3,  0.2)}
+.white-popup .choix span.non:hover{background-color: rgba(255, 54, 0, 0.5);-webkit-box-shadow: 0 0 5px 2px #B8B4B4;box-shadow: 0 0 5px 2px rgba(255, 54, 0, 0.2)}

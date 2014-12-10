@@ -3,6 +3,7 @@
 {% block stylesheets %}
 {{ parent() }}
 	{% stylesheets
+		'%kernel.root_dir%/Resources/public/css/popup.css'
 		'@OCIMFormationsBundle/Resources/public/css/inscriptions.css'
 	filter='cssrewrite' %}
 		<link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset_url }}"/>
@@ -15,7 +16,9 @@
 	'%kernel.root_dir%/Resources/public/js/jquery-ui.min.js'
 	'@OCIMFormationsBundle/Resources/public/js/Inscription/inscription.js'
 	'@OCIMFormationsBundle/Resources/public/js/Inscription/showDetailsInscriptions.js'
-	'@OCIMFormationsBundle/Resources/public/js/Inscription/reponseslogistique.js' %}
+	'@OCIMFormationsBundle/Resources/public/js/Inscription/reponseslogistique.js'
+	'%kernel.root_dir%/Resources/public/js/popup.js'
+	'@OCIMFormationsBundle/Resources/public/js/Inscription/maj-statuts.js' %}
          <script type="text/javascript" src="{{ asset_url }}"></script>
 {% endjavascripts %}
 {% endblock %}
@@ -83,7 +86,7 @@
 						<td class=""><span>{% if entity.dateInscription %}{{ entity.dateInscription|date('d/m/Y') }}{% endif %}</span></td>
 						<td class="text-centered">
 							{% if entity.statutConvention is null %}
-							<span class="label label-outline label-blue" title="Ne sais pas"><i class="fa fa-question"></i></span>
+							<span class="label label-outline label-yellow" title="Ne sais pas"><i class="fa fa-question"></i></span>
 							{% elseif entity.statutConvention == false %}
 							<span class="label label-outline label-red" title="Non"><i class="fa fa-times"></i></span>
 							{% else %}
@@ -97,14 +100,10 @@
 						<li><a href="{{ path('inscription_show', { 'id': entity.id, 'idformation':formation.id }) }}" class="inscription-href"><i class="fa fa-info fa-fw"></i>Détails</a></li>
 						<li><a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation':formation.id }) }}" class="inscription-href"><i class="fa fa-pencil fa-fw"></i>Modifier</a></li>
 						<li>
-
-					{#	{% spaceless %}
-							{% if entity.convention %}
-								<a href="{{ path('convention_edit', { 'id': entity.convention.id, 'idformation':formation.id }) }}" class="inscription-href">
-							{% else %}
-								<a href="{{ path('convention_new', { 'idinscription': entity.id, 'idformation':formation.id }) }}" class="inscription-href">{% endif %}<i class="fa fa-pencil fa-fw"></i>Convention</a>
-						{% endspaceless %}
-					#}
+							<a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation':formation.id }) }}" class="inscription-href"><i class="fa fa-download fa-fw"></i>Exporter</a></li>
+						</li>
+						<li>
+							<a href="#" class="majstatuts" data-statut='{{ entity.numberStatut }}' data-statutconvention="{% if (entity.statutConvention == false)and(entity.statutConvention is not null) %}0{% elseif entity.statutConvention == true %}1{% elseif entity.statutConvention is null %}{% endif %}" data-idinscription="{{ entity.id }}"><i class="fa fa-refresh fa-fw"></i>Statuts</a>
 						</li>
 					</ul>
 					{% endspaceless %}
