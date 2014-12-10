@@ -46,11 +46,11 @@ Gestion des conventions
                 <th class="text-centered">Convention</th>
                 <th class="text-centered">Numero</th>
                 <th class="text-centered">Date d'édition</th>
-                <th class="text-centered">Etape-1</th>
-                <th class="text-centered">Etape-2</th>
-                <th class="text-centered">Etape-3</th>
-                <th class="text-centered">Etape-4</th>
-                <th class="text-centered">DL</th>
+                <th class="text-centered"><abbr title="Signature de Catherine">Etape-1</abbr></th>
+                <th class="text-centered"><abbr title="Envoi 2 exemplaires à l'organisme">Etape-2</abbr></th>
+                <th class="text-centered"><abbr title="Retour d'un exemplaire signé">Etape-3</abbr></th>
+                <th class="text-centered"><abbr title="Envoi pour archivage">Etape-4</abbr></th>
+                <th class="text-centered"></th>
             </tr>
         </thead>
         <tbody>
@@ -98,7 +98,7 @@ Gestion des conventions
                   <td colspan="6" class="no-convention text-centered"></td>
                 {% endif %}
                   <td>
-                    <a href="{{path('documents_show', {'id': '2', 'idinscription': entity.id})}}" target='blank'>Export</a>
+                    <a href="{{path('documents_show', {'id': '5', 'idinscription': entity.id})}}" target='blank'>Export</a>
                   </td>
             </tr>
         {% endfor %}

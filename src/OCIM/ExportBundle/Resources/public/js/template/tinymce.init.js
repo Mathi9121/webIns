@@ -57,8 +57,8 @@ tinymce.init({
 			menu: [
 				{text: 'Intitule', onclick: function() 					{editor.insertContent("{{ formation.intitule }}"); }},
 				{text: 'Lieu', onclick: function() 						{editor.insertContent("{{ formation.lieu }}"); }},
-				{text: 'Date de debut', onclick: function() 			{editor.insertContent("{{ formation.dateDebut }}"); }},
-				{text: 'Date de fin', onclick: function() 				{editor.insertContent("{{ formation.dateFin }}"); }},
+				{text: 'Date de debut', onclick: function() 			{editor.insertContent("{{ formation.dateDebut|date('d/m/Y') }}"); }},
+				{text: 'Date de fin', onclick: function() 				{editor.insertContent("{{ formation.dateFin|date('d/m/Y') }}"); }},
 				{text: 'Duree (jours)', onclick: function() 			{editor.insertContent("{{ date_difference(formation.dateDebut, formation.dateFin) }}"); }},
 				{text: 'Date au format text', onclick: function() 		{editor.insertContent("{{ formation.dateText }}"); }},
 				{text: "Nombre d'heures", onclick: function() 			{editor.insertContent("{{ formation.nbHeures }}"); }},
@@ -83,7 +83,7 @@ tinymce.init({
 					]},
 				{text: "Organisme Financeur",
 					menu: [
-						{text: "Nom de la structure", onclick: function() 		{editor.insertContent("{{ inscription.signataire.adresse.structure.nom }}"); }},
+						{text: "Nom de la structure", onclick: function() 		{editor.insertContent("{{ inscription.signataire.adresse.nomStructure }}"); }},
 						{text: "Adresse", onclick: function() 					{editor.insertContent("{{ inscription.signataire.adresse.adresse }}"); }},
 						{text: "Complement d'adresse", onclick: function() 		{editor.insertContent("{{ inscription.signataire.adresse.adresseComplement }}"); }},
 						{text: "Code postal", onclick: function() 				{editor.insertContent("{{ inscription.signataire.adresse.CP }}"); }},

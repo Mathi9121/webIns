@@ -9,34 +9,48 @@ Gabarits
 {% endblock %}
 
 {% block controls %}
-<a href="{{ path('documents_new') }}" class="btn btn-green"><span class='oi' data-glyph="plus"> Nouveau Gabarit</a>
+<a href="{{ path('documents_new') }}" class="btn btn-green"><i class='fa fa-plus'></i> Nouveau Gabarit</a>
 {% endblock %}
 
 {% block body -%}
-   
 
-    <table class="records_list">
+<div class="panel">
+  <div class="header">
+  </div>
+  <div class="panel-body">
+    <table class="table-stripped">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Nom</th>
                 <th>Type</th>
-                <th>Date</th>
-                <th>Actions</th>
+                <th>Créé le </th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td>{# <a href="{{ path('documents_show', { 'id': entity.id }) }}">{{ entity.id }}</a> #}</td>
                 <td>{{ entity.nom }}</td>
-                <td>{{ entity.type }}</td>
-                <td>{% if entity.date %}{{ entity.date|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>
-				    <a href="{{ path('documents_edit', { 'id': entity.id }) }}">edit</a>
+                  {% if entity.type == "pdf" %}
+                    <i class="fa fa-file-pdf-o fa-fw"></i> Pdf
+                  {% else %}
+                    <i class="fa fa-file-pdf-o fa-fw"></i> Convention (.pdf)
+                  {% endif %}
+                </td>
+                <td>{% if entity.date %}{{ entity.date|date('d/m/Y') }}{% endif %}</td>
+                <td class="group">
+                    <span class="right">
+				              <a title="Modifier" href="{{ path('documents_edit', { 'id': entity.id }) }}"><i class="fa fa-pencil fa-border"></i></a>
+				              <a title="Copier" href=""><i class="fa fa-copy fa-border"></i></a>
+				              <a title="Supprimer" href=""><i class="btn-red fa fa-trash fa-border "></i></a>
+                    </span>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+  </div>
+</div>
+
 {% endblock %}

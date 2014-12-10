@@ -17,9 +17,10 @@ OCIM\ExportBundle\Entity\Template:
             length: 255
         date:
             type: datetime
+            nullable: true
         filename:
             type: string
             length: 255
         contenu:
             type: text
-    lifecycleCallbacks: {  }
+    lifecycleCallbacks: { prePersist: [onPrePersist] }

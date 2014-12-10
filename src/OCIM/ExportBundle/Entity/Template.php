@@ -38,7 +38,7 @@ class Template
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -61,7 +61,7 @@ class Template
     /**
      * Get nom
      *
-     * @return string 
+     * @return string
      */
     public function getNom()
     {
@@ -84,7 +84,7 @@ class Template
     /**
      * Get type
      *
-     * @return string 
+     * @return string
      */
     public function getType()
     {
@@ -107,7 +107,7 @@ class Template
     /**
      * Get date
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDate()
     {
@@ -130,7 +130,7 @@ class Template
     /**
      * Get contenu
      *
-     * @return string 
+     * @return string
      */
     public function getContenu()
     {
@@ -158,10 +158,14 @@ class Template
     /**
      * Get filename
      *
-     * @return string 
+     * @return string
      */
     public function getFilename()
     {
         return $this->filename;
+    }
+
+    public function onPrePersist() {
+        $this->date = new \DateTime("now");
     }
 }
