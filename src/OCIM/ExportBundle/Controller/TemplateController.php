@@ -54,6 +54,13 @@ class TemplateController extends Controller
         ));
     }
 
+    public function liensAction(Request $request){
+      if($request->isXmlHttpRequest()){
+
+        return new Response( "" , Response::HTTP_OK);
+      }
+    }
+
     /**
      * Creates a form to create a Template entity.
      *
@@ -97,16 +104,16 @@ class TemplateController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('OCIMExportBundle:Template')->find($id);
-        
+
         $inscription = $em->getRepository('OCIMFormationsBundle:Inscription')->find($idinscription);
 		$formation = $em->getRepository('OCIMFormationsBundle:Formation')->find($inscription->getFormationFormule()->getFormation()->getId());
-		
+
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Template entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
-		
+
 		// Nom du fichier
 		$filename = $entity->getFilename();
 		$filename = str_replace('{{formation.intitule}}', $formation->getIntitule(), $filename);
@@ -114,17 +121,17 @@ class TemplateController extends Controller
 		$filename = str_replace('{{inscription.stagiaire.nom}}', $inscription->getStagiaire()->getNom(), $filename);
 		$filename = str_replace('{{inscription.stagiaire.prenom}}', $inscription->getStagiaire()->getPrenom(), $filename);
 		$filename = str_replace('{{inscription.convention.numero}}', $inscription->getConvention()->getNumero(), $filename);
-		
-		
+
+
 		// Ajout de la fonction twig pour calculer la durée entre deux date
 		$env = new \Twig_Environment(new \Twig_Loader_String());
 		$function = new \Twig_SimpleFunction('date_difference', function ($start, $end) {
 			return $start->diff($end, true)->format('%a') + 1;
 		});
-		
+
 		// ajout à l'environnement
 		$env->addFunction($function);
-		
+
 		$contenu = "<html><head><meta charset='utf-8'/>
 					</head><body>".$entity->getContenu()."</body></html>";
 

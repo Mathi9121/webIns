@@ -61,6 +61,53 @@ class InscriptionController extends Controller
     }
   }
 
+  public function updateStatutInscriptionAction(Request $request){
+    if($request->isXmlHttpRequest()){
+      $data = json_decode($request->getContent());
+
+      $em = $this->getDoctrine()->getManager();
+
+      $idinscription = $data['0']->idinscription;
+
+      $inscription = $em->getRepository('OCIMFormationsBundle:Inscription')->find($idinscription);
+
+      $inscription->setStatut($data['0']->statut);
+
+      $em->flush();
+
+      return new Response( $inscription->getNumberStatut() , Response::HTTP_OK);
+    }
+  }
+
+  public function updateStatutConventionAction(Request $request){
+    if($request->isXmlHttpRequest()){
+      $data = json_decode($request->getContent());
+
+      $em = $this->getDoctrine()->getManager();
+
+      $idinscription = $data['0']->idinscription;
+
+      $inscription = $em->getRepository('OCIMFormationsBundle:Inscription')->find($idinscription);
+
+      $statut = $data['0']->statut;
+      $statut = ($statut == "null")? null : (bool)$statut;
+
+      $inscription->setStatutConvention($statut);
+
+      $em->flush();
+
+      $reponse;
+      if(is_null($inscription->getStatutConvention())){
+        $reponse = "null";
+      }
+      else{
+        $reponse = ($inscription->getStatutConvention() == false )? '0' : '1' ;
+      }
+
+
+      return new Response(  $reponse , Response::HTTP_OK);
+    }
+  }
 
   /**
   * Creates a new Inscription entity.

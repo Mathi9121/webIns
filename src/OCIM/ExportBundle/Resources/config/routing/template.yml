@@ -28,3 +28,8 @@ documents_delete:
     path:     /{id}/delete
     defaults: { _controller: "OCIMExportBundle:Template:delete" }
     requirements: { _method: post|delete }
+
+documents_liens:
+    path:     /liens
+    defaults: { _controller: "OCIMExportBundle:Template:liens" }
+    requirements: { _method: post }

@@ -18,7 +18,8 @@
 	'@OCIMFormationsBundle/Resources/public/js/Inscription/showDetailsInscriptions.js'
 	'@OCIMFormationsBundle/Resources/public/js/Inscription/reponseslogistique.js'
 	'%kernel.root_dir%/Resources/public/js/popup.js'
-	'@OCIMFormationsBundle/Resources/public/js/Inscription/maj-statuts.js' %}
+	'@OCIMFormationsBundle/Resources/public/js/Inscription/maj-statuts.js'
+	'@OCIMFormationsBundle/Resources/public/js/Inscription/proposition-export.js' %}
          <script type="text/javascript" src="{{ asset_url }}"></script>
 {% endjavascripts %}
 {% endblock %}
@@ -36,6 +37,9 @@
 
 {% block body -%}
 <div id="lienAjax" class="hide">{{ path('inscription_edit_ordre', {'idformation': formation.id}) }}</div>
+<div id="updateconvention" class="hide">{{ path('inscription_update_statut_convention', {'idformation': formation.id}) }}</div>
+<div id="updateinscription" class="hide">{{ path('inscription_update_statut_inscription', {'idformation': formation.id}) }}</div>
+<div id="liensExport" class="hide">{{ path('documents_liens') }}</div>
 {% if entities != null %}
 
 <div class="panel">
@@ -100,7 +104,7 @@
 						<li><a href="{{ path('inscription_show', { 'id': entity.id, 'idformation':formation.id }) }}" class="inscription-href"><i class="fa fa-info fa-fw"></i>Détails</a></li>
 						<li><a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation':formation.id }) }}" class="inscription-href"><i class="fa fa-pencil fa-fw"></i>Modifier</a></li>
 						<li>
-							<a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation':formation.id }) }}" class="inscription-href"><i class="fa fa-download fa-fw"></i>Exporter</a></li>
+							<a href="#" class="export" data-idinscription="{{ entity.id }}"><i class="fa fa-download fa-fw"></i>Exporter</a></li>
 						</li>
 						<li>
 							<a href="#" class="majstatuts" data-statut='{{ entity.numberStatut }}' data-statutconvention="{% if (entity.statutConvention == false)and(entity.statutConvention is not null) %}0{% elseif entity.statutConvention == true %}1{% elseif entity.statutConvention is null %}{% endif %}" data-idinscription="{{ entity.id }}"><i class="fa fa-refresh fa-fw"></i>Statuts</a>
@@ -507,7 +511,6 @@
 	{% endif %}
 
 {% endif %}
-
 
 
 

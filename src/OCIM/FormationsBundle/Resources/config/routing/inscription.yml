@@ -33,3 +33,13 @@ inscription_edit_ordre:
     path: /ordre
     defaults: { _controller: "OCIMFormationsBundle:Inscription:ordre" }
     requirements: { _method: post }
+
+inscription_update_statut_convention:
+    path: /statut-convention/
+    defaults: { _controller: "OCIMFormationsBundle:Inscription:updateStatutConvention" }
+    requirements: { _method: post }
+
+inscription_update_statut_inscription:
+    path: /statut-inscription/
+    defaults: { _controller: "OCIMFormationsBundle:Inscription:updateStatutInscription" }
+    requirements: { _method: post }

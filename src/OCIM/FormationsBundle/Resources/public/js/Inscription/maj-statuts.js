@@ -8,7 +8,6 @@ $(document).ready(function(){
     var statutinscription = $(this).attr('data-statut');
     var statutconvention = $(this).attr('data-statutconvention');
     statutconvention = (statutconvention == "")? "null" : statutconvention;
-    console.log(statutconvention);
     var popup = $('<div class="white-popup"><h2>Statut de l&apos;inscription</h2><hr/><p class="text-centered choix inscription"><span class="attente" data-statut="2">En attente</span><span class="valide" data-statut="1">Validé</span><span class="annule" data-statut="3">Annulé</span></p></div>');
     popup.find('[data-statut='+statutinscription+']').addClass('selected');
 
@@ -25,15 +24,15 @@ $(document).ready(function(){
 
       changeStatutInscription(data);
 
+
     });
 
     popup.find('.choix.convention span').on('click', function(){
       popup.find('.choix.convention span').removeClass('selected');
       $(this).addClass('selected');
-      var nouveauStatut = $(this).attr('data-statut');
-
+      var nouveauStatut = $(this).attr('data-statutconvention');
+      var data = new Array({'idinscription': idinscription, 'statut': nouveauStatut});
       changeStatutConvention(data);
-
     })
 
     $.magnificPopup.open({
@@ -48,10 +47,38 @@ $(document).ready(function(){
 });
 
 function changeStatutInscription(data){
-  console.table(data);
+  $.ajax({
+    url: $.trim($('#updateinscription').text()),
+    type: "POST",
+    data: JSON.stringify(data)
+  }).done(function(statut){
+    var classStatut = '';
+
+    if(statut == 1){
+      classStatut = "valide";
+    }
+    else if(statut == 2){
+      classStatut = "attente";
+    }else if(statut == 3){
+      classStatut = "annule";
+    }
+
+    //$("tr").find("[data-idinscription='"+data.idinscription+"']").removeClass('attente');
+
+  }).fail(function(){
+    alert("Erreur pendant l'enregistrement ! Rechargez la page.");
+  })
 
 }
 function changeStatutConvention(data){
-  console.table(data);
+  $.ajax({
+    url: $.trim($('#updateconvention').text()),
+    type: "POST",
+    data: JSON.stringify(data)
+  }).done(function(statut){
+    console.log(statut)
+  }).fail(function(){
+    alert("Erreur pendant l'enregistrement ! Rechargez la page.");
+  });
 
 }
