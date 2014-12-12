@@ -22,17 +22,17 @@ class TagStructure
     private $tag;
 
 	private $structures;
-	
-	
+
+
 	public function __construct() {
         $this->structures = new ArrayCollection();
     }
 
-	
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -55,46 +55,24 @@ class TagStructure
     /**
      * Get tag
      *
-     * @return string 
+     * @return string
      */
     public function getTag()
     {
         return $this->tag;
     }
 
-    /**
-     * Add structures
-     *
-     * @param \OCIM\ContactsBundle\Entity\Structure $structures
-     * @return TagStructure
-     */
-    public function addStructure(\OCIM\ContactsBundle\Entity\Structure $structures)
-    {
-        $this->structures[] = $structures;
-
-        return $this;
-    }
-
-    /**
-     * Remove structures
-     *
-     * @param \OCIM\ContactsBundle\Entity\Structure $structures
-     */
-    public function removeStructure(\OCIM\ContactsBundle\Entity\Structure $structures)
-    {
-        $this->structures->removeElement($structures);
-    }
 
     /**
      * Get structures
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getStructures()
     {
         return $this->structures;
     }
-	
+
 	public function __toString(){
 		return $this->tag;
 	}

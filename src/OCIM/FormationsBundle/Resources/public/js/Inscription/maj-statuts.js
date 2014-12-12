@@ -63,11 +63,11 @@ function changeStatutInscription(data){
       classStatut = "annule";
     }
 
-    //$("tr").find("[data-idinscription='"+data.idinscription+"']").removeClass('attente');
+    $("tr[data-idinscription="+data['0']['idinscription']+"]").removeClass('attente').removeClass('valide').removeClass('annule').addClass(classStatut);
 
   }).fail(function(){
     alert("Erreur pendant l'enregistrement ! Rechargez la page.");
-  })
+  });
 
 }
 function changeStatutConvention(data){
@@ -76,7 +76,12 @@ function changeStatutConvention(data){
     type: "POST",
     data: JSON.stringify(data)
   }).done(function(statut){
-    console.log(statut)
+    console.log(statut);
+
+    var statutsConvention = new Array({'1' : '<span class="label label-outline label-green" title="Demande de convention confirmée"><i class="fa fa-check"></i></span>', '0' : '<span class="label label-outline label-red" title="Non"><i class="fa fa-times"></i></span>', 'null': '<span class="label label-outline label-yellow" title="Ne sais pas"><i class="fa fa-question"></i></span>'});
+
+    $("#general tr[data-idinscription="+data['0']['idinscription']+"] .tdconvention").html(statutsConvention['0'][statut]);
+
   }).fail(function(){
     alert("Erreur pendant l'enregistrement ! Rechargez la page.");
   });

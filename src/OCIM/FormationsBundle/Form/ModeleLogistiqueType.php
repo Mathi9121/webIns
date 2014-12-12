@@ -10,11 +10,11 @@ use Doctrine\ORM\EntityRepository;
 class ModeleLogistiqueType extends AbstractType
 {
 	public $idformation;
-	
+
 	function __construct($idformation){
 		$this->idformation = $idformation;
 	}
-	
+
         /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -40,7 +40,7 @@ class ModeleLogistiqueType extends AbstractType
 				'choices'   => array(
 					'text'	=> 'Texte',
 					'bool'	=> 'Oui/Non',
-					'dateTime'	=> 'Date/Heure',
+					//'dateTime'	=> 'Date/Heure',
 				),
 				'empty_value' => 'Type de réponse',
 				'required' => true,
@@ -63,7 +63,7 @@ class ModeleLogistiqueType extends AbstractType
 				'required' => false,
 			));
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */

@@ -63,6 +63,7 @@
 		<thead>
 			<tr>
 				<th class="handle"></th>
+				<th class="insc info"><span>Civilité</span></th>
 				<th class="insc info"><span>Nom</span></th>
 				<th class="insc info"><span>Prénom</span></th>
 				<th class="insc info"><span>Formule</span></th>
@@ -83,12 +84,13 @@
 			{% endif %}
 			<tr class="statut {{class}}" data-ordre="{{entity.ordre}}" data-idinscription="{{entity.id}}">
 						{% if class == "attente" %}<td class="handle"><i class="fa fa-arrows"></i></td>{% else %}<td></td>{% endif %}
-						<td class="insc info"><span>{{ entity.stagiaire.nom }} ({{ entity.stagiaire.civilite }})</span></td>
+						<td class="insc info"><span>{{ entity.stagiaire.civilite }}</span></td>
+						<td class="insc info"><span>{{ entity.stagiaire.nom }}</span></td>
 						<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
 						<td class=""><span><abbr title="{{ entity.formationFormule.formule }}">{{ entity.formationFormule.formule.id }}</abbr></span></td>
 						<td class=""><span>{{ entity.stagiaire.fonction }}</span></td>
 						<td class=""><span>{% if entity.dateInscription %}{{ entity.dateInscription|date('d/m/Y') }}{% endif %}</span></td>
-						<td class="text-centered">
+						<td class="text-centered tdconvention">
 							{% if entity.statutConvention is null %}
 							<span class="label label-outline label-yellow" title="Ne sais pas"><i class="fa fa-question"></i></span>
 							{% elseif entity.statutConvention == false %}
@@ -435,7 +437,8 @@
 		<table>
 			<thead>
 				<tr>
-					<th>Nom (Civilité)</th>
+					<th>Civilité</th>
+					<th>Nom</th>
 					<th>Prénom</th>
 					<th>Fonction</th>
 					<th>Téléphone</th>
@@ -448,7 +451,8 @@
 			<tbody>
 				{% for intervenant in formation.intervenants %}
 					<tr>
-						<td>{{intervenant.nom|capitalize}} ({{intervenant.civilite}})</td>
+						<td>{{intervenant.civilite}}</td>
+						<td>{{intervenant.nom|capitalize}}</td>
 						<td>{{intervenant.prenom|capitalize}}</td>
 						<td>{{intervenant.fonction}}</td>
 						<td>{{intervenant.tel}}</td>

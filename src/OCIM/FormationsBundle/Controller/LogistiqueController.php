@@ -32,42 +32,42 @@ class LogistiqueController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('OCIMFormationsBundle:Formation')->findAll();
-		
+
 		foreach($entities as $entity){
 			$logistique = $em->getRepository('OCIMFormationsBundle:ModeleLogistique')->findModelesByIdFormation($entity->getId());
 			$entity->setModeles(new ArrayCollection($logistique));
 		}
-		
+
 		foreach($entities as $entity){
 			$countmodeles = 0;
-			
+
 			foreach($entity->getFormationFormule() as $ff){
 				$countmodeles += $ff->getModeles()->count();
 			}
 			$entity->_logistique = $countmodeles;
 		}
-		
+
         return $this->render('OCIMFormationsBundle:logistique:index.html.twig', array(
             'entities' => $entities,
         ));
     }
-	
+
 	public function reponseAction(Request $request){
 		if($request->isXmlHttpRequest()){
-		
+
 			$em = $this->getDoctrine()->getManager();
-			
+
 			$data = json_decode($request->getContent());
-			
+
 			$personne = new Personne();
 			$personne = $em->getRepository('OCIMContactsBundle:Personne')->find($data[0]->idpersonne);
-			
+
 			$reponseLogistique = new ReponsesLogistique();
 			// un objet ReponseLogistique existe
 			if($data[0]->idreponse){
 				$reponseLogistique = $em->getRepository('OCIMFormationsBundle:ReponsesLogistique')->find($data[0]->idreponse);
 			}
-			
+
 			// construction et enregistrement de la nouvelle reponse
 			$nouvelleReponse;
 		 	if($data[0]->type == "bool"){
@@ -78,7 +78,7 @@ class LogistiqueController extends Controller
 				$nouvelleReponse = $data[0]->reponse;
 				$reponseLogistique->setReponseText($nouvelleReponse);
 			}
-			
+
 
 			if($reponseLogistique->getId() == null){
 				$reponseLogistique->setPersonne($personne);
@@ -86,17 +86,17 @@ class LogistiqueController extends Controller
 				$personne->addReponsesLogistique($reponseLogistique);
 				$em->persist($reponseLogistique);
 			}
-			
+
 			$em->flush();
-			
+
 			$data[0]->idreponse = $reponseLogistique->getId();
 			$data[0]->reponse = $nouvelleReponse;
-			
+
 			return new Response( json_encode($data) , Response::HTTP_OK);
-			
+
 		}
 	}
-	
+
     /**
      * Creates a new formationFormule entity.
      *
@@ -185,51 +185,48 @@ class LogistiqueController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        
+
         $formation = $em->getRepository('OCIMFormationsBundle:Formation')->find($idformation);
 
-		
-		
-		//exit(\Doctrine\Common\Util\Debug::dump($formation->getModeles()[0]));
-		
 		if($generation == "generate"){
-			
+
 			$modeles = new ArrayCollection();
-			
+
 			// On détermine les variables nécessaires à la génération des objets ModeleLogistique
 			$dateDebut = $formation->getDateDebut();
 			$dateFin = $formation->getDateFin();
-			
+
 			$dateDebut->setTime(00, 00);
 			$dateFin->setTime(24, 00);
-			
+
 			$period = new \DatePeriod($dateDebut, new \DateInterval('P1D'), $dateFin);
 
 			$journee = array();
-			
+
 			foreach($formation->getFormationFormule() as $ff){
 				$journee['midi'][] = ($ff->getFormule()->getMidi())? $ff : false;
 				$journee['soir'][] = ($ff->getFormule()->getSoir())? $ff : false;
 				$journee['nuit'][] = ($ff->getFormule()->getNuit())? $ff : false;
 			}
-			
+
 			//arrivée pour les intervenants
 			$m = new ModeleLogistique();
 			$m->setDescription('Arrivée');
-			$m->setTypeReponse('dateTime');
+			$m->setTypeReponse('text');
 			$m->setIntervenant(true);
 			$formation->addModele($m);
-			
+
 			foreach($period as $date)
 			{
 				foreach($journee as $key=>$j){
 					$m = new ModeleLogistique();
-					
+
 					foreach($j as $ff){
 						if($ff){
 							$m->addFormationFormule($ff);
 						}
 					}
+          $date->modify('+1 hour');
 					$m->setIntervenant(true);
 					$m->setDate($date);
 					$m->setDescription(ucfirst($key));
@@ -237,14 +234,14 @@ class LogistiqueController extends Controller
 					$formation->addModele($m);
 				}
 			}
-			
+
 			//départ pour les intervenants
 			$m = new ModeleLogistique();
 			$m->setDescription('Départ');
-			$m->setTypeReponse('dateTime');
+			$m->setTypeReponse('text');
 			$m->setIntervenant(true);
 			$formation->addModele($m);
-			
+
 		}
 		else{
 			$modeles = $em->getRepository('OCIMFormationsBundle:ModeleLogistique')->findModelesByIdFormation($idformation);
@@ -256,7 +253,7 @@ class LogistiqueController extends Controller
 				$formation->setModeles(new ArrayCollection($modeles));
 			}
 		}
-		
+
         $editForm = $this->createEditForm($formation);
         $deleteForm = $this->createDeleteForm($idformation);
 
@@ -299,17 +296,17 @@ class LogistiqueController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find formationFormule entity.');
         }
-		
+
 		$entity->setModeles(new ArrayCollection($modeles));
-		
+
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
-		
-		
-		
+
+
+
         if ($editForm->isValid()) {
-			
+
 			//suppression des anciens modeles
 			foreach($modeles as $modele){
 				if(!$entity->getModeles()->contains($modele)){
@@ -332,8 +329,8 @@ class LogistiqueController extends Controller
 				}
 			}
 			//exit( \Doctrine\Common\Util\Debug::dump($entity->getModeles()[0]->getIntervenant()));
-			
-			
+
+
 			foreach($entity->getModeles() as $modele){
 				foreach($modele->getFormationFormule() as $ff){
 					$ff->addModele($modele);
@@ -348,7 +345,7 @@ class LogistiqueController extends Controller
 					}
 				}
 			}
-			
+
             $em->flush();
 
             return $this->redirect($this->generateUrl('logistique_edit', array('idformation' => $id)));
@@ -376,11 +373,11 @@ class LogistiqueController extends Controller
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find formationFormule entity.');
             }
-			
+
 			foreach($entity as $mo){
 				$em->remove($mo);
 			}
-			
+
             $em->flush();
         }
 
