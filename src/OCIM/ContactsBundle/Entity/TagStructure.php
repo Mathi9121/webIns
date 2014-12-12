@@ -21,11 +21,9 @@ class TagStructure
      */
     private $tag;
 
-	private $structures;
 
 
 	public function __construct() {
-        $this->structures = new ArrayCollection();
     }
 
 
