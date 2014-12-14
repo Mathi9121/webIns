@@ -3,7 +3,7 @@
 namespace OCIM\FormationsBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
-
+use OCIM\FormationsBundle\DQL\Year;
 /**
  * FormationRepository
  *
@@ -14,14 +14,19 @@ class FormationRepository extends EntityRepository
 {
 	public function findAll()
     {
-        return $this->findBy(array(), array('dateDebut' => 'ASC'));
+			return $this->getEntityManager()
+				->createQuery(
+					'SELECT f FROM OCIMFormationsBundle:Formation f'
+				)
+				->getResult();
     }
-	
+
 	public function findAllFutursFormations(){
 		return $this->getEntityManager()
             ->createQuery(
                 'SELECT f FROM OCIMFormationsBundle:Formation f
-				WHERE f.dateFin >= :date' 
+								WHERE f.dateFin >= :date
+								ORDER BY f.dateDebut ASC'
             )->setParameter('date', new \DateTime('now'))
             ->getResult();
 	}

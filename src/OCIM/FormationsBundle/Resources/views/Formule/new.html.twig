@@ -4,6 +4,16 @@
 {% block title %}Nouvelle Formule{% endblock %}
 {% block titre %}Création nouvelle formule{% endblock %}
 
+
+{% block  javascripts %}
+{{parent()}}
+  {% javascripts
+  '@OCIMFormationsBundle/Resources/public/js/Formation/ajoutTypeFormations.js' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+  {% endjavascripts %}
+{% endblock %}
+
+
 {% block body %}
 
 <form action="{{ path('formule_create') }}" method="post" class="forms units-row" {{ form_enctype(form) }}>
@@ -20,9 +30,9 @@
 	<div class="unit-66">
 	<label for="list-logi">La formule inclut :</label>
 		<ul class="forms-inline-list" id="list-logi">
-			<li>{{ form_widget(form.midi) }}{{ form_label(form.midi) }}</li>
-			<li>{{ form_widget(form.soir) }}{{ form_label(form.soir) }}</li>
-			<li>{{ form_widget(form.nuit) }}{{ form_label(form.nuit) }}</li>
+			<li>{{ form_widget(form.midi) }}</li>
+			<li>{{ form_widget(form.soir) }}</li>
+			<li>{{ form_widget(form.nuit) }}</li>
 		</ul>
 	</div>
 </div>

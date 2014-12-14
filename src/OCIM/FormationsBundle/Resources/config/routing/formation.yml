@@ -28,3 +28,8 @@ formation_delete:
     path:     /{id}/delete
     defaults: { _controller: "OCIMFormationsBundle:Formation:delete" }
     requirements: { _method: post|delete }
+
+formation_addtype:
+    path:     /nouveau-type
+    defaults: { _controller: "OCIMFormationsBundle:Formation:ajoutType" }
+    requirements: { _method: post }

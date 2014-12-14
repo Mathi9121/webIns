@@ -3,6 +3,7 @@
 namespace OCIM\FormationsBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use OCIM\FormationsBundle\Entity\Formule;
@@ -24,7 +25,7 @@ class FormuleController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('OCIMFormationsBundle:Formule')->findAll();
-		
+
 		foreach($entities as $entity){
 			//nombre d'inscriptions liées à la formule
 			$qb = $em->createQueryBuilder();
@@ -34,7 +35,7 @@ class FormuleController extends Controller
 			$qb->where('f.formule = :id');
 			$qb->setParameter('id', $entity->getId());
 			$entity->_countInscriptions = $qb->getQuery()->getSingleResult();
-			
+
 			// nombre de formations liées à la formule
 			$qb = $em->createQueryBuilder();
 			$qb->select('count(ff.id)');
@@ -55,21 +56,47 @@ class FormuleController extends Controller
     public function createAction(Request $request)
     {
         $entity = new Formule();
-        $form = $this->createCreateForm($entity);
-        $form->handleRequest($request);
+        if(!$request->isXmlHttpRequest()){
+          $form = $this->createCreateForm($entity);
+          $form->handleRequest($request);
 
-        if ($form->isValid()) {
+          if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
 
             return $this->redirect($this->generateUrl('formule_show', array('id' => $entity->getId())));
-        }
+          }
 
-        return $this->render('OCIMFormationsBundle:Formule:new.html.twig', array(
+          return $this->render('OCIMFormationsBundle:Formule:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
-        ));
+          ));
+        }
+        // sinon c'est de l'ajax -> page formation/new
+        else{
+          $data = $request->getContent();
+          $data = json_decode($data);
+
+          $entity->setDescription($data['0']->description);
+          $entity->setTarif($data['0']->tarif);
+          $entity->setNuit((bool)$data['0']->hebergement);
+          $entity->setMidi((bool)$data['0']->midi);
+          $entity->setSoir((bool)$data['0']->soir);
+
+          //enregistrement bdd
+          $em = $this->getDoctrine()->getManager();
+          $em->persist($entity);
+          $em->flush();
+
+          if($entity->getId()){
+            return new Response($entity->getId(), Response::HTTP_OK);
+          }
+          else{
+            return new Response("Problème. Enregistrement annulé");
+          }
+        }
+
     }
 
     /**

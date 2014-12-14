@@ -3,9 +3,11 @@
 namespace OCIM\FormationsBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use OCIM\FormationsBundle\Entity\Formation;
+use OCIM\FormationsBundle\Entity\TypeFormation;
 use OCIM\FormationsBundle\Entity\Formule;
 use OCIM\FormationsBundle\Entity\formationFormule;
 use OCIM\FormationsBundle\Form\FormationType;
@@ -29,12 +31,12 @@ class FormationController extends Controller
 
         $formations = $em->getRepository('OCIMFormationsBundle:Formation')->findAll();
 		$types = $em->getRepository('OCIMFormationsBundle:TypeFormation')->findAll();
-		
+
 		foreach($formations as $formation){
 			$formation->_count = $em->getRepository('OCIMFormationsBundle:Inscription')->countInscriptionsByFormation($formation->getId());
 			$formation->_nbJours = $formation->getDateDebut()->diff($formation->getDateFin(), true)->format('%a') + 1;
 		}
-		
+
 		return $this->render('OCIMFormationsBundle:Formation:index.html.twig', array(
 			'formations' => $formations,
 			'types' => $types,
@@ -62,6 +64,33 @@ class FormationController extends Controller
             'entity' => $entity,
             'edit_form'   => $form->createView(),
         ));
+    }
+
+    public function ajoutTypeAction(Request $request){
+      if($request->isXmlHttpRequest()){
+
+        $em = $this->getDoctrine()->getManager();
+        $type = new TypeFormation();
+
+        $str = json_decode($request->getContent());
+        $str = ucfirst($str);
+
+        if(is_string($str)){
+
+          $type->setType($str);
+
+          $em->persist($type);
+          $em->flush();
+
+          if($type->getId()){
+            return new Response( $type->getId(), Response::HTTP_OK);
+          }
+          else{
+            return new Response('Problème durant lenregistrement, Rechargez la page.', Response::HTTP_FAIL);
+          }
+        }
+
+      }
     }
 
     /**
@@ -109,17 +138,17 @@ class FormationController extends Controller
         $entity = $em->getRepository('OCIMFormationsBundle:Formation')->find($id);
 		$entity->_count = $em->getRepository('OCIMFormationsBundle:Inscription')->countInscriptionsByFormation($id);
 		$inscriptions = $em->getRepository('OCIMFormationsBundle:Inscription')->findAllByFormation($id);
-		
+
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Formation entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
-		
+
 		// Stats des inscriptions
 		$statsInscriptions = array();
 		foreach($inscriptions as $inscription){
-		
+
 			if( !isset($statsInscriptions[$inscription->getDateInscription()->format('d-m-Y')])){
 				$statsInscriptions[$inscription->getDateInscription()->format('d-m-Y')] = 1 ;
 			}
@@ -128,7 +157,7 @@ class FormationController extends Controller
 			}
 			ksort($statsInscriptions);
 		}
-		
+
         return $this->render('OCIMFormationsBundle:Formation:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
@@ -160,8 +189,8 @@ class FormationController extends Controller
             'delete_form' => $deleteForm->createView(),
         ));
     }
-	
-	
+
+
     /**
     * Creates a form to edit a Formation entity.
     *
@@ -180,7 +209,7 @@ class FormationController extends Controller
 
         return $form;
     }
-	
+
     /**
      * Edits an existing Formation entity.
      *
@@ -194,7 +223,7 @@ class FormationController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Formation entity.');
         }
-		
+
 		$ancienncesFF = new ArrayCollection();
 		foreach ($entity->getFormationFormule() as $ff) {
 			$ancienncesFF->add($ff);
@@ -221,7 +250,7 @@ class FormationController extends Controller
             'delete_form' => $deleteForm->createView(),
         ));
     }
-	
+
     /**
      * Deletes a Formation entity.
      *
