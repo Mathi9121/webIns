@@ -60,6 +60,10 @@ a.options-formation:hover{
 	text-align:center;
 }
 
+table.table-hovered tbody tr.annee-formations:hover td{
+	background-color: inherit;
+}
+
 .no-margin{
 	margin-left: 0px
 }
@@ -88,5 +92,3 @@ a.options-formation:hover{
 .details-formules li.noncompris{
 	opacity: 0.5;
 }
-
-

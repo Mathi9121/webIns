@@ -37,7 +37,13 @@ class FormationController extends Controller
 
       $ac =  new ArrayCollection($qb->getQuery()->getResult());
 
-      // \Doctrine\Common\Util\Debug::dump();
+
+      $qb = $em->createQueryBuilder('f')
+        ->select('MIN(f.dateDebut), MAX(f.dateFin)')
+        ->from('OCIMFormationsBundle:Formation', 'f');
+
+      $datesMinMax = $qb->getQuery()->getResult();
+      //exit(\Doctrine\Common\Util\Debug::dump($datesMinMax[0]));
 
       $formations = new ArrayCollection();
       foreach($ac as $formation){
@@ -55,6 +61,7 @@ class FormationController extends Controller
   		return $this->render('OCIMFormationsBundle:Formation:index.html.twig', array(
   			'formations' => $formations,
   			'types' => $types,
+        'datesminmax' => $datesMinMax[0]
   		));
     }
     /**

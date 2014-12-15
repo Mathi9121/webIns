@@ -2,7 +2,7 @@
 
 {% block stylesheets %}
 {{parent()}}
-{% stylesheets 
+{% stylesheets
 	'@OCIMFormationsBundle/Resources/public/css/formations.css'
 	'@OCIMFormationsBundle/Resources/public/css/jquery.nouislider.css'
 filter='cssrewrite' %}
@@ -33,7 +33,6 @@ filter='cssrewrite' %}
 {# CONTENT #}
 {% block body  %}
 
-
 {# listes formations #}
 <div class="panel">
 	<div class="header">
@@ -43,15 +42,15 @@ filter='cssrewrite' %}
 				<a href="#" class="toggleFiltres"><i class="fa fa-filter"></i> Filtrer</a>
 			</span>
 	</div>
-	
+
 	{# filtres #}
 	<div class="units-row end units-padding filtres hide">
 		<div class="unit-70">
 			{# date #}
 			<div id="date">
 				<div id="datefilter"></div>
-				<div id="event-start" class="left"></div>
-				<div id="event-end" class="right"></div>
+				<div id="event-start" class="left" data-date="{{datesminmax.1|date('U')}}"></div>
+				<div id="event-end" class="right" data-date="{{datesminmax.2|date('U')}}"></div>
 			</div>
 		</div>
 		<div class="unit-30">
@@ -69,14 +68,24 @@ filter='cssrewrite' %}
 	<table class="table-hovered width-100">
 			<thead>
 				<tr>
-					<th><i class="fa fa-graduation-cap"></i> Intitulé</th>
-					<th><i class="fa fa-map-marker"></i> Lieu</th>
-					<th><i class="fa fa-calendar"></i> Dates</th>
+					<th><i class="fa fa-graduation-cap fa-fw"></i>Intitulé</th>
+					<th><i class="fa fa-map-marker fa-fw"></i>Lieu</th>
+					<th><i class="fa fa-calendar fa-fw"></i>Date de début</th>
 					<th></th>
 				</tr>
 			</thead>
 			<tbody>
+					{% set annee = "" %}
 			{% for formation in formations %}
+
+				{% if formation.dateDebut|date('Y') != annee %}
+					<tr style="border-bottom: 2px dashed grey" class="annee-formations">
+						<td colspan="4">
+							<h2 class="end" style="margin-top: 25px"><i class="fa fa-graduation-cap fa-fw"></i> Formations <strong>{{formation.dateDebut|date('Y')}}</strong></h2>
+						</td>
+					</tr>
+					{% set annee = formation.dateDebut|date('Y') %}
+				{% endif %}
 				<tr class="titre-formation" data-idformation="{{formation.id}}" data-typeformation="{{formation.type.id}}" data-debutstamp="{{ formation.dateDebut|date("U") }}" data-finstamp="{{ formation.dateFin|date("U") }}" data-debut="{{ formation.dateDebut|date("d/m/Y") }}" data-fin="{{ formation.dateFin|date("d/m/Y") }}">
 					<td><span class="fa-conteneur"><i class="fa fa-angle-right hide"></i></span>{{ formation.intitule }} <span class="label right" title="Durée de la formation">{{ formation._nbJours }}J</span></td>
 					<td>{{ formation.lieu }}</td>
@@ -105,7 +114,7 @@ filter='cssrewrite' %}
 						</div>
 					</td>
 				</tr>
-				
+
 				{# details #}
 				<tr class="details-formation hide">
 					<td colspan="4">
@@ -139,13 +148,10 @@ filter='cssrewrite' %}
 						</div>
 					</td>
 				</tr>
-				
+
 			{% endfor %}
 			</tbody>
 		</table>
 	</div>
 </div>
 {% endblock %}
-
-
-

@@ -20,14 +20,14 @@ function formatDate ( date ) {
 
 // Write a date as a pretty value.
 function setDate( value ){
-    $(this).html(formatDate(new Date(+value)));   
+    $(this).html(formatDate(new Date(+value)));
 }
 
 
 
 $(document).ready(function(){
-var dateMin = parseInt($("tbody>tr.titre-formation:first-child").attr("data-debutstamp")) * 1000;
-var dateMax = parseInt($("tbody>tr.titre-formation").last().attr("data-finstamp")) * 1000;
+var dateMin = parseInt($("#event-start").attr("data-date")) * 1000;
+var dateMax = parseInt($("#event-end").attr("data-date")) * 1000;
 
 	$("#datefilter").noUiSlider({
 // Create two timestamps to define a range.
@@ -35,11 +35,11 @@ var dateMax = parseInt($("tbody>tr.titre-formation").last().attr("data-finstamp"
         min: (dateMin - 86400000),
         max: (dateMax + 86400000)
     },
-	
+
 // Steps of one week
 //Ici j'ai supprimé le *10 (pour step par tranche d'une semaine)
     step: 24 * 60 * 60 * 1000,
-	
+
 // Two more timestamps indicate the handle starting positions.
     start: [ dateMin - 86400000, dateMax + 86400000],
 	connect: true,
@@ -58,11 +58,11 @@ var dateMax = parseInt($("tbody>tr.titre-formation").last().attr("data-finstamp"
             })
         ],
         format: {
-            decimals: 0   
+            decimals: 0
         }
     }
 	});
-	
+
 	// filtre par date
 	$("#datefilter").change(function(){
 		$("tbody tr.titre-formation").css("display", "table-row");
@@ -94,7 +94,7 @@ $.expr[":"].contains = $.expr.createPseudo(function(arg) {
     };
 });
 
-		
+
 	// filtre par mot clé
 	$('#recherche').on('keyup', function(){
 		var recherche = $(this).val();
@@ -102,15 +102,15 @@ $.expr[":"].contains = $.expr.createPseudo(function(arg) {
 		$('tbody tr.titre-formation td:contains("'+recherche+'")').parent("tr").css("display", "table-row");
 		$('tbody tr[data-idformation*="'+recherche+'"], tbody tr[data-fin*="'+recherche+'"]').css("display", "table-row");
 	});
-	
+
 	//rendre les filtres visibles
 	$('.panel .controls a.toggleFiltres').on('click', function(e){
 		e.preventDefault();
 		$(this).toggleClass('active');
 		$('.filtres').slideToggle();
 	});
-	
-	
+
+
 	// affichage des infos quand click sur une ligne (tr)
 	$('tbody tr.titre-formation').hover(function(){
 		$(this).children('td').first().find('i.fa.fa-angle-right').toggleClass("hide");
@@ -120,8 +120,8 @@ $.expr[":"].contains = $.expr.createPseudo(function(arg) {
 		$('tbody tr.details-formation').hide();
 		$('tbody tr.titre-formation').not(this).removeClass('selected');
 		$("tbody tr").css("background-color", '');
-		
-		
+
+
 		if( $(this).is('.selected') == false){
 			$(this).next('tr.details-formation').slideToggle();
 			$(this).addClass('selected');
@@ -132,6 +132,6 @@ $.expr[":"].contains = $.expr.createPseudo(function(arg) {
 			$('tbody tr.titre-formation').removeClass('selected');
 		}
 	});
-	
-	
+
+
 });
