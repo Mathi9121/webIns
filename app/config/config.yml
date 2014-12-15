@@ -84,7 +84,7 @@ doctrine:
         auto_mapping: true
         dql:
             datetime_functions:
-                year: OCIM\FormationsBundle\DQL\Year
+                YEAR: OCIM\FormationsBundle\DQL\Year
 
 # Swiftmailer Configuration
 swiftmailer:

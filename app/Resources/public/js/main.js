@@ -1,17 +1,29 @@
+window.onresize = titreFixed;
+function titreFixed(){
+	$("#titre").css('width', $("#content").width());
+}
+
+
 $(document).ready(function(){
-	
+
+	titreFixed();
+
 	$('#user a').click(function(){
 		$(this).next('nav').animate({ height: "toggle"}, 300);
 	});
-	
+
 	$("#nav-toggle").click(function(){
 	var state = parseInt($('#content').css('margin-left')) > 200;
-	console.log(state);
+
 		$("#sidebar").animate({
 			"left": (state ? -215 : 0)
+		}, function(){
+			titreFixed();
 		});
 		$("#content").animate({
 			"margin-left": (state ? 0 : 215)
+		}, function(){
+			titreFixed();
 		});
 		if(state){
 			$("#sidebar nav").addClass("disparu");
@@ -19,12 +31,12 @@ $(document).ready(function(){
 		else{
 			$("#sidebar nav").removeClass("disparu");
 		}
-		
+
 	});
-	
+
 	//eventlistener plein ecran
 	$("#fullscreen-btn").click(toggleFullScreen);
-	
+
 	//plein ecran
 	function toggleFullScreen() {
 		if (!document.fullscreenElement &&    // alternative standard method
@@ -46,5 +58,5 @@ $(document).ready(function(){
 			}
 		}
 	}
-	
+
 });

@@ -3,7 +3,7 @@
 namespace OCIM\FormationsBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
-use OCIM\FormationsBundle\DQL\Year;
+
 /**
  * FormationRepository
  *

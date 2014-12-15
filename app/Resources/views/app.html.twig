@@ -127,10 +127,10 @@
 
 
 		{% if block('titre') %}
-			<div id="titre" class="group">
+			<div id="titre" class="group" data-tools="navigation-fixed">
 				<div class="left">
 
-				<i class="icon {{pagevars.iconclass}} fa-fw fa-2x"></i>
+				<i class="icon {{ pagevars.iconclass }} fa-fw fa-2x"></i>
 
 					<h2>{% block titre %}{% endblock %}</h2>
 					<nav class="breadcrumbs">

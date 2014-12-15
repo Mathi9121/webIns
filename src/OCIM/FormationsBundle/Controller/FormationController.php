@@ -12,7 +12,7 @@ use OCIM\FormationsBundle\Entity\Formule;
 use OCIM\FormationsBundle\Entity\formationFormule;
 use OCIM\FormationsBundle\Form\FormationType;
 use Doctrine\Common\Collections\ArrayCollection;
-
+use Doctrine\ORM\Query\ResultSetMapping;
 
 /**
  * Formation controller.
@@ -27,20 +27,35 @@ class FormationController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
+      $em = $this->getDoctrine()->getManager();
 
-        $formations = $em->getRepository('OCIMFormationsBundle:Formation')->findAll();
-		$types = $em->getRepository('OCIMFormationsBundle:TypeFormation')->findAll();
+      $qb = $em->createQueryBuilder('f')
+        ->select('f, YEAR(f.dateDebut) AS annee')
+        ->from('OCIMFormationsBundle:Formation', 'f')
+        ->addOrderBy('annee', 'DESC')
+        ->addOrderBy('f.dateDebut', 'ASC');
 
-		foreach($formations as $formation){
-			$formation->_count = $em->getRepository('OCIMFormationsBundle:Inscription')->countInscriptionsByFormation($formation->getId());
-			$formation->_nbJours = $formation->getDateDebut()->diff($formation->getDateFin(), true)->format('%a') + 1;
-		}
+      $ac =  new ArrayCollection($qb->getQuery()->getResult());
 
-		return $this->render('OCIMFormationsBundle:Formation:index.html.twig', array(
-			'formations' => $formations,
-			'types' => $types,
-		));
+      // \Doctrine\Common\Util\Debug::dump();
+
+      $formations = new ArrayCollection();
+      foreach($ac as $formation){
+        $formations->add($formation[0]);
+      }
+
+      // $formations = $em->getRepository('OCIMFormationsBundle:Formation')->findBy(array(), array('YEAR(dateDebut)' => 'DESC'));
+	    $types = $em->getRepository('OCIMFormationsBundle:TypeFormation')->findAll();
+
+  		foreach($formations as $formation){
+  			$formation->_count = $em->getRepository('OCIMFormationsBundle:Inscription')->countInscriptionsByFormation($formation->getId());
+  			$formation->_nbJours = $formation->getDateDebut()->diff($formation->getDateFin(), true)->format('%a') + 1;
+  		}
+
+  		return $this->render('OCIMFormationsBundle:Formation:index.html.twig', array(
+  			'formations' => $formations,
+  			'types' => $types,
+  		));
     }
     /**
      * Creates a new Formation entity.

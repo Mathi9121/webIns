@@ -157,6 +157,7 @@ header a#nav-toggle:hover{color: #e52f23}
 	background-color: #ffffff;
 	margin-bottom: 25px;
 	padding: 4px 0px 4px 10px;
+	left: auto;
 }
 #titre i.icon{
 	position: absolute;
@@ -165,6 +166,11 @@ header a#nav-toggle:hover{color: #e52f23}
 	margin-top: 8px;
 }
 #titre h2{margin: 0px;}
+
+
+#titre.navigation-fixed{
+	border-bottom: 1px solid #e52f23;
+}
 
 /***** breadcrumbs ******/
 
