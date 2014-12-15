@@ -1,7 +1,3 @@
 ocim_export_documents:
     resource: "@OCIMExportBundle/Resources/config/routing/template.yml"
     prefix:   /documents
-
-ocim_export_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: OCIMExportBundle:Default:index }

@@ -57,7 +57,10 @@ class TemplateController extends Controller
     public function liensAction(Request $request){
       if($request->isXmlHttpRequest()){
 
-        return new Response( "" , Response::HTTP_OK);
+        $em = $this->getDoctrine()->getManager();
+        $liens = $em->getRepository('OCIMExportBundle:Template')->getLiens();
+
+        return new Response( json_encode($liens), Response::HTTP_OK);
       }
     }
 

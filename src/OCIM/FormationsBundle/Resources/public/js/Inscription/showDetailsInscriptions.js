@@ -21,9 +21,9 @@ $(document).ready(function(){
 		// données pour la boite
 		var idinscription = $(this).closest('tr').attr('data-idinscription');
 		var nom = $(this).closest('tr').children().eq(1).text();
-		var prenom = $(this).closest('tr').children().eq(2).text();
-		var formule = $("#general table tbody tr[data-idinscription='"+idinscription+"']").children().eq(3).find("abbr").attr('title');
-		var formuleId = $("#general table tbody tr[data-idinscription='"+idinscription+"']").children().eq(3).text();
+		var prenom = $(this).closest('tr').children().eq(2).text() + " " + $(this).closest('tr').children().eq(3).text();
+		var formule = $("#general table tbody tr[data-idinscription='"+idinscription+"']").children().eq(4).find("abbr").attr('title');
+		var formuleId = $("#general table tbody tr[data-idinscription='"+idinscription+"']").children().eq(4).text();
 		var liens = $("#general table tbody tr[data-idinscription='"+idinscription+"']").children().last().find('ul').clone(true);
 		$(liens).removeClass('dropdown');
 		$(liens).show();
@@ -31,7 +31,7 @@ $(document).ready(function(){
 		var trPosition =  $(this).offset().top - $(this).closest('.tab').offset().top;
 		var tableH = $(this).closest('table').height();
 
-		var dateInscription = $("#general table tbody tr[data-idinscription='"+idinscription+"']").children().eq(5).text();
+		var dateInscription = $("#general table tbody tr[data-idinscription='"+idinscription+"']").children().eq(6).text();
 		var mois = [ "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
 		var dateJ = dateInscription.substr(0,2);
 		var dateM = dateInscription.substr(3,2);

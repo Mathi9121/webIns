@@ -12,4 +12,14 @@ use Doctrine\ORM\EntityRepository;
  */
 class TemplateRepository extends EntityRepository
 {
+  public function getLiens(){
+    return $this->getEntityManager()
+      ->createQuery(
+        "SELECT t.id, t.nom FROM OCIMExportBundle:Template t
+        WHERE t.type = 'pdf'
+        OR t.type = 'convention'
+        ORDER BY t.id DESC"
+      )
+      ->getResult();
+  }
 }
