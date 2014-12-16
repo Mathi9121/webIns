@@ -24,32 +24,36 @@ class ConventionType extends AbstractType
 				'label' => "Date d'édition",
 				'widget' => 'single_text',
 				'required' => false,
-				'attr'=> array('class'=>'input-big text-centered'),
+				'attr'=> array('class'=>'input-big text-centered', 'data-tool' => 'datepicker'),
 				'format' => 'dd/MM/yyyy'
 				))
             ->add('etape1', 'date', array(
 				'widget' => 'single_text',
 				'required' => false,
 				'label' => "Etape 1",
-				'format' => 'dd/MM/yyyy'
+				'format' => 'dd/MM/yyyy',
+        'attr'=> array('data-tool' => 'datepicker'),
 				))
             ->add('etape2', 'date', array(
 				'widget' => 'single_text',
 				'required' => false,
 				'label' => "Etape 2",
-				'format' => 'dd/MM/yyyy'
+				'format' => 'dd/MM/yyyy',
+        'attr'=> array('data-tool' => 'datepicker'),
 				))
             ->add('etape3', 'date', array(
 				'widget' => 'single_text',
 				'required' => false,
 				'label' => "Etape 3",
-				'format' => 'dd/MM/yyyy'
+				'format' => 'dd/MM/yyyy',
+        'attr'=> array('data-tool' => 'datepicker'),
 				))
             ->add('etape4', 'date', array(
 				'widget' => 'single_text',
 				'required' => false,
 				'label' => "Etape 4",
-				'format' => 'dd/MM/yyyy'
+				'format' => 'dd/MM/yyyy',
+        'attr'=> array('data-tool' => 'datepicker'),
 				))
         ;
     }

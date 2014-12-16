@@ -59,4 +59,25 @@ $(document).ready(function(){
 		}
 	}
 
+	// datepicker init
+	// sur les element contenant data-tool='datepicker'
+	$("input[data-tool='datepicker']").datetimepicker({
+		lang:'fr',
+		timepicker:false,
+		format:'d/m/Y',
+		i18n:{
+			fr:{
+				months:[
+				'Janvier','Fevrier','Mars','Avril',
+				'Mai','Juin','Juillet','Août',
+				'Septembre','Octobre','Novembre','Décembre',
+				],
+				dayOfWeek:[
+				"Di", "Lu", "Ma", "Me",
+				"Je", "Ve", "Sa",
+				]
+			}
+		},
+	});
+
 });

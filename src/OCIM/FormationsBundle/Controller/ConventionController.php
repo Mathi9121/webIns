@@ -123,17 +123,13 @@ class ConventionController extends Controller
         // update de letape
         if(isset($data['0']->numetape)){
           $etape = $data['0']->numetape;
+          $dateetape = $data['0']->dateetape;
           // on récupère letat
           $getnomfct = "getEtape".$etape;
           $setnomfct = "setEtape".$etape;
           $date = $convention->$getnomfct();
-
-          if(is_null($date)){
-            $convention->$setnomfct(new \DateTime('now'));
-          }
-          else{
-            $convention->$setnomfct(null);
-          }
+          $convention->$setnomfct(new \DateTime($dateetape));
+          
           $em->persist($convention);
           $em->flush();
 

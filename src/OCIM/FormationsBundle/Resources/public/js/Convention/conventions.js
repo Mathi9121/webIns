@@ -79,35 +79,94 @@ $(document).ready(function(){
     var contenu = td.html();
 
     td.html('<i class="fa fa-refresh fa-spin"></i>');
-    var data = new Array();
-
-    var idconvention = td.parent('tr').attr('data-idconvention');
-    var etape = td.attr('data-etape');
-
-    var dateedition = "";
-    var numconvention = "";
 
     if(td.is('.edition-convention')){
-      dateedition = prompt("Modifier la date d'édition de la convention", $.trim(td.text()));
-    }
-    if(td.is('.num-convention')){
-      numconvention = prompt("Modifier le numéro de la convention", $.trim(td.find('span').text()));
-    }
+      //dateedition = prompt("Modifier la date d'édition de la convention", $.trim(td.text()));
+      td.datetimepicker({
+        lang:'fr',
+        timepicker:false,
+        format:'d/m/Y',
+        i18n:{
+          fr:{
+            months:[
+            'Janvier','Fevrier','Mars','Avril',
+            'Mai','Juin','Juillet','Août',
+            'Septembre','Octobre','Novembre','Décembre',
+            ],
+            dayOfWeek:[
+            "Di", "Lu", "Ma", "Me",
+            "Je", "Ve", "Sa",
+            ]
+          }
+        },
+        onChangeDateTime: function(dp,$input){
+          var idconvention = td.parent('tr').attr('data-idconvention');
+          var etape = td.attr('data-etape');
+          var dateedition = $input.val();
+          var numconvention = "";
+          var data = new Array({
+            'idconvention' : idconvention,
+            'numetape' : (etape)? etape : null,
+            'edition' : (dateedition)? dateedition : null,
+            'numconvention' : (numconvention)? numconvention : null,
+          });
 
-    if(((td.is('.edition-convention')||td.is('.num-convention'))&&(dateedition||numconvention))||
-      (td.is('.etape-convention'))){
-      data.push({
-        'idconvention' : idconvention,
-        'numetape' : (etape)? etape : null,
-        'edition' : (dateedition)? dateedition : null,
-        'numconvention' : (numconvention)? numconvention : null,
+          updateConvention(data, td);
+        }
       });
+    }
 
-      updateConvention(data, td);
+    else if(td.is('.num-convention')){
+
+      numconvention = prompt("Modifier le numéro de la convention", $.trim(td.find('span').text()));
+
+      if(numconvention){
+        var idconvention = td.parent('tr').attr('data-idconvention');
+          var data = new Array({
+          'idconvention' : idconvention,
+          'numetape' : null,
+          'edition' :  null,
+          'numconvention' : numconvention,
+        });
+        updateConvention(data, td);
+        }
+      else{
+        td.html(contenu);
+      }
     }
-    else{
-      td.html(contenu);
+    else if(td.is('.etape-convention')){
+      td.datetimepicker({
+        lang:'fr',
+        timepicker:false,
+        format:'Y/m/d',
+        i18n:{
+          fr:{
+            months:[
+            'Janvier','Fevrier','Mars','Avril',
+            'Mai','Juin','Juillet','Août',
+            'Septembre','Octobre','Novembre','Décembre',
+            ],
+            dayOfWeek:[
+            "Di", "Lu", "Ma", "Me",
+            "Je", "Ve", "Sa",
+            ]
+          }
+        },
+        onChangeDateTime: function(dp,$input){
+          var numetape = td.attr('data-etape');
+          var idconvention = td.parent('tr').attr('data-idconvention');
+          var data = new Array({
+            'idconvention' : idconvention,
+            'numetape' : numetape,
+            'dateetape': $input.val(),
+            'edition' :  null,
+            'numconvention' : null,
+          });
+          updateConvention(data, td);
+        }
+      });
     }
+
     td.removeClass('disabled');
   });
 

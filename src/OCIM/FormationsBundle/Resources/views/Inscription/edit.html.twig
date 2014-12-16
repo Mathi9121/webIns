@@ -156,9 +156,12 @@
 					<div class="unit-50">
 						{{form_row(form.convention.numero)}}
 						{{form_row(form.convention.edition)}}
-						<div>
-							{% if entity.convention %}{{entity.convention.edition|date('Y/m/')}}<strong>{{ entity.convention.numero }}</strong>{% endif %}
-						</div>
+						<p class="text-centered">
+							{% if entity.convention %}
+							<i class="fa fa-arrow-right"></i> La convention porte le code :<br/>
+							<span class="label">{{entity.convention.edition|date('Y/m/')}}<strong>{{ entity.convention.numero }}</strong></span>
+							{% endif %}
+						</p>
 					</div>
 					<div class="unit-50">
 						{{form_row(form.convention.etape1)}}

@@ -234,6 +234,10 @@
 			{% else %}
 				<span class="label label-outline label-green">OUI</span>
 			{% endif %}
+
+			{% if entity.convention is not null %}
+			{{entity.convention.numero}}{{entity.convention.numero}}
+			{% endif %}
 		</div>
 	</div>
 

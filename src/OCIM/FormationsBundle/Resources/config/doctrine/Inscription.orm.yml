@@ -5,6 +5,7 @@ OCIM\FormationsBundle\Entity\Inscription:
         convention:
             targetEntity: Convention
             inversedBy: inscription
+            cascade: ["all"]
             joinColumn:
                 convention_id:
                     referencedColumnName: id
@@ -62,5 +63,5 @@ OCIM\FormationsBundle\Entity\Inscription:
         ordre:
             type: integer
             nullable: true
-    lifecycleCallbacks: 
+    lifecycleCallbacks:
         prePersist: [ onPrePersist ]

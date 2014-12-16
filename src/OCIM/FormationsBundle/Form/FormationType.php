@@ -16,34 +16,35 @@ class FormationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
-		
+
         $builder
-			->add('intitule', null, array(
-				'required' => true,
-				'label'  => 'Intitulé de la formation',
-				'attr' => array('class'=>'width-100')
+			   ->add('intitule', null, array(
+				    'required' => true,
+				    'label'  => 'Intitulé de la formation',
+				    'attr' => array('class'=>'width-100')
 				))
-            ->add('lieu', null, array(
+        ->add('lieu', null, array(
 				'required' => true,
 				'label'  => 'Lieu',
 				'attr' => array('class'=>'width-100')
 				))
-            ->add('dateDebut', 'date', array(
-				'required' => true,
-				'widget' => 'single_text',
-				'label'  => 'Date de début',
-				'format' => 'dd/MM/yyyy',
-				'attr' => array(
-					'placeholder'=>'JJ/MM/AAAA',
-					'size' => '10',
-					'class' => 'width-100 datepicker',
-				)))
+        ->add('dateDebut', 'date', array(
+  				'required' => true,
+  				'widget' => 'single_text',
+  				'label'  => 'Date de début',
+  				'format' => 'dd/MM/yyyy',
+  				'attr' => array(
+  					'placeholder'=>'JJ/MM/AAAA',
+  					'size' => '10',
+  					'class' => 'width-100 datepicker',
+            'data-tool' => 'datepicker'
+				      )))
             ->add('dateFin', 'date', array(
 				'required' => true,
 				'widget' => 'single_text',
 				'format' => 'dd/MM/yyyy',
 				'label'  => 'Date de fin',
-				'attr' => array('placeholder'=>'JJ/MM/AAAA','size' => '10', 'max-length'=>'10', 'class'=>'width-100 datepicker')
+				'attr' => array('placeholder'=>'JJ/MM/AAAA','size' => '10', 'max-length'=>'10', 'class'=>'width-100 datepicker','data-tool' => 'datepicker')
 				))
             ->add('dateText', null, array(
 				'required' => true,
@@ -72,7 +73,7 @@ class FormationType extends AbstractType
 				))
 			;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */

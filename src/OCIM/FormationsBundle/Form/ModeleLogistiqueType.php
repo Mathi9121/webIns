@@ -30,7 +30,7 @@ class ModeleLogistiqueType extends AbstractType
             ->add('date', 'date', array(
 				'widget' => 'single_text',
 				'format' => 'dd/MM/yyyy',
-				'attr' => array('placeholder'=>'JJ/MM/AAAA', 'class'=>'datepicker'),
+				'attr' => array('placeholder'=>'JJ/MM/AAAA', 'class'=>'datepicker', 'data-tool'=> "datepicker"),
 				'required'=> false,
 			))
             ->add('description', 'text', array(

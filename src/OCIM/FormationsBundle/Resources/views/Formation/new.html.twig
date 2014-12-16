@@ -11,6 +11,7 @@
 {% endblock %}
 
 {% block  javascripts %}
+{{parent()}}
 {% javascripts
   '%kernel.root_dir%/Resources/public/js/popup.js'
   '@OCIMFormationsBundle/Resources/public/js/Formation/formFormation.js' %}
