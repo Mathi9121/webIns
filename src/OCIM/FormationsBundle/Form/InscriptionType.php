@@ -13,12 +13,12 @@ use Symfony\Component\Form\FormEvents;
 class InscriptionType extends AbstractType
 {
 	private $idformation;
-	
+
 	public function __construct($idformation)
     {
         $this->idformation = $idformation;
     }
-	
+
         /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -73,18 +73,21 @@ class InscriptionType extends AbstractType
 				'label' => "Le stagiaire a-t-il besoin d'une convention?"
 			))
             //->add('hash')
-            //->add('convention')
+      ->add('convention', new \OCIM\FormationsBundle\Form\ConventionType(), array(
+				'data_class' => 'OCIM\FormationsBundle\Entity\Convention',
+				'required' => false,
+			))
 			->add('admin', new \OCIM\ContactsBundle\Form\AdminType(), array(
 				'data_class' => 'OCIM\ContactsBundle\Entity\Admin',
 				'required' => false,
-				
+
 			))
 			->add('signataire', new \OCIM\ContactsBundle\Form\SignataireType(), array(
 				'data_class' => 'OCIM\ContactsBundle\Entity\Signataire',
 				'required' => false,
 				'em' => $entityManager
 			))
-			
+
 			->addEventListener(
 				FormEvents::POST_SUBMIT,
 				function(FormEvent $event) {
@@ -94,7 +97,7 @@ class InscriptionType extends AbstractType
 			)
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */

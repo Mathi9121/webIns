@@ -39,7 +39,7 @@
 				<span class="controls right group">
 				</span>
 		</div>
-		
+
 		<div class="panel-body">
 			<div class="units-row end">
 				<div class="unit-50">{{ form_row(form.dateInscription) }}</div>
@@ -48,20 +48,20 @@
 			{{ form_row(form.formationformule) }}
 		</div>
 	</div>
-	
-	
+
+
 	<div class="unit-50 panel">
 		<div class="header">
 			<span class="titre">Attentes du stagiaire</span>
 				<span class="controls right group">
 				</span>
 		</div>
-		
+
 		<div class="panel-body">
 			{{ form_widget(form.attentes) }}
 		</div>
 	</div>
-	
+
 </div>
 
 
@@ -73,7 +73,7 @@
 				<span class="controls right group">
 				</span>
 		</div>
-		
+
 		<div class="panel-body">
 			<div class="units-row end">
 				<div class="unit-20">
@@ -88,20 +88,20 @@
 			{{ form_row(form.stagiaire.tel) }}
 			{{ form_row(form.stagiaire.fax) }}
 			{{ form_row(form.stagiaire.mail) }}
-			
+
 		</div>
-		
+
 
 	</div>
-	
+
 	<div class="panel unit-50">
 		<div class="header">
 			<span class="titre">Adresse du stagiaire</span>
 				<span class="controls right group">
-				
+
 				</span>
 		</div>
-		
+
 		<div class="panel-body">
 			{{ form_row(form.stagiaire.adresse.nomStructure) }}
 			{{ form_row(form.stagiaire.adresse.adresse) }}
@@ -118,10 +118,10 @@
 		<div class="header">
 			<span class="titre">Contact Administratif</span>
 				<span class="controls right group">
-				
+
 				</span>
 		</div>
-		
+
 		<div class="panel-body">
 			<div class="units-row end">
 				<div class="unit-20">
@@ -135,23 +135,42 @@
 			{{ form_row(form.admin.fonction) }}
 			{{ form_row(form.admin.tel) }}
 			{{ form_row(form.admin.mail) }}
-		
+
 		</div>
 	</div>
-	
+
 	<div class="panel unit-50">
 		<div class="header">
 			<span class="titre">Convention</span>
-				<span class="controls right group">
-				
-				</span>
 		</div>
-		
+
 		<div class="panel-body">
-			{{form_row(form.statutConvention)}}
+			<ul class="forms-inline-list">
+				<li>
+					{{form_row(form.statutConvention)}}
+				</li>
+			</ul>
+			<hr/>
+			<div class="conventionblock">
+				<div class="units-row end">
+					<div class="unit-50">
+						{{form_row(form.convention.numero)}}
+						{{form_row(form.convention.edition)}}
+						<div>
+							{% if entity.convention %}{{entity.convention.edition|date('Y/m/')}}<strong>{{ entity.convention.numero }}</strong>{% endif %}
+						</div>
+					</div>
+					<div class="unit-50">
+						{{form_row(form.convention.etape1)}}
+						{{form_row(form.convention.etape2)}}
+						{{form_row(form.convention.etape3)}}
+						{{form_row(form.convention.etape4)}}
+					</div>
+			</div>
 		</div>
 	</div>
-	
+
+	</div>
 </div>
 
 
@@ -160,10 +179,10 @@
 		<div class="header">
 			<span class="titre">Signataire</span>
 				<span class="controls right group">
-				
+
 				</span>
 		</div>
-		
+
 		<div class="panel-body">
 			<div class="units-row end">
 				<div class="unit-20">
@@ -177,13 +196,13 @@
 			{{ form_row(form.signataire.fonction) }}
 			{{ form_row(form.signataire.mail) }}
 		</div>
-		
+
 	</div>
 	<div class="panel unit-50">
 		<div class="header">
 			<span class="titre">Structure du Signataire</span>
 				<span class="controls right group">
-				
+
 				</span>
 		</div>
 		<div class="panel-body">

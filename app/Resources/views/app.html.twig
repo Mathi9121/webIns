@@ -14,6 +14,7 @@
 	{% block stylesheets %}
 		{% stylesheets '%kernel.root_dir%/Resources/public/css/kube.min.css'
 						'%kernel.root_dir%/Resources/public/css/style.css'
+						'%kernel.root_dir%/Resources/public/css/jquery.datetimepicker.css'
 		filter="cssrewrite" %}
 			<link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset_url }}"/>
 		{% endstylesheets %}
@@ -166,6 +167,7 @@
 {% block javascripts %}
 	{% javascripts
 		'../app/Resources/public/js/kube.min.js'
+		'../app/Resources/public/js/jquery.datetimepicker.js'
 		'../app/Resources/public/js/main.js'
 	%}
 		<script src="{{ asset_url }}"></script>
