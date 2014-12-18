@@ -56,10 +56,18 @@ class TemplateController extends Controller
 
     public function liensAction(Request $request){
       if($request->isXmlHttpRequest()){
-
+        $idinscription = $request->getContent();
         $em = $this->getDoctrine()->getManager();
-        $liens = $em->getRepository('OCIMExportBundle:Template')->getLiens();
+        $liens = $em->getRepository('OCIMExportBundle:Template')->findAll();
 
+        //$router = $this->get('router');
+
+        foreach($liens as $lien){
+          $lien->_nom = $this->generateUrl('documents_show', array('id' => $lien->getId(), 'idinscription'=> $idinscription), true);
+          // $lien->_nom = $this->generateUrl('documents_show', array('id' => $lien['id'], 'idinscription'=> $idinscription), true);
+        }
+
+        //return new Response( , 200);
         return new Response( json_encode($liens), Response::HTTP_OK);
       }
     }
