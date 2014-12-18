@@ -64,6 +64,10 @@ table.table-hovered tbody tr.annee-formations:hover td{
 	background-color: inherit;
 }
 
+table th{
+	padding: 0.38em 1.1em;
+}
+
 .no-margin{
 	margin-left: 0px
 }

@@ -1,12 +1,15 @@
-window.onresize = titreFixed;
-function titreFixed(){
+window.onresize = resizeDiv;
+function resizeDiv(){
 	$("#titre").css('width', $("#content").width());
+	$('#titre').wrap("<div id='titre-wrap'></div>");
+	$('#titre-wrap').css('height', $('#titre').height());
+	$('#titre-wrap').css('margin-bottom', $('#titre').css('margin-bottom'));
 }
 
 
 $(document).ready(function(){
 
-	titreFixed();
+	resizeDiv();
 
 	$('#user a').click(function(){
 		$(this).next('nav').animate({ height: "toggle"}, 300);

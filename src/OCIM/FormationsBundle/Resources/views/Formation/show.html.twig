@@ -2,7 +2,7 @@
 
 {% block stylesheets %}
 {{parent()}}
-{% stylesheets 
+{% stylesheets
 	'@OCIMFormationsBundle/Resources/public/css/formations.css'
 filter='cssrewrite' %}
 	<link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset_url }}"/>
@@ -26,7 +26,7 @@ couleurs['3']	= 		"rgba(255, 54, 0, 0.3)";
 couleurs['2hover'] = 	"rgba(255,165,0, 0.5)";
 couleurs['1hover'] = 		"rgba(3, 207, 3,  0.5)";
 couleurs['3hover']	= 		"rgba(255, 54, 0, 0.5)";
-	
+
 	var dataStatus = [
     {% for stat in entity._count %}
 		{% set label = "" %}
@@ -45,11 +45,11 @@ couleurs['3hover']	= 		"rgba(255, 54, 0, 0.5)";
 		},
 	{% endfor %}
 	];
-	
-	
-	
+
+
+
 	var dataDates = {
-    labels: [' {{ inscriptions|keys|join("','")|raw }} '], 
+    labels: [' {{ inscriptions|keys|join("','")|raw }} '],
     datasets: [
         {
             label: "My First dataset",
@@ -60,7 +60,7 @@ couleurs['3hover']	= 		"rgba(255, 54, 0, 0.5)";
             pointHighlightFill: "#fff",
             pointHighlightStroke: "rgba(220,220,220,1)",
             data: [{{ inscriptions|join(",") }}],
-			
+
 		},
     ]
 };
@@ -68,11 +68,11 @@ couleurs['3hover']	= 		"rgba(255, 54, 0, 0.5)";
 	var ratioInscriptions = new Chart(canvas1).Doughnut(dataStatus, {});
 	var canvas2 = $("#dates-inscriptions").get(0).getContext("2d");
 	var ratioInscriptions = new Chart(canvas2).Line(dataDates, {
-		responsive: true, 
+		responsive: true,
 		maintainAspectRatio: false,
 		tooltipTemplate: {% verbatim %} "<%if (label){%><%=label%>: <%}%><%= value %> inscriptions" {% endverbatim %},
 	});
-	
+
 </script>
 {% endblock %}
 
@@ -94,31 +94,31 @@ couleurs['3hover']	= 		"rgba(255, 54, 0, 0.5)";
 {% block body -%}
 
 <div class="units-row">
-	
+
 	<div class="unit-60 panel">
 		<div class="header">
 			<span class="titre">Progression des inscriptions</span>
 			<span class="controls right group">
-				
+
 			</span>
 		</div>
 		<div class="panel-body">
 			<canvas id="dates-inscriptions" height="350"></canvas>
 		</div>
 	</div>
-	
+
 	<div class="unit-40 panel">
 		<div class="header">
 			<span class="titre">Statuts des inscriptions</span>
 			<span class="controls right group">
-				
+
 			</span>
 		</div>
 		<div class="panel-body">
 			<canvas id="statuts-inscriptions" height="400"></canvas>
 		</div>
 	</div>
-	
+
 </div>
 
 
@@ -127,50 +127,54 @@ couleurs['3hover']	= 		"rgba(255, 54, 0, 0.5)";
 		<div class="header">
 			<span class="titre">Information sur la formation</span>
 				<span class="controls right group">
-					
+
 				</span>
 		</div>
-		
+
 		<div class="panel-body">
 			<table class="width-100 ">
 			<tr>
-				<th><i class="fa fa-graduation-cap"></i> Intitulé</th>
+				<th><i class="fa fa-info fa-fw"></i> Identifiant</th>
+				<td><strong>{{ entity.id }}</strong> (<a href="{{path('inscriptionpublique', {'idformation': entity.id})}}">Lien</a>)</td>
+			</tr>
+			<tr>
+				<th><i class="fa fa-graduation-cap fa-fw"></i> Intitulé</th>
 				<td>{{ entity.intitule }}</td>
 			</tr>
 			<tr>
-				<th><i class="fa fa-cube"></i> Type</th>
+				<th><i class="fa fa-cube fa-fw"></i> Type</th>
 				<td>{{ entity.type }}</td>
 			</tr>
 			<tr>
-				<th><i class="fa fa-map-marker"></i> Lieu</th>
+				<th><i class="fa fa-map-marker fa-fw"></i> Lieu</th>
 				<td>{{ entity.lieu }}</td>
 			</tr>
 			<tr>
-				<th><i class='fa fa-calendar'></i> Date</th>
+				<th><i class='fa fa-calendar fa-fw'></i> Date</th>
 				<td>{{entity.dateText}}</td>
 			</tr>
 			<tr>
-				<th><i class='fa fa-calendar'></i> Date de début</th>
+				<th><i class='fa fa-calendar fa-fw'></i> Date de début</th>
 				<td>{{ entity.dateDebut|date('d/m/Y') }}</td>
 			</tr>
 			<tr>
-				<th><i class='fa fa-calendar'></i> Date de fin</th>
+				<th><i class='fa fa-calendar fa-fw'></i> Date de fin</th>
 				<td>{{ entity.dateFin|date('d/m/Y') }}</td>
 			</tr>
 			<tr>
-				<th><i class="fa fa-tachometer"></i> Nombre d&apos;heures</th>
+				<th><i class="fa fa-tachometer fa-fw"></i> Nombre d&apos;heures</th>
 				<td>{{ entity.nbHeures }}</td>
 			</tr>
 			</table>
 		</div>
 	</div>
-	
+
 	<div class="unit-40">
 	<div class="panel">
 		<div class="header">
 			<span class="titre">Formules liées</span>
 				<span class="controls right group">
-					
+
 				</span>
 		</div>
 		<div class="panel-body">
@@ -178,7 +182,7 @@ couleurs['3hover']	= 		"rgba(255, 54, 0, 0.5)";
 						<div data-tools="accordion">
 							<a href="#panel-{{ formule.id }}" class="accordion-title">{{ formule.description }}</a>
 							<div id="panel-{{ formule.id }}" class="accordion-panel">
-								
+
 								<ul class="blocks-4 details-formules" >
 									<li><i class="fa fa-eur fa-2x"></i>{{ formule.tarif}}</li>
 
@@ -205,13 +209,13 @@ couleurs['3hover']	= 		"rgba(255, 54, 0, 0.5)";
 								</span>
 							</div>
 						</div>
-							
+
 				{% endfor %}
 			<br/>
 			<a href="" class="btn width-100"><i class="fa fa-plus"></i> Ajouter une formule</a>
 		</div>
 	</div>
-	
+
 	<p class="text-centered" style="margin-top: 70px;">
 		<a href="{{path('inscription', {'idformation': entity.id})}}" class="btn btn-green btn-big"><i class="fa fa-users"></i> Consulter les inscriptions à cette formation</a>
 	</p>
