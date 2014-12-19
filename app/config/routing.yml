@@ -49,7 +49,7 @@ home:
     defaults: { _controller: OCIMFormationsBundle:Default:index }
 
 inscriptionpublique:
-    path:     /inscription/{idformation}/
+    path:     /inscription/{idformation}
     defaults: { _controller: OCIMFormationsBundle:InscriptionPublique:inscription }
 
 inscriptionpublique_creation:

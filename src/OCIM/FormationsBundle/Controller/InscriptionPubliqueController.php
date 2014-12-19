@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class InscriptionPubliqueController extends Controller
 {
-    public function inscriptionAction($idformation)
+    public function inscriptionAction($idformation = null)
     {
 
 		$inscription = new Inscription();
