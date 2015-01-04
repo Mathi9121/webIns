@@ -25,9 +25,12 @@ class TemplateType extends AbstractType
          )
        ))
        ->add('filename', 'text', array(
-         'attr' => array('class'=>'width-100')
+         'attr' => array('class'=>'width-100'),
+         'required' => false
        ))
-       ->add('contenu')
+       ->add('contenu', null, array(
+         'required' => false
+       ))
        ;
      }
 

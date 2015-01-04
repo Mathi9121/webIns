@@ -45,7 +45,7 @@ class TemplateController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('documents_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('documents'));
         }
 
         return $this->render('OCIMExportBundle:Template:new.html.twig', array(
@@ -62,13 +62,16 @@ class TemplateController extends Controller
 
         //$router = $this->get('router');
 
+        $reponse = array();
+
         foreach($liens as $lien){
-          $lien->_nom = $this->generateUrl('documents_show', array('id' => $lien->getId(), 'idinscription'=> $idinscription), true);
-          // $lien->_nom = $this->generateUrl('documents_show', array('id' => $lien['id'], 'idinscription'=> $idinscription), true);
+          $lien->_nom = $lien->getNom();
+          $lien->_url = $this->generateUrl('documents_show', array('id' => $lien->getId(), 'idinscription'=> $idinscription), true);
+          $reponse[] = $lien;
         }
 
         //return new Response( , 200);
-        return new Response( json_encode($liens), Response::HTTP_OK);
+        return new Response( json_encode($reponse), Response::HTTP_OK);
       }
     }
 
@@ -117,7 +120,7 @@ class TemplateController extends Controller
         $entity = $em->getRepository('OCIMExportBundle:Template')->find($id);
 
         $inscription = $em->getRepository('OCIMFormationsBundle:Inscription')->find($idinscription);
-		$formation = $em->getRepository('OCIMFormationsBundle:Formation')->find($inscription->getFormationFormule()->getFormation()->getId());
+		    $formation = $em->getRepository('OCIMFormationsBundle:Formation')->find($inscription->getFormationFormule()->getFormation()->getId());
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Template entity.');
@@ -127,13 +130,20 @@ class TemplateController extends Controller
 
 		// Nom du fichier
 		$filename = $entity->getFilename();
-		$filename = str_replace('{{formation.intitule}}', $formation->getIntitule(), $filename);
-		$filename = str_replace('{{formation.id}}', $formation->getId(), $filename);
-		$filename = str_replace('{{inscription.stagiaire.nom}}', $inscription->getStagiaire()->getNom(), $filename);
-		$filename = str_replace('{{inscription.stagiaire.prenom}}', $inscription->getStagiaire()->getPrenom(), $filename);
-		$filename = str_replace('{{inscription.convention.numero}}', $inscription->getConvention()->getNumero(), $filename);
+    if(is_null($filename)){
+      $filename = $entity->getNom();
 
+    }
+    else{
+      $filename = str_replace('{{formation.intitule}}', $formation->getIntitule(), $filename);
+      $filename = str_replace('{{formation.id}}', $formation->getId(), $filename);
+      $filename = str_replace('{{inscription.stagiaire.nom}}', $inscription->getStagiaire()->getNom(), $filename);
+      $filename = str_replace('{{inscription.stagiaire.prenom}}', $inscription->getStagiaire()->getPrenom(), $filename);
 
+      if(!is_null($inscription->getConvention())){
+        $filename = str_replace('{{inscription.convention.numero}}', $inscription->getConvention()->getNumero(), $filename);
+      }
+    }
 		// Ajout de la fonction twig pour calculer la durée entre deux date
 		$env = new \Twig_Environment(new \Twig_Loader_String());
 		$function = new \Twig_SimpleFunction('date_difference', function ($start, $end) {

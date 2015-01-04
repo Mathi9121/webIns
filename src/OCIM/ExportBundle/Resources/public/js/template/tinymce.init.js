@@ -70,7 +70,7 @@ tinymce.init({
 			text: 'Convention',
 			icon: false,
 			menu: [
-				{text: 'Numero', onclick: function() 					  	{editor.insertContent("{{ inscription.convention.numero }}"); }},
+    {text: 'Numero', onclick: function() 					  	{editor.insertContent("{{ inscription.convention.numeroToString }}"); }},
 				{text: "Date d'edition", onclick: function() 					{editor.insertContent("{{ inscription.convention.edition|date('d/m/Y') }}"); }},
 				{text: "Signataire",
 					menu: [

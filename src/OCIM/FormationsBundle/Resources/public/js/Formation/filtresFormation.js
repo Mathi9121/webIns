@@ -74,16 +74,17 @@ var dateMax = parseInt($("#event-end").attr("data-date")) * 1000;
 
 	// filtre par type de formation
 	$('#selectfilter').on('change', function(){
-		$("tbody tr").css("display", "none");
+		$("tbody tr").not($('.annee-formations, .th-formations')).css("display", "none");
 			$( ".filtres select option:selected" ).each(function() {
 				var typeId = $(this).attr('value');
 					if(typeId != "tous"){
 						$("tbody tr").filter(function(){
 							return typeId == $(this).attr('data-typeformation');
 						}).css("display", "table-row");
+
 					}
 					else {
-						$("tbody tr.titre-formation").css("display", "table-row");
+						$("tbody tr.titre-formation, tr.th-formations, tr.annee-formations").css("display", "table-row");
 					}
 			});
 	});

@@ -219,10 +219,17 @@ class Convention
     /**
      * Get etape4
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getEtape4()
     {
         return $this->etape4;
+    }
+
+    public function getNumeroToString(){
+      if(($this->getNUmero())&&($this->getEdition())){
+        return $this->getEdition()->format('Y/m/').$this->getNumero();
+      }
+      else return false;
     }
 }
