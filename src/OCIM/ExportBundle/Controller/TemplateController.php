@@ -75,6 +75,27 @@ class TemplateController extends Controller
       }
     }
 
+    public function liensConventionAction(Request $request){
+      if($request->isXmlHttpRequest()){
+        $idinscription = $request->getContent();
+        $em = $this->getDoctrine()->getManager();
+        $liens = $em->getRepository('OCIMExportBundle:Template')->findBy(array('type' => "convention"));
+
+        //$router = $this->get('router');
+
+        $reponse = array();
+
+        foreach($liens as $lien){
+          $lien->_nom = $lien->getNom();
+          $lien->_url = $this->generateUrl('documents_show', array('id' => $lien->getId(), 'idinscription'=> $idinscription), true);
+          $reponse[] = $lien;
+        }
+
+        //return new Response( , 200);
+        return new Response( json_encode($reponse), Response::HTTP_OK);
+      }
+    }
+
     /**
      * Creates a form to create a Template entity.
      *

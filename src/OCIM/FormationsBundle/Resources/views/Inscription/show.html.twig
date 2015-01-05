@@ -236,7 +236,33 @@
 			{% endif %}
 
 			{% if entity.convention is not null %}
-			{{entity.convention.numero}}{{entity.convention.numero}}
+				<table class="">
+					<tr>
+						<th>Numéro de Convention</th>
+						<td><span class="label big">{{entity.convention.numeroToString}}</span></td>
+					</tr>
+					<tr>
+						<th>Date d'édition</th>
+						<td>{{(entity.convention.edition)? entity.convention.edition|date('d/m/Y')}}</td>
+					</tr>
+					<tr>
+						<th>Etape 1</th>
+						<td>{{(entity.convention.etape1)? entity.convention.etape1|date('d/m/Y')}}</td>
+					</tr>
+					<tr>
+						<th>Etape 2</th>
+						<td>{{(entity.convention.etape2)? entity.convention.etape2|date('d/m/Y')}}</td>
+					</tr>
+					<tr>
+						<th>Etape 3</th>
+						<td>{{(entity.convention.etape3)? entity.convention.etape3|date('d/m/Y')}}</td>
+					</tr>
+					<tr>
+						<th>Etape 4</th>
+						<td>{{(entity.convention.etape4)? entity.convention.etape4|date('d/m/Y')}}</td>
+					</tr>
+
+				</table>
 			{% endif %}
 		</div>
 	</div>

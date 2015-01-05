@@ -17,14 +17,14 @@ class ConventionType extends AbstractType
         $builder
             ->add('numero', 'text', array(
 				'required' => false,
-				'attr'=> array('class'=>'input-big text-centered','size' => 3 )
+				'attr'=> array('class'=>'input-big text-centered','size' => 3, 'style'=> 'margin: 0 auto !important;' )
 
 				))
             ->add('edition', 'date', array(
 				'label' => "Date d'édition",
 				'widget' => 'single_text',
 				'required' => false,
-				'attr'=> array('class'=>'input-big text-centered', 'data-tool' => 'datepicker'),
+				'attr'=> array('class'=>'input-big text-centered', 'data-tool' => 'datepicker', 'style'=> 'margin: 0 auto !important;'),
 				'format' => 'dd/MM/yyyy'
 				))
             ->add('etape1', 'date', array(

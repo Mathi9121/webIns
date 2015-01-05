@@ -8,6 +8,7 @@ filtres
 {{ parent() }}
 {% stylesheets
 '@OCIMFormationsBundle/Resources/public/css/convention.css'
+'%kernel.root_dir%/Resources/public/css/popup.css'
 filter='cssrewrite' %}
 <link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset_url }}"/>
 {% endstylesheets %}
@@ -16,7 +17,10 @@ filter='cssrewrite' %}
 {% block  javascripts %}
 {{parent()}}
 {% javascripts
-'@OCIMFormationsBundle/Resources/public/js/Convention/conventions.js' %}
+  '@OCIMFormationsBundle/Resources/public/js/Convention/conventions.js'
+  '%kernel.root_dir%/Resources/public/js/popup.js'
+  '@OCIMFormationsBundle/Resources/public/js/Convention/export-convention.js'
+  %}
 <script type="text/javascript" src="{{ asset_url }}"></script>
 {% endjavascripts %}
 {% endblock %}
@@ -34,6 +38,7 @@ Gestion des conventions
 <div class='hide' id="href-derniernumero" data-href="{{path('convention_derniernumero')}}"></div>
 <div class='hide' id="href-createConvention" data-href="{{path('convention_createConvention')}}"></div>
 <div class='hide' id="href-updateConvention" data-href="{{path('convention_updateetape')}}"></div>
+<div class='hide' id="href-liensexport" data-href="{{path('documents_liensconventions')}}"></div>
 <div class="panel">
   <div class="panel-body">
     <div class="table-container">
@@ -97,8 +102,8 @@ Gestion des conventions
                 {% else %}
                   <td colspan="6" class="no-convention text-centered"></td>
                 {% endif %}
-                  <td>
-                    <a href="{{path('documents_show', {'id': '5', 'idinscription': entity.id})}}" target='blank'>Export</a>
+                  <td class="">
+                    <a title="Exporter" href="#" class="btn btn-smaller btn-green export-convention"><i class="fa fa-download"></i></a>
                   </td>
             </tr>
         {% endfor %}

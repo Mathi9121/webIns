@@ -83,4 +83,8 @@ $(document).ready(function(){
 		},
 	});
 
+
+	//flash message
+	
+
 });

@@ -304,11 +304,12 @@
 				<th class="handle"></th>
 				<th class="insc info"><span>Nom</span></th>
 				<th class="insc info"><span>Prénom</span></th>
-				<th class="insc convention"><span>Numéro</span></th>
-				<th class="insc convention"><span>Edition</span></th>
-				<th class="insc convention"><span>Etape-1</span></th>
-				<th class="insc convention"><span>Etape-2</span></th>
-				<th class="insc convention"><span>Etape-3</span></th>
+				<th class="insc convention text-centered"><span>Numéro</span></th>
+				<th class="insc convention text-centered"><span>Edition</span></th>
+				<th class="insc convention text-centered"><span>Etape-1</span></th>
+				<th class="insc convention text-centered"><span>Etape-2</span></th>
+				<th class="insc convention text-centered"><span>Etape-3</span></th>
+				<th class="insc convention text-centered"><span>Etape-4</span></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -326,8 +327,8 @@
 						<td class="insc info"><span>{{ entity.stagiaire.nom }} ({{ entity.stagiaire.civilite }})</span></td>
 						<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
 					{% if entity.convention %}
-						<td class="insc convention"><span>{{ entity.convention.numero }}</span></td>
-						<td class="insc convention"><span>{{ entity.convention.edition|date('d/m/Y') }}</span></td>
+						<td class="insc convention text-centered"><span>{{ entity.convention.numero }}</span></td>
+						<td class="insc convention text-centered"><span>{{ entity.convention.edition|date('d/m/Y') }}</span></td>
 						<td class="insc convention text-centered"><span>{% if entity.convention.etape1 %}<i class="fa fa-check" title="{{ entity.convention.etape1|date('d/m/Y') }}"></i></span>{% endif %}</td>
 						<td class="insc convention text-centered"><span>{% if entity.convention.etape2 %}<i class="fa fa-check" title="{{ entity.convention.etape2|date('d/m/Y') }}"></i></span>{% endif %}</td>
 						<td class="insc convention text-centered"><span>{% if entity.convention.etape3 %}<i class="fa fa-check" title="{{ entity.convention.etape3|date('d/m/Y') }}"></i></span>{% endif %}</td>
@@ -419,7 +420,7 @@
 				{% if class == "attente" %}<td class="handle"><span class="fa fa-arrows"></span></td>{% else %}<td></td>{% endif %}
 				<td class="insc info"><span>{{ entity.stagiaire.nom }} ({{ entity.stagiaire.civilite }})</span></td>
 				<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
-				<td class="insc attentes"><span>{{ entity.attentes|slice(0, 70)}}{% if entity.attentes|length > 70 %}...{% endif %}</span></td>
+				<td class="insc attentes" style="white-space:normal"><span>{{ entity.attentes }}</span></td>
             </tr>
         {% endfor %}
         </tbody>

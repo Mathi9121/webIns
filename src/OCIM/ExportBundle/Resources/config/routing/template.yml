@@ -33,3 +33,8 @@ documents_liens:
     path:     /liens
     defaults: { _controller: "OCIMExportBundle:Template:liens" }
     requirements: { _method: post }
+
+documents_liensconventions:
+    path:     /liens-conventions
+    defaults: { _controller: "OCIMExportBundle:Template:liensConvention" }
+    requirements: { _method: post }

@@ -114,18 +114,6 @@
 
 	<div class="contentwrapper">
 	<div role="main" id="content">
-		{% macro message(text, classes) %}
-			<div class="tools-message {{ classes|default('') }}">
-				{{text}}
-			</div>
-		{% endmacro %}
-		{% macro alert(text, classes) %}
-			<div class="tools-alert {{ classes|default('') }}">
-				{{text}}
-			</div>
-		{% endmacro %}
-
-
 
 		{% if block('titre') %}
 			<div id="titre" class="group" data-tools="navigation-fixed">
@@ -159,6 +147,13 @@
 
 <!-- FOOTER -->
 <footer id="footer">
+	{% for flashMessage in app.session.flashbag.get('notice') %}
+	<div class="flash notice">
+		<div id="message-1" class="tools-message tools-message-blue">
+			{{flashMessage}}
+		</div>
+	</div>
+	{% endfor %}
 </footer>
 
 <!-- SCRIPTS -->

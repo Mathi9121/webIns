@@ -153,13 +153,13 @@
 			<hr/>
 			<div class="conventionblock">
 				<div class="units-row end">
-					<div class="unit-50">
+					<div class="unit-50 text-centered">
 						{{form_row(form.convention.numero)}}
 						{{form_row(form.convention.edition)}}
 						<p class="text-centered">
 							{% if entity.convention %}
 							<i class="fa fa-arrow-right"></i> La convention porte le code :<br/>
-							<span class="label">{{entity.convention.edition|date('Y/m/')}}<strong>{{ entity.convention.numero }}</strong></span>
+							<span class="label big">{{entity.convention.numeroToString }}</strong></span>
 							{% endif %}
 						</p>
 					</div>
