@@ -143,17 +143,30 @@
 	</div>
 </div>
 
-
-
+	{# FLASHBAG #}
+		{% for flashMessage in app.session.flashbag.get('notice') %}
+		<div class="flash notice">
+			<div class="tools-message">
+				{{flashMessage}}
+			</div>
+		</div>
+		{% endfor %}
+		{% for flashMessage in app.session.flashbag.get('error') %}
+		<div class="flash notice">
+			<div class="tools-message tools-message-red">
+				{{flashMessage}}
+			</div>
+		</div>
+		{% endfor %}
+		{% for flashMessage in app.session.flashbag.get('success') %}
+		<div class="flash notice">
+			<div class="tools-message tools-message-green">
+				{{flashMessage}}
+			</div>
+		</div>
+		{% endfor %}
 <!-- FOOTER -->
 <footer id="footer">
-	{% for flashMessage in app.session.flashbag.get('notice') %}
-	<div class="flash notice">
-		<div id="message-1" class="tools-message tools-message-blue">
-			{{flashMessage}}
-		</div>
-	</div>
-	{% endfor %}
 </footer>
 
 <!-- SCRIPTS -->

@@ -4,6 +4,7 @@ function resizeDiv(){
 	$('#titre').wrap("<div id='titre-wrap'></div>");
 	$('#titre-wrap').css('height', $('#titre').height());
 	$('#titre-wrap').css('margin-bottom', $('#titre').css('margin-bottom'));
+	$(".tools-message").css('right', ($(document).width()/2)-($(".tools-message").width()/2)+"px");
 }
 
 
@@ -21,12 +22,12 @@ $(document).ready(function(){
 		$("#sidebar").animate({
 			"left": (state ? -215 : 0)
 		}, function(){
-			titreFixed();
+			resizeDiv();
 		});
 		$("#content").animate({
 			"margin-left": (state ? 0 : 215)
 		}, function(){
-			titreFixed();
+			resizeDiv();
 		});
 		if(state){
 			$("#sidebar nav").addClass("disparu");
@@ -85,6 +86,7 @@ $(document).ready(function(){
 
 
 	//flash message
-	
+	$(".tools-message").css('right', ($(document).width()/2)-($(".tools-message").width()/2)+"px");
+	$(".tools-message").message(5);
 
 });
