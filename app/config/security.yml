@@ -32,5 +32,6 @@ security:
         - { path: ^/inscription , roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/connexion, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/, roles: ROLE_ADMIN }
+        - { host: form, roles: IS_AUTHENTICATED_ANONYMOUSLY}
     acl:
         connection: default

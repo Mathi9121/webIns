@@ -1,9 +1,18 @@
+<!DOCTYPE html>
 {% form_theme form '::form.html.twig' %}
+<html>
+<head>
 
-{{form_start(form)}}
+</head>
+<body>
+{{ app.request.attributes.get("_route") }}
+{{ form_errors(form) }}
+{{ form_start(form) }}
+{{ form_errors(form) }}
 {{form_widget(form.formationformule)}}
 
-{{form_rest(form)}}
-
-{{form_rest(form)}}
+{{form(form)}}
 {{form_end(form)}}
+
+</body>
+</html>

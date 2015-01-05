@@ -47,12 +47,3 @@ deconnexion:
 home:
     pattern: /
     defaults: { _controller: OCIMFormationsBundle:Default:index }
-
-inscriptionpublique:
-    path:     /inscription/{idformation}
-    defaults: { _controller: OCIMFormationsBundle:InscriptionPublique:inscription }
-
-inscriptionpublique_creation:
-    path:     /inscription-creation/{idformation}
-    defaults: { _controller: OCIMFormationsBundle:InscriptionPublique:createInscription }
-    requirements: { _method: post }

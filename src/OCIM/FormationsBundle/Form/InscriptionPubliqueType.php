@@ -12,12 +12,12 @@ use Symfony\Component\Validator\Constraints\Email;
 class InscriptionPubliqueType extends AbstractType
 {
 	private $idformation;
-	
+
 	public function __construct($idformation)
     {
         $this->idformation = $idformation;
     }
-	
+
         /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -136,7 +136,7 @@ class InscriptionPubliqueType extends AbstractType
 			)
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
@@ -144,8 +144,11 @@ class InscriptionPubliqueType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'OCIM\FormationsBundle\Entity\Inscription',
-			'attr' => array('class' => 'forms')
+						'attr' => array('class' => 'forms'),
+						'csrf_protection' => false,
+
         ));
+
 		$resolver->setRequired(array(
             'em',
         ));

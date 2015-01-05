@@ -38,6 +38,7 @@ $(document).ready(function(){
 
 	});
 
+
 	//eventlistener plein ecran
 	$("#fullscreen-btn").click(toggleFullScreen);
 
