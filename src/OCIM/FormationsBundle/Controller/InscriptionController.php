@@ -25,9 +25,11 @@ class InscriptionController extends Controller
   * liste toutes les entités en fonction d'une formation (id passé en paramètre)
   *
   */
-  public function indexAction($idformation)
+  public function indexAction(Request $request, $idformation)
   {
     $em = $this->getDoctrine()->getManager();
+
+    $id = $request->query->get('id');
 
     $entities = $em->getRepository('OCIMFormationsBundle:Inscription')->findAllByFormation($idformation);
     $formation = $em->getRepository('OCIMFormationsBundle:Formation')->find($idformation);
@@ -40,6 +42,7 @@ class InscriptionController extends Controller
       'entities' => $entities,
       'formation' => $formation,
       'logistique' => $logistique,
+      'id' => $id,
     ));
   }
 
@@ -133,10 +136,11 @@ class InscriptionController extends Controller
       $em->persist($entity);
 
       $em->flush();
-
-      return $this->redirect($this->generateUrl('inscription_show', array('id' => $entity->getId(), 'idformation'=> $idformation)));
+      $this->get('session')->getFlashBag()->add('success','Inscription ajoutée.');
+      return $this->redirect($this->generateUrl('inscription', array('id' => $entity->getId(), 'idformation'=> $idformation)));
     }
 
+    $this->get('session')->getFlashBag()->add('error','Le formulaire contient des erreurs');
     return $this->render('OCIMFormationsBundle:Inscription:new.html.twig', array(
       'entity' => $entity,
       'form'   => $form->createView(),
@@ -159,7 +163,7 @@ class InscriptionController extends Controller
       'em' => $this->getDoctrine()->getManager(),
     ));
 
-    $form->add('submit', 'submit', array('label' => 'Ajouter le stagiaire', 'attr'=> array('class' => 'btn btn-green')));
+    $form->add('submit', 'submit', array('label' => 'Ajouter le stagiaire', 'attr'=> array('class' => 'btn btn-green btn-save')));
 
     return $form;
   }
@@ -247,7 +251,7 @@ class InscriptionController extends Controller
       'em' => $this->getDoctrine()->getManager(),
     ));
 
-    $form->add('submit', 'submit', array('label' => 'Enregistrer', 'attr'=> array('class'=> 'btn btn-green'),));
+    $form->add('submit', 'submit', array('label' => 'Enregistrer', 'attr'=> array('class'=> 'btn btn-green btn-save'),));
 
     return $form;
   }
@@ -272,10 +276,11 @@ class InscriptionController extends Controller
     if ($editForm->isValid()) {
 
       $em->flush();
-
-      return $this->redirect($this->generateUrl('inscription_edit', array('id' => $id, 'idformation'=>$idformation)));
+      $this->get('session')->getFlashBag()->add('notice','Modifications sauvegardées');
+      return $this->redirect($this->generateUrl('inscription', array('id' => $id, 'idformation'=>$idformation)));
     }
 
+    $this->get('session')->getFlashBag()->add('error','Le formulaire contient des erreurs');
     return $this->render('OCIMFormationsBundle:Inscription:edit.html.twig', array(
       'entity'      => $entity,
       'edit_form'   => $editForm->createView(),
@@ -303,7 +308,7 @@ class InscriptionController extends Controller
       $em->remove($entity);
       $em->flush();
     }
-
+    $this->get('session')->getFlashBag()->add('success','Inscription supprimée.');
     return $this->redirect($this->generateUrl('inscription', array('idformation'=> $idformation)));
   }
 
@@ -319,7 +324,7 @@ class InscriptionController extends Controller
     return $this->createFormBuilder()
     ->setAction($this->generateUrl('inscription_delete', array('id' => $id, 'idformation'=> $idformation)))
     ->setMethod('DELETE')
-    ->add('submit', 'submit', array('label' => ' Supprimer', 'attr'=> array('class'=>'btn btn-red') ))
+    ->add('submit', 'submit', array('label' => ' Supprimer', 'attr'=> array('class'=>'btn btn-red btn-delete') ))
     ->getForm()
     ;
   }

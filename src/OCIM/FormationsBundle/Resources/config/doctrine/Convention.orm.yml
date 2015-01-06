@@ -15,6 +15,7 @@ OCIM\FormationsBundle\Entity\Convention:
     fields:
         numero:
             type: integer
+            nullable: true
         edition:
             type: date
             nullable: true
