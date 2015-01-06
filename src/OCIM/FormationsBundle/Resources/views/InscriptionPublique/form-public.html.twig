@@ -5,9 +5,8 @@
 
 </head>
 <body>
-{{ app.request.attributes.get("_route") }}
 {{ form_errors(form) }}
-{{ form_start(form) }}
+<form name="ocim_formationsbundle_inscription" method="post" action="{{ uri('inscriptionpublique_creation') }}" class="forms">
 {{ form_errors(form) }}
 {{form_widget(form.formationformule)}}
 
