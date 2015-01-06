@@ -6,4 +6,5 @@ inscriptionpublique_creation:
 inscriptionpublique:
     path:     /formation/{rthsht}/
     defaults: { _controller: OCIMFormationsBundle:InscriptionPublique:inscription }
-    requirements: { _method: get }
+    requirements:
+      _method: get

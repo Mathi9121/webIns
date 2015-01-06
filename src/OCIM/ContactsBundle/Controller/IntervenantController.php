@@ -19,14 +19,17 @@ class IntervenantController extends Controller
      * Lists all Intervenant entities.
      *
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
+
+        $id = $request->query->get('id');
 
         $entities = $em->getRepository('OCIMContactsBundle:Intervenant')->findAll();
 
         return $this->render('OCIMContactsBundle:Intervenant:index.html.twig', array(
             'entities' => $entities,
+            'id' => $id,
         ));
     }
     /**
@@ -41,17 +44,19 @@ class IntervenantController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-			$em->getRepository('OCIMFormationsBundle:Formation')->find($idformation)->addIntervenant($entity);
+			      $em->getRepository('OCIMFormationsBundle:Formation')->find($idformation)->addIntervenant($entity);
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('intervenants_show', array('id' => $entity->getId(), 'idformation' => $idformation)));
+            $this->get('session')->getFlashBag()->add('success','Intervenant ajouté.');
+            return $this->redirect($this->generateUrl('inscription', array('id' => $entity->getId(), 'idformation' => $idformation)). '#intervenants');
         }
 
+        $this->get('session')->getFlashBag()->add('error','Le formulaire contient des erreurs. Enregistrement impossible.');
         return $this->render('OCIMContactsBundle:Intervenant:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
-			'idformation' => $idformation
+			      'idformation' => $idformation
         ));
     }
 
@@ -70,7 +75,7 @@ class IntervenantController extends Controller
 			'em' => $this->getDoctrine()->getManager(),
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Enregistrer'));
+        $form->add('submit', 'submit', array('label' => 'Enregistrer', 'class'=> 'btn btn-green btn-save'));
 
         return $form;
     }
@@ -154,7 +159,7 @@ class IntervenantController extends Controller
 			'em' => $this->getDoctrine()->getManager()
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Enregistrer'));
+        $form->add('submit', 'submit', array('label' => 'Enregistrer', 'class' => 'btn btn-green btn-save'));
 
         return $form;
     }
@@ -178,16 +183,18 @@ class IntervenantController extends Controller
 
         if ($editForm->isValid()) {
             $em->flush();
-
-            return $this->redirect($this->generateUrl('intervenants_edit', array('id' => $id, 'idformation' => $idformation)));
+            $this->get('session')->getFlashBag()->add('notice','Modifications sauvegardées');
+            return $this->redirect($this->generateUrl('inscription', array('id' => $id, 'idformation' => $idformation)));
         }
-
+        $this->get('session')->getFlashBag()->add('error','Le formulaire contient des erreurs');
         return $this->render('OCIMContactsBundle:Intervenant:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
+
+
     /**
      * Deletes a Intervenant entity.
      *
@@ -196,6 +203,7 @@ class IntervenantController extends Controller
     {
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);
+        $idformation = $this->getDoctrine()->getManager()->getRepository('OCIMContactsBundle:Intervenant')->find($id)->getFormation()->getId();
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -208,8 +216,8 @@ class IntervenantController extends Controller
             $em->remove($entity);
             $em->flush();
         }
-
-        return $this->redirect($this->generateUrl('intervenants'));
+        $this->get('session')->getFlashBag()->add('success','Intervenant supprimé.');
+        return $this->redirect($this->generateUrl('inscription', array('idformation' => $idformation)));
     }
 
     /**
@@ -224,7 +232,7 @@ class IntervenantController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('intervenants_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Delete', 'attr'=> array('class' => 'btn btn-red btn-delete')))
             ->getForm()
         ;
     }

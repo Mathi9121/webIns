@@ -82,7 +82,7 @@
 			{% elseif entity.statut == 'annulé' %}
 				{% set class = "annule" %}
 			{% endif %}
-			<tr class="statut {{class}}" data-ordre="{{entity.ordre}}" data-idinscription="{{entity.id}}">
+			<tr class="statut {{class}}{{((id is defined)and( id == entity.id ))? " highlight"}}" data-ordre="{{entity.ordre}}" data-idinscription="{{entity.id}}">
 						{% if class == "attente" %}<td class="handle"><i class="fa fa-arrows"></i></td>{% else %}<td></td>{% endif %}
 						<td class="insc info"><span>{{ entity.stagiaire.civilite }}</span></td>
 						<td class="insc info"><span>{{ entity.stagiaire.nom }}</span></td>
@@ -185,9 +185,6 @@
 {# Logistique #}
 <div id="logistique" class="tab unit-100">
 	<div class="hide" id="majLogistique">{{path('logistique_reponse')}}</div>
-	<div id="message-save" class="tools-message tools-message-green">Enregistré !</div>
-	<div id="message-error" class="tools-message tools-message-red">Erreur. <a href="{{ path('inscription', { 'idformation': formation.id }) }}">Recharger la page</a></div>
-
 {% if logistique|length > 0 %}
 <div class="table-container">
 	<table class="table-bordered">
@@ -451,7 +448,7 @@
 			</thead>
 			<tbody>
 				{% for intervenant in formation.intervenants %}
-					<tr>
+					<tr class="{{((id is defined)and( id == intervenant.id ))? " highlight"}}">
 						<td>{{intervenant.civilite}}</td>
 						<td>{{intervenant.nom|capitalize}}</td>
 						<td>{{intervenant.prenom|capitalize}}</td>
@@ -497,7 +494,7 @@
 				</thead>
 				<tbody>
 					{% for intervenant in formation.intervenants %}
-						<tr>
+						<tr class="{{((id is defined)and( id == intervenant.id ))? " highlight"}}">
 							<td>{{intervenant.nom|capitalize}} ({{intervenant.civilite}})</td>
 							<td>{{intervenant.prenom|capitalize}}</td>
 							<td>{{intervenant.fonction}}</td>
