@@ -4,16 +4,6 @@
 {% block title %}Nouvelle Formule{% endblock %}
 {% block titre %}Création nouvelle formule{% endblock %}
 
-
-{% block  javascripts %}
-{{parent()}}
-  {% javascripts
-  '@OCIMFormationsBundle/Resources/public/js/Formation/ajoutTypeFormations.js' %}
-    <script type="text/javascript" src="{{ asset_url }}"></script>
-  {% endjavascripts %}
-{% endblock %}
-
-
 {% block body %}
 
 <form action="{{ path('formule_create') }}" method="post" class="forms units-row" {{ form_enctype(form) }}>

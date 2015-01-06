@@ -25,9 +25,11 @@ class FormationController extends Controller
      * Lists all Formation entities.
      *
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
       $em = $this->getDoctrine()->getManager();
+
+      $id = $request->query->get('id');
 
       $qb = $em->createQueryBuilder('f')
         ->select('f, YEAR(f.dateDebut) AS annee')
@@ -44,8 +46,7 @@ class FormationController extends Controller
 
       $datesMinMax = $qb->getQuery()->getResult();
       //exit(\Doctrine\Common\Util\Debug::dump($datesMinMax[0]));
-      $this->get('session')->getFlashBag()->add('success','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat');
-      $this->get('session')->getFlashBag()->add('success','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat');
+
       $formations = new ArrayCollection();
       foreach($ac as $formation){
         $formations->add($formation[0]);
@@ -62,7 +63,8 @@ class FormationController extends Controller
   		return $this->render('OCIMFormationsBundle:Formation:index.html.twig', array(
   			'formations' => $formations,
   			'types' => $types,
-        'datesminmax' => $datesMinMax[0]
+        'datesminmax' => $datesMinMax[0],
+        'id' => $id,
   		));
     }
     /**
@@ -80,7 +82,9 @@ class FormationController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('formation_show', array('id' => $entity->getId())));
+            $this->get('session')->getFlashBag()->add('success','Formation ajoutée.');
+
+            return $this->redirect($this->generateUrl('formation', array('id' => $entity->getId())));
         }
 
         return $this->render('OCIMFormationsBundle:Formation:new.html.twig', array(
@@ -130,7 +134,7 @@ class FormationController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Créer la formation', 'attr' => array('class'=>'btn btn-green')));
+        $form->add('submit', 'submit', array('label' => 'Créer la formation', 'attr' => array('class'=>'btn btn-green btn-save')));
 
         return $form;
     }
@@ -159,8 +163,8 @@ class FormationController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('OCIMFormationsBundle:Formation')->find($id);
-		$entity->_count = $em->getRepository('OCIMFormationsBundle:Inscription')->countInscriptionsByFormation($id);
-		$inscriptions = $em->getRepository('OCIMFormationsBundle:Inscription')->findAllByFormation($id);
+		    $entity->_count = $em->getRepository('OCIMFormationsBundle:Inscription')->countInscriptionsByFormation($id);
+		    $inscriptions = $em->getRepository('OCIMFormationsBundle:Inscription')->findAllByFormation($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Formation entity.');
@@ -168,9 +172,9 @@ class FormationController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
-		// Stats des inscriptions
-		$statsInscriptions = array();
-		foreach($inscriptions as $inscription){
+		  // Stats des inscriptions
+		  $statsInscriptions = array();
+		  foreach($inscriptions as $inscription){
 
 			if( !isset($statsInscriptions[$inscription->getDateInscription()->format('d-m-Y')])){
 				$statsInscriptions[$inscription->getDateInscription()->format('d-m-Y')] = 1 ;
@@ -228,7 +232,7 @@ class FormationController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => ' Enregistrer', 'attr' => array('class'=>'btn btn-green')));
+        $form->add('submit', 'submit', array('label' => 'Enregistrer', 'attr' => array('class'=>'btn btn-green btn-save')));
 
         return $form;
     }
@@ -247,10 +251,10 @@ class FormationController extends Controller
             throw $this->createNotFoundException('Unable to find Formation entity.');
         }
 
-		$ancienncesFF = new ArrayCollection();
-		foreach ($entity->getFormationFormule() as $ff) {
-			$ancienncesFF->add($ff);
-		}
+    		$ancienncesFF = new ArrayCollection();
+    		foreach ($entity->getFormationFormule() as $ff) {
+    			$ancienncesFF->add($ff);
+    		}
 
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
@@ -258,14 +262,20 @@ class FormationController extends Controller
 
         if ($editForm->isValid()) {
 
-			foreach ($ancienncesFF as $ff) {
-				if ($entity->getFormationFormule()->contains($ff) == false) {
-					$em->remove($ff);
-				}
-			}
-			$em->flush();
-            return $this->redirect($this->generateUrl('formation_edit', array('id' => $id)));
-        }
+			   foreach ($ancienncesFF as $ff) {
+				  if ($entity->getFormationFormule()->contains($ff) == false) {
+					     $em->remove($ff);
+				  }
+			   }
+
+  			   $em->flush();
+
+           $this->get('session')->getFlashBag()->add('notice','Modifications sauvegardées');
+
+          return $this->redirect($this->generateUrl('formation', array('id' => $id)));
+          }
+
+        $this->get('session')->getFlashBag()->add('error','Le formulaire contient des erreurs');
 
         return $this->render('OCIMFormationsBundle:Formation:edit.html.twig', array(
             'entity'      => $entity,
@@ -294,7 +304,7 @@ class FormationController extends Controller
             $em->remove($entity);
             $em->flush();
         }
-
+        $this->get('session')->getFlashBag()->add('success','Formation supprimée.');
         return $this->redirect($this->generateUrl('formation'));
     }
 
@@ -310,7 +320,7 @@ class FormationController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('formation_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Supprimer', 'attr'=> array('class'=>'btn btn-red')))
+            ->add('submit', 'submit', array('label' => 'Supprimer', 'attr'=> array('class'=>'btn btn-red btn-delete')))
             ->getForm()
         ;
     }

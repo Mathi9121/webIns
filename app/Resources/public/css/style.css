@@ -122,13 +122,14 @@ header a#nav-toggle:hover{color: #e52f23}
 }
 .panel .header{
 	border-bottom: 1px solid #f4f4f4;
-	line-height: 2em;
+	line-height: 3em;
 	color: #777777
 }
 .panel .titre{
 	font-family: "Josefin Sans",sans-serif;
 	font-size: 1.5em;
 	margin-left: 20px;
+	color: #e52f23;
 }
 .panel .controls{
 	padding-right: 10px;
@@ -207,6 +208,33 @@ form[action$="delete"]{margin-bottom: 0px}
 	bottom: 25px;
 	max-width: 700px
 }
+
+@-webkit-keyframes highlight {
+	0%   { background-color: #f9ffaf }
+	100% { background-color: inherit }
+}
+@-moz-keyframes highlight {
+	0%   { background-color: #f9ffaf }
+	100% { background-color: inherit }
+}
+@-o-keyframes highlight {
+	0%   { background-color: #f9ffaf }
+	100% { background-color: inherit }
+}
+@keyframes highlight {
+	0%   { background-color: #f9ffaf }
+	100% { background-color: inherit }
+}
+
+.highlight {
+	-webkit-animation: highlight 5s; /* Safari 4+ */
+	-moz-animation:    highlight 5s; /* Fx 5+ */
+	-o-animation:      highlight 5s; /* Opera 12+ */
+	animation:         highlight 5s; /* IE 10+, Fx 29+ */
+	-webkit-animation-iteration-count: 1; /* Chrome, Safari, Opera */
+	animation-iteration-count: 1;
+}
+
 
 
 /**** Menu mobile ****/

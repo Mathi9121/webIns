@@ -11,10 +11,10 @@ filter='cssrewrite' %}
 
 {% endblock %}
 {% block  javascripts %}
+{{parent()}}
 {% javascripts
 	'%kernel.root_dir%/Resources/public/js/popup.js'
 	'@OCIMFormationsBundle/Resources/public/js/Formation/formFormation.js'%}
-		{{parent()}}
          <script type="text/javascript" src="{{ asset_url }}"></script>
 {% endjavascripts %}
 {% endblock %}

@@ -86,6 +86,18 @@ $(document).ready(function(){
 	});
 
 
+	//style des boutons, et rassemblement des boutons de control
+	$('.btn-save').prepend('<i class="fa fa-save fa-fw"></i>');
+	$('.btn-delete').prepend('<i class="fa fa-trash fa-fw"></i>');
+
+	$('.btn-delete').on('click', function(e){
+		e.preventDefault();
+		var confirm = window.confirm("Etes-vous sûr de vouloir supprimer cette entité ?");
+		if(confirm){
+			$(this).closest('form').submit();
+		}
+	});
+
 	//flash message
 	$(".tools-message").css('right', ($(document).width()/2)-($(".tools-message").width()/2)+"px");
 	$(".tools-message").message(5);
