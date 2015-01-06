@@ -4,7 +4,6 @@ use Symfony\Component\ClassLoader\ApcClassLoader;
 use Symfony\Component\HttpFoundation\Request;
 //use Symfony\Component\HttpFoundation\Response;
 
-
 $loader = require_once __DIR__.'/../app/bootstrap.php.cache';
 
 // Use APC for autoloading to improve performance.
@@ -25,8 +24,7 @@ $kernel->loadClassCache();
 
 // When using the HttpCache, you need to call the method in your front controller instead of relying on the configuration parameter
 //Request::enableHttpMethodParameterOverride();
-
-$request = Request::createFromGlobals();
+$request = Request::create('/', 'GET', array('idformation'=> '42'));
 $request->overrideGlobals();
 
 //$response = new Response('ok','200')
