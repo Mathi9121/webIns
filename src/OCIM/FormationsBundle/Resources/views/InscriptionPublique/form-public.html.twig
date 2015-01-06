@@ -6,7 +6,7 @@
 </head>
 <body>
 {{ form_errors(form) }}
-<form name="ocim_formationsbundle_inscription" method="post" action="{{ uri('inscriptionpublique_creation') }}" class="forms">
+<form name="ocim_formationsbundle_inscription" method="post" action="http://siteocim.ocim-s01.local/ocim.formations/web/form.php{{path('inscriptionpublique_creation') }}" class="forms">
 {{ form_errors(form) }}
 {{form_widget(form.formationformule)}}
 

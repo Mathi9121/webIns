@@ -19,7 +19,7 @@ $apcLoader->register(true);
 require_once __DIR__.'/../app/AppKernel.php';
 //require_once __DIR__.'/../app/AppCache.php';
 
-$kernel = new AppKernel('form', false);
+$kernel = new AppKernel('form', true);
 $kernel->loadClassCache();
 //$kernel = new AppCache($kernel);
 
@@ -27,7 +27,7 @@ $kernel->loadClassCache();
 //Request::enableHttpMethodParameterOverride();
 
 $request = Request::createFromGlobals();
-
+$request->overrideGlobals();
 
 //$response = new Response('ok','200')
 $response = $kernel->handle($request);
