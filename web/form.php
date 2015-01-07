@@ -18,14 +18,31 @@ $apcLoader->register(true);
 require_once __DIR__.'/../app/AppKernel.php';
 //require_once __DIR__.'/../app/AppCache.php';
 
-$kernel = new AppKernel('form', true);
+$kernel = new AppKernel('form', false);
 $kernel->loadClassCache();
 //$kernel = new AppCache($kernel);
 
 // When using the HttpCache, you need to call the method in your front controller instead of relying on the configuration parameter
 //Request::enableHttpMethodParameterOverride();
-$request = Request::create('/', 'GET', array('idformation'=> '42'));
+
+$req_ext = Request::createFromGlobals();
+$method = $req_ext->getMethod();
+
+$donnees = array();
+
+$urlWP = $req_ext->getUri();
+
+if($method == 'GET'){
+    $donnees = $req_ext->query->all();
+}
+else{
+    $donnees = $req_ext->request->all();
+}
+
+$request = Request::create('/', $method, $donnees);
 $request->overrideGlobals();
+
+$request->query->set("urlwp", $urlWP);
 
 //$response = new Response('ok','200')
 $response = $kernel->handle($request);

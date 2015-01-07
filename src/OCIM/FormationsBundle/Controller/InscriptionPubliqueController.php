@@ -13,16 +13,17 @@ class InscriptionPubliqueController extends Controller
 {
     public function inscriptionAction(Request $request)
     {
-        $idformation = $request->query->get('idformation');
-		    $inscription = new Inscription();
+	$idformation = $request->query->get('idformation');
+        $inscription = new Inscription();
         $form = $this->createCreateForm($inscription, $idformation);
-		    $em = $this->getDoctrine()->getManager();
-		    $formation = $em->getRepository("OCIMFormationsBundle:Formation")->find($idformation);
+        $em = $this->getDoctrine()->getManager();
+        $formation = $em->getRepository("OCIMFormationsBundle:Formation")->find($idformation);
         if (!$formation) {
           throw $this->createNotFoundException(
           "Aucune formation ne correspond à l'id : ".$idformation
           );
         }
+	
         return $this->render('OCIMFormationsBundle:InscriptionPublique:form-public.html.twig', array(
           'form'   => $form->createView(),
           'idformation' => $idformation
@@ -31,8 +32,10 @@ class InscriptionPubliqueController extends Controller
 
     public function createInscriptionAction(Request $request)
     {
-        $idformation = $request->query->get('idformation');
-		    $entity = new Inscription();
+	$partdonnees = $request->request->get('ocim_formationsbundle_inscription');
+	$idff = $partdonnees['formationformule'];
+	$idformation = $this->getDoctrine()->getManager()->getRepository('OCIMFormationsBundle:formationFormule')->find($idff)->getFormation()->getId();
+	$entity = new Inscription();
         $form = $this->createCreateForm($entity, $idformation);
         $form->handleRequest($request);
         // exit(\Doctrine\Common\Util\Debug::dump($form->isValid()));
@@ -88,8 +91,8 @@ class InscriptionPubliqueController extends Controller
         else{
   		    return $this->render('OCIMFormationsBundle:InscriptionPublique:form-public.html.twig', array(
   			       'form'   => $form->createView(),
-               'idformation' => $idformation
-          ));
+        		       'idformation' => $idformation
+        	  	));
         }
 	}
 
@@ -98,7 +101,6 @@ class InscriptionPubliqueController extends Controller
 	private function createCreateForm(Inscription $entity, $idformation)
     {
         $form = $this->createForm(new InscriptionPubliqueType($idformation), $entity, array(
-            'action' => $this->generateUrl('inscriptionpublique_creation', array('idformation' => $idformation)),
             'method' => 'POST',
 			'em' => $this->getDoctrine()->getManager(),
         ));
