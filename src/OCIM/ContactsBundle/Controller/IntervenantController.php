@@ -115,7 +115,7 @@ class IntervenantController extends Controller
         return $this->render('OCIMContactsBundle:Intervenant:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
-			'idformation' => $idformation
+			      'idformation' => $idformation
         ));
     }
 
@@ -140,7 +140,7 @@ class IntervenantController extends Controller
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-			'idformation' => $idformation
+			      'idformation' => $idformation
         ));
     }
 
@@ -232,7 +232,7 @@ class IntervenantController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('intervenants_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete', 'attr'=> array('class' => 'btn btn-red btn-delete')))
+            ->add('submit', 'submit', array('label' => 'Supprimer', 'attr'=> array('class' => 'btn btn-red btn-delete')))
             ->getForm()
         ;
     }

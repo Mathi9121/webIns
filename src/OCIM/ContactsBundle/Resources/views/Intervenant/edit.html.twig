@@ -3,8 +3,8 @@
 
 
 {% block title %}Formation Modification fiche Intervenant{% endblock %}
-{% block titre %}Formation Edition Intervenant{% endblock %}
-{% block controls %}{% endblock %}
+{% block titre %}Intervenant - Edition{% endblock %}
+{% block controls %}{{form(delete_form)}}{% endblock %}
 
 
 {% block breadcrumbs %}
@@ -23,7 +23,7 @@
 		<div class="header">
 			<span class="titre">Intervenant</span>
 		</div>
-		
+
 		<div class="panel-body">
 			<div class="units-row end">
 				<div class="unit-20">{{ form_row(edit_form.civilite) }}</div>
@@ -33,16 +33,16 @@
 				{{form_row(edit_form.fonction)}}
 				{{form_row(edit_form.tel)}}
 				{{form_row(edit_form.mail)}}
-			
+
 		</div>
 	</div>
-	
+
 	<div class="unit-50">
 	<div class="panel" style="margin-bottom:1.65em">
 		<div class="header">
 			<span class="titre">Structure</span>
 		</div>
-		
+
 		<div class="panel-body">
 			{{form_row(edit_form.adresse.nomStructure)}}
 			<label> Tags
@@ -51,17 +51,17 @@
 			</label>
 		</div>
 	</div>
-	
+
 	<div class="panel">
 		<div class="header">
 			<span class="titre">Commentaires/Observations</span>
 		</div>
-		
+
 		<div class="panel-body">
 			{{form_widget(edit_form.commentaire)}}
 		</div>
 	</div>
-	
+
 	</div>
 </div>
 
