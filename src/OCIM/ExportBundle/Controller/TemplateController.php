@@ -162,7 +162,7 @@ class TemplateController extends Controller
       $filename = str_replace('{{inscription.stagiaire.prenom}}', $inscription->getStagiaire()->getPrenom(), $filename);
 
       if(!is_null($inscription->getConvention())){
-        $filename = str_replace('{{inscription.convention.numero}}', $inscription->getConvention()->getNumero(), $filename);
+        $filename = str_replace('{{inscription.convention.numeroToString}}', $inscription->getConvention()->getNumeroToString(), $filename);
       }
     }
 		// Ajout de la fonction twig pour calculer la durée entre deux date

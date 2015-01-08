@@ -128,6 +128,7 @@
 		<thead>
 			<tr>
 				<th class="handle"></th>
+				<th class="insc info"><span>Civilité</span></th>
 				<th class="insc info"><span>Nom</span></th>
 				<th class="insc info"><span>Prénom</span></th>
 				<th class="insc contact"><span>Tel</span></th>
@@ -154,7 +155,8 @@
 			<tr class="statut {{class}}" data-ordre="{{entity.ordre}}" data-idinscription="{{entity.id}}">
 
 						{% if class == "attente" %}<td class="handle"><i class="fa fa-arrows"></i></td>{% else %}<td></td>{% endif %}
-						<td class="insc info"><span>{{ entity.stagiaire.nom }} ({{ entity.stagiaire.civilite }})</span></td>
+						<td class="insc info"><span>{{ entity.stagiaire.civilite }}</span></td>
+						<td class="insc info"><span>{{ entity.stagiaire.nom }}</span></td>
 						<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
 						<td class="insc contact"><span>{{ entity.stagiaire.tel }}</span></td>
 						<td class="insc contact"><span>{{ entity.stagiaire.fax}}</span></td>
@@ -210,7 +212,7 @@
 
 			{% if entity.statut == 'accepté' %}
 			<tr class="statut {{class}}" data-ordre="{{entity.ordre}}" data-idinscription="{{entity.id}}" data-idpersonne="{{entity.stagiaire.id}}">
-						<td class="insc info"><span>{{ entity.stagiaire.nom }} ({{ entity.stagiaire.civilite }})</span></td>
+						<td class="insc info"><span>{{ entity.stagiaire.nom }}</span></td>
 						<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
 
 					{% for log in logistique %}
@@ -244,7 +246,7 @@
 		{# Logistique des intervenants #}
 		{% for intervenant in formation.intervenants %}
 			<tr data-idpersonne="{{intervenant.id}}">
-				<td class="insc info">{{intervenant.nom}} ({{intervenant.civilite}})</td>
+				<td class="insc info">{{intervenant.nom}}</td>
 				<td class="insc info">{{intervenant.prenom}}</td>
 				{% for log in logistique %}
 					{% if log.formation %}
@@ -299,6 +301,7 @@
 		<thead>
 			<tr>
 				<th class="handle"></th>
+				<th class="insc info"><span>Civilité</span></th>
 				<th class="insc info"><span>Nom</span></th>
 				<th class="insc info"><span>Prénom</span></th>
 				<th class="insc convention text-centered"><span>Numéro</span></th>
@@ -321,10 +324,11 @@
 			{% endif %}
 			<tr class="statut {{class}}" data-ordre="{{entity.ordre}}" data-idinscription="{{entity.id}}">
 						{% if class == "attente" %}<td class="handle"><i class="fa fa-arrows"></i></td>{% else %}<td></td>{% endif %}
-						<td class="insc info"><span>{{ entity.stagiaire.nom }} ({{ entity.stagiaire.civilite }})</span></td>
+						<td class="insc info"><span>{{ entity.stagiaire.civilite }}</span></td>
+						<td class="insc info"><span>{{ entity.stagiaire.nom }}</span></td>
 						<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
 					{% if entity.convention %}
-						<td class="insc convention text-centered"><span>{{ entity.convention.numero }}</span></td>
+						<td class="insc convention text-centered"><span>{{ entity.convention.numeroToString }}</span></td>
 						<td class="insc convention text-centered"><span>{{ entity.convention.edition|date('d/m/Y') }}</span></td>
 						<td class="insc convention text-centered"><span>{% if entity.convention.etape1 %}<i class="fa fa-check" title="{{ entity.convention.etape1|date('d/m/Y') }}"></i></span>{% endif %}</td>
 						<td class="insc convention text-centered"><span>{% if entity.convention.etape2 %}<i class="fa fa-check" title="{{ entity.convention.etape2|date('d/m/Y') }}"></i></span>{% endif %}</td>
@@ -333,7 +337,7 @@
 
 					{% else %}
 						<td class="insc convention text-centered" colspan="6">
-							<a href="{{ path('convention_new', { 'idinscription': entity.id, 'idformation':formation.id }) }}" class=""><i class="fa fa-plus"></i> Entrer des informations concernant la convention</a>
+							<span style="color: grey">{% if(entity.statutConvention is null) %} Demande de convention non confirmée {% elseif entity.statutConvention == false %} Pas de convention {% elseif entity.statutConvention == true %} Convention demandée{% endif %}</span>
 						</td>
 					{% endif %}
             </tr>
@@ -350,6 +354,7 @@
 		<thead>
 			<tr>
 				<th class="handle"></th>
+				<th class="insc info"><span>Civilité</span></th>
 				<th class="insc info"><span>Nom</span></th>
 				<th class="insc info"><span>Prénom</span></th>
 
@@ -371,7 +376,8 @@
 			{% endif %}
 			<tr class="statut {{class}}" data-ordre="{{entity.ordre}}" data-idinscription="{{entity.id}}">
 						{% if class == "attente" %}<td class="handle"><i class="fa fa-arrows"></i></td>{% else %}<td></td>{% endif %}
-						<td class="insc info"><span>{{ entity.stagiaire.nom }} ({{ entity.stagiaire.civilite }})</span></td>
+						<td class="insc info"><span>{{ entity.stagiaire.civilite }}</span></td>
+						<td class="insc info"><span>{{ entity.stagiaire.nom }}</span></td>
 						<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
 						{% if entity.signataire %}
 							<td class="insc finance">{% if entity.signataire.adresse %}<abbr title="{{entity.signataire.adresse.ville}} {{entity.signataire.adresse.CP}} {{entity.signataire.adresse.pays}}">{{entity.signataire.adresse.nomStructure}}</abbr>{% endif %}</td>
@@ -398,6 +404,7 @@
 		<thead>
 			<tr>
 				<th class="handle"></th>
+				<th class="insc info"><span>Civilité</span></th>
 				<th class="insc info"><span>Nom</span></th>
 				<th class="insc info"><span>Prénom</span></th>
 				<th class="insc attentes"><span>Attentes</span></th>
@@ -415,7 +422,8 @@
 			{% endif %}
 			<tr class="statut {{class}}" data-ordre="{{entity.ordre}}" data-idinscription="{{entity.id}}">
 				{% if class == "attente" %}<td class="handle"><span class="fa fa-arrows"></span></td>{% else %}<td></td>{% endif %}
-				<td class="insc info"><span>{{ entity.stagiaire.nom }} ({{ entity.stagiaire.civilite }})</span></td>
+				<td class="insc info"><span>{{ entity.stagiaire.civilite }}</span></td>
+				<td class="insc info"><span>{{ entity.stagiaire.nom }}</span></td>
 				<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
 				<td class="insc attentes" style="white-space:normal"><span>{{ entity.attentes }}</span></td>
             </tr>
@@ -482,7 +490,8 @@
 			<table>
 				<thead>
 					<tr>
-						<th>Nom (Civilité)</th>
+						<th>Civilité</th>
+						<th>Nom</th>
 						<th>Prénom</th>
 						<th>Fonction</th>
 						<th>Téléphone</th>
@@ -495,7 +504,8 @@
 				<tbody>
 					{% for intervenant in formation.intervenants %}
 						<tr class="{{((id is defined)and( id == intervenant.id ))? " highlight"}}">
-							<td>{{intervenant.nom|capitalize}} ({{intervenant.civilite}})</td>
+							<td>{{intervenant.civilite}}</td>
+							<td>{{intervenant.nom|capitalize}}</td>
 							<td>{{intervenant.prenom|capitalize}}</td>
 							<td>{{intervenant.fonction}}</td>
 							<td>{{intervenant.tel}}</td>

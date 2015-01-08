@@ -227,7 +227,7 @@ class Convention
     }
 
     public function getNumeroToString(){
-      if(($this->getNUmero())&&($this->getEdition())){
+      if((!is_null($this->getNUmero()))&&(!is_null($this->getEdition()))){
         return $this->getEdition()->format('Y/m/').$this->getNumero();
       }
       else return false;

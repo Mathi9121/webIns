@@ -75,7 +75,7 @@ class IntervenantController extends Controller
 			'em' => $this->getDoctrine()->getManager(),
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Enregistrer', 'class'=> 'btn btn-green btn-save'));
+        $form->add('submit', 'submit', array('label' => 'Enregistrer', 'attr'=>array('class'=> 'btn btn-green btn-save')));
 
         return $form;
     }
@@ -159,7 +159,7 @@ class IntervenantController extends Controller
 			'em' => $this->getDoctrine()->getManager()
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Enregistrer', 'class' => 'btn btn-green btn-save'));
+        $form->add('submit', 'submit', array('label' => 'Enregistrer', 'attr' => array('class' => 'btn btn-green btn-save')));
 
         return $form;
     }
@@ -184,7 +184,7 @@ class IntervenantController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
             $this->get('session')->getFlashBag()->add('notice','Modifications sauvegardées');
-            return $this->redirect($this->generateUrl('inscription', array('id' => $id, 'idformation' => $idformation)));
+            return $this->redirect($this->generateUrl('inscription', array('id' => $id, 'idformation' => $idformation)). "#intervenants");
         }
         $this->get('session')->getFlashBag()->add('error','Le formulaire contient des erreurs');
         return $this->render('OCIMContactsBundle:Intervenant:edit.html.twig', array(

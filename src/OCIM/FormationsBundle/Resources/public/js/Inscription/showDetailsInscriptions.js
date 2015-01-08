@@ -13,7 +13,7 @@ $(document).ready(function(){
 
 
 	//ecouteur devenement : clique sur une ligne, sauf premiere case
-	$('.tab:not(#logistique, #convention, #intervenants) table tr td').not(':first-of-type').css('cursor', 'pointer').click(function(){
+	$('.tab:not(#logistique, #intervenants) table tr td').not(':first-of-type').css('cursor', 'pointer').click(function(){
 
 		// la ligne est selectionnée
 		$(this).closest('tr').addClass("selected", 500, "easeInOutCubic");
