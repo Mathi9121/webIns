@@ -82,14 +82,12 @@
 </div>
 
 
-
-
-
-<hr/>
-<div class="group">
+<footer id="footer" class="group">
 	<div class="left"><a href="{{ path('formation') }}" class="btn btn-smaller">Retour à la liste des formations</a></div>
 	<div class="right">{{ form_row(edit_form.submit) }}</div>
-</div>
+</footer>
+
 {{ form_rest(edit_form) }}
 </form>
+
 {% endblock %}

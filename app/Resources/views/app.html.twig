@@ -165,9 +165,14 @@
 			</div>
 		</div>
 		{% endfor %}
+
 <!-- FOOTER -->
-<footer id="footer">
+{% if block('footer') %}
+<footer id="footer" class="group">
+	{% block footer %}
+	{% endblock %}
 </footer>
+{% endif %}
 
 <!-- SCRIPTS -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

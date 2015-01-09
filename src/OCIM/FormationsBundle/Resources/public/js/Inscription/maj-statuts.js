@@ -8,7 +8,7 @@ $(document).ready(function(){
     var statutinscription = $(this).attr('data-statut');
     var statutconvention = $(this).attr('data-statutconvention');
     statutconvention = (statutconvention == "")? "null" : statutconvention;
-    var popup = $('<div class="white-popup"><h2>Statut de l&apos;inscription</h2><hr/><p class="text-centered choix inscription"><span class="annule" data-statut="3"><i class="fa fa-question fa-times"></i>Annulé</span><span class="attente" data-statut="2"><i class="fa fa-question fa-fw"></i>En attente</span><span class="valide" data-statut="1"><i class="fa fa-check fa-fw"></i>Validé</span></p></div>');
+    var popup = $('<div class="white-popup"><h2>Statut de l&apos;inscription</h2><hr/><p class="text-centered choix inscription"><span class="annule" data-statut="3"><i class="fa fa-times fa-fw"></i>Annulé</span><span class="attente" data-statut="2"><i class="fa fa-question fa-fw"></i>En attente</span><span class="valide" data-statut="1"><i class="fa fa-check fa-fw"></i>Validé</span></p></div>');
     popup.find('[data-statut='+statutinscription+']').addClass('selected');
 
     popup.append('<br/><h2>Statut de la Convention</h2><hr/>');

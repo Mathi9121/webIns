@@ -102,4 +102,9 @@ $(document).ready(function(){
 	$(".tools-message").css('right', ($(document).width()/2)-($(".tools-message").width()/2)+"px");
 	$(".tools-message").message(5);
 
+	//boutons dans barre
+	var controls = $("#footer").find("a, input, button").clone(true);
+
+	$("#controls").append(controls);
+
 });
