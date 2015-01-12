@@ -78,16 +78,15 @@ couleurs['3hover']	= 		"rgba(255, 54, 0, 0.5)";
 
 
 {# Titres #}
-{% block title %} Formations{% endblock %}
-{% block titre %}Détail de la formation{% endblock %}
+{% block title %} Détails de la formation : {{entity.intitule}}{% endblock %}
+{% block titre %}Détails : {{entity.intitule}}{% endblock %}
 {% block breadcrumbs %}
-	<li><span>{{entity.intitule}}</span></li>
+	<li><span>Détails</span></li>
 {% endblock %}
 
 {# Controls #}
 {% block controls %}
-<a href="{{ path('formation_edit', { 'id': entity.id }) }}" class="btn btn-green btn-outline"><i class="fa fa-pencil"></i></a>
-<div style='display:inline-block'>{{ form(delete_form) }}</div>
+{{ form(delete_form) }}
 {% endblock %}
 
 {# CONTENT #}
@@ -211,19 +210,18 @@ couleurs['3hover']	= 		"rgba(255, 54, 0, 0.5)";
 	</div>
 
 	<p class="text-centered" style="margin-top: 70px;">
-		<a href="{{path('inscription', {'idformation': entity.id})}}" class="btn btn-green btn-big"><i class="fa fa-users"></i> Consulter les inscriptions à cette formation</a>
+		<a href="{{path('inscription', {'idformation': entity.id})}}" class="btn btn-green"><i class="fa fa-users fa-fw"></i> Consulter les inscriptions à cette formation</a>
 	</p>
 	</div>
 </div>
 
-<hr/>
-<div class="group">
+<footer id="footer" class="group">
 	<div class="left">
-		<a href="{{ path('formation') }}" class="btn">Retour à la liste</a>
+		<a href="{{ path('formation') }}" class="btn btn-back">Retour à la liste</a>
 	</div>
 	<div class="right">
-		<a href="{{ path('formation_edit', { 'id': entity.id }) }}" class="btn">Modifier</a>
+		<a href="{{ path('formation_edit', { 'id': entity.id }) }}" class="btn btn-green btn-edit"><i class="fa fa-pencil fa-fw"></i>Modifier</a>
 		<div style='display:inline-block'>{{ form(delete_form) }}</div>
 	</div>
-</div>
+</footer>
 {% endblock %}

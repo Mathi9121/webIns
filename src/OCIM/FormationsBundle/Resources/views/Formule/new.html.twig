@@ -28,10 +28,10 @@
 </div>
 
 
-<div class="group">
-	<div class="left"><a href="{{ path('formule') }}" class="btn btn-smaller"><span class="oi" data-glyph="arrow-left"></span> Retour à la liste</a></div>
+<footer id="footer" class="group">
+	<div class="left"><a href="{{ path('formule') }}" class="btn btn-back"><i class="fa fa-chevron-left fa-fw"></i> Retour à la liste</a></div>
 	<div class="right">{{form_widget(form.submit)}}</div>
-</div>
+</footer>
 
 {{ form_end(form)}}
 {% endblock %}

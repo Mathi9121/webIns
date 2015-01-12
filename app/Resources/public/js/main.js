@@ -100,18 +100,32 @@ $(document).ready(function(){
 
 	//flash message
 	$(".tools-message").css('right', ($(document).width()/2)-($(".tools-message").width()/2)+"px");
-	$(".tools-message").message(5);
+	$(".tools-message").css('display', 'block');
+	$(".tools-message").delay(5000).hide('medium');
 
-	//boutons dans barre
-	$('.btn-save').click(function(e){
-		
-	});
-	var controls = $("#footer").find("a, input, button").clone(true);
-	$("#controls").append(controls);
-	$("#controls").find(".btn-save, .btn-delete, .btn-back").css('display', 'inline-block').text('');
+	//copie des boutons du footer
+	var btnsave = $("#footer").find(".btn-save").clone(true);
+	var btnback = $("#footer").find(".btn-back").clone(true);
+	var btnedit = $("#footer").find(".btn-edit").clone(true);
+	//ajout a #controls
+	$("#controls").prepend(btnsave, btnedit, btnback);
+	//un peu de css
+	$("#controls").find(".btn-save, .btn-delete, .btn-back, btn-edit").css('display', 'inline-block').text('');
 	$("#controls").find("button.btn-delete, input.btn-delete").closest('form').css('display', 'inline-block');
+	//on efface le contenu pour le remplacer par des icones
 	$('#controls input.btn-save, #controls button.btn-save').html('<i class="fa fa-save fa-2x fa-fw"></i>');
 	$('#controls input.btn-delete, #controls button.btn-delete').html('<i class="fa fa-trash fa-2x fa-fw"></i>');
-	$('#controls a.btn-back, #controls a.btn-back').html('<i class="fa fa-arrow-left fa-2x fa-fw"></i>');
+	$('#controls a.btn-back').html('<i class="fa fa-chevron-left fa-2x fa-fw"></i>');
+	$('#controls a.btn-edit').html('<i class="fa fa-pencil fa-2x fa-fw"></i>');
+	//ajout dattributs title aux boutons
+	$('#controls .btn-back').attr('title' ,"Retour à la page précédente");
+	$('#controls .btn-save').attr('title' ,"Enregistrer");
+	$('#controls .btn-delete').attr('title' ,"Supprimer");
+	$('#controls .btn-edit').attr('title' ,"Modifier");
+	//evenement validation du formulaire
+	$('#controls .btn-save').click(function(e){
+		$('#footer .btn-save').closest('form').submit();
+	});
+
 
 });

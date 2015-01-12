@@ -10,12 +10,12 @@
 	<div class="text-centered error">{{error.message}}</div>
 {% endif  %}
     <label>
-        <input type="text" value="{{last_username}}"  name="_username" placeholder="Login" class="width-100" />
+        <input type="text" value="{{last_username}}"  name="_username" placeholder="Login" class="width-100" autofocus/>
     </label>
     <label>
         <input type="password" name="_password" placeholder="Mot de passe" class="width-100" />
     </label>
-    <p> 
+    <p>
         <input type="submit" value="Se connecter"  class="btn btn-green width-100"/>
     </p>
 	<input type="hidden" name="_target_path" value="{{url('home')}}"/>

@@ -20,8 +20,8 @@ filter='cssrewrite' %}
 {% endblock %}
 
 {# Titres #}
-{% block title %}Modification - {{ entity.intitule }}{% endblock %}
-{% block titre %}Edition Formation{% endblock %}
+{% block title %}Edition - {{ entity.intitule }}{% endblock %}
+{% block titre %}Edition : {{ entity.intitule }}{% endblock %}
 
 {# Controls #}
 {% block controls %}
@@ -29,7 +29,7 @@ filter='cssrewrite' %}
 {% endblock %}
 
 {% block breadcrumbs %}
-<li><span>Edition - {{ entity.intitule }}</span></li>
+<li><span>Edition</span></li>
 {% endblock %}
 
 {% block body %}
@@ -88,7 +88,7 @@ filter='cssrewrite' %}
 
 
 <footer id="footer" class="group">
-	<div class="left"><a href="{{ path('formation') }}" class="btn btn-back"><span class="oi" data-glyph="arrow-left"></span> Retour à la liste des formations</a></div>
+	<div class="left"><a href="{{ path('formation') }}" class="btn btn-back"><i class="fa fa-chevron-left fa-fw"></i>Retour à la liste des formations</a></div>
 	<div class="right">{{ form_widget(edit_form.submit) }}</div>
 </footer>
 

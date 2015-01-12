@@ -20,14 +20,16 @@
 {% endblock %}
 
 {# Titres #}
-{% block title %}Nouvelle formation {% endblock %}
+{% block title %}Nouvelle formation{% endblock %}
 {% block titre %}Nouvelle formation{% endblock %}
 
 {# Controls #}
 {% block controls %}
-
 {% endblock %}
 
+{% block breadcrumbs %}
+<li><span>Nouvelle</span></li>
+{% endblock %}
 {% block body %}
 
 <form action="{{ path('formation_create') }}" method="post" class="forms units-row" {{ form_enctype(edit_form) }}>
@@ -83,7 +85,7 @@
 
 
 <footer id="footer" class="group">
-	<div class="left"><a href="{{ path('formation') }}" class="btn btn-smaller">Retour à la liste des formations</a></div>
+	<div class="left"><a href="{{ path('formation') }}" class="btn btn-back"><i class="fa fa-chevron-left fa-fw"></i>Retour à la liste des formations</a></div>
 	<div class="right">{{ form_row(edit_form.submit) }}</div>
 </footer>
 

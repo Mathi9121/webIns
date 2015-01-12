@@ -12,12 +12,12 @@
 
 {# Titres #}
 {% block title %}Edition Inscription n° {{entity.id}} - {{entity.stagiaire.prenom|capitalize}} {{entity.stagiaire.nom|capitalize}}{% endblock %}
-{% block titre %}Edition Inscription n° {{entity.id}} - {{entity.stagiaire.prenom|capitalize}} {{entity.stagiaire.nom|capitalize}}{% endblock %}
+{% block titre %}Edition Inscription - {{entity.stagiaire.prenom|capitalize}} {{entity.stagiaire.nom|capitalize}}{% endblock %}
 
 {% block breadcrumbs %}
-<li><a href="{{ path('formation_show', { 'id': idformation }) }}">Formation : {{entity.formationformule.formation.intitule}}</a></li>
+<li><a href="{{ path('formation') }}">Formations</a></li>
 <li><a href="{{ path('inscription', { 'idformation': idformation }) }}">Inscriptions</a></li>
-<li><span>Inscription n° {{entity.id}}</span></li>
+<li><span>Edition</span></li>
 {% endblock %}
 
 
@@ -234,10 +234,10 @@
 </div>
 
 
-<div class="group">
-	<div class="left"><a href="{{ path('inscription', { 'idformation': idformation }) }}" class="btn btn-smaller">Retour à la liste</a></div>
+<footer id="footer" class="group">
+	<div class="left"><a href="{{ path('inscription', { 'idformation': idformation }) }}" class="btn btn-back"><i class="fa fa-chevron-left fa-fw"></i>Retour aux inscriptions</a></div>
 	<div class="right">{{ form_widget(form.submit) }}</div>
-</div>
+</footer>
 
 {{ form_end(form)}}
 
