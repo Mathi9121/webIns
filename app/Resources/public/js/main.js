@@ -103,8 +103,15 @@ $(document).ready(function(){
 	$(".tools-message").message(5);
 
 	//boutons dans barre
+	$('.btn-save').click(function(e){
+		
+	});
 	var controls = $("#footer").find("a, input, button").clone(true);
-
 	$("#controls").append(controls);
+	$("#controls").find(".btn-save, .btn-delete, .btn-back").css('display', 'inline-block').text('');
+	$("#controls").find("button.btn-delete, input.btn-delete").closest('form').css('display', 'inline-block');
+	$('#controls input.btn-save, #controls button.btn-save').html('<i class="fa fa-save fa-2x fa-fw"></i>');
+	$('#controls input.btn-delete, #controls button.btn-delete').html('<i class="fa fa-trash fa-2x fa-fw"></i>');
+	$('#controls a.btn-back, #controls a.btn-back').html('<i class="fa fa-arrow-left fa-2x fa-fw"></i>');
 
 });
