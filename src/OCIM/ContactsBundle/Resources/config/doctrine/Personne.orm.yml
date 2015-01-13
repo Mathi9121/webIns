@@ -20,6 +20,8 @@ OCIM\ContactsBundle\Entity\Personne:
         reponsesLogistique:
             targetEntity: OCIM\FormationsBundle\Entity\ReponsesLogistique
             mappedBy: personne
+            cascade: ['all']
+            onDelete: "CASCADE"
     table: null
     repositoryClass: OCIM\ContactsBundle\Entity\PersonneRepository
     id:

@@ -28,9 +28,7 @@ class ConventionRepository extends EntityRepository
     return $this->getEntityManager()
       ->createQuery(
         'SELECT i FROM OCIMFormationsBundle:Inscription i
-          WHERE i.statutConvention is null
-          OR i.statutConvention = 1
-          ORDER BY i.statutConvention DESC, i.dateInscription DESC'
+          ORDER BY i.dateInscription DESC'
       )
       ->setMaxResults(10)
       ->setFirstResult(10 * ($slug-1))

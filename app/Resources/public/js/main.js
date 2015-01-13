@@ -70,6 +70,9 @@ $(document).ready(function(){
 		lang:'fr',
 		timepicker:false,
 		format:'d/m/Y',
+		minDate: false,
+		maxDate: false,
+		scrollInput: false,
 		i18n:{
 			fr:{
 				months:[
@@ -84,7 +87,6 @@ $(document).ready(function(){
 			}
 		},
 	});
-
 
 	//style des boutons, et rassemblement des boutons de control
 	$('.btn-save').prepend('<i class="fa fa-save fa-fw"></i>');

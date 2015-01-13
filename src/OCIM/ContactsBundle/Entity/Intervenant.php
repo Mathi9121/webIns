@@ -12,4 +12,42 @@ class Intervenant extends Personne
 	public function __construct(){
 		parent::__construct('intervenant');
 	}
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $formations;
+
+
+    /**
+     * Add formations
+     *
+     * @param \OCIM\FormationsBundle\Entity\Formation $formations
+     * @return Intervenant
+     */
+    public function addFormation(\OCIM\FormationsBundle\Entity\Formation $formations)
+    {
+        $this->formations[] = $formations;
+
+        return $this;
+    }
+
+    /**
+     * Remove formations
+     *
+     * @param \OCIM\FormationsBundle\Entity\Formation $formations
+     */
+    public function removeFormation(\OCIM\FormationsBundle\Entity\Formation $formations)
+    {
+        $this->formations->removeElement($formations);
+    }
+
+    /**
+     * Get formations
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFormations()
+    {
+        return $this->formations;
+    }
 }

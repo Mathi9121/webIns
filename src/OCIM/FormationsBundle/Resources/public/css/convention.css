@@ -12,7 +12,7 @@
   vertical-align:middle;
 }
 
-.no-convention:hover, .etape-convention:hover, .num-convention:hover, .edition-convention:hover{
+tr:not(.strike) .no-convention:hover,tr:not(.strike) .etape-convention:hover,tr:not(.strike) .num-convention:hover,tr:not(.strike) .edition-convention:hover{
   background-color: #eeeeee;
   cursor: pointer;
 }
@@ -21,4 +21,9 @@
 }
 .etape-convention.valide{
   background-color: #C6FFA9
+}
+
+.strike{
+  opacity: 0.7;
+  text-decoration: line-through;
 }

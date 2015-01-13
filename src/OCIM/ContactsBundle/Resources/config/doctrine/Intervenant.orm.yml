@@ -1,5 +1,9 @@
 OCIM\ContactsBundle\Entity\Intervenant:
     type: entity
+    manyToMany:
+      formations:
+        targetEntity: OCIM\FormationsBundle\Entity\Formation
+        mappedBy: intervenants
     table: null
     lifecycleCallbacks:
         postLoad: [__construct]

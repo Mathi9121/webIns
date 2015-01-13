@@ -2,14 +2,14 @@ $(document).ready(function(){
 
   //Nouvelle Convention
   $("table tbody .no-convention").hover(function(){
-    $(this).html("<i class='fa fa-plus'></i> Nouvelle Convention");
+    $(this).html("<i class='fa fa-plus fa-fw'></i>Nouvelle Convention");
   },
   function(){
     $(this).html("");
   });
 
   // Nouvelle Convention Click
-  $("table tbody").on("click", ".no-convention:not(.disabled)", function(){
+  $("table tbody tr:not(.strike)").on("click", ".no-convention:not(.disabled)", function(){
 
     var place = $(this);
     // disabled
@@ -73,7 +73,7 @@ $(document).ready(function(){
 
 
   //ecouteur d events update etape convention validation
-  $(document).on("click", ".etape-convention:not(.disabled), .edition-convention:not(.disabled), .num-convention:not(.disabled)", function(){
+  $('tr:not(.strike)').on("click", ".etape-convention:not(.disabled), .edition-convention:not(.disabled), .num-convention:not(.disabled)", function(){
     var td = $(this);
     td.addClass('disabled');
     var contenu = td.html();

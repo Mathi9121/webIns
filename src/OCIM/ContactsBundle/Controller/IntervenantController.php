@@ -203,12 +203,11 @@ class IntervenantController extends Controller
     {
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);
-        $idformation = $this->getDoctrine()->getManager()->getRepository('OCIMContactsBundle:Intervenant')->find($id)->getFormation()->getId();
-
+        $idformation = 0;
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('OCIMContactsBundle:Intervenant')->find($id);
-
+            $idformation = $entity->getFormations()[0]->getId();
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Intervenant entity.');
             }

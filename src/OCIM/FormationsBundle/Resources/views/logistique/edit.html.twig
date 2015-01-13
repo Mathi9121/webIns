@@ -38,7 +38,7 @@
 	<div class="header">
 		<span class="titre">Liste des questions concernant la logistique</span>
 		<span class="controls right group">
-			<a href="#" class="btn ajoutPrototype"><i class="fa fa-plus"></i> Ajouter une question</a>
+			<a href="#" class="btn ajoutPrototype"><i class="fa fa-plus fa-fw"></i>Ajouter une question</a>
 		</span>
 	</div>
 	<div class="panel-body">
@@ -68,19 +68,17 @@
 				</ul>
 				<br/>
 				<p class="text-centered">
-					<a href="" class="btn btn-big"><i class="fa fa-arrow-left fa-fw"></i>Retour aux inscriptions</a>
+					<a href="{{path('inscription', {'idformation': entity.id})}}#logistique" class="btn btn-big"><i class="fa fa-chevron-left fa-fw"></i>Retour aux inscriptions</a>
 				</p>
 			</div>
 		</div>
 	</div>
 </div>
 
-<hr/>
-<div class="group">
-	<div class="left"><a href="{{ path('logistique') }}" class="btn"> Retour</a></div>
+<footer id="footer" class="group">
+	<div class="left"><a href="{{ path('logistique') }}" class="btn btn-back"><i class="fa fa-chevron-left fa-fw"></i>Retour</a></div>
 	<div class="right">{{ form_widget(edit_form.submit) }}</div>
-</div>
-
+</footer>
 
 
 {{ form_rest(edit_form)}}

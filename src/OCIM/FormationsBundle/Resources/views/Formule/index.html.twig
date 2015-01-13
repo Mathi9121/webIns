@@ -1,6 +1,6 @@
 {% extends '::app.html.twig' %}
 
-{# 
+{#
 {% block  javascripts %}
 {% endblock %}
  #}
@@ -19,7 +19,7 @@
 	<div class="header">
 		<span class="titre">Formules enregistrées</span>
 			<span class="controls right group">
-				
+
 			</span>
 	</div>
 
@@ -30,15 +30,15 @@
 					<th></th>
 					<th>Description</th>
 					<th>Tarif</th>
-					<th class="text-centered"><i class="fa fa-cutlery"></i> Midi</th>
-					<th class="text-centered"><i class="fa fa-cutlery"></i> Soir</th>
-					<th class="text-centered"><i class="fa fa-moon-o"></i> Nuit</th>
+					<th class="text-centered"><i class="fa fa-cutlery fa-fw"></i>Midi</th>
+					<th class="text-centered"><i class="fa fa-cutlery fa-fw"></i>Soir</th>
+					<th class="text-centered"><i class="fa fa-moon-o fa-fw"></i>Nuit</th>
 					<th></th>
 				</tr>
 			</thead>
 			<tbody>
 			{% for entity in entities %}
-				<tr>
+				<tr class="{{((id is defined)and( id == entity.id ))? "highlight"}}">
 					{# <td><a href="{{ path('formule_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td> #}
 					<td style="padding:0">
 						<span class="label label-outline" title="Nombre d'inscriptions à cette formule"><i class="fa fa-users" ></i> {{ entity._countInscriptions.1}}</span>

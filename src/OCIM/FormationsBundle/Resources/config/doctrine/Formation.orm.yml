@@ -17,6 +17,7 @@ OCIM\FormationsBundle\Entity\Formation:
             mappedBy: formation
     manyToMany:
         intervenants:
+            inversedBy: formations
             targetEntity: OCIM\ContactsBundle\Entity\Intervenant
             joinTable:
                 name: Intervenants

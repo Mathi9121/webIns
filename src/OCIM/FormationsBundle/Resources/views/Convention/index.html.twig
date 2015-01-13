@@ -60,8 +60,8 @@ Gestion des conventions
         </thead>
         <tbody>
         {% for entity in entities %}
-
-            <tr data-idconvention="{{(entity.convention)? entity.convention.id}}" data-idinscription="{{entity.id}}">
+        {% if ((entity.statutConvention == true)or(entity.statutConvention is null))or((entity.statutConvention == false)and(entity.convention)) %}
+            <tr data-idconvention="{{(entity.convention)? entity.convention.id}}" data-idinscription="{{entity.id}}" class="{{ (entity.statutConvention == false and entity.statutConvention is not null)? "strike"}}">
                 <td>{{entity.stagiaire.civilite}}</td>
                 <td>{{entity.stagiaire.nom}}</td>
                 <td>{{entity.stagiaire.prenom}}</td>
@@ -71,7 +71,7 @@ Gestion des conventions
                   {% elseif entity.statutConvention %}
                   <span class="label label-green">Confirmée</span>
                   {% elseif entity.statutConvention == false %}
-                    NON
+                  <span class="label label-red">Annulée</span>
                   {% endif %}
                 </td>
                 {% if entity.convention %}
@@ -106,6 +106,7 @@ Gestion des conventions
                     <a title="Exporter" href="#" class="btn btn-smaller btn-green export-convention"><i class="fa fa-download"></i></a>
                   </td>
             </tr>
+            {% endif %}
         {% endfor %}
         </tbody>
     </table>

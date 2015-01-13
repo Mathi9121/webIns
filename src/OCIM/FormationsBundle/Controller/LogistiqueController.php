@@ -278,7 +278,7 @@ class LogistiqueController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => ' Enregistrer', 'attr'=> array('class'=>'btn btn-green oi','data-glyph'=>"check")));
+        $form->add('submit', 'submit', array('label' => 'Enregistrer', 'attr'=> array('class'=>'btn btn-green btn-save')));
 
         return $form;
     }
@@ -396,7 +396,7 @@ class LogistiqueController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('logistique_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Supprimer', 'attr'=>array('class'=>'btn btn-red oi', 'data-glyph'=>'trash')))
+            ->add('submit', 'submit', array('label' => 'Supprimer', 'attr'=>array('class'=>'btn btn-red btn-delete')))
             ->getForm()
         ;
     }

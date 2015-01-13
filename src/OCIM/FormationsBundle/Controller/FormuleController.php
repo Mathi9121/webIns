@@ -20,10 +20,10 @@ class FormuleController extends Controller
      * Lists all Formule entities.
      *
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-
+        $id = $request->query->get('id');
         $entities = $em->getRepository('OCIMFormationsBundle:Formule')->findAll();
 
 		foreach($entities as $entity){
@@ -47,6 +47,7 @@ class FormuleController extends Controller
 
         return $this->render('OCIMFormationsBundle:Formule:index.html.twig', array(
             'entities' => $entities,
+            'id' => $id,
         ));
     }
     /**
@@ -64,8 +65,8 @@ class FormuleController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
-
-            return $this->redirect($this->generateUrl('formule_show', array('id' => $entity->getId())));
+            $this->get('session')->getFlashBag()->add('success','Formule créée.');
+            return $this->redirect($this->generateUrl('formule', array('id' => $entity->getId())));
           }
 
           return $this->render('OCIMFormationsBundle:Formule:new.html.twig', array(
@@ -114,7 +115,7 @@ class FormuleController extends Controller
 			'attr' => array('class' => 'forms')
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Créer', 'attr'=> array('class'=> 'btn btn-green')));
+        $form->add('submit', 'submit', array('label' => 'Créer', 'attr'=> array('class'=> 'btn btn-green btn-save')));
 
         return $form;
     }
@@ -194,7 +195,7 @@ class FormuleController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Enregistrer', 'attr'=> array('class'=>'btn btn-green')));
+        $form->add('submit', 'submit', array('label' => 'Enregistrer', 'attr'=> array('class'=>'btn btn-green btn-save')));
 
         return $form;
     }
@@ -218,10 +219,10 @@ class FormuleController extends Controller
 
         if ($editForm->isValid()) {
             $em->flush();
-
-            return $this->redirect($this->generateUrl('formule_show', array('id' => $id)));
+            $this->get('session')->getFlashBag()->add('notice','Modifications sauvegardées');
+            return $this->redirect($this->generateUrl('formule', array('id' => $id)));
         }
-
+        $this->get('session')->getFlashBag()->add('error','Le formulaire contient des erreurs');
         return $this->render('OCIMFormationsBundle:Formule:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
@@ -248,7 +249,7 @@ class FormuleController extends Controller
             $em->remove($entity);
             $em->flush();
         }
-
+        $this->get('session')->getFlashBag()->add('success','Formule supprimée.');
         return $this->redirect($this->generateUrl('formule'));
     }
 
@@ -264,7 +265,7 @@ class FormuleController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('formule_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Supprimer', 'attr'=> array('class'=>'btn btn-red')))
+            ->add('submit', 'submit', array('label' => 'Supprimer', 'attr'=> array('class'=>'btn btn-red btn-delete')))
             ->getForm()
         ;
     }

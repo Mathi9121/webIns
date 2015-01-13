@@ -48,9 +48,8 @@ class ConventionController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-
-			$entity->setInscription($em->getReference('OCIMFormationsBundle:Inscription', $idinscription));
-			$inscription->setConvention($entity);
+			      $entity->setInscription($em->getReference('OCIMFormationsBundle:Inscription', $idinscription));
+			      $inscription->setConvention($entity);
             $em->persist($entity);
             $em->persist($inscription);
             $em->flush();
@@ -129,7 +128,7 @@ class ConventionController extends Controller
           $setnomfct = "setEtape".$etape;
           $date = $convention->$getnomfct();
           $convention->$setnomfct(new \DateTime($dateetape));
-          
+
           $em->persist($convention);
           $em->flush();
 
