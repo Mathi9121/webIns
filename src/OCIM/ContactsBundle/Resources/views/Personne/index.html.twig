@@ -18,7 +18,9 @@
 {% endjavascripts %}
 <script>
 $(document).ready(function() {
-  $('#datatable').dataTable( {
+
+  //init de datatables.js
+  var datatable = $('#datatable').dataTable({
     // "ajax": "data/arrays.txt"
     language: {
       "sProcessing":     "Traitement en cours...",
@@ -42,21 +44,33 @@ $(document).ready(function() {
         "sSortDescending": ": activer pour trier la colonne par ordre d&eacute;croissant"
       }
     },
-    "columnDefs": [ { "targets": 9, "orderable": false } ],
-    "order": [[ 0, "desc" ]]
-  } );
-} );
+    "columnDefs": [ { "targets": 8, "orderable": false } ],
+    "order": [[ 0, "desc" ]],
+    'sDom': 'ltipr',
+  });
+
+$('#search-box').keyup(function(e){
+  datatable.fnFilter( $(this).val() );
+});
+
+});
+
+
 </script>
 {% endblock %}
 
 {% block title %}Liste des contacts{% endblock %}
 {% block titre %}Liste des contacts{% endblock %}
 
+{% block controls %}
+<input type='search' id="search-box"/>
+{% endblock %}
+
 {% block body -%}
   <div class="panel">
   <div class="panel-body">
     <div class="table-container">
-    <table class="table-stripped" id="datatable">
+    <table class="table-bordered" id="datatable">
         <thead>
             <tr>
                 <th>Id</th>
@@ -65,7 +79,6 @@ $(document).ready(function() {
                 <th>Prenom</th>
                 <th>Fonction</th>
                 <th>Tel</th>
-                <th>Fax</th>
                 <th>Mail</th>
                 <th>Type</th>
                 <th></th>
@@ -81,7 +94,6 @@ $(document).ready(function() {
                   <td>{{ entity.prenom }}</td>
                   <td>{{ entity.fonction }}</td>
                   <td>{{ entity.tel }}</td>
-                  <td>{{ entity.fax }}</td>
                   <td>{{ entity.mail }}</td>
                   <td>{{ entity.type }}</td>
                   <td>

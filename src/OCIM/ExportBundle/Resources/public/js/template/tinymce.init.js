@@ -7,8 +7,15 @@ tinymce.init({
          "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
          "save table contextmenu directionality emoticons template paste textcolor"
    ],
-   toolbar: ["insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons",
+   toolbar: ["sizeselect | fontselect | fontsizeselect | insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons",
 			"Formation | Inscription | Stagiaire | Formule | Convention"],
+    image_advtab: true,
+   image_list: [
+   {title: 'Logo-Ocim', value: 'http://www.ocim.fr/wp-content/themes/ocim/img/logo.png'},
+   {title: 'Bandeau-Ocim', value: "http://www.ocim.fr/wp-content/themes/ocim/img/bandeau-lateral-courrier.png" }
+   ],
+
+
 	setup: function(editor) {
         editor.addButton('Inscription', {
             type: 'menubutton',

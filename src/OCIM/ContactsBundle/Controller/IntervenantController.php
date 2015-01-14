@@ -208,8 +208,6 @@ class IntervenantController extends Controller
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('OCIMContactsBundle:Intervenant')->find($id);
             $idformation = $entity->getFormations()->get(0)->getId();
-
-            exit(var_dump($idformation));
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Intervenant entity.');
             }
