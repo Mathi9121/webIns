@@ -37,7 +37,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: true
-    bundles:        [OCIMFormationsBundle, OCIMExportBundle]
+    bundles:        [OCIMFormationsBundle, OCIMExportBundle, OCIMContactsBundle]
     #java: /usr/bin/java
     assets:
         FontAwesome-otf:
@@ -58,6 +58,39 @@ assetic:
         images:
             inputs: '%kernel.root_dir%/Resources/public/img/coin_rouge.png'
             output: 'img/coin_rouge.png'
+        sort_asc:
+            inputs: '%kernel.root_dir%/Resources/public/img/sort_asc.png'
+            output: 'img/sort_asc.png'
+        sort_desc:
+            inputs: '%kernel.root_dir%/Resources/public/img/sort_desc.png'
+            output: 'img/sort_desc.png'
+        sort_asc_disabled:
+            inputs: '%kernel.root_dir%/Resources/public/img/sort_asc_disabled.png'
+            output: 'img/sort_asc_disabled.png'
+        sort_desc_disabled:
+            inputs: '%kernel.root_dir%/Resources/public/img/sort_desc_disabled.png'
+            output: 'img/sort_desc_disabled.png'
+        sort_both:
+            inputs: '%kernel.root_dir%/Resources/public/img/sort_both.png'
+            output: 'img/sort_both.png'
+        back_enabled:
+            inputs: '%kernel.root_dir%/Resources/public/img/back_enabled.png'
+            output: 'img/back_enabled.png'
+        back_disabled:
+            inputs: '%kernel.root_dir%/Resources/public/img/back_disabled.png'
+            output: 'img/back_disabled.png'
+        forward_disabled:
+            inputs: '%kernel.root_dir%/Resources/public/img/forward_disabled.png'
+            output: 'img/forward_disabled.png'
+        forward_enabled:
+            inputs: '%kernel.root_dir%/Resources/public/img/forward_enabled.png'
+            output: 'img/forward_enabled.png'
+        forward_enabled_hover:
+            inputs: '%kernel.root_dir%/Resources/public/img/forward_enabled_hover.png'
+            output: 'img/forward_enabled_hover.png'
+        back_enabled_hover:
+            inputs: '%kernel.root_dir%/Resources/public/img/back_enabled_hover.png'
+            output: 'img/back_enabled_hover.png'
     filters:
         cssrewrite: ~
         #closure:
