@@ -27,7 +27,6 @@ documents_update:
 documents_delete:
     path:     /{id}/delete
     defaults: { _controller: "OCIMExportBundle:Template:delete" }
-    requirements: { _method: post|delete }
 
 documents_liens:
     path:     /liens
@@ -37,4 +36,9 @@ documents_liens:
 documents_liensconventions:
     path:     /liens-conventions
     defaults: { _controller: "OCIMExportBundle:Template:liensConvention" }
+    requirements: { _method: post }
+
+template_copy:
+    path:     /copy
+    defaults: { _controller: "OCIMExportBundle:Template:copie" }
     requirements: { _method: post }

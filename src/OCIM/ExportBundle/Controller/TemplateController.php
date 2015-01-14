@@ -45,9 +45,10 @@ class TemplateController extends Controller
             $em->persist($entity);
             $em->flush();
 
+            $this->get('session')->getFlashBag()->add('success','Gabarit Créé.');
             return $this->redirect($this->generateUrl('documents'));
         }
-
+        $this->get('session')->getFlashBag()->add('error','Le formulaire contient des erreurs.');
         return $this->render('OCIMExportBundle:Template:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
@@ -256,9 +257,11 @@ class TemplateController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
+            $this->get('session')->getFlashBag()->add('success','Modifications enregistrées.');
             return $this->redirect($this->generateUrl('documents_edit', array('id' => $id)));
         }
 
+        $this->get('session')->getFlashBag()->add('error','Erreur pendant la sauvegarde.');
         return $this->render('OCIMExportBundle:Template:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
@@ -269,23 +272,20 @@ class TemplateController extends Controller
      * Deletes a Template entity.
      *
      */
-    public function deleteAction(Request $request, $id)
+    public function deleteAction( $id)
     {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('OCIMExportBundle:Template')->find($id);
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('OCIMExportBundle:Template')->find($id);
 
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Template entity.');
-            }
-
-            $em->remove($entity);
-            $em->flush();
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Template entity.');
         }
 
+        $em->remove($entity);
+        $em->flush();
+
+        $this->get('session')->getFlashBag()->add('success','Gabarit supprimé.');
         return $this->redirect($this->generateUrl('documents'));
     }
 
@@ -304,5 +304,29 @@ class TemplateController extends Controller
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
+    }
+
+    public function copieAction(Request $request){
+      if($request->isXmlHttpRequest()){
+        $data = json_decode($request->getContent());
+        $nom = $data->nom;
+        $id = $data->id;
+
+        $copie = new Template();
+
+        $em = $this->getDoctrine()->getManager();
+        $template = $em->getRepository('OCIMExportBundle:Template')->find($id);
+
+        $copie->setNom($nom);
+        $copie->setFilename($template->getFilename());
+        $copie->setContenu($template->getContenu());
+        $copie->setType($template->getType());
+
+        $em->persist($copie);
+        $em->flush();
+
+        $this->get('session')->getFlashBag()->add('success','Gabarit "'.$template->getNom().'" copié.');
+        return new Response( json_encode($copie->getId()), Response::HTTP_OK);
+      }
     }
 }

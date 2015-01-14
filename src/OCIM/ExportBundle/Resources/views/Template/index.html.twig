@@ -5,11 +5,30 @@ Gabarits
 {% endblock %}
 
 {% block titre %}
-<span class='oi' data-glyph='file'> Gabarits
+Gabarits
+{% endblock %}
+
+
+{% block stylesheets %}
+{{parent()}}
+{% stylesheets
+'%kernel.root_dir%/Resources/public/css/dataTables.min.css'
+filter='cssrewrite' %}
+<link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset_url }}"/>
+{% endstylesheets %}
+{% endblock %}
+
+{% block  javascripts %}
+{{parent()}}
+{% javascripts
+'@OCIMExportBundle/Resources/public/js/template/delete-template.js'
+%}
+<script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
 {% endblock %}
 
 {% block controls %}
-<a href="{{ path('documents_new') }}" class="btn btn-green"><i class='fa fa-plus'></i> Nouveau Gabarit</a>
+<a href="{{ path('documents_new') }}" class="btn btn-green"><i class='fa fa-plus fa-fw'></i> Nouveau Gabarit</a>
 {% endblock %}
 
 {% block body -%}
@@ -41,9 +60,9 @@ Gabarits
                 <td>{% if entity.date %}{{ entity.date|date('d/m/Y') }}{% endif %}</td>
                 <td class="group">
                     <span class="right">
-				              <a title="Modifier" href="{{ path('documents_edit', { 'id': entity.id }) }}"><i class="fa fa-pencil fa-border"></i></a>
-				              <a title="Copier" href=""><i class="fa fa-copy fa-border"></i></a>
-				              <a title="Supprimer" href=""><i class="btn-red fa fa-trash fa-border "></i></a>
+				              <a title="Modifier" href="{{ path('documents_edit', { 'id': entity.id }) }}"><i class="fa fa-pencil fa-border fa-fw"></i></a>
+				              <a title="Copier" data-id="{{entity.id}}" data-nom="{{entity.nom}}" href="#" data-href="{{path('template_copy')}}" class="btn-copy"><i class="fa fa-copy fa-border fa-fw"></i></a>
+				              <a title="Supprimer" href="{{path('documents_delete', {'id': entity.id})}}" class="btn-del"><i class="fa fa-trash fa-border fa-fw"></i></a>
                     </span>
                 </td>
             </tr>
