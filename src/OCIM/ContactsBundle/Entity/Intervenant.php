@@ -3,7 +3,7 @@
 namespace OCIM\ContactsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Intervenant
  */
@@ -11,6 +11,7 @@ class Intervenant extends Personne
 {
 	public function __construct(){
 		parent::__construct('intervenant');
+		$this->formations = new ArrayCollection();
 	}
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -44,7 +45,7 @@ class Intervenant extends Personne
     /**
      * Get formations
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getFormations()
     {
