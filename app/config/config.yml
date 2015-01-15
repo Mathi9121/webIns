@@ -134,5 +134,5 @@ knp_snappy:
         options:    []
     image:
         enabled:    true
-        binary:     /usr/local/bin/wkhtmltopdf
+        binary:     /usr/local/bin/wkhtmltoimage
         options:    []

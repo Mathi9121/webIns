@@ -201,7 +201,7 @@
 		</div>
 
 		<div class="panel-body">
-		{% if entity.signataire %}
+		{% if entity.signataire.adresse %}
 		<span class="label label-outline">{{entity.signataire.adresse.type}}</span>
 			<address>
 				<strong>{{entity.signataire.adresse.nomStructure}}</strong><br/>

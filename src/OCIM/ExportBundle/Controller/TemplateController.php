@@ -172,16 +172,23 @@ class TemplateController extends Controller
 			return $start->diff($end, true)->format('%a') + 1;
 		});
 
+
+      $mois = array('01'=>'janvier','02'=>'février','03'=>'mars','04'=>'avril','05'=>'mai','06'=>'juin','07'=>'juillet','08'=>'août','09'=>'septembre','10'=>'octobre','11'=>'novembre','12'=>'décembre');
+      $date = new \DateTime('now');
+      $str_date = $date->format('d ').$mois[$date->format('m')].$date->format(' Y');
+      $date_abbr = $date->format('d/m/Y');
+
+
 		// ajout à l'environnement
 		$env->addFunction($function);
 
-		$contenu = "<html><head><meta charset='utf-8'/>
-					</head><body>".$entity->getContenu()."</body></html>";
+		$contenu = "<!DOCTYPE html><html><head><meta charset='utf-8'/>
+					</head><body style='margin:0px'>".$entity->getContenu()."</body></html>";
 
 		// contenu et valeurs
 		$contenu = $env->render(
 			$contenu,
-			array("formation" => $formation, "inscription" => $inscription)
+			array("formation" => $formation, "inscription" => $inscription, 'date'=> $str_date, 'date_abbr'=>$date_abbr)
 		);
 
 		return new Response(

@@ -8,7 +8,7 @@ tinymce.init({
          "save table contextmenu directionality emoticons template paste textcolor"
    ],
    toolbar: ["sizeselect | fontselect | fontsizeselect | insertfile undo redo | styleselect | bold italic | indent outdent | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons",
-			"Formation | Inscription | Stagiaire | Formule | Convention"],
+			"Formation | Inscription | Stagiaire | Formule | Convention | Divers"],
     image_advtab: true,
    image_list: [
    {title: 'Logo-Ocim', value: 'http://www.ocim.fr/wp-content/themes/ocim/img/logo.png'},
@@ -109,5 +109,14 @@ tinymce.init({
 				{text: 'Tarif', onclick: function() 						{editor.insertContent("{{ inscription.formationformule.formule.tarif }}"); }},
 			]
 		});
+    editor.addButton('Divers', {
+      type: 'menubutton',
+      text: 'Divers',
+      icon: false,
+      menu: [
+        {text: 'Date Abbrégée (dd/mm/yyyy)', onclick: function() 					{editor.insertContent("{{ date_abbr }}"); }},
+        {text: 'Date', onclick: function() 						{editor.insertContent("{{ date }}"); }},
+      ]
+    });
 	},
  });
