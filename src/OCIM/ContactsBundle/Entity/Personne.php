@@ -48,13 +48,13 @@ class Personne
      * @var string
      */
 
-	
+
 	private $type;
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -77,7 +77,7 @@ class Personne
     /**
      * Get civilite
      *
-     * @return string 
+     * @return string
      */
     public function getCivilite()
     {
@@ -100,7 +100,7 @@ class Personne
     /**
      * Get nom
      *
-     * @return string 
+     * @return string
      */
     public function getNom()
     {
@@ -123,7 +123,7 @@ class Personne
     /**
      * Get prenom
      *
-     * @return string 
+     * @return string
      */
     public function getPrenom()
     {
@@ -146,7 +146,7 @@ class Personne
     /**
      * Get fonction
      *
-     * @return string 
+     * @return string
      */
     public function getFonction()
     {
@@ -169,7 +169,7 @@ class Personne
     /**
      * Get tel
      *
-     * @return string 
+     * @return string
      */
     public function getTel()
     {
@@ -192,15 +192,15 @@ class Personne
     /**
      * Get mail
      *
-     * @return string 
+     * @return string
      */
     public function getMail()
     {
         return $this->mail;
     }
 
-  
-	
+
+
     public function setType($type = null)
     {
         $this->type = $type;
@@ -208,12 +208,12 @@ class Personne
         return $this;
     }
 
-    
+
     public function getType()
     {
         return $this->type;
     }
-	
+
     /**
      * @var string
      */
@@ -236,7 +236,7 @@ class Personne
     /**
      * Get fax
      *
-     * @return string 
+     * @return string
      */
     public function getFax()
     {
@@ -264,13 +264,13 @@ class Personne
     /**
      * Get adresse
      *
-     * @return \OCIM\ContactsBundle\Entity\Adresse 
+     * @return \OCIM\ContactsBundle\Entity\Adresse
      */
     public function getAdresse()
     {
         return $this->adresse;
     }
-	
+
 	public function __toString(){
 		return $this->prenom." ".$this->prenom;
 	}
@@ -296,7 +296,7 @@ class Personne
     /**
      * Get inscription
      *
-     * @return \OCIM\FormationsBundle\Entity\Inscription 
+     * @return \OCIM\FormationsBundle\Entity\Inscription
      */
     public function getInscription()
     {
@@ -342,15 +342,15 @@ class Personne
     /**
      * Get intervenant
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getIntervenant()
     {
         return $this->intervenant;
     }
-	
+
 	private $commentaire;
-	
+
 	/**
      * Set commentaire
      *
@@ -367,13 +367,13 @@ class Personne
     /**
      * Get commentaire
      *
-     * @return $commentaire 
+     * @return $commentaire
      */
     public function getCommentaire()
     {
         return $this->commentaire;
     }
-	
+
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
@@ -406,15 +406,15 @@ class Personne
     /**
      * Get reponsesLogistique
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getReponsesLogistique()
     {
         return $this->reponsesLogistique;
     }
-	
+
 	public function getReponseByModeleId($modeleId, $return = null){
-		
+
 		$reponse =  $this->getReponsesLogistique()->filter(
 			function($rl) use ($modeleId){
 				if($rl->getModele()->getId() == $modeleId){
@@ -422,7 +422,7 @@ class Personne
 				}
 			}
 		)->first();
-		
+
 		if($reponse){
 			if(!is_null($return)){
 				if($return == 'bool'){
@@ -436,5 +436,14 @@ class Personne
 		}
 		else return 0;
 	}
-	
+
+  public function getCivilitepretty(){
+    $array = array(
+      'Mme' => 'Madame',
+      'Mr' => 'Monsieur',
+      'Mlle' => 'Mademoiselle',
+    );
+    return $array[$this->getCivilite()];
+  }
+
 }

@@ -18,6 +18,11 @@ Edition Gabarit
 Edition Gabarit
 {% endblock %}
 
+{% block controls %}
+{{ form(delete_form) }}
+{% endblock %}
+
+
 {% block body -%}
 
 {{form_start(edit_form)}}
@@ -65,13 +70,14 @@ Edition Gabarit
 		{{form_widget(edit_form.contenu)}}
 	</div>
 </div>
-<hr/>
-	{{form_widget(edit_form.submit)}}
+
+
+<footer id="footer" class="group">
+	<div class="left"><a href="{{ path('documents') }}" class="btn btn-back"><i class="fa fa-chevron-left fa-fw"></i>Retour aux gabarits<a></div>
+	<div class="right">{{form_widget(edit_form.submit)}}</div>
+</footer>
+
 	{{form_rest(edit_form)}}
 	{{form_end(edit_form)}}
 
-
-
-<a href="{{ path('documents') }}">Back to the list</a>
-{{ form(delete_form) }}
 {% endblock %}

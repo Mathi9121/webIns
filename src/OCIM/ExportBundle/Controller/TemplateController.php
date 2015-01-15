@@ -111,7 +111,7 @@ class TemplateController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Create', 'attr' => array('class'=>'btn btn-green btn-save')));
 
         return $form;
     }
@@ -232,7 +232,7 @@ class TemplateController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Enregistrer', 'attr' => array('class'=>'btn btn-green btn-save')));
 
         return $form;
     }
@@ -301,7 +301,7 @@ class TemplateController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('documents_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Delete', 'attr' => array('class'=>'btn btn-red btn-delete')))
             ->getForm()
         ;
     }

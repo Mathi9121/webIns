@@ -7,7 +7,7 @@ tinymce.init({
          "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
          "save table contextmenu directionality emoticons template paste textcolor"
    ],
-   toolbar: ["sizeselect | fontselect | fontsizeselect | insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons",
+   toolbar: ["sizeselect | fontselect | fontsizeselect | insertfile undo redo | styleselect | bold italic | indent outdent | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons",
 			"Formation | Inscription | Stagiaire | Formule | Convention"],
     image_advtab: true,
    image_list: [
@@ -27,7 +27,7 @@ tinymce.init({
                 {text: 'Attentes', onclick: function() 				{editor.insertContent("{{ inscription.attentes }}"); }},
                 {text: "Contact Admin.",
                   menu: [
-                  {text: "Civilite", onclick: function() 			{editor.insertContent("{{ inscription.admin.civilite }}"); }},
+                {text: "Civilite", onclick: function() 			{editor.insertContent("{{ inscription.admin.civilitepretty }}"); }},
                   {text: "Nom", onclick: function() 				{editor.insertContent("{{ inscription.admin.nom }}"); }},
                   {text: "Prenom", onclick: function() 			{editor.insertContent("{{ inscription.admin.prenom }}"); }},
                   {text: "Fonction", onclick: function() 			{editor.insertContent("{{ inscription.admin.fonction }}"); }},
@@ -41,7 +41,7 @@ tinymce.init({
 			text: 'Stagiaire',
 			icon: false,
 			menu: [
-				{text: 'Civilite', onclick: function() 					{editor.insertContent("{{ inscription.stagiaire.civilite }}"); }},
+    {text: 'Civilite', onclick: function() 					{editor.insertContent("{{ inscription.stagiaire.civilitepretty }}"); }},
 				{text: 'Nom', onclick: function() 						{editor.insertContent("{{ inscription.stagiaire.nom }}"); }},
 				{text: 'Prenom', onclick: function() 					{editor.insertContent("{{ inscription.stagiaire.prenom }}"); }},
 				{text: 'Fonction', onclick: function() 					{editor.insertContent("{{ inscription.stagiaire.fonction }}"); }},
@@ -81,7 +81,7 @@ tinymce.init({
 				{text: "Date d'edition", onclick: function() 					{editor.insertContent("{{ inscription.convention.edition|date('d/m/Y') }}"); }},
 				{text: "Signataire",
 					menu: [
-						{text: "Civilite", onclick: function() 			{editor.insertContent("{{ inscription.signataire.civilite }}"); }},
+        {text: "Civilite", onclick: function() 			{editor.insertContent("{{ inscription.signataire.civilitepretty }}"); }},
 						{text: "Nom", onclick: function() 				{editor.insertContent("{{ inscription.signataire.nom }}"); }},
 						{text: "Prenom", onclick: function() 			{editor.insertContent("{{ inscription.signataire.prenom }}"); }},
 						{text: "Fonction", onclick: function() 			{editor.insertContent("{{ inscription.signataire.fonction }}"); }},
