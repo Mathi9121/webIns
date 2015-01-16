@@ -3,8 +3,9 @@ documents:
     defaults: { _controller: "OCIMExportBundle:Template:index" }
 
 documents_show:
-    path:     /{id}/inscription-{idinscription}/show
+    path:     /{id}/inscription-{idinscription}/{mode}
     defaults: { _controller: "OCIMExportBundle:Template:show" }
+    requirements: {mode: preview|show}
 
 documents_new:
     path:     /new

@@ -67,7 +67,8 @@ class TemplateController extends Controller
 
         foreach($liens as $lien){
           $lien->_nom = $lien->getNom();
-          $lien->_url = $this->generateUrl('documents_show', array('id' => $lien->getId(), 'idinscription'=> $idinscription), true);
+          $lien->_preview = $this->generateUrl('documents_show', array('id' => $lien->getId(), 'idinscription'=> $idinscription, 'mode'=>'preview'), true);
+          $lien->_url = $this->generateUrl('documents_show', array('id' => $lien->getId(), 'idinscription'=> $idinscription, 'mode'=>'show'), true);
           $reponse[] = $lien;
         }
 
@@ -135,7 +136,7 @@ class TemplateController extends Controller
      * Finds and displays a Template entity.
      *
      */
-    public function showAction($id, $idinscription)
+    public function showAction($id, $idinscription, $mode)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -182,8 +183,9 @@ class TemplateController extends Controller
 		// ajout à l'environnement
 		$env->addFunction($function);
 
-		$contenu = "<!DOCTYPE html><html><head><meta charset='utf-8'/>
-					</head><body style='margin:0px'>".$entity->getContenu()."</body></html>";
+		// $contenu = "<!DOCTYPE html><html><head><meta charset='utf-8'/>
+		//			</head><body style='margin:0px'>".$entity->getContenu()."</body></html>";
+		$contenu = $entity->getContenu();
 
 		// contenu et valeurs
 		$contenu = $env->render(
@@ -191,14 +193,24 @@ class TemplateController extends Controller
 			array("formation" => $formation, "inscription" => $inscription, 'date'=> $str_date, 'date_abbr'=>$date_abbr)
 		);
 
-		return new Response(
-			$this->get('knp_snappy.pdf')->getOutputFromHtml($contenu),
-			200,
-			array(
-				'Content-Type'          => 'application/pdf',
-				'Content-Disposition'   => 'attachment; filename="'.$filename.'.pdf"'
-			)
-		);
+    //test du mode : show ou preview
+    if($mode == 'preview'){
+      return $this->render('OCIMExportBundle:Template:preview.html.twig', array(
+        'contenu' => $contenu,
+        'filename' => $filename,
+      ));
+    }
+    else{
+      return new Response(
+        $this->get('knp_snappy.pdf')->getOutputFromHtml($contenu),
+        200,
+        array(
+          'Content-Type'          => 'application/pdf',
+          'Content-Disposition'   => 'attachment; filename="'.$filename.'.pdf"'
+        )
+      );
+    }
+
     }
 
     /**
