@@ -39,6 +39,11 @@ $(document).ready(function(){
       items: {
         src: popup,
         type: 'inline',
+      },
+      callbacks: {
+        close: function() {
+          window.location.reload();
+        }
       }
     });
 
