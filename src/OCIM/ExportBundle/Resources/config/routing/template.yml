@@ -43,3 +43,8 @@ template_copy:
     path:     /copy
     defaults: { _controller: "OCIMExportBundle:Template:copie" }
     requirements: { _method: post }
+
+documents_exportfrompreview:
+    path:     /exportpreview
+    defaults: { _controller: "OCIMExportBundle:Template:exportfrompreview" }
+    requirements: {_method: post}

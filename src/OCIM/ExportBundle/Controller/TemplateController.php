@@ -89,7 +89,8 @@ class TemplateController extends Controller
 
         foreach($liens as $lien){
           $lien->_nom = $lien->getNom();
-          $lien->_url = $this->generateUrl('documents_show', array('id' => $lien->getId(), 'idinscription'=> $idinscription), true);
+          $lien->_url = $this->generateUrl('documents_show', array('id' => $lien->getId(), 'idinscription'=> $idinscription, 'mode'=>'show'), true);
+          $lien->_preview = $this->generateUrl('documents_show', array('id' => $lien->getId(), 'idinscription'=> $idinscription, 'mode'=>'preview'), true);
           $reponse[] = $lien;
         }
 
@@ -211,6 +212,20 @@ class TemplateController extends Controller
       );
     }
 
+    }
+
+    public function exportfrompreviewAction(Request $request){
+      $content = $request->request->get('content');
+      $filename = $request->request->get('filename');
+
+      return new Response(
+        $this->get('knp_snappy.pdf')->getOutputFromHtml($content),
+        200,
+        array(
+          'Content-Type'          => 'application/pdf',
+          'Content-Disposition'   => 'attachment; filename="'.$filename.'.pdf"'
+        )
+      );
     }
 
     /**
