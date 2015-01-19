@@ -195,7 +195,7 @@
 				<th class="insc info"><span>Nom</span></th>
 				<th class="insc info"><span>Prénom</span></th>
 				{% for log in logistique %}
-					<th>{{log.date|date('d/m')}} {{log.description}}</th>
+					<th>{{(log.date is not null)? log.date|date('d/m')}} {{log.description}}</th>
 				{% endfor %}
 			</tr>
 		</thead>

@@ -41,7 +41,7 @@ class formationFormule
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -60,7 +60,7 @@ class formationFormule
 		if(!$this->modeles->contains($modeles)){
 			$this->modeles[] = $modeles;
 		}
-        
+
 
         return $this;
     }
@@ -78,7 +78,7 @@ class formationFormule
     /**
      * Get modeles
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getModeles()
     {
@@ -101,7 +101,7 @@ class formationFormule
     /**
      * Get formule
      *
-     * @return \OCIM\FormationsBundle\Entity\Formule 
+     * @return \OCIM\FormationsBundle\Entity\Formule
      */
     public function getFormule()
     {
@@ -124,13 +124,13 @@ class formationFormule
     /**
      * Get formation
      *
-     * @return \OCIM\FormationsBundle\Entity\Formation 
+     * @return \OCIM\FormationsBundle\Entity\Formation
      */
     public function getFormation()
     {
         return $this->formation;
     }
-	
+
 	public function __toString(){
 		$tarif = $this->getFormule()->getTarif();
 		$tarif = (is_numeric($tarif))? $tarif."€": $tarif;
@@ -168,13 +168,13 @@ class formationFormule
     /**
      * Get inscriptions
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getInscriptions()
     {
         return $this->inscriptions;
     }
-	
+
 	public function getFormuleId(){
 		return $this->getFormule()->getId();
 	}

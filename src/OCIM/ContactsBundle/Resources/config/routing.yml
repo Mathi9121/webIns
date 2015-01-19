@@ -13,3 +13,7 @@ ocim_contacts_homepage:
 structure_ajout:
     path:     structure_ajout
     defaults: { _controller: OCIMContactsBundle:Adresse:ajoutTypeStructure }
+
+structure:
+    path:     structures
+    defaults: { _controller: OCIMContactsBundle:Adresse:index }

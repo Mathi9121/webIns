@@ -1,12 +1,18 @@
 {% extends '::app.html.twig' %}
 
+
+{% block title %}Intervenant{% endblock %}
+{% block titre %}Intervenant - détails{% endblock %}
+
+{% block controls %}
+{% endblock %}
+
 {% block body -%}
+<div class="units-row">
+  <div class="unit-40 panel">
+    <div class="panel-body">
     <table class="">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
             <tr>
                 <th>Civilite</th>
                 <td>{{ entity.civilite }}</td>
@@ -28,27 +34,34 @@
                 <td>{{ entity.tel }}</td>
             </tr>
             <tr>
-                <th>Fax</th>
-                <td>{{ entity.fax }}</td>
-            </tr>
-            <tr>
                 <th>Mail</th>
                 <td>{{ entity.mail }}</td>
             </tr>
+            <tr>
+                <th>Commentaires</th>
+                <td>{{ entity.commentaire }}</td>
+            </tr>
         </tbody>
     </table>
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('personne') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('personne_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+  </div>
+  </div>
+  <div class="unit-60 panel">
+    <div class="header">
+      <span class="titre">Formation(s) liée(s)</span>
+    </div>
+    <div class="panel-body">
+      <table>
+        {% for formation in entity.formations %}
+        <tr>
+          <td>{{formation.intitule}}</td>
+          <td><a href="{{path('inscription', {'idformation': formation.id, 'id': entity.id})}}#intervenants"><i class="fa fa-chevron-right fa-fw"></i></a></td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+</div>
+    <footer id='footer' class="group">
+      <div class="left"><a class="btn btn-back" href="{{ path('personne') }}"><i class="fa fa-chevron-left fa-fw"></i>Retour</a></div>
+    </footer>
 {% endblock %}

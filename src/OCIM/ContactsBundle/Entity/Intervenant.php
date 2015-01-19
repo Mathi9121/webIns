@@ -11,7 +11,7 @@ class Intervenant extends Personne
 {
 	public function __construct(){
 		parent::__construct('intervenant');
-		$this->formations = new ArrayCollection();
+		//$this->formations = new ArrayCollection();
 	}
     /**
      * @var \Doctrine\Common\Collections\Collection

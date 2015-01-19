@@ -103,6 +103,7 @@ class PersonneController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
+
         return $this->render('OCIMContactsBundle:Personne:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),

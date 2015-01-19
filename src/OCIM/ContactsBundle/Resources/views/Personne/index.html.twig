@@ -97,18 +97,18 @@ $('#search-box').keyup(function(e){
                   <td>{{ entity.mail }}</td>
                   <td>{{ entity.type }}</td>
                   <td>
-  						      {#<a href="
+  						      <a href="
                       {% if(entity.type == 'intervenant') %}
-
+                        {{ path('personne_show', { 'id': entity.id }) }}
                       {% else %}
-                        {{ path('inscription_show', { 'idformation': entity.inscription.formationformule.formation.id ,'id': entity.inscription.id }) }}
+                        {{ path('inscription_show', { 'idformation': entity.inscription.0.id ,'id': entity.inscription.0.id, 'type':entity.type}) }}#{{entity.type}}
                       {% endif %}
                       ">
                       <span class="fa-stack">
                         <i class="fa fa-square fa-stack-2x"></i>
                         <i class="fa fa-info fa-stack-1x fa-inverse"></i>
                       </span>
-                    </a> #}
+                    </a>
                   </td>
                 </tr>
             {% endif %}

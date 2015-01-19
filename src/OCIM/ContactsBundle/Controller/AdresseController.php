@@ -13,25 +13,31 @@ class AdresseController extends Controller
 {
     public function ajoutTypeStructureAction(Request $request)
     {
-		
-		if($request->isXmlHttpRequest()){
-			
-			$em = $this->getDoctrine()->getManager();
-			
-			$data = json_decode($request->getContent());
-			
-			$s = new TypeStructure();
-			
-			if( !empty($data->structure) && isset($data->structure) ){
-				
-				$s->setType( $data->structure);
-				$em->persist($s);
-				
-				$em->flush();
-			}
-			
+
+  		if($request->isXmlHttpRequest()){
+
+  			$em = $this->getDoctrine()->getManager();
+
+  			$data = json_decode($request->getContent());
+
+  			$s = new TypeStructure();
+
+  			if( !empty($data->structure) && isset($data->structure) ){
+
+  				$s->setType( $data->structure);
+  				$em->persist($s);
+
+  				$em->flush();
+  			}
+
 			return new Response( $s->getId(), Response::HTTP_OK);
+      }
 		}
-		
-	}
+
+    public function indexAction(){
+
+      return $this->render('OCIMContactsBundle:Adresse:index.html.twig', array(
+
+      ));
+    }
 }

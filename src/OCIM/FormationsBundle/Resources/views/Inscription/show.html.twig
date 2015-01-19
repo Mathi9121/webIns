@@ -77,7 +77,7 @@
 
 
 <div class="units-row">
-	<div class="unit-33 panel">
+	<div class="unit-33 panel {{(type == 'stagiaire')? 'highlight'}}" id="stagiaire">
 		<div class="header">
 			<span class="titre">Le stagiaire</span>
 				<span class="controls right group">
@@ -128,13 +128,13 @@
 				{{entity.stagiaire.adresse.pays}}
 			</address>
 			<a class="btn end width-100" target="_blank" href="https://www.google.fr/maps/place/{{entity.stagiaire.adresse.nomStructure|replace({' ': '+','"':''})}},+{{entity.stagiaire.adresse.adresse|replace({' ': '+','"':''})}},+{{entity.stagiaire.adresse.cP|replace({' ': '+','"':''})}},+{{entity.stagiaire.adresse.ville|replace({' ': '+','"':''})}},+{{entity.stagiaire.adresse.pays|replace({' ': '+','"':''})}}">
-				<i class="fa fa-map-marker"></i> Voir sur Google Map
+				<i class="fa fa-map-marker fa-fw"></i> Voir sur Google Map
 			</a>
 		{% endif %}
 		</div>
 	</div>
 
-	<div class="panel unit-33">
+	<div class="panel unit-33 {{(type == 'admin')? 'highlight'}}" id="admin">
 		<div class="header">
 			<span class="titre">Contact Administratif</span>
 				<span class="controls right group">
@@ -172,7 +172,7 @@
 <div class="units-row">
 
 
-	<div class="panel unit-33">
+	<div class="panel unit-33 {{(type == 'signataire')? 'highlight'}}" id="signataire">
 		<div class="header">
 			<span class="titre">Signataire</span>
 				<span class="controls right group">

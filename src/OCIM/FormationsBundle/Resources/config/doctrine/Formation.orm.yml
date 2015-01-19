@@ -27,7 +27,6 @@ OCIM\FormationsBundle\Entity\Formation:
                 inverseJoinColumns:
                     intervenant_id:
                         referencedColumnName: id
-                        unique: true
     table: null
     repositoryClass: OCIM\FormationsBundle\Entity\FormationRepository
     id:

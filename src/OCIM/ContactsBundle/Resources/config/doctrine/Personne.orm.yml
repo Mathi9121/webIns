@@ -22,6 +22,10 @@ OCIM\ContactsBundle\Entity\Personne:
             mappedBy: personne
             cascade: ['all']
             onDelete: "CASCADE"
+    manyToMany:
+      inscription:
+        targetEntity: OCIM\FormationsBundle\Entity\Inscription
+        mappedBy: personnes
     table: null
     repositoryClass: OCIM\ContactsBundle\Entity\PersonneRepository
     id:

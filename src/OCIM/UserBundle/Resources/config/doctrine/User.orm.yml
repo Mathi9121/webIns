@@ -24,6 +24,4 @@ OCIM\UserBundle\Entity\User:
         password:
             type: string
             length: 255
-        admin:
-            type: boolean
     lifecycleCallbacks: {  }

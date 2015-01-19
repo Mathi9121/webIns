@@ -30,13 +30,9 @@ class UserType extends AbstractType
             ->add('password', 'password', array(
 				'label'=> 'Mot de passe',
 			))
-            ->add('admin', 'checkbox', array(
-				'label'=> "La personne est-elle Super-Administrateur?",
-				'required' => false,
-			))
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
@@ -45,7 +41,7 @@ class UserType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'OCIM\UserBundle\Entity\User',
 			'attr' => array('class'=> 'forms'),
-			
+
         ));
     }
 

@@ -67,7 +67,7 @@ class UserController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Créer', 'attr'=>array('class'=>'btn btn-green')));
+        $form->add('submit', 'submit', array('label' => 'Créer', 'attr'=>array('class'=>'btn btn-green btn-save')));
 
         return $form;
     }
@@ -147,7 +147,7 @@ class UserController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Enregistrer', 'attr'=>array('class'=>'btn btn-green')));
+        $form->add('submit', 'submit', array('label' => 'Enregistrer', 'attr'=>array('class'=>'btn btn-green btn-save')));
 
         return $form;
     }
@@ -217,7 +217,7 @@ class UserController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('user_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Supprimer', 'attr'=>array('class'=>'btn btn-red')))
+            ->add('submit', 'submit', array('label' => 'Supprimer', 'attr'=>array('class'=>'btn btn-red btn-delete')))
             ->getForm()
         ;
     }

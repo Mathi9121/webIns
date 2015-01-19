@@ -190,8 +190,10 @@ class InscriptionController extends Controller
   * Finds and displays a Inscription entity.
   *
   */
-  public function showAction($id, $idformation)
+  public function showAction(Request $request, $id, $idformation)
   {
+    $type = $request->query->get('type');
+
     $em = $this->getDoctrine()->getManager();
 
     $entity = $em->getRepository('OCIMFormationsBundle:Inscription')->find($id);
@@ -206,7 +208,8 @@ class InscriptionController extends Controller
       'entity'      => $entity,
       'delete_form' => $deleteForm->createView(),
       'idformation' => $idformation,
-      'ignore_missing' => true
+      'ignore_missing' => true,
+      'type' => $type,
     ));
   }
 
