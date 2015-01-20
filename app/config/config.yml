@@ -130,7 +130,7 @@ swiftmailer:
 knp_snappy:
     pdf:
         enabled:    true
-        binary:     /usr/local/bin/wkhtmltopdf.sh
+        binary:     wkhtmltopdf
         options:
           - { name: page-size, value: A4 }
           - { name: zoom, value: 1 }
@@ -149,5 +149,5 @@ knp_snappy:
 
     image:
         enabled:    true
-        binary:     /usr/local/bin/wkhtmltoimage
+        binary:     wkhtmltoimage
         options:    []
