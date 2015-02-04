@@ -14,7 +14,8 @@ class PersonneType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-		
+        $entityManager = $options['em'];
+
         $builder
             ->add('civilite', 'choice', array(
 				'choices' => array(
@@ -58,7 +59,8 @@ class PersonneType extends AbstractType
 			))
 			->add('adresse', new AdresseType(),array(
 				'required' => false,
-				'label' => false
+				'label' => false,
+        'em' => $entityManager
 			))
         ;
     }
@@ -71,6 +73,13 @@ class PersonneType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'OCIM\ContactsBundle\Entity\Personne',
 			'attr' => array('class'=> 'forms'),
+        ));
+        $resolver->setRequired(array(
+            'em',
+        ));
+
+        $resolver->setAllowedTypes(array(
+            'em' => 'Doctrine\Common\Persistence\ObjectManager',
         ));
     }
 

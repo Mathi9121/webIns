@@ -163,7 +163,8 @@ class InscriptionController extends Controller
       'em' => $this->getDoctrine()->getManager(),
     ));
 
-    $form->add('submit', 'submit', array('label' => 'Ajouter le stagiaire', 'attr'=> array('class' => 'btn btn-green btn-save')));
+    $form->add('submit', 'submit', array('label' => 'Ajouter le stagiaire', 'attr'=> array('class' => 'btn btn-green btn-save')
+    ));
 
     return $form;
   }

@@ -5,6 +5,7 @@ namespace OCIM\ContactsBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use OCIM\ContactsBundle\Form\DataTransformer\StringToTagsTransformer;
 
 class AdresseType extends AbstractType
 {
@@ -14,6 +15,9 @@ class AdresseType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $entityManager = $options['em'];
+        $transformer = new StringToTagsTransformer($entityManager);
+
         $builder
             ->add('nomStructure', 'text', array(
 				'attr' => array('class' => 'width-100'),
@@ -37,9 +41,15 @@ class AdresseType extends AbstractType
             ->add('pays', 'text', array(
 				'attr' => array('class' => 'width-100'),
 			))
+            ->add(
+        $builder->create('tags', 'text', array(
+        'attr' => array('class'=>'width-100'),
+        'required' => false,
+        // 'data_class' => 'OCIM\ContactsBundle\Entity\TagStructure'
+        ))->addModelTransformer($transformer))
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
@@ -47,6 +57,13 @@ class AdresseType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'OCIM\ContactsBundle\Entity\Adresse'
+        ));
+        $resolver->setRequired(array(
+            'em',
+        ));
+
+        $resolver->setAllowedTypes(array(
+            'em' => 'Doctrine\Common\Persistence\ObjectManager',
         ));
     }
 

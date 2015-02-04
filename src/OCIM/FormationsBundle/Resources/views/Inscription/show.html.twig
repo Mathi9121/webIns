@@ -53,7 +53,18 @@
 				<tr>
 					<th><i class="fa fa-cutlery"></i> Formule d&apos;hébergement</th>
 					<td>{{ entity.formationformule.formule.id }} - {{ entity.formationformule.formule.description|capitalize }} ({{entity.formationformule.formule.tarif}} {{ (entity.formationformule.formule.tarif|number_format)? "&euro;" }})</td>
-
+				</tr>
+				<tr>
+					<th>
+						Champ, provenance
+					</th>
+					<td>
+						{% if entity.provenancePCST %}
+							<i class="fa fa-flask fa-fw fa-2x"></i> PCST
+						{% else %}
+							Autre que pcst
+						{% endif %}
+					</td>
 				</tr>
 			</table>
 		</div>

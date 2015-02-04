@@ -42,8 +42,9 @@
 
 		<div class="panel-body">
 			<div class="units-row end">
-				<div class="unit-50">{{ form_row(form.dateInscription) }}</div>
-				<div class="unit-50">{{ form_row(form.numberStatut) }}</div>
+				<div class="unit-33">{{ form_row(form.dateInscription) }}</div>
+				<div class="unit-33">{{ form_row(form.numberStatut) }}</div>
+				<div class="unit-33"><i class='fa fa-flask fa-fw'></i><br/>{{ form_widget(form.provenancePCST) }}</div>
 			</div>
 			{{ form_row(form.formationformule) }}
 		</div>
@@ -109,6 +110,7 @@
 			{{ form_row(form.stagiaire.adresse.cP) }}
 			{{ form_row(form.stagiaire.adresse.ville) }}
 			{{ form_row(form.stagiaire.adresse.pays) }}
+			{{ form_row(form.stagiaire.adresse.tags) }}
 		</div>
 	</div>
 </div>

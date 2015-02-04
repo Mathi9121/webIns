@@ -297,7 +297,7 @@ class LogistiqueController extends Controller
             throw $this->createNotFoundException('Unable to find formationFormule entity.');
         }
 
-		$entity->setModeles(new ArrayCollection($modeles));
+        $entity->setModeles(new ArrayCollection($modeles));
 
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
@@ -307,48 +307,48 @@ class LogistiqueController extends Controller
 
         if ($editForm->isValid()) {
 
-			//suppression des anciens modeles
-			foreach($modeles as $modele){
-				if(!$entity->getModeles()->contains($modele)){
-					// le modele a été supprimé, on supprime ses relations
-					foreach($modele->getFormationFormule() as $ff){
-						$modele->removeFormationFormule($ff);
-						$ff->removeModele($modele);
-					}
-					$entity->removeModele($modele);
-					$modele->setFormation(null);
-					$em->remove($modele);
-				}
-				else{
-					//On recherche les modification sur les formationFormule des modeles
-					foreach($entity->getFormationFormule() as $ff){
-						if(!$modele->getFormationFormule()->contains($ff)){
-							$ff->removeModele($modele);
-						}
-					}
-				}
-			}
-			//exit( \Doctrine\Common\Util\Debug::dump($entity->getModeles()[0]->getIntervenant()));
+    			//suppression des anciens modeles
+    			foreach($modeles as $modele){
+    				if(!$entity->getModeles()->contains($modele)){
+    					// le modele a été supprimé, on supprime ses relations
+    					foreach($modele->getFormationFormule() as $ff){
+    						$modele->removeFormationFormule($ff);
+    						$ff->removeModele($modele);
+    					}
+    					$entity->removeModele($modele);
+    					$modele->setFormation(null);
+    					$em->remove($modele);
+    				}
+    				else{
+    					//On recherche les modification sur les formationFormule des modeles
+    					foreach($entity->getFormationFormule() as $ff){
+    						if(!$modele->getFormationFormule()->contains($ff)){
+    							$ff->removeModele($modele);
+    						}
+      				}
+      			}
+      		}
+  			//exit( \Doctrine\Common\Util\Debug::dump($entity->getModeles()[0]->getIntervenant()));
 
 
-			foreach($entity->getModeles() as $modele){
-				foreach($modele->getFormationFormule() as $ff){
-					$ff->addModele($modele);
-				}
-				$modele->setFormation(($modele->getIntervenant())? $entity : null);
-				if($modele->getFormationFormule()->count() == 0){
-					if($modele->getIntervenant() === false){
-						$em->remove($modele);
-					}
-					else{
-						$em->persist($modele);
-					}
-				}
-			}
+    			foreach($entity->getModeles() as $modele){
+    				foreach($modele->getFormationFormule() as $ff){
+    					$ff->addModele($modele);
+    				}
+    				$modele->setFormation(($modele->getIntervenant())? $entity : null);
+    				if($modele->getFormationFormule()->count() == 0){
+    					if($modele->getIntervenant() === false){
+    						$em->remove($modele);
+    					}
+    					else{
+    						$em->persist($modele);
+    					}
+    				}
+    			}
 
             $em->flush();
 
-            return $this->redirect($this->generateUrl('logistique_edit', array('idformation' => $id)));
+              return $this->redirect($this->generateUrl('logistique_edit', array('idformation' => $id)));
         }
 
         return $this->render('OCIMFormationsBundle:logistique:edit.html.twig', array(

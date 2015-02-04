@@ -26,11 +26,13 @@ class InscriptionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 		$entityManager = $options['em'];
+		
 		$idformation = $this->idformation;
         $builder
 			->add('stagiaire', new \OCIM\ContactsBundle\Form\PersonneType(), array(
 				'data_class' => 'OCIM\ContactsBundle\Entity\Stagiaire',
 				//'type'=> new \OCIM\ContactsBundle\Form\PersonneType()
+				'em' => $entityManager
 				))
 			->add('formationformule', "entity", array(
 				'class' => 'OCIM\FormationsBundle\Entity\formationFormule',
@@ -53,10 +55,13 @@ class InscriptionType extends AbstractType
 				'label' => "Date d'inscription",
 				))
             ->add('numberStatut','choice', array(
-				'choices'   => array( '1' => 'Accepté', '2' => 'En attente', "3" => "Annulé"),
+				'choices'   => array( '1' => 'Validé', '2' => 'En attente', "3" => "Annulé"),
 				//'preferred_choices' => array('en attente')
 				'attr' => array('class' => 'width-100'),
 				"label" => "Statut de l'inscription"
+				))
+				->add('provenancePCST', null, array(
+					'label' => "Provenance PCST",
 				))
             ->add('attentes', "textarea", array(
 				'attr' => array("class"=>"width-100", 'rows'=> 5),

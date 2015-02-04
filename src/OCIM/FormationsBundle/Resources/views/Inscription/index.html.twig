@@ -63,11 +63,12 @@
 		<thead>
 			<tr>
 				<th class="handle"></th>
+				<th class="insc info"><span></span></th>
 				<th class="insc info"><span>Civilité</span></th>
 				<th class="insc info"><span>Nom</span></th>
 				<th class="insc info"><span>Prénom</span></th>
-				<th class="insc info"><span>Formule</span></th>
 				<th class="insc info"><span>Fonction</span></th>
+				<th class="insc info"><span>Formule</span></th>
 				<th class="insc info"><span>Inscription</span></th>
 				<th class="insc info text-centered"><span>Convention</span></th>
 			</tr>
@@ -84,12 +85,19 @@
 			{% endif %}
 			<tr class="statut {{class}}{{((id is defined)and( id == entity.id ))? " highlight"}}" data-ordre="{{entity.ordre}}" data-idinscription="{{entity.id}}">
 						{% if class == "attente" %}<td class="handle"><i class="fa fa-arrows"></i></td>{% else %}<td></td>{% endif %}
+						<td class="insc info"><span>{{ (entity.provenancePCST)? "<i class='fa fa-flask'>PCST</i>" }}</span></td>
 						<td class="insc info"><span>{{ entity.stagiaire.civilite }}</span></td>
 						<td class="insc info"><span>{{ entity.stagiaire.nom }}</span></td>
 						<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
-						<td class=""><span><abbr title="{{ entity.formationFormule.formule }}">{{ entity.formationFormule.formule.id }}</abbr></span></td>
+						<td class="insc">{% if entity.stagiaire.adresse %}<span>{{ entity.stagiaire.adresse.nomStructure }}</span>{% endif %}</td>
 						<td class=""><span>{{ entity.stagiaire.fonction }}</span></td>
-						<td class=""><span>{% if entity.dateInscription %}{{ entity.dateInscription|date('d/m/Y') }}{% endif %}</span></td>
+						<td>{{ entity.stagiaire.adresse.adresse }}<td>
+						<td>{{ entity.stagiaire.adresse.cP }}<td>
+						<td>{{ entity.stagiaire.adresse.ville }}<td>
+						<td>{{ entity.stagiaire.mail }}<td>
+						<td>{{ entity.stagiaire.tel }}<td>
+						<td>{{ (entity.admin)? entity.admin.mail }}<td>
+						<td class=""><span><abbr title="{{ entity.formationFormule.formule }}">{{ entity.formationFormule.formule.tarif }} {{ (entity.formationFormule.formule.nuit)? "<i class='fa fa-moon-o'></i>" }}</abbr></span></td>
 						<td class="text-centered tdconvention">
 							{% if entity.statutConvention is null %}
 							<span class="label label-outline label-yellow" title="Ne sais pas"><i class="fa fa-question"></i></span>
@@ -99,21 +107,24 @@
 							<span class="label label-outline label-green" title="Demande de convention confirmée"><i class="fa fa-check"></i></span>
 							{% endif %}
 						</td>
-                <td class="insc actions">
-					<a href="#" data-tools="dropdown" data-target="#dropdown1-{{loop.index}}"></a>
-					{% spaceless %}
-					<ul id="dropdown1-{{loop.index}}" class="dropdown">
-						<li><a href="{{ path('inscription_show', { 'id': entity.id, 'idformation':formation.id }) }}" class="inscription-href"><i class="fa fa-info fa-fw"></i>Détails</a></li>
-						<li><a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation':formation.id }) }}" class="inscription-href"><i class="fa fa-pencil fa-fw"></i>Modifier</a></li>
-						<li>
-							<a href="#" class="export" data-idinscription="{{ entity.id }}"><i class="fa fa-download fa-fw"></i>Exporter</a></li>
-						</li>
-						<li>
-							<a href="#" class="majstatuts" data-statut='{{ entity.numberStatut }}' data-statutconvention="{% if (entity.statutConvention == false)and(entity.statutConvention is not null) %}0{% elseif entity.statutConvention == true %}1{% elseif entity.statutConvention is null %}{% endif %}" data-idinscription="{{ entity.id }}"><i class="fa fa-refresh fa-fw"></i>Statuts</a>
-						</li>
-					</ul>
-					{% endspaceless %}
-				</td>
+						<td class=""><span>{% if entity.dateInscription %}{{ entity.dateInscription|date('d/m/Y') }}{% endif %}</span></td>
+            <td class="insc actions">
+							<a href="#" data-tools="dropdown" data-target="#dropdown1-{{loop.index}}"></a>
+							{% spaceless %}
+							<ul id="dropdown1-{{loop.index}}" class="dropdown">
+								<li><a href="{{ path('inscription_show', { 'id': entity.id, 'idformation':formation.id }) }}" class="inscription-href"><i class="fa fa-info fa-fw"></i>Détails</a></li>
+								<li><a href="{{ path('inscription_edit', { 'id': entity.id, 'idformation':formation.id }) }}" class="inscription-href"><i class="fa fa-pencil fa-fw"></i>Modifier</a></li>
+								<li>
+									<a href="#" class="export" data-idinscription="{{ entity.id }}"><i class="fa fa-download fa-fw"></i>Exporter</a></li>
+								</li>
+								<li>
+									<a href="#" class="majstatuts" data-statut='{{ entity.numberStatut }}' data-statutconvention="{% if (entity.statutConvention == false)and(entity.statutConvention is not null) %}0{% elseif entity.statutConvention == true %}1{% elseif entity.statutConvention is null %}{% endif %}" data-idinscription="{{ entity.id }}">
+										<i class="fa fa-refresh fa-fw"></i>Statuts
+									</a>
+								</li>
+							</ul>
+							{% endspaceless %}
+						</td>
             </tr>
         {% endfor %}
         </tbody>

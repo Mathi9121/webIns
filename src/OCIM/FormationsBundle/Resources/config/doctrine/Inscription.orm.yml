@@ -64,5 +64,8 @@ OCIM\FormationsBundle\Entity\Inscription:
         ordre:
             type: integer
             nullable: true
+        provenancePCST:
+            type: boolean
+            nullable: true
     lifecycleCallbacks:
         prePersist: [ onPrePersist ]
