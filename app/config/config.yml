@@ -91,6 +91,7 @@ assetic:
         back_enabled_hover:
             inputs: '%kernel.root_dir%/Resources/public/img/back_enabled_hover.png'
             output: 'img/back_enabled_hover.png'
+
     filters:
         cssrewrite: ~
         #closure:

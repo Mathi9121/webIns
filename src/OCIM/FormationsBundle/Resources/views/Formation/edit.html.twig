@@ -5,11 +5,11 @@
 {{ parent() }}
 {% stylesheets
 '%kernel.root_dir%/Resources/public/css/popup.css'
-filter='cssrewrite' %}
+	filter='cssrewrite' %}
 <link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset_url }}"/>
 {% endstylesheets %}
-
 {% endblock %}
+
 {% block  javascripts %}
 {{parent()}}
 {% javascripts
@@ -64,8 +64,9 @@ filter='cssrewrite' %}
 				<div class="unit-50">{{ form_row(edit_form.dateFin) }}</div>
 			</div>
 			<div class="units-row end">
-				<div class="unit-70">{{ form_row(edit_form.dateText) }}</div>
-				<div class="unit-30">{{ form_row(edit_form.nbHeures) }}</div>
+				<div class="unit-50">{{ form_row(edit_form.dateText) }}</div>
+				<div class="unit-25">{{ form_row(edit_form.nbHeures) }}</div>
+				<div class="unit-25">{{ form_row(edit_form.nbJours) }}</div>
 			</div>
 
 

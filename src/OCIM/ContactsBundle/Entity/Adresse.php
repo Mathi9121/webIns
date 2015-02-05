@@ -48,7 +48,7 @@ class Adresse
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -71,7 +71,7 @@ class Adresse
     /**
      * Get nomStructure
      *
-     * @return string 
+     * @return string
      */
     public function getNomStructure()
     {
@@ -94,7 +94,7 @@ class Adresse
     /**
      * Get adresse
      *
-     * @return string 
+     * @return string
      */
     public function getAdresse()
     {
@@ -117,7 +117,7 @@ class Adresse
     /**
      * Get adresseComplement
      *
-     * @return string 
+     * @return string
      */
     public function getAdresseComplement()
     {
@@ -140,7 +140,7 @@ class Adresse
     /**
      * Get cP
      *
-     * @return string 
+     * @return string
      */
     public function getCP()
     {
@@ -155,7 +155,7 @@ class Adresse
      */
     public function setVille($ville)
     {
-        $this->ville = $ville;
+        $this->ville = strtoupper($ville);
 
         return $this;
     }
@@ -163,7 +163,7 @@ class Adresse
     /**
      * Get ville
      *
-     * @return string 
+     * @return string
      */
     public function getVille()
     {
@@ -186,7 +186,7 @@ class Adresse
     /**
      * Get pays
      *
-     * @return string 
+     * @return string
      */
     public function getPays()
     {
@@ -227,7 +227,7 @@ class Adresse
     /**
      * Get type
      *
-     * @return \OCIM\ContactsBundle\Entity\TypeStructure 
+     * @return \OCIM\ContactsBundle\Entity\TypeStructure
      */
     public function getType()
     {
@@ -260,18 +260,18 @@ class Adresse
     /**
      * Get tags
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getTags()
     {
         return $this->tags;
     }
-	
+
 	public function setTags($tags)
     {
         $this->tags = $tags;
-		
+
 		return $this;
     }
-	
+
 }

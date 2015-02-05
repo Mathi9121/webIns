@@ -50,6 +50,9 @@ OCIM\FormationsBundle\Entity\Formation:
             type: string
             length: 255
         nbHeures:
+            type: string
+            length: 255
+        nbJours:
             type: decimal
             scale: 1
             precision: 5

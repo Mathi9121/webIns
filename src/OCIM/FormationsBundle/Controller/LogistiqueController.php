@@ -347,7 +347,7 @@ class LogistiqueController extends Controller
     			}
 
             $em->flush();
-
+            $this->get('session')->getFlashBag()->add('success','Modifications enregistrées.');
               return $this->redirect($this->generateUrl('logistique_edit', array('idformation' => $id)));
         }
 

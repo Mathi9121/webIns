@@ -66,8 +66,8 @@ tinymce.init({
 				{text: 'Lieu', onclick: function() 						{editor.insertContent("{{ formation.lieu }}"); }},
 				{text: 'Date de debut', onclick: function() 			{editor.insertContent("{{ formation.dateDebut|date('d/m/Y') }}"); }},
 				{text: 'Date de fin', onclick: function() 				{editor.insertContent("{{ formation.dateFin|date('d/m/Y') }}"); }},
-				{text: 'Duree (jours)', onclick: function() 			{editor.insertContent("{{ date_difference(formation.dateDebut, formation.dateFin) }}"); }},
 				{text: 'Date au format text', onclick: function() 		{editor.insertContent("{{ formation.dateText }}"); }},
+				{text: 'Duree (jours)', onclick: function() 			{editor.insertContent("{{ formation.nbJours }}"); }},
 				{text: "Nombre d'heures", onclick: function() 			{editor.insertContent("{{ formation.nbHeures }}"); }},
 				{text: "Type de formation", onclick: function() 		{editor.insertContent("{{ formation.type }}"); }},
 			]

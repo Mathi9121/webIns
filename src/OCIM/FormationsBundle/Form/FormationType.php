@@ -56,6 +56,11 @@ class FormationType extends AbstractType
 				'label'  => 'Nombre d\'heures',
 				'attr' => array('step' => '0.5', 'min'=> '0', 'size'=>'6', 'class' => 'width-100'),
 				))
+            ->add('nbJours', null, array(
+				'required' => true,
+				'label'  => 'Nombre de jours',
+				'attr' => array('step' => '0.5', 'min'=> '0', 'size'=>'6', 'class' => 'width-100'),
+				))
             ->add('type', null, array(
 				'required' => true,
 				'label'  => 'Type de formation',

@@ -22,8 +22,7 @@ $(document).ready(function(){
 		var idinscription = $(this).closest('tr').attr('data-idinscription');
 		var nom = $(this).closest('tr').children().eq(1).text();
 		var prenom = $(this).closest('tr').children().eq(2).text() + " " + $(this).closest('tr').children().eq(3).text();
-		var formule = $("#general table tbody tr[data-idinscription='"+idinscription+"']").children().eq(4).find("abbr").attr('title');
-		var formuleId = $("#general table tbody tr[data-idinscription='"+idinscription+"']").children().eq(4).text();
+		var formule = $("#general table tbody tr[data-idinscription='"+idinscription+"']").find("td.inscformule abbr").attr('title');
 		var liens = $("#general table tbody tr[data-idinscription='"+idinscription+"']").children().last().find('ul').clone(true);
 		$(liens).removeClass('dropdown');
 		$(liens).show();
@@ -31,7 +30,7 @@ $(document).ready(function(){
 		var trPosition =  $(this).offset().top - $(this).closest('.tab').offset().top;
 		var tableH = $(this).closest('table').height();
 
-		var dateInscription = $("#general table tbody tr[data-idinscription='"+idinscription+"']").children().eq(6).text();
+		var dateInscription = $("#general table tbody tr[data-idinscription='"+idinscription+"']").find('td.dateinscription').text();
 		var mois = [ "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
 		var dateJ = dateInscription.substr(0,2);
 		var dateM = dateInscription.substr(3,2);
@@ -43,7 +42,6 @@ $(document).ready(function(){
 			nom : nom,
 			prenom : prenom,
 			formule : formule,
-			formuleid : formuleId,
 			liens : liens,
 			trPosition : trPosition,
 			tableH: tableH,
@@ -75,7 +73,7 @@ $(document).ready(function(){
 				//on crée la boite
 
 				var details = $("<div class='unit-20 details-inscription'><a href='#' class='right close-box'><i class='fa fa-times'></i></a></div>");
-				$("<h2>"+ data.nom +" "+ data.prenom +"</h2><hr/><p class='text-centered'>Inscription le <strong>"+ data.date +"</strong><br/><br/><span class='label' ><strong>"+ data.formuleid +"</strong> : "+ data.formule +"</span></p>").appendTo(details);
+				$("<h2>"+ data.nom +" "+ data.prenom +"</h2><hr/><p class='text-centered'>Inscription le <strong>"+ data.date +"</strong><br/><br/><span class='label' >"+ data.formule +"</span></p>").appendTo(details);
 				$(data.liens).appendTo(details);
 				$(data.liens).wrap('<nav class="nav nav-stacked"></nav>');
 

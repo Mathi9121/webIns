@@ -78,7 +78,7 @@ class IntervenantType extends AbstractType
 			'data_class' => 'OCIM\ContactsBundle\Entity\Intervenant',
 			'attr' => array('class'=> 'forms'),
         ));
-		
+
 		$resolver->setRequired(array(
             'em',
         ));

@@ -393,4 +393,32 @@ class Formation
     {
         return $this->modelesIntervenants;
     }
+    /**
+     * @var string
+     */
+    private $nbJours;
+
+
+    /**
+     * Set nbJours
+     *
+     * @param string $nbJours
+     * @return Formation
+     */
+    public function setNbJours($nbJours)
+    {
+        $this->nbJours = $nbJours;
+
+        return $this;
+    }
+
+    /**
+     * Get nbJours
+     *
+     * @return string 
+     */
+    public function getNbJours()
+    {
+        return $this->nbJours;
+    }
 }
