@@ -99,9 +99,9 @@
 						<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
 						<td class="insc">{% if entity.stagiaire.adresse %}<span>{{ entity.stagiaire.adresse.nomStructure }}</span>{% endif %}</td>
 						<td class=""><span>{{ entity.stagiaire.fonction }}</span></td>
-						<td> {{ entity.stagiaire.adresse.adresse }}</td>
-						<td> {{ entity.stagiaire.adresse.cP }}</td>
-						<td> {{ entity.stagiaire.adresse.ville }}</td>
+						<td> {{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.adresse }}</td>
+						<td> {{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.cP }}</td>
+						<td> {{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.ville }}</td>
 						<td> {{ entity.stagiaire.tel }}</td>
 						<td> {{ entity.stagiaire.mail }}</td>
 						<td> {{ (entity.admin)? entity.admin.mail }}</td>
@@ -118,7 +118,7 @@
 						<td class='dateinscription'><span>{% if entity.dateInscription %}{{ entity.dateInscription|date('d/m/Y') }}{% endif %}</span></td>
 						<td>
 							<span>
-									{{entity.stagiaire.adresse.tags|join(', ')}}
+									{{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.tags|join(', ')}}
 							</span>
 						</td>
             <td class="insc actions">
@@ -180,11 +180,11 @@
 						<td class="insc info"><span>{{ entity.stagiaire.civilite }}</span></td>
 						<td class="insc info"><span>{{ entity.stagiaire.nom }}</span></td>
 						<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
-						<td class="insc contact"><span>{{ entity.stagiaire.adresse.nomStructure }}</span></td>
+						<td class="insc contact"><span>{{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.nomStructure }}</span></td>
 						<td class="insc contact"><span>{{ entity.stagiaire.fonction }}</span></td>
-						<td class="insc contact"><span>{{ entity.stagiaire.adresse.adresse }}</span></td>
-						<td class="insc contact"><span>{{ entity.stagiaire.adresse.CP }}</span></td>
-						<td class="insc contact"><span>{{ entity.stagiaire.adresse.ville }}</span></td>
+						<td class="insc contact"><span>{{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.adresse }}</span></td>
+						<td class="insc contact"><span>{{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.CP }}</span></td>
+						<td class="insc contact"><span>{{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.ville }}</span></td>
 						<td class="insc contact"><span>{{ entity.stagiaire.tel }}</span></td>
 						<td class="insc contact"><span>{{ entity.stagiaire.mail}}</span></td>
       </tr>
@@ -391,15 +391,15 @@
 						<td class="insc info"><span>{{ entity.stagiaire.civilite }}</span></td>
 						<td class="insc info"><span>{{ entity.stagiaire.nom }}</span></td>
 						<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
-						<td class="insc finance"><span>{{ entity.stagiaire.adresse.nomStructure }}</span></td>
+						<td class="insc finance"><span>{{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.nomStructure }}</span></td>
 
 						{% if (entity.signataire is not null) and (entity.signataire.adresse is not null)%}
-							<td class="insc finance">{{entity.signataire.adresse.nomStructure}}</td>
-							<td class="insc finance">{{entity.signataire.adresse.adresse}}</td>
-							<td class="insc finance">{{entity.signataire.adresse.cP}}</td>
-							<td class="insc finance">{{entity.signataire.adresse.ville}}</td>
-							<td class="insc finance">{{entity.signataire.adresse.type}}</td>
-							<td class="insc finance">{{entity.signataire.adresse.tags|join(', ')}}</td>
+							<td class="insc finance">{{ entity.signataire.adresse.nomStructure}}</td>
+							<td class="insc finance">{{ entity.signataire.adresse.adresse}}</td>
+							<td class="insc finance">{{ entity.signataire.adresse.cP}}</td>
+							<td class="insc finance">{{ entity.signataire.adresse.ville}}</td>
+							<td class="insc finance">{{ entity.signataire.adresse.type}}</td>
+							<td class="insc finance">{{ entity.signataire.adresse.tags|join(', ')}}</td>
 						{% else %}
 							<td colspan="6"></td>
 						{% endif %}
@@ -445,13 +445,13 @@
 				{% if class == "attente" %}<td class="handle"><span class="fa fa-arrows"></span></td>{% else %}<td></td>{% endif %}
 				<td class="insc info"><span>{{ entity.stagiaire.nom }}</span></td>
 				<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
-				<td class="insc attentes"><span>{{ entity.stagiaire.adresse.nomStructure }}</span></td>
+				<td class="insc attentes"><span>{{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.nomStructure }}</span></td>
 				<td class="insc attentes"><span>{{ entity.stagiaire.fonction }}</span></td>
-				<td class="insc attentes"><span>{{ entity.stagiaire.adresse.cP }}</span></td>
-				<td class="insc attentes"><span>{{ entity.stagiaire.adresse.ville }}</span></td>
+				<td class="insc attentes"><span>{{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.cP }}</span></td>
+				<td class="insc attentes"><span>{{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.ville }}</span></td>
 				<td class="insc attentes"><span>{{ entity.stagiaire.mail }}</span></td>
 				<td class="insc attentes" style="white-space:normal"><span>{{ entity.attentes }}</span></td>
-				<td class="insc attentes"><span>{{ entity.stagiaire.adresse.tags|join(', ') }}</span></td>
+				<td class="insc attentes"><span>{{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.tags|join(', ') }}</span></td>
 				<td class="insc attentes"><span>{{ (entity.provenancePCST)? "<i class='fa fa-flask'>PCST</i>" }}</span></td>
             </tr>
         {% endfor %}

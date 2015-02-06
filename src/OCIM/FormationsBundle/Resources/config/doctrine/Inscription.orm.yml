@@ -12,6 +12,7 @@ OCIM\FormationsBundle\Entity\Inscription:
     manyToOne:
         formationformule:
             targetEntity: formationFormule
+            fetch: EAGER
             inversedBy: inscriptions
             joinColumn:
                 onDelete: CASCADE
