@@ -206,12 +206,13 @@
 			</span>
 		</div>
 		<div class="panel-body">
+			{{ form_row(form.statutFinancement) }}
+			{{ form_row(form.signataire.adresse.nomStructure) }}
 			{{ form_row(form.signataire.adresse.adresse) }}
 			{{ form_row(form.signataire.adresse.adresseComplement) }}
 			{{ form_row(form.signataire.adresse.cP) }}
 			{{ form_row(form.signataire.adresse.ville) }}
 			{{ form_row(form.signataire.adresse.pays) }}
-			{{ form_row(form.signataire.adresse.nomStructure) }}
 			<div class="units-row end">
 				<div class="unit-70">
 					{{ form_row(form.signataire.adresse.type) }}

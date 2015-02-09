@@ -26,7 +26,7 @@ class InscriptionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 		$entityManager = $options['em'];
-		
+
 		$idformation = $this->idformation;
         $builder
 			->add('stagiaire', new \OCIM\ContactsBundle\Form\PersonneType(), array(
@@ -76,6 +76,15 @@ class InscriptionType extends AbstractType
 				'required' => false,
 				'empty_value' => "Ne sais pas",
 				'label' => "Le stagiaire a-t-il besoin d'une convention?"
+			))
+            ->add('statutFinancement', 'choice', array(
+				'choices' => array(
+					true => 'Accordé',
+					false => 'NON',
+					),
+				'required' => false,
+				'empty_value' => "En attente",
+				'label' => "Statut du financement :"
 			))
             //->add('hash')
       ->add('convention', new \OCIM\FormationsBundle\Form\ConventionType(), array(

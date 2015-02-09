@@ -106,13 +106,13 @@
 						<td> {{ entity.stagiaire.mail }}</td>
 						<td> {{ (entity.admin)? entity.admin.mail }}</td>
 						<td class="inscformule"><span><abbr title="{{ entity.formationFormule.formule }}">{{ entity.formationFormule.formule.tarif }} {{ (entity.formationFormule.formule.nuit)? "<i class='fa fa-moon-o'></i>" }}</abbr></span></td>
-						<td class="text-centered tdconvention">
+						<td class="text-centered tdfinancement">
 							{% if entity.statutConvention is null %}
-							<span class="label label-outline label-yellow" title="Ne sais pas"><i class="fa fa-question"></i></span>
+							<span class="label label-yellow" title="Ne sais pas"><i class="fa fa-question"></i></span>
 							{% elseif entity.statutConvention == false %}
-							<span class="label label-outline label-red" title="Non"><i class="fa fa-times"></i></span>
+							<span class="label label-red" title="Non"><i class="fa fa-times"></i></span>
 							{% else %}
-							<span class="label label-outline label-green" title="Demande de convention confirmée"><i class="fa fa-check"></i></span>
+							<span class="label label-green" title="Demande de convention confirmée"><i class="fa fa-check"></i></span>
 							{% endif %}
 						</td>
 						<td class='dateinscription'><span>{% if entity.dateInscription %}{{ entity.dateInscription|date('d/m/Y') }}{% endif %}</span></td>
@@ -364,6 +364,7 @@
 		<thead>
 			<tr>
 				<th class="handle"></th>
+				<th class="insc finance text-centered">Statut</th>
 				<th class="insc info"><span>Civilité</span></th>
 				<th class="insc info"><span>Nom</span></th>
 				<th class="insc info"><span>Prénom</span></th>
@@ -388,6 +389,15 @@
 			{% endif %}
 			<tr class="statut {{class}}" data-ordre="{{entity.ordre}}" data-idinscription="{{entity.id}}">
 						{% if class == "attente" %}<td class="handle"><i class="fa fa-arrows"></i></td>{% else %}<td></td>{% endif %}
+						<td class="insc info text-centered">
+							{% if entity.statutFinancement is null %}
+								<span class="label label-yellow" title="Financement en attente"><i class="fa fa-question"></i></span>
+							{% elseif entity.statutFinancement == false %}
+								<span class="label label-red" title="Financement pas accordé"><i class="fa fa-times"></i></span>
+							{% else %}
+								<span class="label label-green" title="Financement Accordé"><i class="fa fa-check"></i></span>
+							{% endif %}
+						</td>
 						<td class="insc info"><span>{{ entity.stagiaire.civilite }}</span></td>
 						<td class="insc info"><span>{{ entity.stagiaire.nom }}</span></td>
 						<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>

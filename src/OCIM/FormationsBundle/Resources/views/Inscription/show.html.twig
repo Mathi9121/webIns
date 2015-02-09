@@ -56,6 +56,21 @@
 				</tr>
 				<tr>
 					<th>
+						Statut du Financement
+					</th>
+					<td>
+						{% if entity.statutFinancement is null %}
+							<span class="label label-outline label-yellow">En attente</span>
+						{% elseif entity.statutFinancement == false %}
+							<span class="label label-outline label-red">Annulé</span>
+						{% else %}
+							<span class="label label-outline label-green">Confirmé</span>
+						{% endif %}
+
+					</td>
+				</tr>
+				<tr>
+					<th>
 						Champ, provenance
 					</th>
 					<td>

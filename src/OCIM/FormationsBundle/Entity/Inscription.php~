@@ -510,4 +510,32 @@ class Inscription
 		return $this->statut;
 
 	}
+    /**
+     * @var boolean
+     */
+    private $provenancePCST;
+
+
+    /**
+     * Set provenancePCST
+     *
+     * @param boolean $provenancePCST
+     * @return Inscription
+     */
+    public function setProvenancePCST($provenancePCST)
+    {
+        $this->provenancePCST = $provenancePCST;
+
+        return $this;
+    }
+
+    /**
+     * Get provenancePCST
+     *
+     * @return boolean 
+     */
+    public function getProvenancePCST()
+    {
+        return $this->provenancePCST;
+    }
 }

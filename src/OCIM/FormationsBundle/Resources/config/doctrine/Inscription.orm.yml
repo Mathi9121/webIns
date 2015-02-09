@@ -58,6 +58,9 @@ OCIM\FormationsBundle\Entity\Inscription:
         statutConvention:
             type: boolean
             nullable: true
+        statutFinancement:
+            type: boolean
+            nullable: true
         hash:
             type: string
             length: 255
