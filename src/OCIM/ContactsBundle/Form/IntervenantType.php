@@ -48,20 +48,11 @@ class IntervenantType extends AbstractType
 					'attr' => array('class'=> 'width-100'),
 					'required' => false
 				))
-				->add(
-				$builder->create('adresse', 'form', array('by_reference' => true, "data_class"=> "OCIM\ContactsBundle\Entity\Adresse"))
-					->add('nomStructure', 'text', array(
-						'label' => "Nom de la Structure",
-						'required' => false,
-						'attr' => array("class"=>"width-100")
-					))
-					->add(
-					$builder->create('tags', 'text', array(
-						'attr' => array('class'=>'width-100'),
-						'required' => false,
-						// 'data_class' => 'OCIM\ContactsBundle\Entity\TagStructure'
-					))->addModelTransformer($transformer))
-				)
+        ->add('adresse', new AdresseType(),array(
+          'required' => false,
+          'label' => false,
+          'em' => $entityManager
+        ))
 				->add('commentaire', null, array(
 					'attr' => array('class'=> 'width-100'),
 					'required' => false,

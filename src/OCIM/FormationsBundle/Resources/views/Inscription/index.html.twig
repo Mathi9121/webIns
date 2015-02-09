@@ -497,17 +497,17 @@
 			<tbody>
 				{% for intervenant in formation.intervenants %}
 					<tr class="{{((id is defined)and( id == intervenant.id ))? " highlight"}}">
-						<td>{{intervenant.nom}}</td>
-						<td>{{intervenant.prenom}}</td>
-						<td>{{intervenant.adresse.nomStructure}}</td>
-						<td>{{intervenant.fonction}}</td>
-						<td>{{intervenant.adresse.adresse}}</td>
-						<td>{{intervenant.adresse.cP}}</td>
-						<td>{{intervenant.adresse.ville}}</td>
-						<td>{{intervenant.tel}}</td>
-						<td>{{intervenant.mail}}</td>
-						<td>{{intervenant.adresse.tags|join(', ')}}</td>
-						<td>{{intervenant.commentaire}}</td>
+						<td>{{ intervenant.nom }}</td>
+						<td>{{ intervenant.prenom }}</td>
+						<td>{{ (intervenant.adresse is not null)? intervenant.adresse.nomStructure }}</td>
+						<td>{{ intervenant.fonction }}</td>
+						<td>{{ (intervenant.adresse is not null)? intervenant.adresse.adresse }}</td>
+						<td>{{ (intervenant.adresse is not null)? intervenant.adresse.cP }}</td>
+						<td>{{ (intervenant.adresse is not null)? intervenant.adresse.ville }}</td>
+						<td>{{ intervenant.tel }}</td>
+						<td>{{ intervenant.mail }}</td>
+						<td>{{ (intervenant.adresse is not null)? intervenant.adresse.tags|join(', ') }}</td>
+						<td>{{ intervenant.commentaire }}</td>
 						<td>
 							<a href="{{path('intervenants_edit', {'id': intervenant.id, 'idformation': formation.id})}}"><i class="fa fa-pencil"></i></a>
 						</td>

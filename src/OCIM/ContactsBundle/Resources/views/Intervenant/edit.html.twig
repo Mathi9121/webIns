@@ -17,8 +17,8 @@
 {% block body -%}
 {{form_start(edit_form)}}
 <div class="units-row">
-
-	<div class="panel unit-50">
+<div class="unit-50">
+	<div class="panel" style="margin-bottom:1.65em">
 		<div class="header">
 			<span class="titre">Intervenant</span>
 		</div>
@@ -35,22 +35,6 @@
 
 		</div>
 	</div>
-
-	<div class="unit-50">
-	<div class="panel" style="margin-bottom:1.65em">
-		<div class="header">
-			<span class="titre">Structure</span>
-		</div>
-
-		<div class="panel-body">
-			{{form_row(edit_form.adresse.nomStructure)}}
-			<label> Tags
-				{{form_widget(edit_form.adresse.tags)}}
-				<div class="forms-desc">Liste de mots clés, séparés par des virgules. Ex : Collectivité territoriale, Association, Société Anonyme, Bourgogne...</div>
-			</label>
-		</div>
-	</div>
-
 	<div class="panel">
 		<div class="header">
 			<span class="titre">Commentaires/Observations</span>
@@ -58,6 +42,27 @@
 
 		<div class="panel-body">
 			{{form_widget(edit_form.commentaire)}}
+		</div>
+	</div>
+
+</div>
+	<div class="unit-50">
+	<div class="panel" >
+		<div class="header">
+			<span class="titre">Structure</span>
+		</div>
+
+		<div class="panel-body">
+			{{form_row(edit_form.adresse.nomStructure)}}
+			{{form_row(edit_form.adresse.adresse)}}
+			{{form_row(edit_form.adresse.adresseComplement)}}
+			{{form_row(edit_form.adresse.cP)}}
+			{{form_row(edit_form.adresse.ville)}}
+			{{form_row(edit_form.adresse.pays)}}
+			<label> Tags
+				{{form_widget(edit_form.adresse.tags)}}
+				<div class="forms-desc">Liste de mots clés, séparés par des virgules. Ex : Collectivité territoriale, Association, Société Anonyme, Bourgogne...</div>
+			</label>
 		</div>
 	</div>
 
