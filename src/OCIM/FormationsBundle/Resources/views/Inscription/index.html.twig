@@ -108,9 +108,9 @@
 			<tr class="statut {{class}}{{((id is defined)and( id == entity.id ))? " highlight"}}" data-ordre="{{entity.ordre}}" data-idinscription="{{entity.id}}">
 						{% if class == "attente" %}<td class="handle"><i class="fa fa-arrows"></i></td>{% else %}<td></td>{% endif %}
 						<td class="insc info"><span>{{ (entity.provenancePCST)? "<i class='fa fa-flask'>PCST</i>" }}</span></td>
-						<td class="insc info"><span>{{ entity.stagiaire.civilite }}</span></td>
-						<td class="insc info"><span>{{ entity.stagiaire.nom }}</span></td>
-						<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
+						<td class="insc info civilite-stagiaire"><span>{{ entity.stagiaire.civilite }}</span></td>
+						<td class="insc info nom-stagiaire"><span>{{ entity.stagiaire.nom }}</span></td>
+						<td class="insc info prenom-stagiaire"><span>{{ entity.stagiaire.prenom }}</span></td>
 						<td class="insc">{% if entity.stagiaire.adresse %}<span>{{ entity.stagiaire.adresse.nomStructure }}</span>{% endif %}</td>
 						<td class=""><span>{{ entity.stagiaire.fonction }}</span></td>
 						<td> {{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.adresse }}</td>

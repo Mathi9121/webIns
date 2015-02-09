@@ -20,8 +20,8 @@ $(document).ready(function(){
 
 		// données pour la boite
 		var idinscription = $(this).closest('tr').attr('data-idinscription');
-		var nom = $(this).closest('tr').children().eq(1).text();
-		var prenom = $(this).closest('tr').children().eq(2).text() + " " + $(this).closest('tr').children().eq(3).text();
+		var nom = $(this).closest('tr').find('.nom-stagiaire').text();
+		var prenom = $(this).closest('tr').find('.prenom-stagiaire').text();
 		var formule = $("#general table tbody tr[data-idinscription='"+idinscription+"']").find("td.inscformule abbr").attr('title');
 		var liens = $("#general table tbody tr[data-idinscription='"+idinscription+"']").children().last().find('ul').clone(true);
 		$(liens).removeClass('dropdown');
@@ -73,7 +73,7 @@ $(document).ready(function(){
 				//on crée la boite
 
 				var details = $("<div class='unit-20 details-inscription'><a href='#' class='right close-box'><i class='fa fa-times'></i></a></div>");
-				$("<h2>"+ data.nom +" "+ data.prenom +"</h2><hr/><p class='text-centered'>Inscription le <strong>"+ data.date +"</strong><br/><br/><span class='label' >"+ data.formule +"</span></p>").appendTo(details);
+				$("<h2>"+ data.prenom +" "+ data.nom +"</h2><hr/><p class='text-centered'>Inscription le <strong>"+ data.date +"</strong><br/><br/><span class='label' >"+ data.formule +"</span></p>").appendTo(details);
 				$(data.liens).appendTo(details);
 				$(data.liens).wrap('<nav class="nav nav-stacked"></nav>');
 
