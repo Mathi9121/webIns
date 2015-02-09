@@ -17,8 +17,8 @@ OCIM\ContactsBundle\Entity\Personne:
                 name: adresse_id
                 referencedColumnName: id
     oneToMany:
-        reponsesLogistique:
-            targetEntity: OCIM\FormationsBundle\Entity\ReponsesLogistique
+        reponsesChampPerso:
+            targetEntity: OCIM\FormationsBundle\Entity\ReponsesChampPerso
             mappedBy: personne
             cascade: ['all']
             onDelete: "CASCADE"

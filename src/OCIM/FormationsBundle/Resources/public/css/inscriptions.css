@@ -5,7 +5,7 @@ tr.statut.attente:hover{background-color: rgba(255,165,0, 0.5);-webkit-box-shado
 tr.statut.valide:hover{background-color: rgba(3, 207, 3,  0.5);-webkit-box-shadow: 0 0 5px 2px #B8B4B4;box-shadow: 0 0 5px 2px rgba(3, 207, 3,  0.2)}
 tr.statut.annule:hover{background-color: rgba(255, 54, 0, 0.5);-webkit-box-shadow: 0 0 5px 2px #B8B4B4;box-shadow: 0 0 5px 2px rgba(255, 54, 0, 0.2)}
 
-#logistique table thead tr th{text-align:center;}
+#champPerso table thead tr th{text-align:center;}
 
 td.insc.actions{background-color: #f6f6f6}
 td.insc.info{
@@ -18,16 +18,16 @@ td.handle, th.handle{padding-right:0}
 td.handle{color: #6f6f6f; cursor: move}
 
 
-td.logistique{cursor: pointer; text-align:center;}
+td.champPerso{cursor: pointer; text-align:center;}
 td.undefined{cursor: not-allowed; background-color: rgba(125,125,125, 0.2)}
-td.logistique[data-type="text"]{cursor: text}
+td.champPerso[data-type="text"]{cursor: text}
 
-span.logistique{
+span.champPerso{
 	font-weight: bold;
 	text-shadow: 0 0 2px #FFFFFF;
 }
-span.logistique.ok{ color: rgba(3, 207, 3,  1);}
-span.logistique.zero{color: rgba(255, 54, 0, 1);}
+span.champPerso.ok{ color: rgba(3, 207, 3,  1);}
+span.champPerso.zero{color: rgba(255, 54, 0, 1);}
 
 tr.selected{
 	background-color: #f1f1f1 !important;

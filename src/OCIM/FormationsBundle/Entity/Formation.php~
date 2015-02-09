@@ -5,7 +5,7 @@ namespace OCIM\FormationsBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use OCIM\FormationsBundle\Entity\TypeFormation;
-use OCIM\FormationsBundle\Entity\ModeleLogistique;
+use OCIM\FormationsBundle\Entity\ModeleChampPerso;
 
 /**
  * Formation
@@ -333,13 +333,13 @@ class Formation
 		return $this->modeles;
 	}
 	
-	public function addModele(\OCIM\FormationsBundle\Entity\ModeleLogistique $ml)
+	public function addModele(\OCIM\FormationsBundle\Entity\ModeleChampPerso $ml)
     {
 		$this->modeles[] = $ml;
         return $this;
     }
 	
-	public function removeModele(\OCIM\FormationsBundle\Entity\ModeleLogistique $ml)
+	public function removeModele(\OCIM\FormationsBundle\Entity\ModeleChampPerso $ml)
     {
         $this->modeles->removeElement($ml);	
     }
@@ -364,10 +364,10 @@ class Formation
     /**
      * Add modelesIntervenants
      *
-     * @param \OCIM\FormationsBundle\Entity\ModeleLogistique $modelesIntervenants
+     * @param \OCIM\FormationsBundle\Entity\ModeleChampPerso $modelesIntervenants
      * @return Formation
      */
-    public function addModelesIntervenant(\OCIM\FormationsBundle\Entity\ModeleLogistique $modelesIntervenants)
+    public function addModelesIntervenant(\OCIM\FormationsBundle\Entity\ModeleChampPerso $modelesIntervenants)
     {
         $this->modelesIntervenants[] = $modelesIntervenants;
 
@@ -377,9 +377,9 @@ class Formation
     /**
      * Remove modelesIntervenants
      *
-     * @param \OCIM\FormationsBundle\Entity\ModeleLogistique $modelesIntervenants
+     * @param \OCIM\FormationsBundle\Entity\ModeleChampPerso $modelesIntervenants
      */
-    public function removeModelesIntervenant(\OCIM\FormationsBundle\Entity\ModeleLogistique $modelesIntervenants)
+    public function removeModelesIntervenant(\OCIM\FormationsBundle\Entity\ModeleChampPerso $modelesIntervenants)
     {
         $this->modelesIntervenants->removeElement($modelesIntervenants);
     }

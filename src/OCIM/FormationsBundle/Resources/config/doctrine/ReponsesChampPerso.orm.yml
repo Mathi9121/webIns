@@ -1,20 +1,20 @@
-OCIM\FormationsBundle\Entity\ReponsesLogistique:
+OCIM\FormationsBundle\Entity\ReponsesChampPerso:
     type: entity
     manyToOne:
         modele:
-            targetEntity: ModeleLogistique
+            targetEntity: ModeleChampPerso
             inversedBy: reponses
             joinColumn:
                 name: modele_id
                 referencedColumnName: id
         personne:
             targetEntity: OCIM\ContactsBundle\Entity\Personne
-            inversedBy: reponsesLogistique
+            inversedBy: reponsesChampPerso
             joinColumn:
                 name: personne_id
                 referencedColumnName: id
     table: null
-    repositoryClass: OCIM\FormationsBundle\Entity\ReponsesLogistiqueRepository
+    repositoryClass: OCIM\FormationsBundle\Entity\ReponsesChampPersoRepository
     id:
         id:
             type: integer

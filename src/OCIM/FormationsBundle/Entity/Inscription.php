@@ -216,7 +216,7 @@ class Inscription
      */
     public function __construct()
     {
-        $this->reponsesLogistique = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->reponsesChampPerso = new \Doctrine\Common\Collections\ArrayCollection();
         $this->personnes = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -454,40 +454,40 @@ class Inscription
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $reponsesLogistique;
+    private $reponsesChampPerso;
 
 
     /**
-     * Add reponsesLogistique
+     * Add reponsesChampPerso
      *
-     * @param \OCIM\FormationsBundle\Entity\ReponsesLogistique $reponsesLogistique
+     * @param \OCIM\FormationsBundle\Entity\ReponsesChampPerso $reponsesChampPerso
      * @return Inscription
      */
-    public function addReponsesLogistique(\OCIM\FormationsBundle\Entity\ReponsesLogistique $reponsesLogistique)
+    public function addReponsesChampPerso(\OCIM\FormationsBundle\Entity\ReponsesChampPerso $reponsesChampPerso)
     {
-        $this->reponsesLogistique[] = $reponsesLogistique;
+        $this->reponsesChampPerso[] = $reponsesChampPerso;
 
         return $this;
     }
 
     /**
-     * Remove reponsesLogistique
+     * Remove reponsesChampPerso
      *
-     * @param \OCIM\FormationsBundle\Entity\ReponsesLogistique $reponsesLogistique
+     * @param \OCIM\FormationsBundle\Entity\ReponsesChampPerso $reponsesChampPerso
      */
-    public function removeReponsesLogistique(\OCIM\FormationsBundle\Entity\ReponsesLogistique $reponsesLogistique)
+    public function removeReponsesChampPerso(\OCIM\FormationsBundle\Entity\ReponsesChampPerso $reponsesChampPerso)
     {
-        $this->reponsesLogistique->removeElement($reponsesLogistique);
+        $this->reponsesChampPerso->removeElement($reponsesChampPerso);
     }
 
     /**
-     * Get reponsesLogistique
+     * Get reponsesChampPerso
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getReponsesLogistique()
+    public function getReponsesChampPerso()
     {
-        return $this->reponsesLogistique;
+        return $this->reponsesChampPerso;
     }
 
 

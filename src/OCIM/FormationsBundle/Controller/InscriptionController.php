@@ -33,15 +33,15 @@ class InscriptionController extends Controller
 
     $entities = $em->getRepository('OCIMFormationsBundle:Inscription')->findAllByFormation($idformation);
     $formation = $em->getRepository('OCIMFormationsBundle:Formation')->find($idformation);
-    $logistique = $em->getRepository('OCIMFormationsBundle:ModeleLogistique')->findModelesByIdFormation($idformation);
+    $champPerso = $em->getRepository('OCIMFormationsBundle:ModeleChampPerso')->findModelesByIdFormation($idformation);
 
 
-    //exit(\Doctrine\Common\Util\Debug::dump($logistique));
+    //exit(\Doctrine\Common\Util\Debug::dump($champPerso));
 
     return $this->render('OCIMFormationsBundle:Inscription:index.html.twig', array(
       'entities' => $entities,
       'formation' => $formation,
-      'logistique' => $logistique,
+      'champPerso' => $champPerso,
       'id' => $id,
     ));
   }

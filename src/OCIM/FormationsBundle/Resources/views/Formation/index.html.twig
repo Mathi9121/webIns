@@ -98,7 +98,7 @@ filter='cssrewrite' %}
 				{% endif %}
 
 				<tr class="titre-formation{{((id is defined)and( id == formation.id ))? " highlight"}}" data-idformation="{{formation.id}}" data-typeformation="{{formation.type.id}}" data-debutstamp="{{ formation.dateDebut|date("U") }}" data-finstamp="{{ formation.dateFin|date("U") }}" data-debut="{{ formation.dateDebut|date("d/m/Y") }}" data-fin="{{ formation.dateFin|date("d/m/Y") }}">
-					<td><span class="fa-conteneur"><i class="fa fa-angle-right hide"></i></span>{{ formation.intitule }} <span class="label right" title="Durée de la formation">{{ formation.nbJours }}J</span></td>
+					<td><span class="fa-conteneur"><i class="fa fa-angle-right hide"></i></span>{{ formation.intitule }} <span class="label right" title="Durée de la formation">{{ formation.nbJours| replace({".0" : ""}) }}J</span></td>
 					<td>{{ formation.lieu }}</td>
 					<td>{{ formation.dateDebut|date("d/m/Y") }}</td>
 					<td>
@@ -152,7 +152,7 @@ filter='cssrewrite' %}
 								<ul class="blocks-4 blocks-mobile-50 end no-margin">
 									<li><a class="options-formation" href="{{ path('inscription', { 'idformation': formation.id }) }}">	<span class="fa-stack fa-2x"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-users fa-stack-1x fa-inverse"></i></span>Incriptions</a></li>
 									<li><a class="options-formation" href="{{ path('formation_show', { 'id': formation.id }) }}">			<span class="fa-stack fa-2x"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-info fa-stack-1x fa-inverse"></i></span>Détails</a></li>
-									<li><a class="options-formation" href="{{path('logistique_edit', {'idformation': formation.id })}}">	<span class="fa-stack fa-2x"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-truck fa-stack-1x fa-inverse"></i></span>Logistique</a></li>
+									<li><a class="options-formation" href="{{path('champPerso_edit', {'idformation': formation.id })}}">	<span class="fa-stack fa-2x"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-table fa-stack-1x fa-inverse"></i></span>Champs supplémentaires</a></li>
 									<li><a class="options-formation" href="{{ path('formation_edit', { 'id': formation.id }) }}">			<span class="fa-stack fa-2x"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-pencil fa-stack-1x fa-inverse"></i></span>Modifier</a></li>
 								</ul>
 							</div>

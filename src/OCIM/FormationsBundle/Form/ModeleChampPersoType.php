@@ -7,7 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Doctrine\ORM\EntityRepository;
 
-class ModeleLogistiqueType extends AbstractType
+class ModeleChampPersoType extends AbstractType
 {
 	public $idformation;
 
@@ -70,7 +70,7 @@ class ModeleLogistiqueType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'OCIM\FormationsBundle\Entity\ModeleLogistique',
+            'data_class' => 'OCIM\FormationsBundle\Entity\ModeleChampPerso',
 			'attr' => array('class'=> 'forms'),
         ));
     }
@@ -80,6 +80,6 @@ class ModeleLogistiqueType extends AbstractType
      */
     public function getName()
     {
-        return 'ocim_formationsbundle_modelelogistique';
+        return 'ocim_formationsbundle_modelechampPerso';
     }
 }

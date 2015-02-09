@@ -1,8 +1,8 @@
-OCIM\FormationsBundle\Entity\ModeleLogistique:
+OCIM\FormationsBundle\Entity\ModeleChampPerso:
     type: entity
     oneToMany:
         reponses:
-            targetEntity: ReponsesLogistique
+            targetEntity: ReponsesChampPerso
             mappedBy: modele
             cascade: ['all']
     manyToMany:
@@ -18,7 +18,7 @@ OCIM\FormationsBundle\Entity\ModeleLogistique:
                 name: formation_id
                 referencedColumnName: id
     table: null
-    repositoryClass: OCIM\FormationsBundle\Entity\ModeleLogistiqueRepository
+    repositoryClass: OCIM\FormationsBundle\Entity\ModeleChampPersoRepository
     id:
         id:
             type: integer

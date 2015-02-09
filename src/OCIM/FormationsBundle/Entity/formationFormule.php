@@ -52,10 +52,10 @@ class formationFormule
     /**
      * Add modeles
      *
-     * @param \OCIM\FormationsBundle\Entity\ModeleLogistique $modeles
+     * @param \OCIM\FormationsBundle\Entity\ModeleChampPerso $modeles
      * @return formationFormule
      */
-    public function addModele(\OCIM\FormationsBundle\Entity\ModeleLogistique $modeles)
+    public function addModele(\OCIM\FormationsBundle\Entity\ModeleChampPerso $modeles)
     {
 		if(!$this->modeles->contains($modeles)){
 			$this->modeles[] = $modeles;
@@ -68,9 +68,9 @@ class formationFormule
     /**
      * Remove modeles
      *
-     * @param \OCIM\FormationsBundle\Entity\ModeleLogistique $modeles
+     * @param \OCIM\FormationsBundle\Entity\ModeleChampPerso $modeles
      */
-    public function removeModele(\OCIM\FormationsBundle\Entity\ModeleLogistique $modeles)
+    public function removeModele(\OCIM\FormationsBundle\Entity\ModeleChampPerso $modeles)
     {
         $this->modeles->removeElement($modeles);
     }

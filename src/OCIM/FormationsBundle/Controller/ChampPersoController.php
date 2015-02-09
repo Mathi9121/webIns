@@ -8,10 +8,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use OCIM\FormationsBundle\Entity\formationFormule;
 use OCIM\FormationsBundle\Entity\Formation;
-use OCIM\FormationsBundle\Entity\ModeleLogistique;
-use OCIM\FormationsBundle\Entity\ReponsesLogistique;
+use OCIM\FormationsBundle\Entity\ModeleChampPerso;
+use OCIM\FormationsBundle\Entity\ReponsesChampPerso;
 use OCIM\FormationsBundle\Entity\Inscription;
-use OCIM\FormationsBundle\Form\LogistiqueType;
+use OCIM\FormationsBundle\Form\ChampPersoType;
 use Doctrine\Common\Collections\ArrayCollection;
 use OCIM\ContactsBundle\Entity\Personne;
 
@@ -20,7 +20,7 @@ use OCIM\ContactsBundle\Entity\Personne;
  * formationFormule controller.
  *
  */
-class LogistiqueController extends Controller
+class ChampPersoController extends Controller
 {
 
     /**
@@ -34,8 +34,8 @@ class LogistiqueController extends Controller
         $entities = $em->getRepository('OCIMFormationsBundle:Formation')->findAll();
 
 		foreach($entities as $entity){
-			$logistique = $em->getRepository('OCIMFormationsBundle:ModeleLogistique')->findModelesByIdFormation($entity->getId());
-			$entity->setModeles(new ArrayCollection($logistique));
+			$champPerso = $em->getRepository('OCIMFormationsBundle:ModeleChampPerso')->findModelesByIdFormation($entity->getId());
+			$entity->setModeles(new ArrayCollection($champPerso));
 		}
 
 		foreach($entities as $entity){
@@ -44,10 +44,10 @@ class LogistiqueController extends Controller
 			foreach($entity->getFormationFormule() as $ff){
 				$countmodeles += $ff->getModeles()->count();
 			}
-			$entity->_logistique = $countmodeles;
+			$entity->_champPerso = $countmodeles;
 		}
 
-        return $this->render('OCIMFormationsBundle:logistique:index.html.twig', array(
+        return $this->render('OCIMFormationsBundle:champPerso:index.html.twig', array(
             'entities' => $entities,
         ));
     }
@@ -62,34 +62,34 @@ class LogistiqueController extends Controller
 			$personne = new Personne();
 			$personne = $em->getRepository('OCIMContactsBundle:Personne')->find($data[0]->idpersonne);
 
-			$reponseLogistique = new ReponsesLogistique();
-			// un objet ReponseLogistique existe
+			$reponseChampPerso = new ReponsesChampPerso();
+			// un objet ReponseChampPerso existe
 			if($data[0]->idreponse){
-				$reponseLogistique = $em->getRepository('OCIMFormationsBundle:ReponsesLogistique')->find($data[0]->idreponse);
+				$reponseChampPerso = $em->getRepository('OCIMFormationsBundle:ReponsesChampPerso')->find($data[0]->idreponse);
 			}
 
 			// construction et enregistrement de la nouvelle reponse
 			$nouvelleReponse;
 		 	if($data[0]->type == "bool"){
 				$nouvelleReponse = (($data[0]->reponse == "0") OR ($data[0]->reponse == ""))? true : false;
-				$reponseLogistique->setReponse($nouvelleReponse);
+				$reponseChampPerso->setReponse($nouvelleReponse);
 			}
 			elseif($data[0]->type == "text"){
 				$nouvelleReponse = $data[0]->reponse;
-				$reponseLogistique->setReponseText($nouvelleReponse);
+				$reponseChampPerso->setReponseText($nouvelleReponse);
 			}
 
 
-			if($reponseLogistique->getId() == null){
-				$reponseLogistique->setPersonne($personne);
-				$reponseLogistique->setModele($em->getReference('OCIMFormationsBundle:ModeleLogistique', $data[0]->idmodele));
-				$personne->addReponsesLogistique($reponseLogistique);
-				$em->persist($reponseLogistique);
+			if($reponseChampPerso->getId() == null){
+				$reponseChampPerso->setPersonne($personne);
+				$reponseChampPerso->setModele($em->getReference('OCIMFormationsBundle:ModeleChampPerso', $data[0]->idmodele));
+				$personne->addReponsesChampPerso($reponseChampPerso);
+				$em->persist($reponseChampPerso);
 			}
 
 			$em->flush();
 
-			$data[0]->idreponse = $reponseLogistique->getId();
+			$data[0]->idreponse = $reponseChampPerso->getId();
 			$data[0]->reponse = $nouvelleReponse;
 
 			return new Response( json_encode($data) , Response::HTTP_OK);
@@ -112,10 +112,10 @@ class LogistiqueController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('logistique_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('champPerso_show', array('id' => $entity->getId())));
         }
 
-        return $this->render('OCIMFormationsBundle:logistique:new.html.twig', array(
+        return $this->render('OCIMFormationsBundle:champPerso:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
@@ -130,8 +130,8 @@ class LogistiqueController extends Controller
      */
     private function createCreateForm(formationFormule $entity)
     {
-        $form = $this->createForm(new LogistiqueType(), $entity, array(
-            'action' => $this->generateUrl('logistique_create'),
+        $form = $this->createForm(new ChampPersoType(), $entity, array(
+            'action' => $this->generateUrl('champPerso_create'),
             'method' => 'POST',
         ));
 
@@ -149,7 +149,7 @@ class LogistiqueController extends Controller
         $entity = new formationFormule();
         $form   = $this->createCreateForm($entity);
 
-        return $this->render('OCIMFormationsBundle:logistique:new.html.twig', array(
+        return $this->render('OCIMFormationsBundle:champPerso:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
@@ -171,7 +171,7 @@ class LogistiqueController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('OCIMFormationsBundle:logistique:show.html.twig', array(
+        return $this->render('OCIMFormationsBundle:champPerso:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -192,7 +192,7 @@ class LogistiqueController extends Controller
 
 			$modeles = new ArrayCollection();
 
-			// On détermine les variables nécessaires à la génération des objets ModeleLogistique
+			// On détermine les variables nécessaires à la génération des objets ModeleChampPerso
 			$dateDebut = $formation->getDateDebut();
 			$dateFin = $formation->getDateFin();
 
@@ -210,7 +210,7 @@ class LogistiqueController extends Controller
 			}
 
 			//arrivée pour les intervenants
-			$m = new ModeleLogistique();
+			$m = new ModeleChampPerso();
 			$m->setDescription('Arrivée');
 			$m->setTypeReponse('text');
 			$m->setIntervenant(true);
@@ -219,7 +219,7 @@ class LogistiqueController extends Controller
 			foreach($period as $date)
 			{
 				foreach($journee as $key=>$j){
-					$m = new ModeleLogistique();
+					$m = new ModeleChampPerso();
 
 					foreach($j as $ff){
 						if($ff){
@@ -236,7 +236,7 @@ class LogistiqueController extends Controller
 			}
 
 			//départ pour les intervenants
-			$m = new ModeleLogistique();
+			$m = new ModeleChampPerso();
 			$m->setDescription('Départ');
 			$m->setTypeReponse('text');
 			$m->setIntervenant(true);
@@ -244,9 +244,9 @@ class LogistiqueController extends Controller
 
 		}
 		else{
-			$modeles = $em->getRepository('OCIMFormationsBundle:ModeleLogistique')->findModelesByIdFormation($idformation);
+			$modeles = $em->getRepository('OCIMFormationsBundle:ModeleChampPerso')->findModelesByIdFormation($idformation);
 			if(!$modeles){
-				$modeles[] = new ModeleLogistique();
+				$modeles[] = new ModeleChampPerso();
 				$formation->setModeles(new ArrayCollection($modeles));
 			}
 			else{
@@ -257,7 +257,7 @@ class LogistiqueController extends Controller
         $editForm = $this->createEditForm($formation);
         $deleteForm = $this->createDeleteForm($idformation);
 
-        return $this->render('OCIMFormationsBundle:logistique:edit.html.twig', array(
+        return $this->render('OCIMFormationsBundle:champPerso:edit.html.twig', array(
             'entity'      => $formation,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -273,8 +273,8 @@ class LogistiqueController extends Controller
     */
     private function createEditForm($entity)
     {
-        $form = $this->createForm(new LogistiqueType($entity->getId()), $entity, array(
-            'action' => $this->generateUrl('logistique_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new ChampPersoType($entity->getId()), $entity, array(
+            'action' => $this->generateUrl('champPerso_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
@@ -291,7 +291,7 @@ class LogistiqueController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('OCIMFormationsBundle:Formation')->find($id);
-        $modeles = $em->getRepository('OCIMFormationsBundle:ModeleLogistique')->findModelesByIdFormation($id);
+        $modeles = $em->getRepository('OCIMFormationsBundle:ModeleChampPerso')->findModelesByIdFormation($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find formationFormule entity.');
@@ -348,10 +348,10 @@ class LogistiqueController extends Controller
 
             $em->flush();
             $this->get('session')->getFlashBag()->add('success','Modifications enregistrées.');
-              return $this->redirect($this->generateUrl('logistique_edit', array('idformation' => $id)));
+              return $this->redirect($this->generateUrl('champPerso_edit', array('idformation' => $id)));
         }
 
-        return $this->render('OCIMFormationsBundle:logistique:edit.html.twig', array(
+        return $this->render('OCIMFormationsBundle:champPerso:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -368,7 +368,7 @@ class LogistiqueController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('OCIMFormationsBundle:ModeleLogistique')->findModelesByIdFormation($id);
+            $entity = $em->getRepository('OCIMFormationsBundle:ModeleChampPerso')->findModelesByIdFormation($id);
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find formationFormule entity.');
@@ -381,7 +381,7 @@ class LogistiqueController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('logistique'));
+        return $this->redirect($this->generateUrl('champPerso'));
     }
 
     /**
@@ -394,7 +394,7 @@ class LogistiqueController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('logistique_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('champPerso_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Supprimer', 'attr'=>array('class'=>'btn btn-red btn-delete')))
             ->getForm()

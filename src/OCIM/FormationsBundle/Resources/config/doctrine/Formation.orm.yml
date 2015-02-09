@@ -13,7 +13,7 @@ OCIM\FormationsBundle\Entity\Formation:
             mappedBy: formation
             cascade: ["all"]
         modelesIntervenants:
-            targetEntity: ModeleLogistique
+            targetEntity: ModeleChampPerso
             mappedBy: formation
     manyToMany:
         intervenants:

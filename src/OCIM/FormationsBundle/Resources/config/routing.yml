@@ -2,6 +2,6 @@ ocim_formations_convention:
     resource: "@OCIMFormationsBundle/Resources/config/routing/convention.yml"
     prefix:   /convention
 
-OCIMFormationsBundle_logistique:
-    resource: "@OCIMFormationsBundle/Resources/config/routing/logistique.yml"
-    prefix:   /logistique
+OCIMFormationsBundle_champPerso:
+    resource: "@OCIMFormationsBundle/Resources/config/routing/champPerso.yml"
+    prefix:   /champPerso

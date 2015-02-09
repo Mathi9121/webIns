@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class LogistiqueType extends AbstractType
+class ChampPersoType extends AbstractType
 {
 
 	public function __construct($idformation){
@@ -20,7 +20,7 @@ class LogistiqueType extends AbstractType
     {
         $builder
 			->add('modeles', 'collection', array(
-				'type' => new ModeleLogistiqueType($this->idformation),
+				'type' => new ModeleChampPersoType($this->idformation),
 				'allow_add' => true,
 				'allow_delete' => true,
 				));

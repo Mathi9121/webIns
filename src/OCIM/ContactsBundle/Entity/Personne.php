@@ -377,45 +377,45 @@ class Personne
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $reponsesLogistique;
+    private $reponsesChampPerso;
 
 
     /**
-     * Add reponsesLogistique
+     * Add reponsesChampPerso
      *
-     * @param \OCIM\FormationsBundle\Entity\ReponsesLogistique $reponsesLogistique
+     * @param \OCIM\FormationsBundle\Entity\ReponsesChampPerso $reponsesChampPerso
      * @return Personne
      */
-    public function addReponsesLogistique(\OCIM\FormationsBundle\Entity\ReponsesLogistique $reponsesLogistique)
+    public function addReponsesChampPerso(\OCIM\FormationsBundle\Entity\ReponsesChampPerso $reponsesChampPerso)
     {
-        $this->reponsesLogistique[] = $reponsesLogistique;
+        $this->reponsesChampPerso[] = $reponsesChampPerso;
 
         return $this;
     }
 
     /**
-     * Remove reponsesLogistique
+     * Remove reponsesChampPerso
      *
-     * @param \OCIM\FormationsBundle\Entity\ReponsesLogistique $reponsesLogistique
+     * @param \OCIM\FormationsBundle\Entity\ReponsesChampPerso $reponsesChampPerso
      */
-    public function removeReponsesLogistique(\OCIM\FormationsBundle\Entity\ReponsesLogistique $reponsesLogistique)
+    public function removeReponsesChampPerso(\OCIM\FormationsBundle\Entity\ReponsesChampPerso $reponsesChampPerso)
     {
-        $this->reponsesLogistique->removeElement($reponsesLogistique);
+        $this->reponsesChampPerso->removeElement($reponsesChampPerso);
     }
 
     /**
-     * Get reponsesLogistique
+     * Get reponsesChampPerso
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getReponsesLogistique()
+    public function getReponsesChampPerso()
     {
-        return $this->reponsesLogistique;
+        return $this->reponsesChampPerso;
     }
 
 	public function getReponseByModeleId($modeleId, $return = null){
 
-		$reponse =  $this->getReponsesLogistique()->filter(
+		$reponse =  $this->getReponsesChampPerso()->filter(
 			function($rl) use ($modeleId){
 				if($rl->getModele()->getId() == $modeleId){
 					return true;

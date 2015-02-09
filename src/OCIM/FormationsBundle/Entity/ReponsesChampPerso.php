@@ -5,9 +5,9 @@ namespace OCIM\FormationsBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * ReponsesLogistique
+ * ReponsesChampPerso
  */
-class ReponsesLogistique
+class ReponsesChampPerso
 {
     /**
      * @var integer
@@ -44,7 +44,7 @@ class ReponsesLogistique
      * Set reponse
      *
      * @param boolean $reponse
-     * @return ReponsesLogistique
+     * @return ReponsesChampPerso
      */
     public function setReponse($reponse)
     {
@@ -67,7 +67,7 @@ class ReponsesLogistique
      * Set reponseText
      *
      * @param string $reponseText
-     * @return ReponsesLogistique
+     * @return ReponsesChampPerso
      */
     public function setReponseText($reponseText)
     {
@@ -90,7 +90,7 @@ class ReponsesLogistique
      * Set date
      *
      * @param \DateTime $date
-     * @return ReponsesLogistique
+     * @return ReponsesChampPerso
      */
     public function setDate($date)
     {
@@ -117,10 +117,10 @@ class ReponsesLogistique
     /**
      * Set modele
      *
-     * @param \OCIM\FormationsBundle\Entity\ModeleLogistique $modele
-     * @return ReponsesLogistique
+     * @param \OCIM\FormationsBundle\Entity\ModeleChampPerso $modele
+     * @return ReponsesChampPerso
      */
-    public function setModele(\OCIM\FormationsBundle\Entity\ModeleLogistique $modele = null)
+    public function setModele(\OCIM\FormationsBundle\Entity\ModeleChampPerso $modele = null)
     {
         $this->modele = $modele;
 
@@ -130,7 +130,7 @@ class ReponsesLogistique
     /**
      * Get modele
      *
-     * @return \OCIM\FormationsBundle\Entity\ModeleLogistique 
+     * @return \OCIM\FormationsBundle\Entity\ModeleChampPerso 
      */
     public function getModele()
     {
@@ -145,7 +145,7 @@ class ReponsesLogistique
      * Set inscription
      *
      * @param \OCIM\FormationsBundle\Entity\Inscription $inscription
-     * @return ReponsesLogistique
+     * @return ReponsesChampPerso
      */
     public function setInscription(\OCIM\FormationsBundle\Entity\Inscription $inscription = null)
     {
@@ -173,7 +173,7 @@ class ReponsesLogistique
      * Set personne
      *
      * @param \OCIM\ContactsBundle\Entity\Personne $personne
-     * @return ReponsesLogistique
+     * @return ReponsesChampPerso
      */
     public function setPersonne(\OCIM\ContactsBundle\Entity\Personne $personne = null)
     {

@@ -16,7 +16,7 @@
 	'%kernel.root_dir%/Resources/public/js/jquery-ui.min.js'
 	'@OCIMFormationsBundle/Resources/public/js/Inscription/inscription.js'
 	'@OCIMFormationsBundle/Resources/public/js/Inscription/showDetailsInscriptions.js'
-	'@OCIMFormationsBundle/Resources/public/js/Inscription/reponseslogistique.js'
+	'@OCIMFormationsBundle/Resources/public/js/Inscription/reponseschampPerso.js'
 	'%kernel.root_dir%/Resources/public/js/popup.js'
 	'@OCIMFormationsBundle/Resources/public/js/Inscription/maj-statuts.js'
 	'@OCIMFormationsBundle/Resources/public/js/Inscription/proposition-export.js' %}
@@ -47,7 +47,7 @@
 		<ul>
 			<li class="active"><a href="#general">Informations Générales</a></li>
 			<li><a href="#contact">Contacts</a></li>
-			<li><a href="#logistique">Logistique</a></li>
+			<li><a href="#champPerso">Champs ajoutés</a></li>
 			<li><a href="#convention">Convention</a></li>
 			<li><a href="#financement">Financement</a></li>
 			<li><a href="#attentes">Attentes</a></li>
@@ -194,17 +194,17 @@
 </div>
 </div>
 
-{# Logistique #}
-<div id="logistique" class="tab unit-100">
-	<div class="hide" id="majLogistique">{{path('logistique_reponse')}}</div>
-{% if logistique|length > 0 %}
+{# ChampPerso #}
+	<div class="hide" id="majChampPerso">{{path('champPerso_reponse')}}</div>
+<div id="champPerso" class="tab unit-100">
+{% if champPerso|length > 0 %}
 <div class="table-container">
 	<table class="table-bordered">
 		<thead>
 			<tr>
 				<th class="insc info"><span>Nom</span></th>
 				<th class="insc info"><span>Prénom</span></th>
-				{% for log in logistique %}
+				{% for log in champPerso %}
 					<th>{{(log.date is not null)? log.date|date('d/m')}} {{log.description}}</th>
 				{% endfor %}
 			</tr>
@@ -225,16 +225,16 @@
 						<td class="insc info"><span>{{ entity.stagiaire.nom }}</span></td>
 						<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
 
-					{% for log in logistique %}
+					{% for log in champPerso %}
 						{% if log.formationformule|length > 0 %}
 							{% if entity.formationFormule in log.formationFormule %}
-								<td class="logistique" data-type="{{log.typeReponse}}" data-idreponse="{{ (attribute(entity.stagiaire, 'getReponseByModeleId', [log.id]))? attribute(entity.stagiaire, 'getReponseByModeleId', [log.id]).id }}" data-date="{{log.date|date('')}}" data-idmodele="{{log.id}}" data-reponse="{{attribute(entity.stagiaire, 'getReponseByModeleId', [log.id, log.typeReponse]) }}">
+								<td class="champPerso" data-type="{{log.typeReponse}}" data-idreponse="{{ (attribute(entity.stagiaire, 'getReponseByModeleId', [log.id]))? attribute(entity.stagiaire, 'getReponseByModeleId', [log.id]).id }}" data-date="{{log.date|date('')}}" data-idmodele="{{log.id}}" data-reponse="{{attribute(entity.stagiaire, 'getReponseByModeleId', [log.id, log.typeReponse]) }}">
 									{% if attribute(entity.stagiaire, 'getReponseByModeleId', [log.id]) %}
 										{% if log.typeReponse == 'bool' %}
 											{% if (attribute(entity.stagiaire, 'getReponseByModeleId', [log.id, log.typeReponse]) == '1') %}
-												<span class="logistique ok">1</span>
+												<span class="champPerso ok">1</span>
 											{% elseif (attribute(entity.stagiaire, 'getReponseByModeleId', [log.id, log.typeReponse]) == '0') %}
-												<span class="logistique zero">0</span>
+												<span class="champPerso zero">0</span>
 											{% endif %}
 										{% elseif log.typeReponse == 'text' %}
 											{{ (attribute(entity.stagiaire, 'getReponseByModeleId', [log.id, log.typeReponse]))}}
@@ -253,20 +253,20 @@
 			{% endif %}
         {% endfor %}
 
-		{# Logistique des intervenants #}
+		{# ChampPerso des intervenants #}
 		{% for intervenant in formation.intervenants %}
 			<tr data-idpersonne="{{intervenant.id}}">
 				<td class="insc info">{{intervenant.nom}}</td>
 				<td class="insc info">{{intervenant.prenom}}</td>
-				{% for log in logistique %}
+				{% for log in champPerso %}
 					{% if log.formation %}
-						<td class="logistique" data-type="{{log.typeReponse}}" data-idreponse="{{ (attribute(intervenant, 'getReponseByModeleId', [log.id]))? attribute(intervenant, 'getReponseByModeleId', [log.id]).id }}" data-date="{{log.date|date('')}}" data-idmodele="{{log.id}}" data-reponse="{{attribute(intervenant, 'getReponseByModeleId', [log.id, log.typeReponse]) }}">
+						<td class="champPerso" data-type="{{log.typeReponse}}" data-idreponse="{{ (attribute(intervenant, 'getReponseByModeleId', [log.id]))? attribute(intervenant, 'getReponseByModeleId', [log.id]).id }}" data-date="{{log.date|date('')}}" data-idmodele="{{log.id}}" data-reponse="{{attribute(intervenant, 'getReponseByModeleId', [log.id, log.typeReponse]) }}">
 							{% if attribute(intervenant, 'getReponseByModeleId', [log.id]) %}
 								{% if log.typeReponse == 'bool' %}
 									{% if (attribute(intervenant, 'getReponseByModeleId', [log.id, log.typeReponse]) == '1') %}
-										<span class="logistique ok">1</span>
+										<span class="champPerso ok">1</span>
 									{% elseif (attribute(intervenant, 'getReponseByModeleId', [log.id, log.typeReponse]) == '0') %}
-										<span class="logistique zero">0</span>
+										<span class="champPerso zero">0</span>
 									{% endif %}
 								{% elseif log.typeReponse == 'text' %}
 									{{ (attribute(intervenant, 'getReponseByModeleId', [log.id, log.typeReponse]))}}
@@ -283,7 +283,7 @@
         </tbody>
 		<tfoot>
 			<td colspan="2">Totaux</td>
-			{% for log in logistique %}
+			{% for log in champPerso %}
 					{% if log.typeReponse == 'bool' %}
 						<td data-typereponse="{{log.typeReponse}}"></td>
 					{% else %}
@@ -295,10 +295,10 @@
 </div>
 {% else %}
 	<p class="lead text-centered">
-		La logistique pour cette formation n&apos;a pas été configurée.
+		La champPerso pour cette formation n&apos;a pas été configurée.
 	</p>
 	<p class="text-centered">
-		<a class="btn btn-big" href="{{ path('logistique_edit', {'idformation': formation.id, 'generation': 'generate'}) }}"><i class="fa fa-truck fa-fw"></i> Générer maintenant</a>
+		<a class="btn btn-big" href="{{ path('champPerso_edit', {'idformation': formation.id, 'generation': 'generate'}) }}"><i class="fa fa-table fa-fw"></i> Générer maintenant</a>
 	</p>
 {% endif %}
 

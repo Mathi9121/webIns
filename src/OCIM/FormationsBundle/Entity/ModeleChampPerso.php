@@ -5,9 +5,9 @@ namespace OCIM\FormationsBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * ModeleLogistique
+ * ModeleChampPerso
  */
-class ModeleLogistique
+class ModeleChampPerso
 {
     /**
      * @var integer
@@ -44,7 +44,7 @@ class ModeleLogistique
      * Set date
      *
      * @param \DateTime $date
-     * @return ModeleLogistique
+     * @return ModeleChampPerso
      */
     public function setDate($date)
     {
@@ -67,7 +67,7 @@ class ModeleLogistique
      * Set description
      *
      * @param string $description
-     * @return ModeleLogistique
+     * @return ModeleChampPerso
      */
     public function setDescription($description)
     {
@@ -90,7 +90,7 @@ class ModeleLogistique
      * Set typeReponse
      *
      * @param string $typeReponse
-     * @return ModeleLogistique
+     * @return ModeleChampPerso
      */
     public function setTypeReponse($typeReponse)
     {
@@ -131,10 +131,10 @@ class ModeleLogistique
     /**
      * Add reponses
      *
-     * @param \OCIM\FormationsBundle\Entity\ReponsesLogistique $reponses
-     * @return ModeleLogistique
+     * @param \OCIM\FormationsBundle\Entity\ReponsesChampPerso $reponses
+     * @return ModeleChampPerso
      */
-    public function addReponse(\OCIM\FormationsBundle\Entity\ReponsesLogistique $reponses)
+    public function addReponse(\OCIM\FormationsBundle\Entity\ReponsesChampPerso $reponses)
     {
         $this->reponses[] = $reponses;
 
@@ -144,9 +144,9 @@ class ModeleLogistique
     /**
      * Remove reponses
      *
-     * @param \OCIM\FormationsBundle\Entity\ReponsesLogistique $reponses
+     * @param \OCIM\FormationsBundle\Entity\ReponsesChampPerso $reponses
      */
-    public function removeReponse(\OCIM\FormationsBundle\Entity\ReponsesLogistique $reponses)
+    public function removeReponse(\OCIM\FormationsBundle\Entity\ReponsesChampPerso $reponses)
     {
         $this->reponses->removeElement($reponses);
     }
@@ -172,7 +172,7 @@ class ModeleLogistique
      * Set ordre
      *
      * @param integer $ordre
-     * @return ModeleLogistique
+     * @return ModeleChampPerso
      */
     public function setOrdre($ordre)
     {
@@ -202,7 +202,7 @@ class ModeleLogistique
      * Add formationFormule
      *
      * @param \OCIM\FormationsBundle\Entity\formationFormule $formationFormule
-     * @return ModeleLogistique
+     * @return ModeleChampPerso
      */
     public function addFormationFormule(\OCIM\FormationsBundle\Entity\formationFormule $formationFormule)
     {
@@ -242,7 +242,7 @@ class ModeleLogistique
      * Set formation
      *
      * @param \OCIM\FormationsBundle\Entity\Formation $formation
-     * @return ModeleLogistique
+     * @return ModeleChampPerso
      */
     public function setFormation(\OCIM\FormationsBundle\Entity\Formation $formation = null)
     {
