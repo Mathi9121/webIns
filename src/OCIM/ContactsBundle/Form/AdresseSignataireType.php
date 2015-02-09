@@ -18,7 +18,7 @@ class AdresseSignataireType extends AbstractType
     {
 		$entityManager = $options['em'];
 		$transformer = new StringToTagsTransformer($entityManager);
-		
+
         $builder
 			->add('nomStructure', 'text', array(
 				'attr' => array('class' => 'width-100'),
@@ -45,19 +45,19 @@ class AdresseSignataireType extends AbstractType
 			->add('type', null, array(
 				'attr' => array('class'=>'width-100'),
 				'required' => false,
-				'query_builder' => function(EntityRepository $repository) { 
+				'query_builder' => function(EntityRepository $repository) {
 					return $repository->createQueryBuilder('u')->orderBy('u.type', 'ASC');
 				}
 			))
             ->add(
 				$builder->create('tags', 'text', array(
-				'attr' => array('class'=>'width-100'),
+				'attr' => array('class'=>'width-100 tags'),
 				'required' => false,
 				// 'data_class' => 'OCIM\ContactsBundle\Entity\TagStructure'
 			))->addModelTransformer($transformer))
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */

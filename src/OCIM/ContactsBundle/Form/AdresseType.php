@@ -43,7 +43,7 @@ class AdresseType extends AbstractType
 			))
             ->add(
         $builder->create('tags', 'text', array(
-        'attr' => array('class'=>'width-100'),
+        'attr' => array('class'=>'width-100 tags'),
         'required' => false,
         // 'data_class' => 'OCIM\ContactsBundle\Entity\TagStructure'
         ))->addModelTransformer($transformer))

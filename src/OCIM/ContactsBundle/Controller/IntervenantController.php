@@ -56,7 +56,7 @@ class IntervenantController extends Controller
         return $this->render('OCIMContactsBundle:Intervenant:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
-			      'idformation' => $idformation
+			      'idformation' => $idformation,
         ));
     }
 
@@ -88,11 +88,14 @@ class IntervenantController extends Controller
     {
         $entity = new Intervenant();
         $form   = $this->createCreateForm($entity,$idformation);
+        $em = $this->getDoctrine()->getManager();
+        $tags = $em->getRepository("OCIMContactsBundle:TagStructure")->findAll();
 
         return $this->render('OCIMContactsBundle:Intervenant:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
-			'idformation' => $idformation
+			      'idformation' => $idformation,
+            'tags' => $tags,
         ));
     }
 
@@ -128,6 +131,7 @@ class IntervenantController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('OCIMContactsBundle:Intervenant')->find($id);
+        $tags = $em->getRepository("OCIMContactsBundle:TagStructure")->findAll();
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Intervenant entity.');
@@ -140,7 +144,8 @@ class IntervenantController extends Controller
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-			      'idformation' => $idformation
+			      'idformation' => $idformation,
+            'tags'        => $tags
         ));
     }
 

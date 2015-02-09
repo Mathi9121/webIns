@@ -32,7 +32,21 @@
 
 {% block title %}Inscriptions : {{ formation.intitule }}{% endblock %}
 {% block titre %}{{ formation.intitule }}{% endblock %}
-{% block controls %}<a href="{{ path('inscription_new', { 'idformation': formation.id }) }}" class="btn btn-green"><i class="fa fa-plus fa-fw"></i> Nouvelle inscription</a>{% endblock %}
+{% block controls %}
+<div>
+<div>
+<div>
+<a href="{{ path('inscription_new', { 'idformation': formation.id }) }}" class="btn btn-green"><i class="fa fa-plus fa-fw"></i> Nouvelle inscription</a>
+<a class="btn btn-green list" href="#"></a>
+</div>
+<ul>
+<li><a href="{{path('intervenants_new', { 'idformation': formation.id }) }}"><i class="fa fa-plus fa-fw"></i>Créer un intervenant</a></li>
+<li><a href=""><i class="fa fa-user fa-fw"></i>Relier un intervenant existant</a></li>
+<li><a href="{{path('champPerso_edit', {'idformation': formation.id })}}"><i class="fa fa-table fa-fw"></i>Editer les champs personnalisés</a></li>
+</ul>
+</div>
+</div>
+{% endblock %}
 
 
 {% block body -%}

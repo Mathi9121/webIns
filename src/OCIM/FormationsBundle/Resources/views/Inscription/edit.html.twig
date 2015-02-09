@@ -4,10 +4,28 @@
 
 {% block  javascripts %}
 {{parent()}}
+<script type="text/javascript">
+	var availableTags = [
+		{% for tag in tags %}
+			"{{ tag.tag|capitalize }}",
+		{% endfor %}
+	];
+</script>
 {% javascripts
-	'@OCIMContactsBundle/Resources/public/js/Structure/ajoutStructure.js' %}
-         <script type="text/javascript" src="{{ asset_url }}"></script>
+	'%kernel.root_dir%/Resources/public/js/jquery-ui.min.js'
+	'@OCIMContactsBundle/Resources/public/js/Structure/ajoutStructure.js'
+	'@OCIMContactsBundle/Resources/public/js/Structure/tagsAdresse.js'
+	%}
+	<script type="text/javascript" src="{{ asset_url }}"></script>
 {% endjavascripts %}
+{% endblock %}
+
+{% block stylesheets %}
+{{parent()}}
+{% stylesheets
+	'%kernel.root_dir%/Resources/public/css/autocomplete-ui.css'%}
+	<link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset_url }}"/>
+{% endstylesheets %}
 {% endblock %}
 
 {# Titres #}

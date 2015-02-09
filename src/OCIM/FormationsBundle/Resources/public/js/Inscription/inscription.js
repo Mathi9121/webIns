@@ -15,17 +15,17 @@ $(document).ready(function(){
 				return $helper;
 		},
 		stop: function( event, ui ){
-		
+
 			var ordre = parseInt(ui.item.attr('data-ordre'));
 			var id = ui.item.attr('data-idinscription');
 			var idPrec =  ui.item.prev('.attente').attr('data-idinscription');
 			var idSuiv =  ui.item.next('.attente').attr('data-idinscription');
 			var ordrePrec =  parseInt(ui.item.prev('.attente').attr('data-ordre'));
-			var ordreSuiv =  parseInt(ui.item.next('.attente').attr('data-ordre'));	
+			var ordreSuiv =  parseInt(ui.item.next('.attente').attr('data-ordre'));
 			var idDiv = ui.item.parents('.tab').attr('id');
 			var data = new Array();
-			
-			//au début 
+
+			//au début
 			if((typeof ordrePrec == 'undefined')||(typeof idPrec == 'undefined')){
 				if(ordre >= ordreSuiv){
 					if(ordreSuiv == 0){
@@ -44,7 +44,7 @@ $(document).ready(function(){
 					}
 				}
 			}
-			
+
 			// à la fin
 			else if((typeof ordreSuiv == 'undefined')||(typeof idSuiv == 'undefined')){
 				if(ordre <= ordrePrec){
@@ -53,7 +53,7 @@ $(document).ready(function(){
 					data.push({'id':id, 'ordre':nouvelOrdre});
 				}
 			}
-			
+
 			//entre deux lignes
 			else if((typeof ordreSuiv != 'undefined')&&(typeof ordrePrec != 'undefined')){
 				if((ordre < ordrePrec)||(ordre > ordreSuiv)){
@@ -62,7 +62,7 @@ $(document).ready(function(){
 					data.push({'id':id, 'ordre':nouvelOrdre});
 				}
 			}
-			
+
 			if(data.length != 0){
 				$.progress.show();
 				$.ajax({
@@ -78,6 +78,38 @@ $(document).ready(function(){
 			tri(idDiv);
 		}
 	});
+
+	// SPLIT BUTTON
+
+
+	$(function() {
+$( "#controls a.btn" ).first()
+.next()
+.button({
+text: false,
+icons: {
+primary: "caret"
+}
+})
+.click(function() {
+var menu = $( this ).parent().next().show().position({
+my: "left top",
+at: "left bottom",
+of: this
+});
+$( document ).one( "click", function() {
+menu.hide();
+});
+return false;
+})
+.parent()
+.buttonset()
+.next()
+.hide()
+.menu();
+});
+
+
 });
 
 function changeOrdre(id, ordre){
@@ -95,18 +127,18 @@ function tri(id){
 
 // tri des élements
 jQuery.fn.sortElements = (function(){
- 
+
     var sort = [].sort;
- 
+
     return function(comparator, getSortable) {
- 
+
         getSortable = getSortable || function(){return this;};
- 
+
         var placements = this.map(function(){
- 
+
             var sortElement = getSortable.call(this),
                 parentNode = sortElement.parentNode,
- 
+
                 // Since the element itself will change position, we have
                 // to have some way of storing its original position in
                 // the DOM. The easiest way is to have a 'flag' node:
@@ -114,28 +146,28 @@ jQuery.fn.sortElements = (function(){
                     document.createTextNode(''),
                     sortElement.nextSibling
                 );
- 
+
             return function() {
- 
+
                 if (parentNode === this) {
                     throw new Error(
                         "You can't sort elements if any one is a descendant of another."
                     );
                 }
- 
+
                 // Insert before flag:
                 parentNode.insertBefore(this, nextSibling);
                 // Remove flag:
                 parentNode.removeChild(nextSibling);
- 
+
             };
- 
+
         });
- 
+
         return sort.call(this, comparator).each(function(i){
             placements[i].call(getSortable.call(this));
         });
- 
+
     };
- 
+
 })();

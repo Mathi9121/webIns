@@ -179,11 +179,13 @@ class InscriptionController extends Controller
     $form   = $this->createCreateForm($entity, $idformation);
     $em = $this->getDoctrine()->getManager();
     $formation = $em->getRepository("OCIMFormationsBundle:Formation")->find($idformation);
+    $tags = $em->getRepository("OCIMContactsBundle:TagStructure")->findAll();
 
     return $this->render('OCIMFormationsBundle:Inscription:new.html.twig', array(
       'entity' => $entity,
       'form'   => $form->createView(),
       'formation' => $formation,
+      'tags' => $tags,
     ));
   }
 
@@ -223,6 +225,7 @@ class InscriptionController extends Controller
     $em = $this->getDoctrine()->getManager();
 
     $entity = $em->getRepository('OCIMFormationsBundle:Inscription')->find($id);
+    $tags = $em->getRepository("OCIMContactsBundle:TagStructure")->findAll();
 
     if (!$entity) {
       throw $this->createNotFoundException('Unable to find Inscription entity.');
@@ -236,6 +239,7 @@ class InscriptionController extends Controller
       'form' 			=> $editForm->createView(),
       'delete_form' 	=> $deleteForm->createView(),
       'idformation' 	=> $idformation,
+      'tags' 	=> $tags,
       //'personne'		=> \Doctrine\Common\Util\Debug::dump($personne),
     ));
   }
