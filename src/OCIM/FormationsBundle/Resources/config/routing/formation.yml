@@ -33,3 +33,12 @@ formation_addtype:
     path:     /nouveau-type
     defaults: { _controller: "OCIMFormationsBundle:Formation:ajoutType" }
     requirements: { _method: post }
+
+formation_addintervenants:
+    path:     /{idformation}/intervenant
+    defaults: { _controller: "OCIMFormationsBundle:Formation:indexIntervenantFormation" }
+
+formation_intervenants_update:
+    path:     /{idformation}/intervenant_update
+    defaults: { _controller: "OCIMFormationsBundle:Formation:updateIntervenantFormation" }
+    requirements: { _method: put }

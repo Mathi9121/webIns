@@ -272,7 +272,7 @@ class Personne
     }
 
 	public function __toString(){
-		return $this->prenom." ".$this->prenom;
+		return $this->prenom;
 	}
     /**
      * @var \OCIM\FormationsBundle\Entity\Inscription

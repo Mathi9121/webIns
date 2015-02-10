@@ -11,6 +11,7 @@ use OCIM\FormationsBundle\Entity\TypeFormation;
 use OCIM\FormationsBundle\Entity\Formule;
 use OCIM\FormationsBundle\Entity\formationFormule;
 use OCIM\FormationsBundle\Form\FormationType;
+use OCIM\FormationsBundle\Form\AjoutIntervenantType;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Query\ResultSetMapping;
 
@@ -57,7 +58,6 @@ class FormationController extends Controller
 
   		foreach($formations as $formation){
   			$formation->_count = $em->getRepository('OCIMFormationsBundle:Inscription')->countInscriptionsByFormation($formation->getId());
-  			$formation->_nbJours = $formation->getDateDebut()->diff($formation->getDateFin(), true)->format('%a') + 1;
   		}
 
   		return $this->render('OCIMFormationsBundle:Formation:index.html.twig', array(
@@ -118,6 +118,61 @@ class FormationController extends Controller
         }
 
       }
+    }
+
+    public function indexIntervenantFormationAction($idformation){
+
+      $em = $this->getDoctrine()->getManager();
+
+      $entity = $em->getRepository('OCIMFormationsBundle:Formation')->find($idformation);
+
+      $form = $this->createForm(new AjoutIntervenantType(), $entity, array(
+          'action' => $this->generateUrl('formation_intervenants_update', array('idformation' => $idformation)),
+          'method' => 'PUT',
+      ));
+
+      $form->add('submit', 'submit', array('label' => 'Enregistrer', 'attr' => array('class' => 'btn btn-green btn-save')));
+
+      return $this->render('OCIMFormationsBundle:Formation:addIntervenant.html.twig', array(
+          'form' => $form->createView(),
+
+      ));
+    }
+
+    public function updateIntervenantFormationAction(Request $request, $idformation){
+
+      $em = $this->getDoctrine()->getManager();
+
+      $formation = $em->getRepository('OCIMFormationsBundle:Formation')->find($idformation);
+
+      if (!$formation) {
+          throw $this->createNotFoundException('Unable to find Formation entity.');
+      }
+
+      $form = $this->createForm(new AjoutIntervenantType(), $formation, array(
+          'action' => $this->generateUrl('formation_intervenants_update', array('idformation' => $idformation)),
+          'method' => 'PUT',
+      ));
+
+      $form->add('submit', 'submit', array('label' => 'Enregistrer', 'attr' => array('class' => 'btn btn-green btn-save')));
+
+      $form->handleRequest($request);
+
+      if ($form->isValid()) {
+
+         $em->flush();
+
+         $this->get('session')->getFlashBag()->add('notice','Modifications sauvegardées');
+
+        return $this->redirect($this->generateUrl('formation', array('id' => $idformation)));
+        }
+
+      $this->get('session')->getFlashBag()->add('error','Le formulaire contient des erreurs');
+
+      return $this->render('OCIMFormationsBundle:Formation:addIntervenant.html.twig', array(
+          'form' => $form->createView(),
+      ));
+
     }
 
     /**

@@ -93,35 +93,6 @@ couleurs['3hover']	= 		"rgba(255, 54, 0, 0.5)";
 {% block body -%}
 
 <div class="units-row">
-
-	<div class="unit-60 panel">
-		<div class="header">
-			<span class="titre">Progression des inscriptions</span>
-			<span class="controls right group">
-
-			</span>
-		</div>
-		<div class="panel-body">
-			<canvas id="dates-inscriptions" height="350"></canvas>
-		</div>
-	</div>
-
-	<div class="unit-40 panel">
-		<div class="header">
-			<span class="titre">Statuts des inscriptions</span>
-			<span class="controls right group">
-
-			</span>
-		</div>
-		<div class="panel-body">
-			<canvas id="statuts-inscriptions" height="400"></canvas>
-		</div>
-	</div>
-
-</div>
-
-
-<div class="units-row">
 	<div class="unit-60 panel">
 		<div class="header">
 			<span class="titre">Information sur la formation</span>
@@ -163,6 +134,10 @@ couleurs['3hover']	= 		"rgba(255, 54, 0, 0.5)";
 			<tr>
 				<th><i class="fa fa-tachometer fa-fw"></i> Nombre d&apos;heures</th>
 				<td>{{ entity.nbHeures }}</td>
+			</tr>
+			<tr>
+				<th><i class="fa fa-tachometer fa-fw"></i> Nombre de jours</th>
+				<td>{{ entity.nbJours|replace('.0', '') }}</td>
 			</tr>
 			</table>
 		</div>
@@ -214,6 +189,35 @@ couleurs['3hover']	= 		"rgba(255, 54, 0, 0.5)";
 	</p>
 	</div>
 </div>
+
+<div class="units-row">
+
+	<div class="unit-60 panel">
+		<div class="header">
+			<span class="titre">Progression des inscriptions</span>
+			<span class="controls right group">
+
+			</span>
+		</div>
+		<div class="panel-body">
+			<canvas id="dates-inscriptions" height="350"></canvas>
+		</div>
+	</div>
+
+	<div class="unit-40 panel">
+		<div class="header">
+			<span class="titre">Statuts des inscriptions</span>
+			<span class="controls right group">
+
+			</span>
+		</div>
+		<div class="panel-body">
+			<canvas id="statuts-inscriptions" height="400"></canvas>
+		</div>
+	</div>
+
+</div>
+
 
 <footer id="footer" class="group">
 	<div class="left">

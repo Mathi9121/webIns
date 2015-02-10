@@ -35,16 +35,14 @@
 {% block controls %}
 <div>
 <div>
-<div>
 <a href="{{ path('inscription_new', { 'idformation': formation.id }) }}" class="btn btn-green"><i class="fa fa-plus fa-fw"></i> Nouvelle inscription</a>
 <a class="btn btn-green list" href="#"></a>
 </div>
-<ul>
+<ul class="hide">
 <li><a href="{{path('intervenants_new', { 'idformation': formation.id }) }}"><i class="fa fa-plus fa-fw"></i>Créer un intervenant</a></li>
-<li><a href=""><i class="fa fa-user fa-fw"></i>Relier un intervenant existant</a></li>
+<li><a href="{{path('formation_addintervenants', {'idformation': formation.id })}}"><i class="fa fa-user fa-fw"></i>Relier un intervenant existant</a></li>
 <li><a href="{{path('champPerso_edit', {'idformation': formation.id })}}"><i class="fa fa-table fa-fw"></i>Editer les champs personnalisés</a></li>
 </ul>
-</div>
 </div>
 {% endblock %}
 
@@ -91,7 +89,7 @@
 				<th class="insc info"><span>Mail Admin</span></th>
 				<th class="insc info"><span>Formule</span></th>
 				<th class="insc info text-centered"><span>Convention</span></th>
-				<th class="insc info"><span>Date d'inscription</span></th>
+				<th class="insc info"><span>Inscription</span></th>
 				<th class="insc info"><span>Tags</span></th>
 			</tr>
 		</thead>
@@ -486,9 +484,6 @@
 
 {# intervenants #}
 <div id="intervenants" class="tab unit-100">
-	<div class="group">
-		<a href="{{path('intervenants_new', { 'idformation': formation.id }) }}" class='btn btn-small right'><span class="fa fa-plus"></span> Ajouter un intervenant</a>
-	</div>
 
 	<div class="table-container">
 		<table>

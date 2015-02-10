@@ -138,7 +138,7 @@ class IntervenantController extends Controller
         }
 
         $editForm = $this->createEditForm($entity, $idformation);
-        $deleteForm = $this->createDeleteForm($id);
+        $deleteForm = $this->createDeleteForm($id, $idformation);
 
         return $this->render('OCIMContactsBundle:Intervenant:edit.html.twig', array(
             'entity'      => $entity,
@@ -182,7 +182,7 @@ class IntervenantController extends Controller
             throw $this->createNotFoundException('Unable to find Intervenant entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
+        $deleteForm = $this->createDeleteForm($id, $idformation);
         $editForm = $this->createEditForm($entity, $idformation);
         $editForm->handleRequest($request);
 
@@ -204,20 +204,23 @@ class IntervenantController extends Controller
      * Deletes a Intervenant entity.
      *
      */
-    public function deleteAction(Request $request, $id)
+    public function deleteAction(Request $request, $id, $idformation)
     {
-        $form = $this->createDeleteForm($id);
+        $form = $this->createDeleteForm($id, $idformation);
         $form->handleRequest($request);
-        $idformation = 0;
+
         if ($form->isValid()) {
+
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('OCIMContactsBundle:Intervenant')->find($id);
-            $idformation = $entity->getFormations()->get(0)->getId();
-            if (!$entity) {
+            $intervenant = $em->getRepository('OCIMContactsBundle:Intervenant')->find($id);
+            $formation = $em->getRepository('OCIMFormationsBundle:Formation')->find($idformation);
+
+            if (!$intervenant) {
                 throw $this->createNotFoundException('Unable to find Intervenant entity.');
             }
 
-            $em->remove($entity);
+            $formation->removeIntervenant($intervenant);
+            $intervenant->removeFormation($formation);
             $em->flush();
         }
         $this->get('session')->getFlashBag()->add('success','Intervenant supprimé.');
@@ -231,10 +234,10 @@ class IntervenantController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm($id)
+    private function createDeleteForm($id, $idformation)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('intervenants_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('intervenants_delete', array('id' => $id, 'idformation' => $idformation)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Supprimer', 'attr'=> array('class' => 'btn btn-red btn-delete')))
             ->getForm()
