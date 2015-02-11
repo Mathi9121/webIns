@@ -126,6 +126,8 @@ class FormationController extends Controller
 
       $entity = $em->getRepository('OCIMFormationsBundle:Formation')->find($idformation);
 
+      $intervenants = $em->getRepository('OCIMContactsBundle:Intervenant')->findAll();
+
       $form = $this->createForm(new AjoutIntervenantType(), $entity, array(
           'action' => $this->generateUrl('formation_intervenants_update', array('idformation' => $idformation)),
           'method' => 'PUT',
@@ -135,7 +137,7 @@ class FormationController extends Controller
 
       return $this->render('OCIMFormationsBundle:Formation:addIntervenant.html.twig', array(
           'form' => $form->createView(),
-
+          'intervenants' => $intervenants
       ));
     }
 
@@ -164,7 +166,7 @@ class FormationController extends Controller
 
          $this->get('session')->getFlashBag()->add('notice','Modifications sauvegardées');
 
-        return $this->redirect($this->generateUrl('formation', array('id' => $idformation)));
+        return $this->redirect($this->generateUrl('inscription', array('idformation' => $idformation)) . "#intervenants");
         }
 
       $this->get('session')->getFlashBag()->add('error','Le formulaire contient des erreurs');

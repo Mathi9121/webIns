@@ -21,6 +21,7 @@ class AjoutIntervenantType extends AbstractType
             'multiple' => true,
             'expanded' => true,
             'required' => false,
+            'property' => null
           ))
         ;
     }
@@ -32,7 +33,7 @@ class AjoutIntervenantType extends AbstractType
     {
         $resolver->setDefaults(array(
 			     'data_class' => 'OCIM\FormationsBundle\Entity\Formation',
-		       'attr' => array('class'=> 'forms'),
+		       'attr' => array('class'=> ''),
         ));
 
     }
