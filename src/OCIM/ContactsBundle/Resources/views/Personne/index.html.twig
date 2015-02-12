@@ -22,7 +22,6 @@ $(document).ready(function() {
   //init de datatables.js
   var datatable = $('#datatable').dataTable({
     // "ajax": "data/arrays.txt"
-    "autoWidth": false,
     language: {
       "sProcessing":     "Traitement en cours...",
       "sSearch":         "Rechercher&nbsp;:",
@@ -70,7 +69,7 @@ $(document).ready(function() {
 {% block body -%}
   <div class="panel">
   <div class="panel-body">
-    <table class="table-bordered display" id="datatable" width="100%">
+    <table class="table-bordered" id="datatable">
         <thead>
             <tr>
                 <th>Id</th>
@@ -104,14 +103,14 @@ $(document).ready(function() {
                   <td>{{ entity.nom }}</td>
                   <td>{{ entity.prenom }}</td>
                   <td>{{ (entity.adresse)? entity.adresse.nomStructure }}</td>
-                  <td style="white-space: nowrap;">{{ entity.fonction }}</td>
-                  <td style="white-space: nowrap;">{{ (entity.adresse)? entity.adresse.adresse }}</td>
+                  <td>{{ entity.fonction }}</td>
+                  <td>{{ (entity.adresse)? entity.adresse.adresse }}</td>
                   <td>{{ (entity.adresse)? entity.adresse.cP }}</td>
                   <td>{{ (entity.adresse)? entity.adresse.ville }}</td>
                   <td>{{ entity.tel }}</td>
-                  <td style="white-space: nowrap;">{{ entity.mail }}</td>
+                  <td>{{ entity.mail }}</td>
                   <td>{{ entity.type }}</td>
-                  <td style="white-space: nowrap;">
+                  <td>
                     {% if entity.type == "stagiaire" %}
                       {{ entity.inscription.0.formationformule.formation.intitule }}
                     {% elseif entity.type == "intervenant" %}
@@ -141,7 +140,7 @@ $(document).ready(function() {
                       {{ entity.inscription.0.signataire.adresse.type.type }}
                     {% endif %}
                   </td>
-                  <td style="white-space: nowrap;">
+                  <td>
                     {% if (entity.adresse is not null)and(entity.adresse.tags|length > 0) %}
                       {{ entity.adresse.tags|join(', ') }}
                     {% endif %}

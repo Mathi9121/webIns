@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Personne
  */
-class Personne
+abstract class Personne
 {
     /**
      * @var integer
@@ -48,13 +48,13 @@ class Personne
      * @var string
      */
 
-
+	
 	private $type;
 
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -77,7 +77,7 @@ class Personne
     /**
      * Get civilite
      *
-     * @return string
+     * @return string 
      */
     public function getCivilite()
     {
@@ -92,7 +92,7 @@ class Personne
      */
     public function setNom($nom)
     {
-        $this->nom = strtoupper($nom);
+        $this->nom = $nom;
 
         return $this;
     }
@@ -100,7 +100,7 @@ class Personne
     /**
      * Get nom
      *
-     * @return string
+     * @return string 
      */
     public function getNom()
     {
@@ -123,7 +123,7 @@ class Personne
     /**
      * Get prenom
      *
-     * @return string
+     * @return string 
      */
     public function getPrenom()
     {
@@ -146,7 +146,7 @@ class Personne
     /**
      * Get fonction
      *
-     * @return string
+     * @return string 
      */
     public function getFonction()
     {
@@ -169,7 +169,7 @@ class Personne
     /**
      * Get tel
      *
-     * @return string
+     * @return string 
      */
     public function getTel()
     {
@@ -192,15 +192,15 @@ class Personne
     /**
      * Get mail
      *
-     * @return string
+     * @return string 
      */
     public function getMail()
     {
         return $this->mail;
     }
 
-
-
+  
+	
     public function setType($type = null)
     {
         $this->type = $type;
@@ -208,12 +208,12 @@ class Personne
         return $this;
     }
 
-
+    
     public function getType()
     {
         return $this->type;
     }
-
+	
     /**
      * @var string
      */
@@ -236,7 +236,7 @@ class Personne
     /**
      * Get fax
      *
-     * @return string
+     * @return string 
      */
     public function getFax()
     {
@@ -264,15 +264,15 @@ class Personne
     /**
      * Get adresse
      *
-     * @return \OCIM\ContactsBundle\Entity\Adresse
+     * @return \OCIM\ContactsBundle\Entity\Adresse 
      */
     public function getAdresse()
     {
         return $this->adresse;
     }
-
+	
 	public function __toString(){
-		return $this->prenom;
+		return $this->prenom." ".$this->prenom;
 	}
     /**
      * @var \OCIM\FormationsBundle\Entity\Inscription
@@ -296,7 +296,7 @@ class Personne
     /**
      * Get inscription
      *
-     * @return \OCIM\FormationsBundle\Entity\Inscription
+     * @return \OCIM\FormationsBundle\Entity\Inscription 
      */
     public function getInscription()
     {
@@ -342,15 +342,15 @@ class Personne
     /**
      * Get intervenant
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getIntervenant()
     {
         return $this->intervenant;
     }
-
+	
 	private $commentaire;
-
+	
 	/**
      * Set commentaire
      *
@@ -367,83 +367,11 @@ class Personne
     /**
      * Get commentaire
      *
-     * @return $commentaire
+     * @return $commentaire 
      */
     public function getCommentaire()
     {
         return $this->commentaire;
     }
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $reponsesChampPerso;
-
-
-    /**
-     * Add reponsesChampPerso
-     *
-     * @param \OCIM\FormationsBundle\Entity\ReponsesChampPerso $reponsesChampPerso
-     * @return Personne
-     */
-    public function addReponsesChampPerso(\OCIM\FormationsBundle\Entity\ReponsesChampPerso $reponsesChampPerso)
-    {
-        $this->reponsesChampPerso[] = $reponsesChampPerso;
-
-        return $this;
-    }
-
-    /**
-     * Remove reponsesChampPerso
-     *
-     * @param \OCIM\FormationsBundle\Entity\ReponsesChampPerso $reponsesChampPerso
-     */
-    public function removeReponsesChampPerso(\OCIM\FormationsBundle\Entity\ReponsesChampPerso $reponsesChampPerso)
-    {
-        $this->reponsesChampPerso->removeElement($reponsesChampPerso);
-    }
-
-    /**
-     * Get reponsesChampPerso
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getReponsesChampPerso()
-    {
-        return $this->reponsesChampPerso;
-    }
-
-	public function getReponseByModeleId($modeleId, $return = null){
-
-		$reponse =  $this->getReponsesChampPerso()->filter(
-			function($rl) use ($modeleId){
-				if($rl->getModele()->getId() == $modeleId){
-					return true;
-				}
-			}
-		)->first();
-
-		if($reponse){
-			if(!is_null($return)){
-				if($return == 'bool'){
-					return ($reponse->getReponse())? '1' : '0' ;
-				}
-				else return $reponse->getReponseText();
-			}
-			else{
-				return $reponse;
-			}
-		}
-		else return 0;
-	}
-
-  public function getCivilitepretty(){
-    $array = array(
-      'Mme' => 'Madame',
-      'Mr' => 'Monsieur',
-      'Mlle' => 'Mademoiselle',
-    );
-    return $array[$this->getCivilite()];
-  }
-
+	
 }

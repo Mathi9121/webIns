@@ -62,50 +62,43 @@ class TypeStructure
      */
     public function __construct()
     {
-        $this->adresse = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->structure = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-
-	
-	public function __toString(){
-		return $this->type;
-	}
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $adresse;
-
-
-    /**
-     * Add adresse
+     * Add structure
      *
-     * @param \OCIM\ContactsBundle\Entity\Adresse $adresse
+     * @param \OCIM\ContactsBundle\Entity\Structure $structure
      * @return TypeStructure
      */
-    public function addAdresse(\OCIM\ContactsBundle\Entity\Adresse $adresse)
+    public function addStructure(\OCIM\ContactsBundle\Entity\Structure $structure)
     {
-        $this->adresse[] = $adresse;
+        $this->structure[] = $structure;
 
         return $this;
     }
 
     /**
-     * Remove adresse
+     * Remove structure
      *
-     * @param \OCIM\ContactsBundle\Entity\Adresse $adresse
+     * @param \OCIM\ContactsBundle\Entity\Structure $structure
      */
-    public function removeAdresse(\OCIM\ContactsBundle\Entity\Adresse $adresse)
+    public function removeStructure(\OCIM\ContactsBundle\Entity\Structure $structure)
     {
-        $this->adresse->removeElement($adresse);
+        $this->structure->removeElement($structure);
     }
 
     /**
-     * Get adresse
+     * Get structure
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getAdresse()
+    public function getStructure()
     {
-        return $this->adresse;
+        return $this->structure;
     }
+	
+	public function __toString(){
+		return $this->type;
+	}
 }

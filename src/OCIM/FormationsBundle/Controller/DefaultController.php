@@ -16,8 +16,8 @@ class DefaultController extends Controller
 
 		$em = $this->getDoctrine()->getManager();
 
-    $formations = $em->getRepository('OCIMFormationsBundle:Formation')->findAllFutursFormations();
-    $inscriptions = $em->getRepository('OCIMFormationsBundle:Inscription')->lastInscriptions();
+        $formations = $em->getRepository('OCIMFormationsBundle:Formation')->findAllFutursFormations();
+        $inscriptions = $em->getRepository('OCIMFormationsBundle:Inscription')->lastInscriptions();
 
 		//COUNT
 		$qb = $em->createQueryBuilder();

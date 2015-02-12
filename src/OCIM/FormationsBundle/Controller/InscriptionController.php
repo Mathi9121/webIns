@@ -36,15 +36,13 @@ class InscriptionController extends Controller
     $champPerso = $em->getRepository('OCIMFormationsBundle:ModeleChampPerso')->findModelesByIdFormation($idformation);
 
 
-
-    //exit(\Doctrine\Common\Util\Debug::dump($formation));
     //exit(\Doctrine\Common\Util\Debug::dump($champPerso));
 
     return $this->render('OCIMFormationsBundle:Inscription:index.html.twig', array(
-      'entities'    => $entities,
-      'formation'   => $formation,
-      'champPerso'  => $champPerso,
-      'id'          => $id,
+      'entities' => $entities,
+      'formation' => $formation,
+      'champPerso' => $champPerso,
+      'id' => $id,
     ));
   }
 

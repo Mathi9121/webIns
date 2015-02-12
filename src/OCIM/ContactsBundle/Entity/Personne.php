@@ -446,27 +446,4 @@ class Personne
     return $array[$this->getCivilite()];
   }
 
-
-    /**
-     * Add inscription
-     *
-     * @param \OCIM\FormationsBundle\Entity\Inscription $inscription
-     * @return Personne
-     */
-    public function addInscription(\OCIM\FormationsBundle\Entity\Inscription $inscription)
-    {
-        $this->inscription[] = $inscription;
-
-        return $this;
-    }
-
-    /**
-     * Remove inscription
-     *
-     * @param \OCIM\FormationsBundle\Entity\Inscription $inscription
-     */
-    public function removeInscription(\OCIM\FormationsBundle\Entity\Inscription $inscription)
-    {
-        $this->inscription->removeElement($inscription);
-    }
 }

@@ -65,42 +65,4 @@ class TagStructure
 	public function __toString(){
 		return $this->tag;
 	}
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $structures;
-
-
-    /**
-     * Add structures
-     *
-     * @param \OCIM\ContactsBundle\Entity\Adresse $structures
-     * @return TagStructure
-     */
-    public function addStructure(\OCIM\ContactsBundle\Entity\Adresse $structures)
-    {
-        $this->structures[] = $structures;
-
-        return $this;
-    }
-
-    /**
-     * Remove structures
-     *
-     * @param \OCIM\ContactsBundle\Entity\Adresse $structures
-     */
-    public function removeStructure(\OCIM\ContactsBundle\Entity\Adresse $structures)
-    {
-        $this->structures->removeElement($structures);
-    }
-
-    /**
-     * Get structures
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getStructures()
-    {
-        return $this->structures;
-    }
 }

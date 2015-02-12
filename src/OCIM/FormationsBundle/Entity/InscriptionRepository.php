@@ -34,7 +34,7 @@ class InscriptionRepository extends EntityRepository
             )->setParameter('id', $formation_id)
             ->getResult();
 	}
-
+	
 	public function lastInscriptions(){
 		return $this->getEntityManager()
             ->createQuery(
@@ -46,7 +46,7 @@ class InscriptionRepository extends EntityRepository
 			->setMaxResults(10)
             ->getResult();
 	}
-
+	
 	public function getOrdreMaxByFormation($formation_id){
 		return $this->getEntityManager()
 			->createQuery(
