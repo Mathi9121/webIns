@@ -35,6 +35,7 @@ class FormationController extends Controller
       $qb = $em->createQueryBuilder('f')
         ->select('f, YEAR(f.dateDebut) AS annee')
         ->from('OCIMFormationsBundle:Formation', 'f')
+        ->where('f INSTANCE OF \OCIM\FormationsBundle\Entity\Formation')
         ->addOrderBy('annee', 'DESC')
         ->addOrderBy('f.dateDebut', 'ASC');
 

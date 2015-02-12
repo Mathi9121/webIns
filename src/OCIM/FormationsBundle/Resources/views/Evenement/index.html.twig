@@ -1,0 +1,168 @@
+{% extends "::app.html.twig" %}
+
+{% block stylesheets %}
+{{parent()}}
+{% stylesheets
+	'@OCIMFormationsBundle/Resources/public/css/formations.css'
+	'@OCIMFormationsBundle/Resources/public/css/jquery.nouislider.css'
+filter='cssrewrite' %}
+	<link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset_url }}"/>
+{% endstylesheets %}
+{% endblock %}
+
+{% block  javascripts %}
+{{parent()}}
+{% javascripts
+	'@OCIMFormationsBundle/Resources/public/js/Formation/jquery.nouislider.min.js'
+	'@OCIMFormationsBundle/Resources/public/js/Formation/filtresFormation.js'
+	%}
+         <script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+{% endblock %}
+
+{# Titres #}
+{% block title %}Les Evenements{% endblock %}
+{% block titre %}Les Evenements{% endblock %}
+{% block breadcrumbs %}
+	<li><span>Liste des évenements</span></li>
+{% endblock %}
+
+{# Controls #}
+{% block controls %}
+<a href="{{ path('evenement_new') }}" class="btn btn-green btn-outline"><i class="fa fa-plus"></i> Nouvel Evenement</a>
+{% endblock %}
+
+{# CONTENT #}
+{% block body  %}
+
+{# listes formations #}
+<div class="panel">
+	<div class="header">
+		<span class="titre">Tous les évenements</span>
+			<span class="controls right group">
+				<label class="recherche"><i class="fa fa-search"></i><input type="text" class="" placeholder="Rechercher" id="recherche"/></label>
+				<a href="#" class="toggleFiltres"><i class="fa fa-filter"></i> Filtrer</a>
+			</span>
+	</div>
+
+	{# filtres #}
+	<div class="units-row end units-padding filtres hide">
+		<div class="unit-70">
+			{# date #}
+			<div id="date">
+				<div id="datefilter"></div>
+				<div id="event-start" class="left" data-date="{{datesminmax.1|date('U')}}"></div>
+				<div id="event-end" class="right" data-date="{{datesminmax.2|date('U')}}"></div>
+			</div>
+		</div>
+		<div class="unit-30">
+			{# select #}
+				<select name="select_multi" id="selectfilter" class="width-100">
+					<option value="tous" selected>Tous</option>
+					{% for type in types %}
+					<option value="{{type.id}}">{{type.type}}</option>
+					{% endfor %}
+				</select>
+		</div>
+	</div>
+
+<div class="panel-body">
+	<table class="table-hovered width-100">
+			{#<thead>
+				<tr>
+					<th><i class="fa fa-graduation-cap fa-fw"></i>Intitulé</th>
+					<th><i class="fa fa-map-marker fa-fw"></i>Lieu</th>
+					<th><i class="fa fa-calendar fa-fw"></i>Début</th>
+					<th></th>
+				</tr>
+			</thead>#}
+			<tbody>
+					{% set annee = "" %}
+			{% for formation in evenements %}
+
+				{% if formation.dateDebut|date('Y') != annee %}
+					<tr style="border-bottom: 2px dashed grey" class="annee-formations">
+						<td colspan="4">
+							<h2 class="end" style="margin-top: 25px"><i class="fa fa-graduation-cap fa-fw"></i> Evenements <strong>{{formation.dateDebut|date('Y')}}</strong></h2>
+						</td>
+					</tr>
+
+						<tr style="background-color:#F5F5F5; color:#959393" class="th-formations">
+							<th><i class="fa fa-graduation-cap fa-fw"></i>Intitulé</th>
+							<th><i class="fa fa-map-marker fa-fw"></i>Lieu</th>
+							<th><i class="fa fa-calendar fa-fw"></i>Début</th>
+							<th></th>
+						</tr>
+
+					{% set annee = formation.dateDebut|date('Y') %}
+				{% endif %}
+
+				<tr class="titre-formation{{((id is defined)and( id == formation.id ))? " highlight"}}" data-idformation="{{formation.id}}" data-typeformation="{{formation.type.id}}" data-debutstamp="{{ formation.dateDebut|date("U") }}" data-finstamp="{{ formation.dateFin|date("U") }}" data-debut="{{ formation.dateDebut|date("d/m/Y") }}" data-fin="{{ formation.dateFin|date("d/m/Y") }}">
+					<td><span class="fa-conteneur"><i class="fa fa-angle-right hide"></i></span>{{ formation.intitule }} <span class="label right" title="Durée de la formation">{{ formation.nbJours| replace({".0" : ""}) }}J</span></td>
+					<td>{{ formation.lieu }}</td>
+					<td>{{ formation.dateDebut|date("d/m/Y") }}</td>
+					<td>
+						<div class="group">
+							{% set nbParticipants = 0 %}
+							{% set spanclass = '' %}
+							{% set text = '' %}
+							{% for statut in formation._count %}
+								{% if statut.statut == '2' %}
+									{% set spanclass = 'badge-yellow' %}
+									{% set text = 'Inscriptions en attente de validation' %}
+								{% endif %}
+								{% if statut.statut == '1' %}
+									{% set spanclass = 'badge-green' %}
+									{% set text = 'Inscriptions validées' %}
+								{% endif %}
+								{% if statut.statut == '3' %}
+									{% set spanclass = 'badge-red' %}
+									{% set text = "Nombre d'inscriptions annulées" %}
+								{% endif %}
+								<span title="{{ text }}" class="badge {{ spanclass }}">{{ statut.1 }}</span>
+								{% set nbParticipants = nbParticipants + statut.1 %}
+							{% endfor %}
+						</div>
+					</td>
+				</tr>
+
+				{# details #}
+				<tr class="details-formation hide">
+					<td colspan="4">
+						<div class="units-row units-split end">
+							<div class="unit-25 end">
+								<ul class="no-margin">
+									<li class="fa-ul">
+										<span class="fa-stack fa-lg">
+											<i class="fa fa-square fa-stack-2x"></i>
+											<span style="color: white" class=" fa-stack-1x fa-inverse">{{ nbParticipants }}</span>
+										</span>
+										Participants
+									</li>
+									<li class="fa-ul">
+										<span class="fa-stack fa-lg">
+											<i class="fa fa-square fa-stack-2x"></i>
+											<span style="color: white" class=" fa-stack-1x fa-inverse">{{formation.intervenants|length}}</span>
+										</span>
+										Intervenants
+									</li>
+								</ul>
+							</div>
+							<div class="unit-75 end">
+								<ul class="blocks-4 blocks-mobile-50 end no-margin">
+									<li><a class="options-formation" href="{{ path('inscription', { 'idformation': formation.id }) }}">	<span class="fa-stack fa-2x"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-users fa-stack-1x fa-inverse"></i></span>Incriptions</a></li>
+									<li><a class="options-formation" href="{{ path('evenement_show', { 'id': formation.id }) }}">			<span class="fa-stack fa-2x"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-info fa-stack-1x fa-inverse"></i></span>Détails</a></li>
+									<li><a class="options-formation" href="{{path('champPerso_edit', {'idformation': formation.id })}}">	<span class="fa-stack fa-2x"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-table fa-stack-1x fa-inverse"></i></span>Champs supplémentaires</a></li>
+									<li><a class="options-formation" href="{{ path('evenement_edit', { 'id': formation.id }) }}">			<span class="fa-stack fa-2x"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-pencil fa-stack-1x fa-inverse"></i></span>Modifier</a></li>
+								</ul>
+							</div>
+						</div>
+					</td>
+				</tr>
+
+			{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+{% endblock %}

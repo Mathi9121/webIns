@@ -538,4 +538,32 @@ class Inscription
     {
         return $this->provenancePCST;
     }
+    /**
+     * @var boolean
+     */
+    private $statutFinancement;
+
+
+    /**
+     * Set statutFinancement
+     *
+     * @param boolean $statutFinancement
+     * @return Inscription
+     */
+    public function setStatutFinancement($statutFinancement)
+    {
+        $this->statutFinancement = $statutFinancement;
+
+        return $this;
+    }
+
+    /**
+     * Get statutFinancement
+     *
+     * @return boolean 
+     */
+    public function getStatutFinancement()
+    {
+        return $this->statutFinancement;
+    }
 }

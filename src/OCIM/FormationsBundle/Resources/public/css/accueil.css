@@ -26,7 +26,7 @@
 	color: #666666
 }
 
-#indicateurs p span{
+#indicateurs p span.nomcount, #indicateurs p span.count{
 	display: block;
 	line-height: 1em;
 }
