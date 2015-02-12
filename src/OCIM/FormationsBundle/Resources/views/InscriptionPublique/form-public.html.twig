@@ -5,14 +5,8 @@
 
 </head>
 <body>
-
 {{ form_start(form) }}
 {{ form_errors(form) }}
-{% if form.formations is defined %}
-  {{form_row(form.formations)}}
-{% endif %}
-
-
 {{form_widget(form.formationformule)}}
 
 {{form(form)}}

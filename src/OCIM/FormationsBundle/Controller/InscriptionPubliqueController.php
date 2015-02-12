@@ -7,76 +7,35 @@ use OCIM\FormationsBundle\Entity\Inscription;
 use OCIM\FormationsBundle\Form\InscriptionPubliqueType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Doctrine\ORM\EntityRepository;
+
 
 class InscriptionPubliqueController extends Controller
 {
     public function inscriptionAction(Request $request)
     {
-
-        $id = $request->query->get('id');
-        $type = ($request->query->get('type') == 1)? true : false ;
-
+	$idformation = $request->query->get('idformation');
         $inscription = new Inscription();
-
-        $form = $this->createCreateForm($inscription, $id);
-
+        $form = $this->createCreateForm($inscription, $idformation);
         $em = $this->getDoctrine()->getManager();
-
-        $formation = $em->getRepository("OCIMFormationsBundle:Formation")->find($id);
-
-
-
+        $formation = $em->getRepository("OCIMFormationsBundle:Formation")->find($idformation);
         if (!$formation) {
           throw $this->createNotFoundException(
-          "Aucune formation ne correspond à l'id : ".$id
+          "Aucune formation ne correspond à l'id : ".$idformation
           );
         }
-
-        if($type == true ){
-
-          //exit(\Doctrine\Common\Util\Debug::dump($formationType));
-          $form->add('formations', 'entity', array(
-            'mapped' => false,
-            'label' => 'Vous participerez à la journée / aux journées',
-            'required'      => false,
-            'expanded' => true,
-            'multiple' => true,
-            'property' => 'intitule',
-            'class'         => 'OCIMFormationsBundle:Formation',
-            'query_builder' => function(EntityRepository $er) {
-              return $er->createQueryBuilder('u')
-              ->where('u.type = 1');
-            }
-          ));
-
-          $form->add('formationformule', 'hidden', array(
-            'mapped' => false,
-            'data' => 'type',
-          ));
-
-        }
-
+	
         return $this->render('OCIMFormationsBundle:InscriptionPublique:form-public.html.twig', array(
           'form'   => $form->createView(),
-          'id' => $id
+          'idformation' => $idformation
           ));
 	}
 
     public function createInscriptionAction(Request $request)
     {
-      	$partdonnees = $request->request->get('ocim_formationsbundle_inscription');
-
-        $idff = $partdonnees['formationformule'];
-
-        if($idff == 'type'){
-          exit($idff);
-        }
-
-        $idformation = $this->getDoctrine()->getManager()->getRepository('OCIMFormationsBundle:formationFormule')->find($idff)->getFormation()->getId();
-
-        $entity = new Inscription();
-
+	$partdonnees = $request->request->get('ocim_formationsbundle_inscription');
+	$idff = $partdonnees['formationformule'];
+	$idformation = $this->getDoctrine()->getManager()->getRepository('OCIMFormationsBundle:formationFormule')->find($idff)->getFormation()->getId();
+	$entity = new Inscription();
         $form = $this->createCreateForm($entity, $idformation);
         $form->handleRequest($request);
         // exit(\Doctrine\Common\Util\Debug::dump($form->isValid()));
