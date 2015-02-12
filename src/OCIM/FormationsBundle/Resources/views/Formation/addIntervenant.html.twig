@@ -112,7 +112,7 @@ $(document).ready(function() {
             {{ intervenants[loop.index0].fonction }}
           </td>
           <td>
-            {{ intervenants[loop.index0].adresse.ville }}
+            {{ (intervenants[loop.index0].adresse)? intervenants[loop.index0].adresse.ville }}
           </td>
           <td>
             {% for formation in intervenants[loop.index0].formations %}
@@ -120,7 +120,7 @@ $(document).ready(function() {
             {% endfor %}
           </td>
           <td>
-            {{ intervenants[loop.index0].adresse.tags|join(', ') }}
+            {{ (intervenants[loop.index0].adresse)? intervenants[loop.index0].adresse.tags|join(', ') }}
           </td>
         </tr>
     {% endfor %}

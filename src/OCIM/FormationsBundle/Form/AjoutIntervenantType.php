@@ -21,7 +21,7 @@ class AjoutIntervenantType extends AbstractType
             'multiple' => true,
             'expanded' => true,
             'required' => false,
-            'property' => null
+            'property' => 'id'
           ))
         ;
     }
