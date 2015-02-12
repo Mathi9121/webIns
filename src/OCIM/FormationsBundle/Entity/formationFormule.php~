@@ -15,11 +15,6 @@ class formationFormule
     private $id;
 
     /**
-     * @var \OCIM\FormationsBundle\Entity\Inscription
-     */
-    private $inscription;
-
-    /**
      * @var \Doctrine\Common\Collections\Collection
      */
     private $modeles;
@@ -40,40 +35,19 @@ class formationFormule
     public function __construct()
     {
         $this->modeles = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->inscriptions = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * Set inscription
-     *
-     * @param \OCIM\FormationsBundle\Entity\Inscription $inscription
-     * @return formationFormule
-     */
-    public function setInscription(\OCIM\FormationsBundle\Entity\Inscription $inscription = null)
-    {
-        $this->inscription = $inscription;
-
-        return $this;
-    }
-
-    /**
-     * Get inscription
-     *
-     * @return \OCIM\FormationsBundle\Entity\Inscription 
-     */
-    public function getInscription()
-    {
-        return $this->inscription;
-    }
 
     /**
      * Add modeles
@@ -83,7 +57,10 @@ class formationFormule
      */
     public function addModele(\OCIM\FormationsBundle\Entity\ModeleChampPerso $modeles)
     {
-        $this->modeles[] = $modeles;
+		if(!$this->modeles->contains($modeles)){
+			$this->modeles[] = $modeles;
+		}
+
 
         return $this;
     }
@@ -101,7 +78,7 @@ class formationFormule
     /**
      * Get modeles
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getModeles()
     {
@@ -124,7 +101,7 @@ class formationFormule
     /**
      * Get formule
      *
-     * @return \OCIM\FormationsBundle\Entity\Formule 
+     * @return \OCIM\FormationsBundle\Entity\Formule
      */
     public function getFormule()
     {
@@ -147,14 +124,58 @@ class formationFormule
     /**
      * Get formation
      *
-     * @return \OCIM\FormationsBundle\Entity\Formation 
+     * @return \OCIM\FormationsBundle\Entity\Formation
      */
     public function getFormation()
     {
         return $this->formation;
     }
-	
+
 	public function __toString(){
-		return $this->getFormule()->getDescription();
+		$tarif = $this->getFormule()->getTarif();
+		$tarif = (is_numeric($tarif))? $tarif."€": $tarif;
+		return $tarif." --- ".$this->getFormule()->getDescription();
+	}
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $inscriptions;
+
+
+    /**
+     * Add inscriptions
+     *
+     * @param \OCIM\FormationsBundle\Entity\Inscription $inscriptions
+     * @return formationFormule
+     */
+    public function addInscription(\OCIM\FormationsBundle\Entity\Inscription $inscriptions)
+    {
+        $this->inscriptions[] = $inscriptions;
+
+        return $this;
+    }
+
+    /**
+     * Remove inscriptions
+     *
+     * @param \OCIM\FormationsBundle\Entity\Inscription $inscriptions
+     */
+    public function removeInscription(\OCIM\FormationsBundle\Entity\Inscription $inscriptions)
+    {
+        $this->inscriptions->removeElement($inscriptions);
+    }
+
+    /**
+     * Get inscriptions
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getInscriptions()
+    {
+        return $this->inscriptions;
+    }
+
+	public function getFormuleId(){
+		return $this->getFormule()->getId();
 	}
 }

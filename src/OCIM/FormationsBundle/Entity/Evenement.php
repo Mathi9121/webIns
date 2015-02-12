@@ -6,12 +6,15 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use OCIM\FormationsBundle\Entity\TypeFormation;
 use OCIM\FormationsBundle\Entity\ModeleChampPerso;
+use OCIM\FormationsBundle\Entity\Event;
 
 /**
  * Formation
  */
-class Formation extends Event
+class Evenement extends Event
 {
+
+
 
     /**
      * @ORM\PostLoad

@@ -1,0 +1,5 @@
+OCIM\FormationsBundle\Entity\Evenement:
+    type: entity
+    table: null
+    lifecycleCallbacks:
+        postLoad: [__construct]

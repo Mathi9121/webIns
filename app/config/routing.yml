@@ -24,7 +24,7 @@ OCIMFormationsBundle_formule:
 
 OCIMFormationsBundle_inscription:
     resource: "@OCIMFormationsBundle/Resources/config/routing/inscription.yml"
-    prefix:   /formation-{idformation}/inscriptions
+    prefix:   /evenement-{idformation}/inscriptions
 
 OCIMContactsBundle_personne:
     resource: "@OCIMContactsBundle/Resources/config/routing/personne.yml"

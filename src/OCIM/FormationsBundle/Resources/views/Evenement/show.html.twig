@@ -221,10 +221,10 @@ couleurs['3hover']	= 		"rgba(255, 54, 0, 0.5)";
 
 <footer id="footer" class="group">
 	<div class="left">
-		<a href="{{ path('formation') }}" class="btn btn-back">Retour à la liste</a>
+		<a href="{{ path('evenement') }}" class="btn btn-back">Retour à la liste</a>
 	</div>
 	<div class="right">
-		<a href="{{ path('formation_edit', { 'id': entity.id }) }}" class="btn btn-green btn-edit"><i class="fa fa-pencil fa-fw"></i>Modifier</a>
+		<a href="{{ path('evenement_edit', { 'id': entity.id }) }}" class="btn btn-green btn-edit"><i class="fa fa-pencil fa-fw"></i>Modifier</a>
 		<div style='display:inline-block'>{{ form(delete_form) }}</div>
 	</div>
 </footer>

@@ -1,0 +1,5 @@
+OCIM\ContactsBundle\Entity\Participant:
+    type: entity
+    table: null
+    lifecycleCallbacks:
+        postLoad: [__construct]

@@ -10,8 +10,10 @@ use OCIM\FormationsBundle\Entity\ModeleChampPerso;
 /**
  * Formation
  */
-class Formation extends Event
+class Evenement extends Event
 {
+
+
 
     /**
      * @ORM\PostLoad
