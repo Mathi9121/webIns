@@ -25,8 +25,14 @@ class InscriptionPubliqueController extends Controller
         $form = $this->createCreateForm($inscription, $id);
 
         $em = $this->getDoctrine()->getManager();
+        $idformation = $id;
 
-        $formation = $em->getRepository("OCIMFormationsBundle:Formation")->find($id);
+        if($entity == 'formule'){
+          $formule = $em->getRepository("OCIMFormationsBundle:Formule")->find($id);
+          $idformation = $formule->getFormationFormule()->get(0)->getFormation()->getId();
+        }
+
+        $formation = $em->getRepository("OCIMFormationsBundle:Formation")->find($idformation);
 
         if (!$formation) {
           throw $this->createNotFoundException(
