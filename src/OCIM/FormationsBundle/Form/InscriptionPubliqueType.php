@@ -74,11 +74,11 @@ class InscriptionPubliqueType extends AbstractType
 						'label' => 'Téléphone',
 						'required' => true,
 					))
-					->add('fax', 'text', array(
-						'required' => false,
-						'attr' => array('class'=> 'width-100'),
-						'required' => false,
-					))
+					// ->add('fax', 'text', array(
+					// 	'required' => false,
+					// 	'attr' => array('class'=> 'width-100'),
+					// 	'required' => false,
+					// ))
 					->add('mail', 'text', array(
 						'attr' => array('class'=> 'width-100'),
 						'label' => "Adresse Mail",

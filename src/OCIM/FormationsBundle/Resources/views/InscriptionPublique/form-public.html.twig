@@ -5,17 +5,45 @@
 
 </head>
 <body>
+<style>
+.forms div{
+  width: 100%;
+  padding-bottom: 8px;
+}
+.forms div.checkrow label{
+  text-align: left;
+}
 
+.forms div label{
+  width: 200px;
+  display: inline-block;
+  text-align:right;
+}
+#ocim_formationsbundle_inscription_formations label{
+  text-align:left
+}
+label.required{
+  color: red;
+}
+.forms .checkrow{
+  display:block;
+  margin-left:200px;
+}
+</style>
 {{ form_start(form) }}
 {{ form_errors(form) }}
 {% if form.formations is defined %}
-  {{form_row(form.formations)}}
+  {{ form.formations.vars.label }}
+  {% for formation in form.formations %}
+    <div class='checkrow'>{{ form_widget(formation) }}{{ form_label(formation) }}</div>
+  {% endfor %}
 {% endif %}
 
 
 {{form_widget(form.formationformule)}}
 
 {{form(form)}}
+
 {{form_end(form)}}
 
 </body>

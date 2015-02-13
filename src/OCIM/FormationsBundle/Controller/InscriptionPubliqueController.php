@@ -45,7 +45,7 @@ class InscriptionPubliqueController extends Controller
           //exit(\Doctrine\Common\Util\Debug::dump($formationType));
           $form->add('formations', 'entity', array(
             'mapped' => false,
-            'label' => 'Vous participerez à la journée / aux journées',
+            'label' => 'Vous participerez aux évènements',
             'required'      => false,
             'expanded' => true,
             'multiple' => true,
@@ -101,7 +101,7 @@ class InscriptionPubliqueController extends Controller
           $typeid = $partdonnees['typeid'];
           $form->add('formations', 'entity', array(
             'mapped' => false,
-            'label' => 'Vous participerez à la journée / aux journées',
+            'label' => 'Vous participerez aux évènements',
             'required'      => false,
             'expanded' => true,
             'multiple' => true,
@@ -247,8 +247,5 @@ class InscriptionPubliqueController extends Controller
         return $form;
     }
 
-	public function confirmationAction(){
-
-	}
 
 }
