@@ -137,8 +137,8 @@ class InscriptionPubliqueController extends Controller
               $inscription->setStagiaire($entity->getStagiaire());
               $inscription->setAdmin($entity->getAdmin());
 
-              $ff = $formation->getFormationFormule()[0];
-
+              $ffarray = $formation->getFormationFormule();
+              $ff = $ffarray[0];
               $em = $this->getDoctrine()->getManager();
 
               $ordre = $em->getRepository('OCIMFormationsBundle:Inscription')->getOrdreMaxByFormation($formation->getId());
