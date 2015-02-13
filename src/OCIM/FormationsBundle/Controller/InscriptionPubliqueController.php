@@ -36,7 +36,7 @@ class InscriptionPubliqueController extends Controller
 
         if (!$formation) {
           throw $this->createNotFoundException(
-          "Aucune formation ne correspond à l'id : ".$id
+          "Aucune formation ne correspond à l'id : ".$idformation
           );
         }
 
@@ -53,8 +53,10 @@ class InscriptionPubliqueController extends Controller
             'property' => 'intitule',
             'class'         => 'OCIMFormationsBundle:Formation',
             'query_builder' => function(EntityRepository $er) use ($id){
-              return $er->createQueryBuilder('u')
-              ->where('u.type  = :id')
+              return $er->createQueryBuilder('formation')
+              ->join('formation.formationFormule', 'ff')
+              ->join('ff.formule', 'formule')
+              ->where('formule.id  = :id')
               ->setParameter('id', $id);
             }
           ));
