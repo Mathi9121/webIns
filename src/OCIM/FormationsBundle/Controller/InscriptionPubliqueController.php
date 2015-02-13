@@ -108,10 +108,12 @@ class InscriptionPubliqueController extends Controller
             'constraints' => new Assert\Count(array('min' => 1, 'minMessage' => 'Vous devez choisir au moins un evenement',)),
             'property' => 'intitule',
             'class'         => 'OCIMFormationsBundle:Formation',
-            'query_builder' => function(EntityRepository $er) use ($typeid){
-              return $er->createQueryBuilder('u')
-              ->where('u.type  = :id')
-              ->setParameter('id', $typeid);
+            'query_builder' => function(EntityRepository $er) use ($id){
+              return $er->createQueryBuilder('formation')
+              ->join('formation.formationFormule', 'ff')
+              ->join('ff.formule', 'formule')
+              ->where('formule.id  = :id')
+              ->setParameter('id', $id);
             }
           ));
           $form->add('formationformule', 'hidden', array(
