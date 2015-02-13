@@ -113,7 +113,7 @@ class InscriptionPubliqueController extends Controller
               ->join('formation.formationFormule', 'ff')
               ->join('ff.formule', 'formule')
               ->where('formule.id  = :id')
-              ->setParameter('id', $id);
+              ->setParameter('id', $typeid);
             }
           ));
           $form->add('formationformule', 'hidden', array(
