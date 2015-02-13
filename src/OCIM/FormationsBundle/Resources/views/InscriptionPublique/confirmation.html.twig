@@ -48,12 +48,14 @@
   {% endif %}
 
   {# Message mail #}
-  {% if success_mail %}
-    <p class="info">Merci pour votre inscription.</p>
-    <p class="info">Un mail de confirmation vous a été envoyé.</p>
-  {% else %}
-    <p class="fail">Une erreur technique est survenue lors de l'envoi du mail de confirmation.</p>
-    <p class="fail">Vous pouvez nous écrire à cette adresse pour plus d'informations : </p>
+  {% if (success_mail is defined) %}
+    {% if success_mail %}
+      <p class="info">Merci pour votre inscription.</p>
+      <p class="info">Un mail de confirmation vous a été envoyé.</p>
+    {% else %}
+      <p class="fail">Une erreur technique est survenue lors de l'envoi du mail de confirmation.</p>
+      <p class="fail">Vous pouvez nous écrire à cette adresse pour plus d'informations : </p>
+    {% endif %}
   {% endif %}
 </div>
 </body>

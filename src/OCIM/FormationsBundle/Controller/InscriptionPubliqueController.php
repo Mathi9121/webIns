@@ -8,6 +8,7 @@ use OCIM\FormationsBundle\Form\InscriptionPubliqueType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Doctrine\ORM\EntityRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class InscriptionPubliqueController extends Controller
 {
@@ -15,7 +16,7 @@ class InscriptionPubliqueController extends Controller
     {
 
         $id = $request->query->get('id');
-        $type = ($request->query->get('type') == 1)? true : false ;
+        $entity = (($request->query->get('entity') !== null )&&(!empty($request->query->get('entity'))))? $request->query->get('entity') : false ;
 
         $inscription = new Inscription();
 
@@ -33,7 +34,7 @@ class InscriptionPubliqueController extends Controller
           );
         }
 
-        if($type == true ){
+        if($entity == 'formule' ){
 
           //exit(\Doctrine\Common\Util\Debug::dump($formationType));
           $form->add('formations', 'entity', array(
@@ -42,11 +43,13 @@ class InscriptionPubliqueController extends Controller
             'required'      => false,
             'expanded' => true,
             'multiple' => true,
+            'constraints' => new Assert\Count(array('min' => 1, 'minMessage' => 'Vous devez choisir au moins un evenement',)),
             'property' => 'intitule',
             'class'         => 'OCIMFormationsBundle:Formation',
-            'query_builder' => function(EntityRepository $er) {
+            'query_builder' => function(EntityRepository $er) use ($id){
               return $er->createQueryBuilder('u')
-              ->where('u.type = 1');
+              ->where('u.type  = :id')
+              ->setParameter('id', $id);
             }
           ));
 
@@ -54,7 +57,10 @@ class InscriptionPubliqueController extends Controller
             'mapped' => false,
             'data' => 'type',
           ));
-
+          $form->add('typeid', 'hidden', array(
+            'mapped' => false,
+            'data' => $id,
+          ));
         }
 
         return $this->render('OCIMFormationsBundle:InscriptionPublique:form-public.html.twig', array(
@@ -68,71 +74,151 @@ class InscriptionPubliqueController extends Controller
       	$partdonnees = $request->request->get('ocim_formationsbundle_inscription');
 
         $idff = $partdonnees['formationformule'];
+        $idformation;
+
 
         if($idff == 'type'){
-          exit($idff);
+          $idformation = $partdonnees['formations'][0];
         }
 
-        $idformation = $this->getDoctrine()->getManager()->getRepository('OCIMFormationsBundle:formationFormule')->find($idff)->getFormation()->getId();
+        else{
+          $idformation = $this->getDoctrine()->getManager()->getRepository('OCIMFormationsBundle:formationFormule')->find($idff)->getFormation()->getId();
+        }
 
         $entity = new Inscription();
 
         $form = $this->createCreateForm($entity, $idformation);
+
+        if($idff == 'type'){
+          $typeid = $partdonnees['typeid'];
+          $form->add('formations', 'entity', array(
+            'mapped' => false,
+            'label' => 'Vous participerez à la journée / aux journées',
+            'required'      => false,
+            'expanded' => true,
+            'multiple' => true,
+            'constraints' => new Assert\Count(array('min' => 1, 'minMessage' => 'Vous devez choisir au moins un evenement',)),
+            'property' => 'intitule',
+            'class'         => 'OCIMFormationsBundle:Formation',
+            'query_builder' => function(EntityRepository $er) use ($typeid){
+              return $er->createQueryBuilder('u')
+              ->where('u.type  = :id')
+              ->setParameter('id', $typeid);
+            }
+          ));
+          $form->add('formationformule', 'hidden', array(
+            'mapped' => false,
+            'data' => 'type',
+          ));
+          $form->add('typeid', 'hidden', array(
+            'mapped' => false,
+            'data' => $typeid,
+          ));
+        }
+
+
         $form->handleRequest($request);
         // exit(\Doctrine\Common\Util\Debug::dump($form->isValid()));
 
+        // formulaire valide
         if ($form->isValid()) {
-          $em = $this->getDoctrine()->getManager();
-
-    			$ordre = $em->getRepository('OCIMFormationsBundle:Inscription')->getOrdreMaxByFormation($idformation);
 
 
-    			$nouvelordre = (!is_null($ordre))? $ordre + 1000 : 0;
-    			$entity->setOrdre($nouvelordre);
+          //FORMULAIRE SPECIAL
+          if($idff == "type" && is_array($partdonnees['formations'])){
+            $em = $this->getDoctrine()->getManager();
+            $formations = $em->getRepository('OCIMFormationsBundle:Formation')->findById($partdonnees['formations']);
 
-    			//exit(\Doctrine\Common\Util\Debug::dump($entity->getSignataire()->getAdresse()->getStructure()));
+            foreach($formations as $formation){
 
-    			$entity->setStatut(2);
-          $em->persist($entity);
 
-          // bool pour vérification du bon déroulement de l'inscription
-          $inscription_success = true;
-          $mail_success = true;
+              $inscription = new Inscription();
 
-          try{
-            $em->flush();
-          }
-          catch(Exception $e){
-            $inscription_success = false;
-          }
+              $inscription->setStagiaire($entity->getStagiaire());
+              $inscription->setAdmin($entity->getAdmin());
 
-          // on envoit le mail que si l'inscription a réussi
-          if($inscription_success){
-            // envoi de mails
-            $message = \Swift_Message::newInstance()
-            ->setSubject('[OCIM] Inscription à la formation : '.$entity->getFormationFormule()->getFormation()->getIntitule())
-            ->setFrom('formation.ocim@u-bourgogne.fr')
-            ->setContentType("text/html")
-            ->setTo($entity->getStagiaire()->getMail())
-            ->setBody($this->renderView('OCIMFormationsBundle:InscriptionPublique:email-inscription.html.twig', array('inscription' => $entity)))
-            //->setCharset('utf-8')
-            ;
+              $ff = $formation->getFormationFormule()[0];
 
-            if(!$this->get('mailer')->send($message)){
-              $mail_success = false;
+              $em = $this->getDoctrine()->getManager();
+
+              $ordre = $em->getRepository('OCIMFormationsBundle:Inscription')->getOrdreMaxByFormation($formation->getId());
+
+              $nouvelordre = (!is_null($ordre))? $ordre + 1000 : 0;
+
+              $inscription->setOrdre($nouvelordre);
+
+              $inscription->setStatut(2);
+
+              $inscription->setFormationformule($ff);
+
+
+              $em->persist($inscription);
+
+              $em->flush();
+
+
             }
+              $inscription_success = true;
+              try{
+                $em->flush();
+              }
+              catch(Exception $e){
+                $inscription_success = false;
+              }
+
+              return $this->render('OCIMFormationsBundle:InscriptionPublique:confirmation.html.twig', array(
+                //'success_mail' => $mail_success,
+                'success_inscription' => $inscription_success,
+              ));
+
+
+          }
+          //FORMULAIRE FORMATION
+          else{
+            $em = $this->getDoctrine()->getManager();
+            $ordre = $em->getRepository('OCIMFormationsBundle:Inscription')->getOrdreMaxByFormation($idformation);
+            $nouvelordre = (!is_null($ordre))? $ordre + 1000 : 0;
+            $entity->setOrdre($nouvelordre);
+            $entity->setStatut(2);
+            $em->persist($entity);
+            // bool pour vérification du bon déroulement de l'inscription
+            $inscription_success = true;
+            $mail_success = true;
+            try{
+              $em->flush();
+            }
+            catch(Exception $e){
+              $inscription_success = false;
+            }
+            // on envoit le mail que si l'inscription a réussi
+            if($inscription_success){
+              // envoi de mails
+              $message = \Swift_Message::newInstance()
+              ->setSubject('[OCIM] Inscription à la formation : '.$entity->getFormationFormule()->getFormation()->getIntitule())
+              ->setFrom('formation.ocim@u-bourgogne.fr')
+              ->setContentType("text/html")
+              ->setTo($entity->getStagiaire()->getMail())
+              ->setBody($this->renderView('OCIMFormationsBundle:InscriptionPublique:email-inscription.html.twig', array('inscription' => $entity)))
+              //->setCharset('utf-8')
+              ;
+              if(!$this->get('mailer')->send($message)){
+                $mail_success = false;
+              }
+            }
+            return $this->render('OCIMFormationsBundle:InscriptionPublique:confirmation.html.twig', array(
+              'success_mail' => $mail_success,
+              'success_inscription' => $inscription_success
+            ));
+
           }
 
 
-          return $this->render('OCIMFormationsBundle:InscriptionPublique:confirmation.html.twig', array(
-            'success_mail' => $mail_success,
-            'success_inscription' => $inscription_success
-    			));
         }
+
         else{
   		    return $this->render('OCIMFormationsBundle:InscriptionPublique:form-public.html.twig', array(
   			       'form'   => $form->createView(),
-        		       'idformation' => $idformation
+        		   'idformation' => $idformation
         	  	));
         }
 	}
@@ -143,7 +229,7 @@ class InscriptionPubliqueController extends Controller
     {
         $form = $this->createForm(new InscriptionPubliqueType($idformation), $entity, array(
             'method' => 'POST',
-			'em' => $this->getDoctrine()->getManager(),
+			      'em' => $this->getDoctrine()->getManager(),
         ));
 
         $form->add('submit', 'submit', array('label' => "Valider"));

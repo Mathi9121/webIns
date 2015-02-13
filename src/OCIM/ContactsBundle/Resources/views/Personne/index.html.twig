@@ -113,6 +113,9 @@ $(document).ready(function() {
                   <td>
                     {% if entity.type == "stagiaire" %}
                       {{ entity.inscription.0.formationformule.formation.intitule }}
+                      {% for inscription in entity.inscription %}
+                        {{ inscription.formationformule.formation.intitule }}<br/>
+                      {% endfor %}
                     {% elseif entity.type == "intervenant" %}
                       {% for formation in entity.formations %}
                         {{ formation.intitule }}<br/>

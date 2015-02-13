@@ -33,7 +33,6 @@ OCIM\FormationsBundle\Entity\Inscription:
                 inverseJoinColumns:
                     personne_id:
                         referencedColumnName: id
-                        unique: true
                         onDelete: CASCADE
     repositoryClass: OCIM\FormationsBundle\Entity\InscriptionRepository
     id:
