@@ -16,7 +16,9 @@ class InscriptionPubliqueController extends Controller
     {
 
         $id = $request->query->get('id');
-        $entity = (($request->query->get('entity') !== null )&&(!empty($request->query->get('entity'))))? $request->query->get('entity') : false ;
+
+        $entity = $request->query->get('entity');
+        $entity = (( $entity !== null )&&(!empty($entity)))? $entity : false ;
 
         $inscription = new Inscription();
 
@@ -25,8 +27,6 @@ class InscriptionPubliqueController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $formation = $em->getRepository("OCIMFormationsBundle:Formation")->find($id);
-
-
 
         if (!$formation) {
           throw $this->createNotFoundException(
