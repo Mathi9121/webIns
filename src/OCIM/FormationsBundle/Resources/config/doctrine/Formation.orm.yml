@@ -33,6 +33,7 @@ OCIM\FormationsBundle\Entity\Formation:
         id:
             type: integer
             id: true
+            default: 500
             generator:
                 strategy: AUTO
     fields:
