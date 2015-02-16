@@ -7,7 +7,6 @@
 <body>
 <style>
 .forms div{
-  width: 100%;
   padding-bottom: 8px;
 }
 .forms div.checkrow label{
@@ -29,6 +28,12 @@ label.required{
   display:block;
   margin-left:200px;
 }
+.forms .checkrow label{
+  width: auto;
+}
+.margin-b{
+  margin-bottom: 5px;
+}
 </style>
 {{ form_start(form) }}
 {{ form_errors(form) }}
@@ -40,7 +45,18 @@ label.required{
 {% endif %}
 
 
-{{form_widget(form.formationformule)}}
+
+  {% for ff in form.formationformule %}
+    {% if loop.index0 == 0 %}
+      <div class="checkrow margin-b">
+        {{ form.formationformule.vars.label }} :
+      </div>
+    {% endif %}
+    <div class='checkrow'>
+      {{ form_widget(ff) }}{{ form_label(ff) }}
+    </div>
+  {% endfor %}
+
 
 {{form(form)}}
 
