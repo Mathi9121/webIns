@@ -318,7 +318,8 @@ class InscriptionController extends Controller
 
       // si le stagiaire de linscription est dans pls inscription, on cherche a supprimer une unique inscription.
       if($nbinscription > 1){
-        foreach($entity->getPersonnes() as &$personne){
+        $personnes = $entity->getPersonnes();
+        foreach($personnes as &$personne){
           $personne->removeInscription($entity);
           $entity->removePersonne($personne);
         }
@@ -328,7 +329,7 @@ class InscriptionController extends Controller
       $em->flush();
     }
     $this->get('session')->getFlashBag()->add('success','Inscription supprimée.');
-    return $this->redirect($this->generateUrl('inscription', array('idformation'=> $idformation)));
+    return $this->redirect($this->generateUrl('inscription', array('idformation'=> $idformation)) ."#msg-form");
   }
 
   /**
