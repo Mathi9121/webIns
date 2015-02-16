@@ -157,6 +157,8 @@ class InscriptionPubliqueController extends Controller
 
               $inscription->setOrdre($nouvelordre);
 
+              $inscription->setAttentes($entity->getAttentes());
+
               $inscription->setStatut(2);
 
               $inscription->setFormationformule($ff);

@@ -31,9 +31,6 @@ label.required{
 .forms .checkrow label{
   width: auto;
 }
-.margin-b{
-  margin-bottom: 5px;
-}
 </style>
 {{ form_start(form) }}
 {{ form_errors(form) }}
@@ -48,12 +45,12 @@ label.required{
 
   {% for ff in form.formationformule %}
     {% if loop.index0 == 0 %}
-      <div class="checkrow margin-b">
+      <div class="checkrow">
         {{ form.formationformule.vars.label }} :
       </div>
     {% endif %}
     <div class='checkrow'>
-      {{ form_widget(ff) }}{{ form_label(ff) }}
+      <label>{{ form_widget(ff) }} {{ ff.vars.label }}</label>
     </div>
   {% endfor %}
 
