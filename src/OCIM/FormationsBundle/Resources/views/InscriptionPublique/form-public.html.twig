@@ -42,7 +42,7 @@ label.required{
 {% if form.formations is defined %}
   <div class="boite-choix">
     <h3>{{ form.formations.vars.label }}</h3>
-    {{ form_errors(form.formation) }}
+    {{ form_errors(form.formations) }}
     {% for formation in form.formations %}
       <div class='checkrow'><label>{{ form_widget(formation) }} {{ formation.vars.label }}</label></div>
     {% endfor %}
