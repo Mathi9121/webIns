@@ -313,6 +313,17 @@ class InscriptionController extends Controller
         throw $this->createNotFoundException('Unable to find Inscription entity.');
       }
 
+      // exit(\Doctrine\Common\Util\Debug::dump($entity->getStagiaire()->getInscription()->count()));
+      $nbinscription = $entity->getStagiaire()->getInscription()->count();
+
+      // si le stagiaire de linscription est dans pls inscription, on cherche a supprimer une unique inscription.
+      if($nbinscription > 1){
+        foreach($entity->getPersonnes() as &$personne){
+          $personne->removeInscription($entity);
+          $entity->removePersonne($personne);
+        }
+      }
+
       $em->remove($entity);
       $em->flush();
     }

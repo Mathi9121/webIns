@@ -532,7 +532,7 @@ class Inscription
     /**
      * Get provenancePCST
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getProvenancePCST()
     {
@@ -560,7 +560,7 @@ class Inscription
     /**
      * Get statutFinancement
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getStatutFinancement()
     {
