@@ -13,7 +13,7 @@
   width: 500px;
   border: 2px solid #dddddd;
   background-color: #ededed;
-  margin: 150px auto 0;
+  margin: 0 auto;
   text-align:center;
 }
 .title{
@@ -62,5 +62,14 @@
     <p class="">Laure Ferdjani vous contactera très prochainement.</p>
   {% endif %}
 </div>
+
+<script>
+jQuery(document).ready(function(){
+  jQuery('html, body').animate({
+  scrollTop: jQuery("#msg-form").offset().top
+  }, 500);
+})
+</script>
+
 </body>
 </html>
