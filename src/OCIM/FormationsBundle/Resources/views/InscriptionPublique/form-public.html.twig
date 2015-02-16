@@ -26,19 +26,26 @@ label.required{
 }
 .forms .checkrow{
   display:block;
-  margin-left:200px;
+  margin-left:25px;
 }
 .forms .checkrow label{
   width: auto;
+}
+.boite-choix{
+  background-color: #f8f8f8;
+  padding: 8px;
+  margin-bottom:5px;
 }
 </style>
 {{ form_start(form) }}
 {{ form_errors(form) }}
 {% if form.formations is defined %}
-  {{ form.formations.vars.label }}
-  {% for formation in form.formations %}
-    <div class='checkrow'><label>{{ form_widget(formation) }} {{ formation.vars.label }}</label></div>
-  {% endfor %}
+  <div class="boite-choix">
+    <h3>{{ form.formations.vars.label }}</h3>
+    {% for formation in form.formations %}
+      <div class='checkrow'><label>{{ form_widget(formation) }} {{ formation.vars.label }}</label></div>
+    {% endfor %}
+  </div>
 {% endif %}
 
 
