@@ -37,7 +37,7 @@ label.required{
 {% if form.formations is defined %}
   {{ form.formations.vars.label }}
   {% for formation in form.formations %}
-    <div class='checkrow'>{{ form_widget(formation) }}{{ form_label(formation) }}</div>
+    <div class='checkrow'><label>{{ form_widget(formation) }} {{ formation.vars.label }}</label></div>
   {% endfor %}
 {% endif %}
 
