@@ -112,7 +112,6 @@ $(document).ready(function() {
                   <td>{{ entity.type }}</td>
                   <td>
                     {% if entity.type == "stagiaire" %}
-                      {{ entity.inscription.0.formationformule.formation.intitule }}
                       {% for inscription in entity.inscription %}
                         {{ inscription.formationformule.formation.intitule }}<br/>
                       {% endfor %}
