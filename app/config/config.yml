@@ -139,16 +139,16 @@ knp_snappy:
           - { name: dpi , value: 300 }
           - { name: image-dpi , value: 300 }
           - { name: image-quality , value: 100 }
-          - { name: margin-bottom , value: 0 }
-          - { name: margin-top , value: 0 }
-          - { name: margin-right , value: 0 }
-          - { name: margin-left , value: 0 }
+          - { name: margin-bottom , value: 7 }
+          - { name: margin-top , value: 7 }
+          - { name: margin-right , value: 7 }
+          - { name: margin-left , value: 7 }
           - { name: page-width  , value: 210 }
           - { name: page-height  , value: 297 }
           - { name: disable-smart-shrinking  , value: false }
           - { name: lowquality  , value: false }
 
     image:
-        enabled:    true
+        enabled:    false
         binary:     wkhtmltoimage
         options:    []
