@@ -133,7 +133,7 @@
 			{% for inscription in inscriptions %}
 				<tr>
 					<td>
-						{{inscription.nom|capitalize}} {{inscription.prenom|capitalize}}
+						{{inscription.nom}} {{inscription.prenom|capitalize}}
 					</td>
 					<td>
 						<span class="right color-gray-30">{{inscription.dateInscription|date('d/m/Y')}}</span>

@@ -1,10 +1,4 @@
-<!DOCTYPE html>
 {#{% form_theme form '::form.html.twig' %}#}
-<html>
-<head>
-
-</head>
-<body>
 <style>
 .forms div{
   padding-bottom: 8px;
@@ -36,6 +30,9 @@ label.required{
   padding: 8px;
   margin-bottom:5px;
 }
+p#countchar{
+  color: grey;
+}
 </style>
 {{ form_start(form) }}
 {{ form_errors(form) }}
@@ -66,6 +63,11 @@ label.required{
 {{form(form)}}
 
 {{form_end(form)}}
-
-</body>
-</html>
+<script>
+JQuery('document').ready(function(){
+  jQuery('textarea#ocim_formationsbundle_inscription_attentes').attr('maxlength', '300').after(jQuery('<p id="countchar"><span>300</span> caractères restants (300 max)</p>'));
+  jQuery('textarea#ocim_formationsbundle_inscription_attentes').keyup(function(){
+    jQuery('#countchar>span').html(300 - jQuery('textarea#ocim_formationsbundle_inscription_attentes').val().length);
+  });
+});
+</script>

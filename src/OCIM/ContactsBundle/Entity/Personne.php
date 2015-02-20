@@ -92,7 +92,7 @@ class Personne
      */
     public function setNom($nom)
     {
-        $this->nom = strtoupper($nom);
+        $this->nom = mb_strtoupper($nom);
 
         return $this;
     }

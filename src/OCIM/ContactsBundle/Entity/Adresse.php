@@ -155,7 +155,7 @@ class Adresse
      */
     public function setVille($ville)
     {
-        $this->ville = strtoupper($ville);
+        $this->ville = mb_strtoupper($ville);
 
         return $this;
     }

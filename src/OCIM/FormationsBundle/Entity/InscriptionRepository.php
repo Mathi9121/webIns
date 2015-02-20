@@ -18,8 +18,10 @@ class InscriptionRepository extends EntityRepository
             ->createQuery(
                 'SELECT i, f FROM OCIMFormationsBundle:Inscription i
 				JOIN i.formationformule f
+				JOIN i.personnes p
 				WHERE f.formation = :id
-				ORDER BY i.statut ASC, i.ordre ASC'
+				AND p INSTANCE OF OCIMContactsBundle:Stagiaire
+				ORDER BY i.statut ASC, i.ordre ASC, p.nom ASC'
             )->setParameter('id', $formation_id)
             ->getResult();
     }
@@ -34,7 +36,7 @@ class InscriptionRepository extends EntityRepository
             )->setParameter('id', $formation_id)
             ->getResult();
 	}
-	
+
 	public function lastInscriptions(){
 		return $this->getEntityManager()
             ->createQuery(
@@ -46,7 +48,7 @@ class InscriptionRepository extends EntityRepository
 			->setMaxResults(10)
             ->getResult();
 	}
-	
+
 	public function getOrdreMaxByFormation($formation_id){
 		return $this->getEntityManager()
 			->createQuery(

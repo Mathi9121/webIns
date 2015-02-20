@@ -448,7 +448,7 @@
 				<th class="insc attentes"><span>CP</span></th>
 				<th class="insc attentes"><span>Ville</span></th>
 				<th class="insc attentes"><span>Mail</span></th>
-				<th class="insc attentes"><span>Attentes</span></th>
+				<th class="insc attentes" style="width:400px"><span>Attentes</span></th>
 				<th class="insc attentes"><span>Tags</span></th>
 				<th class="insc attentes"><span>Provenance</span></th>
 			</tr>
@@ -472,7 +472,7 @@
 				<td class="insc attentes"><span>{{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.cP }}</span></td>
 				<td class="insc attentes"><span>{{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.ville }}</span></td>
 				<td class="insc attentes"><span>{{ entity.stagiaire.mail }}</span></td>
-				<td class="insc attentes" style="white-space:normal"><span>{{ entity.attentes }}</span></td>
+				<td class="insc attentes" style="width: 400px; white-space:normal"><span>{{ entity.attentes }}</span></td>
 				<td class="insc attentes"><span>{{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.tags|join(', ') }}</span></td>
 				<td class="insc attentes"><span>{{ (entity.provenancePCST)? "<i class='fa fa-flask'>PCST</i>" }}</span></td>
             </tr>
