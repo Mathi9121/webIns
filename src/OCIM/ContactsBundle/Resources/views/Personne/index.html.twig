@@ -124,7 +124,7 @@ $(document).ready(function() {
                   <td style="white-space:nowrap">
                     {% if (entity.type == "stagiaire") %}
                       {% for inscr in entity.inscription %}
-                        {{ inscr.statut }}
+                        {{ inscr.statut }}<br/>
                       {% endfor %}
                     {% endif %}
                   </td>

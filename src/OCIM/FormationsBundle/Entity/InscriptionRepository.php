@@ -21,7 +21,7 @@ class InscriptionRepository extends EntityRepository
 				JOIN i.personnes p
 				WHERE f.formation = :id
 				AND p INSTANCE OF OCIMContactsBundle:Stagiaire
-				ORDER BY i.statut ASC, i.ordre ASC, p.nom ASC'
+				ORDER BY i.statut ASC, p.nom ASC'
             )->setParameter('id', $formation_id)
             ->getResult();
     }
