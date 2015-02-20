@@ -13,7 +13,13 @@ td.insc.info{
 	text-shadow: 0 0 2px #B5B5B5;
 }
 td{white-space:nowrap}
-
+td.attente-text{
+	width: 550px;
+	width: 550px !important;
+	min-width: 550px !important;
+	white-space:normal;
+	white-space:normal !important;
+}
 td.handle, th.handle{padding-right:0}
 td.handle{color: #6f6f6f; cursor: move}
 

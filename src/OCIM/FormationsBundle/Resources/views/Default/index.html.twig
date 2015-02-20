@@ -8,6 +8,14 @@
 {% endstylesheets %}
 {% endblock %}
 
+{% block  javascripts %}
+{{parent()}}
+{% javascripts
+	'@OCIMFormationsBundle/Resources/public/js/Inscription/accueil.js' %}
+			<script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+{% endblock %}
+
 
 {# Titres #}
 {% block title %}Accueil{% endblock %}
@@ -21,11 +29,7 @@
 
 
 
-
-
 {% block body  %}
-
-
 <div class="units-row units-mobile-33" id="indicateurs">
 	<div class="unit-25 group">
 		<i class="fa fa-graduation-cap fa-3x left"></i>
@@ -84,7 +88,8 @@
 				<tbody>
 					{% for formation in formations %}
 					<tr>
-					<td>{{formation.intitule}}</td>
+					<td title="{{ (formation.intitule|length >= 55)? formation.intitule }}">{{formation.intitule|slice(0,55)}}{{ (formation.intitule|length >= 55)? "..." }}</td>
+					<td>{{ formation.lieu|capitalize}}</td>
 					<td>
 						<div class="group">
 							{% set spanclass = '' %}
@@ -108,10 +113,10 @@
 					</td>
 					<td>
 						<span class="group formation-raccourcis right">
-							<a title="Inscriptions" href="{{ path('inscription', { 'idformation': formation.id }) }}"><i class="fa fa-users fa-border fa-fw"></i></a>
-							<a title="Détails" href="{{ path('formation_show', { 'id': formation.id }) }}"><i class="fa fa-info fa-border fa-fw"></i></a>
-							<a title="ChampPerso" href="{{path('champPerso_edit', {'idformation': formation.id })}}"><i class="fa fa-table fa-border fa-fw"></i></a>
-							<a title="Configuration" href="{{ path('formation_edit', { 'id': formation.id }) }}"><i class="fa fa-cogs fa-border fa-fw"></i></a>
+							<a title="Inscriptions" href="{{ path('inscription', { 'idformation': formation.id }) }}"><i class="fa fa-users fa-border"></i></a>
+							<a title="Détails" href="{{ path('formation_show', { 'id': formation.id }) }}"><i class="fa fa-info fa-border"></i></a>
+							<a title="ChampPerso" href="{{path('champPerso_edit', {'idformation': formation.id })}}"><i class="fa fa-table fa-border"></i></a>
+							<a title="Configuration" href="{{ path('formation_edit', { 'id': formation.id }) }}"><i class="fa fa-cogs fa-border"></i></a>
 						</span>
 					</td>
 					</tr>
@@ -131,12 +136,15 @@
 		<div class="panel-body">
 			<table class="table-flat table-hovered">
 			{% for inscription in inscriptions %}
-				<tr>
+				<tr data-href="{{ path('inscription', { 'idformation': inscription.formationformule.formation.id, 'id': inscription.id }) }}">
 					<td>
-						{{inscription.nom}} {{inscription.prenom|capitalize}}
+						{{inscription.stagiaire.nom}} {{inscription.stagiaire.prenom|capitalize}}
+						<span class="formationchoisie hide">
+							<i class="fa fa-graduation-cap fa-fw"></i>{{ inscription.formationformule.formation.intitule }}
+						</span>
 					</td>
-					<td>
-						<span class="right color-gray-30">{{inscription.dateInscription|date('d/m/Y')}}</span>
+					<td style="width: 125px">
+						<span class="right color-gray-30">{{inscription.dateInscription|date('d/m/Y H:i')}}</span>
 					</td>
 				</tr>
 			{% endfor %}

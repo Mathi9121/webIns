@@ -190,8 +190,8 @@
 
 						{% if class == "attente" %}<td class="handle"><i class="fa fa-arrows"></i></td>{% else %}<td></td>{% endif %}
 						<td class="insc info"><span>{{ entity.stagiaire.civilite }}</span></td>
-						<td class="insc info"><span>{{ entity.stagiaire.nom }}</span></td>
-						<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
+						<td class="insc info nom-stagiaire"><span>{{ entity.stagiaire.nom }}</span></td>
+						<td class="insc info prenom-stagiaire"><span>{{ entity.stagiaire.prenom }}</span></td>
 						<td class="insc contact"><span>{{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.nomStructure }}</span></td>
 						<td class="insc contact"><span>{{ entity.stagiaire.fonction }}</span></td>
 						<td class="insc contact"><span>{{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.adresse }}</span></td>
@@ -347,8 +347,8 @@
 			<tr class="statut {{class}}" data-ordre="{{entity.ordre}}" data-idinscription="{{entity.id}}">
 						{% if class == "attente" %}<td class="handle"><i class="fa fa-arrows"></i></td>{% else %}<td></td>{% endif %}
 						<td class="insc info"><span>{{ entity.stagiaire.civilite }}</span></td>
-						<td class="insc info"><span>{{ entity.stagiaire.nom }}</span></td>
-						<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
+						<td class="insc info nom-stagiaire"><span>{{ entity.stagiaire.nom }}</span></td>
+						<td class="insc info prenom-stagiaire"><span>{{ entity.stagiaire.prenom }}</span></td>
 					{% if entity.convention %}
 						<td class="insc convention text-centered"><span>{{ entity.convention.numeroToString }}</span></td>
 						<td class="insc convention text-centered"><span>{{ entity.convention.edition|date('d/m/Y') }}</span></td>
@@ -411,8 +411,8 @@
 							{% endif %}
 						</td>
 						<td class="insc info"><span>{{ entity.stagiaire.civilite }}</span></td>
-						<td class="insc info"><span>{{ entity.stagiaire.nom }}</span></td>
-						<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
+						<td class="insc info nom-stagiaire"><span>{{ entity.stagiaire.nom }}</span></td>
+						<td class="insc info prenom-stagiaire"><span>{{ entity.stagiaire.prenom }}</span></td>
 						<td class="insc finance"><span>{{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.nomStructure }}</span></td>
 
 						{% if (entity.signataire is not null) and (entity.signataire.adresse is not null)%}
@@ -448,7 +448,7 @@
 				<th class="insc attentes"><span>CP</span></th>
 				<th class="insc attentes"><span>Ville</span></th>
 				<th class="insc attentes"><span>Mail</span></th>
-				<th class="insc attentes" style="width:550px !important; white-space:normal"><span>Attentes</span></th>
+				<th class="insc attentes attente-text" style="width:550px !important; white-space:normal !important">Attentes</th>
 				<th class="insc attentes"><span>Tags</span></th>
 				<th class="insc attentes"><span>Provenance</span></th>
 			</tr>
@@ -465,14 +465,14 @@
 			{% endif %}
 			<tr class="statut {{class}}" data-ordre="{{entity.ordre}}" data-idinscription="{{entity.id}}">
 				{% if class == "attente" %}<td class="handle"><span class="fa fa-arrows"></span></td>{% else %}<td></td>{% endif %}
-				<td class="insc info"><span>{{ entity.stagiaire.nom }}</span></td>
-				<td class="insc info"><span>{{ entity.stagiaire.prenom }}</span></td>
+				<td class="insc info nom-stagiaire"><span>{{ entity.stagiaire.nom }}</span></td>
+				<td class="insc info prenom-stagiaire"><span>{{ entity.stagiaire.prenom }}</span></td>
 				<td class="insc attentes"><span>{{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.nomStructure }}</span></td>
 				<td class="insc attentes"><span>{{ entity.stagiaire.fonction }}</span></td>
 				<td class="insc attentes"><span>{{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.cP }}</span></td>
 				<td class="insc attentes"><span>{{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.ville }}</span></td>
 				<td class="insc attentes"><span>{{ entity.stagiaire.mail }}</span></td>
-				<td class="insc attentes" style="width:550px !important; white-space:normal !important">{{ entity.attentes }}</td>
+				<td class="insc attentes attente-text" style="width:550px !important; white-space:normal !important">{{ entity.attentes }}</td>
 				<td class="insc attentes"><span>{{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.tags|join(', ') }}</span></td>
 				<td class="insc attentes"><span>{{ (entity.provenancePCST)? "<i class='fa fa-flask'>PCST</i>" }}</span></td>
             </tr>

@@ -32,6 +32,7 @@ label.required{
 }
 p#countchar{
   color: grey;
+  font-style: italic;
 }
 </style>
 {{ form_start(form) }}
@@ -60,11 +61,11 @@ p#countchar{
   {% endfor %}
 
 
-{{form(form)}}
+{{form_rest(form)}}
 
 {{form_end(form)}}
 <script>
-JQuery('document').ready(function(){
+jQuery('document').ready(function(){
   jQuery('textarea#ocim_formationsbundle_inscription_attentes').attr('maxlength', '300').after(jQuery('<p id="countchar"><span>300</span> caractères restants (300 max)</p>'));
   jQuery('textarea#ocim_formationsbundle_inscription_attentes').keyup(function(){
     jQuery('#countchar>span').html(300 - jQuery('textarea#ocim_formationsbundle_inscription_attentes').val().length);

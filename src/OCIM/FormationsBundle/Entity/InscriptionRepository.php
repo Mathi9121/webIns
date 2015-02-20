@@ -40,7 +40,7 @@ class InscriptionRepository extends EntityRepository
 	public function lastInscriptions(){
 		return $this->getEntityManager()
             ->createQuery(
-                'SELECT p.nom, p.prenom, i.dateInscription FROM OCIMFormationsBundle:Inscription i
+        'SELECT i FROM OCIMFormationsBundle:Inscription i
 				JOIN i.personnes p
 				WHERE p INSTANCE OF OCIMContactsBundle:Stagiaire
 				ORDER BY i.dateInscription DESC'
