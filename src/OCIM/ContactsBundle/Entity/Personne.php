@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Personne
  */
-class Personne
+abstract class Personne
 {
     /**
      * @var integer
