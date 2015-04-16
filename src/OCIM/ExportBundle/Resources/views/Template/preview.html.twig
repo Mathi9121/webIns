@@ -22,7 +22,7 @@ html, body{
   background-color: #fff;
   -webkit-box-shadow: 0 0 5px 2px #C4C4C4;
   box-shadow: 0 0 5px 2px #C4C4C4;
-
+  border: 0.7cm solid white;
 }
 #controls{
   width:100%;
@@ -36,6 +36,10 @@ html, body{
 }
 #filename{
 margin-right: 50px
+}
+div.pagebreak{
+  height: 5px;
+border-bottom: 1px dashed grey;
 }
 .btn{
   vertical-align:middle;
@@ -58,11 +62,17 @@ form{
 tinymce.init({
   selector: "div#wrapper",
   inline: true,
+  mode: 'textareas',
+  theme: "modern",
+  force_br_newlines : false,
+  force_p_newlines : false,
+  forced_root_block : '',
+  pagebreak_separator:"<div class='pagebreak'></div>",
   plugins: [
-  "advlist autolink lists link image charmap print preview anchor",
-  "searchreplace visualblocks code fullscreen",
-  "insertdatetime media table contextmenu paste"
-  ],
+       "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+       "searchreplace visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+       "save table contextmenu directionality emoticons template paste textcolor"
+ ],
   toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
 });
 </script>

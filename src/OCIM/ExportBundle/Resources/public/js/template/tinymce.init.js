@@ -7,6 +7,7 @@ tinymce.init({
     selector: "textarea",
     theme: "modern",
     height: 600,
+    pagebreak_separator: "<div class='pagebreak'></div>",
     plugins: [
          "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
          "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",

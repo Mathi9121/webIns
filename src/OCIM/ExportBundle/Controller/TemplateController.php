@@ -187,7 +187,7 @@ class TemplateController extends Controller
 		// $contenu = "<!DOCTYPE html><html><head><meta charset='utf-8'/>
 		//			</head><body style='margin:0px'>".$entity->getContenu()."</body></html>";
 		$contenu = $entity->getContenu();
-
+    $contenu = "<style>.pagebreak{page-break-after: always;} @media print{ .pagebreak{height:0px; border:0;} }</style>".$contenu;
 		// contenu et valeurs
 		$contenu = $env->render(
 			$contenu,
@@ -218,6 +218,7 @@ class TemplateController extends Controller
       $content = $request->request->get('content');
       $filename = $request->request->get('filename');
 
+      $content = "<style>.pagebreak{height: 1px; page-break-after: always;} @media print{ .pagebreak{height:0px; border:0;} }</style>".$content;
       return new Response(
         $this->get('knp_snappy.pdf')->getOutputFromHtml($content),
         200,
