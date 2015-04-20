@@ -114,9 +114,9 @@
 						<td> {{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.adresse }}</td>
 						<td> {{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.cP }}</td>
 						<td> {{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.ville }}</td>
-						<td> {{ entity.stagiaire.tel }}</td>
-						<td> {{ entity.stagiaire.mail }}</td>
-						<td> {{ (entity.admin)? entity.admin.mail }}</td>
+						<td> <a href="tel:{{ entity.stagiaire.tel }}">{{ entity.stagiaire.tel }}</a></td>
+						<td> <a href="mailto:{{ entity.stagiaire.mail }}">{{ entity.stagiaire.mail }}</a></td>
+						<td> <a href="mailto:{{ (entity.admin)? entity.admin.mail }}">{{ (entity.admin)? entity.admin.mail }}</a></td>
 						<td class="inscformule"><span><abbr title="{{ entity.formationFormule.formule }}">{{ entity.formationFormule.formule.tarif }} {{ (entity.formationFormule.formule.nuit)? "<i class='fa fa-moon-o'></i>" }}</abbr></span></td>
 						<td class="text-centered tdfinancement">
 							{% if entity.statutConvention is null %}
@@ -197,8 +197,8 @@
 						<td class="insc contact"><span>{{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.adresse }}</span></td>
 						<td class="insc contact"><span>{{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.CP }}</span></td>
 						<td class="insc contact"><span>{{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.ville }}</span></td>
-						<td class="insc contact"><span>{{ entity.stagiaire.tel }}</span></td>
-						<td class="insc contact"><span>{{ entity.stagiaire.mail}}</span></td>
+						<td class="insc contact"><a href="tel:{{ entity.stagiaire.tel }}">{{ entity.stagiaire.tel }}</a></td>
+						<td class="insc contact"><a href="mailto:{{ entity.stagiaire.mail}}">{{ entity.stagiaire.mail}}</a></td>
       </tr>
         {% endfor %}
     </tbody>
@@ -471,7 +471,7 @@
 				<td class="insc attentes"><span>{{ entity.stagiaire.fonction }}</span></td>
 				<td class="insc attentes"><span>{{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.cP }}</span></td>
 				<td class="insc attentes"><span>{{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.ville }}</span></td>
-				<td class="insc attentes"><span>{{ entity.stagiaire.mail }}</span></td>
+				<td class="insc attentes"><a href="mailto:{{ entity.stagiaire.mail }}">{{ entity.stagiaire.mail }}</a></td>
 				<td class="insc attentes attente-text" style="width:550px !important; white-space:normal !important">{{ entity.attentes }}</td>
 				<td class="insc attentes"><span>{{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.tags|join(', ') }}</span></td>
 				<td class="insc attentes"><span>{{ (entity.provenancePCST)? "<i class='fa fa-flask'>PCST</i>" }}</span></td>
@@ -513,8 +513,8 @@
 						<td>{{ (intervenant.adresse is not null)? intervenant.adresse.adresse }}</td>
 						<td>{{ (intervenant.adresse is not null)? intervenant.adresse.cP }}</td>
 						<td>{{ (intervenant.adresse is not null)? intervenant.adresse.ville }}</td>
-						<td>{{ intervenant.tel }}</td>
-						<td>{{ intervenant.mail }}</td>
+						<td><a href="tel:{{ intervenant.tel }}">{{ intervenant.tel }}</a></td>
+						<td><a href="mailto:{{ intervenant.mail }}">{{ intervenant.mail }}</a></td>
 						<td>{{ (intervenant.adresse is not null)? intervenant.adresse.tags|join(', ') }}</td>
 						<td>{{ intervenant.commentaire }}</td>
 						<td>
@@ -561,7 +561,7 @@
 							<td>{{intervenant.prenom|capitalize}}</td>
 							<td>{{intervenant.fonction}}</td>
 							<td>{{intervenant.tel}}</td>
-							<td>{{intervenant.mail}}</td>
+							<td><a href="mailto:{{intervenant.mail}}">{{intervenant.mail}}</a></td>
 							<td>{{intervenant.adresse.nomStructure}}</td>
 							<td>{{intervenant.commentaire}}</td>
 							<td>
