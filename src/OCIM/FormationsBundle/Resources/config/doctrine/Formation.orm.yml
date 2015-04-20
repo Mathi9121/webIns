@@ -19,6 +19,8 @@ OCIM\FormationsBundle\Entity\Formation:
         intervenants:
             inversedBy: formations
             targetEntity: OCIM\ContactsBundle\Entity\Intervenant
+            orderBy:
+                nom: ASC
             joinTable:
                 name: Intervenants
                 joinColumns:
