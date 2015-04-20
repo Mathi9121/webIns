@@ -359,7 +359,7 @@
 
 					{% else %}
 						<td class="insc convention text-centered" colspan="6">
-							<span style="color: grey">{% if(entity.statutConvention is null) %} Demande de convention non confirmée {% elseif entity.statutConvention == false %} Pas de convention {% elseif entity.statutConvention == true %} Convention demandée{% endif %}</span>
+							<span style="color: grey">{% if(entity.statutConvention is null) %} Demande de convention non confirmée {% elseif entity.statutConvention == false %} Pas de convention {% elseif entity.statutConvention == true %} <strong>Convention demandée</strong>{% endif %}</span>
 						</td>
 					{% endif %}
             </tr>

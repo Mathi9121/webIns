@@ -1,4 +1,11 @@
 $(document).ready(function(){
+
+	//initialise le tri des inscriptions en attentes
+	tri();
+
+	// on fige la taille de l'entete du tableau
+	// TODO
+	// sortable ui.
 	$('table tbody').sortable({
 		axis: 'y',
 		items: "> tr.attente",
@@ -75,7 +82,7 @@ $(document).ready(function(){
 					$.progress.hide();
 				});
 			}
-			tri(idDiv);
+			tri();
 		}
 	});
 
@@ -116,8 +123,8 @@ function changeOrdre(id, ordre){
 	$('table tbody tr').filter('[data-idinscription="'+id+'"]').attr('data-ordre', ordre);
 }
 
-function tri(id){
-	$('div.tab').not('#'+id).find('tbody').each(function(i,n){
+function tri(){
+	$('div.tab').find('tbody').each(function(i,n){
 		$(this).find('tr.attente').sortElements(function(a,b){
 			return (parseInt($(a).attr('data-ordre')) > parseInt($(b).attr('data-ordre')))? 1 : -1;
 		});

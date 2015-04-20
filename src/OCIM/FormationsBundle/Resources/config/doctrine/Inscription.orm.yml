@@ -21,6 +21,7 @@ OCIM\FormationsBundle\Entity\Inscription:
     manyToMany:
         personnes:
             targetEntity: OCIM\ContactsBundle\Entity\Personne
+            fetch: EAGER
             cascade: ["all"]
             inversedBy: inscription
             joinTable:
