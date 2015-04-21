@@ -144,3 +144,8 @@ border-left: 1px solid #CECACA;
 		text-decoration:none;
 		display:block;
 }
+
+.tableFloatingHeaderOriginal{
+	background-color: white ! important;
+	margin-top:58px !important;
+}

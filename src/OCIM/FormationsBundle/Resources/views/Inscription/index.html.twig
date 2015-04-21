@@ -14,6 +14,7 @@
 {{parent()}}
 {% javascripts
 	'%kernel.root_dir%/Resources/public/js/jquery-ui.min.js'
+	'%kernel.root_dir%/Resources/public/js/jquery.stickytableheaders.js'
 	'@OCIMFormationsBundle/Resources/public/js/Inscription/inscription.js'
 	'@OCIMFormationsBundle/Resources/public/js/Inscription/showDetailsInscriptions.js'
 	'@OCIMFormationsBundle/Resources/public/js/Inscription/reponseschampPerso.js'
@@ -213,7 +214,7 @@
 <div class="table-container">
 	<table class="table-bordered">
 		<thead>
-			<tr>
+			<tr style="background-color: white; ">
 				<th class="insc info"><span>Nom</span></th>
 				<th class="insc info"><span>Prénom</span></th>
 				{% for log in champPerso %}

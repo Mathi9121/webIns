@@ -3,8 +3,9 @@ $(document).ready(function(){
 	//initialise le tri des inscriptions en attentes
 	tri();
 
-	// on fige la taille de l'entete du tableau
-	// TODO
+	// on fige la taille de l'entete du tableau à l'aide du plugin stickytableheaders
+	$('table').stickyTableHeaders();
+
 	// sortable ui.
 	$('table tbody').sortable({
 		axis: 'y',
