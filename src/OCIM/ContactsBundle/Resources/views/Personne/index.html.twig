@@ -63,6 +63,7 @@ $(document).ready(function() {
 {% block titre %}Liste des contacts{% endblock %}
 
 {% block controls %}
+<a href="{{path('intervenants_new')}}" class="btn btn-green"><i class="fa fa-plus fa-fw"></i>Nouvel Intervenant</a>
 <input type='search' id="search-box" placeholder="Recherche"/>
 {% endblock %}
 
