@@ -14,16 +14,17 @@
 	border-radius: 4px;
 	height: 100px;
 	background-color: #fff;
+	overflow: hidden;
 }
 
-#indicateurs i{
+#indicateurs div>i{
 	background-color: #e52f23;
 	border-radius: 4px 0 0 4px;
 	color: white;
+	line-height: 100px;
 }
 
-#indicateurs i, #indicateurs div.count-container{
-	line-height: 100px;
+#indicateurs div>i, #indicateurs div.count-container{
 	width: 50%;
 	text-align:center;
 	display:inline-block;
@@ -44,6 +45,13 @@
 
 #indicateurs span.count{
 	font-size: 3em;
+}
+
+#indicateurs a{
+	text-decoration : none;
+	color: #E52F23;
+	font-weight: 600;
+	margin-top: 18px;
 }
 
 .formation-raccourcis a{

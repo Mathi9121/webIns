@@ -31,43 +31,58 @@
 
 {% block body  %}
 <div class="units-row units-mobile-33" id="indicateurs">
-	<div class="unit-25 group">
+	<div class="unit-20 group">
 		<i class="fa fa-graduation-cap fa-3x left"></i>
 		<div class="count-container left">
 			<p>
 				<span class="count">{{countFormations}}</span>
 				<span class="nomcount">Formations</span>
-
+				<a href="{{ path('formation') }}"><br/>Voir toutes les formations</a>
 			</p>
+
 		</div>
 	</div>
 
-	<div class="unit-25 group">
+	<div class="unit-20 group">
 		<i class="fa fa-cutlery fa-3x left"></i>
 		<div class="count-container left">
 			<p>
 				<span class="count">{{countFormules}}</span>
 				<span class="nomcount">Formules</span>
+				<a href="{{ path('formule') }}"><br/><i class="fa fa-angle-double-right fa-fw"></i>Voir toutes les formules</a>
 			</p>
 		</div>
 	</div>
 
-	<div class="unit-25 group">
+	<div class="unit-20 group">
 		<i class="fa fa-users fa-3x left"></i>
 		<div class="count-container left">
 			<p>
 				<span class="count">{{countInscriptions}}</span>
 				<span class="nomcount">Inscriptions</span>
+				<a href="{{path('personne')}}"><br/><i class="fa fa-angle-double-right fa-fw"></i>Aller aux contacts</a>
 			</p>
 		</div>
 	</div>
 
-	<div class="unit-25 group">
-		<i class="fa fa-files-o fa-3x left"></i>
+	<div class="unit-20 group">
+		<i class="fa fa-briefcase fa-3x left"></i>
 		<div class="count-container left">
 			<p>
-				<span class="count">{{countTemplate}}</span>
-				<span class="nomcount">Gabarits</span>
+				<span class="count">{{countIntervenant}}</span>
+				<span class="nomcount">Intervenants</span>
+				<a href="#"><br/><i class="fa fa-plus fa-fw"></i>Entrer un nouvel Intervenant</a>
+			</p>
+		</div>
+	</div>
+
+	<div class="unit-20 group">
+		<i class="fa fa-folder-open fa-3x left"></i>
+		<div class="count-container left">
+			<p>
+				<span class="count">{{countConvention}}</span>
+				<span class="nomcount">Conventions</span>
+				<a href="{{path('convention')}}"><br/><i class="fa fa-angle-double-right fa-fw"></i>Voir les conventions</a>
 			</p>
 		</div>
 	</div>

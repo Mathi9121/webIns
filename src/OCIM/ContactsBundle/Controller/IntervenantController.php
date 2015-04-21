@@ -44,12 +44,20 @@ class IntervenantController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-			      $em->getRepository('OCIMFormationsBundle:Formation')->find($idformation)->addIntervenant($entity);
+            if($idformation !== 'null'){
+			         $em->getRepository('OCIMFormationsBundle:Formation')->find($idformation)->addIntervenant($entity);
+            }
             $em->persist($entity);
             $em->flush();
 
             $this->get('session')->getFlashBag()->add('success','Intervenant ajouté.');
-            return $this->redirect($this->generateUrl('inscription', array('id' => $entity->getId(), 'idformation' => $idformation)). '#intervenants');
+
+            if($idformation !== 'null'){
+              return $this->redirect($this->generateUrl('inscription', array('id' => $entity->getId(), 'idformation' => $idformation)). '#intervenants');
+            }
+            else {
+              return $this->redirect($this->generateUrl('personne'));
+            }
         }
 
         $this->get('session')->getFlashBag()->add('error','Le formulaire contient des erreurs. Enregistrement impossible.');
@@ -84,10 +92,10 @@ class IntervenantController extends Controller
      * Displays a form to create a new Intervenant entity.
      *
      */
-    public function newAction($idformation)
+    public function newAction($idformation = null)
     {
         $entity = new Intervenant();
-        $form   = $this->createCreateForm($entity,$idformation);
+        $form = $this->createCreateForm($entity,$idformation);
         $em = $this->getDoctrine()->getManager();
         $tags = $em->getRepository("OCIMContactsBundle:TagStructure")->findAll();
 

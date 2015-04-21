@@ -7,8 +7,8 @@ intervenants_show:
     defaults: { _controller: "OCIMContactsBundle:Intervenant:show" }
 
 intervenants_new:
-    path:     formation-{idformation}/new
-    defaults: { _controller: "OCIMContactsBundle:Intervenant:new" }
+    path:     formation/{idformation}/new
+    defaults: { _controller: "OCIMContactsBundle:Intervenant:new", idformation: 'null' }
 
 intervenants_create:
     path:     /formation-{idformation}/create/
