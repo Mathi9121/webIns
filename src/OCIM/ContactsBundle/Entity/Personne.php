@@ -313,7 +313,7 @@ class Personne
     public function __construct($type = null)
     {
         $this->intervenant = new \Doctrine\Common\Collections\ArrayCollection();
-		$this->type = $type;
+		    $this->type = $type;
     }
 
     /**

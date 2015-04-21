@@ -10,6 +10,8 @@ use OCIM\FormationsBundle\Entity\Inscription;
 use OCIM\FormationsBundle\Form\InscriptionType;
 use OCIM\FormationsBundle\Form\FinancementType;
 use OCIM\ContactsBundle\Entity\Signataire;
+use OCIM\ContactsBundle\Entity\Intervenant;
+use OCIM\ContactsBundle\Entity\Adresse;
 
 
 
@@ -61,6 +63,68 @@ class InscriptionController extends Controller
       return new Response( 'ok' , Response::HTTP_OK);
 
     }
+  }
+
+  public function switchStagiaireAction($idinscription, $idformation){
+
+    $em = $this->getDoctrine()->getManager();
+
+    $inscription = $em->getRepository("OCIMFormationsBundle:Inscription")->find($idinscription);
+    $stagiaire = $inscription->getStagiaire();
+    $structure = $stagiaire->getAdresse();
+    $formation = $em->getRepository("OCIMFormationsBundle:Formation")->find($idformation);
+
+    $nbinscription = $inscription->getStagiaire()->getInscription()->count();
+
+    // si le stagiaire de linscription est dans pls inscription, on cherche a supprimer une unique inscription.
+    if($nbinscription > 1){
+      $personnes = $inscription->getPersonnes();
+      foreach($personnes as &$personne){
+        $personne->removeInscription($inscription);
+        $inscription->removePersonne($personne);
+      }
+    }
+    $em->remove($inscription);
+
+    $intervenant  = new Intervenant();
+    $adresse = new Adresse();
+
+    $intervenant->setNom($stagiaire->getNom());
+    $intervenant->setCivilite($stagiaire->getCivilite());
+    $intervenant->setPrenom($stagiaire->getPrenom());
+    $intervenant->setFonction($stagiaire->getFonction());
+    $intervenant->setTel($stagiaire->getTel());
+    $intervenant->setMail($stagiaire->getMail());
+
+    $adresse->setNomStructure($structure->getNomStructure());
+    $adresse->setAdresse($structure->getAdresse());
+    $adresse->setAdresseComplement($structure->getAdresseComplement());
+    $adresse->setCP($structure->getCP());
+    $adresse->setVille($structure->getVille());
+    $adresse->setPays($structure->getPays());
+    $adresse->setType($structure->getType());
+
+    foreach($structure->getTags() as $tag){
+      $adresse->addTag($tag);
+    }
+
+    $intervenant->setAdresse($adresse);
+    $intervenant->addFormation($formation);
+
+    $formation->addIntervenant($intervenant);
+
+    foreach($stagiaire->getReponsesChampPerso() as $rep){
+      $rep->setPersonne($intervenant);
+      $em->persist($rep);
+    }
+
+    $em->persist($intervenant);
+    $em->persist($adresse);
+    $em->persist($formation);
+
+    $em->flush();
+
+    return $this->redirect($this->generateUrl('intervenants_edit', array('id' => $intervenant->getId(), 'idformation'=> $idformation)));
   }
 
   public function updateStatutInscriptionAction(Request $request){

@@ -10,6 +10,19 @@
 			"{{ tag.tag|capitalize }}",
 		{% endfor %}
 	];
+
+	$('.switchclass').click(function(e){
+		e.preventDefault();
+		var conf = confirm("/!\\ ATTENTION  \nTransformer un stagiaire en intervenant peut entrainer une perte d'informations.\nNe seront conservées UNIQUEMENT les informations sur le stagiaire et sa structure.\n\n Êtes vous sûr?");
+
+		if(conf){
+
+			window.location = $(this).attr('href');
+
+		}
+
+	});
+
 </script>
 {% javascripts
 	'%kernel.root_dir%/Resources/public/js/jquery-ui.min.js'
@@ -55,6 +68,7 @@
 		<div class="header">
 			<span class="titre">Inscription</span>
 				<span class="controls right group">
+					<a href="{{path("inscription_switch_stagiaire_class", {"idformation":idformation, "idinscription": entity.id})}}" class="switchclass" title="Transformer le stagiaire en intervenant"><i class="fa fa-magic"></i> Intervenant</a>
 				</span>
 		</div>
 
