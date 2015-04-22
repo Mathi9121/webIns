@@ -61,33 +61,33 @@ function compteurs(){
   var Sattente  = $("#general tr.attente").length;
   var Svalide  = $("#general tr.valide").length;
   var Sannule  = $("#general tr.annule").length;
-  $('#comptes li.statuts div.attente p').text(Sattente);
-  $('#comptes li.statuts div.valide p').text(Svalide);
-  $('#comptes li.statuts div.annule p').text(Sannule);
+  $('#comptes li.statuts div.attente p').first().text(Sattente);
+  $('#comptes li.statuts div.valide p').first().text(Svalide);
+  $('#comptes li.statuts div.annule p').first().text(Sannule);
 
   //conventions
   var Cattente  = $("#general .tdfinancement span.label-yellow").length;
   var Cvalide  = $("#general .tdfinancement span.label-green").length;
   var Cannule  = $("#general .tdfinancement span.label-red").length;
-  $('#comptes li.conventions div.attente p').text(Cattente);
-  $('#comptes li.conventions div.valide p').text(Cvalide);
-  $('#comptes li.conventions div.annule p').text(Cannule);
+  $('#comptes li.conventions div.attente p').first().text(Cattente);
+  $('#comptes li.conventions div.valide p').first().text(Cvalide);
+  $('#comptes li.conventions div.annule p').first().text(Cannule);
 
   //finanement
   var Fattente  = $("#financement span.label-yellow").length;
   var Fvalide  = $("#financement span.label-green").length;
   var Fannule  = $("#financement span.label-red").length;
-  $('#comptes li.financement div.attente p').text(Fattente);
-  $('#comptes li.financement div.valide p').text(Fvalide);
-  $('#comptes li.financement div.annule p').text(Fannule);
+  $('#comptes li.financement div.attente p').first().text(Fattente);
+  $('#comptes li.financement div.valide p').first().text(Fvalide);
+  $('#comptes li.financement div.annule p').first().text(Fannule);
 
   //totaux
   var users  = $("#general tbody tr").length;
   var intervs  = $("#intervenants tbody tr").length;
   var pcst  = $("#general tbody tr td i.fa.fa-flask").length;
-  $('#comptes li.totaux div.users p span').text(users);
-  $('#comptes li.totaux div.intervs p span').text(intervs);
-  $('#comptes li.totaux div.pcst p span').text(pcst);
+  $('#comptes li.totaux div.users p span').first().text(users);
+  $('#comptes li.totaux div.intervs p span').first().text(intervs);
+  $('#comptes li.totaux div.pcst p span').first().text(pcst);
 
   //formules
   $("#comptes li.formule div>p").each(function(){
@@ -95,7 +95,7 @@ function compteurs(){
     var elem = $("<p></p>").text($('#general table tbody td.inscformule').filter("[data-idformule="+id+"]").length).hide();
     $(this).parent().append(elem);
   });
-  $("#comptes li.formule div").hover(
+  $("#comptes li div").hover(
     function(){
       $(this).children('p').slideToggle('fast');
     },

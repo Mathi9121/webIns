@@ -181,3 +181,10 @@ ul#comptes li div > p {
 ul#comptes li div>div:last-child{
 	border-right: 0px
 }
+
+ul#comptes li div > p.aide {
+	font-size: 16px;
+	line-height: 16px;
+	margin-top: 8px;
+	text-align:center;
+}
