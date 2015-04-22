@@ -16,8 +16,8 @@ intervenants_create:
     requirements: { _method: post }
 
 intervenants_edit:
-    path:     /formation-{idformation}/{id}/edit
-    defaults: { _controller: "OCIMContactsBundle:Intervenant:edit" }
+    path:     /formation/{idformation}/{id}/edit
+    defaults: { _controller: "OCIMContactsBundle:Intervenant:edit", idformation: 'null' }
 
 intervenants_update:
     path:     /formation-{idformation}/{id}/update

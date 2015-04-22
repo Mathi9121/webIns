@@ -167,6 +167,14 @@ $(document).ready(function() {
                         <i class="fa fa-info fa-stack-1x fa-inverse"></i>
                       </span>
                     </a>
+                    {% if(entity.type == 'intervenant') %}
+                      <a href="{{path('intervenants_edit', {'id': entity.id})}}">
+                        <span class="fa-stack">
+                          <i class="fa fa-square fa-stack-2x"></i>
+                          <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                        </span>
+                      </a>
+                    {% endif %}
                   </td>
                 </tr>
             {% endif %}

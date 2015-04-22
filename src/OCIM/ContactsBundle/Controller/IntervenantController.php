@@ -231,7 +231,7 @@ class IntervenantController extends Controller
             $intervenant->removeFormation($formation);
             $em->flush();
         }
-        $this->get('session')->getFlashBag()->add('success','Intervenant supprimé.');
+        $this->get('session')->getFlashBag()->add('success','Intervenant supprimé de la formation.');
         return $this->redirect($this->generateUrl('inscription', array('idformation' => $idformation)));
     }
 

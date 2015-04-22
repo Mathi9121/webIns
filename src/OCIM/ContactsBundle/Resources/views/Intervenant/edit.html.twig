@@ -26,15 +26,19 @@
 {% endstylesheets %}
 {% endblock %}
 
-{% block title %}Edition - Intervenant Formation{% endblock %}
+{% block title %}Edition - Intervenant{% endblock %}
 {% block titre %}Intervenant - Edition{% endblock %}
-{% block controls %}{{form(delete_form)}}{% endblock %}
+{% block controls %}{% endblock %}
 
 
 {% block breadcrumbs %}
-<li><a href="{{path('formation')}}">Formations</a></li>
-<li><a href="{{path('inscription', {'idformation': idformation})}}">Inscriptions</a></li>
-<li><span>Intervenant - Edition</span></li>
+	{% if(idformation == "null") %}
+	<li><a href="{{path('personne')}}">Contacts</a></li>
+	{% else %}
+		<li><a href="{{path('formation')}}">Formations</a></li>
+		<li><a href="{{path('inscription', {'idformation': idformation})}}">Inscriptions</a></li>
+	{% endif %}
+	<li><span>Intervenant - Edition</span></li>
 {% endblock %}
 
 
@@ -95,7 +99,11 @@
 
 
 <footer id="footer" class="group">
-	<div class="left"><a href="{{ path('inscription', {'idformation': idformation}) }}" class="btn btn-back"><i class="fa fa-chevron-left fa-fw"></i>Retour aux inscriptions</a></div>
+	{% if (idformation == "null") %}
+	<div class="left"><a href="{{ path('personne') }}" class="btn btn-back"><i class="fa fa-chevron-left fa-fw"></i>Retour aux contacts</a></div>
+	{% else %}
+		<div class="left"><a href="{{ path('inscription', {'idformation': idformation}) }}" class="btn btn-back"><i class="fa fa-chevron-left fa-fw"></i>Retour aux inscriptions</a></div>
+	{% endif %}
 	<div class="right">{{form_widget(edit_form.submit)}}</div>
 </footer>
 
