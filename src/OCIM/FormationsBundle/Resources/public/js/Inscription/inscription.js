@@ -91,33 +91,31 @@ $(document).ready(function(){
 
 
 	$(function() {
-$( "#controls a.btn" ).first()
-.next()
-.button({
-text: false,
-icons: {
-primary: "caret"
-}
-})
-.click(function() {
-var menu = $( this ).parent().next().show().position({
-my: "left top",
-at: "left bottom",
-of: this
-});
-$( document ).one( "click", function() {
-menu.hide();
-});
-return false;
-})
-.parent()
-.buttonset()
-.next()
-.hide()
-.menu();
-});
-
-
+		$( "#controls a.btn" ).first()
+			.next()
+			.button({
+				text: false,
+				icons: {
+				primary: "caret"
+			}
+			})
+			.click(function() {
+				var menu = $( this ).parent().next().show().position({
+				my: "left top",
+				at: "left bottom",
+				of: this
+			});
+		$( document ).one( "click", function() {
+			menu.hide();
+			});
+			return false;
+		})
+			.parent()
+			.buttonset()
+			.next()
+			.hide()
+			.menu();
+	});
 });
 
 function changeOrdre(id, ordre){

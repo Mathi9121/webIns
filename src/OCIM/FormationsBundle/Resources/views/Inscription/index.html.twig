@@ -53,7 +53,53 @@
 <div id="updateconvention" class="hide">{{ path('inscription_update_statut_convention', {'idformation': formation.id}) }}</div>
 <div id="updateinscription" class="hide">{{ path('inscription_update_statut_inscription', {'idformation': formation.id}) }}</div>
 <div id="liensExport" class="hide">{{ path('documents_liens') }}</div>
+
 {% if entities != null %}
+{# indicateurs #}
+<ul id="comptes" class="blocks-5">
+		<li class="statuts">
+		<p>Inscriptions</p>
+			<div class="units-row units-split">
+				<div class="unit-33 valide"><p></p></div>
+				<div class="unit-33 attente"><p></p></div>
+				<div class="unit-33 annule"><p></p></div>
+			</div>
+		</li>
+		<li class="financement">
+			<p>Financement</p>
+			<div class="units-row units-split">
+				<div class="unit-33 valide"><p></p></div>
+				<div class="unit-33 attente"><p></p></div>
+				<div class="unit-33 annule"><p></p></div>
+			</div>
+		</li>
+		<li>
+			<p>Formules</p>
+			<div class="units-row units-split">
+				{% for formule in formation.formules %}
+					<div class="unit-{{ (100/formation.formules.count)|round(0, 'floor') }}">
+						<p>{{ (formule.nuit)? "<i class='fa fa-moon-o'></i>" }}{{formule.tarif}}{{ (formule.tarif|number_format)? "€" }}</p>
+					</div>
+				{% endfor %}
+			</div>
+		</li>
+		<li  class="conventions">
+			<p>Conventions</p>
+			<div class="units-row units-split">
+				<div class="unit-33 valide"><p></p></div>
+				<div class="unit-33 attente"><p></p></div>
+				<div class="unit-33 annule"><p></p></div>
+			</div>
+		</li>
+		<li class="totaux">
+			<p>Divers</p>
+			<div class="units-row units-split">
+				<div class="unit-33 users"><p><i class="fa fa-user fa-fw"></i><span></span></p></div>
+				<div class="unit-33 pcst"><p><i class="fa fa-flask fa-fw"></i><span></span></p></div>
+				<div class="unit-33 intervs"><p><i class="fa fa-briefcase fa-fw"></i><span></span></p></div>
+			</div>
+		</li>
+</ul>
 
 <div class="panel">
 	<nav class="nav-tabs" data-tools="tabs" data-equals="true" style="padding-left: 25px;">
@@ -118,7 +164,7 @@
 						<td> <a href="tel:{{ entity.stagiaire.tel }}">{{ entity.stagiaire.tel }}</a></td>
 						<td> <a href="mailto:{{ entity.stagiaire.mail }}">{{ entity.stagiaire.mail }}</a></td>
 						<td> <a href="mailto:{{ (entity.admin)? entity.admin.mail }}">{{ (entity.admin)? entity.admin.mail }}</a></td>
-						<td class="inscformule"><span><abbr title="{{ entity.formationFormule.formule }}">{{ entity.formationFormule.formule.tarif }} {{ (entity.formationFormule.formule.nuit)? "<i class='fa fa-moon-o'></i>" }}</abbr></span></td>
+						<td class="inscformule" data-idformule="{{ entity.formationFormule.formule.id }}"><span><abbr title="{{ entity.formationFormule.formule }}">{{ entity.formationFormule.formule.tarif }} {{ (entity.formationFormule.formule.nuit)? "<i class='fa fa-moon-o'></i>" }}</abbr></span></td>
 						<td class="text-centered tdfinancement">
 							{% if entity.statutConvention is null %}
 							<span class="label label-yellow" title="Ne sais pas"><i class="fa fa-question"></i></span>

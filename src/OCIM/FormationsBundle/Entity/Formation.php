@@ -12,9 +12,9 @@ use OCIM\FormationsBundle\Entity\ModeleChampPerso;
  */
 class Formation
 {
-	
+
 	protected $type;
-	
+
     /**
      * @var integer
      */
@@ -54,7 +54,7 @@ class Formation
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -77,7 +77,7 @@ class Formation
     /**
      * Get intitule
      *
-     * @return string 
+     * @return string
      */
     public function getIntitule()
     {
@@ -100,7 +100,7 @@ class Formation
     /**
      * Get lieu
      *
-     * @return string 
+     * @return string
      */
     public function getLieu()
     {
@@ -123,7 +123,7 @@ class Formation
     /**
      * Get dateDebut
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateDebut()
     {
@@ -146,7 +146,7 @@ class Formation
     /**
      * Get dateFin
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateFin()
     {
@@ -169,7 +169,7 @@ class Formation
     /**
      * Get dateText
      *
-     * @return string 
+     * @return string
      */
     public function getDateText()
     {
@@ -192,7 +192,7 @@ class Formation
     /**
      * Get nbHeures
      *
-     * @return integer 
+     * @return integer
      */
     public function getNbHeures()
     {
@@ -215,7 +215,7 @@ class Formation
     /**
      * Get type
      *
-     * @return \OCIM\FormationsBundle\Entity\TypeFormation 
+     * @return \OCIM\FormationsBundle\Entity\TypeFormation
      */
     public function getType()
     {
@@ -245,7 +245,7 @@ class Formation
     {
         $this->formationFormule = new \Doctrine\Common\Collections\ArrayCollection();
         $this->modeles = new \Doctrine\Common\Collections\ArrayCollection();
-		
+
     }
 
     /**
@@ -275,13 +275,13 @@ class Formation
     /**
      * Get formationFormule
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getFormationFormule()
     {
         return $this->formationFormule;
     }
-	
+
 	public function getFormules()
     {
 		$formules = new ArrayCollection();
@@ -322,37 +322,37 @@ class Formation
     /**
      * Get intervenants
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getIntervenants()
     {
         return $this->intervenants;
     }
-	
+
 	public function getModeles(){
 		return $this->modeles;
 	}
-	
+
 	public function addModele(\OCIM\FormationsBundle\Entity\ModeleChampPerso $ml)
     {
 		$this->modeles[] = $ml;
         return $this;
     }
-	
+
 	public function removeModele(\OCIM\FormationsBundle\Entity\ModeleChampPerso $ml)
     {
-        $this->modeles->removeElement($ml);	
+        $this->modeles->removeElement($ml);
     }
-	
+
 	public function setModeles(ArrayCollection $modeles){
 		$this->modeles = $modeles;
-		
+
 		foreach($this->modeles as $modele){
 			if($modele->getFormation() != null){
 				$modele->setIntervenant(true);
 			}
 		}
-		
+
 		return $this;
 	}
     /**
@@ -387,7 +387,7 @@ class Formation
     /**
      * Get modelesIntervenants
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getModelesIntervenants()
     {
@@ -415,7 +415,7 @@ class Formation
     /**
      * Get nbJours
      *
-     * @return string 
+     * @return string
      */
     public function getNbJours()
     {

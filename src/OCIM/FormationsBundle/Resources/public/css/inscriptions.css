@@ -149,3 +149,33 @@ border-left: 1px solid #CECACA;
 	background-color: white ! important;
 	margin-top:58px !important;
 }
+
+/* comptes */
+ul#comptes li{
+	height: 60px;
+}
+ul#comptes li p{
+	text-align: center;
+	margin:0px;
+	font-variant: small-caps;
+	color: #999;
+	font-weight: 600
+}
+ul#comptes li div{
+	height: 50px;
+}
+ul#comptes li div>div{
+	background-color: white;
+	border-right: 1px solid #EDE6E6;
+}
+ul#comptes li div>div.attente{background-color: rgba(255,165,0, 0.3);}
+ul#comptes li div>div.valide{background-color: rgba(3, 207, 3,  0.3);}
+ul#comptes li div>div.annule{background-color: rgba(255, 54, 0, 0.3);}
+ul#comptes li div > p {
+  font-size: 30px;
+  color: rgb(131, 130, 130);
+  line-height: 50px;
+}
+ul#comptes li div>div:last-child{
+	border-right: 0px
+}
