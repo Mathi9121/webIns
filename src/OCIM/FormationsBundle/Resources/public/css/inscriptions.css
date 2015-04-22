@@ -163,6 +163,8 @@ ul#comptes li p{
 }
 ul#comptes li div{
 	height: 50px;
+	overflow: hidden;
+	cursor: default;
 }
 ul#comptes li div>div{
 	background-color: white;

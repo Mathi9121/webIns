@@ -89,7 +89,20 @@ function compteurs(){
   $('#comptes li.totaux div.intervs p span').text(intervs);
   $('#comptes li.totaux div.pcst p span').text(pcst);
 
-
+  //formules
+  $("#comptes li.formule div>p").each(function(){
+    var id = $(this).attr('data-idformule');
+    var elem = $("<p></p>").text($('#general table tbody td.inscformule').filter("[data-idformule="+id+"]").length).hide();
+    $(this).parent().append(elem);
+  });
+  $("#comptes li.formule div").hover(
+    function(){
+      $(this).children('p').slideToggle('fast');
+    },
+    function(){
+      $(this).children('p').slideToggle("fast");
+    }
+  );
 }
 
 function changeStatutInscription(data){
@@ -111,9 +124,9 @@ function changeStatutInscription(data){
 
     $("tr[data-idinscription="+data['0']['idinscription']+"]").removeClass('attente').removeClass('valide').removeClass('annule').addClass(classStatut);
 
-  }).fail(function(){
-    alert("Erreur pendant l'enregistrement ! Rechargez la page.");
-  });
+    }).fail(function(){
+      alert("Erreur pendant l'enregistrement ! Rechargez la page.");
+    });
 
 }
 function changeStatutConvention(data){

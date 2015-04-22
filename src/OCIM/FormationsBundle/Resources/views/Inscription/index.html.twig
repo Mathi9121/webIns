@@ -73,12 +73,12 @@
 				<div class="unit-33 annule"><p></p></div>
 			</div>
 		</li>
-		<li>
+		<li class="formule">
 			<p>Formules</p>
 			<div class="units-row units-split">
 				{% for formule in formation.formules %}
 					<div class="unit-{{ (100/formation.formules.count)|round(0, 'floor') }}">
-						<p>{{ (formule.nuit)? "<i class='fa fa-moon-o'></i>" }}{{formule.tarif}}{{ (formule.tarif|number_format)? "€" }}</p>
+						<p data-idformule="{{formule.id}}">{{ (formule.nuit)? "<i class='fa fa-moon-o'></i>" }}{{formule.tarif}}{{ (formule.tarif|number_format)? "€" }}</p>
 					</div>
 				{% endfor %}
 			</div>
