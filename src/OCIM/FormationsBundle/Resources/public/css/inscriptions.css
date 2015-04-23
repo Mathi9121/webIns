@@ -27,10 +27,13 @@ td.handle{color: #6f6f6f; cursor: move}
 td.champPerso{cursor: pointer; text-align:center;}
 td.undefined{cursor: not-allowed; background-color: rgba(125,125,125, 0.2)}
 td.champPerso[data-type="text"]{cursor: text}
+td.nuit, th.nuit {
+	font-weight: bold;
+}
 
 span.champPerso{
-	font-weight: bold;
 	text-shadow: 0 0 2px #FFFFFF;
+	font-size: 16pt;
 }
 span.champPerso.ok{ color: rgba(3, 207, 3,  1);}
 span.champPerso.zero{color: rgba(255, 54, 0, 1);}

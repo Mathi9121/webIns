@@ -267,7 +267,7 @@
 				<th class="insc info"><span>Nom</span></th>
 				<th class="insc info"><span>Prénom</span></th>
 				{% for log in champPerso %}
-					<th>{{(log.date is not null)? log.date|date('d/m')}} {{log.description}}</th>
+					<th class="{{("Nuit" in log.description)or("nuit" in log.description)? "nuit"}}">{{(log.date is not null)? log.date|date('d/m')}} {{log.description}}</th>
 				{% endfor %}
 			</tr>
 		</thead>
@@ -290,7 +290,7 @@
 					{% for log in champPerso %}
 						{% if log.formationformule|length > 0 %}
 							{% if entity.formationFormule in log.formationFormule %}
-								<td class="champPerso" data-type="{{log.typeReponse}}" data-idreponse="{{ (attribute(entity.stagiaire, 'getReponseByModeleId', [log.id]))? attribute(entity.stagiaire, 'getReponseByModeleId', [log.id]).id }}" data-date="{{log.date|date('')}}" data-idmodele="{{log.id}}" data-reponse="{{attribute(entity.stagiaire, 'getReponseByModeleId', [log.id, log.typeReponse]) }}">
+								<td class="champPerso {{("Nuit" in log.description)or("nuit" in log.description)? "nuit"}}" data-type="{{log.typeReponse}}" data-idreponse="{{ (attribute(entity.stagiaire, 'getReponseByModeleId', [log.id]))? attribute(entity.stagiaire, 'getReponseByModeleId', [log.id]).id }}" data-date="{{log.date|date('')}}" data-idmodele="{{log.id}}" data-reponse="{{attribute(entity.stagiaire, 'getReponseByModeleId', [log.id, log.typeReponse]) }}">
 									{% if attribute(entity.stagiaire, 'getReponseByModeleId', [log.id]) %}
 										{% if log.typeReponse == 'bool' %}
 											{% if (attribute(entity.stagiaire, 'getReponseByModeleId', [log.id, log.typeReponse]) == '1') %}
@@ -347,7 +347,7 @@
 			<td colspan="2">Totaux</td>
 			{% for log in champPerso %}
 					{% if log.typeReponse == 'bool' %}
-						<td data-typereponse="{{log.typeReponse}}"></td>
+						<td class="{{("Nuit" in log.description)or("nuit" in log.description)? "nuit"}}" data-typereponse="{{log.typeReponse}}"></td>
 					{% else %}
 						<td style="background-color: rgba(125,125,125, 0.2)"></td>
 					{% endif %}
