@@ -66,17 +66,17 @@ function compteurs(){
   $('#comptes li.statuts div.annule p').first().text(Sannule);
 
   //conventions
-  var Cattente  = $("#general .tdfinancement span.label-yellow").length;
-  var Cvalide  = $("#general .tdfinancement span.label-green").length;
-  var Cannule  = $("#general .tdfinancement span.label-red").length;
+  var Cattente  = $("#general tr.statut.valide .tdfinancement span.label-yellow").length;
+  var Cvalide  = $("#general tr.statut.valide .tdfinancement span.label-green").length;
+  var Cannule  = $("#general tr.statut.valide .tdfinancement span.label-red").length;
   $('#comptes li.conventions div.attente p').first().text(Cattente);
   $('#comptes li.conventions div.valide p').first().text(Cvalide);
   $('#comptes li.conventions div.annule p').first().text(Cannule);
 
-  //finanement
-  var Fattente  = $("#financement span.label-yellow").length;
-  var Fvalide  = $("#financement span.label-green").length;
-  var Fannule  = $("#financement span.label-red").length;
+  //financement
+  var Fattente  = $("#financement tr.statut.valide span.label-yellow").length;
+  var Fvalide  = $("#financement tr.statut.valide span.label-green").length;
+  var Fannule  = $("#financement tr.statut.valide span.label-red").length;
   $('#comptes li.financement div.attente p').first().text(Fattente);
   $('#comptes li.financement div.valide p').first().text(Fvalide);
   $('#comptes li.financement div.annule p').first().text(Fannule);
@@ -92,7 +92,7 @@ function compteurs(){
   //formules
   $("#comptes li.formule div>p").each(function(){
     var id = $(this).attr('data-idformule');
-    var elem = $("<p></p>").text($('#general table tbody td.inscformule').filter("[data-idformule="+id+"]").length).hide();
+    var elem = $("<p></p>").text($('#general table tbody tr.statut.valide td.inscformule').filter("[data-idformule="+id+"]").length).hide();
     $(this).parent().append(elem);
   });
   $("#comptes li div").hover(

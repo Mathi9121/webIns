@@ -56,10 +56,10 @@
 
 {% if entities != null %}
 {# indicateurs #}
-<ul id="comptes" class="blocks-5">
+<ul id="comptes" class="blocks-5 padding">
 		<li class="statuts">
 		<p>Inscriptions</p>
-			<div class="units-row units-split">
+			<div class="units-row units-split end">
 				<div class="unit-33 valide"><p></p><p style="display:none" class="aide">Validés</p></div>
 				<div class="unit-33 attente"><p></p><p style="display:none" class="aide">En attente</p></div>
 				<div class="unit-33 annule"><p></p><p style="display:none" class="aide">Annulés</p></div>
@@ -67,33 +67,36 @@
 		</li>
 		<li class="financement">
 			<p>Financement</p>
-			<div class="units-row units-split">
+			<div class="units-row units-split end">
 				<div class="unit-33 valide"><p></p><p style="display:none" class="aide">Acceptés</p></div>
 				<div class="unit-33 attente"><p></p><p style="display:none" class="aide">En attente</p></div>
-				<div class="unit-33 annule"><p></p><p style="display:none" class="aide">Annulés</p></div>
+				<div class="unit-33 annule"><p></p><p style="display:none" class="aide">Pas de financement</p></div>
 			</div>
+			<p class="info">Totaux sur les inscriptions <span style="color:rgba(3, 207, 3,  0.8)">validées</span></p>
 		</li>
 		<li class="formule">
 			<p>Formules</p>
-			<div class="units-row units-split">
+			<div class="units-row units-split end">
 				{% for formule in formation.formules %}
 					<div class="unit-{{ (100/formation.formules.count)|round(0, 'floor') }}">
 						<p data-idformule="{{formule.id}}">{{ (formule.nuit)? "<i class='fa fa-moon-o'></i>" }}{{formule.tarif}}{{ (formule.tarif|number_format)? "€" }}</p>
 					</div>
 				{% endfor %}
 			</div>
+			<p class="info">Totaux sur les inscriptions <span style="color:rgba(3, 207, 3,  0.8)">validées</span></p>
 		</li>
 		<li  class="conventions">
 			<p>Conventions</p>
-			<div class="units-row units-split">
-				<div class="unit-33 valide"><p></p><p style="display:none" class="aide">Demandés</p></div>
-				<div class="unit-33 attente"><p></p><p style="display:none" class="aide">En attente</p></div>
-				<div class="unit-33 annule"><p></p><p style="display:none" class="aide">Non conventionnés</p></div>
+			<div class="units-row units-split end">
+				<div class="unit-33 valide"><p></p><p style="display:none" class="aide">Demandées</p></div>
+				<div class="unit-33 attente"><p></p><p style="display:none" class="aide">Ne sais pas</p></div>
+				<div class="unit-33 annule"><p></p><p style="display:none" class="aide">Pas de convention</p></div>
 			</div>
+			<p class="info">Totaux sur les inscriptions <span style="color:rgba(3, 207, 3,  0.8)">validées</span></p>
 		</li>
 		<li class="totaux">
 			<p>Divers</p>
-			<div class="units-row units-split">
+			<div class="units-row units-split end">
 				<div class="unit-33 users"><p><i class="fa fa-user fa-fw"></i><span></span></p><p style="display:none" class="aide">Stagiaires</p></div>
 				<div class="unit-33 pcst"><p><i class="fa fa-flask fa-fw"></i><span></span></p><p style="display:none" class="aide">PCST</p></div>
 				<div class="unit-33 intervs"><p><i class="fa fa-briefcase fa-fw"></i><span></span></p><p style="display:none" class="aide">Intervenants</p></div>
@@ -161,7 +164,7 @@
 						<td> {{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.adresse }}</td>
 						<td> {{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.cP }}</td>
 						<td> {{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.ville }}</td>
-						<td> <a href="tel:{{ entity.stagiaire.tel }}">{{ entity.stagiaire.tel }}</a></td>
+						<td> {{ entity.stagiaire.tel }}</td>
 						<td> <a href="mailto:{{ entity.stagiaire.mail }}">{{ entity.stagiaire.mail }}</a></td>
 						<td> <a href="mailto:{{ (entity.admin)? entity.admin.mail }}">{{ (entity.admin)? entity.admin.mail }}</a></td>
 						<td class="inscformule" data-idformule="{{ entity.formationFormule.formule.id }}"><span><abbr title="{{ entity.formationFormule.formule }}">{{ entity.formationFormule.formule.tarif }} {{ (entity.formationFormule.formule.nuit)? "<i class='fa fa-moon-o'></i>" }}</abbr></span></td>
@@ -244,7 +247,7 @@
 						<td class="insc contact"><span>{{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.adresse }}</span></td>
 						<td class="insc contact"><span>{{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.CP }}</span></td>
 						<td class="insc contact"><span>{{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.ville }}</span></td>
-						<td class="insc contact"><a href="tel:{{ entity.stagiaire.tel }}">{{ entity.stagiaire.tel }}</a></td>
+						<td class="insc contact">{{ entity.stagiaire.tel }}</td>
 						<td class="insc contact"><a href="mailto:{{ entity.stagiaire.mail}}">{{ entity.stagiaire.mail}}</a></td>
       </tr>
         {% endfor %}
@@ -560,7 +563,7 @@
 						<td>{{ (intervenant.adresse is not null)? intervenant.adresse.adresse }}</td>
 						<td>{{ (intervenant.adresse is not null)? intervenant.adresse.cP }}</td>
 						<td>{{ (intervenant.adresse is not null)? intervenant.adresse.ville }}</td>
-						<td><a href="tel:{{ intervenant.tel }}">{{ intervenant.tel }}</a></td>
+						<td>{{ intervenant.tel }}</td>
 						<td><a href="mailto:{{ intervenant.mail }}">{{ intervenant.mail }}</a></td>
 						<td>{{ (intervenant.adresse is not null)? intervenant.adresse.tags|join(', ') }}</td>
 						<td>{{ intervenant.commentaire }}</td>

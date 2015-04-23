@@ -152,7 +152,7 @@ border-left: 1px solid #CECACA;
 
 /* comptes */
 ul#comptes li{
-	height: 60px;
+	margin-bottom: 0px
 }
 ul#comptes li p{
 	text-align: center;
@@ -170,9 +170,9 @@ ul#comptes li div>div{
 	background-color: white;
 	border-right: 1px solid #EDE6E6;
 }
-ul#comptes li div>div.attente{background-color: rgba(255,165,0, 0.3);}
-ul#comptes li div>div.valide{background-color: rgba(3, 207, 3,  0.3);}
-ul#comptes li div>div.annule{background-color: rgba(255, 54, 0, 0.3);}
+ul#comptes li.statuts div>div.attente{background-color: rgba(255,165,0, 0.3);}
+ul#comptes li.statuts div>div.valide{background-color: rgba(3, 207, 3,  0.3);}
+ul#comptes li.statuts div>div.annule{background-color: rgba(255, 54, 0, 0.3);}
 ul#comptes li div > p {
   font-size: 30px;
   color: rgb(131, 130, 130);
@@ -187,4 +187,13 @@ ul#comptes li div > p.aide {
 	line-height: 16px;
 	margin-top: 8px;
 	text-align:center;
+}
+ul#comptes li div>div.attente p{color: rgba(255,165,0, 0.8);}
+ul#comptes li div>div.valide p{color: rgba(3, 207, 3,  0.8);}
+ul#comptes li div>div.annule p{color: rgba(255, 54, 0, 0.8);}
+
+ul#comptes li p.info{
+	font-variant: none;
+	font-size: 8pt;
+	font-style: italic;
 }

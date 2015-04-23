@@ -140,13 +140,18 @@ $(document).ready(function() {
                     {% endif %}
                   </td>
                   <td>
+                    {% if entity.inscription.count != 0 %}
                     {% if (entity.type == "stagiaire")and(entity.inscription.0.signataire is not null)and(entity.inscription.0.signataire.adresse is not null) %}
                       {{ entity.inscription.0.signataire.adresse.nomStructure }}
                     {% endif %}
+                    {% endif %}
+
                   </td>
                   <td>
+                    {% if entity.inscription.count != 0 %}
                     {% if (entity.type == "stagiaire")and(entity.inscription.0.signataire is not null)and(entity.inscription.0.signataire.adresse is not null)and(entity.inscription.0.signataire.adresse.type is not null) %}
                       {{ entity.inscription.0.signataire.adresse.type.type }}
+                    {% endif %}
                     {% endif %}
                   </td>
                   <td>
@@ -155,18 +160,20 @@ $(document).ready(function() {
                     {% endif %}
                   </td>
                   <td>
-  						      <a href="
-                      {% if(entity.type == 'intervenant') %}
-                        {{ path('personne_show', { 'id': entity.id }) }}
-                      {% else %}
-                        {{ path('inscription_show', { 'idformation': entity.inscription.0.id ,'id': entity.inscription.0.id, 'type':entity.type}) }}#{{entity.type}}
-                      {% endif %}
-                      ">
-                      <span class="fa-stack">
-                        <i class="fa fa-square fa-stack-2x"></i>
-                        <i class="fa fa-info fa-stack-1x fa-inverse"></i>
-                      </span>
-                    </a>
+                    {% if entity.inscription.count != 0 %}
+    						      <a href="
+                        {% if(entity.type == 'intervenant') %}
+                          {{ path('personne_show', { 'id': entity.id }) }}
+                        {% else %}
+                          {{ path('inscription_show', { 'idformation': entity.inscription.0.id ,'id': entity.inscription.0.id, 'type':entity.type}) }}#{{entity.type}}
+                        {% endif %}
+                        ">
+                        <span class="fa-stack">
+                          <i class="fa fa-square fa-stack-2x"></i>
+                          <i class="fa fa-info fa-stack-1x fa-inverse"></i>
+                        </span>
+                      </a>
+                    {% endif %}
                     {% if(entity.type == 'intervenant') %}
                       <a href="{{path('intervenants_edit', {'id': entity.id})}}">
                         <span class="fa-stack">
