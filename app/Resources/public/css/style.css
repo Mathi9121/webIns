@@ -288,7 +288,7 @@ h1, h2, h3, h4, h5, h6{color: #777777 }
 form[action$="delete"]{margin-bottom: 0px}
 
 .tools-message{
-	display:block;
+	/*display:block;*/
 	top: auto;
 	bottom: 25px;
 	max-width: 700px;

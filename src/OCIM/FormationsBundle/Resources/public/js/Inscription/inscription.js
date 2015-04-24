@@ -5,6 +5,10 @@ $(document).ready(function(){
 
 	// on fige la taille de l'entete du tableau à l'aide du plugin stickytableheaders
 	$('table').stickyTableHeaders();
+	$('.table-container').on('scroll', function(){
+		$('table').stickyTableHeaders({fixedOffsetY: $(this).scrollLeft()});
+	});
+
 
 	// sortable ui.
 	$('table tbody').sortable({

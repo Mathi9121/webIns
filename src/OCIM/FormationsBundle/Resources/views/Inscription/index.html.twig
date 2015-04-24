@@ -49,6 +49,8 @@
 
 
 {% block body -%}
+<div id="message-error" class="tools-message tools-message-red disabledonload">ATTENTION : Erreur lors de l'enregistrement ! Veuillez recharger la page.</div>
+<div id="message-save" class="tools-message tools-message-green disabledonload">Enregistrement OK</div>
 <div id="lienAjax" class="hide">{{ path('inscription_edit_ordre', {'idformation': formation.id}) }}</div>
 <div id="updateconvention" class="hide">{{ path('inscription_update_statut_convention', {'idformation': formation.id}) }}</div>
 <div id="updateinscription" class="hide">{{ path('inscription_update_statut_inscription', {'idformation': formation.id}) }}</div>

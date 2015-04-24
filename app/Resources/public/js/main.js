@@ -101,9 +101,9 @@ $(document).ready(function(){
 	});
 
 	//flash message
-	$(".tools-message").css('right', ($(document).width()/2)-($(".tools-message").width()/2)+"px");
-	$(".tools-message").css('display', 'block');
-	$(".tools-message").delay(5000).hide('medium');
+	$(".tools-message:not(.disabledonload)").css('right', ($(document).width()/2)-($(".tools-message").width()/2)+"px");
+	$(".tools-message:not(.disabledonload)").message();
+
 
 	//copie des boutons du footer
 	var btnsave = $("#footer").find(".btn-save").clone(true);
