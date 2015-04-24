@@ -9,7 +9,5 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Stagiaire extends Personne
 {
-	public function __construct(){
-		parent::__construct('stagiaire');
-	}
+
 }

@@ -12,6 +12,7 @@ use OCIM\FormationsBundle\Form\FinancementType;
 use OCIM\ContactsBundle\Entity\Signataire;
 use OCIM\ContactsBundle\Entity\Intervenant;
 use OCIM\ContactsBundle\Entity\Adresse;
+use OCIM\FormationsBundle\Entity\ReponsesChampPerso;
 
 
 
@@ -84,7 +85,6 @@ class InscriptionController extends Controller
         $inscription->removePersonne($personne);
       }
     }
-    $em->remove($inscription);
 
     $intervenant  = new Intervenant();
     $adresse = new Adresse();
@@ -114,13 +114,26 @@ class InscriptionController extends Controller
     $formation->addIntervenant($intervenant);
 
     foreach($stagiaire->getReponsesChampPerso() as $rep){
-      $rep->setPersonne($intervenant);
-      $em->persist($rep);
+      //copie des infos logistique que si le modele est applicable aux intervenants
+      if(!is_null($rep->getModele()->getFormation())){
+        $_r = new ReponsesChampPerso();
+        $_r->setReponse($rep->getReponse());
+        $_r->setReponseText($rep->getReponseText());
+        $_r->setDate($rep->getDate());
+        $_r->setModele($rep->getModele());
+        $_r->setPersonne($intervenant);
+        $em->persist($_r);
+      }
+
+      $em->remove($rep);
     }
 
     $em->persist($intervenant);
     $em->persist($adresse);
     $em->persist($formation);
+
+    //suppression
+    $em->remove($inscription);
 
     $em->flush();
 

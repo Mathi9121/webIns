@@ -9,7 +9,5 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Admin extends Personne
 {
-	public function __construct(){
-		parent::__construct('admin');
-	}
+
 }

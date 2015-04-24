@@ -5,5 +5,4 @@ OCIM\ContactsBundle\Entity\Intervenant:
         targetEntity: OCIM\FormationsBundle\Entity\Formation
         mappedBy: intervenants
     table: null
-    lifecycleCallbacks:
-        postLoad: [__construct]
+    lifecycleCallbacks: {}

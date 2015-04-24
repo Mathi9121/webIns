@@ -9,7 +9,5 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Signataire extends Personne
 {
-	public function __construct(){
-		parent::__construct('signataire');
-	}
+	
 }

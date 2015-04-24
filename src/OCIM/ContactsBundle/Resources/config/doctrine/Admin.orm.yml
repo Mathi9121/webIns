@@ -1,5 +1,4 @@
 OCIM\ContactsBundle\Entity\Admin:
     type: entity
     table: null
-    lifecycleCallbacks:
-        postLoad: [__construct]
+    lifecycleCallbacks: {}

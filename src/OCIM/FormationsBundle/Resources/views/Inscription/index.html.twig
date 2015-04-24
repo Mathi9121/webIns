@@ -322,7 +322,7 @@
 				<td class="insc info">{{intervenant.prenom}}</td>
 				{% for log in champPerso %}
 					{% if log.formation %}
-						<td class="champPerso" data-type="{{log.typeReponse}}" data-idreponse="{{ (attribute(intervenant, 'getReponseByModeleId', [log.id]))? attribute(intervenant, 'getReponseByModeleId', [log.id]).id }}" data-date="{{log.date|date('')}}" data-idmodele="{{log.id}}" data-reponse="{{attribute(intervenant, 'getReponseByModeleId', [log.id, log.typeReponse]) }}">
+						<td class="champPerso {{("Nuit" in log.description)or("nuit" in log.description)? "nuit"}}" data-type="{{log.typeReponse}}" data-idreponse="{{ (attribute(intervenant, 'getReponseByModeleId', [log.id]))? attribute(intervenant, 'getReponseByModeleId', [log.id]).id }}" data-date="{{log.date|date('')}}" data-idmodele="{{log.id}}" data-reponse="{{attribute(intervenant, 'getReponseByModeleId', [log.id, log.typeReponse]) }}">
 							{% if attribute(intervenant, 'getReponseByModeleId', [log.id]) %}
 								{% if log.typeReponse == 'bool' %}
 									{% if (attribute(intervenant, 'getReponseByModeleId', [log.id, log.typeReponse]) == '1') %}

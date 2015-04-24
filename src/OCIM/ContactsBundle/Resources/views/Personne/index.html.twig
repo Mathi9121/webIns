@@ -140,19 +140,14 @@ $(document).ready(function() {
                     {% endif %}
                   </td>
                   <td>
-                    {% if entity.inscription.count != 0 %}
                     {% if (entity.type == "stagiaire")and(entity.inscription.0.signataire is not null)and(entity.inscription.0.signataire.adresse is not null) %}
                       {{ entity.inscription.0.signataire.adresse.nomStructure }}
                     {% endif %}
-                    {% endif %}
-
                   </td>
                   <td>
-                    {% if entity.inscription.count != 0 %}
-                    {% if (entity.type == "stagiaire")and(entity.inscription.0.signataire is not null)and(entity.inscription.0.signataire.adresse is not null)and(entity.inscription.0.signataire.adresse.type is not null) %}
-                      {{ entity.inscription.0.signataire.adresse.type.type }}
-                    {% endif %}
-                    {% endif %}
+                      {% if (entity.type == "stagiaire")and(entity.inscription.0.signataire is not null)and((entity.inscription.0.signataire.adresse is not null)and(entity.inscription.0.signataire.adresse.type is not null)) %}
+                        {{ entity.inscription.0.signataire.adresse.type.type }}
+                      {% endif %}
                   </td>
                   <td>
                     {% if (entity.adresse is not null)and(entity.adresse.tags|length > 0) %}
@@ -160,7 +155,6 @@ $(document).ready(function() {
                     {% endif %}
                   </td>
                   <td>
-                    {% if entity.inscription.count != 0 %}
     						      <a href="
                         {% if(entity.type == 'intervenant') %}
                           {{ path('personne_show', { 'id': entity.id }) }}
@@ -173,7 +167,6 @@ $(document).ready(function() {
                           <i class="fa fa-info fa-stack-1x fa-inverse"></i>
                         </span>
                       </a>
-                    {% endif %}
                     {% if(entity.type == 'intervenant') %}
                       <a href="{{path('intervenants_edit', {'id': entity.id})}}">
                         <span class="fa-stack">

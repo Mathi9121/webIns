@@ -3,6 +3,7 @@
 namespace OCIM\ContactsBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Personne
@@ -200,18 +201,10 @@ class Personne
     }
 
 
-
-    public function setType($type = null)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-
     public function getType()
     {
-        return $this->type;
+        $Rclass = new \ReflectionClass($this);
+        return strtolower($Rclass->getShortName());
     }
 
     /**
@@ -312,8 +305,8 @@ class Personne
      */
     public function __construct($type = null)
     {
-        $this->intervenant = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->inscription = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->intervenant = new ArrayCollection();
+        $this->inscription = new ArrayCollection();
 		    $this->type = $type;
     }
 

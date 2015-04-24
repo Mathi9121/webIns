@@ -25,6 +25,10 @@ class PersonneController extends Controller
 
         $entities = $em->getRepository('OCIMContactsBundle:Personne')->findAll();
 
+        // foreach($entity in $entities){
+        //
+        // }
+
         return $this->render('OCIMContactsBundle:Personne:index.html.twig', array(
             'entities' => $entities,
         ));
