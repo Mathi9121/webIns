@@ -428,7 +428,7 @@ class Personne
 				return $reponse;
 			}
 		}
-		else return 0;
+		else return null;
 	}
 
   public function getCivilitepretty(){

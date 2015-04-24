@@ -10,7 +10,7 @@ $(document).ready(function(){
 
 		// les variables utiles à lenregistrement ajax
 		var type = $(this).attr('data-type');
-		var reponse = $(this).attr('data-reponse');
+		var reponse = $.trim($(this).attr('data-reponse'));
 		var idmodele = $(this).attr('data-idmodele');
 		var idpersonne = $(this).parent('tr').attr('data-idpersonne');
 		var idreponse = $(this).attr('data-idreponse');
@@ -21,8 +21,8 @@ $(document).ready(function(){
 			'type' : type,
 			'reponse' : reponse,
 			'idmodele' : idmodele,
-		    'idpersonne' : idpersonne,
-		    'idreponse' : idreponse,
+	    'idpersonne' : idpersonne,
+	    'idreponse' : idreponse,
 			});
 
 		// on met un icone dans la case pour montrer le chargement
@@ -63,17 +63,21 @@ function enregistre(data, td){
 		$(td).attr('data-idreponse', msg[0].idreponse);
 
 
-		console.log(msg);
-		console.log(td);
+		console.log(msg[0].reponse);
 
 		if(msg[0].type == 'bool'){
-			if(msg[0].reponse){
+			if(msg[0].reponse == true){
 				$(td).attr('data-reponse', 1);
 				$(td).html('<span class="champPerso ok">1</span>');
 			}
-			else{
+			else if(msg[0].reponse == false){
 				$(td).attr('data-reponse', 0);
 				$(td).html('<span class="champPerso zero">0</span>');
+			}
+			else{
+				$(td).attr('data-reponse', '');
+				$(td).html('<span class="champPerso"></span>');
+				$(td).attr('idreponse', '');
 			}
 		}
 		else{
@@ -92,8 +96,9 @@ function enregistre(data, td){
 
 
 	})
-	.error(function() {
+	.error(function(msg) {
 		$('#message-error').message({'delay': 10});
+		console.log(msg);
 	});
 
 }
@@ -105,7 +110,9 @@ function initTotaux(){
 			var index = i;
 
 			$("#champPerso").find('tbody tr').each(function(j){
-				to += parseInt($(this).find('td').eq(index).attr('data-reponse'));
+				var nb = parseInt($(this).find('td').eq(index).attr('data-reponse'));
+				nb = (isNaN(nb))? 0 : nb;
+				to += nb;
 			});
 			count.push(to);
 		});

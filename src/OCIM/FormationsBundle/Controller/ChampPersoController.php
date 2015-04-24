@@ -64,15 +64,19 @@ class ChampPersoController extends Controller
 
 			$reponseChampPerso = new ReponsesChampPerso();
 			// un objet ReponseChampPerso existe
-			if($data[0]->idreponse){
+			if(!empty($data[0]->idreponse)){
 				$reponseChampPerso = $em->getRepository('OCIMFormationsBundle:ReponsesChampPerso')->find($data[0]->idreponse);
 			}
 
 			// construction et enregistrement de la nouvelle reponse
 			$nouvelleReponse;
+
 		 	if($data[0]->type == "bool"){
-				$nouvelleReponse = (($data[0]->reponse == "0") OR ($data[0]->reponse == ""))? true : false;
-				$reponseChampPerso->setReponse($nouvelleReponse);
+				$nouvelleReponse = ($data[0]->reponse == "")? true : (($data[0]->reponse == "0")? null : false);
+				if(is_null($nouvelleReponse)){
+          $em->remove($reponseChampPerso);
+        }
+        $reponseChampPerso->setReponse($nouvelleReponse);
 			}
 			elseif($data[0]->type == "text"){
 				$nouvelleReponse = $data[0]->reponse;
