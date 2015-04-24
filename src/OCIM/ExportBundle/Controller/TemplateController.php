@@ -24,12 +24,36 @@ class TemplateController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('OCIMExportBundle:Template')->findAll();
+        $entities = $em->getRepository('OCIMExportBundle:Template')->findBy( array(), array('ordre'=> "ASC"));
 
         return $this->render('OCIMExportBundle:Template:index.html.twig', array(
             'entities' => $entities,
         ));
     }
+
+    public function majOrdreAction(Request $request){
+      // test ajax
+      if($request->isXmlHttpRequest()){
+        //recuperation du tableau
+        $order = $request->getContent();
+        $order = json_decode($order);
+
+        $ids = array_map( function($c){ return $c->id; } , $order);
+
+        $em = $this->getDoctrine()->getManager();
+        $templates = $em->getRepository('OCIMExportBundle:Template')->findById($ids);
+
+        foreach($templates as &$obj){
+          $obj->setOrdre((array_search($obj->getId(), $ids)+1));
+        }
+
+        $em->flush();
+
+        return new Response();
+
+      }
+    }
+
     /**
      * Creates a new Template entity.
      *
@@ -59,7 +83,7 @@ class TemplateController extends Controller
       if($request->isXmlHttpRequest()){
         $idinscription = $request->getContent();
         $em = $this->getDoctrine()->getManager();
-        $liens = $em->getRepository('OCIMExportBundle:Template')->findAll();
+        $liens = $em->getRepository('OCIMExportBundle:Template')->findBy( array(), array('ordre'=> "ASC"));
 
         //$router = $this->get('router');
 

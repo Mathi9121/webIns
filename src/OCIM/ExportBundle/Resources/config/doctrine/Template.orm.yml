@@ -25,4 +25,8 @@ OCIM\ExportBundle\Entity\Template:
         contenu:
             type: text
             nullable: true
+        ordre:
+            type: integer
+            options:
+                default: 0
     lifecycleCallbacks: { prePersist: [onPrePersist] }

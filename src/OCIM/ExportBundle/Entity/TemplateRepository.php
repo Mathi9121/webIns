@@ -18,7 +18,7 @@ class TemplateRepository extends EntityRepository
         "SELECT t.id, t.nom FROM OCIMExportBundle:Template t
         WHERE t.type = 'pdf'
         OR t.type = 'convention'
-        ORDER BY t.id DESC"
+        ORDER BY t.ordre ASC"
       )
       ->getResult();
   }

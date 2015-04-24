@@ -168,4 +168,33 @@ class Template
     public function onPrePersist() {
         $this->date = new \DateTime("now");
     }
+    /**
+     * @var integer
+     */
+    private $ordre = 0;
+
+
+    /**
+     * Set ordre
+     *
+     * @param integer $ordre
+     *
+     * @return Template
+     */
+    public function setOrdre($ordre)
+    {
+        $this->ordre = $ordre;
+
+        return $this;
+    }
+
+    /**
+     * Get ordre
+     *
+     * @return integer
+     */
+    public function getOrdre()
+    {
+        return $this->ordre;
+    }
 }

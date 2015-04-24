@@ -34,7 +34,9 @@ filter='cssrewrite' %}
 {% endblock %}
 
 {% block body -%}
-
+<div class="hide" id="save-order">{{path('document_maj_ordre')}}</div>
+<div id="alert-success" class="tools-message tools-message-green disabledonload">Ordre sauvegardé   ;)</div>
+<div id="alert-error" class="tools-message tools-message-red disabledonload">Problème lors de l'enregistrement !</div>
 <div class="panel">
   <div class="header">
   </div>
@@ -50,8 +52,8 @@ filter='cssrewrite' %}
         </thead>
         <tbody>
         {% for entity in entities %}
-            <tr>
-                <td>{{ entity.nom }}</td>
+            <tr class="sortable" data-template-id="{{entity.id}}" data-template-ordre="{{entity.ordre}}">
+                <td><i class="fa fa-reorder fa-fw" style="cursor: move"></i> {{ entity.nom }}</td>
                 <td>
                   {% if entity.type == "pdf" %}
                     <i class="fa fa-file-pdf-o fa-fw"></i> Pdf

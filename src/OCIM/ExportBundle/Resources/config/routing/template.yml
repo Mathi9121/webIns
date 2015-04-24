@@ -48,3 +48,7 @@ documents_exportfrompreview:
     path:     /exportpreview
     defaults: { _controller: "OCIMExportBundle:Template:exportfrompreview" }
     requirements: {_method: post}
+document_maj_ordre:
+    path: /maj-order
+    defaults: { _controller: "OCIMExportBundle:Template:majOrdre"}
+    requirements: { _method: post }
