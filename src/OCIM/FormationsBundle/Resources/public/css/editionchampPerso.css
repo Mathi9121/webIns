@@ -8,3 +8,10 @@
 	color: #fff;
 	padding: 8px 15px;
 }
+#place ul li.ui-handle {
+	cursor: move;
+}
+#place ul.new {
+	background-color: #FBE2A8;
+
+}

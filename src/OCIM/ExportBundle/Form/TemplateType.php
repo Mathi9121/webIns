@@ -16,7 +16,8 @@ class TemplateType extends AbstractType
      {
        $builder
        ->add('nom', 'text', array(
-         'attr' => array('class'=>'width-100')
+         'attr' => array('class'=>'width-100'),
+         'required' => true,
        ))
        ->add('type', 'choice', array(
          'choices' => array(
