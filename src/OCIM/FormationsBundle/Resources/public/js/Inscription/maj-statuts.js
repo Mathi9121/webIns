@@ -9,15 +9,23 @@ $(document).ready(function(){
 
     var idinscription = $(this).attr('data-idinscription');
     var statutinscription = $(this).attr('data-statut');
+    var statutfinancement = $(this).attr('data-statutfinancement');
+
     var statutconvention = $(this).attr('data-statutconvention');
     statutconvention = (statutconvention == "")? "null" : statutconvention;
+
     var popup = $('<div class="white-popup"><h2>Statut de l&apos;inscription</h2><hr/><p class="text-centered choix inscription"><span class="annule" data-statut="3"><i class="fa fa-times fa-fw"></i>Annulé</span><span class="attente" data-statut="2"><i class="fa fa-question fa-fw"></i>En attente</span><span class="valide" data-statut="1"><i class="fa fa-check fa-fw"></i>Validé</span></p></div>');
     popup.find('[data-statut='+statutinscription+']').addClass('selected');
 
     popup.append('<br/><h2>Statut de la Convention</h2><hr/>');
     popup.append('<p class="text-centered choix convention"><span class="non" data-statutconvention="0"><i class="fa fa-times fa-fw"></i>Non</span><span class="saispas" data-statutconvention="null"><i class="fa fa-question fa-fw"></i>Ne sais pas</span><span class="oui" data-statutconvention="1"><i class="fa fa-check fa-fw"></i>Confirmé</span></p>');
 
+    popup.append('<br/><h2>Statut du Financement</h2><hr/>');
+    popup.append('<p class="text-centered choix financement"><span class="non" data-statutfinancement="0"><i class="fa fa-times fa-fw"></i>Non</span><span class="saispas" data-statutfinancement="null"><i class="fa fa-question fa-fw"></i>Ne sais pas</span><span class="oui" data-statutfinancement="1"><i class="fa fa-check fa-fw"></i>Confirmé</span></p>');
+    popup.find('[data-statutfinancement='+statutfinancement+']').addClass('selected');
+
     popup.find('[data-statutconvention='+statutconvention+']').addClass('selected');
+
 
     popup.find('.choix.inscription span').on('click', function(){
       popup.find('.choix.inscription span').removeClass('selected');
@@ -26,8 +34,16 @@ $(document).ready(function(){
       var data = new Array({'idinscription': idinscription, 'statut': nouveauStatut});
 
       changeStatutInscription(data);
+    });
 
+    popup.find('.choix.financement span').on('click', function(){
+      popup.find('.choix.financement span').removeClass('selected');
+      $(this).addClass('selected');
+      var nouveauStatut = $(this).attr('data-statutfinancement');
+      console.log(nouveauStatut);
+      var data = new Array({'idinscription': idinscription, 'statut': nouveauStatut});
 
+      changeStatutFinancement(data);
     });
 
     popup.find('.choix.convention span').on('click', function(){
@@ -36,7 +52,7 @@ $(document).ready(function(){
       var nouveauStatut = $(this).attr('data-statutconvention');
       var data = new Array({'idinscription': idinscription, 'statut': nouveauStatut});
       changeStatutConvention(data);
-    })
+    });
 
     $.magnificPopup.open({
       items: {
@@ -129,6 +145,20 @@ function changeStatutInscription(data){
     });
 
 }
+
+function changeStatutFinancement(data){
+  $.ajax({
+    url: $.trim($('#updatefinancement').text()),
+    type: "POST",
+    data: JSON.stringify(data)
+  }).done(function(statut){
+    console.log("reponse :" + statut);
+    }).fail(function(){
+      alert("Erreur pendant l'enregistrement ! Rechargez la page.");
+    });
+
+}
+
 function changeStatutConvention(data){
   $.ajax({
     url: $.trim($('#updateconvention').text()),

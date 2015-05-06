@@ -44,6 +44,11 @@ inscription_update_statut_inscription:
     defaults: { _controller: "OCIMFormationsBundle:Inscription:updateStatutInscription" }
     requirements: { _method: post }
 
+inscription_update_statut_financement:
+    path: /statut-financement/
+    defaults: { _controller: "OCIMFormationsBundle:Inscription:updateStatutFinancement" }
+    requirements: { _method: post }
+
 inscription_switch_stagiaire_class:
     path: /switch-stagiaire-intervenant/{idinscription}
     defaults: { _controller: "OCIMFormationsBundle:Inscription:switchStagiaire" }

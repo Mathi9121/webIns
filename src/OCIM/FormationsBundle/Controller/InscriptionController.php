@@ -158,6 +158,24 @@ class InscriptionController extends Controller
     }
   }
 
+  public function updateStatutFinancementAction(Request $request){
+    if($request->isXmlHttpRequest()){
+      $data = json_decode($request->getContent());
+
+      $em = $this->getDoctrine()->getManager();
+
+      $idinscription = $data['0']->idinscription;
+
+      $inscription = $em->getRepository('OCIMFormationsBundle:Inscription')->find($idinscription);
+
+      $inscription->setStatutFinancement($data['0']->statut);
+
+      $em->flush();
+
+      return new Response( $inscription->getStatutFinancement() , Response::HTTP_OK);
+    }
+  }
+
   public function updateStatutConventionAction(Request $request){
     if($request->isXmlHttpRequest()){
       $data = json_decode($request->getContent());

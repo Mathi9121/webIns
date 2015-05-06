@@ -54,6 +54,7 @@
 <div id="lienAjax" class="hide">{{ path('inscription_edit_ordre', {'idformation': formation.id}) }}</div>
 <div id="updateconvention" class="hide">{{ path('inscription_update_statut_convention', {'idformation': formation.id}) }}</div>
 <div id="updateinscription" class="hide">{{ path('inscription_update_statut_inscription', {'idformation': formation.id}) }}</div>
+<div id="updatefinancement" class="hide">{{ path('inscription_update_statut_financement', {'idformation': formation.id}) }}</div>
 <div id="liensExport" class="hide">{{ path('documents_liens') }}</div>
 
 {% if entities != null %}
@@ -195,7 +196,10 @@
 									<a href="#" class="export" data-idinscription="{{ entity.id }}"><i class="fa fa-download fa-fw"></i>Exporter</a></li>
 								</li>
 								<li>
-									<a href="#" class="majstatuts" data-statut='{{ entity.numberStatut }}' data-statutconvention="{% if (entity.statutConvention == false)and(entity.statutConvention is not null) %}0{% elseif entity.statutConvention == true %}1{% elseif entity.statutConvention is null %}{% endif %}" data-idinscription="{{ entity.id }}">
+									<a href="#" class="majstatuts"
+										data-statut='{{ entity.numberStatut }}'
+										data-statutconvention="{% if (entity.statutConvention == false)and(entity.statutConvention is not null) %}0{% elseif entity.statutConvention == true %}1{% elseif entity.statutConvention is null %}{% endif %}" data-idinscription="{{ entity.id }}"
+										data-statutfinancement="{% if entity.statutFinancement is null %}null{% elseif entity.statutFinancement == false %}0{% else %}1{% endif %}">
 										<i class="fa fa-refresh fa-fw"></i>Statuts
 									</a>
 								</li>
