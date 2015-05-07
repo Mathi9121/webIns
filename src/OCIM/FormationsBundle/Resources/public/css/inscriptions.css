@@ -26,7 +26,11 @@ td.handle{color: #6f6f6f; cursor: move}
 
 td.champPerso{cursor: pointer; text-align:center;}
 td.undefined{cursor: not-allowed; background-color: rgba(125,125,125, 0.2)}
-td.champPerso[data-type="text"]{cursor: text}
+td.champPerso[data-type="text"]{
+	cursor: text;
+	max-width: 230px;
+	white-space: normal;
+}
 td.nuit, th.nuit {
 	font-weight: bold;
 }
