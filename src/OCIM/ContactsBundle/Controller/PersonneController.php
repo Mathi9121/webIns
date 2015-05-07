@@ -23,14 +23,12 @@ class PersonneController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('OCIMContactsBundle:Personne')->findAll();
+        $entities = $em->getRepository('OCIMContactsBundle:Personne')->findAll(array(387, 388, 389, 390));
 
-        // foreach($entity in $entities){
-        //
-        // }
+        //return new \Symfony\Component\HttpFoundation\Response (\Doctrine\Common\Util\Debug::dump($entities[0]->getInscription()[0]));
 
         return $this->render('OCIMContactsBundle:Personne:index.html.twig', array(
-            'entities' => $entities,
+           'entities' => $entities,
         ));
     }
     /**

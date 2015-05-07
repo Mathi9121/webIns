@@ -143,17 +143,11 @@ class InscriptionController extends Controller
   public function updateStatutInscriptionAction(Request $request){
     if($request->isXmlHttpRequest()){
       $data = json_decode($request->getContent());
-
       $em = $this->getDoctrine()->getManager();
-
       $idinscription = $data['0']->idinscription;
-
       $inscription = $em->getRepository('OCIMFormationsBundle:Inscription')->find($idinscription);
-
       $inscription->setStatut($data['0']->statut);
-
       $em->flush();
-
       return new Response( $inscription->getNumberStatut() , Response::HTTP_OK);
     }
   }
