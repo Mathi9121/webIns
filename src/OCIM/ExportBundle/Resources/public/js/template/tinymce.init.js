@@ -14,7 +14,7 @@ tinymce.init({
          "save table contextmenu directionality emoticons template paste textcolor"
    ],
    toolbar: ["sizeselect | fontselect | fontsizeselect | insertfile undo redo | styleselect | bold italic | indent outdent | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons",
-			"Formation | Inscription | Stagiaire | Formule | Convention | Divers"],
+			"Evenement | Inscription | Stagiaire | Formule | Convention | Divers"],
     image_advtab: true,
    image_list: [
    {title: 'Logo-Ocim', value: 'http://www.ocim.fr/wp-content/themes/ocim/img/logo.png'},
@@ -63,19 +63,19 @@ tinymce.init({
 				{text: 'Commentaire', onclick: function() 				{editor.insertContent("{{ inscription.stagiaire.commentaire }}"); }}
 			]
 		});
-		editor.addButton('Formation', {
+		editor.addButton('Evenement', {
 			type: 'menubutton',
-			text: 'Formation',
+			text: 'Evenement',
 			icon: false,
 			menu: [
-				{text: 'Intitule', onclick: function() 					{editor.insertContent("{{ formation.intitule }}"); }},
-				{text: 'Lieu', onclick: function() 						{editor.insertContent("{{ formation.lieu }}"); }},
-				{text: 'Date de debut', onclick: function() 			{editor.insertContent("{{ formation.dateDebut|date('d/m/Y') }}"); }},
-				{text: 'Date de fin', onclick: function() 				{editor.insertContent("{{ formation.dateFin|date('d/m/Y') }}"); }},
-				{text: 'Date au format text', onclick: function() 		{editor.insertContent("{{ formation.dateText }}"); }},
-				{text: 'Duree (jours)', onclick: function() 			{editor.insertContent("{{ formation.nbJours }}"); }},
-				{text: "Nombre d'heures", onclick: function() 			{editor.insertContent("{{ formation.nbHeures }}"); }},
-				{text: "Type de formation", onclick: function() 		{editor.insertContent("{{ formation.type }}"); }},
+				{text: 'Intitule', onclick: function() 					{editor.insertContent("{{ evenement.intitule }}"); }},
+				{text: 'Lieu', onclick: function() 						{editor.insertContent("{{ evenement.lieu }}"); }},
+				{text: 'Date de debut', onclick: function() 			{editor.insertContent("{{ evenement.dateDebut|date('d/m/Y') }}"); }},
+				{text: 'Date de fin', onclick: function() 				{editor.insertContent("{{ evenement.dateFin|date('d/m/Y') }}"); }},
+				{text: 'Date au format text', onclick: function() 		{editor.insertContent("{{ evenement.dateText }}"); }},
+				{text: 'Duree (jours)', onclick: function() 			{editor.insertContent("{{ evenement.nbJours }}"); }},
+				{text: "Nombre d'heures", onclick: function() 			{editor.insertContent("{{ evenement.nbHeures }}"); }},
+				{text: "Type de evenement", onclick: function() 		{editor.insertContent("{{ evenement.type }}"); }},
 			]
 		});
 		editor.addButton('Convention', {
@@ -111,8 +111,8 @@ tinymce.init({
 			text: 'Formule',
 			icon: false,
 			menu: [
-				{text: 'Description', onclick: function() 					{editor.insertContent("{{ inscription.formationformule.formule.description }}"); }},
-				{text: 'Tarif', onclick: function() 						{editor.insertContent("{{ inscription.formationformule.formule.tarif }}"); }},
+				{text: 'Description', onclick: function() 					{editor.insertContent("{{ inscription.evenementformule.formule.description }}"); }},
+				{text: 'Tarif', onclick: function() 						{editor.insertContent("{{ inscription.evenementformule.formule.tarif }}"); }},
 			]
 		});
     editor.addButton('Divers', {

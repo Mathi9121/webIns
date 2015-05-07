@@ -10,21 +10,21 @@ ocim_user:
     resource: "@OCIMUserBundle/Resources/config/routing.yml"
     prefix:   /
 
-ocim_formations:
-    resource: "@OCIMFormationsBundle/Resources/config/routing.yml"
+ocim_evenements:
+    resource: "@OCIMEvenementsBundle/Resources/config/routing.yml"
     prefix:   /
 
-OCIMFormationsBundle_formation:
-    resource: "@OCIMFormationsBundle/Resources/config/routing/formation.yml"
-    prefix:   /formation
+OCIMEvenementsBundle_evenement:
+    resource: "@OCIMEvenementsBundle/Resources/config/routing/evenement.yml"
+    prefix:   /evenement
 
-OCIMFormationsBundle_formule:
-    resource: "@OCIMFormationsBundle/Resources/config/routing/formule.yml"
+OCIMEvenementsBundle_formule:
+    resource: "@OCIMEvenementsBundle/Resources/config/routing/formule.yml"
     prefix:   /formule
 
-OCIMFormationsBundle_inscription:
-    resource: "@OCIMFormationsBundle/Resources/config/routing/inscription.yml"
-    prefix:   /formation-{idformation}/inscriptions
+OCIMEvenementsBundle_inscription:
+    resource: "@OCIMEvenementsBundle/Resources/config/routing/inscription.yml"
+    prefix:   /evenement-{idevenement}/inscriptions
 
 OCIMContactsBundle_personne:
     resource: "@OCIMContactsBundle/Resources/config/routing/personne.yml"
@@ -46,4 +46,4 @@ deconnexion:
 
 home:
     pattern: /
-    defaults: { _controller: OCIMFormationsBundle:Default:index }
+    defaults: { _controller: OCIMEvenementsBundle:Default:index }

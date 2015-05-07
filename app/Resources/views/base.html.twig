@@ -6,7 +6,7 @@
 {% endimage %}
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>{% block title %}OCIM§Formations{% endblock %}</title>
+	<title>{% block title %}OCIM§Evenements{% endblock %}</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 		{% stylesheets '../app/Resources/public/css/*' %}
 			<link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset_url }}"/>
@@ -27,7 +27,7 @@
 		<div style="margin:100px auto; background-color: rgba(255,255,255,0.5); width: 400px;">
 			<div style="padding: 25px 50px;">
 			{% image '../app/Resources/public/img/logo-ocim.png' %}
-				<img src="{{ asset_url }}" alt="OCIM - Formations" style="display:block;text-align:center; margin:25px auto 0;"/>
+				<img src="{{ asset_url }}" alt="OCIM - Evenements" style="display:block;text-align:center; margin:25px auto 0;"/>
 			{% endimage %}
 
 			{% block body %}{% endblock %}

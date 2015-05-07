@@ -12,15 +12,15 @@ $(document).ready(function(){
 				data: JSON.stringify({ "structure" : nouveautype })
 			})
 			.done(function( id ) {
-				//reponse du serveur : verif si c'est bien un id qui est renvoyé
+				//reponse du serveur : verif si c'est bien un id qui est renvoyï¿½
 				if( !isNaN(id) ){
 					
 					//on ajout au dropdown
-					$('#ocim_formationsbundle_inscription_signataire_adresse_type').append($('<option>', {
+					$('#ocim_evenementsbundle_inscription_signataire_adresse_type').append($('<option>', {
 						value: id,
 						text: nouveautype,
 					}));
-					$('select#ocim_formationsbundle_inscription_signataire_adresse_type').val(id);
+					$('select#ocim_evenementsbundle_inscription_signataire_adresse_type').val(id);
 					
 				}
 			});

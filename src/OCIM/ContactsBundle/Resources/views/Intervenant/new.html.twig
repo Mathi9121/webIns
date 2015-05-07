@@ -34,11 +34,11 @@
 
 
 {% block breadcrumbs %}
-	{% if(idformation == "null") %}
+	{% if(idevenement == "null") %}
 	<li><a href="{{path('personne')}}">Contacts</a></li>
 	{% else %}
-		<li><a href="{{path('formation')}}">Formations</a></li>
-		<li><a href="{{path('inscription', {'idformation': idformation})}}">Inscriptions</a></li>
+		<li><a href="{{path('evenement')}}">Evenements</a></li>
+		<li><a href="{{path('inscription', {'idevenement': idevenement})}}">Inscriptions</a></li>
 	{% endif %}
 <li><span>Nouvel Intervenant</span></li>
 {% endblock %}
@@ -106,10 +106,10 @@
 </div>
 
 <footer id="footer" class="group">
-	{% if (idformation == "null") %}
+	{% if (idevenement == "null") %}
 	<div class="left"><a href="{{ path('personne') }}" class="btn btn-back"><i class="fa fa-chevron-left fa-fw"></i>Retour aux contacts</a></div>
 	{% else %}
-		<div class="left"><a href="{{ path('inscription', {'idformation': idformation}) }}" class="btn btn-back"><i class="fa fa-chevron-left fa-fw"></i>Retour aux inscriptions</a></div>
+		<div class="left"><a href="{{ path('inscription', {'idevenement': idevenement}) }}" class="btn btn-back"><i class="fa fa-chevron-left fa-fw"></i>Retour aux inscriptions</a></div>
 	{% endif %}
 	<div class="right">{{form_widget(form.submit)}}</div>
 </footer>

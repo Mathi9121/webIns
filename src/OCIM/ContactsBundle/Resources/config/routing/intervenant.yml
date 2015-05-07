@@ -3,28 +3,28 @@ intervenants:
     defaults: { _controller: "OCIMContactsBundle:Intervenant:index" }
 
 intervenants_show:
-    path:     /formation-{idformation}/{id}/show
+    path:     /evenement-{idevenement}/{id}/show
     defaults: { _controller: "OCIMContactsBundle:Intervenant:show" }
 
 intervenants_new:
-    path:     formation/{idformation}/new
-    defaults: { _controller: "OCIMContactsBundle:Intervenant:new", idformation: 'null' }
+    path:     evenement/{idevenement}/new
+    defaults: { _controller: "OCIMContactsBundle:Intervenant:new", idevenement: 'null' }
 
 intervenants_create:
-    path:     /formation-{idformation}/create/
+    path:     /evenement-{idevenement}/create/
     defaults: { _controller: "OCIMContactsBundle:Intervenant:create" }
     requirements: { _method: post }
 
 intervenants_edit:
-    path:     /formation/{idformation}/{id}/edit
-    defaults: { _controller: "OCIMContactsBundle:Intervenant:edit", idformation: 'null' }
+    path:     /evenement/{idevenement}/{id}/edit
+    defaults: { _controller: "OCIMContactsBundle:Intervenant:edit", idevenement: 'null' }
 
 intervenants_update:
-    path:     /formation-{idformation}/{id}/update
+    path:     /evenement-{idevenement}/{id}/update
     defaults: { _controller: "OCIMContactsBundle:Intervenant:update" }
     requirements: { _method: post|put }
 
 intervenants_delete:
-    path:     /formation-{idformation}/{id}/delete
+    path:     /evenement-{idevenement}/{id}/delete
     defaults: { _controller: "OCIMContactsBundle:Intervenant:delete" }
     requirements: { _method: post|delete }

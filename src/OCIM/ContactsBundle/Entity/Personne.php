@@ -268,7 +268,7 @@ class Personne
 		return $this->prenom;
 	}
     /**
-     * @var \OCIM\FormationsBundle\Entity\Inscription
+     * @var \OCIM\EvenementsBundle\Entity\Inscription
      */
     private $inscription;
 
@@ -276,10 +276,10 @@ class Personne
     /**
      * Set inscription
      *
-     * @param \OCIM\FormationsBundle\Entity\Inscription $inscription
+     * @param \OCIM\EvenementsBundle\Entity\Inscription $inscription
      * @return Personne
      */
-    public function setInscription(\OCIM\FormationsBundle\Entity\Inscription $inscription = null)
+    public function setInscription(\OCIM\EvenementsBundle\Entity\Inscription $inscription = null)
     {
         $this->inscription = $inscription;
 
@@ -289,7 +289,7 @@ class Personne
     /**
      * Get inscription
      *
-     * @return \OCIM\FormationsBundle\Entity\Inscription
+     * @return \OCIM\EvenementsBundle\Entity\Inscription
      */
     public function getInscription()
     {
@@ -377,10 +377,10 @@ class Personne
     /**
      * Add reponsesChampPerso
      *
-     * @param \OCIM\FormationsBundle\Entity\ReponsesChampPerso $reponsesChampPerso
+     * @param \OCIM\EvenementsBundle\Entity\ReponsesChampPerso $reponsesChampPerso
      * @return Personne
      */
-    public function addReponsesChampPerso(\OCIM\FormationsBundle\Entity\ReponsesChampPerso $reponsesChampPerso)
+    public function addReponsesChampPerso(\OCIM\EvenementsBundle\Entity\ReponsesChampPerso $reponsesChampPerso)
     {
         $this->reponsesChampPerso[] = $reponsesChampPerso;
 
@@ -390,9 +390,9 @@ class Personne
     /**
      * Remove reponsesChampPerso
      *
-     * @param \OCIM\FormationsBundle\Entity\ReponsesChampPerso $reponsesChampPerso
+     * @param \OCIM\EvenementsBundle\Entity\ReponsesChampPerso $reponsesChampPerso
      */
-    public function removeReponsesChampPerso(\OCIM\FormationsBundle\Entity\ReponsesChampPerso $reponsesChampPerso)
+    public function removeReponsesChampPerso(\OCIM\EvenementsBundle\Entity\ReponsesChampPerso $reponsesChampPerso)
     {
         $this->reponsesChampPerso->removeElement($reponsesChampPerso);
     }
@@ -444,10 +444,10 @@ class Personne
     /**
      * Add inscription
      *
-     * @param \OCIM\FormationsBundle\Entity\Inscription $inscription
+     * @param \OCIM\EvenementsBundle\Entity\Inscription $inscription
      * @return Personne
      */
-    public function addInscription(\OCIM\FormationsBundle\Entity\Inscription $inscription)
+    public function addInscription(\OCIM\EvenementsBundle\Entity\Inscription $inscription)
     {
         $this->inscription[] = $inscription;
 
@@ -457,9 +457,9 @@ class Personne
     /**
      * Remove inscription
      *
-     * @param \OCIM\FormationsBundle\Entity\Inscription $inscription
+     * @param \OCIM\EvenementsBundle\Entity\Inscription $inscription
      */
-    public function removeInscription(\OCIM\FormationsBundle\Entity\Inscription $inscription)
+    public function removeInscription(\OCIM\EvenementsBundle\Entity\Inscription $inscription)
     {
         $this->inscription->removeElement($inscription);
     }

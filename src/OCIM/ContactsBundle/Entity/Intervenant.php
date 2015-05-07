@@ -12,39 +12,39 @@ class Intervenant extends Personne
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $formations;
+    private $evenements;
 
 
     /**
-     * Add formations
+     * Add evenements
      *
-     * @param \OCIM\FormationsBundle\Entity\Formation $formations
+     * @param \OCIM\EvenementsBundle\Entity\Evenement $evenements
      * @return Intervenant
      */
-    public function addFormation(\OCIM\FormationsBundle\Entity\Formation $formations)
+    public function addEvenement(\OCIM\EvenementsBundle\Entity\Evenement $evenements)
     {
-        $this->formations[] = $formations;
+        $this->evenements[] = $evenements;
 
         return $this;
     }
 
     /**
-     * Remove formations
+     * Remove evenements
      *
-     * @param \OCIM\FormationsBundle\Entity\Formation $formations
+     * @param \OCIM\EvenementsBundle\Entity\Evenement $evenements
      */
-    public function removeFormation(\OCIM\FormationsBundle\Entity\Formation $formations)
+    public function removeEvenement(\OCIM\EvenementsBundle\Entity\Evenement $evenements)
     {
-        $this->formations->removeElement($formations);
+        $this->evenements->removeElement($evenements);
     }
 
     /**
-     * Get formations
+     * Get evenements
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getFormations()
+    public function getEvenements()
     {
-        return $this->formations;
+        return $this->evenements;
     }
 }

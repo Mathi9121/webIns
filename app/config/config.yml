@@ -37,7 +37,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: true
-    bundles:        [OCIMFormationsBundle, OCIMExportBundle, OCIMContactsBundle]
+    bundles:        [OCIMEvenementsBundle, OCIMExportBundle, OCIMContactsBundle]
     #java: /usr/bin/java
     assets:
         FontAwesome-otf:
@@ -118,7 +118,7 @@ doctrine:
         auto_mapping: true
         dql:
             datetime_functions:
-                YEAR: OCIM\FormationsBundle\DQL\Year
+                YEAR: OCIM\EvenementsBundle\DQL\Year
 
 # Swiftmailer Configuration
 swiftmailer:

@@ -7,20 +7,20 @@ signataire_show:
     defaults: { _controller: "OCIMContactsBundle:Signataire:show" }
 
 signataire_new:
-    path:     /formation-{idformation}/inscription-{idinscription}/new
+    path:     /evenement-{idevenement}/inscription-{idinscription}/new
     defaults: { _controller: "OCIMContactsBundle:Signataire:new" }
 
 signataire_create:
-    path:     /formation-{idformation}/{idinscription}/create
+    path:     /evenement-{idevenement}/{idinscription}/create
     defaults: { _controller: "OCIMContactsBundle:Signataire:create" }
     requirements: { _method: post }
 
 signataire_edit:
-    path:     /formation-{idformation}/{id}/edit
+    path:     /evenement-{idevenement}/{id}/edit
     defaults: { _controller: "OCIMContactsBundle:Signataire:edit" }
 
 signataire_update:
-    path:     /formation-{idformation}/{id}/update
+    path:     /evenement-{idevenement}/{id}/update
     defaults: { _controller: "OCIMContactsBundle:Signataire:update" }
     requirements: { _method: post|put }
 

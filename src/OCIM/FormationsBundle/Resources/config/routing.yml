@@ -1,7 +1,0 @@
-ocim_formations_convention:
-    resource: "@OCIMFormationsBundle/Resources/config/routing/convention.yml"
-    prefix:   /convention
-
-OCIMFormationsBundle_champPerso:
-    resource: "@OCIMFormationsBundle/Resources/config/routing/champPerso.yml"
-    prefix:   /champPerso

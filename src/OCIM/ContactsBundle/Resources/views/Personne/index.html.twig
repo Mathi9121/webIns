@@ -85,7 +85,7 @@ $(document).ready(function() {
                 <th>Téléphone</th>
                 <th>Mail</th>
                 <th>Type</th>
-                <th>Formation</th>
+                <th>Evenement</th>
                 <th>Statut</th>
                 <th>Formule</th>
                 <th>Nom Financeur</th>
@@ -114,11 +114,11 @@ $(document).ready(function() {
                   <td>
                     {% if entity.type == "stagiaire" %}
                       {% for inscription in entity.inscription %}
-                        {{ inscription.formationformule.formation.intitule }}<br/>
+                        {{ inscription.evenementformule.evenement.intitule }}<br/>
                       {% endfor %}
                     {% elseif entity.type == "intervenant" %}
-                      {% for formation in entity.formations %}
-                        {{ formation.intitule }}<br/>
+                      {% for evenement in entity.evenements %}
+                        {{ evenement.intitule }}<br/>
                       {% endfor %}
                     {% endif %}
                   </td>
@@ -132,9 +132,9 @@ $(document).ready(function() {
                   <td>
                     {% if (entity.type == "stagiaire") %}
                       {% for inscr in entity.inscription %}
-                      <abbr title="{{ inscr.formationformule.formule.tarif }} : {{ inscr.formationformule.formule.description }}">
-                        {{ inscr.formationformule.formule.id }}
-                        {{ (inscr.formationformule.formule.nuit)? "<i class='fa fa-moon-o fa-fw'></i>" }}
+                      <abbr title="{{ inscr.evenementformule.formule.tarif }} : {{ inscr.evenementformule.formule.description }}">
+                        {{ inscr.evenementformule.formule.id }}
+                        {{ (inscr.evenementformule.formule.nuit)? "<i class='fa fa-moon-o fa-fw'></i>" }}
                       </abbr><br/>
                       {% endfor %}
                     {% endif %}
@@ -164,7 +164,7 @@ $(document).ready(function() {
                           {{ path('personne_show', { 'id': entity.id }) }}
                         {% else %}
                           {% if (entity.inscription|length != 0) %}
-                          {{ path('inscription_show', { 'idformation': entity.inscription.0.id ,'id': entity.inscription.0.id, 'type':entity.type}) }}#{{entity.type}}
+                          {{ path('inscription_show', { 'idevenement': entity.inscription.0.id ,'id': entity.inscription.0.id, 'type':entity.type}) }}#{{entity.type}}
                           {% endif %}
                         {% endif %}
                         ">

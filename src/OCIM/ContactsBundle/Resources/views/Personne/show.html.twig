@@ -47,14 +47,14 @@
   </div>
   <div class="unit-60 panel">
     <div class="header">
-      <span class="titre">Formation(s) liée(s)</span>
+      <span class="titre">Evenement(s) liée(s)</span>
     </div>
     <div class="panel-body">
       <table>
-        {% for formation in entity.formations %}
+        {% for evenement in entity.evenements %}
         <tr>
-          <td>{{formation.intitule}}</td>
-          <td><a href="{{path('inscription', {'idformation': formation.id, 'id': entity.id})}}#intervenants"><i class="fa fa-chevron-right fa-fw"></i></a></td>
+          <td>{{evenement.intitule}}</td>
+          <td><a href="{{path('inscription', {'idevenement': evenement.id, 'id': entity.id})}}#intervenants"><i class="fa fa-chevron-right fa-fw"></i></a></td>
         </tr>
         {% endfor %}
       </table>

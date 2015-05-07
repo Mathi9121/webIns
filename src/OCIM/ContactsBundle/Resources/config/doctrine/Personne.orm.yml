@@ -19,13 +19,13 @@ OCIM\ContactsBundle\Entity\Personne:
                 referencedColumnName: id
     oneToMany:
         reponsesChampPerso:
-            targetEntity: OCIM\FormationsBundle\Entity\ReponsesChampPerso
+            targetEntity: OCIM\EvenementsBundle\Entity\ReponsesChampPerso
             mappedBy: personne
             cascade: ['all']
             onDelete: "CASCADE"
     manyToMany:
       inscription:
-        targetEntity: OCIM\FormationsBundle\Entity\Inscription
+        targetEntity: OCIM\EvenementsBundle\Entity\Inscription
         fetch: EAGER
         mappedBy: personnes
     table: null

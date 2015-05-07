@@ -1,7 +1,0 @@
-parameters:
-#    ocim_formations.example.class: OCIM\FormationsBundle\Example
-
-services:
-#    ocim_formations.example:
-#        class: %ocim_formations.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]

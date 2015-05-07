@@ -167,8 +167,8 @@ class TemplateController extends Controller
 
         $entity = $em->getRepository('OCIMExportBundle:Template')->find($id);
 
-        $inscription = $em->getRepository('OCIMFormationsBundle:Inscription')->find($idinscription);
-		    $formation = $em->getRepository('OCIMFormationsBundle:Formation')->find($inscription->getFormationFormule()->getFormation()->getId());
+        $inscription = $em->getRepository('OCIMEvenementsBundle:Inscription')->find($idinscription);
+		    $evenement = $em->getRepository('OCIMEvenementsBundle:Evenement')->find($inscription->getEvenementFormule()->getEvenement()->getId());
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Template entity.');
@@ -183,8 +183,8 @@ class TemplateController extends Controller
 
     }
     else{
-      $filename = str_replace('{{formation.intitule}}', $formation->getIntitule(), $filename);
-      $filename = str_replace('{{formation.id}}', $formation->getId(), $filename);
+      $filename = str_replace('{{evenement.intitule}}', $evenement->getIntitule(), $filename);
+      $filename = str_replace('{{evenement.id}}', $evenement->getId(), $filename);
       $filename = str_replace('{{inscription.stagiaire.nom}}', $inscription->getStagiaire()->getNom(), $filename);
       $filename = str_replace('{{inscription.stagiaire.prenom}}', $inscription->getStagiaire()->getPrenom(), $filename);
 
@@ -215,7 +215,7 @@ class TemplateController extends Controller
 		// contenu et valeurs
 		$contenu = $env->render(
 			$contenu,
-			array("formation" => $formation, "inscription" => $inscription, 'date'=> $str_date, 'date_abbr'=>$date_abbr)
+			array("evenement" => $evenement, "inscription" => $inscription, 'date'=> $str_date, 'date_abbr'=>$date_abbr)
 		);
 
     //test du mode : show ou preview

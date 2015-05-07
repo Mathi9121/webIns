@@ -2,7 +2,7 @@
 namespace OCIM\ContactsBundle\Form\DataTransformer;
 
 use Symfony\Component\Form\DataTransformerInterface;
-use Symfony\Component\Form\Exception\TransformationFailedException;
+use Symfony\Component\Form\Exception\TransevenementFailedException;
 use Doctrine\Common\Persistence\ObjectManager;
 use OCIM\ContactsBundle\Entity\TagStructure;
 use Doctrine\Common\Collections\ArrayCollection;
