@@ -89,7 +89,9 @@ function enregistre(data, td){
 	var tableau = $(td).closest($('.tab'));
 	var count = 0;
 	$(tableau).find('tbody tr').each(function(i){
-		count += parseInt($(this).find('td').eq(index).attr('data-reponse'));
+		var tmp = parseInt($(this).find('td').eq(index).attr('data-reponse'));
+		count += (isNaN(tmp))? 0 : tmp;
+		console.log(parseInt($(this).find('td').eq(index).attr('data-reponse')));
 	});
 
 	$(tableau).find('tfoot tr').find('td').eq(index-1).html(count);
