@@ -1,5 +1,12 @@
 OCIM\EvenementsBundle\Entity\Evenement:
     type: entity
+    inheritanceType: SINGLE_TABLE
+    discriminatorColumn:
+        name: discr
+        type: string
+    discriminatorMap:
+        evenement: Evenement
+        formation: Formation
     manyToOne:
       type:
         targetEntity: TypeEvenement
