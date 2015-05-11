@@ -1,6 +1,7 @@
 evenement:
-    path:     /
-    defaults: { _controller: "OCIMEvenementsBundle:Evenement:index" }
+    path:     /{type}/
+    defaults: { _controller: "OCIMEvenementsBundle:Evenement:index", type: 'formation' }
+    requirements: { type: formation|event }
 
 evenement_show:
     path:     /{id}/show

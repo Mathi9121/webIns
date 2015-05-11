@@ -5,6 +5,7 @@ OCIM\EvenementsBundle\Entity\Evenement:
         name: discr
         type: string
     discriminatorMap:
+        event: Event
         evenement: Evenement
         formation: Formation
     manyToOne:

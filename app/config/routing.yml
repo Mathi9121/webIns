@@ -16,7 +16,7 @@ ocim_evenements:
 
 OCIMEvenementsBundle_evenement:
     resource: "@OCIMEvenementsBundle/Resources/config/routing/evenement.yml"
-    prefix:   /evenement
+    prefix:   /e
 
 OCIMEvenementsBundle_formule:
     resource: "@OCIMEvenementsBundle/Resources/config/routing/formule.yml"

@@ -26,15 +26,17 @@ class EvenementController extends Controller
      * Lists all Evenement entities.
      *
      */
-    public function indexAction(Request $request)
+    public function indexAction(Request $request, $type)
     {
       $em = $this->getDoctrine()->getManager();
 
       $id = $request->query->get('id');
 
+      $className = "OCIMEvenementsBundle:".ucfirst($type);
+
       $qb = $em->createQueryBuilder('f')
         ->select('f, YEAR(f.dateDebut) AS annee')
-        ->from('OCIMEvenementsBundle:Evenement', 'f')
+        ->from($className, 'f')
         ->addOrderBy('annee', 'DESC')
         ->addOrderBy('f.dateDebut', 'ASC');
 
