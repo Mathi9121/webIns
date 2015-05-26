@@ -34,23 +34,24 @@
 
 {# MENU TWIG #}
 {% set menu = [
-	{'route': 'home' ,'iconclass' : "fa fa-tachometer", 'menuText': 'Tableau de bord'},
-	{'route': 'evenement' ,'iconclass' : "fa fa-graduation-cap", 'menuText': 'Evenements'},
-	{'route': 'inscription' ,'iconclass' : "fa fa-users", 'menuText': ''},
-	{'route': 'user' ,'iconclass' : "fa fa-users", 'menuText': ''},
-	{'route': 'intervenant' ,'iconclass' : "fa fa-users", 'menuText': ''},
-	{'route': 'champPerso' ,'iconclass' : "fa fa-table", 'menuText': ''},
+	{'route': 'home' ,'iconclass' : "fa fa-tachometer", 'menuText': 'Tableau de bord', },
+	{'route': 'evenement' ,'iconclass' : "fa fa-graduation-cap", 'menuText': 'Formations', 'param_name': 'type', 'param_value': 'formation' },
+	{'route': 'evenement' ,'iconclass' : "fa fa-calendar", 'menuText': 'Evenements', 'param_name': 'type', 'param_value': 'event' },
+	{'route': 'inscription' ,'iconclass' : "fa fa-users", 'menuText': '' },
+	{'route': 'user' ,'iconclass' : "fa fa-users", 'menuText': '' },
+	{'route': 'intervenant' ,'iconclass' : "fa fa-users", 'menuText': '' },
+	{'route': 'champPerso' ,'iconclass' : "fa fa-table", 'menuText': '' },
 	{'route': 'formule' ,'iconclass' : "fa fa-cutlery", 'menuText': 'Formules'},
 	{'route': 'convention' ,'iconclass' : "fa fa-folder-open", 'menuText': 'Conventions'},
-	{'route': 'structures' ,'iconclass' : "fa fa-university", 'menuText': ''},
+	{'route': 'structures' ,'iconclass' : "fa fa-university", 'menuText': '' },
 	{'route': 'personne' ,'iconclass' : "fa fa-phone", 'menuText': 'Contacts',
 		'sousmenu':
 		 [
-			{'route': 'personne' ,'iconclass' : "fa fa-user", 'menuText': 'Personnes' },
-			{'route': 'structure' ,'iconclass' : "fa fa-home", 'menuText': 'Structures' },
+			{'route': 'personne' ,'iconclass' : "fa fa-user", 'menuText': 'Personnes',  },
+			{'route': 'structure' ,'iconclass' : "fa fa-home", 'menuText': 'Structures',  },
 		 ]
 	},
-	{'route': 'documents' ,'iconclass' : "fa fa-files-o", 'menuText': 'Export et gabarits'},
+	{'route': 'documents' ,'iconclass' : "fa fa-files-o", 'menuText': 'Export et gabarits', },
 ] %}
 
 {% set pagevars = '' %}
@@ -102,7 +103,7 @@
 							{% if (app.request.attributes.get("_route") starts with item.route) %}
 								<span><i class="fa {{item.iconclass}} fa-fw"></i> {{item.menuText}}</span>
 							{% else %}
-								<a href="{{path(item.route)}}"><i class="fa {{item.iconclass}} fa-fw"></i>{{item.menuText}}</a>
+								<a href="{{ (item.param_name is defined)? path(item.route, { (item.param_name): item.param_value } ) : path(item.route) }}"><i class="fa {{item.iconclass}} fa-fw"></i>{{item.menuText}}</a>
 							{% endif %}
 
 							{# SOUSMENU #}

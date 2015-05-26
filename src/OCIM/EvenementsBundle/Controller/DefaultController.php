@@ -22,8 +22,13 @@ class DefaultController extends Controller
 		//COUNT
 		$qb = $em->createQueryBuilder();
 		$qb->select('count(f.id)');
-		$qb->from('OCIMEvenementsBundle:Evenement','f');
-		$countEvenements = $qb->getQuery()->getSingleScalarResult();
+		$qb->from('OCIMEvenementsBundle:Event','f');
+		$countEvents = $qb->getQuery()->getSingleScalarResult();
+
+		$qb = $em->createQueryBuilder();
+		$qb->select('count(f.id)');
+		$qb->from('OCIMEvenementsBundle:Formation','f');
+		$countFormations = $qb->getQuery()->getSingleScalarResult();
 
 		$qb = $em->createQueryBuilder();
 		$qb->select('count(i.id)');
@@ -52,9 +57,9 @@ class DefaultController extends Controller
 		return $this->render('OCIMEvenementsBundle:Default:index.html.twig', array(
 			'evenements'=> $evenements,
 			'inscriptions'=> $inscriptions,
-			'countEvenements' => $countEvenements,
+			'countEvents' => $countEvents,
+			'countFormations' => $countFormations,
 			'countInscriptions' => $countInscriptions,
-			'countFormules' => $countFormules,
 			'countIntervenant' => $countIntervenant,
 			'countConvention' => $countConvention
 		));
