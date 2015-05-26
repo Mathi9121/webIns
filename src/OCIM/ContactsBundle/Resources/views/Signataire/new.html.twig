@@ -6,7 +6,7 @@
 
 {% block body %}
 {{form_start(form)}}
-<h2>Inevenements sur le signaitaire</h2>
+<h2>informations sur le signaitaire</h2>
 <div class="units-row end">
 	<div class="unit-20">{{form_row(form.civilite)}}</div>
 	<div class="unit-40">{{form_row(form.prenom)}}</div>
@@ -16,7 +16,7 @@
 	<div class="unit-50">{{form_row(form.fonction)}}</div>
 	<div class="unit-50">{{form_row(form.mail)}}</div>
 </div>
-<h2>Adresse et Inevenements sur l 'organisme financeur</h2>
+<h2>Adresse et informations sur l 'organisme financeur</h2>
 <div class="units-row end">
 	<div class="unit-60">
 		{{form_row(form.adresse.structure.nom)}}
