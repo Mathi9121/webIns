@@ -100,7 +100,7 @@
 				{% for item in menu %}
 					{% if item.menuText != ""%}
 						<li>
-							{% if (app.request.attributes.get("_route") starts with item.route) %}
+							{% if (app.request.attributes.get("_route") starts with item.route)and( (item.param_name is defined)? item.param_value == app.request.attributes.get("type"): true) %}
 								<span><i class="fa {{item.iconclass}} fa-fw"></i> {{item.menuText}}</span>
 							{% else %}
 								<a href="{{ (item.param_name is defined)? path(item.route, { (item.param_name): item.param_value } ) : path(item.route) }}"><i class="fa {{item.iconclass}} fa-fw"></i>{{item.menuText}}</a>
