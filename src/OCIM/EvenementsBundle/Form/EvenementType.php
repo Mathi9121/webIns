@@ -18,6 +18,13 @@ class EvenementType extends AbstractType
 
 
         $builder
+        ->add('eventType', "choice", array(
+          "label" => "Catégorie d'événement",
+          "choices" => array(
+              "formation" => 'Formation',
+              "event"     => 'Evénement'
+          )
+        ))
 			   ->add('intitule', null, array(
 				    'required' => true,
 				    'label'  => 'Intitulé de la evenement',

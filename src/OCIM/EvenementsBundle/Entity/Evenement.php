@@ -421,4 +421,20 @@ class Evenement
     {
         return $this->nbJours;
     }
+
+
+		private $eventType;
+
+		public function getEventType(){
+			if($this->eventType == null){
+				$Rclass = new \ReflectionClass($this);
+				return strtolower($Rclass->getShortName());
+			}
+			else return $this->eventType;
+		}
+
+		public function setEventType($str = null){
+			$this->eventType = $str;
+		}
+
 }

@@ -29,7 +29,7 @@ filter='cssrewrite' %}
 
 {# Controls #}
 {% block controls %}
-<a href="{{ path('evenement_new') }}" class="btn btn-green btn-outline"><i class="fa fa-plus"></i>  Nouvelle evenement</a>
+<a href="{{ path('evenement_new', {'type': eventType}) }}" class="btn btn-green btn-outline"><i class="fa fa-plus"></i> {{ (eventType == "event")? "Nouvel &Eacute;vénement":"Nouvelle Formation" }}</a>
 {% endblock %}
 
 {# CONTENT #}

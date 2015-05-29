@@ -8,8 +8,9 @@ evenement_show:
     defaults: { _controller: "OCIMEvenementsBundle:Evenement:show" }
 
 evenement_new:
-    path:     /new
-    defaults: { _controller: "OCIMEvenementsBundle:Evenement:new" }
+    path:     /{type}/new
+    defaults: { _controller: "OCIMEvenementsBundle:Evenement:new", type: 'formation' }
+    requirements: { type: formation|event }
 
 evenement_create:
     path:     /create

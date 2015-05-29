@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use OCIM\EvenementsBundle\Entity\Evenement;
+use OCIM\EvenementsBundle\Entity\Event;
+use OCIM\EvenementsBundle\Entity\Formation;
 use OCIM\EvenementsBundle\Entity\TypeEvenement;
 use OCIM\EvenementsBundle\Entity\Formule;
 use OCIM\EvenementsBundle\Entity\evenementFormule;
@@ -67,6 +69,7 @@ class EvenementController extends Controller
   			'types' => $types,
         'datesminmax' => $datesMinMax[0],
         'id' => $id,
+        'eventType' => $type 
   		));
     }
     /**
@@ -75,7 +78,17 @@ class EvenementController extends Controller
      */
     public function createAction(Request $request)
     {
-        $entity = new Evenement();
+        $classname = $this->get('request')->request->get('ocim_evenementsbundle_evenement')['eventType'];
+        $entity;
+        switch ($classname) {
+          case 'event':
+            $entity = new Event();
+            break;
+          case 'formation':
+            $entity = new Formation();
+            break;
+        }
+
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -202,9 +215,10 @@ class EvenementController extends Controller
      * Displays a form to create a new Evenement entity.
      *
      */
-    public function newAction()
+    public function newAction($type)
     {
         $entity = new Evenement();
+        $entity->setEventType($type);
         $form   = $this->createCreateForm($entity);
 
         return $this->render('OCIMEvenementsBundle:Evenement:new.html.twig', array(
@@ -269,6 +283,7 @@ class EvenementController extends Controller
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
+        // exit(\Doctrine\Common\Util\Debug::dump($entity->getEventType()));
         return $this->render('OCIMEvenementsBundle:Evenement:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
