@@ -120,7 +120,7 @@
 							{% endif %}
 						</li>
 					{% endif %}
-					{% if app.request.attributes.get("_route") starts with item.route %}{% set pagevars = item %}{% endif %}
+					{% if (app.request.attributes.get("_route") starts with item.route)and( (item.param_name is defined)? item.param_value == app.request.attributes.get("type"): true) %}{% set pagevars = item %}{% endif %}
 				{% endfor %}
 			</ul>
 			<ul class="showonmobile">

@@ -437,4 +437,16 @@ class Evenement
 			$this->eventType = $str;
 		}
 
+		public function getPrettyEventType($multiple = false){
+			$index = $this->getEventType();
+			$index .= ($multiple)? 's': '';
+			$eventTypes = array(
+				"events" => "&Eacute;vénements",
+				"event" => "&Eacute;vénement",
+				"formation" => "Formation",
+				"formations" => "Formations",
+			);
+			return $eventTypes[$index];
+		}
+
 }

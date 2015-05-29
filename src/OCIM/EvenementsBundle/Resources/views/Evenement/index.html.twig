@@ -21,10 +21,10 @@ filter='cssrewrite' %}
 {% endblock %}
 
 {# Titres #}
-{% block title %}Toutes les evenements{% endblock %}
-{% block titre %}Toutes les evenements{% endblock %}
+{% block title %}{{ (eventType == "event")? "Tous les &Eacute;vénements":"Toutes les Formations" }}{% endblock %}
+{% block titre %}{{ (eventType == "event")? "Tous les &Eacute;vénements":"Toutes les Formations" }}{% endblock %}
 {% block breadcrumbs %}
-	<li><span>Liste des evenements</span></li>
+	<li><span>Liste des {{ (eventType == "event")? "&Eacute;vénements":"Formations" }}</span></li>
 {% endblock %}
 
 {# Controls #}
@@ -38,7 +38,7 @@ filter='cssrewrite' %}
 {# listes evenements #}
 <div class="panel">
 	<div class="header">
-		<span class="titre">Toutes les evenements</span>
+		<span class="titre">{{ (eventType == "event")? "Tous les &Eacute;vénements":"Toutes les Formations" }}</span>
 			<span class="controls right group">
 				<label class="recherche"><i class="fa fa-search"></i><input type="text" class="" placeholder="Rechercher" id="recherche"/></label>
 				<a href="#" class="toggleFiltres"><i class="fa fa-filter"></i> Filtrer</a>
