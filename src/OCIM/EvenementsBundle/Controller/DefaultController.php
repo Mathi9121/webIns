@@ -16,7 +16,8 @@ class DefaultController extends Controller
 
 		$em = $this->getDoctrine()->getManager();
 
-        $evenements = $em->getRepository('OCIMEvenementsBundle:Evenement')->findAllFutursEvenements();
+        $evenements = $em->getRepository('OCIMEvenementsBundle:Evenement')->findAllFutursEvents();
+        $formations = $em->getRepository('OCIMEvenementsBundle:Evenement')->findAllFutursFormations();
         $inscriptions = $em->getRepository('OCIMEvenementsBundle:Inscription')->lastInscriptions();
 
 		//COUNT
@@ -54,8 +55,13 @@ class DefaultController extends Controller
 			$evenement->_count = $em->getRepository('OCIMEvenementsBundle:Inscription')->countInscriptionsByEvenement($evenement->getId());
 		}
 
+		foreach($formations as $formation){
+			$formation->_count = $em->getRepository('OCIMEvenementsBundle:Inscription')->countInscriptionsByEvenement($formation->getId());
+		}
+
 		return $this->render('OCIMEvenementsBundle:Default:index.html.twig', array(
 			'evenements'=> $evenements,
+			'formations'=> $formations,
 			'inscriptions'=> $inscriptions,
 			'countEvents' => $countEvents,
 			'countFormations' => $countFormations,

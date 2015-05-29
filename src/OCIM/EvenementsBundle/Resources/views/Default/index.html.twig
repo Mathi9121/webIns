@@ -93,13 +93,63 @@
 <div class="units-row">
 	<div class="unit-60 panel" id="evenements">
 		<div class="header">
-			<span class="titre">Evenements à venir</span>
-				<span class="controls right group">
-					<a href="{{ path('evenement') }}"><i class="fa fa-angle-double-right"></i> Toutes les evenements</a>
-				</span>
+
+			<nav class="nav-tabs" data-tools="tabs" data-equals="true">
+					<ul>
+							<li class="active"><a href="#formations">Formations à venir</a></li>
+							<li><a href="#events">&Eacute;vénements à venir</a></li>
+					</ul>
+			</nav>
 		</div>
 
 		<div class="panel-body">
+			<div id="formations">
+			<table class="table-hovered">
+				<tbody>
+					{% for evenement in formations %}
+					<tr>
+					<td title="{{ (evenement.intitule|length >= 55)? evenement.intitule }}">{{evenement.intitule|slice(0,55)}}{{ (evenement.intitule|length >= 55)? "..." }}</td>
+					<td>{{ evenement.lieu|capitalize}}</td>
+					<td>
+						<div class="group">
+							{% set spanclass = '' %}
+							{% set text = '' %}
+							{% for statut in evenement._count %}
+								{% if statut.statut == '2' %}
+									{% set spanclass = 'badge-yellow' %}
+									{% set text = 'Inscriptions en attente de validation' %}
+								{% endif %}
+								{% if statut.statut == '1' %}
+									{% set spanclass = 'badge-green' %}
+									{% set text = 'Inscriptions validées' %}
+								{% endif %}
+								{% if statut.statut == '3' %}
+									{% set spanclass = 'badge-red' %}
+									{% set text = "Nombre d'inscriptions annulées" %}
+								{% endif %}
+								<span title="{{ text }}" class="badge {{ spanclass }}">{{ statut.1 }}</span>
+							{% endfor %}
+						</div>
+					</td>
+					<td>
+						<span class="group evenement-raccourcis right">
+							<a title="Inscriptions" href="{{ path('inscription', { 'idevenement': evenement.id }) }}"><i class="fa fa-users fa-border"></i></a>
+							<a title="Détails" href="{{ path('evenement_show', { 'id': evenement.id }) }}"><i class="fa fa-info fa-border"></i></a>
+							<a title="ChampPerso" href="{{path('champPerso_edit', {'idevenement': evenement.id })}}"><i class="fa fa-table fa-border"></i></a>
+							<a title="Configuration" href="{{ path('evenement_edit', { 'id': evenement.id }) }}"><i class="fa fa-cogs fa-border"></i></a>
+						</span>
+					</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			<p class="group">
+				<span class="controls right">
+					<a href="{{ path('evenement') }}"><i class="fa fa-angle-double-right"></i> Toutes les formations</a>
+				</span>
+			</p>
+		</div>
+		<div id="events">
 			<table class="table-hovered">
 				<tbody>
 					{% for evenement in evenements %}
@@ -139,8 +189,19 @@
 					{% endfor %}
 				</tbody>
 			</table>
+			<p class="group">
+				<span class="controls right">
+					<a href="{{ path('evenement') }}"><i class="fa fa-angle-double-right"></i> Tous les événements</a>
+				</span>
+			</p>
+		</div>
+
 		</div>
 	</div>
+
+
+
+
 	<div class="unit-40 panel" id="inscriptions">
 		<div class="header">
 			<span class="titre">10 derniers inscrits</span>
