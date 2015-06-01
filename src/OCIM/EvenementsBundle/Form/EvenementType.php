@@ -27,7 +27,7 @@ class EvenementType extends AbstractType
         ))
 			   ->add('intitule', null, array(
 				    'required' => true,
-				    'label'  => 'Intitulé de la evenement',
+				    'label'  => 'Intitulé de l\'événement',
 				    'attr' => array('class'=>'width-100')
 				))
         ->add('lieu', null, array(
@@ -70,12 +70,12 @@ class EvenementType extends AbstractType
 				))
             ->add('type', null, array(
 				'required' => true,
-				'label'  => 'Type de evenement',
+				'label'  => 'Type d\'événement',
 				'attr' => array('class'=>'width-100')
 				))
             ->add('evenementFormule', 'collection', array(
 				'type'   => new evenementFormuleType(),
-				'label' => 'Formules liées à la evenement',
+				'label' => 'Formules liées à l\'événement',
 				'options' => array('label' => false),
 				'attr'=> array('class'=>'width-100'),
 				'required' => false,

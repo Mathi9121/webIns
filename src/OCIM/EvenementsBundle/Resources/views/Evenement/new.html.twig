@@ -38,14 +38,22 @@
 
 	<div class="unit-60 panel">
 			<div class="header">
-			<span class="titre">Evenement</span>
+			<span class="titre">Evenement/Formation</span>
 				<span class="controls right group">
 
 				</span>
 		</div>
 		<div class="panel-body">
-			{{ form_row(edit_form.intitule) }}
-			<div class="units-row end">
+      <div class="units-row end">
+        <div class="unit-70">
+			       {{ form_row(edit_form.intitule) }}
+        </div>
+        <div class="unit-30">
+             {{ form_row(edit_form.eventType) }}
+        </div>
+      </div>
+
+      <div class="units-row end">
         <div class="unit-70">
           {{ form_row(edit_form.type) }}
         </div>
@@ -72,7 +80,7 @@
 
 	<div class="unit-40 panel">
 		<div class="header">
-				<span class="titre">Formules liées à la evenement</span>
+				<span class="titre">Formules liées à l'événement</span>
 					<span class="controls right group">
 						<a href="#" class="btn btn-small ajouterFormule"><i class="fa fa-plus"></i>Formule existante</a>
             <a href="#" class="btn btn-small" id="nouvelleFormule" data-url="{{ path('formule_create') }}"><i class="fa fa-plus"></i>Nouvelle formule</a>
@@ -86,7 +94,7 @@
 
 
 <footer id="footer" class="group">
-	<div class="left"><a href="{{ path('evenement') }}" class="btn btn-back"><i class="fa fa-chevron-left fa-fw"></i>Retour à la liste des evenements</a></div>
+	<div class="left"><a href="{{ path('evenement') }}" class="btn btn-back"><i class="fa fa-chevron-left fa-fw"></i>Retour à la liste des événements</a></div>
 	<div class="right">{{ form_row(edit_form.submit) }}</div>
 </footer>
 
