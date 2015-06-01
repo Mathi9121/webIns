@@ -69,7 +69,7 @@ class EvenementController extends Controller
   			'types' => $types,
         'datesminmax' => $datesMinMax[0],
         'id' => $id,
-        'eventType' => $type 
+        'eventType' => $type
   		));
     }
     /**
@@ -78,7 +78,8 @@ class EvenementController extends Controller
      */
     public function createAction(Request $request)
     {
-        $classname = $this->get('request')->request->get('ocim_evenementsbundle_evenement')['eventType'];
+        $classname = $this->get('request')->request->get('ocim_evenementsbundle_evenement');
+        $classname = $classname['eventType'];
         $entity;
         switch ($classname) {
           case 'event':
