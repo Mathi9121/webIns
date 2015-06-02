@@ -207,8 +207,8 @@ class InscriptionPubliqueController extends Controller
               // envoi de mails
               $message = \Swift_Message::newInstance()
               ->setSubject('[OCIM] Inscription à la evenement : '.$entity->getEvenementFormule()->getEvenement()->getIntitule())
-              ->setFrom('evenement.ocim@u-bourgogne.fr')
-              ->setBcc('evenement.ocim@u-bourgogne.fr')
+              ->setFrom('formation.ocim@u-bourgogne.fr')
+              ->setBcc('formation.ocim@u-bourgogne.fr')
               ->setContentType("text/html")
               ->setTo($entity->getStagiaire()->getMail())
               ->setBody($this->renderView('OCIMEvenementsBundle:InscriptionPublique:email-inscription.html.twig', array('inscription' => $entity)))
