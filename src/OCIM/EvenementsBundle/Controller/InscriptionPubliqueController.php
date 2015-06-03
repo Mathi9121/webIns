@@ -45,7 +45,7 @@ class InscriptionPubliqueController extends Controller
           //exit(\Doctrine\Common\Util\Debug::dump($evenementType));
           $form->add('evenements', 'entity', array(
             'mapped' => false,
-            'label' => 'Vous participerez aux évènements',
+            'label' => 'Vous participerez aux événements',
             'required'      => false,
             'expanded' => true,
             'multiple' => true,
@@ -206,7 +206,7 @@ class InscriptionPubliqueController extends Controller
             if($inscription_success){
               // envoi de mails
               $message = \Swift_Message::newInstance()
-              ->setSubject('[OCIM] Inscription à la evenement : '.$entity->getEvenementFormule()->getEvenement()->getIntitule())
+              ->setSubject('[OCIM] Inscription à la formation : '.$entity->getEvenementFormule()->getEvenement()->getIntitule())
               ->setFrom('formation.ocim@u-bourgogne.fr')
               ->setBcc('formation.ocim@u-bourgogne.fr')
               ->setContentType("text/html")
