@@ -114,4 +114,6 @@ assetic:
      use_controller: true
 
 swiftmailer:
-    transport:  sendmail
+    transport:  smtp
+    host: smtp.u-bourgogne.fr
+    encryption: tls
