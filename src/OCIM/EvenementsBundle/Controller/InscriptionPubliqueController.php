@@ -36,7 +36,7 @@ class InscriptionPubliqueController extends Controller
 
         if (!$evenement) {
             throw $this->createNotFoundException(
-                "Aucune evenement ne correspond à l'id : " . $idevenement
+                "Aucun événement ne correspond à l'id : " . $idevenement
             );
         }
 
@@ -49,7 +49,7 @@ class InscriptionPubliqueController extends Controller
                 'required' => false,
                 'expanded' => true,
                 'multiple' => true,
-                'constraints' => new Assert\Count(array('min' => 1, 'minMessage' => 'Vous devez choisir au moins un evenement',)),
+                'constraints' => new Assert\Count(array('min' => 1, 'minMessage' => 'Vous devez choisir au moins un événement',)),
                 'property' => 'intitule',
                 'class' => 'OCIMEvenementsBundle:Evenement',
                 'query_builder' => function (EntityRepository $er) use ($id) {
@@ -82,8 +82,6 @@ class InscriptionPubliqueController extends Controller
         $partdonnees = $request->request->get('ocim_evenementsbundle_inscription');
 
         $idff = $partdonnees['evenementformule'];
-        $idevenement;
-
 
         if ($idff == 'type') {
             $idevenement = $partdonnees['evenements'][0];
