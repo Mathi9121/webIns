@@ -36,7 +36,7 @@ class InscriptionPubliqueType extends AbstractType
 						->where('u.evenement = :idevenement')
 						->setParameter('idevenement', $idevenement);
 					},
-				'label' => "Formule d'hébergement",
+				'label' => "Tarif(s)",
 				'expanded' => true,
 				))
 			->add(
