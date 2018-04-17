@@ -155,9 +155,9 @@ class InscriptionPubliqueType extends AbstractType
             'em',
         ));
 
-        $resolver->setAllowedTypes(array(
+        $resolver->setAllowedTypes(
             'em' => 'Doctrine\Common\Persistence\ObjectManager',
-        ));
+        );
     }
 
     /**
