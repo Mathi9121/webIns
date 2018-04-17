@@ -8,7 +8,7 @@
     },
     "require": {
         "php": ">=5.3.3",
-        "symfony/symfony": "2.6.*",
+        "symfony/symfony": "2.7.*",
         "doctrine/orm": ">=2.4.0,<2.5-dev",
         "doctrine/doctrine-bundle": "~1.2",
         "twig/extensions": "~1.0",
@@ -18,7 +18,7 @@
         "sensio/distribution-bundle": "~3.0",
         "sensio/framework-extra-bundle": "~3.0",
         "incenteev/composer-parameter-handler": "~2.0",
-        "knplabs/knp-snappy-bundle": "1.4",
+        "knplabs/knp-snappy-bundle": "dev-master",
         "knplabs/knp-menu-bundle": "~2"
     },
     "require-dev": {
