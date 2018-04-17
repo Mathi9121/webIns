@@ -252,7 +252,7 @@
 
 {% block form_label %}
 {% spaceless %}
-    {% if label is not sameas(false) %}
+    {% if label is not same as(false) %}
         {% if not compound %}
             {% set label_attr = label_attr|merge({'for': id}) %}
         {% endif %}
@@ -385,11 +385,11 @@
         {{- " " -}}
         {%- if attrname in ['placeholder', 'title'] -%}
             {{- attrname }}="{{ attrvalue|trans({}, translation_domain) }}"
-        {%- elseif attrvalue is sameas(true) -%}
+        {%- elseif attrvalue is same as(true) -%}
             {{- attrname }}="{{ attrname }}"
 		{%- elseif attrvalue.timestamp is defined %}
 			{{- attrname }}="{{ attrvalue|date('Y-m-d H:i:s')}}"
-        {%- elseif attrvalue is not sameas(false) -%}
+        {%- elseif attrvalue is not same as(false) -%}
             {{- attrname }}="{{ attrvalue }}"
         {%- endif -%}
     {%- endfor -%}
@@ -403,9 +403,9 @@
         {{- " " -}}
         {%- if attrname in ['placeholder', 'title'] -%}
             {{- attrname }}="{{ attrvalue|trans({}, translation_domain) }}"
-        {%- elseif attrvalue is sameas(true) -%}
+        {%- elseif attrvalue is same as(true) -%}
             {{- attrname }}="{{ attrname }}"
-        {%- elseif attrvalue is not sameas(false) -%}
+        {%- elseif attrvalue is not same as(false) -%}
             {{- attrname }}="{{ attrvalue }}"
         {%- endif -%}
     {%- endfor -%}
@@ -419,9 +419,9 @@
         {{- " " -}}
         {%- if attrname in ['placeholder', 'title'] -%}
             {{- attrname }}="{{ attrvalue|trans({}, translation_domain) }}"
-        {%- elseif attrvalue is sameas(true) -%}
+        {%- elseif attrvalue is same as(true) -%}
             {{- attrname }}="{{ attrname }}"
-        {%- elseif attrvalue is not sameas(false) -%}
+        {%- elseif attrvalue is not same as(false) -%}
             {{- attrname }}="{{ attrvalue }}"
         {%- endif -%}
     {%- endfor -%}
