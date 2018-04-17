@@ -4,7 +4,7 @@ namespace OCIM\EvenementsBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use OCIM\EvenementsBundle\Entity\Formule;
 
 class EvenementType extends AbstractType
@@ -23,7 +23,8 @@ class EvenementType extends AbstractType
           "choices" => array(
               "formation" => 'Formation',
               "event"     => 'Evénement'
-          )
+		  ),
+		  'choices_as_values' => true,
         ))
 			   ->add('intitule', null, array(
 				    'required' => true,
@@ -87,9 +88,9 @@ class EvenementType extends AbstractType
     }
 
     /**
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function setDefaultOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'OCIM\EvenementsBundle\Entity\Evenement'

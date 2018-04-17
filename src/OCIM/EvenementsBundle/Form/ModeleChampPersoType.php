@@ -4,7 +4,7 @@ namespace OCIM\EvenementsBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Doctrine\ORM\EntityRepository;
 
 class ModeleChampPersoType extends AbstractType
@@ -42,6 +42,7 @@ class ModeleChampPersoType extends AbstractType
 					'bool'	=> 'Oui/Non',
 					//'dateTime'	=> 'Date/Heure',
 				),
+				'choices_as_values' => true,
 				'empty_value' => 'Type de réponse',
 				'required' => true,
 			))
@@ -65,9 +66,9 @@ class ModeleChampPersoType extends AbstractType
     }
 
     /**
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function setDefaultOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'OCIM\EvenementsBundle\Entity\ModeleChampPerso',

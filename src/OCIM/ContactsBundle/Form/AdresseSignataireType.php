@@ -4,7 +4,7 @@ namespace OCIM\ContactsBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use OCIM\ContactsBundle\Form\DataTransformer\StringToTagsTransformer;
 use Doctrine\ORM\EntityRepository;
 
@@ -59,9 +59,9 @@ class AdresseSignataireType extends AbstractType
     }
 
     /**
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function setDefaultOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'OCIM\ContactsBundle\Entity\Adresse',

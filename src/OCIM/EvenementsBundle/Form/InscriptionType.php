@@ -4,7 +4,7 @@ namespace OCIM\EvenementsBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use OCIM\ContactsBundle\Form\PersonneType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\FormEvent;
@@ -56,6 +56,7 @@ class InscriptionType extends AbstractType
 				))
             ->add('numberStatut','choice', array(
 				'choices'   => array( '1' => 'Validé', '2' => 'En attente', "3" => "Annulé"),
+				'choices_as_values' => true,
 				//'preferred_choices' => array('en attente')
 				'attr' => array('class' => 'width-100'),
 				"label" => "Statut de l'inscription"
@@ -73,6 +74,7 @@ class InscriptionType extends AbstractType
 					true => 'OUI',
 					false => 'NON',
 					),
+				'choices_as_values' => true,
 				'required' => false,
 				'empty_value' => "Ne sais pas",
 				'label' => "Le stagiaire a-t-il besoin d'une convention?"
@@ -82,6 +84,7 @@ class InscriptionType extends AbstractType
 					true => 'Accordé',
 					false => 'NON',
 					),
+				'choices_as_values' => true,
 				'required' => false,
 				'empty_value' => "En attente",
 				'label' => "Statut du financement :"
@@ -113,9 +116,9 @@ class InscriptionType extends AbstractType
     }
 
     /**
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function setDefaultOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'OCIM\EvenementsBundle\Entity\Inscription',

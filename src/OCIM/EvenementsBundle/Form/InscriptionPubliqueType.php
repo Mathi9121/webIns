@@ -4,7 +4,7 @@ namespace OCIM\EvenementsBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use OCIM\ContactsBundle\Form\PersonneType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Validator\Constraints\Email;
@@ -50,6 +50,7 @@ class InscriptionPubliqueType extends AbstractType
 							'Mme' => 'Mme',
 							'Mr' => 'Mr',
 							),
+						'choices_as_values' => true,
 						//'empty_value' => 'Choisissez une option',
 						'attr' => array('class'=> 'width-100'),
 						'required' => true,
@@ -138,9 +139,9 @@ class InscriptionPubliqueType extends AbstractType
     }
 
     /**
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function setDefaultOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'OCIM\EvenementsBundle\Entity\Inscription',

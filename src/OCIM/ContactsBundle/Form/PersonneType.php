@@ -4,7 +4,7 @@ namespace OCIM\ContactsBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class PersonneType extends AbstractType
 {
@@ -22,7 +22,8 @@ class PersonneType extends AbstractType
 					'Mlle' => 'Mlle',
 					'Mme' => 'Mme',
 					'Mr' => 'Mr',
-					),
+                    ),
+                'choices_as_values' => true,
 				//'empty_value' => 'Choisissez une option',
 				'attr' => array('class'=> 'width-100'),
 				'required' => false,
@@ -66,9 +67,9 @@ class PersonneType extends AbstractType
     }
 
     /**
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function setDefaultOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'OCIM\ContactsBundle\Entity\Personne',

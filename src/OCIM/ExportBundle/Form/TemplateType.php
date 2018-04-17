@@ -4,7 +4,7 @@ namespace OCIM\ExportBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TemplateType extends AbstractType
 {
@@ -24,6 +24,7 @@ class TemplateType extends AbstractType
            'pdf' => "PDF (.pdf)",
            'convention' => "Convention (.pdf)",
          )
+         'choices_as_values' => true,
        ))
        ->add('filename', 'text', array(
          'attr' => array('class'=>'width-100'),
@@ -36,9 +37,9 @@ class TemplateType extends AbstractType
      }
 
     /**
-     * @param OptionsResolverInterface $resolver
+     * @param OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function setDefaultOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'OCIM\ExportBundle\Entity\Template'
