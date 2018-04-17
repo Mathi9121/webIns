@@ -193,7 +193,7 @@ class TemplateController extends Controller
       }
     }
 		// Ajout de la fonction twig pour calculer la durée entre deux dates
-        $env = new \Twig_Environment(new \Twig_Loader_String());
+       // $env = new \Twig_Environment(new \Twig_Loader_String());
 		$function = new \Twig_SimpleFunction('date_difference', function ($start, $end) {
 			return $start->diff($end, true)->format('%a') + 1;
 		});
@@ -210,18 +210,18 @@ class TemplateController extends Controller
 
 		// $contenu = "<!DOCTYPE html><html><head><meta charset='utf-8'/>
 		//			</head><body style='margin:0px'>".$entity->getContenu()."</body></html>";
-		$contenu = $entity->getContenu();
-    $contenu = "<style>.pagebreak{page-break-after: always;} @media print{ .pagebreak{height:0px; border:0;} }</style>".$contenu;
+	//	$contenu = $entity->getContenu();
+    //$contenu = "<style>.pagebreak{page-break-after: always;} @media print{ .pagebreak{height:0px; border:0;} }</style>".$contenu;
         // contenu et valeurs
-        $contenu = $env->render(
+        /*$contenu = $env->render(
             $contenu,
 			array("evenement" => $evenement, "inscription" => $inscription, 'date'=> $str_date, 'date_abbr'=>$date_abbr)
-		);
+		);*/
 
     //test du mode : show ou preview
     if($mode == 'preview'){
       return $this->render('OCIMExportBundle:Template:preview.html.twig', array(
-        'contenu' => $contenu,
+        //'contenu' => $contenu,
         'filename' => $filename,
       ));
     }
