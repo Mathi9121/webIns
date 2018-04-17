@@ -206,7 +206,7 @@ class TemplateController extends Controller
 
         
 		// ajout à l'environnement
-		$env->addFunction($function);
+	//	$env->addFunction($function);
 
 		// $contenu = "<!DOCTYPE html><html><head><meta charset='utf-8'/>
 		//			</head><body style='margin:0px'>".$entity->getContenu()."</body></html>";
