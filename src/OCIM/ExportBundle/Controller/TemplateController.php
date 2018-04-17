@@ -193,8 +193,7 @@ class TemplateController extends Controller
       }
     }
 		// Ajout de la fonction twig pour calculer la durée entre deux dates
-        //$env = new \Twig_Environment(new \Twig_Loader_String());
-        $env = new \Twig_Environment(new \Twig_Loader_Array());
+        $env = new \Twig_Environment(new \Twig_Loader_String());
 		$function = new \Twig_SimpleFunction('date_difference', function ($start, $end) {
 			return $start->diff($end, true)->format('%a') + 1;
 		});
@@ -213,11 +212,9 @@ class TemplateController extends Controller
 		//			</head><body style='margin:0px'>".$entity->getContenu()."</body></html>";
 		$contenu = $entity->getContenu();
     $contenu = "<style>.pagebreak{page-break-after: always;} @media print{ .pagebreak{height:0px; border:0;} }</style>".$contenu;
-        
-        $temp = $env->createTemplate($contenu);
         // contenu et valeurs
-        //$contenu = $env->render($contenu,
-        $contenu = $env->render($temp,
+        $contenu = $env->render(
+            $contenu,
 			array("evenement" => $evenement, "inscription" => $inscription, 'date'=> $str_date, 'date_abbr'=>$date_abbr)
 		);
 
