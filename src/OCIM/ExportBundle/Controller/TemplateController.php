@@ -192,8 +192,9 @@ class TemplateController extends Controller
         $filename = str_replace('{{inscription.convention.numeroToString}}', $inscription->getConvention()->getNumeroToString(), $filename);
       }
     }
-		// Ajout de la fonction twig pour calculer la durée entre deux date
-		$env = new \Twig_Environment(new \Twig_Loader_String());
+		// Ajout de la fonction twig pour calculer la durée entre deux dates
+        //$env = new \Twig_Environment(new \Twig_Loader_String());
+        $env = new \Twig_Environment(new \Twig_Loader_Array());
 		$function = new \Twig_SimpleFunction('date_difference', function ($start, $end) {
 			return $start->diff($end, true)->format('%a') + 1;
 		});
@@ -204,7 +205,7 @@ class TemplateController extends Controller
       $str_date = $date->format('d ').$mois[$date->format('m')].$date->format(' Y');
       $date_abbr = $date->format('d/m/Y');
 
-
+        
 		// ajout à l'environnement
 		$env->addFunction($function);
 
@@ -212,9 +213,11 @@ class TemplateController extends Controller
 		//			</head><body style='margin:0px'>".$entity->getContenu()."</body></html>";
 		$contenu = $entity->getContenu();
     $contenu = "<style>.pagebreak{page-break-after: always;} @media print{ .pagebreak{height:0px; border:0;} }</style>".$contenu;
-		// contenu et valeurs
-		$contenu = $env->render(
-			$contenu,
+        
+        $temp = $env->createTemplate($contenu);
+        // contenu et valeurs
+        //$contenu = $env->render($contenu,
+        $contenu = $env->render($temp,
 			array("evenement" => $evenement, "inscription" => $inscription, 'date'=> $str_date, 'date_abbr'=>$date_abbr)
 		);
 
