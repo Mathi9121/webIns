@@ -21,8 +21,8 @@ class TemplateType extends AbstractType
        ))
        ->add('type', 'choice', array(
          'choices' => array(
-           'pdf' => "PDF (.pdf)",
-           'convention' => "Convention (.pdf)",
+           "PDF (.pdf)" => 'pdf',
+           "Convention (.pdf)" => 'convention',
          )
          'choices_as_values' => true,
        ))
@@ -39,7 +39,7 @@ class TemplateType extends AbstractType
     /**
      * @param OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'OCIM\ExportBundle\Entity\Template'

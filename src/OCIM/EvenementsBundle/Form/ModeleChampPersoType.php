@@ -38,9 +38,9 @@ class ModeleChampPersoType extends AbstractType
 			))
             ->add('typeReponse', 'choice', array(
 				'choices'   => array(
-					'text'	=> 'Texte',
-					'bool'	=> 'Oui/Non',
-					//'dateTime'	=> 'Date/Heure',
+					'Texte'	=> 'text',
+					'Oui/Non' => 'bool',
+					//'Date/Heure'	=> 'dateTime',
 				),
 				'choices_as_values' => true,
 				'empty_value' => 'Type de réponse',
@@ -48,6 +48,7 @@ class ModeleChampPersoType extends AbstractType
 			))
 			->add('evenementFormule', 'entity', array(
 				'class' => 'OCIM\EvenementsBundle\Entity\evenementFormule',
+				'choice_translation_domain' => true,
 				'multiple' => true,
 				'expanded' => true,
 				'by_reference' => false,
@@ -57,7 +58,7 @@ class ModeleChampPersoType extends AbstractType
 						->where('u.evenement = :idevenement')
 						->setParameter('idevenement', $idevenement);
 					},
-				'property' => "FormuleId",
+				'choice_label' => "FormuleId",
 			))
 			->add('intervenant', 'checkbox', array(
 				'label' => 'Intervenant',
@@ -68,7 +69,7 @@ class ModeleChampPersoType extends AbstractType
     /**
      * @param OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'OCIM\EvenementsBundle\Entity\ModeleChampPerso',

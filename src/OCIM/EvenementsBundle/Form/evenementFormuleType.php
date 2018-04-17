@@ -16,7 +16,8 @@ class evenementFormuleType extends AbstractType
     {
         $builder
             ->add('formule', 'entity', array(
-				'class' => 'OCIM\EvenementsBundle\Entity\Formule',
+                'class' => 'OCIM\EvenementsBundle\Entity\Formule',
+                'choice_translation_domain' => true,
 				'label'=> false,
 				'attr'=> array('class'=>'width-100'),
 			))
@@ -26,7 +27,7 @@ class evenementFormuleType extends AbstractType
     /**
      * @param OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'OCIM\EvenementsBundle\Entity\evenementFormule'

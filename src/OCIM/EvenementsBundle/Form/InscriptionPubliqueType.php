@@ -29,6 +29,7 @@ class InscriptionPubliqueType extends AbstractType
         $builder
 			->add('evenementformule', "entity", array(
 				'class' => 'OCIM\EvenementsBundle\Entity\evenementFormule',
+				'choice_translation_domain' => true,
 				"attr" => array('class'=>'width-100'),
 				"query_builder" => function(EntityRepository $er) use ($idevenement)
 					{
@@ -141,7 +142,7 @@ class InscriptionPubliqueType extends AbstractType
     /**
      * @param OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'OCIM\EvenementsBundle\Entity\Inscription',

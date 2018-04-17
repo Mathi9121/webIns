@@ -18,10 +18,11 @@ class AjoutIntervenantType extends AbstractType
         $builder
           ->add('intervenants', 'entity', array(
             'class' => 'OCIM\ContactsBundle\Entity\Intervenant',
+            'choice_translation_domain' => true,
             'multiple' => true,
             'expanded' => true,
             'required' => false,
-            'property' => 'id'
+            'choice_label' => 'id'
           ))
         ;
     }
@@ -29,7 +30,7 @@ class AjoutIntervenantType extends AbstractType
     /**
      * @param OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
 			     'data_class' => 'OCIM\EvenementsBundle\Entity\Evenement',

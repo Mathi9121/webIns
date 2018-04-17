@@ -21,8 +21,8 @@ class EvenementType extends AbstractType
         ->add('eventType', "choice", array(
           "label" => "Catégorie d'événement",
           "choices" => array(
-              "formation" => 'Formation',
-              "event"     => 'Evénement'
+			  'Formation' => "formation",
+              'Evénement' => "event" 
 		  ),
 		  'choices_as_values' => true,
         ))
@@ -90,7 +90,7 @@ class EvenementType extends AbstractType
     /**
      * @param OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'OCIM\EvenementsBundle\Entity\Evenement'

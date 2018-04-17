@@ -36,6 +36,7 @@ class InscriptionType extends AbstractType
 				))
 			->add('evenementformule', "entity", array(
 				'class' => 'OCIM\EvenementsBundle\Entity\evenementFormule',
+				'choice_translation_domain' => true,
 				"attr" => array('class'=>'width-100'),
 				"query_builder" => function(EntityRepository $er) use ($idevenement)
 					{
@@ -55,7 +56,7 @@ class InscriptionType extends AbstractType
 				'label' => "Date d'inscription",
 				))
             ->add('numberStatut','choice', array(
-				'choices'   => array( '1' => 'Validé', '2' => 'En attente', "3" => "Annulé"),
+				'choices'   => array('Validé' => '1', 'En attente' => '2', "Annulé" => "3"),
 				'choices_as_values' => true,
 				//'preferred_choices' => array('en attente')
 				'attr' => array('class' => 'width-100'),
@@ -71,8 +72,8 @@ class InscriptionType extends AbstractType
             //->add('statutOrgFinanceur')
             ->add('statutConvention', 'choice', array(
 				'choices' => array(
-					true => 'OUI',
-					false => 'NON',
+					'OUI' => true,
+					'NON' => false,
 					),
 				'choices_as_values' => true,
 				'required' => false,
@@ -81,8 +82,8 @@ class InscriptionType extends AbstractType
 			))
             ->add('statutFinancement', 'choice', array(
 				'choices' => array(
-					true => 'Accordé',
-					false => 'NON',
+					'Accordé' => true,
+					'NON' => false ,
 					),
 				'choices_as_values' => true,
 				'required' => false,
@@ -118,7 +119,7 @@ class InscriptionType extends AbstractType
     /**
      * @param OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'OCIM\EvenementsBundle\Entity\Inscription',
