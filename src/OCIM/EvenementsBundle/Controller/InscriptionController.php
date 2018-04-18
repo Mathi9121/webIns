@@ -432,7 +432,7 @@ class InscriptionController extends Controller
     return $this->createFormBuilder()
     ->setAction($this->generateUrl('inscription_delete', array('id' => $id, 'idevenement'=> $idevenement)))
     ->setMethod('DELETE')
-    ->add('submit', SubmitType::class, array('label' => ' Supprimer', 'attr'=> array('class'=>'btn btn-red btn-delete') ))
+    ->add('submit', 'submit', array('label' => ' Supprimer', 'attr'=> array('class'=>'btn btn-red btn-delete') ))
     ->getForm()
     ;
   }

@@ -222,7 +222,7 @@ class PersonneController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('personne_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', SubmitType::class, array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
     }

@@ -366,7 +366,7 @@ class TemplateController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('documents_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', SubmitType::class, array('label' => 'Delete', 'attr' => array('class'=>'btn btn-red btn-delete')))
+            ->add('submit', 'submit', array('label' => 'Delete', 'attr' => array('class'=>'btn btn-red btn-delete')))
             ->getForm()
         ;
     }

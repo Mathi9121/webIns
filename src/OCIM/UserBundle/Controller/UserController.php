@@ -219,7 +219,7 @@ class UserController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('user_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', SubmitType::class, array('label' => 'Supprimer', 'attr'=>array('class'=>'btn btn-red btn-delete')))
+            ->add('submit', 'submit', array('label' => 'Supprimer', 'attr'=>array('class'=>'btn btn-red btn-delete')))
             ->getForm()
         ;
     }
