@@ -6,6 +6,9 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use OCIM\ContactsBundle\Form\PersonneType;
+use OCIM\EvenementsBundle\Form\ConventionType;
+use OCIM\ContactsBundle\Form\AdminType;
+use OCIM\ContactsBundle\Form\SignataireType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -34,9 +37,9 @@ class InscriptionType extends AbstractType
 
 		$idevenement = $this->idevenement;
         $builder
-			->add('stagiaire', new \OCIM\ContactsBundle\Form\PersonneType(), array(
+			->add('stagiaire', PersonneType::class array(
 				'data_class' => 'OCIM\ContactsBundle\Entity\Stagiaire',
-				//'type'=> new \OCIM\ContactsBundle\Form\PersonneType()
+				//'type'=> PersonneType::class
 				'em' => $entityManager
 				))
 			->add('evenementformule', "entity", array(
@@ -96,16 +99,16 @@ class InscriptionType extends AbstractType
 				'label' => "Statut du financement :"
 			))
             //->add('hash')
-      ->add('convention', new \OCIM\EvenementsBundle\Form\ConventionType(), array(
+      ->add('convention', ConventionType::class, array(
 				'data_class' => 'OCIM\EvenementsBundle\Entity\Convention',
 				'required' => false,
 			))
-			->add('admin', new \OCIM\ContactsBundle\Form\AdminType(), array(
+			->add('admin', AdminType::class, array(
 				'data_class' => 'OCIM\ContactsBundle\Entity\Admin',
 				'required' => false,
 
 			))
-			->add('signataire', new \OCIM\ContactsBundle\Form\SignataireType(), array(
+			->add('signataire', SignataireType::class, array(
 				'data_class' => 'OCIM\ContactsBundle\Entity\Signataire',
 				'required' => false,
 				'em' => $entityManager

@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class ModeleChampPersoType extends AbstractType
 {
@@ -52,7 +53,7 @@ class ModeleChampPersoType extends AbstractType
 				'empty_value' => 'Type de réponse',
 				'required' => true,
 			))
-			->add('evenementFormule', 'entity', array(
+			->add('evenementFormule', EntityType::class, array(
 				'class' => 'OCIM\EvenementsBundle\Entity\evenementFormule',
 				'choice_translation_domain' => true,
 				'multiple' => true,

@@ -6,6 +6,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+
 class evenementFormuleType extends AbstractType
 {
         /**
@@ -15,7 +17,7 @@ class evenementFormuleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('formule', 'entity', array(
+            ->add('formule', EntityType::class, array(
                 'class' => 'OCIM\EvenementsBundle\Entity\Formule',
                 'choice_translation_domain' => true,
 				'label'=> false,

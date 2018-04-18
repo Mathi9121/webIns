@@ -11,6 +11,8 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 
+use OCIM\ContactsBundle\Form\evenementFormuleType;
+
 class EvenementType extends AbstractType
 {
         /**
@@ -79,7 +81,7 @@ class EvenementType extends AbstractType
 				'attr' => array('class'=>'width-100')
 				))
             ->add('evenementFormule', CollectionType::class, array(
-				'entry_type'   => new evenementFormuleType(),
+				'entry_type'   => evenementFormuleType::class,
 				'label' => 'Formules liées à l\'événement',
 				'entry_options' => array('label' => false),
 				'attr'=> array('class'=>'width-100'),

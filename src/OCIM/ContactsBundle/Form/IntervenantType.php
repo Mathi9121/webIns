@@ -10,6 +10,8 @@ use OCIM\ContactsBundle\Form\DataTransformer\StringToTagsTransformer;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
+use OCIM\ContactsBundle\Form\AdresseType;
+
 class IntervenantType extends AbstractType
 {
         /**
@@ -52,7 +54,7 @@ class IntervenantType extends AbstractType
 					'attr' => array('class'=> 'width-100'),
 					'required' => false
 				))
-        ->add('adresse', new AdresseType(),array(
+        ->add('adresse', AdresseType::class,array(
           'required' => false,
           'label' => false,
           'em' => $entityManager

@@ -10,6 +10,8 @@ use OCIM\ContactsBundle\Form\DataTransformer\StringToTypePersonneTransformer;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
+use OCIM\ContactsBundle\Form\AdresseSignataireType;
+
 class SignataireType extends AbstractType
 {
         /**
@@ -42,7 +44,7 @@ class SignataireType extends AbstractType
             ->add('mail', TextType::class, array(
 				'attr' => array('class'=> 'width-100')
 			))
-			->add('adresse', new AdresseSignataireType(), array(
+			->add('adresse', AdresseSignataireType::class, array(
 				'attr' => array('class'=> 'width-100'),
 				'data_class' => 'OCIM\ContactsBundle\Entity\Adresse',
 				'em' => $entityManager

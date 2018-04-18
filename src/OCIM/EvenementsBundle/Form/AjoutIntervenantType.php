@@ -7,6 +7,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use OCIM\ContactsBundle\Form\DataTransformer\StringToTagsTransformer;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+
 class AjoutIntervenantType extends AbstractType
 {
         /**
@@ -16,7 +18,7 @@ class AjoutIntervenantType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-          ->add('intervenants', 'entity', array(
+          ->add('intervenants', EntityType::class, array(
             'class' => 'OCIM\ContactsBundle\Entity\Intervenant',
             'choice_translation_domain' => true,
             'multiple' => true,

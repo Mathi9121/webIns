@@ -9,6 +9,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
+use OCIM\ContactsBundle\Form\AdresseType;
+
 class PersonneType extends AbstractType
 {
         /**
@@ -61,7 +63,7 @@ class PersonneType extends AbstractType
 				'label' => "Adresse Mail",
 				'required' => false
 			))
-			->add('adresse', new AdresseType(),array(
+			->add('adresse', AdresseType::class, array(
 				'required' => false,
 				'label' => false,
         'em' => $entityManager
