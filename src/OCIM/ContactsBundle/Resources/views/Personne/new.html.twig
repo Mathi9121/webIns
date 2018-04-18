@@ -3,7 +3,7 @@
 {% block body -%}
     <h1>Personne creation</h1>
 
-<form action="{{ path('personne_create') }}" method="post" class="forms units-row" {{ form_enctype(form) }}>
+<form action="{{ path('personne_create') }}" method="post" class="forms units-row" {{ form_start(form) }}>
 
 <fieldset>
 	<legend>Nouveau contact</legend>
