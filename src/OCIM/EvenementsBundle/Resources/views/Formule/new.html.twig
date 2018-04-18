@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block body %}
-<form action="{{ path('formule_create') }}" method="post" class="forms units-row" {{ form_enctype(form) }}>
+<form action="{{ path('formule_create') }}" method="post" class="forms units-row" {{ form_start(form) }}>
 
 <div class="units-row units-padding ">
   <div class="unit-centered unit-66 panel">
