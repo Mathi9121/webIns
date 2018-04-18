@@ -79,9 +79,9 @@ class EvenementType extends AbstractType
 				'attr' => array('class'=>'width-100')
 				))
             ->add('evenementFormule', CollectionType::class, array(
-				'type'   => new evenementFormuleType(),
+				'entry_type'   => new evenementFormuleType(),
 				'label' => 'Formules liées à l\'événement',
-				'options' => array('label' => false),
+				'entry_options' => array('label' => false),
 				'attr'=> array('class'=>'width-100'),
 				'required' => false,
 				'allow_add' => true,

@@ -22,7 +22,7 @@ class ChampPersoType extends AbstractType
     {
         $builder
 			->add('modeles', CollectionType::class, array(
-				'type' => new ModeleChampPersoType($this->idevenement),
+				'entry_type' => new ModeleChampPersoType($this->idevenement),
 				'allow_add' => true,
 				'allow_delete' => true,
 				));
