@@ -8,6 +8,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
+use OCIM\EvenementsBundle\Form\ModeleChampPersoType;
+
 class ChampPersoType extends AbstractType
 {
 
@@ -20,9 +22,12 @@ class ChampPersoType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $this->traitTypes = $options['trait_types'];
+
         $builder
 			->add('modeles', CollectionType::class, array(
-				'entry_type' => new ModeleChampPersoType($this->idevenement),
+                //'entry_type' => new ModeleChampPersoType($this->idevenement),
+                'entry_type' => $this->traitTypes['modeles'],
 				'allow_add' => true,
 				'allow_delete' => true,
 				));

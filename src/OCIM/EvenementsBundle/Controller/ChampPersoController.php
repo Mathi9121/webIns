@@ -139,6 +139,7 @@ class ChampPersoController extends Controller
         $form = $this->createForm(new ChampPersoType(), $entity, array(
             'action' => $this->generateUrl('champPerso_create'),
             'method' => 'POST',
+            'trait_types' => $traitTypes;
         ));
 
         $form->add('submit', SubmitType::class, array('label' => 'Créer'));
