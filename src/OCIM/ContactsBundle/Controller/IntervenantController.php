@@ -40,7 +40,7 @@ class IntervenantController extends Controller
      */
     public function createAction(Request $request, $idevenement)
     {
-        $entity = new Intervenant();
+        $entity = Intervenant::class;
         $form = $this->createCreateForm($entity, $idevenement);
         $form->handleRequest($request);
 
@@ -79,7 +79,7 @@ class IntervenantController extends Controller
      */
     private function createCreateForm(Intervenant $entity, $idevenement)
     {
-        $form = $this->createForm(new IntervenantType(), $entity, array(
+        $form = $this->createForm(IntervenantType::class, $entity, array(
             'action' => $this->generateUrl('intervenants_create', array('idevenement'=> $idevenement)),
             'method' => 'POST',
 			'em' => $this->getDoctrine()->getManager(),
@@ -96,7 +96,7 @@ class IntervenantController extends Controller
      */
     public function newAction($idevenement = null)
     {
-        $entity = new Intervenant();
+        $entity = Intervenant::class();
         $form = $this->createCreateForm($entity,$idevenement);
         $em = $this->getDoctrine()->getManager();
         $tags = $em->getRepository("OCIMContactsBundle:TagStructure")->findAll();
@@ -168,7 +168,7 @@ class IntervenantController extends Controller
     */
     private function createEditForm(Intervenant $entity, $idevenement)
     {
-        $form = $this->createForm(new IntervenantType(), $entity, array(
+        $form = $this->createForm(IntervenantType::class, $entity, array(
             'action' => $this->generateUrl('intervenants_update', array('id' => $entity->getId(), 'idevenement' => $idevenement)),
             'method' => 'PUT',
 			'em' => $this->getDoctrine()->getManager()

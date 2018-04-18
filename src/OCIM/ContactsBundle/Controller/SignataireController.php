@@ -37,7 +37,7 @@ class SignataireController extends Controller
      */
     public function createAction(Request $request, $idinscription, $idevenement)
     {
-        $entity = new Signataire();
+        $entity = Signataire::class;
         $form = $this->createCreateForm($entity, $idinscription, $idevenement);
         $form->handleRequest($request);
 
@@ -71,7 +71,7 @@ class SignataireController extends Controller
      */
     private function createCreateForm(Signataire $entity, $idinscription, $idevenement)
     {
-        $form = $this->createForm(new SignataireType(), $entity, array(
+        $form = $this->createForm(SignataireType::class, $entity, array(
             'action' => $this->generateUrl('signataire_create', array('idinscription'=>$idinscription, 'idevenement'=> $idevenement)),
             'method' => 'POST',
 			'em' => $this->getDoctrine()->getManager(),
@@ -88,7 +88,7 @@ class SignataireController extends Controller
      */
     public function newAction($idinscription, $idevenement)
     {
-        $entity = new Signataire();
+        $entity = Signataire::class;
         $form   = $this->createCreateForm($entity, $idinscription, $idevenement);
 
         return $this->render('OCIMContactsBundle:Signataire:new.html.twig', array(
@@ -154,7 +154,7 @@ class SignataireController extends Controller
     */
     private function createEditForm(Signataire $entity, $idevenement)
     {
-        $form = $this->createForm(new SignataireType(), $entity, array(
+        $form = $this->createForm(SignataireType::class, $entity, array(
             'action' => $this->generateUrl('signataire_update', array('id' => $entity->getId(), 'idevenement'=>$idevenement)),
             'method' => 'PUT',
 			'em' => $this->getDoctrine()->getManager(),

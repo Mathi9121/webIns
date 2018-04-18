@@ -39,7 +39,7 @@ class PersonneController extends Controller
      */
     public function createAction(Request $request)
     {
-        $entity = new Personne();
+        $entity = Personne::class;
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -66,7 +66,7 @@ class PersonneController extends Controller
      */
     private function createCreateForm(Personne $entity)
     {
-        $form = $this->createForm(new PersonneType(), $entity, array(
+        $form = $this->createForm(PersonneType::class, $entity, array(
             'action' => $this->generateUrl('personne_create'),
             'method' => 'POST',
         ));
@@ -82,7 +82,7 @@ class PersonneController extends Controller
      */
     public function newAction()
     {
-        $entity = new Personne();
+        $entity = Personne::class;
         $form   = $this->createCreateForm($entity);
 
         return $this->render('OCIMContactsBundle:Personne:new.html.twig', array(
@@ -147,7 +147,7 @@ class PersonneController extends Controller
     */
     private function createEditForm(Personne $entity)
     {
-        $form = $this->createForm(new PersonneType(), $entity, array(
+        $form = $this->createForm(PersonneType::class, $entity, array(
             'action' => $this->generateUrl('personne_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));

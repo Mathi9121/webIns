@@ -61,10 +61,10 @@ class ChampPersoController extends Controller
 
 			$data = json_decode($request->getContent());
 
-			$personne = new Personne();
+			$personne = Personne::class;
 			$personne = $em->getRepository('OCIMContactsBundle:Personne')->find($data[0]->idpersonne);
 
-			$reponseChampPerso = new ReponsesChampPerso();
+			$reponseChampPerso = ReponsesChampPerso::class;
 			// un objet ReponseChampPerso existe
 			if(!empty($data[0]->idreponse)){
 				$reponseChampPerso = $em->getRepository('OCIMEvenementsBundle:ReponsesChampPerso')->find($data[0]->idreponse);
@@ -109,7 +109,7 @@ class ChampPersoController extends Controller
      */
     public function createAction(Request $request)
     {
-        $entity = new evenementFormule();
+        $entity = evenementFormule::class;
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -136,7 +136,7 @@ class ChampPersoController extends Controller
      */
     private function createCreateForm(evenementFormule $entity)
     {
-        $form = $this->createForm(new ChampPersoType(), $entity, array(
+        $form = $this->createForm(ChampPersoType::class, $entity, array(
             'action' => $this->generateUrl('champPerso_create'),
             'method' => 'POST',
             'trait_types' => $traitTypes;
@@ -153,7 +153,7 @@ class ChampPersoController extends Controller
      */
     public function newAction()
     {
-        $entity = new evenementFormule();
+        $entity = evenementFormule::class;
         $form   = $this->createCreateForm($entity);
 
         return $this->render('OCIMEvenementsBundle:champPerso:new.html.twig', array(
@@ -217,7 +217,7 @@ class ChampPersoController extends Controller
 			}
 
 			//arrivée pour les intervenants
-			$m = new ModeleChampPerso();
+			$m = ModeleChampPerso::class;
 			$m->setDescription('Arrivée');
 			$m->setTypeReponse('text');
 			$m->setIntervenant(true);
@@ -226,7 +226,7 @@ class ChampPersoController extends Controller
 			foreach($period as $date)
 			{
 				foreach($journee as $key=>$j){
-					$m = new ModeleChampPerso();
+					$m = ModeleChampPerso::class;
 
 					foreach($j as $ff){
 						if($ff){
@@ -243,7 +243,7 @@ class ChampPersoController extends Controller
 			}
 
 			//départ pour les intervenants
-			$m = new ModeleChampPerso();
+			$m = ModeleChampPerso::class;
 			$m->setDescription('Départ');
 			$m->setTypeReponse('text');
 			$m->setIntervenant(true);
@@ -253,7 +253,7 @@ class ChampPersoController extends Controller
 		else{
 			$modeles = $em->getRepository('OCIMEvenementsBundle:ModeleChampPerso')->findModelesByIdEvenement($idevenement);
 			if(!$modeles){
-				$modeles[] = new ModeleChampPerso();
+				$modeles[] = ModeleChampPerso::class;
 				$evenement->setModeles(new ArrayCollection($modeles));
 			}
 			else{
