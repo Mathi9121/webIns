@@ -6,6 +6,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+
 class UserType extends AbstractType
 {
         /**
@@ -15,16 +17,16 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom', 'text', array(
+            ->add('nom', TextType::class, array(
 				'label'=> 'Nom',
 			))
-            ->add('prenom', 'text', array(
+            ->add('prenom', TextType::class, array(
 				'label'=> 'Prénom',
 			))
-			->add('mail', 'text', array(
+			->add('mail', TextType::class, array(
 				'label'=> '',
 			))
-            ->add('login', 'text', array(
+            ->add('login', TextType::class, array(
 				'label'=> 'Login',
 			))
             ->add('password', 'password', array(
@@ -46,9 +48,17 @@ class UserType extends AbstractType
     }
 
     /**
-     * @return string
+     * @return getBlockPrefix()
      */
     public function getName()
+    {
+        return $this->getBlockPrefix();
+    }
+
+    /**
+     * @return string
+     */
+    public function getBlockPrefix()
     {
         return 'ocim_userbundle_user';
     }

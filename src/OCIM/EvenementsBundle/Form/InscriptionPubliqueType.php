@@ -9,6 +9,10 @@ use OCIM\ContactsBundle\Form\PersonneType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Validator\Constraints\Email;
 
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+
 class InscriptionPubliqueType extends AbstractType
 {
 	private $idevenement;
@@ -41,11 +45,11 @@ class InscriptionPubliqueType extends AbstractType
 				'expanded' => true,
 				))
 			->add(
-				$builder->create('stagiaire', 'form', array(
+				$builder->create('stagiaire', FormType::class, array(
 						'required' => true,
 						'data_class' => 'OCIM\ContactsBundle\Entity\Stagiaire',
 						'label' => false))
-					->add('civilite', 'choice', array(
+					->add('civilite', ChoiceType::class, array(
 						'choices' => array(
 							'Mlle' => 'Mlle',
 							'Mme' => 'Mme',
@@ -57,31 +61,31 @@ class InscriptionPubliqueType extends AbstractType
 						'required' => true,
 						'label' => "Civilité"
 					))
-					->add('nom', 'text', array(
+					->add('nom', TextType::class, array(
 						'attr' => array('class'=> 'width-100'),
 						'required' => true
 					))
-					->add('prenom', 'text', array(
+					->add('prenom', TextType::class, array(
 						'attr' => array('class'=> 'width-100'),
 						'required' => true,
 						'label' => "Prénom"
 					))
-					->add('fonction', 'text', array(
+					->add('fonction', TextType::class, array(
 						'attr' => array('class'=> 'width-100'),
 						'required' => true,
 						'label' => "Fonction",
 					))
-					->add('tel', 'text', array(
+					->add('tel', TextType::class, array(
 						'attr' => array('class'=> 'width-100'),
 						'label' => 'Téléphone',
 						'required' => true,
 					))
-					// ->add('fax', 'text', array(
+					// ->add('fax', TextType::class, array(
 					// 	'required' => false,
 					// 	'attr' => array('class'=> 'width-100'),
 					// 	'required' => false,
 					// ))
-					->add('mail', 'text', array(
+					->add('mail', TextType::class, array(
 						'attr' => array('class'=> 'width-100'),
 						'label' => "Adresse Mail",
 						'required' => true,
@@ -90,32 +94,32 @@ class InscriptionPubliqueType extends AbstractType
 							'checkMX' => true))
 					))
 					->add(
-						$builder->create("adresse", 'form', array("by_reference"=>false, "label" => false, "data_class" => 'OCIM\ContactsBundle\Entity\Adresse',))
-							->add('nomStructure', 'text', array(
+						$builder->create("adresse", FormType::class, array("by_reference"=>false, "label" => false, "data_class" => 'OCIM\ContactsBundle\Entity\Adresse',))
+							->add('nomStructure', TextType::class, array(
 								'attr' => array('class' => 'width-100'),
 								'label' => 'Nom de la structure',
 								'required' => true
 							))
-							->add('adresse', 'text', array(
+							->add('adresse', TextType::class, array(
 								'attr' => array('class' => 'width-100'),
 								'label' => 'Adresse',
 								'required' => true
 							))
-							->add('adresseComplement', 'text', array(
+							->add('adresseComplement', TextType::class, array(
 								'attr' => array('class' => 'width-100'),
 								'label' => "Complément d'adresse",
 								'required' => false
 							))
-							->add('cP', 'text', array(
+							->add('cP', TextType::class, array(
 								'attr' => array('class' => 'width-100'),
 								'label' => 'Code postal',
 								'required' => true
 							))
-							->add('ville', 'text', array(
+							->add('ville', TextType::class, array(
 								'attr' => array('class' => 'width-100'),
 								'required' => true
 							))
-							->add('pays', 'text', array(
+							->add('pays', TextType::class, array(
 								'attr' => array('class' => 'width-100'),
 								'required' => false
 							))
@@ -127,8 +131,8 @@ class InscriptionPubliqueType extends AbstractType
 				))
 
 			->add(
-				$builder->create('admin', 'form', array('by_reference' => false, 'label' => false, "data_class"=> 'OCIM\ContactsBundle\Entity\Admin'))
-					->add('mail', 'text', array(
+				$builder->create('admin', FormType::class, array('by_reference' => false, 'label' => false, "data_class"=> 'OCIM\ContactsBundle\Entity\Admin'))
+					->add('mail', TextType::class, array(
 						'label' => "Mail du contact administratif",
 						'required' => false,
 						'constraints' => new Email(array(
@@ -158,12 +162,20 @@ class InscriptionPubliqueType extends AbstractType
         $resolver->setAllowedTypes(
             'em' => 'Doctrine\Common\Persistence\ObjectManager',
         );
+	}
+	
+	/**
+     * @return getBlockPrefix()
+     */
+    public function getName()
+    {
+        return $this->getBlockPrefix();
     }
 
     /**
      * @return string
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'ocim_evenementsbundle_inscription';
     }

@@ -7,6 +7,12 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Doctrine\ORM\EntityRepository;
 
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+
 class ModeleChampPersoType extends AbstractType
 {
 	public $idevenement;
@@ -23,20 +29,20 @@ class ModeleChampPersoType extends AbstractType
     {
 		$idevenement = $this->idevenement;
         $builder
-			->add('ordre', 'hidden', array(
+			->add('ordre', HiddenType::class, array(
 				'attr' => array('class' => 'ordreModeles'),
 				'required'=> true,
 			))
-            ->add('date', 'date', array(
+            ->add('date', DateType::class, array(
 				'widget' => 'single_text',
 				'format' => 'dd/MM/yyyy',
 				'attr' => array('placeholder'=>'JJ/MM/AAAA', 'class'=>'datepicker', 'data-tool'=> "datepicker"),
 				'required'=> false,
 			))
-            ->add('description', 'text', array(
+            ->add('description', TextType::class, array(
 				'attr' => array('placeholder' => "Description")
 			))
-            ->add('typeReponse', 'choice', array(
+            ->add('typeReponse', ChoiceType::class, array(
 				'choices'   => array(
 					'Texte'	=> 'text',
 					'Oui/Non' => 'bool',
@@ -60,7 +66,7 @@ class ModeleChampPersoType extends AbstractType
 					},
 				'choice_label' => "FormuleId",
 			))
-			->add('intervenant', 'checkbox', array(
+			->add('intervenant', CheckboxType::class, array(
 				'label' => 'Intervenant',
 				'required' => false,
 			));
@@ -75,12 +81,20 @@ class ModeleChampPersoType extends AbstractType
             'data_class' => 'OCIM\EvenementsBundle\Entity\ModeleChampPerso',
 			'attr' => array('class'=> 'forms'),
         ));
+	}
+	
+	/**
+     * @return getBlockPrefix()
+     */
+    public function getName()
+    {
+        return $this->getBlockPrefix();
     }
 
     /**
      * @return string
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'ocim_evenementsbundle_modelechampPerso';
     }

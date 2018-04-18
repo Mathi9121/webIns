@@ -7,6 +7,10 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use OCIM\EvenementsBundle\Entity\Formule;
 
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+
 class EvenementType extends AbstractType
 {
         /**
@@ -18,7 +22,7 @@ class EvenementType extends AbstractType
 
 
         $builder
-        ->add('eventType', "choice", array(
+        ->add('eventType', ChoiceType::class, array(
           "label" => "Catégorie d'événement",
           "choices" => array(
 			  'Formation' => "formation",
@@ -36,7 +40,7 @@ class EvenementType extends AbstractType
 				'label'  => 'Lieu',
 				'attr' => array('class'=>'width-100')
 				))
-        ->add('dateDebut', 'date', array(
+        ->add('dateDebut', DateType::class, array(
   				'required' => true,
   				'widget' => 'single_text',
   				'label'  => 'Date de début',
@@ -47,7 +51,7 @@ class EvenementType extends AbstractType
   					'class' => 'width-100 datepicker',
             'data-tool' => 'datepicker'
 				      )))
-            ->add('dateFin', 'date', array(
+            ->add('dateFin', DateType::class, array(
 				'required' => true,
 				'widget' => 'single_text',
 				'format' => 'dd/MM/yyyy',
@@ -74,7 +78,7 @@ class EvenementType extends AbstractType
 				'label'  => 'Type d\'événement',
 				'attr' => array('class'=>'width-100')
 				))
-            ->add('evenementFormule', 'collection', array(
+            ->add('evenementFormule', CollectionType::class, array(
 				'type'   => new evenementFormuleType(),
 				'label' => 'Formules liées à l\'événement',
 				'options' => array('label' => false),
@@ -96,12 +100,20 @@ class EvenementType extends AbstractType
             'data_class' => 'OCIM\EvenementsBundle\Entity\Evenement'
         ));
 
+	}
+	
+	/**
+     * @return getBlockPrefix()
+     */
+    public function getName()
+    {
+        return $this->getBlockPrefix();
     }
 
     /**
      * @return string
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'ocim_evenementsbundle_evenement';
     }

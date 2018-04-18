@@ -6,6 +6,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+
 class ChampPersoType extends AbstractType
 {
 
@@ -19,7 +21,7 @@ class ChampPersoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-			->add('modeles', 'collection', array(
+			->add('modeles', CollectionType::class, array(
 				'type' => new ModeleChampPersoType($this->idevenement),
 				'allow_add' => true,
 				'allow_delete' => true,
@@ -38,9 +40,17 @@ class ChampPersoType extends AbstractType
     }
 
     /**
-     * @return string
+     * @return getBlockPrefix()
      */
     public function getName()
+    {
+        return $this->getBlockPrefix();
+    }
+
+    /**
+     * @return string
+     */
+    public function getBlockPrefix()
     {
         return 'ocim_evenementsbundle_evenement';
     }

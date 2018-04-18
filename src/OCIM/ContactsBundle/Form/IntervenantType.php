@@ -7,6 +7,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use OCIM\ContactsBundle\Form\DataTransformer\StringToTagsTransformer;
 
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+
 class IntervenantType extends AbstractType
 {
         /**
@@ -18,7 +21,7 @@ class IntervenantType extends AbstractType
 		$entityManager = $options['em'];
 		$transformer = new StringToTagsTransformer($entityManager);
         $builder
-				->add('civilite', 'choice', array(
+				->add('civilite', ChoiceType::class, array(
 					'choices' => array(
 					'Mlle' => 'Mlle',
 					'Mme' => 'Mme',
@@ -28,24 +31,24 @@ class IntervenantType extends AbstractType
 					'attr' => array('class'=> 'width-100'),
 					'required' => false
 				))
-				->add('nom', 'text', array(
+				->add('nom', TextType::class, array(
 					'attr' => array('class'=> 'width-100'),
 					'required' => false
 				))
-				->add('prenom', 'text', array(
+				->add('prenom', TextType::class, array(
 					'attr' => array('class'=> 'width-100'),
 					'required' => false
 				))
-				->add('fonction', 'text', array(
+				->add('fonction', TextType::class, array(
 					'attr' => array('class'=> 'width-100'),
 					'required' => false
 				))
-				->add('tel', 'text', array(
+				->add('tel', TextType::class, array(
 					'attr' => array('class'=> 'width-100'),
 					'required' => false,
 					'label' => 'Téléphone',
 				))
-				->add('mail', 'text', array(
+				->add('mail', TextType::class, array(
 					'attr' => array('class'=> 'width-100'),
 					'required' => false
 				))
@@ -78,12 +81,20 @@ class IntervenantType extends AbstractType
         $resolver->setAllowedTypes(
             'em' => 'Doctrine\Common\Persistence\ObjectManager',
         );
+	}
+	
+	/**
+     * @return getBlockPrefix()
+     */
+    public function getName()
+    {
+        return $this->getBlockPrefix();
     }
 
     /**
      * @return string
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'ocim_contactsbundle_personne';
     }

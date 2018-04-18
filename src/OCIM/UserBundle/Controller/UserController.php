@@ -8,6 +8,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use OCIM\UserBundle\Entity\User;
 use OCIM\UserBundle\Form\UserType;
 
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
 /**
  * User controller.
  *
@@ -217,7 +219,7 @@ class UserController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('user_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Supprimer', 'attr'=>array('class'=>'btn btn-red btn-delete')))
+            ->add('submit', SubmitType::class, array('label' => 'Supprimer', 'attr'=>array('class'=>'btn btn-red btn-delete')))
             ->getForm()
         ;
     }

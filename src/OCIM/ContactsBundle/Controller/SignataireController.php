@@ -8,6 +8,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use OCIM\ContactsBundle\Entity\Signataire;
 use OCIM\ContactsBundle\Form\SignataireType;
 
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
 /**
  * Signataire controller.
  *
@@ -228,7 +230,7 @@ class SignataireController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('signataire_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', SubmitType::class, array('label' => 'Delete'))
             ->getForm()
         ;
     }

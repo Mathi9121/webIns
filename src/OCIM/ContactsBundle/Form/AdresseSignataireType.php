@@ -8,6 +8,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use OCIM\ContactsBundle\Form\DataTransformer\StringToTagsTransformer;
 use Doctrine\ORM\EntityRepository;
 
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+
 class AdresseSignataireType extends AbstractType
 {
     /**
@@ -20,26 +22,26 @@ class AdresseSignataireType extends AbstractType
 		$transformer = new StringToTagsTransformer($entityManager);
 
         $builder
-			->add('nomStructure', 'text', array(
+			->add('nomStructure', TextType::class, array(
 				'attr' => array('class' => 'width-100'),
 				'label' => 'Nom de la Structure',
 			))
-            ->add('adresse', 'text', array(
+            ->add('adresse', TextType::class, array(
 				'attr' => array('class' => 'width-100'),
 				'label' => 'Adresse',
 			))
-            ->add('adresseComplement', 'text', array(
+            ->add('adresseComplement', TextType::class, array(
 				'attr' => array('class' => 'width-100'),
 				'label' => "Complément d'adresse",
 			))
-            ->add('cP', 'text', array(
+            ->add('cP', TextType::class, array(
 				'attr' => array('class' => 'width-100'),
 				'label' => 'Code postal',
 			))
-            ->add('ville', 'text', array(
+            ->add('ville', TextType::class, array(
 				'attr' => array('class' => 'width-100'),
 			))
-            ->add('pays', 'text', array(
+            ->add('pays', TextType::class, array(
 				'attr' => array('class' => 'width-100'),
 			))
 			->add('type', null, array(
@@ -50,7 +52,7 @@ class AdresseSignataireType extends AbstractType
 				}
 			))
             ->add(
-				$builder->create('tags', 'text', array(
+				$builder->create('tags', TextType::class, array(
 				'attr' => array('class'=>'width-100 tags'),
 				'required' => false,
 				// 'data_class' => 'OCIM\ContactsBundle\Entity\TagStructure'
@@ -77,9 +79,17 @@ class AdresseSignataireType extends AbstractType
     }
 
     /**
-     * @return string
+     * @return getBlockPrefix()
      */
     public function getName()
+    {
+        return $this->getBlockPrefix();
+    }
+
+    /**
+     * @return string
+     */
+    public function getBlockPrefix()
     {
         return 'ocim_contactsbundle_adresse';
     }

@@ -6,6 +6,9 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+
 class PersonneType extends AbstractType
 {
         /**
@@ -17,7 +20,7 @@ class PersonneType extends AbstractType
         $entityManager = $options['em'];
 
         $builder
-            ->add('civilite', 'choice', array(
+            ->add('civilite', ChoiceType::class, array(
 				'choices' => array(
 					'Mlle' => 'Mlle',
 					'Mme' => 'Mme',
@@ -29,31 +32,31 @@ class PersonneType extends AbstractType
 				'required' => false,
 				'label' => "Civilité"
 			))
-            ->add('nom', 'text', array(
+            ->add('nom', TextType::class, array(
 				'attr' => array('class'=> 'width-100'),
 				'required' => false
 			))
-            ->add('prenom', 'text', array(
+            ->add('prenom', TextType::class, array(
 				'attr' => array('class'=> 'width-100'),
 				'required' => false,
 				'label' => "Prénom"
 			))
-            ->add('fonction', 'text', array(
+            ->add('fonction', TextType::class, array(
 				'attr' => array('class'=> 'width-100'),
 				'required' => false,
 				'label' => "Fonction",
 			))
-            ->add('tel', 'text', array(
+            ->add('tel', TextType::class, array(
 				'attr' => array('class'=> 'width-100'),
 				'label' => 'Téléphone',
 				'required' => false,
 			))
-            ->add('fax', 'text', array(
+            ->add('fax', TextType::class, array(
 				'required' => false,
 				'attr' => array('class'=> 'width-100'),
 				'required' => false,
 			))
-            ->add('mail', 'text', array(
+            ->add('mail', TextType::class, array(
 				'attr' => array('class'=> 'width-100'),
 				'label' => "Adresse Mail",
 				'required' => false
@@ -85,9 +88,17 @@ class PersonneType extends AbstractType
     }
 
     /**
-     * @return string
+     * @return getBlockPrefix()
      */
     public function getName()
+    {
+        return $this->getBlockPrefix();
+    }
+
+    /**
+     * @return string
+     */
+    public function getBlockPrefix()
     {
         return 'ocim_contactsbundle_personne';
     }

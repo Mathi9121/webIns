@@ -15,6 +15,8 @@ use OCIM\EvenementsBundle\Form\ChampPersoType;
 use Doctrine\Common\Collections\ArrayCollection;
 use OCIM\ContactsBundle\Entity\Personne;
 
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
 
 /**
  * evenementFormule controller.
@@ -400,7 +402,7 @@ class ChampPersoController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('champPerso_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Supprimer', 'attr'=>array('class'=>'btn btn-red btn-delete')))
+            ->add('submit', SubmitType::class, array('label' => 'Supprimer', 'attr'=>array('class'=>'btn btn-red btn-delete')))
             ->getForm()
         ;
     }

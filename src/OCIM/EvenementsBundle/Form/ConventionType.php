@@ -6,6 +6,9 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+
 class ConventionType extends AbstractType
 {
         /**
@@ -15,40 +18,40 @@ class ConventionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('numero', 'text', array(
+            ->add('numero', TextType::class, array(
 				'required' => false,
 				'attr'=> array('class'=>'input-big text-centered','size' => 3, 'style'=> 'margin: 0 auto !important;' )
 
 				))
-            ->add('edition', 'date', array(
+            ->add('edition', DateType::class, array(
 				'label' => "Date d'édition",
 				'widget' => 'single_text',
 				'required' => false,
 				'attr'=> array('class'=>'input-big text-centered', 'data-tool' => 'datepicker', 'style'=> 'margin: 0 auto !important;'),
 				'format' => 'dd/MM/yyyy'
 				))
-            ->add('etape1', 'date', array(
+            ->add('etape1', DateType::class, array(
 				'widget' => 'single_text',
 				'required' => false,
 				'label' => "Etape 1",
 				'format' => 'dd/MM/yyyy',
         'attr'=> array('data-tool' => 'datepicker'),
 				))
-            ->add('etape2', 'date', array(
+            ->add('etape2', DateType::class, array(
 				'widget' => 'single_text',
 				'required' => false,
 				'label' => "Etape 2",
 				'format' => 'dd/MM/yyyy',
         'attr'=> array('data-tool' => 'datepicker'),
 				))
-            ->add('etape3', 'date', array(
+            ->add('etape3', DateType::class, array(
 				'widget' => 'single_text',
 				'required' => false,
 				'label' => "Etape 3",
 				'format' => 'dd/MM/yyyy',
         'attr'=> array('data-tool' => 'datepicker'),
 				))
-            ->add('etape4', 'date', array(
+            ->add('etape4', DateType::class, array(
 				'widget' => 'single_text',
 				'required' => false,
 				'label' => "Etape 4",
@@ -70,9 +73,17 @@ class ConventionType extends AbstractType
     }
 
     /**
-     * @return string
+     * @return getBlockPrefix()
      */
     public function getName()
+    {
+        return $this->getBlockPrefix();
+    }
+
+    /**
+     * @return string
+     */
+    public function getBlockPrefix()
     {
         return 'ocim_evenementsbundle_convention';
     }

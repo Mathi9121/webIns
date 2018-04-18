@@ -17,6 +17,8 @@ use OCIM\EvenementsBundle\Form\AjoutIntervenantType;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Query\ResultSetMapping;
 
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
 /**
  * Evenement controller.
  *
@@ -395,7 +397,7 @@ class EvenementController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('evenement_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Supprimer', 'attr'=> array('class'=>'btn btn-red btn-delete')))
+            ->add('submit', SubmitType::class, array('label' => 'Supprimer', 'attr'=> array('class'=>'btn btn-red btn-delete')))
             ->getForm()
         ;
     }

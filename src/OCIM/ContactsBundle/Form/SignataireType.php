@@ -7,6 +7,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use OCIM\ContactsBundle\Form\DataTransformer\StringToTypePersonneTransformer;
 
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+
 class SignataireType extends AbstractType
 {
         /**
@@ -17,7 +20,7 @@ class SignataireType extends AbstractType
     {
 		$entityManager = $options['em'];
         $builder
-            ->add('civilite', 'choice', array(
+            ->add('civilite', ChoiceType::class, array(
 				'choices' => array(
 					'Mlle' => 'Mlle',
 					'Mme' => 'Mme',
@@ -27,16 +30,16 @@ class SignataireType extends AbstractType
 				'attr' => array('class'=> 'width-100'),
 				'required' => false
 			))
-            ->add('nom', 'text', array(
+            ->add('nom', TextType::class, array(
 				'attr' => array('class'=> 'width-100')
 			))
-            ->add('prenom', 'text', array(
+            ->add('prenom', TextType::class, array(
 				'attr' => array('class'=> 'width-100')
 			))
-            ->add('fonction', 'text', array(
+            ->add('fonction', TextType::class, array(
 				'attr' => array('class'=> 'width-100')
 			))
-            ->add('mail', 'text', array(
+            ->add('mail', TextType::class, array(
 				'attr' => array('class'=> 'width-100')
 			))
 			->add('adresse', new AdresseSignataireType(), array(
@@ -66,9 +69,17 @@ class SignataireType extends AbstractType
     }
 
     /**
-     * @return string
+     * @return getBlockPrefix()
      */
     public function getName()
+    {
+        return $this->getBlockPrefix();
+    }
+
+    /**
+     * @return string
+     */
+    public function getBlockPrefix()
     {
         return 'ocim_contactsbundle_signataire';
     }

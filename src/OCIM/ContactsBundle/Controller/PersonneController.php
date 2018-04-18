@@ -8,6 +8,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use OCIM\ContactsBundle\Entity\Personne;
 use OCIM\ContactsBundle\Form\PersonneType;
 
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
 /**
  * Personne controller.
  *
@@ -220,7 +222,7 @@ class PersonneController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('personne_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', SubmitType::class, array('label' => 'Delete'))
             ->getForm()
         ;
     }

@@ -8,6 +8,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Doctrine\ORM\EntityRepository;
 
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+
 class StructureType extends AbstractType
 {
         /**
@@ -29,7 +31,7 @@ class StructureType extends AbstractType
 				}
 			))
             ->add(
-				$builder->create('tags', 'text', array(
+				$builder->create('tags', TextType::class, array(
 				'attr' => array('class'=>'width-100'),
 				'required' => false,
 				// 'data_class' => 'OCIM\ContactsBundle\Entity\TagStructure'
@@ -56,9 +58,17 @@ class StructureType extends AbstractType
     }
 
     /**
-     * @return string
+     * @return getBlockPrefix()
      */
     public function getName()
+    {
+        return $this->getBlockPrefix();
+    }
+
+    /**
+     * @return string
+     */
+    public function getBlockPrefix()
     {
         return 'ocim_contactsbundle_structure';
     }

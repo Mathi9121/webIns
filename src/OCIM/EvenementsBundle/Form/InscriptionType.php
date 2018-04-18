@@ -10,6 +10,11 @@ use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+
 class InscriptionType extends AbstractType
 {
 	private $idevenement;
@@ -46,7 +51,7 @@ class InscriptionType extends AbstractType
 					},
 				'label' => "Formule et Tarif"
 				))
-            ->add('dateInscription', 'datetime', array(
+            ->add('dateInscription', DateTimeType::class, array(
 				'widget' => 'single_text',
 				'format' => 'dd/MM/yyyy HH:mm:ss',
 				'required' => false,
@@ -55,7 +60,7 @@ class InscriptionType extends AbstractType
 				'attr' => array('class' => 'width-100'),
 				'label' => "Date d'inscription",
 				))
-            ->add('numberStatut','choice', array(
+            ->add('numberStatut', ChoiceType::class, array(
 				'choices'   => array('Validé' => '1', 'En attente' => '2', "Annulé" => "3"),
 				'choices_as_values' => true,
 				//'preferred_choices' => array('en attente')
@@ -65,12 +70,12 @@ class InscriptionType extends AbstractType
 				->add('provenancePCST', null, array(
 					'label' => "Provenance PCST",
 				))
-            ->add('attentes', "textarea", array(
+            ->add('attentes', TextareaType::class, array(
 				'attr' => array("class"=>"width-100", 'rows'=> 5),
 				'required' => false,
 				))
             //->add('statutOrgFinanceur')
-            ->add('statutConvention', 'choice', array(
+            ->add('statutConvention', ChoiceType::class, array(
 				'choices' => array(
 					'OUI' => true,
 					'NON' => false,
@@ -80,7 +85,7 @@ class InscriptionType extends AbstractType
 				'empty_value' => "Ne sais pas",
 				'label' => "Le stagiaire a-t-il besoin d'une convention?"
 			))
-            ->add('statutFinancement', 'choice', array(
+            ->add('statutFinancement', ChoiceType::class, array(
 				'choices' => array(
 					'Accordé' => true,
 					'NON' => false ,
@@ -132,12 +137,20 @@ class InscriptionType extends AbstractType
         $resolver->setAllowedTypes(
             'em' => 'Doctrine\Common\Persistence\ObjectManager',
         );
+	}
+	
+	/**
+     * @return getBlockPrefix()
+     */
+    public function getName()
+    {
+        return $this->getBlockPrefix();
     }
 
     /**
      * @return string
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'ocim_evenementsbundle_inscription';
     }

@@ -9,6 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use OCIM\ExportBundle\Entity\Template;
 use OCIM\ExportBundle\Form\TemplateType;
 
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
 /**
  * Template controller.
  *
@@ -364,7 +366,7 @@ class TemplateController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('documents_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete', 'attr' => array('class'=>'btn btn-red btn-delete')))
+            ->add('submit', SubmitType::class, array('label' => 'Delete', 'attr' => array('class'=>'btn btn-red btn-delete')))
             ->getForm()
         ;
     }

@@ -14,7 +14,7 @@ use OCIM\ContactsBundle\Entity\Intervenant;
 use OCIM\ContactsBundle\Entity\Adresse;
 use OCIM\EvenementsBundle\Entity\ReponsesChampPerso;
 
-
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 /**
 * Inscription controller.
@@ -432,7 +432,7 @@ class InscriptionController extends Controller
     return $this->createFormBuilder()
     ->setAction($this->generateUrl('inscription_delete', array('id' => $id, 'idevenement'=> $idevenement)))
     ->setMethod('DELETE')
-    ->add('submit', 'submit', array('label' => ' Supprimer', 'attr'=> array('class'=>'btn btn-red btn-delete') ))
+    ->add('submit', SubmitType::class, array('label' => ' Supprimer', 'attr'=> array('class'=>'btn btn-red btn-delete') ))
     ->getForm()
     ;
   }

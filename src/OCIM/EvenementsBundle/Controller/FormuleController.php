@@ -9,6 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use OCIM\EvenementsBundle\Entity\Formule;
 use OCIM\EvenementsBundle\Form\FormuleType;
 
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
 /**
  * Formule controller.
  *
@@ -265,7 +267,7 @@ class FormuleController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('formule_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Supprimer', 'attr'=> array('class'=>'btn btn-red btn-delete')))
+            ->add('submit', SubmitType::class, array('label' => 'Supprimer', 'attr'=> array('class'=>'btn btn-red btn-delete')))
             ->getForm()
         ;
     }
