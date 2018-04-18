@@ -11,7 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 
-use OCIM\ContactsBundle\Form\evenementFormuleType;
+use OCIM\EvenementsBundle\Form\evenementFormuleType;
 
 class EvenementType extends AbstractType
 {
