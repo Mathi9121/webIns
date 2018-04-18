@@ -117,7 +117,7 @@ class FormuleController extends Controller
 			'attr' => array('class' => 'forms')
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Créer', 'attr'=> array('class'=> 'btn btn-green btn-save')));
+        $form->add('submit', SubmitType::class, array('label' => 'Créer', 'attr'=> array('class'=> 'btn btn-green btn-save')));
 
         return $form;
     }
@@ -197,7 +197,7 @@ class FormuleController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Enregistrer', 'attr'=> array('class'=>'btn btn-green btn-save')));
+        $form->add('submit', SubmitType::class, array('label' => 'Enregistrer', 'attr'=> array('class'=>'btn btn-green btn-save')));
 
         return $form;
     }
@@ -267,7 +267,7 @@ class FormuleController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('formule_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Supprimer', 'attr'=> array('class'=>'btn btn-red btn-delete')))
+            ->add('submit', SubmitType::class, array('label' => 'Supprimer', 'attr'=> array('class'=>'btn btn-red btn-delete')))
             ->getForm()
         ;
     }

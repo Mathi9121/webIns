@@ -77,7 +77,7 @@ class SignataireController extends Controller
 			'em' => $this->getDoctrine()->getManager(),
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Enregistrer'));
+        $form->add('submit', SubmitType::class, array('label' => 'Enregistrer'));
 
         return $form;
     }
@@ -160,7 +160,7 @@ class SignataireController extends Controller
 			'em' => $this->getDoctrine()->getManager(),
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', SubmitType::class, array('label' => 'Update'));
 
         return $form;
     }
@@ -230,7 +230,7 @@ class SignataireController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('signataire_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', SubmitType::class, array('label' => 'Delete'))
             ->getForm()
         ;
     }

@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Validator\Constraints as Assert;
 
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
 class InscriptionPubliqueController extends Controller
 {
     public function inscriptionAction(Request $request)
@@ -239,7 +241,7 @@ class InscriptionPubliqueController extends Controller
             'em' => $this->getDoctrine()->getManager(),
         ));
 
-        $form->add('submit', 'submit', array('label' => "Valider"));
+        $form->add('submit', SubmitType::class, array('label' => "Valider"));
 
         return $form;
     }

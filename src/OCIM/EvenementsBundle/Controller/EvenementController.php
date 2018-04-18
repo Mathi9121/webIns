@@ -151,7 +151,7 @@ class EvenementController extends Controller
           'method' => 'PUT',
       ));
 
-      $form->add('submit', 'submit', array('label' => 'Enregistrer', 'attr' => array('class' => 'btn btn-green btn-save')));
+      $form->add('submit', SubmitType::class, array('label' => 'Enregistrer', 'attr' => array('class' => 'btn btn-green btn-save')));
 
       return $this->render('OCIMEvenementsBundle:Evenement:addIntervenant.html.twig', array(
           'form' => $form->createView(),
@@ -174,7 +174,7 @@ class EvenementController extends Controller
           'method' => 'PUT',
       ));
 
-      $form->add('submit', 'submit', array('label' => 'Enregistrer', 'attr' => array('class' => 'btn btn-green btn-save')));
+      $form->add('submit', SubmitType::class, array('label' => 'Enregistrer', 'attr' => array('class' => 'btn btn-green btn-save')));
 
       $form->handleRequest($request);
 
@@ -209,7 +209,7 @@ class EvenementController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Créer la evenement', 'attr' => array('class'=>'btn btn-green btn-save')));
+        $form->add('submit', SubmitType::class, array('label' => 'Créer la evenement', 'attr' => array('class'=>'btn btn-green btn-save')));
 
         return $form;
     }
@@ -309,7 +309,7 @@ class EvenementController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Enregistrer', 'attr' => array('class'=>'btn btn-green btn-save')));
+        $form->add('submit', SubmitType::class, array('label' => 'Enregistrer', 'attr' => array('class'=>'btn btn-green btn-save')));
 
         return $form;
     }
@@ -397,7 +397,7 @@ class EvenementController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('evenement_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Supprimer', 'attr'=> array('class'=>'btn btn-red btn-delete')))
+            ->add('submit', SubmitType::class, array('label' => 'Supprimer', 'attr'=> array('class'=>'btn btn-red btn-delete')))
             ->getForm()
         ;
     }
