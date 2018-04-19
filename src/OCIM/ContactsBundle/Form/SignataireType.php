@@ -65,9 +65,7 @@ class SignataireType extends AbstractType
             'em',
         ));
 
-        $resolver->setAllowedTypes(
-            'em' => 'Doctrine\Common\Persistence\ObjectManager',
-        );
+        $resolver->setAllowedTypes('em', 'Doctrine\Common\Persistence\ObjectManager');
     }
 
     /**
