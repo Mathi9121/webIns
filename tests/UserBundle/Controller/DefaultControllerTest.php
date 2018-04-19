@@ -1,6 +1,6 @@
 <?php
 
-namespace OCIM\UserBundle\Tests\Controller;
+namespace Tests\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

@@ -6,6 +6,9 @@
     "autoload": {
         "psr-0": { "": "src/", "SymfonyStandard": "app/" }
     },
+    "autoload-dev": {
+        "psr-0": { "Tests\\": "tests/" }
+    },
     "require": {
         "php": ">=5.3.3",
         "symfony/symfony": "2.8.*",

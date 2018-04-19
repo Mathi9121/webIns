@@ -1,6 +1,6 @@
 <?php
 
-namespace OCIM\ContactsBundle\Tests\Controller;
+namespace Tests\ContactsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

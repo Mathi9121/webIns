@@ -1,6 +1,6 @@
 <?php
 
-namespace OCIM\EvenementsBundle\Tests\Controller;
+namespace Tests\EvenementsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
