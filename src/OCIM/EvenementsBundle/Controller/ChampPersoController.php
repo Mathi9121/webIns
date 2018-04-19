@@ -61,10 +61,10 @@ class ChampPersoController extends Controller
 
 			$data = json_decode($request->getContent());
 
-			$personne = Personne::class;
+			$personne = new Personne();
 			$personne = $em->getRepository('OCIMContactsBundle:Personne')->find($data[0]->idpersonne);
 
-			$reponseChampPerso = ReponsesChampPerso::class;
+			$reponseChampPerso = new ReponsesChampPerso();
 			// un objet ReponseChampPerso existe
 			if(!empty($data[0]->idreponse)){
 				$reponseChampPerso = $em->getRepository('OCIMEvenementsBundle:ReponsesChampPerso')->find($data[0]->idreponse);
@@ -109,7 +109,7 @@ class ChampPersoController extends Controller
      */
     public function createAction(Request $request)
     {
-        $entity = evenementFormule::class;
+        $entity = new evenementFormule();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -153,7 +153,7 @@ class ChampPersoController extends Controller
      */
     public function newAction()
     {
-        $entity = evenementFormule::class;
+        $entity = new evenementFormule();
         $form   = $this->createCreateForm($entity);
 
         return $this->render('OCIMEvenementsBundle:champPerso:new.html.twig', array(
@@ -217,7 +217,7 @@ class ChampPersoController extends Controller
 			}
 
 			//arrivée pour les intervenants
-			$m = ModeleChampPerso::class;
+			$m = new ModeleChampPerso();
 			$m->setDescription('Arrivée');
 			$m->setTypeReponse('text');
 			$m->setIntervenant(true);
@@ -226,7 +226,7 @@ class ChampPersoController extends Controller
 			foreach($period as $date)
 			{
 				foreach($journee as $key=>$j){
-					$m = ModeleChampPerso::class;
+					$m = new ModeleChampPerso();
 
 					foreach($j as $ff){
 						if($ff){
@@ -243,7 +243,7 @@ class ChampPersoController extends Controller
 			}
 
 			//départ pour les intervenants
-			$m = ModeleChampPerso::class;
+			$m = new ModeleChampPerso();
 			$m->setDescription('Départ');
 			$m->setTypeReponse('text');
 			$m->setIntervenant(true);
@@ -253,7 +253,7 @@ class ChampPersoController extends Controller
 		else{
 			$modeles = $em->getRepository('OCIMEvenementsBundle:ModeleChampPerso')->findModelesByIdEvenement($idevenement);
 			if(!$modeles){
-				$modeles[] = ModeleChampPerso::class;
+				$modeles[] = new ModeleChampPerso();
 				$evenement->setModeles(new ArrayCollection($modeles));
 			}
 			else{

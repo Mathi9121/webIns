@@ -62,7 +62,7 @@ class TemplateController extends Controller
      */
     public function createAction(Request $request)
     {
-        $entity = Template::class;
+        $entity = new Template();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -150,7 +150,7 @@ class TemplateController extends Controller
      */
     public function newAction()
     {
-        $entity = Template::class;
+        $entity = new Template();
         $form   = $this->createCreateForm($entity);
 
         return $this->render('OCIMExportBundle:Template:new.html.twig', array(
@@ -377,7 +377,7 @@ class TemplateController extends Controller
         $nom = $data->nom;
         $id = $data->id;
 
-        $copie = Template::class;
+        $copie = new Template();
 
         $em = $this->getDoctrine()->getManager();
         $template = $em->getRepository('OCIMExportBundle:Template')->find($id);

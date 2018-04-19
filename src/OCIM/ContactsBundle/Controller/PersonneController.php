@@ -39,7 +39,7 @@ class PersonneController extends Controller
      */
     public function createAction(Request $request)
     {
-        $entity = Personne::class;
+        $entity = new Personne();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -82,7 +82,7 @@ class PersonneController extends Controller
      */
     public function newAction()
     {
-        $entity = Personne::class;
+        $entity = new Personne();
         $form   = $this->createCreateForm($entity);
 
         return $this->render('OCIMContactsBundle:Personne:new.html.twig', array(

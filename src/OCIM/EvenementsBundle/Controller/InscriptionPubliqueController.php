@@ -22,7 +22,7 @@ class InscriptionPubliqueController extends Controller
         $entity = $request->query->get('entity');
         $entity = (($entity !== null) && (!empty($entity))) ? $entity : false;
 
-        $inscription = Inscription::class;
+        $inscription = new Inscription();
 
         $form = $this->createCreateForm($inscription, $id);
 
@@ -91,7 +91,7 @@ class InscriptionPubliqueController extends Controller
             $idevenement = $this->getDoctrine()->getManager()->getRepository('OCIMEvenementsBundle:evenementFormule')->find($idff)->getEvenement()->getId();
         }
 
-        $entity = Inscription::class;
+        $entity = new Inscription();
 
         $form = $this->createCreateForm($entity, $idevenement);
 
@@ -140,7 +140,7 @@ class InscriptionPubliqueController extends Controller
                 foreach ($evenements as $evenement) {
 
 
-                    $inscription = Inscription::class;
+                    $inscription = new Inscription();
 
                     $inscription->setStagiaire($entity->getStagiaire());
                     $inscription->setAdmin($entity->getAdmin());

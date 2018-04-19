@@ -20,7 +20,7 @@ class AdresseController extends Controller
 
   			$data = json_decode($request->getContent());
 
-			$s = TypeStucture::class;
+			$s = new TypeStucture();
 
   			if( !empty($data->structure) && isset($data->structure) ){
 

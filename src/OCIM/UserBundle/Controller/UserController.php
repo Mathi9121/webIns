@@ -37,7 +37,7 @@ class UserController extends Controller
      */
     public function createAction(Request $request)
     {
-        $entity = User::class;
+        $entity = new User();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -80,7 +80,7 @@ class UserController extends Controller
      */
     public function newAction()
     {
-        $entity = User::class;
+        $entity = new User();
         $form   = $this->createCreateForm($entity);
 
         return $this->render('OCIMUserBundle:User:new.html.twig', array(

@@ -85,10 +85,10 @@ class EvenementController extends Controller
         $entity;
         switch ($classname) {
           case 'event':
-            $entity = Event::class;
+            $entity = new Event();
             break;
           case 'formation':
-            $entity = Formation::class;
+            $entity = new Formation();
             break;
         }
 
@@ -115,7 +115,7 @@ class EvenementController extends Controller
       if($request->isXmlHttpRequest()){
 
         $em = $this->getDoctrine()->getManager();
-        $type = TypeEvenement::class;
+        $type = new TypeEvenement();
 
         $str = json_decode($request->getContent());
         $str = ucfirst($str);
@@ -220,7 +220,7 @@ class EvenementController extends Controller
      */
     public function newAction($type)
     {
-        $entity = Evenement::class;
+        $entity = new Evenement();
         $entity->setEventType($type);
         $form   = $this->createCreateForm($entity);
 

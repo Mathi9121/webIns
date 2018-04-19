@@ -42,7 +42,7 @@ class ConventionController extends Controller
      */
     public function createAction(Request $request, $idinscription)
     {
-        $entity = Convention::class;
+        $entity = new Convention();
 		$inscription = $this->getDoctrine()->getManager()->getRepository('OCIMEvenementsBundle:Inscription')->find($idinscription);
 
         $form = $this->createCreateForm($entity, $idinscription);
@@ -80,7 +80,7 @@ class ConventionController extends Controller
 
       if($request->isXMLHttpRequest()){
 
-        $convention = Convention::class;
+        $convention = new Convention();
         $em = $this->getDoctrine()->getManager();
 
         $data = json_decode($request->getContent());
@@ -193,7 +193,7 @@ class ConventionController extends Controller
      */
     public function newAction($idinscription)
     {
-        $entity = Convention::class;
+        $entity = new Convention();
         $form   = $this->createCreateForm($entity, $idinscription);
         $em = $this->getDoctrine()->getManager();
         $num_convention = $em->getRepository('OCIMEvenementsBundle:Convention')->lastConventionNumber();

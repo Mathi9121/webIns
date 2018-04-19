@@ -37,7 +37,7 @@ class SignataireController extends Controller
      */
     public function createAction(Request $request, $idinscription, $idevenement)
     {
-        $entity = Signataire::class;
+        $entity = new Signataire();
         $form = $this->createCreateForm($entity, $idinscription, $idevenement);
         $form->handleRequest($request);
 
@@ -88,7 +88,7 @@ class SignataireController extends Controller
      */
     public function newAction($idinscription, $idevenement)
     {
-        $entity = Signataire::class;
+        $entity = new Signataire();
         $form   = $this->createCreateForm($entity, $idinscription, $idevenement);
 
         return $this->render('OCIMContactsBundle:Signataire:new.html.twig', array(

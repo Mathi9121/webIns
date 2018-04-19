@@ -40,7 +40,7 @@ class IntervenantController extends Controller
      */
     public function createAction(Request $request, $idevenement)
     {
-        $entity = Intervenant::class;
+        $entity = new Intervenant();
         $form = $this->createCreateForm($entity, $idevenement);
         $form->handleRequest($request);
 

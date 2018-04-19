@@ -58,7 +58,7 @@ class FormuleController extends Controller
      */
     public function createAction(Request $request)
     {
-        $entity = Formule::class;
+        $entity = new Formule();
         if(!$request->isXmlHttpRequest()){
           $form = $this->createCreateForm($entity);
           $form->handleRequest($request);
@@ -128,7 +128,7 @@ class FormuleController extends Controller
      */
     public function newAction()
     {
-        $entity = Formule::class;
+        $entity = new Formule();
         $form   = $this->createCreateForm($entity);
 
         return $this->render('OCIMEvenementsBundle:Formule:new.html.twig', array(
