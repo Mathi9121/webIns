@@ -13,7 +13,7 @@ formule_new:
 formule_create:
     path:     /create
     defaults: { _controller: "OCIMEvenementsBundle:Formule:create" }
-    requirements: { _method: post }
+    requirements: { methods: post }
 
 formule_edit:
     path:     /{id}/edit
@@ -22,9 +22,9 @@ formule_edit:
 formule_update:
     path:     /{id}/update
     defaults: { _controller: "OCIMEvenementsBundle:Formule:update" }
-    requirements: { _method: post|put }
+    requirements: { methods: post|put }
 
 formule_delete:
     path:     /{id}/delete
     defaults: { _controller: "OCIMEvenementsBundle:Formule:delete" }
-    requirements: { _method: post|delete }
+    requirements: { methods: post|delete }

@@ -14,7 +14,7 @@ documents_new:
 documents_create:
     path:     /create
     defaults: { _controller: "OCIMExportBundle:Template:create" }
-    requirements: { _method: post }
+    requirements: { methods: post }
 
 documents_edit:
     path:     /{id}/edit
@@ -23,7 +23,7 @@ documents_edit:
 documents_update:
     path:     /{id}/update
     defaults: { _controller: "OCIMExportBundle:Template:update" }
-    requirements: { _method: post|put }
+    requirements: { methods: post|put }
 
 documents_delete:
     path:     /{id}/delete
@@ -32,23 +32,23 @@ documents_delete:
 documents_liens:
     path:     /liens
     defaults: { _controller: "OCIMExportBundle:Template:liens" }
-    requirements: { _method: post }
+    requirements: { methods: post }
 
 documents_liensconventions:
     path:     /liens-conventions
     defaults: { _controller: "OCIMExportBundle:Template:liensConvention" }
-    requirements: { _method: post }
+    requirements: { methods: post }
 
 template_copy:
     path:     /copy
     defaults: { _controller: "OCIMExportBundle:Template:copie" }
-    requirements: { _method: post }
+    requirements: { methods: post }
 
 documents_exportfrompreview:
     path:     /exportpreview
     defaults: { _controller: "OCIMExportBundle:Template:exportfrompreview" }
-    requirements: {_method: post}
+    requirements: {methods: post}
 document_maj_ordre:
     path: /maj-order
     defaults: { _controller: "OCIMExportBundle:Template:majOrdre"}
-    requirements: { _method: post }
+    requirements: { methods: post }

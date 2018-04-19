@@ -13,7 +13,7 @@ signataire_new:
 signataire_create:
     path:     /evenement-{idevenement}/{idinscription}/create
     defaults: { _controller: "OCIMContactsBundle:Signataire:create" }
-    requirements: { _method: post }
+    requirements: { methods: post }
 
 signataire_edit:
     path:     /evenement-{idevenement}/{id}/edit
@@ -22,9 +22,9 @@ signataire_edit:
 signataire_update:
     path:     /evenement-{idevenement}/{id}/update
     defaults: { _controller: "OCIMContactsBundle:Signataire:update" }
-    requirements: { _method: post|put }
+    requirements: { methods: post|put }
 
 signataire_delete:
     path:     /{id}/delete
     defaults: { _controller: "OCIMContactsBundle:Signataire:delete" }
-    requirements: { _method: post|delete }
+    requirements: { methods: post|delete }

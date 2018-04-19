@@ -13,7 +13,7 @@ personne_new:
 personne_create:
     path:     /create
     defaults: { _controller: "OCIMContactsBundle:Personne:create" }
-    requirements: { _method: post }
+    requirements: { methods: post }
 
 personne_edit:
     path:     /{id}/edit
@@ -22,9 +22,9 @@ personne_edit:
 personne_update:
     path:     /{id}/update
     defaults: { _controller: "OCIMContactsBundle:Personne:update" }
-    requirements: { _method: post|put }
+    requirements: { methods: post|put }
 
 personne_delete:
     path:     /{id}/delete
     defaults: { _controller: "OCIMContactsBundle:Personne:delete" }
-    requirements: { _method: post|delete }
+    requirements: { methods: post|delete }

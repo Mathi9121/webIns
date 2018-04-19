@@ -13,7 +13,7 @@ champPerso_new:
 champPerso_create:
     path:     /create
     defaults: { _controller: "OCIMEvenementsBundle:ChampPerso:create" }
-    requirements: { _method: post }
+    requirements: { methods: post }
 
 champPerso_edit:
     path:     /evenement-{idevenement}/{generation}
@@ -24,14 +24,14 @@ champPerso_edit:
 champPerso_update:
     path:     /{id}/update
     defaults: { _controller: "OCIMEvenementsBundle:ChampPerso:update" }
-    requirements: { _method: post|put }
+    requirements: { methods: post|put }
 
 champPerso_delete:
     path:     /{id}/delete
     defaults: { _controller: "OCIMEvenementsBundle:ChampPerso:delete" }
-    requirements: { _method: post|delete }
+    requirements: { methods: post|delete }
 
 champPerso_reponse:
     path:     /update/reponse
     defaults: { _controller: "OCIMEvenementsBundle:ChampPerso:reponse" }
-    requirements: { _method: post }
+    requirements: { methods: post }

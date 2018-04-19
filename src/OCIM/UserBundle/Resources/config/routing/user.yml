@@ -13,7 +13,7 @@ user_new:
 user_create:
     path:     /create
     defaults: { _controller: "OCIMUserBundle:User:create" }
-    requirements: { _method: post }
+    requirements: { methods: post }
 
 user_edit:
     path:     /{id}/edit
@@ -22,9 +22,9 @@ user_edit:
 user_update:
     path:     /{id}/update
     defaults: { _controller: "OCIMUserBundle:User:update" }
-    requirements: { _method: post|put }
+    requirements: { methods: post|put }
 
 user_delete:
     path:     /{id}/delete
     defaults: { _controller: "OCIMUserBundle:User:delete" }
-    requirements: { _method: post|delete }
+    requirements: { methods: post|delete }

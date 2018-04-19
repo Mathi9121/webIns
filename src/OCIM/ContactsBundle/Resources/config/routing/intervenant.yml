@@ -13,7 +13,7 @@ intervenants_new:
 intervenants_create:
     path:     /evenement-{idevenement}/create/
     defaults: { _controller: "OCIMContactsBundle:Intervenant:create" }
-    requirements: { _method: post }
+    requirements: { methods: post }
 
 intervenants_edit:
     path:     /evenement/{idevenement}/{id}/edit
@@ -22,9 +22,9 @@ intervenants_edit:
 intervenants_update:
     path:     /evenement-{idevenement}/{id}/update
     defaults: { _controller: "OCIMContactsBundle:Intervenant:update" }
-    requirements: { _method: post|put }
+    requirements: { methods: post|put }
 
 intervenants_delete:
     path:     /evenement-{idevenement}/{id}/delete
     defaults: { _controller: "OCIMContactsBundle:Intervenant:delete" }
-    requirements: { _method: post|delete }
+    requirements: { methods: post|delete }

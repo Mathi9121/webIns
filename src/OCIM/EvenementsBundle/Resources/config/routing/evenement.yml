@@ -15,7 +15,7 @@ evenement_new:
 evenement_create:
     path:     /create
     defaults: { _controller: "OCIMEvenementsBundle:Evenement:create" }
-    requirements: { _method: post }
+    requirements: { methods: post }
 
 evenement_edit:
     path:     /{id}/edit
@@ -24,17 +24,17 @@ evenement_edit:
 evenement_update:
     path:     /{id}/update
     defaults: { _controller: "OCIMEvenementsBundle:Evenement:update" }
-    requirements: { _method: post|put }
+    requirements: { methods: post|put }
 
 evenement_delete:
     path:     /{id}/delete
     defaults: { _controller: "OCIMEvenementsBundle:Evenement:delete" }
-    requirements: { _method: post|delete }
+    requirements: { methods: post|delete }
 
 evenement_addtype:
     path:     /nouveau-type
     defaults: { _controller: "OCIMEvenementsBundle:Evenement:ajoutType" }
-    requirements: { _method: post }
+    requirements: { methods: post }
 
 evenement_addintervenants:
     path:     /{idevenement}/intervenant
@@ -43,4 +43,4 @@ evenement_addintervenants:
 evenement_intervenants_update:
     path:     /{idevenement}/intervenant_update
     defaults: { _controller: "OCIMEvenementsBundle:Evenement:updateIntervenantEvenement" }
-    requirements: { _method: put }
+    requirements: { methods: put }
