@@ -42,7 +42,7 @@ class ConventionController extends Controller
      */
     public function createAction(Request $request, $idinscription)
     {
-        $entity = new Convention();
+        $entity = Convention::class;
 		$inscription = $this->getDoctrine()->getManager()->getRepository('OCIMEvenementsBundle:Inscription')->find($idinscription);
 
         $form = $this->createCreateForm($entity, $idinscription);
@@ -80,7 +80,7 @@ class ConventionController extends Controller
 
       if($request->isXMLHttpRequest()){
 
-        $convention = new Convention();
+        $convention = Convention::class;
         $em = $this->getDoctrine()->getManager();
 
         $data = json_decode($request->getContent());
@@ -177,7 +177,7 @@ class ConventionController extends Controller
      */
     private function createCreateForm(Convention $entity, $idinscription)
     {
-        $form = $this->createForm(new ConventionType(), $entity, array(
+        $form = $this->createForm(ConventionType::class, $entity, array(
             'action' => $this->generateUrl('convention_create', array('idinscription'=> $idinscription)),
             'method' => 'POST',
         ));
@@ -193,7 +193,7 @@ class ConventionController extends Controller
      */
     public function newAction($idinscription)
     {
-        $entity = new Convention();
+        $entity = Convention::class;
         $form   = $this->createCreateForm($entity, $idinscription);
         $em = $this->getDoctrine()->getManager();
         $num_convention = $em->getRepository('OCIMEvenementsBundle:Convention')->lastConventionNumber();
@@ -262,7 +262,7 @@ class ConventionController extends Controller
     */
     private function createEditForm(Convention $entity)
     {
-        $form = $this->createForm(new ConventionType(), $entity, array(
+        $form = $this->createForm(ConventionType::class, $entity, array(
             'action' => $this->generateUrl('convention_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));

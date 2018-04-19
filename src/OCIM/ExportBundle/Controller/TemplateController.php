@@ -62,7 +62,7 @@ class TemplateController extends Controller
      */
     public function createAction(Request $request)
     {
-        $entity = new Template();
+        $entity = Template::class;
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -134,7 +134,7 @@ class TemplateController extends Controller
      */
     private function createCreateForm(Template $entity)
     {
-        $form = $this->createForm(new TemplateType(), $entity, array(
+        $form = $this->createForm(TemplateType::class, $entity, array(
             'action' => $this->generateUrl('documents_create'),
             'method' => 'POST',
         ));
@@ -150,7 +150,7 @@ class TemplateController extends Controller
      */
     public function newAction()
     {
-        $entity = new Template();
+        $entity = Template::class;
         $form   = $this->createCreateForm($entity);
 
         return $this->render('OCIMExportBundle:Template:new.html.twig', array(
@@ -292,7 +292,7 @@ class TemplateController extends Controller
     */
     private function createEditForm(Template $entity)
     {
-        $form = $this->createForm(new TemplateType(), $entity, array(
+        $form = $this->createForm(TemplateType::class, $entity, array(
             'action' => $this->generateUrl('documents_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
@@ -377,7 +377,7 @@ class TemplateController extends Controller
         $nom = $data->nom;
         $id = $data->id;
 
-        $copie = new Template();
+        $copie = Template::class;
 
         $em = $this->getDoctrine()->getManager();
         $template = $em->getRepository('OCIMExportBundle:Template')->find($id);

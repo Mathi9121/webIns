@@ -58,7 +58,7 @@ class FormuleController extends Controller
      */
     public function createAction(Request $request)
     {
-        $entity = new Formule();
+        $entity = Formule::class;
         if(!$request->isXmlHttpRequest()){
           $form = $this->createCreateForm($entity);
           $form->handleRequest($request);
@@ -111,7 +111,7 @@ class FormuleController extends Controller
      */
     private function createCreateForm(Formule $entity)
     {
-        $form = $this->createForm(new FormuleType(), $entity, array(
+        $form = $this->createForm(FormuleType::class, $entity, array(
             'action' => $this->generateUrl('formule_create'),
             'method' => 'POST',
 			'attr' => array('class' => 'forms')
@@ -128,7 +128,7 @@ class FormuleController extends Controller
      */
     public function newAction()
     {
-        $entity = new Formule();
+        $entity = Formule::class;
         $form   = $this->createCreateForm($entity);
 
         return $this->render('OCIMEvenementsBundle:Formule:new.html.twig', array(
@@ -192,7 +192,7 @@ class FormuleController extends Controller
     */
     private function createEditForm(Formule $entity)
     {
-        $form = $this->createForm(new FormuleType(), $entity, array(
+        $form = $this->createForm(FormuleType::class, $entity, array(
             'action' => $this->generateUrl('formule_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));

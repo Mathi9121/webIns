@@ -85,10 +85,10 @@ class EvenementController extends Controller
         $entity;
         switch ($classname) {
           case 'event':
-            $entity = new Event();
+            $entity = Event::class;
             break;
           case 'formation':
-            $entity = new Formation();
+            $entity = Formation::class;
             break;
         }
 
@@ -115,7 +115,7 @@ class EvenementController extends Controller
       if($request->isXmlHttpRequest()){
 
         $em = $this->getDoctrine()->getManager();
-        $type = new TypeEvenement();
+        $type = TypeEvenement::class;
 
         $str = json_decode($request->getContent());
         $str = ucfirst($str);
@@ -146,7 +146,7 @@ class EvenementController extends Controller
 
       $intervenants = $em->getRepository('OCIMContactsBundle:Intervenant')->findAll();
 
-      $form = $this->createForm(new AjoutIntervenantType(), $entity, array(
+      $form = $this->createForm(AjoutIntervenantType::class, $entity, array(
           'action' => $this->generateUrl('evenement_intervenants_update', array('idevenement' => $idevenement)),
           'method' => 'PUT',
       ));
@@ -169,7 +169,7 @@ class EvenementController extends Controller
           throw $this->createNotFoundException('Unable to find Evenement entity.');
       }
 
-      $form = $this->createForm(new AjoutIntervenantType(), $evenement, array(
+      $form = $this->createForm(AjoutIntervenantType::class, $evenement, array(
           'action' => $this->generateUrl('evenement_intervenants_update', array('idevenement' => $idevenement)),
           'method' => 'PUT',
       ));
@@ -204,7 +204,7 @@ class EvenementController extends Controller
      */
     private function createCreateForm(Evenement $entity)
     {
-        $form = $this->createForm(new EvenementType(), $entity, array(
+        $form = $this->createForm(EvenementType::class, $entity, array(
             'action' => $this->generateUrl('evenement_create'),
             'method' => 'POST',
         ));
@@ -220,7 +220,7 @@ class EvenementController extends Controller
      */
     public function newAction($type)
     {
-        $entity = new Evenement();
+        $entity = Evenement::class;
         $entity->setEventType($type);
         $form   = $this->createCreateForm($entity);
 
@@ -304,7 +304,7 @@ class EvenementController extends Controller
     */
     private function createEditForm(Evenement $entity)
     {
-        $form = $this->createForm(new EvenementType(), $entity, array(
+        $form = $this->createForm(EvenementType::class, $entity, array(
             'action' => $this->generateUrl('evenement_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));

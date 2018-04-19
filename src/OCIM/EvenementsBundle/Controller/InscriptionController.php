@@ -86,8 +86,8 @@ class InscriptionController extends Controller
       }
     }
 
-    $intervenant  = new Intervenant();
-    $adresse = new Adresse();
+    $intervenant  = Intervenant::class;
+    $adresse = Adresse::class;
 
     $intervenant->setNom($stagiaire->getNom());
     $intervenant->setCivilite($stagiaire->getCivilite());
@@ -116,7 +116,7 @@ class InscriptionController extends Controller
     foreach($stagiaire->getReponsesChampPerso() as $rep){
       //copie des infos logistique que si le modele est applicable aux intervenants
       if(!is_null($rep->getModele()->getEvenement())){
-        $_r = new ReponsesChampPerso();
+        $_r = ReponsesChampPerso::class;
         $_r->setReponse($rep->getReponse());
         $_r->setReponseText($rep->getReponseText());
         $_r->setDate($rep->getDate());
@@ -206,7 +206,7 @@ class InscriptionController extends Controller
   */
   public function createAction(Request $request, $idevenement)
   {
-    $entity = new Inscription();
+    $entity = Inscription::class;
     $form = $this->createCreateForm($entity, $idevenement);
     $form->handleRequest($request);
 
@@ -263,7 +263,7 @@ class InscriptionController extends Controller
   */
   public function newAction($idevenement)
   {
-    $entity = new Inscription();
+    $entity = Inscription::class;
     $form   = $this->createCreateForm($entity, $idevenement);
     $em = $this->getDoctrine()->getManager();
     $evenement = $em->getRepository("OCIMEvenementsBundle:Evenement")->find($idevenement);
