@@ -96,7 +96,7 @@ class IntervenantController extends Controller
      */
     public function newAction($idevenement = null)
     {
-        $entity = Intervenant::class();
+        $entity = new Intervenant();
         $form = $this->createCreateForm($entity,$idevenement);
         $em = $this->getDoctrine()->getManager();
         $tags = $em->getRepository("OCIMContactsBundle:TagStructure")->findAll();
