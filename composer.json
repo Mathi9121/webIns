@@ -11,23 +11,26 @@
     },
     "require": {
         "php": ">=5.3.3",
-        "symfony/symfony": "2.8.*",
+        "symfony/symfony": "3.0.*",
         "doctrine/orm": ">=2.4.0,<2.5-dev",
         "doctrine/doctrine-bundle": "~1.2",
         "twig/extensions": "~1.0",
         "symfony/assetic-bundle": "~2.3",
         "symfony/swiftmailer-bundle": "~2.3",
         "symfony/monolog-bundle": "~2.4",
-        "sensio/distribution-bundle": "~3.0",
+        "symfony/console": "~2.0",
+        "sensio/distribution-bundle": "^5.0",
         "sensio/framework-extra-bundle": "~3.0",
         "incenteev/composer-parameter-handler": "~2.0",
         "knplabs/knp-snappy-bundle": "1.5.2",
         "knplabs/knp-menu-bundle": "~2",
         "twig/twig": "~2.4",
-        "symfony/polyfill-iconv": "~1.0"
+        "symfony/polyfill-iconv": "~1.0",
+        "symfony/security-acl": "^3.0",
+        "symfony/doctrine-bridge": "~3.0"
     },
     "require-dev": {
-        "sensio/generator-bundle": "~2.3"
+        "sensio/generator-bundle": "^3.0"
     },
     "scripts": {
         "post-root-package-install": [
