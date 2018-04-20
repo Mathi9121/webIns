@@ -58,9 +58,9 @@ class InscriptionType extends AbstractType
 				'widget' => 'single_text',
 				'format' => 'dd/MM/yyyy HH:mm:ss',
 				'required' => false,
-				'read_only' => true,
+				/*'read_only' => true,*/
 				'disabled' => true,
-				'attr' => array('class' => 'width-100'),
+				'attr' => array('class' => 'width-100', 'readonly' => true),
 				'label' => "Date d'inscription",
 				))
             ->add('numberStatut', ChoiceType::class, array(
