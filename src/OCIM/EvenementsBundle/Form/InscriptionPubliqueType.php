@@ -12,6 +12,7 @@ use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class InscriptionPubliqueType extends AbstractType
 {
@@ -31,7 +32,7 @@ class InscriptionPubliqueType extends AbstractType
 		$entityManager = $options['em'];
 		$idevenement = $this->idevenement;
         $builder
-			->add('evenementformule', "entity", array(
+			->add('evenementformule', EntityType::class, array(
 				'class' => 'OCIM\EvenementsBundle\Entity\evenementFormule',
 				'choice_translation_domain' => true,
 				"attr" => array('class'=>'width-100'),

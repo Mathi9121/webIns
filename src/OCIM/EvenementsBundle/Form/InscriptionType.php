@@ -17,6 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class InscriptionType extends AbstractType
 {
@@ -37,12 +38,12 @@ class InscriptionType extends AbstractType
 
 		$idevenement = $this->idevenement;
         $builder
-			->add('stagiaire', PersonneType::class array(
+			->add('stagiaire', PersonneType::class, array(
 				'data_class' => 'OCIM\ContactsBundle\Entity\Stagiaire',
 				//'type'=> PersonneType::class
 				'em' => $entityManager
 				))
-			->add('evenementformule', "entity", array(
+			->add('evenementformule', EntityType::class, array(
 				'class' => 'OCIM\EvenementsBundle\Entity\evenementFormule',
 				'choice_translation_domain' => true,
 				"attr" => array('class'=>'width-100'),
