@@ -4,12 +4,13 @@ namespace OCIM\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\SecurityContext;
+use Symfony\Component\HttpFoundation\Request;
 
 class AdminController extends Controller
 {
-    public function connexionAction()
+    public function connexionAction(Request $request)
     {
-		$request = $this->getRequest();
+		//$request = $this->getRequest();
 		$session = $request->getSession();
 
 		//On regarde les erreurs
