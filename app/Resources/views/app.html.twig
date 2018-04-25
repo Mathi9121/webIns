@@ -198,16 +198,10 @@
 
 {% javascripts
 	'../app/Resources/public/js/jquery.js'
+	'../app/Resources/public/js/jquery-migrate.js'
 %}
 	<script>window.jQuery || document.write('<script src="{{ asset_url }}"><\/script>')</script>
 {% endjavascripts %}
-
-{% javascripts
-	'../app/Resources/public/js/jquery-migrate.js'
-%}
-	<script>window.jQuery || document.write('<script src="{{ asset_url  }}"><\/script>')</script>
-{% endjavascripts %}
-
 
 <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
 <script>window.jQuery || document.write('<script src="public/js/jquery.js"><\/script>')</script>
