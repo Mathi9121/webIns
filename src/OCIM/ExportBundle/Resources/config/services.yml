@@ -5,3 +5,5 @@ services:
 #    ocim_export.example:
 #        class: %ocim_export.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
+    Symfony\Bundle\AsseticBundle\AsseticBundle:
+        public: true
