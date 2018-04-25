@@ -153,3 +153,7 @@ knp_snappy:
         enabled:    false
         binary:     wkhtmltoimage
         options:    []
+
+services:
+    Symfony\Bundle\AsseticBundle\AsseticBundle:
+        public: true
