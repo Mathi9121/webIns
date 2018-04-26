@@ -37,7 +37,7 @@ $(document).ready(function(){
   );
 
   $('#indicateurs .unit-20').on("click", function(){
-    window.location = $(this).find(a).attr('href');
+    window.location = $(this).find('a').attr('href');
   });
 
 });
