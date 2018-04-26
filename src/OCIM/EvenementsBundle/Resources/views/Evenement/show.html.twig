@@ -67,7 +67,6 @@ couleurs['3hover']	= 		"rgba(255, 54, 0, 0.5)";
     ]
 };
 	var canvas1 = $("#statuts-inscriptions").get(0).getContext("2d");
-	{# var ratioInscriptions = new Chart(canvas1).Doughnut(dataStatus, {});#}
 	var ratioInscriptions = new Chart(canvas1, dataStatus);
 	var canvas2 = $("#dates-inscriptions").get(0).getContext("2d");
 	var ratioInscriptions = new Chart(canvas2, {
