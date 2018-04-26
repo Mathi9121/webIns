@@ -64,7 +64,7 @@ var dateMax = parseInt($("#event-end").attr("data-date")) * 1000;
 	});
 
 	// filtre par date
-	$("#datefilter").change(function(){
+	$("#datefilter").on("change", function(){
 		$("tbody tr.titre-evenement").css("display", "table-row");
 		$('.filtres select option').eq(0).prop('selected', true);
 		$("tbody tr.titre-evenement").filter(function(index){
