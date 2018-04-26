@@ -111,11 +111,9 @@ function compteurs(){
     var elem = $("<p></p>").text($('#general table tbody tr.statut.valide td.inscformule').filter("[data-idformule="+id+"]").length).hide();
     $(this).parent().append(elem);
   });
-  $("#comptes li div").hover(
-    function(){
+  $("#comptes li div").on("mouseenter", function(){
       $(this).children('p').slideToggle('fast');
-    },
-    function(){
+    }).on("mouseleave", function(){
       $(this).children('p').slideToggle("fast");
     }
   );

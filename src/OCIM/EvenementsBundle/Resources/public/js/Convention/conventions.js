@@ -1,13 +1,7 @@
 $(document).ready(function(){
 
   //Nouvelle Convention
-  /*$("table tbody .no-convention").hover(function(){
-    $(this).html("<i class='fa fa-plus fa-fw'></i>Nouvelle Convention");
-  },
-  function(){
-    $(this).html("");
-  });*/
-  $("table tbody .no-convention").on("mouseenter", function(){
+   $("table tbody .no-convention").on("mouseenter", function(){
     $(this).html("<i class='fa fa-plus fa-fw'></i>Nouvelle Convention");
   }).on("mouseleave", function(){
     $(this).html("");
