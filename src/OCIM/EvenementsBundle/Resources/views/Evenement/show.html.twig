@@ -27,9 +27,9 @@ couleurs['2hover'] = 	"rgba(255,165,0, 0.5)";
 couleurs['1hover'] = 		"rgba(3, 207, 3,  0.5)";
 couleurs['3hover']	= 		"rgba(255, 54, 0, 0.5)";
 
-	var dataStatus = {[
+	var dataStatus = {
 	type: 'Doughnut',
-    datasets: 
+    datasets: [
 	{% for stat in entity._count %}
 		{% set label = "" %}
 		{% if stat.statut == "1" %}
