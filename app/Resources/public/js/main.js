@@ -96,7 +96,7 @@ $(document).ready(function(){
 		e.preventDefault();
 		var confirm = window.confirm("Etes-vous sûr de vouloir supprimer cette entité ?");
 		if(confirm){
-			$(this).closest('form').submit();
+			$(this).closest('form').trigger("submit");
 		}
 	});
 
