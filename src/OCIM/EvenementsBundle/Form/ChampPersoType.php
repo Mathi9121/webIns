@@ -41,6 +41,7 @@ class ChampPersoType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' =>  'OCIM\EvenementsBundle\Entity\Evenement',
 			'attr' => array('class'=> 'forms'),
+            'trait_types' => null,
         ));
     }
 
