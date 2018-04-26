@@ -1,10 +1,7 @@
 $(document).ready(function(){
 
   $('#evenements table tbody tr, #inscriptions table tr').css('cursor', 'pointer');
-  /*$('#evenements table tbody tr').hover(function(e){
-    $(this).find('a').first().toggleClass('active');
-  });*/
-  $('#evenements table tbody tr').on("mouseenter", function(e){
+    $('#evenements table tbody tr').on("mouseenter", function(e){
     $(this).find('a').first().toggleClass('active');
   }).on("mouseleave", function(e){
     $(this).find('a').first().toggleClass('active');
@@ -13,7 +10,9 @@ $(document).ready(function(){
     window.location = $(this).find('a').first().attr('href');
   });
 
-  $('#inscriptions table tr').hover(function(){
+  $('#inscriptions table tr').on("mouseenter", function(){
+    $(this).find('span.hide').toggle();
+  }).on("mouseleave", function(){
     $(this).find('span.hide').toggle();
   }).on("click", function(e){
     window.location = $(this).attr('data-href');

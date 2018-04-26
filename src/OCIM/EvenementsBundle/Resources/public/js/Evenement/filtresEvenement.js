@@ -113,7 +113,9 @@ $.expr[":"].contains = $.expr.createPseudo(function(arg) {
 
 
 	// affichage des infos quand click sur une ligne (tr)
-	$('tbody tr.titre-evenement').hover(function(){
+	$('tbody tr.titre-evenement').on("mouseenter", function(){
+		$(this).children('td').first().find('i.fa.fa-angle-right').toggleClass("hide");
+	}).on("mouseleave", function(){
 		$(this).children('td').first().find('i.fa.fa-angle-right').toggleClass("hide");
 	}).on("click", function(){
 
