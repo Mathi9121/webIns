@@ -12,11 +12,11 @@ $(document).ready(function(){
 
 	resizeDiv();
 
-	$('#user a').click(function(){
+	$('#user a').on("click", function(){
 		$(this).next('nav').animate({ height: "toggle"}, 300);
 	});
 
-	$("#nav-toggle").click(function(){
+	$("#nav-toggle").on("click", function(){
 	var state = parseInt($('#content').css('margin-left')) > 200;
 
 		$("#sidebar").animate({
@@ -40,7 +40,7 @@ $(document).ready(function(){
 
 
 	//eventlistener plein ecran
-	$("#fullscreen-btn").click(toggleFullScreen);
+	$("#fullscreen-btn").on("click", toggleFullScreen);
 
 	//plein ecran
 	function toggleFullScreen() {
@@ -125,7 +125,7 @@ $(document).ready(function(){
 	$('#controls .btn-delete').attr('title' ,"Supprimer");
 	$('#controls .btn-edit').attr('title' ,"Modifier");
 	//evenement validation du formulaire
-	$('#controls .btn-save').click(function(e){
+	$('#controls .btn-save').on("click", function(e){
 		$('#footer .btn-save').closest('form').submit();
 	});
 

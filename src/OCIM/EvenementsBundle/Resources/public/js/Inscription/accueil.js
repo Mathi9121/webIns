@@ -4,13 +4,13 @@ $(document).ready(function(){
   $('#evenements table tbody tr').hover(function(e){
     $(this).find('a').first().toggleClass('active');
   });
-  $('#evenements table tbody tr').click(function(e){
+  $('#evenements table tbody tr').on("click", function(e){
     window.location = $(this).find('a').first().attr('href');
   });
 
   $('#inscriptions table tr').hover(function(){
     $(this).find('span.hide').toggle();
-  }).click(function(e){
+  }).on("click", function(e){
     window.location = $(this).attr('data-href');
   });
 
@@ -32,7 +32,7 @@ $(document).ready(function(){
       }
   );
 
-  $('#indicateurs .unit-20').click(function(){
+  $('#indicateurs .unit-20').on("click", function(){
     window.location = $(this).find(a).attr('href');
   });
 

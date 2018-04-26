@@ -33,7 +33,7 @@ var nouvellesOptions = "";
 
 
 // Ajout dun type de evenement en ajax
-$("#ajouttype").click(function(e){
+$("#ajouttype").on("click", function(e){
 	e.preventDefault();
 	var type = prompt("Entrez un nouveau type de evenement");
 	if(type){
@@ -51,7 +51,7 @@ $("#ajouttype").click(function(e){
 
 });
 
-$('#nouvelleFormule').click(function(e){
+$('#nouvelleFormule').on("click", function(e){
 	e.preventDefault();
 
 	var popup = $("<div class='white-popup'><h2>Nouvelle Formule</h2><form class='forms'></form></div>");
@@ -59,7 +59,7 @@ $('#nouvelleFormule').click(function(e){
 	popup.find('form.forms').append('<div class="units-row end"><div class="unit-50"><label>Tarif<input type="text" class="width-100 form-tarif"/></div><div class="unit-50"><label><input type="checkbox" class="form-check" value="herbergement"/>Hébergement</label><label><input type="checkbox" class="form-check" value="midi"/>Midi</label><label><input type="checkbox" class="form-check" value="soir"/>Soir</label></div></div><div class="group"><a href="#" class="btn left">Annuler</a><input class="btn btn-green right" type="submit" value="Enregistrer"/></div>');
 
 	//btn close de la popup
-	popup.find('.btn.left').click(function(e){
+	popup.find('.btn.left').on("click", function(e){
 		e.preventDefault();
 		$.magnificPopup.close();
 	});
