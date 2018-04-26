@@ -89,7 +89,8 @@ var dateMax = parseInt($("#event-end").attr("data-date")) * 1000;
 			});
 	});
 
-$.expr[":"].contains = $.expr.createPseudo(function(arg) {
+//$.expr[":"].contains = $.expr.createPseudo(function(arg) {
+$.expr.pseudos.contains = $.expr.createPseudo(function(arg) {
     return function( elem ) {
         return $(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
     };
