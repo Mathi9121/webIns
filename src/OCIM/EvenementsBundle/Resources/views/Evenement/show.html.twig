@@ -28,6 +28,7 @@ couleurs['1hover'] = 		"rgba(3, 207, 3,  0.5)";
 couleurs['3hover']	= 		"rgba(255, 54, 0, 0.5)";
 
 	var dataStatus = [
+	type: 'Doughnut',
     {% for stat in entity._count %}
 		{% set label = "" %}
 		{% if stat.statut == "1" %}
@@ -65,7 +66,8 @@ couleurs['3hover']	= 		"rgba(255, 54, 0, 0.5)";
     ]
 };
 	var canvas1 = $("#statuts-inscriptions").get(0).getContext("2d");
-	var ratioInscriptions = new Chart(canvas1).Doughnut(dataStatus, {});
+	{# var ratioInscriptions = new Chart(canvas1).Doughnut(dataStatus, {});#}
+	var ratioInscriptions = new Chart(canvas1, dataStatus);
 	var canvas2 = $("#dates-inscriptions").get(0).getContext("2d");
 	var ratioInscriptions = new Chart(canvas2).Line(dataDates, {
 		responsive: true,
