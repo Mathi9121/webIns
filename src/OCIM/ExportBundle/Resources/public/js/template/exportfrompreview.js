@@ -6,7 +6,7 @@ $(document).ready(function(){
       .attr("type", "hidden")
       .attr("name", "content").val(tinyMCE.get('wrapper').getContent());
     $('#export').append($(input));
-      $("#export").submit();
+      $("#export").on("submit");
   });
 
 });

@@ -65,7 +65,7 @@ $('#nouvelleFormule').on("click", function(e){
 	});
 
 	//btn enregistrer de la popup
-	popup.find('form').submit(function(e){
+	popup.find('form').on("submit", function(e){
 		e.preventDefault();
 		var data = new Array({
 			'description' : $(this).find('.form-description').val(),

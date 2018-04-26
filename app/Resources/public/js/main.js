@@ -126,7 +126,7 @@ $(document).ready(function(){
 	$('#controls .btn-edit').attr('title' ,"Modifier");
 	//evenement validation du formulaire
 	$('#controls .btn-save').on("click", function(e){
-		$('#footer .btn-save').closest('form').submit();
+		$('#footer .btn-save').closest('form').trigger("submit");
 	});
 
 
