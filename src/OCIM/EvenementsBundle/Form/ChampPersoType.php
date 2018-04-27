@@ -22,12 +22,12 @@ class ChampPersoType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $this->traitTypes = $options['trait_types'];
+        //$this->traitTypes = $options['trait_types'];
 
         $builder
 			->add('modeles', CollectionType::class, array(
-                //'entry_type' => new ModeleChampPersoType($this->idevenement),
-                'entry_type' => $this->traitTypes['modeles'],
+                'entry_type' => new ModeleChampPersoType($this->idevenement),
+                //'entry_type' => $this->traitTypes['modeles'],
 				'allow_add' => true,
 				'allow_delete' => true,
 				));
@@ -41,7 +41,7 @@ class ChampPersoType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' =>  'OCIM\EvenementsBundle\Entity\Evenement',
 			'attr' => array('class'=> 'forms'),
-            'trait_types' => null,
+            //'trait_types' => null,
         ));
     }
 
