@@ -210,7 +210,7 @@ class InscriptionController extends Controller
     $form = $this->createCreateForm($entity, $idevenement);
     $form->handleRequest($request);
 
-    if ($form->isValid()) {
+    if ($form->isSubmitted() && $form->isValid()) {
       $em = $this->getDoctrine()->getManager();
 
       $ordre = $em->getRepository('OCIMEvenementsBundle:Inscription')->getOrdreMaxByEvenement($idevenement);
@@ -393,7 +393,7 @@ class InscriptionController extends Controller
     $form = $this->createDeleteForm($id, $idevenement);
     $form->handleRequest($request);
 
-    if ($form->isValid()) {
+    if ($form->isSubmitted() && $form->isValid()) {
       $em = $this->getDoctrine()->getManager();
       $entity = $em->getRepository('OCIMEvenementsBundle:Inscription')->find($id);
 

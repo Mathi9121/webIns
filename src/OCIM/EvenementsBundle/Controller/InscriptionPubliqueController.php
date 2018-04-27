@@ -129,7 +129,7 @@ class InscriptionPubliqueController extends Controller
         // exit(\Doctrine\Common\Util\Debug::dump($form->isValid()));
 
         // formulaire valide
-        if ($form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
 
 
             //FORMULAIRE SPECIAL

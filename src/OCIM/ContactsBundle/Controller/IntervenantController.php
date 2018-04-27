@@ -44,7 +44,7 @@ class IntervenantController extends Controller
         $form = $this->createCreateForm($entity, $idevenement);
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             if($idevenement !== 'null'){
 			         $em->getRepository('OCIMEvenementsBundle:Evenement')->find($idevenement)->addIntervenant($entity);
@@ -219,7 +219,7 @@ class IntervenantController extends Controller
         $form = $this->createDeleteForm($id, $idevenement);
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
 
             $em = $this->getDoctrine()->getManager();
             $intervenant = $em->getRepository('OCIMContactsBundle:Intervenant')->find($id);

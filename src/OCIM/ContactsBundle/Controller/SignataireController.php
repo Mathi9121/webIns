@@ -41,7 +41,7 @@ class SignataireController extends Controller
         $form = $this->createCreateForm($entity, $idinscription, $idevenement);
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $inscription = $em->getRepository('OCIMEvenementsBundle:Inscription')->find($idinscription);
 			$inscription->setSignataire($entity);
@@ -203,7 +203,7 @@ class SignataireController extends Controller
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('OCIMContactsBundle:Signataire')->find($id);
 

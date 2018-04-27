@@ -48,7 +48,7 @@ class ConventionController extends Controller
         $form = $this->createCreateForm($entity, $idinscription);
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 			      $entity->setInscription($em->getReference('OCIMEvenementsBundle:Inscription', $idinscription));
 			      $inscription->setConvention($entity);
@@ -310,7 +310,7 @@ class ConventionController extends Controller
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('OCIMEvenementsBundle:Convention')->find($id);
 
