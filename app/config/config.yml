@@ -56,7 +56,7 @@ assetic:
         fontawesome-webfont-woff:
             inputs: '%kernel.root_dir%/Resources/public/fonts/fontawesome-webfont.woff'
             output: 'fonts/fontawesome-webfont.woff'
-        fontawesome-webfont-woff:
+        fontawesome-webfont-woff2:
             inputs: '%kernel.root_dir%/Resources/public/fonts/fontawesome-webfont.woff2'
             output: 'fonts/fontawesome-webfont.woff2'
         images:
