@@ -2,7 +2,7 @@
 
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
-use Symfony\Bundle\WebServerBundle\WebServerBundle;
+//use Symfony\Bundle\WebServerBundle\WebServerBundle;
 
 class AppKernel extends Kernel
 {
@@ -28,7 +28,7 @@ class AppKernel extends Kernel
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
-            $bundles[] = new WebServerBundle();
+            //$bundles[] = new WebServerBundle();
         }
 
         return $bundles;
