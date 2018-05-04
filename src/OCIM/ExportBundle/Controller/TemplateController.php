@@ -215,7 +215,7 @@ class TemplateController extends Controller
 		// $contenu = "<!DOCTYPE html><html><head><meta charset='utf-8'/>
 		//			</head><body style='margin:0px'>".$entity->getContenu()."</body></html>";
 		$contenu = $entity->getContenu();
-    $contenu = "<style>.pagebreak{page-break-after: always;} @media print{ .pagebreak{height:0px; border:0;} }</style>".$contenu;
+    $contenu = "<style>.pagebreak{page-break-after: always;} @media print{ .pagebreak{height:0px; border:0;} p{font-size:125% !important;} }</style>".$contenu;
         // contenu et valeurs
         $temp = $env->createTemplate($contenu);
         //$contenu = $env->render(
@@ -233,7 +233,7 @@ class TemplateController extends Controller
     }
     else{
       return new Response(
-        $this->get('knp_snappy.pdf')->getOutputFromHtml($contenu),
+        $this->get('knp_snappy.pdf')->getOutputFromHtml($contenu, array('zoom' => 1.3)),
         200,
         array(
           'Content-Type'          => 'application/pdf',
@@ -248,9 +248,9 @@ class TemplateController extends Controller
       $content = $request->request->get('content');
       $filename = $request->request->get('filename');
 
-      $content = "<style>.pagebreak{height: 1px; page-break-after: always;} @media print{ .pagebreak{height:0px; border:0;} }</style>".$content;
+      $content = "<style>.pagebreak{height: 1px; page-break-after: always;} @media print{ .pagebreak{height:0px; border:0;} p{font-size:125% !important;} }</style>".$content;
       return new Response(
-        $this->get('knp_snappy.pdf')->getOutputFromHtml($content),
+        $this->get('knp_snappy.pdf')->getOutputFromHtml($content, array('zoom' => 1.3)),
         200,
         array(
           'Content-Type'          => 'application/pdf',
