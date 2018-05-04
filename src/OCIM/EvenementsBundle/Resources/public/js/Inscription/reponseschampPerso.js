@@ -32,7 +32,7 @@ $(document).ready(function(){
 
 	});
 
-	$('td.champPerso[data-type="text"]').blur(function(){
+	$('td.champPerso[data-type="text"]').on("blur", function(){
 		var data = new Array();
 		data.push({
 			'type' : $(this).attr('data-type'),

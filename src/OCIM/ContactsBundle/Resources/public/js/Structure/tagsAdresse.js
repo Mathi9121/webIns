@@ -8,7 +8,7 @@ return split( term ).pop();
 }
 $( "input.tags" )
 // don't navigate away from the field on tab when selecting an item
-.bind( "keydown", function( event ) {
+.on( "keydown", function( event ) {
 if ( event.keyCode === $.ui.keyCode.TAB &&
 $( this ).autocomplete( "instance" ).menu.active ) {
 event.preventDefault();
