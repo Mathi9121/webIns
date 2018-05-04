@@ -10,7 +10,6 @@ class AdminController extends Controller
 {
     public function connexionAction(Request $request)
     {
-		//$request = $this->getRequest();
 		$session = $request->getSession();
 
 		//On regarde les erreurs
