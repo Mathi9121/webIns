@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\EvenementsBundle\Controller;
+namespace App\Tests\Controller\Evenements;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

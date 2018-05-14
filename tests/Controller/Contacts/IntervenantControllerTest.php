@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\ContactsBundle\Controller;
+namespace App\Tests\Controller\Contacts;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
