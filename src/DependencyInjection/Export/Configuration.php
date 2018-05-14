@@ -1,6 +1,6 @@
 <?php
 
-namespace OCIM\ExportBundle\DependencyInjection;
+namespace App\DependencyInjection\Export;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;

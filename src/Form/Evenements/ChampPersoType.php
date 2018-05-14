@@ -1,6 +1,6 @@
 <?php
 
-namespace OCIM\EvenementsBundle\Form;
+namespace App\Form\Evenements;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -8,7 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
-use OCIM\EvenementsBundle\Form\ModeleChampPersoType;
+use App\Form\Evenements\ModeleChampPersoType;
 
 class ChampPersoType extends AbstractType
 {

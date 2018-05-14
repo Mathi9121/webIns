@@ -1,12 +1,12 @@
 <?php
 
-namespace OCIM\ContactsBundle\Controller;
+namespace App\Controller\Contacts;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use OCIM\ContactsBundle\Entity\Intervenant;
-use OCIM\ContactsBundle\Form\IntervenantType;
+use App\Entity\Contacts\Intervenant;
+use App\Form\Contacts\IntervenantType;
 
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 

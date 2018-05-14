@@ -1,6 +1,6 @@
 <?php
 
-namespace OCIM\ExportBundle\Form;
+namespace App\Form\Export;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;

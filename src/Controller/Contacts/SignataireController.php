@@ -1,12 +1,12 @@
 <?php
 
-namespace OCIM\ContactsBundle\Controller;
+namespace App\Controller\Contacts;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use OCIM\ContactsBundle\Entity\Signataire;
-use OCIM\ContactsBundle\Form\SignataireType;
+use App\Entity\Contacts\Signataire;
+use App\Form\Contacts\SignataireType;
 
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 

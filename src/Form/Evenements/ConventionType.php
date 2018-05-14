@@ -1,6 +1,6 @@
 <?php
 
-namespace OCIM\EvenementsBundle\Form;
+namespace App\Form\Evenements;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;

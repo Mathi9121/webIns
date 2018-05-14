@@ -12,7 +12,7 @@
  * to kontakt@beberlei.de so I can send you a copy immediately.
  */
 
-namespace OCIM\EvenementsBundle\DQL;
+namespace App\DQL\Evenements;
 
 use \Doctrine\ORM\Query\Lexer;
 use \Doctrine\ORM\Query\AST\Functions\FunctionNode;

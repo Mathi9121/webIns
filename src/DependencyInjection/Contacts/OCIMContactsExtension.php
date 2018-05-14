@@ -1,6 +1,6 @@
 <?php
 
-namespace OCIM\ContactsBundle\DependencyInjection;
+namespace App\DependencyInjection\Contacts;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;

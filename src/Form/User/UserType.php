@@ -1,6 +1,6 @@
 <?php
 
-namespace OCIM\UserBundle\Form;
+namespace App\Form\User;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;

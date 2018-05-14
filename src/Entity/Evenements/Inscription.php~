@@ -1,6 +1,6 @@
 <?php
 
-namespace OCIM\EvenementsBundle\Entity;
+namespace App\Entity\Evenements;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Criteria;

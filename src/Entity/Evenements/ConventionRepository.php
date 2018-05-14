@@ -1,9 +1,9 @@
 <?php
 
-namespace OCIM\EvenementsBundle\Entity;
+namespace App\Entity\Evenements;
 
 use Doctrine\ORM\EntityRepository;
-use OCIM\EvenementsBundle\DQL\Year;
+use App\DQL\Evenements\Year;
 
 
 /**

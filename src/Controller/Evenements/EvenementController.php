@@ -1,19 +1,19 @@
 <?php
 
-namespace OCIM\EvenementsBundle\Controller;
+namespace App\Controller\Evenements;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use OCIM\EvenementsBundle\Entity\Evenement;
-use OCIM\EvenementsBundle\Entity\Event;
-use OCIM\EvenementsBundle\Entity\Formation;
-use OCIM\EvenementsBundle\Entity\TypeEvenement;
-use OCIM\EvenementsBundle\Entity\Formule;
-use OCIM\EvenementsBundle\Entity\evenementFormule;
-use OCIM\EvenementsBundle\Form\EvenementType;
-use OCIM\EvenementsBundle\Form\AjoutIntervenantType;
+use App\Entity\Evenements\Evenement;
+use App\Entity\Evenements\Event;
+use App\Entity\Evenements\Formation;
+use App\Entity\Evenements\TypeEvenement;
+use App\Entity\Evenements\Formule;
+use App\Entity\Evenements\evenementFormule;
+use App\Form\Evenements\EvenementType;
+use App\Form\Evenements\AjoutIntervenantType;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Query\ResultSetMapping;
 

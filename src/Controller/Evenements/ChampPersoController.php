@@ -1,19 +1,19 @@
 <?php
 
-namespace OCIM\EvenementsBundle\Controller;
+namespace App\Controller\Evenements;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use OCIM\EvenementsBundle\Entity\evenementFormule;
-use OCIM\EvenementsBundle\Entity\Evenement;
-use OCIM\EvenementsBundle\Entity\ModeleChampPerso;
-use OCIM\EvenementsBundle\Entity\ReponsesChampPerso;
-use OCIM\EvenementsBundle\Entity\Inscription;
-use OCIM\EvenementsBundle\Form\ChampPersoType;
+use App\Entity\Evenements\evenementFormule;
+use App\Entity\Evenements\Evenement;
+use App\Entity\Evenements\ModeleChampPerso;
+use App\Entity\Evenements\ReponsesChampPerso;
+use App\Entity\Evenements\Inscription;
+use App\Form\Evenements\ChampPersoType;
 use Doctrine\Common\Collections\ArrayCollection;
-use OCIM\ContactsBundle\Entity\Personne;
+use App\Entity\Contacts\Personne;
 
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 

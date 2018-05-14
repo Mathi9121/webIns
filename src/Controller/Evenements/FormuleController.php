@@ -1,13 +1,13 @@
 <?php
 
-namespace OCIM\EvenementsBundle\Controller;
+namespace App\Controller\Evenements;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use OCIM\EvenementsBundle\Entity\Formule;
-use OCIM\EvenementsBundle\Form\FormuleType;
+use App\Entity\Evenements\Formule;
+use App\Form\Evenements\FormuleType;
 
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 

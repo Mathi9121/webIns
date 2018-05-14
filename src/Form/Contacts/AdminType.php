@@ -1,6 +1,6 @@
 <?php
 
-namespace OCIM\ContactsBundle\Form;
+namespace App\Form\Contacts;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;

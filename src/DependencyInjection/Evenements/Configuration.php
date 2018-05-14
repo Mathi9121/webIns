@@ -1,6 +1,6 @@
 <?php
 
-namespace OCIM\EvenementsBundle\DependencyInjection;
+namespace App\DependencyInjection\Evenements;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;

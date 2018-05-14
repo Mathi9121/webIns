@@ -1,6 +1,6 @@
 <?php
 
-namespace OCIM\ExportBundle\DependencyInjection;
+namespace App\DependencyInjection\Export;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;

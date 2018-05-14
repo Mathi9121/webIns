@@ -1,18 +1,18 @@
 <?php
 
-namespace OCIM\EvenementsBundle\Controller;
+namespace App\Controller\Evenements;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use OCIM\EvenementsBundle\Entity\Inscription;
-use OCIM\EvenementsBundle\Form\InscriptionType;
-use OCIM\EvenementsBundle\Form\FinancementType;
-use OCIM\ContactsBundle\Entity\Signataire;
-use OCIM\ContactsBundle\Entity\Intervenant;
-use OCIM\ContactsBundle\Entity\Adresse;
-use OCIM\EvenementsBundle\Entity\ReponsesChampPerso;
+use App\Entity\Evenements\Inscription;
+use App\Form\Evenements\InscriptionType;
+use App\Form\Evenements\FinancementType;
+use App\Entity\Contacts\Signataire;
+use App\Entity\Contacts\Intervenant;
+use App\Entity\Contacts\Adresse;
+use App\Entity\Evenements\ReponsesChampPerso;
 
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 

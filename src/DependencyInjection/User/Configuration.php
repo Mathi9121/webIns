@@ -1,6 +1,6 @@
 <?php
 
-namespace OCIM\UserBundle\DependencyInjection;
+namespace App\DependencyInjection\User;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;

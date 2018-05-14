@@ -1,6 +1,6 @@
 <?php
 
-namespace OCIM\ExportBundle\Controller;
+namespace App\Controller\Export;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 

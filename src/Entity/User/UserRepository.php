@@ -1,6 +1,6 @@
 <?php
 
-namespace OCIM\UserBundle\Entity;
+namespace App\Entity\User;
 
 use Doctrine\ORM\EntityRepository;
 

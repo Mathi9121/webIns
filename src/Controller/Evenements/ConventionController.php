@@ -1,13 +1,13 @@
 <?php
 
-namespace OCIM\EvenementsBundle\Controller;
+namespace App\Controller\Evenements;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use OCIM\EvenementsBundle\Entity\Convention;
-use OCIM\EvenementsBundle\Form\ConventionType;
+use App\Entity\Evenements\Convention;
+use App\Form\Evenements\ConventionType;
 
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace OCIM\EvenementsBundle\Controller;
+namespace App\Controller\Evenements;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use OCIM\EvenementsBundle\Entity\Inscription;
-use OCIM\EvenementsBundle\Form\InscriptionPubliqueType;
+use App\Entity\Evenements\Inscription;
+use App\Form\Evenements\InscriptionPubliqueType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Doctrine\ORM\EntityRepository;

@@ -1,11 +1,11 @@
 <?php
 
-namespace OCIM\EvenementsBundle\Form;
+namespace App\Form\Evenements;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use OCIM\ContactsBundle\Form\DataTransformer\StringToTagsTransformer;
+use App\Form\Contacts\DataTransformer\StringToTagsTransformer;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 

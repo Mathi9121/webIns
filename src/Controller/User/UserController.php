@@ -1,12 +1,12 @@
 <?php
 
-namespace OCIM\UserBundle\Controller;
+namespace App\Controller\User;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use OCIM\UserBundle\Entity\User;
-use OCIM\UserBundle\Form\UserType;
+use App\Entity\User\User;
+use App\Form\User\UserType;
 
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 

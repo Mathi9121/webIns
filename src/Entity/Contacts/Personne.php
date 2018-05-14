@@ -1,6 +1,6 @@
 <?php
 
-namespace OCIM\ContactsBundle\Entity;
+namespace App\Entity\Contacts;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;

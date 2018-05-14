@@ -1,14 +1,14 @@
 <?php
 
-namespace OCIM\EvenementsBundle\Form;
+namespace App\Form\Evenements;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use OCIM\ContactsBundle\Form\PersonneType;
-use OCIM\EvenementsBundle\Form\ConventionType;
-use OCIM\ContactsBundle\Form\AdminType;
-use OCIM\ContactsBundle\Form\SignataireType;
+use App\Form\Contacts\PersonneType;
+use App\Form\Evenements\ConventionType;
+use App\Form\Contacts\AdminType;
+use App\Form\Contacts\SignataireType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;

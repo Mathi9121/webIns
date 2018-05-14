@@ -1,11 +1,11 @@
 <?php
 
-namespace OCIM\EvenementsBundle\Form;
+namespace App\Form\Evenements;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use OCIM\ContactsBundle\Form\PersonneType;
+use App\Form\Contacts\PersonneType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Validator\Constraints\Email;
 

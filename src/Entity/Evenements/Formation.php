@@ -1,6 +1,6 @@
 <?php
 
-namespace OCIM\EvenementsBundle\Entity;
+namespace App\Entity\Evenements;
 
 /**
  * Formation

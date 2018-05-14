@@ -1,11 +1,11 @@
 <?php
 
-namespace OCIM\EvenementsBundle\Entity;
+namespace App\Entity\Evenements;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use OCIM\EvenementsBundle\Entity\TypeEvenement;
-use OCIM\EvenementsBundle\Entity\ModeleChampPerso;
+use App\Entity\Evenements\TypeEvenement;
+use App\Entity\Evenements\ModeleChampPerso;
 
 /**
  * Evenement

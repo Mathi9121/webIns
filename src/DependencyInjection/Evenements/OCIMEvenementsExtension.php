@@ -1,6 +1,6 @@
 <?php
 
-namespace OCIM\EvenementsBundle\DependencyInjection;
+namespace App\DependencyInjection\Evenements;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;

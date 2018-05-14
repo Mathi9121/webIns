@@ -1,17 +1,17 @@
 <?php
 
-namespace OCIM\EvenementsBundle\Form;
+namespace App\Form\Evenements;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use OCIM\EvenementsBundle\Entity\Formule;
+use App\Entity\Evenements\Formule;
 
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 
-use OCIM\EvenementsBundle\Form\evenementFormuleType;
+use App\Form\Evenements\evenementFormuleType;
 
 class EvenementType extends AbstractType
 {

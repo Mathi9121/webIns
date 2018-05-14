@@ -1,13 +1,13 @@
 <?php
 
-namespace OCIM\ExportBundle\Controller;
+namespace App\Controller\Export;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-use OCIM\ExportBundle\Entity\Template;
-use OCIM\ExportBundle\Form\TemplateType;
+use App\Entity\Export\Template;
+use App\Form\Export\TemplateType;
 
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 

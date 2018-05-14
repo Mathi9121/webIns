@@ -1,6 +1,6 @@
 <?php
 
-namespace OCIM\ContactsBundle\Controller;
+namespace App\Controller\Contacts;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 

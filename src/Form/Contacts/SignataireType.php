@@ -1,16 +1,16 @@
 <?php
 
-namespace OCIM\ContactsBundle\Form;
+namespace App\Form\Contacts;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use OCIM\ContactsBundle\Form\DataTransformer\StringToTypePersonneTransformer;
+use App\Form\Contacts\DataTransformer\StringToTypePersonneTransformer;
 
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-use OCIM\ContactsBundle\Form\AdresseSignataireType;
+use App\Form\Contacts\AdresseSignataireType;
 
 class SignataireType extends AbstractType
 {

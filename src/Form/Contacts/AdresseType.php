@@ -1,11 +1,11 @@
 <?php
 
-namespace OCIM\ContactsBundle\Form;
+namespace App\Form\Contacts;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use OCIM\ContactsBundle\Form\DataTransformer\StringToTagsTransformer;
+use App\Form\Contacts\DataTransformer\StringToTagsTransformer;
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 

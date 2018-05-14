@@ -1,6 +1,6 @@
 <?php
 
-namespace OCIM\UserBundle\Entity;
+namespace App\Entity\User;
 
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;

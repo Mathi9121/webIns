@@ -1,6 +1,6 @@
 <?php
 
-namespace OCIM\UserBundle\Controller;
+namespace App\Controller\User;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Security;

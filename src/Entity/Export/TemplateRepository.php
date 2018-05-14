@@ -1,6 +1,6 @@
 <?php
 
-namespace OCIM\ExportBundle\Entity;
+namespace App\Entity\Export;
 
 use Doctrine\ORM\EntityRepository;
 

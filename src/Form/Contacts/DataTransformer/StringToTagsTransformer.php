@@ -1,11 +1,12 @@
 <?php
-namespace OCIM\ContactsBundle\Form\DataTransformer;
+namespace App\Form\Contacts\DataTransformer;
 
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransevenementFailedException;
 use Doctrine\Common\Persistence\ObjectManager;
-use OCIM\ContactsBundle\Entity\TagStructure;
+use App\Entity\Contacts\TagStructure;
 use Doctrine\Common\Collections\ArrayCollection;
+
 class StringToTagsTransformer implements DataTransformerInterface
 {
 	private $om;
