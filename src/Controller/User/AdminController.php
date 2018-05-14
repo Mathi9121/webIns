@@ -20,7 +20,7 @@ class AdminController extends Controller
 			$error = $session->get(Security::AUTHENTICATION_ERROR);
 			$session->remove(Security::AUTHENTICATION_ERROR);
 		}
-		return $this->render("OCIMUserBundle:Admin:connexion.html.twig", 
+		return $this->render("User:Admin:connexion.html.twig", 
 			array(
 			'last_username' => $session->get(Security::LAST_USERNAME),
 			'error'=> $error

@@ -27,7 +27,7 @@ class UserController extends Controller
 
         $entities = $em->getRepository('OCIMUserBundle:User')->findAll();
 
-        return $this->render('OCIMUserBundle:User:index.html.twig', array(
+        return $this->render('User:User:index.html.twig', array(
             'entities' => $entities,
         ));
     }
@@ -49,7 +49,7 @@ class UserController extends Controller
             return $this->redirect($this->generateUrl('user_show', array('id' => $entity->getId())));
         }
 
-        return $this->render('OCIMUserBundle:User:new.html.twig', array(
+        return $this->render('User:User:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
@@ -83,7 +83,7 @@ class UserController extends Controller
         $entity = new User();
         $form   = $this->createCreateForm($entity);
 
-        return $this->render('OCIMUserBundle:User:new.html.twig', array(
+        return $this->render('User:User:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
@@ -105,7 +105,7 @@ class UserController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('OCIMUserBundle:User:show.html.twig', array(
+        return $this->render('User:User:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -128,7 +128,7 @@ class UserController extends Controller
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('OCIMUserBundle:User:edit.html.twig', array(
+        return $this->render('User:User:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -177,7 +177,7 @@ class UserController extends Controller
             return $this->redirect($this->generateUrl('user_edit', array('id' => $id)));
         }
 
-        return $this->render('OCIMUserBundle:User:edit.html.twig', array(
+        return $this->render('User:User:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

@@ -40,7 +40,7 @@ class InscriptionController extends Controller
 
     //exit(\Doctrine\Common\Util\Debug::dump($champPerso));
 
-    return $this->render('OCIMEvenementsBundle:Inscription:index.html.twig', array(
+    return $this->render('Evenements:Inscription:index.html.twig', array(
       'entities' => $entities,
       'evenement' => $evenement,
       'champPerso' => $champPerso,
@@ -229,7 +229,7 @@ class InscriptionController extends Controller
     }
 
     $this->get('session')->getFlashBag()->add('error','Le formulaire contient des erreurs');
-    return $this->render('OCIMEvenementsBundle:Inscription:new.html.twig', array(
+    return $this->render('Evenements:Inscription:new.html.twig', array(
       'entity' => $entity,
       'form'   => $form->createView(),
       'idevenement' => $idevenement,
@@ -269,7 +269,7 @@ class InscriptionController extends Controller
     $evenement = $em->getRepository("OCIMEvenementsBundle:Evenement")->find($idevenement);
     $tags = $em->getRepository("OCIMContactsBundle:TagStructure")->findAll();
 
-    return $this->render('OCIMEvenementsBundle:Inscription:new.html.twig', array(
+    return $this->render('Evenements:Inscription:new.html.twig', array(
       'entity' => $entity,
       'form'   => $form->createView(),
       'evenement' => $evenement,
@@ -295,7 +295,7 @@ class InscriptionController extends Controller
 
     $deleteForm = $this->createDeleteForm($id, $idevenement);
 
-    return $this->render('OCIMEvenementsBundle:Inscription:show.html.twig', array(
+    return $this->render('Evenements:Inscription:show.html.twig', array(
       'entity'      => $entity,
       'delete_form' => $deleteForm->createView(),
       'idevenement' => $idevenement,
@@ -322,7 +322,7 @@ class InscriptionController extends Controller
     $editForm = $this->createEditForm($entity, $idevenement);
     $deleteForm = $this->createDeleteForm($id, $idevenement);
 
-    return $this->render('OCIMEvenementsBundle:Inscription:edit.html.twig', array(
+    return $this->render('Evenements:Inscription:edit.html.twig', array(
       'entity'    	=> $entity,
       'form' 			=> $editForm->createView(),
       'delete_form' 	=> $deleteForm->createView(),
@@ -377,7 +377,7 @@ class InscriptionController extends Controller
     }
 
     $this->get('session')->getFlashBag()->add('error','Le formulaire contient des erreurs');
-    return $this->render('OCIMEvenementsBundle:Inscription:edit.html.twig', array(
+    return $this->render('Evenements:Inscription:edit.html.twig', array(
       'entity'      => $entity,
       'edit_form'   => $editForm->createView(),
       'delete_form' => $deleteForm->createView(),

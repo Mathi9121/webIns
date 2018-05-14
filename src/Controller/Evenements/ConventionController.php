@@ -29,7 +29,7 @@ class ConventionController extends Controller
         $entities = $em->getRepository('OCIMEvenementsBundle:Convention')->findConventionsByInscriptions($slug);
         $slugmax = $em->getRepository('OCIMEvenementsBundle:Convention')->countConventionsByInscriptions();
 
-        return $this->render('OCIMEvenementsBundle:Convention:index.html.twig', array(
+        return $this->render('Evenements:Convention:index.html.twig', array(
             'entities' => $entities,
             'slug' => $slug,
             'slugmax' => $slugmax
@@ -59,7 +59,7 @@ class ConventionController extends Controller
             return $this->redirect($this->generateUrl('convention_show', array('id' => $entity->getId())));
         }
 
-        return $this->render('OCIMEvenementsBundle:Convention:new.html.twig', array(
+        return $this->render('Evenements:Convention:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
@@ -198,7 +198,7 @@ class ConventionController extends Controller
         $em = $this->getDoctrine()->getManager();
         $num_convention = $em->getRepository('OCIMEvenementsBundle:Convention')->lastConventionNumber();
 
-        return $this->render('OCIMEvenementsBundle:Convention:new.html.twig', array(
+        return $this->render('Evenements:Convention:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
             'derniere_convention' => $num_convention,
@@ -221,7 +221,7 @@ class ConventionController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('OCIMEvenementsBundle:Convention:show.html.twig', array(
+        return $this->render('Evenements:Convention:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -245,7 +245,7 @@ class ConventionController extends Controller
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('OCIMEvenementsBundle:Convention:edit.html.twig', array(
+        return $this->render('Evenements:Convention:edit.html.twig', array(
             'entity'      => $entity,
             'form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -295,7 +295,7 @@ class ConventionController extends Controller
             return $this->redirect($this->generateUrl('convention_edit', array('id' => $id)));
         }
 
-        return $this->render('OCIMEvenementsBundle:Convention:edit.html.twig', array(
+        return $this->render('Evenements:Convention:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

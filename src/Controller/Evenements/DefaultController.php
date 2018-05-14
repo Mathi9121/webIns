@@ -59,7 +59,7 @@ class DefaultController extends Controller
 			$formation->_count = $em->getRepository('OCIMEvenementsBundle:Inscription')->countInscriptionsByEvenement($formation->getId());
 		}
 
-		return $this->render('OCIMEvenementsBundle:Default:index.html.twig', array(
+		return $this->render('Evenements:Default:index.html.twig', array(
 			'evenements'=> $evenements,
 			'formations'=> $formations,
 			'inscriptions'=> $inscriptions,

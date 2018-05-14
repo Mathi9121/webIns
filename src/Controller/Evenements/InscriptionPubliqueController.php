@@ -73,7 +73,7 @@ class InscriptionPubliqueController extends Controller
             ));
         }
 
-        return $this->render('OCIMEvenementsBundle:InscriptionPublique:form-public.html.twig', array(
+        return $this->render('Evenements:InscriptionPublique:form-public.html.twig', array(
             'form' => $form->createView(),
             'id' => $id
         ));
@@ -175,7 +175,7 @@ class InscriptionPubliqueController extends Controller
                     $inscription_success = false;
                 }
 
-                return $this->render('OCIMEvenementsBundle:InscriptionPublique:confirmation.html.twig', array(
+                return $this->render('Evenements:InscriptionPublique:confirmation.html.twig', array(
                     //'success_mail' => $mail_success,
                     'success_inscription' => $inscription_success,
                 ));
@@ -211,13 +211,13 @@ class InscriptionPubliqueController extends Controller
                         ->setBcc('formation.ocim@u-bourgogne.fr')
                         ->setContentType("text/html")
                         ->setTo($entity->getStagiaire()->getMail())
-                        ->setBody($this->renderView('OCIMEvenementsBundle:InscriptionPublique:email-inscription.html.twig', array('inscription' => $entity)))//->setCharset('utf-8')
+                        ->setBody($this->renderView('Evenements:InscriptionPublique:email-inscription.html.twig', array('inscription' => $entity)))//->setCharset('utf-8')
                     ;
                     if (!$mailer->send($message)) {
                         $mail_success = false;
                     }
                 }
-                return $this->render('OCIMEvenementsBundle:InscriptionPublique:confirmation.html.twig', array(
+                return $this->render('Evenements:InscriptionPublique:confirmation.html.twig', array(
                     'success_mail' => $mail_success,
                     'success_inscription' => $inscription_success
                 ));
@@ -226,7 +226,7 @@ class InscriptionPubliqueController extends Controller
 
 
         } else {
-            return $this->render('OCIMEvenementsBundle:InscriptionPublique:form-public.html.twig', array(
+            return $this->render('Evenements:InscriptionPublique:form-public.html.twig', array(
                 'form' => $form->createView(),
                 'idevenement' => $idevenement
             ));
