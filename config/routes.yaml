@@ -1,3 +1,49 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+ocim_contacts:
+    resource: "../src/Resources/Contacts/config/routing.yml"
+    prefix:   /
+
+ocim_export:
+    resource: "../src/Resources/Export/config/routing.yml"
+    prefix:   /
+
+ocim_user:
+    resource: "../src/Resources/User/config/routing.yml"
+    prefix:   /
+
+ocim_evenements:
+    resource: "../src/Resources/Evenements/config/routing.yml"
+    prefix:   /
+
+OCIMEvenementsBundle_evenement:
+    resource: "../src/Resources/Evenements/config/routing/evenement.yml"
+    prefix:   /e
+
+OCIMEvenementsBundle_formule:
+    resource: "../src/Resources/Evenements/config/routing/formule.yml"
+    prefix:   /formule
+
+OCIMEvenementsBundle_inscription:
+    resource: "../src/Resources/Evenements/config/routing/inscription.yml"
+    prefix:   /evenement-{idevenement}/inscriptions
+
+OCIMContactsBundle_personne:
+    resource: "../src/Resources/Contacts/config/routing/personne.yml"
+    prefix:   /personne
+
+OCIMUserBundle_user:
+    resource: "../src/Resources/User/config/routing/user.yml"
+    prefix:   /user
+
+connexion:
+    path: /connexion
+    controller: App\Controller\User\Admin::connexion
+
+check:
+    path: /check
+
+deconnexion:
+    path: /deconnexion
+
+home:
+    path: /
+    controller: App\Controller\Evenements\Default::index

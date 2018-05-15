@@ -1,6 +1,6 @@
 intervenants:
     path:     /
-    defaults: { _controller: "OCIMContactsBundle:Intervenant:index" }
+    controller: OCIMContactsBundle:Intervenant:index
 
 intervenants_show:
     path:     /evenement-{idevenement}/{id}/show
