@@ -47,7 +47,7 @@ class FormuleController extends Controller
 			$entity->_countEvenements = $qb->getQuery()->getSingleResult();
 		}
 
-        return $this->render('Evenements:Formule:index.html.twig', array(
+        return $this->render('Evenements/Formule/index.html.twig', array(
             'entities' => $entities,
             'id' => $id,
         ));
@@ -71,7 +71,7 @@ class FormuleController extends Controller
             return $this->redirect($this->generateUrl('formule', array('id' => $entity->getId())));
           }
 
-          return $this->render('Evenements:Formule:new.html.twig', array(
+          return $this->render('Evenements/Formule/new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
           ));
@@ -131,7 +131,7 @@ class FormuleController extends Controller
         $entity = new Formule();
         $form   = $this->createCreateForm($entity);
 
-        return $this->render('Evenements:Formule:new.html.twig', array(
+        return $this->render('Evenements/Formule/new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
@@ -153,7 +153,7 @@ class FormuleController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('Evenements:Formule:show.html.twig', array(
+        return $this->render('Evenements/Formule/show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -176,7 +176,7 @@ class FormuleController extends Controller
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('Evenements:Formule:edit.html.twig', array(
+        return $this->render('Evenements/Formule/edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -225,7 +225,7 @@ class FormuleController extends Controller
             return $this->redirect($this->generateUrl('formule', array('id' => $id)));
         }
         $this->get('session')->getFlashBag()->add('error','Le formulaire contient des erreurs');
-        return $this->render('Evenements:Formule:edit.html.twig', array(
+        return $this->render('Evenements/Formule/edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

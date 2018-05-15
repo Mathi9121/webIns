@@ -52,10 +52,10 @@ class evenementFormule
     /**
      * Add modeles
      *
-     * @param \OCIM\EvenementsBundle\Entity\ModeleChampPerso $modeles
+     * @param \Entity\Evenements\ModeleChampPerso $modeles
      * @return evenementFormule
      */
-    public function addModele(\OCIM\EvenementsBundle\Entity\ModeleChampPerso $modeles)
+    public function addModele(\Entity\Evenements\ModeleChampPerso $modeles)
     {
 		if(!$this->modeles->contains($modeles)){
 			$this->modeles[] = $modeles;
@@ -68,9 +68,9 @@ class evenementFormule
     /**
      * Remove modeles
      *
-     * @param \OCIM\EvenementsBundle\Entity\ModeleChampPerso $modeles
+     * @param \Entity\Evenements\ModeleChampPerso $modeles
      */
-    public function removeModele(\OCIM\EvenementsBundle\Entity\ModeleChampPerso $modeles)
+    public function removeModele(\Entity\Evenements\ModeleChampPerso $modeles)
     {
         $this->modeles->removeElement($modeles);
     }
@@ -88,10 +88,10 @@ class evenementFormule
     /**
      * Set formule
      *
-     * @param \OCIM\EvenementsBundle\Entity\Formule $formule
+     * @param \Entity\Evenements\Formule $formule
      * @return evenementFormule
      */
-    public function setFormule(\OCIM\EvenementsBundle\Entity\Formule $formule = null)
+    public function setFormule(\Entity\Evenements\Formule $formule = null)
     {
         $this->formule = $formule;
 
@@ -101,7 +101,7 @@ class evenementFormule
     /**
      * Get formule
      *
-     * @return \OCIM\EvenementsBundle\Entity\Formule
+     * @return \Entity\Evenements\Formule
      */
     public function getFormule()
     {
@@ -111,10 +111,10 @@ class evenementFormule
     /**
      * Set evenement
      *
-     * @param \OCIM\EvenementsBundle\Entity\Evenement $evenement
+     * @param \Entity\Evenements\Evenement $evenement
      * @return evenementFormule
      */
-    public function setEvenement(\OCIM\EvenementsBundle\Entity\Evenement $evenement = null)
+    public function setEvenement(\Entity\Evenements\Evenement $evenement = null)
     {
         $this->evenement = $evenement;
 
@@ -124,7 +124,7 @@ class evenementFormule
     /**
      * Get evenement
      *
-     * @return \OCIM\EvenementsBundle\Entity\Evenement
+     * @return \Entity\Evenements\Evenement
      */
     public function getEvenement()
     {
@@ -145,10 +145,10 @@ class evenementFormule
     /**
      * Add inscriptions
      *
-     * @param \OCIM\EvenementsBundle\Entity\Inscription $inscriptions
+     * @param \Entity\Evenements\Inscription $inscriptions
      * @return evenementFormule
      */
-    public function addInscription(\OCIM\EvenementsBundle\Entity\Inscription $inscriptions)
+    public function addInscription(\Entity\Evenements\Inscription $inscriptions)
     {
         $this->inscriptions[] = $inscriptions;
 
@@ -158,9 +158,9 @@ class evenementFormule
     /**
      * Remove inscriptions
      *
-     * @param \OCIM\EvenementsBundle\Entity\Inscription $inscriptions
+     * @param \Entity\Evenements\Inscription $inscriptions
      */
-    public function removeInscription(\OCIM\EvenementsBundle\Entity\Inscription $inscriptions)
+    public function removeInscription(\Entity\Evenements\Inscription $inscriptions)
     {
         $this->inscriptions->removeElement($inscriptions);
     }

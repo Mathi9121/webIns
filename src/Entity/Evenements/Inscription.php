@@ -221,7 +221,7 @@ class Inscription
     }
 
     /**
-     * @var \OCIM\EvenementsBundle\Entity\Convention
+     * @var \Entity\Evenements\Convention
      */
     private $convention;
 
@@ -229,10 +229,10 @@ class Inscription
     /**
      * Set convention
      *
-     * @param \OCIM\EvenementsBundle\Entity\Convention $convention
+     * @param \Entity\Evenements\Convention $convention
      * @return Inscription
      */
-    public function setConvention(\OCIM\EvenementsBundle\Entity\Convention $convention = null)
+    public function setConvention(\Entity\Evenements\Convention $convention = null)
     {
         $this->convention = $convention;
 
@@ -242,7 +242,7 @@ class Inscription
     /**
      * Get convention
      *
-     * @return \OCIM\EvenementsBundle\Entity\Convention
+     * @return \Entity\Evenements\Convention
      */
     public function getConvention()
     {
@@ -256,10 +256,10 @@ class Inscription
     /**
      * Set evenementformule
      *
-     * @param \OCIM\EvenementsBundle\Entity\evenementFormule $evenementformule
+     * @param \Entity\Evenements\evenementFormule $evenementformule
      * @return Inscription
      */
-    public function setEvenementformule(\OCIM\EvenementsBundle\Entity\evenementFormule $evenementformule = null)
+    public function setEvenementformule(\Entity\Evenements\evenementFormule $evenementformule = null)
     {
         $this->evenementformule = $evenementformule;
 
@@ -269,7 +269,7 @@ class Inscription
     /**
      * Get evenementformule
      *
-     * @return \OCIM\EvenementsBundle\Entity\evenementFormule
+     * @return \Entity\Evenements\evenementFormule
      */
     public function getEvenementformule()
     {
@@ -278,7 +278,7 @@ class Inscription
 
 
     /**
-     * @var \OCIM\ContactsBundle\Entity\Personne
+     * @var \Entity\Contacts\Personne
      */
     private $stagiaire;
 
@@ -286,10 +286,10 @@ class Inscription
     /**
      * Set personne
      *
-     * @param \OCIM\ContactsBundle\Entity\Personne $personne
+     * @param \Entity\Contacts\Personne $personne
      * @return Inscription
      */
-    public function setStagiaire(\OCIM\ContactsBundle\Entity\Stagiaire $stagiaire = null)
+    public function setStagiaire(\Entity\Contacts\Stagiaire $stagiaire = null)
     {
 
 		$this->stagiaire = $stagiaire;
@@ -302,7 +302,7 @@ class Inscription
     /**
      * Get personne
      *
-     * @return \OCIM\ContactsBundle\Entity\Personne
+     * @return \Entity\Contacts\Personne
      */
     public function getStagiaire()
     {
@@ -315,7 +315,7 @@ class Inscription
     }
 
 	 /**
-     * @var \OCIM\ContactsBundle\Entity\Personne
+     * @var \Entity\Contacts\Personne
      */
     private $signataire;
 
@@ -323,10 +323,10 @@ class Inscription
     /**
      * Set personne
      *
-     * @param \OCIM\ContactsBundle\Entity\Personne $personne
+     * @param \Entity\Contacts\Personne $personne
      * @return Inscription
      */
-    public function setSignataire(\OCIM\ContactsBundle\Entity\Signataire $signataire = null)
+    public function setSignataire(\Entity\Contacts\Signataire $signataire = null)
     {
 
 		$this->signataire = $signataire;
@@ -339,7 +339,7 @@ class Inscription
     /**
      * Get personne
      *
-     * @return \OCIM\ContactsBundle\Entity\Personne
+     * @return \Entity\Contacts\Personne
      */
     public function getSignataire()
     {
@@ -353,7 +353,7 @@ class Inscription
 
 
 	 /**
-     * @var \OCIM\ContactsBundle\Entity\Personne
+     * @var \Entity\Contacts\Personne
      */
     private $admin;
 
@@ -361,10 +361,10 @@ class Inscription
     /**
      * Set personne
      *
-     * @param \OCIM\ContactsBundle\Entity\Personne $personne
+     * @param \Entity\Contacts\Personne $personne
      * @return Inscription
      */
-    public function setAdmin(\OCIM\ContactsBundle\Entity\Admin $admin = null)
+    public function setAdmin(\Entity\Contacts\Admin $admin = null)
     {
 
 		$this->admin = $admin;
@@ -377,7 +377,7 @@ class Inscription
     /**
      * Get personne
      *
-     * @return \OCIM\ContactsBundle\Entity\Personne
+     * @return \Entity\Contacts\Personne
      */
     public function getAdmin()
     {
@@ -399,10 +399,10 @@ class Inscription
     /**
      * Add personnes
      *
-     * @param \OCIM\ContactsBundle\Entity\Personne $personnes
+     * @param \Entity\Contacts\Personne $personnes
      * @return Inscription
      */
-    public function addPersonne(\OCIM\ContactsBundle\Entity\Personne $personnes)
+    public function addPersonne(\Entity\Contacts\Personne $personnes)
     {
         $this->personnes[] = $personnes;
 
@@ -412,9 +412,9 @@ class Inscription
     /**
      * Remove personnes
      *
-     * @param \OCIM\ContactsBundle\Entity\Personne $personnes
+     * @param \Entity\Contacts\Personne $personnes
      */
-    public function removePersonne(\OCIM\ContactsBundle\Entity\Personne $personnes)
+    public function removePersonne(\Entity\Contacts\Personne $personnes)
     {
         $this->personnes->removeElement($personnes);
     }
@@ -460,10 +460,10 @@ class Inscription
     /**
      * Add reponsesChampPerso
      *
-     * @param \OCIM\EvenementsBundle\Entity\ReponsesChampPerso $reponsesChampPerso
+     * @param \Entity\Evenements\ReponsesChampPerso $reponsesChampPerso
      * @return Inscription
      */
-    public function addReponsesChampPerso(\OCIM\EvenementsBundle\Entity\ReponsesChampPerso $reponsesChampPerso)
+    public function addReponsesChampPerso(\Entity\Evenements\ReponsesChampPerso $reponsesChampPerso)
     {
         $this->reponsesChampPerso[] = $reponsesChampPerso;
 
@@ -473,9 +473,9 @@ class Inscription
     /**
      * Remove reponsesChampPerso
      *
-     * @param \OCIM\EvenementsBundle\Entity\ReponsesChampPerso $reponsesChampPerso
+     * @param \Entity\Evenements\ReponsesChampPerso $reponsesChampPerso
      */
-    public function removeReponsesChampPerso(\OCIM\EvenementsBundle\Entity\ReponsesChampPerso $reponsesChampPerso)
+    public function removeReponsesChampPerso(\Entity\Evenements\ReponsesChampPerso $reponsesChampPerso)
     {
         $this->reponsesChampPerso->removeElement($reponsesChampPerso);
     }

@@ -193,7 +193,7 @@ class Adresse
         return $this->pays;
     }
     /**
-     * @var \OCIM\ContactsBundle\Entity\Structure
+     * @var \Entity\Contacts\Structure
      */
     private $structure;
 
@@ -201,10 +201,10 @@ class Adresse
     /**
      * Set structure
      *
-     * @param \OCIM\ContactsBundle\Entity\Structure $structure
+     * @param \Entity\Contacts\Structure $structure
      * @return Adresse
      */
-    public function setStructure(\OCIM\ContactsBundle\Entity\Structure $structure = null)
+    public function setStructure(\Entity\Contacts\Structure $structure = null)
     {
         $this->structure = $structure;
 
@@ -214,7 +214,7 @@ class Adresse
     /**
      * Get structure
      *
-     * @return \OCIM\ContactsBundle\Entity\Structure 
+     * @return \Entity\Contacts\Structure 
      */
     public function getStructure()
     {

@@ -62,7 +62,7 @@ class AdminType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'OCIM\ContactsBundle\Entity\Admin',
+            'data_class' => 'Entity\Contacts\Admin',
 			'attr' => array('class'=> 'forms'),
         ));
     }

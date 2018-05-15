@@ -194,7 +194,7 @@ class Adresse
     }
 
     /**
-     * @var \OCIM\ContactsBundle\Entity\TypeStructure
+     * @var \Entity\Contacts\TypeStructure
      */
     private $type;
 
@@ -214,10 +214,10 @@ class Adresse
     /**
      * Set type
      *
-     * @param \OCIM\ContactsBundle\Entity\TypeStructure $type
+     * @param \Entity\Contacts\TypeStructure $type
      * @return Adresse
      */
-    public function setType(\OCIM\ContactsBundle\Entity\TypeStructure $type = null)
+    public function setType(\Entity\Contacts\TypeStructure $type = null)
     {
         $this->type = $type;
 
@@ -227,7 +227,7 @@ class Adresse
     /**
      * Get type
      *
-     * @return \OCIM\ContactsBundle\Entity\TypeStructure
+     * @return \Entity\Contacts\TypeStructure
      */
     public function getType()
     {
@@ -237,10 +237,10 @@ class Adresse
     /**
      * Add tags
      *
-     * @param \OCIM\ContactsBundle\Entity\TagStructure $tag
+     * @param \Entity\Contacts\TagStructure $tag
      * @return Adresse
      */
-    public function addTag(\OCIM\ContactsBundle\Entity\TagStructure $tag)
+    public function addTag(\Entity\Contacts\TagStructure $tag)
     {
         $this->tags[] = $tag;
 
@@ -250,9 +250,9 @@ class Adresse
     /**
      * Remove tags
      *
-     * @param \OCIM\ContactsBundle\Entity\TagStructure $tag
+     * @param \Entity\Contacts\TagStructure $tag
      */
-    public function removeTag(\OCIM\ContactsBundle\Entity\TagStructure $tag)
+    public function removeTag(\Entity\Contacts\TagStructure $tag)
     {
         $this->tags->removeElement($tag);
     }

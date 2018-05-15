@@ -117,10 +117,10 @@ class ReponsesChampPerso
     /**
      * Set modele
      *
-     * @param \OCIM\EvenementsBundle\Entity\ModeleChampPerso $modele
+     * @param \Entity\Evenements\ModeleChampPerso $modele
      * @return ReponsesChampPerso
      */
-    public function setModele(\OCIM\EvenementsBundle\Entity\ModeleChampPerso $modele = null)
+    public function setModele(\Entity\Evenements\ModeleChampPerso $modele = null)
     {
         $this->modele = $modele;
 
@@ -130,7 +130,7 @@ class ReponsesChampPerso
     /**
      * Get modele
      *
-     * @return \OCIM\EvenementsBundle\Entity\ModeleChampPerso 
+     * @return \Entity\Evenements\ModeleChampPerso 
      */
     public function getModele()
     {
@@ -144,10 +144,10 @@ class ReponsesChampPerso
     /**
      * Set inscription
      *
-     * @param \OCIM\EvenementsBundle\Entity\Inscription $inscription
+     * @param \Entity\Evenements\Inscription $inscription
      * @return ReponsesChampPerso
      */
-    public function setInscription(\OCIM\EvenementsBundle\Entity\Inscription $inscription = null)
+    public function setInscription(\Entity\Evenements\Inscription $inscription = null)
     {
         $this->inscription = $inscription;
 
@@ -157,7 +157,7 @@ class ReponsesChampPerso
     /**
      * Get inscription
      *
-     * @return \OCIM\EvenementsBundle\Entity\Inscription 
+     * @return \Entity\Evenements\Inscription 
      */
     public function getInscription()
     {

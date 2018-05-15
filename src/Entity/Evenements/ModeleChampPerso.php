@@ -131,10 +131,10 @@ class ModeleChampPerso
     /**
      * Add reponses
      *
-     * @param \OCIM\EvenementsBundle\Entity\ReponsesChampPerso $reponses
+     * @param \Entity\Evenements\ReponsesChampPerso $reponses
      * @return ModeleChampPerso
      */
-    public function addReponse(\OCIM\EvenementsBundle\Entity\ReponsesChampPerso $reponses)
+    public function addReponse(\Entity\Evenements\ReponsesChampPerso $reponses)
     {
         $this->reponses[] = $reponses;
 
@@ -144,9 +144,9 @@ class ModeleChampPerso
     /**
      * Remove reponses
      *
-     * @param \OCIM\EvenementsBundle\Entity\ReponsesChampPerso $reponses
+     * @param \Entity\Evenements\ReponsesChampPerso $reponses
      */
-    public function removeReponse(\OCIM\EvenementsBundle\Entity\ReponsesChampPerso $reponses)
+    public function removeReponse(\Entity\Evenements\ReponsesChampPerso $reponses)
     {
         $this->reponses->removeElement($reponses);
     }
@@ -201,10 +201,10 @@ class ModeleChampPerso
     /**
      * Add evenementFormule
      *
-     * @param \OCIM\EvenementsBundle\Entity\evenementFormule $evenementFormule
+     * @param \Entity\Evenements\evenementFormule $evenementFormule
      * @return ModeleChampPerso
      */
-    public function addEvenementFormule(\OCIM\EvenementsBundle\Entity\evenementFormule $evenementFormule)
+    public function addEvenementFormule(\Entity\Evenements\evenementFormule $evenementFormule)
     {
         $this->evenementFormule[] = $evenementFormule;
 
@@ -214,9 +214,9 @@ class ModeleChampPerso
     /**
      * Remove evenementFormule
      *
-     * @param \OCIM\EvenementsBundle\Entity\evenementFormule $evenementFormule
+     * @param \Entity\Evenements\evenementFormule $evenementFormule
      */
-    public function removeEvenementFormule(\OCIM\EvenementsBundle\Entity\evenementFormule $evenementFormule)
+    public function removeEvenementFormule(\Entity\Evenements\evenementFormule $evenementFormule)
     {
         $this->evenementFormule->removeElement($evenementFormule);
     }
@@ -233,7 +233,7 @@ class ModeleChampPerso
    
    
     /**
-     * @var \OCIM\EvenementsBundle\Entity\Evenement
+     * @var \Entity\Evenements\Evenement
      */
     private $evenement;
 
@@ -241,10 +241,10 @@ class ModeleChampPerso
     /**
      * Set evenement
      *
-     * @param \OCIM\EvenementsBundle\Entity\Evenement $evenement
+     * @param \Entity\Evenements\Evenement $evenement
      * @return ModeleChampPerso
      */
-    public function setEvenement(\OCIM\EvenementsBundle\Entity\Evenement $evenement = null)
+    public function setEvenement(\Entity\Evenements\Evenement $evenement = null)
     {
         $this->evenement = $evenement;
 
@@ -254,7 +254,7 @@ class ModeleChampPerso
     /**
      * Get evenement
      *
-     * @return \OCIM\EvenementsBundle\Entity\Evenement 
+     * @return \Entity\Evenements\Evenement 
      */
     public function getEvenement()
     {

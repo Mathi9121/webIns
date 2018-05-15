@@ -27,7 +27,7 @@ class SignataireController extends Controller
 
         $entities = $em->getRepository('OCIMContactsBundle:Signataire')->findAll();
 
-        return $this->render('Contacts:Signataire:index.html.twig', array(
+        return $this->render('Contacts/Signataire/index.html.twig', array(
             'entities' => $entities,
         ));
     }
@@ -55,7 +55,7 @@ class SignataireController extends Controller
             return $this->redirect($this->generateUrl('signataire_show', array('id' => $entity->getId())));
         }
 
-        return $this->render('Contacts:Signataire:new.html.twig', array(
+        return $this->render('Contacts/Signataire/new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
 			'idevenement' => $idevenement
@@ -91,7 +91,7 @@ class SignataireController extends Controller
         $entity = new Signataire();
         $form   = $this->createCreateForm($entity, $idinscription, $idevenement);
 
-        return $this->render('Contacts:Signataire:new.html.twig', array(
+        return $this->render('Contacts/Signataire/new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
 			'idevenement' => $idevenement
@@ -114,7 +114,7 @@ class SignataireController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('Contacts:Signataire:show.html.twig', array(
+        return $this->render('Contacts/Signataire/show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -137,7 +137,7 @@ class SignataireController extends Controller
         $editForm = $this->createEditForm($entity, $idevenement);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('Contacts:Signataire:new.html.twig', array(
+        return $this->render('Contacts/Signataire/new.html.twig', array(
             'entity'      => $entity,
             'form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -188,7 +188,7 @@ class SignataireController extends Controller
             return $this->redirect($this->generateUrl('signataire_edit', array('id' => $id, 'idevenement'=>$idevenement)));
         }
 
-        return $this->render('Contacts:Signataire:edit.html.twig', array(
+        return $this->render('Contacts/Signataire/edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

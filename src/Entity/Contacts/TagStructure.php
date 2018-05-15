@@ -74,10 +74,10 @@ class TagStructure
     /**
      * Add structures
      *
-     * @param \OCIM\ContactsBundle\Entity\Adresse $structures
+     * @param \Entity\Contacts\Adresse $structures
      * @return TagStructure
      */
-    public function addStructure(\OCIM\ContactsBundle\Entity\Adresse $structures)
+    public function addStructure(\Entity\Contacts\Adresse $structures)
     {
         $this->structures[] = $structures;
 
@@ -87,9 +87,9 @@ class TagStructure
     /**
      * Remove structures
      *
-     * @param \OCIM\ContactsBundle\Entity\Adresse $structures
+     * @param \Entity\Contacts\Adresse $structures
      */
-    public function removeStructure(\OCIM\ContactsBundle\Entity\Adresse $structures)
+    public function removeStructure(\Entity\Contacts\Adresse $structures)
     {
         $this->structures->removeElement($structures);
     }

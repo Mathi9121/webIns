@@ -33,7 +33,7 @@ class InscriptionPubliqueType extends AbstractType
 		$idevenement = $this->idevenement;
         $builder
 			->add('evenementformule', EntityType::class, array(
-				'class' => 'OCIM\EvenementsBundle\Entity\evenementFormule',
+				'class' => 'Entity\Evenements\evenementFormule',
 				'choice_translation_domain' => true,
 				"attr" => array('class'=>'width-100'),
 				"query_builder" => function(EntityRepository $er) use ($idevenement)
@@ -48,7 +48,7 @@ class InscriptionPubliqueType extends AbstractType
 			->add(
 				$builder->create('stagiaire', FormType::class, array(
 						'required' => true,
-						'data_class' => 'OCIM\ContactsBundle\Entity\Stagiaire',
+						'data_class' => 'Entity\Contacts\Stagiaire',
 						'label' => false))
 					->add('civilite', ChoiceType::class, array(
 						'choices' => array(
@@ -95,7 +95,7 @@ class InscriptionPubliqueType extends AbstractType
 							'checkMX' => true))
 					))
 					->add(
-						$builder->create("adresse", FormType::class, array("by_reference"=>false, "label" => false, "data_class" => 'OCIM\ContactsBundle\Entity\Adresse',))
+						$builder->create("adresse", FormType::class, array("by_reference"=>false, "label" => false, "data_class" => 'Entity\Contacts\Adresse',))
 							->add('nomStructure', TextType::class, array(
 								'attr' => array('class' => 'width-100'),
 								'label' => 'Nom de la structure',
@@ -132,7 +132,7 @@ class InscriptionPubliqueType extends AbstractType
 				))
 
 			->add(
-				$builder->create('admin', FormType::class, array('by_reference' => false, 'label' => false, "data_class"=> 'OCIM\ContactsBundle\Entity\Admin'))
+				$builder->create('admin', FormType::class, array('by_reference' => false, 'label' => false, "data_class"=> 'Entity\Contacts\Admin'))
 					->add('mail', TextType::class, array(
 						'label' => "Mail du contact administratif",
 						'required' => false,
@@ -150,7 +150,7 @@ class InscriptionPubliqueType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'OCIM\EvenementsBundle\Entity\Inscription',
+            'data_class' => 'Entity\Evenements\Inscription',
 						'attr' => array('class' => 'forms'),
 						'csrf_protection' => false,
 

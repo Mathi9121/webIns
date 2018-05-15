@@ -41,7 +41,7 @@ class UserType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'OCIM\UserBundle\Entity\User',
+            'data_class' => 'Entity\User\User',
 			'attr' => array('class'=> 'forms'),
 
         ));

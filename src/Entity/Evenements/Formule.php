@@ -188,10 +188,10 @@ class Formule
     /**
      * Add evenementFormule
      *
-     * @param \OCIM\EvenementsBundle\Entity\evenementFormule $evenementFormule
+     * @param \Entity\Evenements\evenementFormule $evenementFormule
      * @return Formule
      */
-    public function addEvenementFormule(\OCIM\EvenementsBundle\Entity\evenementFormule $evenementFormule)
+    public function addEvenementFormule(\Entity\Evenements\evenementFormule $evenementFormule)
     {
         $this->evenementFormule[] = $evenementFormule;
 
@@ -201,9 +201,9 @@ class Formule
     /**
      * Remove evenementFormule
      *
-     * @param \OCIM\EvenementsBundle\Entity\evenementFormule $evenementFormule
+     * @param \Entity\Evenements\evenementFormule $evenementFormule
      */
-    public function removeEvenementFormule(\OCIM\EvenementsBundle\Entity\evenementFormule $evenementFormule)
+    public function removeEvenementFormule(\Entity\Evenements\evenementFormule $evenementFormule)
     {
         $this->evenementFormule->removeElement($evenementFormule);
     }

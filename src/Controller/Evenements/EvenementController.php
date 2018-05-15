@@ -66,7 +66,7 @@ class EvenementController extends Controller
   			$evenement->_count = $em->getRepository('OCIMEvenementsBundle:Inscription')->countInscriptionsByEvenement($evenement->getId());
   		}
 
-  		return $this->render('Evenements:Evenement:index.html.twig', array(
+  		return $this->render('Evenements/Evenement/index.html.twig', array(
   			'evenements' => $evenements,
   			'types' => $types,
         'datesminmax' => $datesMinMax[0],
@@ -105,7 +105,7 @@ class EvenementController extends Controller
             return $this->redirect($this->generateUrl('evenement', array('id' => $entity->getId())));
         }
 
-        return $this->render('Evenements:Evenement:new.html.twig', array(
+        return $this->render('Evenements/Evenement/new.html.twig', array(
             'entity' => $entity,
             'edit_form'   => $form->createView(),
         ));
@@ -153,7 +153,7 @@ class EvenementController extends Controller
 
       $form->add('submit', SubmitType::class, array('label' => 'Enregistrer', 'attr' => array('class' => 'btn btn-green btn-save')));
 
-      return $this->render('Evenements:Evenement:addIntervenant.html.twig', array(
+      return $this->render('Evenements/Evenement/addIntervenant.html.twig', array(
           'form' => $form->createView(),
           'intervenants' => $intervenants
       ));
@@ -189,7 +189,7 @@ class EvenementController extends Controller
 
       $this->get('session')->getFlashBag()->add('error','Le formulaire contient des erreurs');
 
-      return $this->render('Evenements:Evenement:addIntervenant.html.twig', array(
+      return $this->render('Evenements/Evenement/addIntervenant.html.twig', array(
           'form' => $form->createView(),
       ));
 
@@ -224,7 +224,7 @@ class EvenementController extends Controller
         $entity->setEventType($type);
         $form   = $this->createCreateForm($entity);
 
-        return $this->render('Evenements:Evenement:new.html.twig', array(
+        return $this->render('Evenements/Evenement/new.html.twig', array(
             'entity' => $entity,
             'edit_form'   => $form->createView(),
         ));
@@ -261,7 +261,7 @@ class EvenementController extends Controller
 			ksort($statsInscriptions);
 		}
 
-        return $this->render('Evenements:Evenement:show.html.twig', array(
+        return $this->render('Evenements/Evenement/show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
 			'formules' => $entity->getFormules(),
@@ -287,7 +287,7 @@ class EvenementController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         // exit(\Doctrine\Common\Util\Debug::dump($entity->getEventType()));
-        return $this->render('Evenements:Evenement:edit.html.twig', array(
+        return $this->render('Evenements/Evenement/edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -354,7 +354,7 @@ class EvenementController extends Controller
 
         $this->get('session')->getFlashBag()->add('error','Le formulaire contient des erreurs');
 
-        return $this->render('Evenements:Evenement:edit.html.twig', array(
+        return $this->render('Evenements/Evenement/edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

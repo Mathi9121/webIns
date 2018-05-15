@@ -68,10 +68,10 @@ class TypeStructure
     /**
      * Add structure
      *
-     * @param \OCIM\ContactsBundle\Entity\Structure $structure
+     * @param \Entity\Contacts\Structure $structure
      * @return TypeStructure
      */
-    public function addStructure(\OCIM\ContactsBundle\Entity\Structure $structure)
+    public function addStructure(\Entity\Contacts\Structure $structure)
     {
         $this->structure[] = $structure;
 
@@ -81,9 +81,9 @@ class TypeStructure
     /**
      * Remove structure
      *
-     * @param \OCIM\ContactsBundle\Entity\Structure $structure
+     * @param \Entity\Contacts\Structure $structure
      */
-    public function removeStructure(\OCIM\ContactsBundle\Entity\Structure $structure)
+    public function removeStructure(\Entity\Contacts\Structure $structure)
     {
         $this->structure->removeElement($structure);
     }

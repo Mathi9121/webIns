@@ -79,10 +79,10 @@ class TypeStructure
     /**
      * Add adresse
      *
-     * @param \OCIM\ContactsBundle\Entity\Adresse $adresse
+     * @param \Entity\Contacts\Adresse $adresse
      * @return TypeStructure
      */
-    public function addAdresse(\OCIM\ContactsBundle\Entity\Adresse $adresse)
+    public function addAdresse(\Entity\Contacts\Adresse $adresse)
     {
         $this->adresse[] = $adresse;
 
@@ -92,9 +92,9 @@ class TypeStructure
     /**
      * Remove adresse
      *
-     * @param \OCIM\ContactsBundle\Entity\Adresse $adresse
+     * @param \Entity\Contacts\Adresse $adresse
      */
-    public function removeAdresse(\OCIM\ContactsBundle\Entity\Adresse $adresse)
+    public function removeAdresse(\Entity\Contacts\Adresse $adresse)
     {
         $this->adresse->removeElement($adresse);
     }

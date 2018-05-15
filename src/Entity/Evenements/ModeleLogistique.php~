@@ -131,10 +131,10 @@ class ModeleChampPerso
     /**
      * Add reponses
      *
-     * @param \OCIM\EvenementsBundle\Entity\ReponsesChampPerso $reponses
+     * @param \Entity\Evenements\ReponsesChampPerso $reponses
      * @return ModeleChampPerso
      */
-    public function addReponse(\OCIM\EvenementsBundle\Entity\ReponsesChampPerso $reponses)
+    public function addReponse(\Entity\Evenements\ReponsesChampPerso $reponses)
     {
         $this->reponses[] = $reponses;
 
@@ -144,9 +144,9 @@ class ModeleChampPerso
     /**
      * Remove reponses
      *
-     * @param \OCIM\EvenementsBundle\Entity\ReponsesChampPerso $reponses
+     * @param \Entity\Evenements\ReponsesChampPerso $reponses
      */
-    public function removeReponse(\OCIM\EvenementsBundle\Entity\ReponsesChampPerso $reponses)
+    public function removeReponse(\Entity\Evenements\ReponsesChampPerso $reponses)
     {
         $this->reponses->removeElement($reponses);
     }
@@ -201,10 +201,10 @@ class ModeleChampPerso
     /**
      * Add evenementFormule
      *
-     * @param \OCIM\EvenementsBundle\Entity\evenementFormule $evenementFormule
+     * @param \Entity\Evenements\evenementFormule $evenementFormule
      * @return ModeleChampPerso
      */
-    public function addEvenementFormule(\OCIM\EvenementsBundle\Entity\evenementFormule $evenementFormule)
+    public function addEvenementFormule(\Entity\Evenements\evenementFormule $evenementFormule)
     {
         $this->evenementFormule[] = $evenementFormule;
 
@@ -214,9 +214,9 @@ class ModeleChampPerso
     /**
      * Remove evenementFormule
      *
-     * @param \OCIM\EvenementsBundle\Entity\evenementFormule $evenementFormule
+     * @param \Entity\Evenements\evenementFormule $evenementFormule
      */
-    public function removeEvenementFormule(\OCIM\EvenementsBundle\Entity\evenementFormule $evenementFormule)
+    public function removeEvenementFormule(\Entity\Evenements\evenementFormule $evenementFormule)
     {
         $this->evenementFormule->removeElement($evenementFormule);
     }

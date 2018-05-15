@@ -67,7 +67,7 @@ class ConventionType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'OCIM\EvenementsBundle\Entity\Convention',
+            'data_class' => 'Entity\Evenements\Convention',
 			'attr' => array('class'=> "forms")
         ));
     }

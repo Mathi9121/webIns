@@ -47,7 +47,7 @@ class FormuleType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'OCIM\EvenementsBundle\Entity\Formule'
+            'data_class' => 'Entity\Evenements\Formule'
         ));
     }
 

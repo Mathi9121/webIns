@@ -49,7 +49,7 @@ class ChampPersoController extends Controller
 			$entity->_champPerso = $countmodeles;
 		}
 
-        return $this->render('Evenements:champPerso:index.html.twig', array(
+        return $this->render('Evenements/champPerso/index.html.twig', array(
             'entities' => $entities,
         ));
     }
@@ -121,7 +121,7 @@ class ChampPersoController extends Controller
             return $this->redirect($this->generateUrl('champPerso_show', array('id' => $entity->getId())));
         }
 
-        return $this->render('Evenements:champPerso:new.html.twig', array(
+        return $this->render('Evenements/champPerso/new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
@@ -155,7 +155,7 @@ class ChampPersoController extends Controller
         $entity = new evenementFormule();
         $form   = $this->createCreateForm($entity);
 
-        return $this->render('Evenements:champPerso:new.html.twig', array(
+        return $this->render('Evenements/champPerso/new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
@@ -177,7 +177,7 @@ class ChampPersoController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('Evenements:champPerso:show.html.twig', array(
+        return $this->render('Evenements/champPerso/show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -263,7 +263,7 @@ class ChampPersoController extends Controller
         $editForm = $this->createEditForm($evenement);
         $deleteForm = $this->createDeleteForm($idevenement);
 
-        return $this->render('Evenements:champPerso:edit.html.twig', array(
+        return $this->render('Evenements/champPerso/edit.html.twig', array(
             'entity'      => $evenement,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -357,7 +357,7 @@ class ChampPersoController extends Controller
               return $this->redirect($this->generateUrl('champPerso_edit', array('idevenement' => $id)));
         }
 
-        return $this->render('Evenements:champPerso:edit.html.twig', array(
+        return $this->render('Evenements/champPerso/edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

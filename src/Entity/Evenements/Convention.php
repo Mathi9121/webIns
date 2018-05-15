@@ -82,7 +82,7 @@ class Convention
 
 
     /**
-     * @var \OCIM\EvenementsBundle\Entity\Inscription
+     * @var \Entity\Evenements\Inscription
      */
     private $inscription;
 
@@ -90,10 +90,10 @@ class Convention
     /**
      * Set inscription
      *
-     * @param \OCIM\EvenementsBundle\Entity\Inscription $inscription
+     * @param \Entity\Evenements\Inscription $inscription
      * @return Convention
      */
-    public function setInscription(\OCIM\EvenementsBundle\Entity\Inscription $inscription = null)
+    public function setInscription(\Entity\Evenements\Inscription $inscription = null)
     {
         $this->inscription = $inscription;
 
@@ -103,7 +103,7 @@ class Convention
     /**
      * Get inscription
      *
-     * @return \OCIM\EvenementsBundle\Entity\Inscription
+     * @return \Entity\Evenements\Inscription
      */
     public function getInscription()
     {

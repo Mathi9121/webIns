@@ -236,7 +236,7 @@ class Personne
         return $this->fax;
     }
     /**
-     * @var \OCIM\ContactsBundle\Entity\Adresse
+     * @var \Entity\Contacts\Adresse
      */
     private $adresse;
 
@@ -244,10 +244,10 @@ class Personne
     /**
      * Set adresse
      *
-     * @param \OCIM\ContactsBundle\Entity\Adresse $adresse
+     * @param \Entity\Contacts\Adresse $adresse
      * @return Personne
      */
-    public function setAdresse(\OCIM\ContactsBundle\Entity\Adresse $adresse = null)
+    public function setAdresse(\Entity\Contacts\Adresse $adresse = null)
     {
         $this->adresse = $adresse;
 
@@ -257,7 +257,7 @@ class Personne
     /**
      * Get adresse
      *
-     * @return \OCIM\ContactsBundle\Entity\Adresse
+     * @return \Entity\Contacts\Adresse
      */
     public function getAdresse()
     {
@@ -268,7 +268,7 @@ class Personne
 		return $this->prenom;
 	}
     /**
-     * @var \OCIM\EvenementsBundle\Entity\Inscription
+     * @var \Entity\Evenements\Inscription
      */
     private $inscription;
 
@@ -276,10 +276,10 @@ class Personne
     /**
      * Set inscription
      *
-     * @param \OCIM\EvenementsBundle\Entity\Inscription $inscription
+     * @param \Entity\Evenements\Inscription $inscription
      * @return Personne
      */
-    public function setInscription(\OCIM\EvenementsBundle\Entity\Inscription $inscription = null)
+    public function setInscription(\Entity\Evenements\Inscription $inscription = null)
     {
         $this->inscription = $inscription;
 
@@ -289,7 +289,7 @@ class Personne
     /**
      * Get inscription
      *
-     * @return \OCIM\EvenementsBundle\Entity\Inscription
+     * @return \Entity\Evenements\Inscription
      */
     public function getInscription()
     {
@@ -313,10 +313,10 @@ class Personne
     /**
      * Add intervenant
      *
-     * @param \OCIM\ContactsBundle\Entity\Intervenant $intervenant
+     * @param \Entity\Contacts\Intervenant $intervenant
      * @return Personne
      */
-    public function addIntervenant(\OCIM\ContactsBundle\Entity\Intervenant $intervenant)
+    public function addIntervenant(\Entity\Contacts\Intervenant $intervenant)
     {
         $this->intervenant[] = $intervenant;
 
@@ -326,9 +326,9 @@ class Personne
     /**
      * Remove intervenant
      *
-     * @param \OCIM\ContactsBundle\Entity\Intervenant $intervenant
+     * @param \Entity\Contacts\Intervenant $intervenant
      */
-    public function removeIntervenant(\OCIM\ContactsBundle\Entity\Intervenant $intervenant)
+    public function removeIntervenant(\Entity\Contacts\Intervenant $intervenant)
     {
         $this->intervenant->removeElement($intervenant);
     }
@@ -377,10 +377,10 @@ class Personne
     /**
      * Add reponsesChampPerso
      *
-     * @param \OCIM\EvenementsBundle\Entity\ReponsesChampPerso $reponsesChampPerso
+     * @param \Entity\Evenements\ReponsesChampPerso $reponsesChampPerso
      * @return Personne
      */
-    public function addReponsesChampPerso(\OCIM\EvenementsBundle\Entity\ReponsesChampPerso $reponsesChampPerso)
+    public function addReponsesChampPerso(\Entity\Evenements\ReponsesChampPerso $reponsesChampPerso)
     {
         $this->reponsesChampPerso[] = $reponsesChampPerso;
 
@@ -390,9 +390,9 @@ class Personne
     /**
      * Remove reponsesChampPerso
      *
-     * @param \OCIM\EvenementsBundle\Entity\ReponsesChampPerso $reponsesChampPerso
+     * @param \Entity\Evenements\ReponsesChampPerso $reponsesChampPerso
      */
-    public function removeReponsesChampPerso(\OCIM\EvenementsBundle\Entity\ReponsesChampPerso $reponsesChampPerso)
+    public function removeReponsesChampPerso(\Entity\Evenements\ReponsesChampPerso $reponsesChampPerso)
     {
         $this->reponsesChampPerso->removeElement($reponsesChampPerso);
     }
@@ -444,10 +444,10 @@ class Personne
     /**
      * Add inscription
      *
-     * @param \OCIM\EvenementsBundle\Entity\Inscription $inscription
+     * @param \Entity\Evenements\Inscription $inscription
      * @return Personne
      */
-    public function addInscription(\OCIM\EvenementsBundle\Entity\Inscription $inscription)
+    public function addInscription(\Entity\Evenements\Inscription $inscription)
     {
         $this->inscription[] = $inscription;
 
@@ -457,9 +457,9 @@ class Personne
     /**
      * Remove inscription
      *
-     * @param \OCIM\EvenementsBundle\Entity\Inscription $inscription
+     * @param \Entity\Evenements\Inscription $inscription
      */
-    public function removeInscription(\OCIM\EvenementsBundle\Entity\Inscription $inscription)
+    public function removeInscription(\Entity\Evenements\Inscription $inscription)
     {
         $this->inscription->removeElement($inscription);
     }

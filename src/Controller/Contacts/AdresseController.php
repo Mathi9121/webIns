@@ -36,7 +36,7 @@ class AdresseController extends Controller
 
     public function indexAction(){
 
-      return $this->render('Contacts:Adresse:index.html.twig', array(
+      return $this->render('Contacts/Adresse/index.html.twig', array(
 
       ));
     }

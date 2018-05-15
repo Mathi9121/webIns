@@ -45,7 +45,7 @@ class TemplateType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'OCIM\ExportBundle\Entity\Template'
+            'data_class' => 'Entity\Export\Template'
         ));
     }
 

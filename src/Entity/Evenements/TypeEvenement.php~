@@ -69,10 +69,10 @@ class TypeEvenement
     /**
      * Add evenements
      *
-     * @param \OCIM\EvenementsBundle\Entity\Evenement $evenements
+     * @param \Entity\Evenements\Evenement $evenements
      * @return TypeEvenement
      */
-    public function addEvenement(\OCIM\EvenementsBundle\Entity\Evenement $evenements)
+    public function addEvenement(\Entity\Evenements\Evenement $evenements)
     {
         $this->evenements[] = $evenements;
 
@@ -82,9 +82,9 @@ class TypeEvenement
     /**
      * Remove evenements
      *
-     * @param \OCIM\EvenementsBundle\Entity\Evenement $evenements
+     * @param \Entity\Evenements\Evenement $evenements
      */
-    public function removeEvenement(\OCIM\EvenementsBundle\Entity\Evenement $evenements)
+    public function removeEvenement(\Entity\Evenements\Evenement $evenements)
     {
         $this->evenements->removeElement($evenements);
     }

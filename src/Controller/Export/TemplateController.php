@@ -28,7 +28,7 @@ class TemplateController extends Controller
 
         $entities = $em->getRepository('OCIMExportBundle:Template')->findBy( array(), array('ordre'=> "ASC"));
 
-        return $this->render('Export:Template:index.html.twig', array(
+        return $this->render('Export/Template/index.html.twig', array(
             'entities' => $entities,
         ));
     }
@@ -75,7 +75,7 @@ class TemplateController extends Controller
             return $this->redirect($this->generateUrl('documents'));
         }
         $this->get('session')->getFlashBag()->add('error','Le formulaire contient des erreurs.');
-        return $this->render('Export:Template:new.html.twig', array(
+        return $this->render('Export/Template/new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
@@ -153,7 +153,7 @@ class TemplateController extends Controller
         $entity = new Template();
         $form   = $this->createCreateForm($entity);
 
-        return $this->render('Export:Template:new.html.twig', array(
+        return $this->render('Export/Template/new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
@@ -223,7 +223,7 @@ class TemplateController extends Controller
 
     //test du mode : show ou preview
     if($mode == 'preview'){
-      return $this->render('Export:Template:preview.html.twig', array(
+      return $this->render('Export/Template/preview.html.twig', array(
         'contenu' => $contenu,
         'filename' => $filename,
       ));
@@ -273,7 +273,7 @@ class TemplateController extends Controller
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('Export:Template:edit.html.twig', array(
+        return $this->render('Export/Template/edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -324,7 +324,7 @@ class TemplateController extends Controller
         }
 
         $this->get('session')->getFlashBag()->add('error','Erreur pendant la sauvegarde.');
-        return $this->render('Export:Template:edit.html.twig', array(
+        return $this->render('Export/Template/edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

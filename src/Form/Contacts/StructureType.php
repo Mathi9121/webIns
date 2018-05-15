@@ -34,7 +34,7 @@ class StructureType extends AbstractType
 				$builder->create('tags', TextType::class, array(
 				'attr' => array('class'=>'width-100'),
 				'required' => false,
-				// 'data_class' => 'OCIM\ContactsBundle\Entity\TagStructure'
+				// 'data_class' => 'Entity\Contacts\TagStructure'
 			))->addModelTransformer($transformer))
         ;
     }
@@ -45,7 +45,7 @@ class StructureType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'OCIM\ContactsBundle\Entity\Structure'
+            'data_class' => 'Entity\Contacts\Structure'
         ));
 		$resolver->setRequired(array(
             'em',

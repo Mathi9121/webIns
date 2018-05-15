@@ -55,7 +55,7 @@ class AdresseSignataireType extends AbstractType
 				$builder->create('tags', TextType::class, array(
 				'attr' => array('class'=>'width-100 tags'),
 				'required' => false,
-				// 'data_class' => 'OCIM\ContactsBundle\Entity\TagStructure'
+				// 'data_class' => 'Entity\Contacts\TagStructure'
 			))->addModelTransformer($transformer))
         ;
     }
@@ -66,7 +66,7 @@ class AdresseSignataireType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'OCIM\ContactsBundle\Entity\Adresse',
+            'data_class' => 'Entity\Contacts\Adresse',
 			'attr' => array('class'=>'forms')
         ));
 		$resolver->setRequired(array(

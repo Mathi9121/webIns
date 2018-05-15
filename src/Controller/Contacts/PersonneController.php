@@ -29,7 +29,7 @@ class PersonneController extends Controller
 
         //return new \Symfony\Component\HttpFoundation\Response (\Doctrine\Common\Util\Debug::dump($entities[0]->getInscription()[0]));
 
-        return $this->render('Contacts:Personne:index.html.twig', array(
+        return $this->render('Contacts/Personne/index.html.twig', array(
            'entities' => $entities,
         ));
     }
@@ -51,7 +51,7 @@ class PersonneController extends Controller
             return $this->redirect($this->generateUrl('personne_show', array('id' => $entity->getId())));
         }
 
-        return $this->render('Contacts:Personne:new.html.twig', array(
+        return $this->render('Contacts/Personne/new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
@@ -85,7 +85,7 @@ class PersonneController extends Controller
         $entity = new Personne();
         $form   = $this->createCreateForm($entity);
 
-        return $this->render('Contacts:Personne:new.html.twig', array(
+        return $this->render('Contacts/Personne/new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
@@ -108,7 +108,7 @@ class PersonneController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
 
-        return $this->render('Contacts:Personne:show.html.twig', array(
+        return $this->render('Contacts/Personne/show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -131,7 +131,7 @@ class PersonneController extends Controller
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('Contacts:Personne:edit.html.twig', array(
+        return $this->render('Contacts/Personne/edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -180,7 +180,7 @@ class PersonneController extends Controller
             return $this->redirect($this->generateUrl('personne_edit', array('id' => $id)));
         }
 
-        return $this->render('Contacts:Personne:edit.html.twig', array(
+        return $this->render('Contacts/Personne/edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

@@ -29,7 +29,7 @@ class IntervenantController extends Controller
 
         $entities = $em->getRepository('OCIMContactsBundle:Intervenant')->findAll();
 
-        return $this->render('Contacts:Intervenant:index.html.twig', array(
+        return $this->render('Contacts/Intervenant/index.html.twig', array(
             'entities' => $entities,
             'id' => $id,
         ));
@@ -63,7 +63,7 @@ class IntervenantController extends Controller
         }
 
         $this->get('session')->getFlashBag()->add('error','Le formulaire contient des erreurs. Enregistrement impossible.');
-        return $this->render('Contacts:Intervenant:new.html.twig', array(
+        return $this->render('Contacts/Intervenant/new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
 			      'idevenement' => $idevenement,
@@ -101,7 +101,7 @@ class IntervenantController extends Controller
         $em = $this->getDoctrine()->getManager();
         $tags = $em->getRepository("OCIMContactsBundle:TagStructure")->findAll();
 
-        return $this->render('Contacts:Intervenant:new.html.twig', array(
+        return $this->render('Contacts/Intervenant/new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
 			      'idevenement' => $idevenement,
@@ -125,7 +125,7 @@ class IntervenantController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('Contacts:Intervenant:show.html.twig', array(
+        return $this->render('Contacts/Intervenant/show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
 			      'idevenement' => $idevenement
@@ -150,7 +150,7 @@ class IntervenantController extends Controller
         $editForm = $this->createEditForm($entity, $idevenement);
         $deleteForm = $this->createDeleteForm($id, $idevenement);
 
-        return $this->render('Contacts:Intervenant:edit.html.twig', array(
+        return $this->render('Contacts/Intervenant/edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -202,7 +202,7 @@ class IntervenantController extends Controller
             return $this->redirect($this->generateUrl('inscription', array('id' => $id, 'idevenement' => $idevenement)). "#intervenants");
         }
         $this->get('session')->getFlashBag()->add('error','Le formulaire contient des erreurs');
-        return $this->render('Contacts:Intervenant:edit.html.twig', array(
+        return $this->render('Contacts/Intervenant/edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

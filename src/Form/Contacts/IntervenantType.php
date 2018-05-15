@@ -72,7 +72,7 @@ class IntervenantType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-			'data_class' => 'OCIM\ContactsBundle\Entity\Intervenant',
+			'data_class' => 'Entity\Contacts\Intervenant',
 			'attr' => array('class'=> 'forms'),
         ));
 

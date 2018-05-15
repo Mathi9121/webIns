@@ -54,7 +54,7 @@ class ModeleChampPersoType extends AbstractType
 				'required' => true,
 			))
 			->add('evenementFormule', EntityType::class, array(
-				'class' => 'OCIM\EvenementsBundle\Entity\evenementFormule',
+				'class' => 'Entity\Evenements\evenementFormule',
 				'choice_translation_domain' => true,
 				'multiple' => true,
 				'expanded' => true,
@@ -79,7 +79,7 @@ class ModeleChampPersoType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'OCIM\EvenementsBundle\Entity\ModeleChampPerso',
+            'data_class' => 'Entity\Evenements\ModeleChampPerso',
 			'attr' => array('class'=> 'forms'),
         ));
 	}

@@ -39,12 +39,12 @@ class InscriptionType extends AbstractType
 		$idevenement = $this->idevenement;
         $builder
 			->add('stagiaire', PersonneType::class, array(
-				'data_class' => 'OCIM\ContactsBundle\Entity\Stagiaire',
+				'data_class' => 'Entity\Contacts\Stagiaire',
 				//'type'=> PersonneType::class
 				'em' => $entityManager
 				))
 			->add('evenementformule', EntityType::class, array(
-				'class' => 'OCIM\EvenementsBundle\Entity\evenementFormule',
+				'class' => 'Entity\Evenements\evenementFormule',
 				'choice_translation_domain' => true,
 				"attr" => array('class'=>'width-100'),
 				"query_builder" => function(EntityRepository $er) use ($idevenement)
@@ -101,16 +101,16 @@ class InscriptionType extends AbstractType
 			))
             //->add('hash')
       ->add('convention', ConventionType::class, array(
-				'data_class' => 'OCIM\EvenementsBundle\Entity\Convention',
+				'data_class' => 'Entity\Evenements\Convention',
 				'required' => false,
 			))
 			->add('admin', AdminType::class, array(
-				'data_class' => 'OCIM\ContactsBundle\Entity\Admin',
+				'data_class' => 'Entity\Contacts\Admin',
 				'required' => false,
 
 			))
 			->add('signataire', SignataireType::class, array(
-				'data_class' => 'OCIM\ContactsBundle\Entity\Signataire',
+				'data_class' => 'Entity\Contacts\Signataire',
 				'required' => false,
 				'em' => $entityManager
 			))
@@ -131,7 +131,7 @@ class InscriptionType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'OCIM\EvenementsBundle\Entity\Inscription',
+            'data_class' => 'Entity\Evenements\Inscription',
 			'attr' => array('class' => 'forms')
         ));
 		$resolver->setRequired(array(

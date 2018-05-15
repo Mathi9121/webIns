@@ -202,10 +202,10 @@ class Evenement
     /**
      * Set type
      *
-     * @param \OCIM\EvenementsBundle\Entity\TypeEvenement $type
+     * @param \Entity\Evenements\TypeEvenement $type
      * @return Evenement
      */
-    public function setType(\OCIM\EvenementsBundle\Entity\TypeEvenement $type = null)
+    public function setType(\Entity\Evenements\TypeEvenement $type = null)
     {
         $this->type = $type;
 
@@ -215,7 +215,7 @@ class Evenement
     /**
      * Get type
      *
-     * @return \OCIM\EvenementsBundle\Entity\TypeEvenement 
+     * @return \Entity\Evenements\TypeEvenement 
      */
     public function getType()
     {
@@ -251,10 +251,10 @@ class Evenement
     /**
      * Add evenementFormule
      *
-     * @param \OCIM\EvenementsBundle\Entity\evenementFormule $evenementFormule
+     * @param \Entity\Evenements\evenementFormule $evenementFormule
      * @return Evenement
      */
-    public function addEvenementFormule(\OCIM\EvenementsBundle\Entity\evenementFormule $evenementFormule)
+    public function addEvenementFormule(\Entity\Evenements\evenementFormule $evenementFormule)
     {
 		$evenementFormule->setEvenement($this);
         $this->evenementFormule[] = $evenementFormule;
@@ -265,9 +265,9 @@ class Evenement
     /**
      * Remove evenementFormule
      *
-     * @param \OCIM\EvenementsBundle\Entity\evenementFormule $evenementFormule
+     * @param \Entity\Evenements\evenementFormule $evenementFormule
      */
-    public function removeEvenementFormule(\OCIM\EvenementsBundle\Entity\evenementFormule $evenementFormule)
+    public function removeEvenementFormule(\Entity\Evenements\evenementFormule $evenementFormule)
     {
         $this->evenementFormule->removeElement($evenementFormule);
     }
@@ -299,10 +299,10 @@ class Evenement
     /**
      * Add intervenants
      *
-     * @param \OCIM\ContactsBundle\Entity\Intervenant $intervenants
+     * @param \Entity\Contacts\Intervenant $intervenants
      * @return Evenement
      */
-    public function addIntervenant(\OCIM\ContactsBundle\Entity\Intervenant $intervenants)
+    public function addIntervenant(\Entity\Contacts\Intervenant $intervenants)
     {
         $this->intervenants[] = $intervenants;
 
@@ -312,9 +312,9 @@ class Evenement
     /**
      * Remove intervenants
      *
-     * @param \OCIM\ContactsBundle\Entity\Intervenant $intervenants
+     * @param \Entity\Contacts\Intervenant $intervenants
      */
-    public function removeIntervenant(\OCIM\ContactsBundle\Entity\Intervenant $intervenants)
+    public function removeIntervenant(\Entity\Contacts\Intervenant $intervenants)
     {
         $this->intervenants->removeElement($intervenants);
     }
@@ -333,13 +333,13 @@ class Evenement
 		return $this->modeles;
 	}
 	
-	public function addModele(\OCIM\EvenementsBundle\Entity\ModeleChampPerso $ml)
+	public function addModele(\Entity\Evenements\ModeleChampPerso $ml)
     {
 		$this->modeles[] = $ml;
         return $this;
     }
 	
-	public function removeModele(\OCIM\EvenementsBundle\Entity\ModeleChampPerso $ml)
+	public function removeModele(\Entity\Evenements\ModeleChampPerso $ml)
     {
         $this->modeles->removeElement($ml);	
     }
@@ -364,10 +364,10 @@ class Evenement
     /**
      * Add modelesIntervenants
      *
-     * @param \OCIM\EvenementsBundle\Entity\ModeleChampPerso $modelesIntervenants
+     * @param \Entity\Evenements\ModeleChampPerso $modelesIntervenants
      * @return Evenement
      */
-    public function addModelesIntervenant(\OCIM\EvenementsBundle\Entity\ModeleChampPerso $modelesIntervenants)
+    public function addModelesIntervenant(\Entity\Evenements\ModeleChampPerso $modelesIntervenants)
     {
         $this->modelesIntervenants[] = $modelesIntervenants;
 
@@ -377,9 +377,9 @@ class Evenement
     /**
      * Remove modelesIntervenants
      *
-     * @param \OCIM\EvenementsBundle\Entity\ModeleChampPerso $modelesIntervenants
+     * @param \Entity\Evenements\ModeleChampPerso $modelesIntervenants
      */
-    public function removeModelesIntervenant(\OCIM\EvenementsBundle\Entity\ModeleChampPerso $modelesIntervenants)
+    public function removeModelesIntervenant(\Entity\Evenements\ModeleChampPerso $modelesIntervenants)
     {
         $this->modelesIntervenants->removeElement($modelesIntervenants);
     }

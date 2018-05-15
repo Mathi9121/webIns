@@ -46,7 +46,7 @@ class SignataireType extends AbstractType
 			))
 			->add('adresse', AdresseSignataireType::class, array(
 				'attr' => array('class'=> 'width-100'),
-				'data_class' => 'OCIM\ContactsBundle\Entity\Adresse',
+				'data_class' => 'Entity\Contacts\Adresse',
 				'em' => $entityManager
 			))
         ;
@@ -58,7 +58,7 @@ class SignataireType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'OCIM\ContactsBundle\Entity\Signataire',
+            'data_class' => 'Entity\Contacts\Signataire',
 			'attr' => array('class'=> 'forms'),
         ));
 		$resolver->setRequired(array(

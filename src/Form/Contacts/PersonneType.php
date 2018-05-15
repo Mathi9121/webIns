@@ -77,7 +77,7 @@ class PersonneType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'OCIM\ContactsBundle\Entity\Personne',
+            'data_class' => 'Entity\Contacts\Personne',
 			'attr' => array('class'=> 'forms'),
         ));
         $resolver->setRequired(array(

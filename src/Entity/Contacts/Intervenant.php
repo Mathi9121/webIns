@@ -18,10 +18,10 @@ class Intervenant extends Personne
     /**
      * Add evenements
      *
-     * @param \OCIM\EvenementsBundle\Entity\Evenement $evenements
+     * @param \Entity\Evenements\Evenement $evenements
      * @return Intervenant
      */
-    public function addEvenement(\OCIM\EvenementsBundle\Entity\Evenement $evenements)
+    public function addEvenement(\Entity\Evenements\Evenement $evenements)
     {
         $this->evenements[] = $evenements;
 
@@ -31,9 +31,9 @@ class Intervenant extends Personne
     /**
      * Remove evenements
      *
-     * @param \OCIM\EvenementsBundle\Entity\Evenement $evenements
+     * @param \Entity\Evenements\Evenement $evenements
      */
-    public function removeEvenement(\OCIM\EvenementsBundle\Entity\Evenement $evenements)
+    public function removeEvenement(\Entity\Evenements\Evenement $evenements)
     {
         $this->evenements->removeElement($evenements);
     }
