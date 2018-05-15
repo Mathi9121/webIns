@@ -1,19 +1,19 @@
 ocim_contacts_intervenants:
-    resource: "@OCIMContactsBundle/Resources/config/routing/intervenant.yml"
+    resource: "@OCIMContactsBundle/Resources/config/routing/intervenant.yaml"
     prefix:   /intervenants
 
 ocim_contacts_signataire:
-    resource: "@OCIMContactsBundle/Resources/config/routing/signataire.yml"
+    resource: "@OCIMContactsBundle/Resources/config/routing/signataire.yaml"
     prefix:   /signataire
 
 ocim_contacts_homepage:
     path:     /hello/{name}
-    defaults: { _controller: OCIMContactsBundle:Default:index }
+    controller: App\Controller\Contacts\Default::index
 
 structure_ajout:
     path:     structure_ajout
-    defaults: { _controller: OCIMContactsBundle:Adresse:ajoutTypeStructure }
+    controller: App\Controller\Contacts\Adresse::ajoutTypeStructure
 
 structure:
     path:     structures
-    defaults: { _controller: OCIMContactsBundle:Adresse:index }
+    controller: App\Controller\Contacts\Adresse::index

@@ -1,9 +1,9 @@
 inscriptionpublique_creation:
     path:     /
-    defaults: { _controller: OCIMEvenementsBundle:InscriptionPublique:createInscription }
+    controller: App\Controller\Evenements\InscriptionPublique::createInscription
     requirements: { methods: post }
 
 inscriptionpublique:
     path:     /
-    defaults: { _controller: OCIMEvenementsBundle:InscriptionPublique:inscription }
+    controller: App\Controller\Evenements\InscriptionPublique::inscription
     requirements: { methods: get }

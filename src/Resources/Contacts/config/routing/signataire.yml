@@ -1,30 +1,30 @@
 signataire:
     path:     /
-    defaults: { _controller: "OCIMContactsBundle:Signataire:index" }
+    controller: App\Controller\Contacts\Signataire::index
 
 signataire_show:
     path:     /{id}/show
-    defaults: { _controller: "OCIMContactsBundle:Signataire:show" }
+    controller: App\Controller\Contacts\Signataire::show
 
 signataire_new:
     path:     /evenement-{idevenement}/inscription-{idinscription}/new
-    defaults: { _controller: "OCIMContactsBundle:Signataire:new" }
+    controller: App\Controller\Contacts\Signataire::new
 
 signataire_create:
     path:     /evenement-{idevenement}/{idinscription}/create
-    defaults: { _controller: "OCIMContactsBundle:Signataire:create" }
+    controller: App\Controller\Contacts\Signataire::create
     requirements: { methods: post }
 
 signataire_edit:
     path:     /evenement-{idevenement}/{id}/edit
-    defaults: { _controller: "OCIMContactsBundle:Signataire:edit" }
+    controller: App\Controller\Contacts\Signataire::edit
 
 signataire_update:
     path:     /evenement-{idevenement}/{id}/update
-    defaults: { _controller: "OCIMContactsBundle:Signataire:update" }
+    controller: App\Controller\Contacts\Signataire::update
     requirements: { methods: post|put }
 
 signataire_delete:
     path:     /{id}/delete
-    defaults: { _controller: "OCIMContactsBundle:Signataire:delete" }
+    controller: App\Controller\Contacts\Signataire::delete
     requirements: { methods: post|delete }

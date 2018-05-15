@@ -1,7 +1,7 @@
 ocim_evenements_convention:
-    resource: "@OCIMEvenementsBundle/Resources/config/routing/convention.yml"
+    resource: "@OCIMEvenementsBundle/Resources/config/routing/convention.yaml"
     prefix:   /convention
 
 OCIMEvenementsBundle_champPerso:
-    resource: "@OCIMEvenementsBundle/Resources/config/routing/champPerso.yml"
+    resource: "@OCIMEvenementsBundle/Resources/config/routing/champPerso.yaml"
     prefix:   /champPerso
