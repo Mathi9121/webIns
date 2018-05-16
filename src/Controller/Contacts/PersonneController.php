@@ -25,7 +25,7 @@ class PersonneController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('OCIMContactsBundle:Personne')->findAll(array(387, 388, 389, 390));
+        $entities = $em->getRepository(Personne::class)->findAll(array(387, 388, 389, 390));
 
         //return new \Symfony\Component\HttpFoundation\Response (\Doctrine\Common\Util\Debug::dump($entities[0]->getInscription()[0]));
 
@@ -99,7 +99,7 @@ class PersonneController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('OCIMContactsBundle:Personne')->find($id);
+        $entity = $em->getRepository(Personne::class)->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Personne entity.');
@@ -122,7 +122,7 @@ class PersonneController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('OCIMContactsBundle:Personne')->find($id);
+        $entity = $em->getRepository(Personne::class)->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Personne entity.');
@@ -164,7 +164,7 @@ class PersonneController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('OCIMContactsBundle:Personne')->find($id);
+        $entity = $em->getRepository(Personne::class)->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Personne entity.');
@@ -197,7 +197,7 @@ class PersonneController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('OCIMContactsBundle:Personne')->find($id);
+            $entity = $em->getRepository(Personne::class)->find($id);
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Personne entity.');

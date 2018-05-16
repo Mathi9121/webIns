@@ -26,7 +26,7 @@ class FormuleController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $id = $request->query->get('id');
-        $entities = $em->getRepository('OCIMEvenementsBundle:Formule')->findAll();
+        $entities = $em->getRepository(Formule::class)->findAll();
 
 		foreach($entities as $entity){
 			//nombre d'inscriptions liées à la formule
@@ -145,7 +145,7 @@ class FormuleController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('OCIMEvenementsBundle:Formule')->find($id);
+        $entity = $em->getRepository(Formule::class)->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Formule entity.');
@@ -167,7 +167,7 @@ class FormuleController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('OCIMEvenementsBundle:Formule')->find($id);
+        $entity = $em->getRepository(Formule::class)->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Formule entity.');
@@ -209,7 +209,7 @@ class FormuleController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('OCIMEvenementsBundle:Formule')->find($id);
+        $entity = $em->getRepository(Formule::class)->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Formule entity.');
@@ -242,7 +242,7 @@ class FormuleController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('OCIMEvenementsBundle:Formule')->find($id);
+            $entity = $em->getRepository(Formule::class)->find($id);
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Formule entity.');

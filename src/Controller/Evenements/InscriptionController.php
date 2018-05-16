@@ -34,7 +34,7 @@ class InscriptionController extends Controller
 
     $id = $request->query->get('id');
 
-    $entities = $em->getRepository('OCIMEvenementsBundle:Inscription')->findAllByEvenement($idevenement);
+    $entities = $em->getRepository(Inscription::class)->findAllByEvenement($idevenement);
     $evenement = $em->getRepository('OCIMEvenementsBundle:Evenement')->find($idevenement);
     $champPerso = $em->getRepository('OCIMEvenementsBundle:ModeleChampPerso')->findModelesByIdEvenement($idevenement);
 
@@ -56,7 +56,7 @@ class InscriptionController extends Controller
       $data = json_decode($request->getContent());
 
       foreach($data as $d){
-        $inscription = $em->getRepository('OCIMEvenementsBundle:Inscription')->find($d->id);
+        $inscription = $em->getRepository(Inscription::class)->find($d->id);
         $inscription->setOrdre($d->ordre);
       }
 
@@ -70,7 +70,7 @@ class InscriptionController extends Controller
 
     $em = $this->getDoctrine()->getManager();
 
-    $inscription = $em->getRepository("OCIMEvenementsBundle:Inscription")->find($idinscription);
+    $inscription = $em->getRepository(Inscription::class)->find($idinscription);
     $stagiaire = $inscription->getStagiaire();
     $structure = $stagiaire->getAdresse();
     $evenement = $em->getRepository("OCIMEvenementsBundle:Evenement")->find($idevenement);
@@ -145,7 +145,7 @@ class InscriptionController extends Controller
       $data = json_decode($request->getContent());
       $em = $this->getDoctrine()->getManager();
       $idinscription = $data['0']->idinscription;
-      $inscription = $em->getRepository('OCIMEvenementsBundle:Inscription')->find($idinscription);
+      $inscription = $em->getRepository(Inscription::class)->find($idinscription);
       $inscription->setStatut($data['0']->statut);
       $em->flush();
       return new Response( $inscription->getNumberStatut() , Response::HTTP_OK);
@@ -160,7 +160,7 @@ class InscriptionController extends Controller
 
       $idinscription = $data['0']->idinscription;
 
-      $inscription = $em->getRepository('OCIMEvenementsBundle:Inscription')->find($idinscription);
+      $inscription = $em->getRepository(Inscription::class)->find($idinscription);
 
       $inscription->setStatutFinancement($data['0']->statut);
 
@@ -178,7 +178,7 @@ class InscriptionController extends Controller
 
       $idinscription = $data['0']->idinscription;
 
-      $inscription = $em->getRepository('OCIMEvenementsBundle:Inscription')->find($idinscription);
+      $inscription = $em->getRepository(Inscription::class)->find($idinscription);
 
       $statut = $data['0']->statut;
       $statut = ($statut == "null")? null : (bool)$statut;
@@ -213,7 +213,7 @@ class InscriptionController extends Controller
     if ($form->isSubmitted() && $form->isValid()) {
       $em = $this->getDoctrine()->getManager();
 
-      $ordre = $em->getRepository('OCIMEvenementsBundle:Inscription')->getOrdreMaxByEvenement($idevenement);
+      $ordre = $em->getRepository(Inscription::class)->getOrdreMaxByEvenement($idevenement);
 
 
       $nouvelordre = (!is_null($ordre))? $ordre + 1000 : 0;
@@ -287,7 +287,7 @@ class InscriptionController extends Controller
 
     $em = $this->getDoctrine()->getManager();
 
-    $entity = $em->getRepository('OCIMEvenementsBundle:Inscription')->find($id);
+    $entity = $em->getRepository(Inscription::class)->find($id);
 
     if (!$entity) {
       throw $this->createNotFoundException('Unable to find Inscription entity.');
@@ -312,7 +312,7 @@ class InscriptionController extends Controller
   {
     $em = $this->getDoctrine()->getManager();
 
-    $entity = $em->getRepository('OCIMEvenementsBundle:Inscription')->find($id);
+    $entity = $em->getRepository(Inscription::class)->find($id);
     $tags = $em->getRepository("OCIMContactsBundle:TagStructure")->findAll();
 
     if (!$entity) {
@@ -359,7 +359,7 @@ class InscriptionController extends Controller
   {
     $em = $this->getDoctrine()->getManager();
 
-    $entity = $em->getRepository('OCIMEvenementsBundle:Inscription')->find($id);
+    $entity = $em->getRepository(Inscription::class)->find($id);
 
     if (!$entity) {
       throw $this->createNotFoundException('Unable to find Inscription entity.');
@@ -395,7 +395,7 @@ class InscriptionController extends Controller
 
     if ($form->isSubmitted() && $form->isValid()) {
       $em = $this->getDoctrine()->getManager();
-      $entity = $em->getRepository('OCIMEvenementsBundle:Inscription')->find($id);
+      $entity = $em->getRepository(Inscription::class)->find($id);
 
       if (!$entity) {
         throw $this->createNotFoundException('Unable to find Inscription entity.');

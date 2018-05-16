@@ -36,7 +36,7 @@ class EvenementController extends Controller
 
       $id = $request->query->get('id');
 
-      $className = "OCIMEvenementsBundle:".ucfirst($type);
+      $className = ucfirst($type)."::class";
 
       $qb = $em->createQueryBuilder('f')
         ->select('f, YEAR(f.dateDebut) AS annee')
@@ -59,8 +59,8 @@ class EvenementController extends Controller
         $evenements->add($evenement[0]);
       }
 
-      // $evenements = $em->getRepository('OCIMEvenementsBundle:Evenement')->findBy(array(), array('YEAR(dateDebut)' => 'DESC'));
-	    $types = $em->getRepository('OCIMEvenementsBundle:TypeEvenement')->findAll();
+      // $evenements = $em->getRepository(Evenement::class)->findBy(array(), array('YEAR(dateDebut)' => 'DESC'));
+	    $types = $em->getRepository(TypeEvenement::class)->findAll();
 
   		foreach($evenements as $evenement){
   			$evenement->_count = $em->getRepository('OCIMEvenementsBundle:Inscription')->countInscriptionsByEvenement($evenement->getId());
@@ -142,7 +142,7 @@ class EvenementController extends Controller
 
       $em = $this->getDoctrine()->getManager();
 
-      $entity = $em->getRepository('OCIMEvenementsBundle:Evenement')->find($idevenement);
+      $entity = $em->getRepository(Evenement::class)->find($idevenement);
 
       $intervenants = $em->getRepository('OCIMContactsBundle:Intervenant')->findAll();
 
@@ -163,7 +163,7 @@ class EvenementController extends Controller
 
       $em = $this->getDoctrine()->getManager();
 
-      $evenement = $em->getRepository('OCIMEvenementsBundle:Evenement')->find($idevenement);
+      $evenement = $em->getRepository(Evenement::class)->find($idevenement);
 
       if (!$evenement) {
           throw $this->createNotFoundException('Unable to find Evenement entity.');
@@ -238,7 +238,7 @@ class EvenementController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('OCIMEvenementsBundle:Evenement')->find($id);
+        $entity = $em->getRepository(Evenement::class)->find($id);
 		    $entity->_count = $em->getRepository('OCIMEvenementsBundle:Inscription')->countInscriptionsByEvenement($id);
 		    $inscriptions = $em->getRepository('OCIMEvenementsBundle:Inscription')->findAllByEvenement($id);
 
@@ -277,7 +277,7 @@ class EvenementController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('OCIMEvenementsBundle:Evenement')->find($id);
+        $entity = $em->getRepository(Evenement::class)->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Evenement entity.');
@@ -322,7 +322,7 @@ class EvenementController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('OCIMEvenementsBundle:Evenement')->find($id);
+        $entity = $em->getRepository(Evenement::class)->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Evenement entity.');
@@ -372,7 +372,7 @@ class EvenementController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('OCIMEvenementsBundle:Evenement')->find($id);
+            $entity = $em->getRepository(Evenement::class)->find($id);
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Evenement entity.');

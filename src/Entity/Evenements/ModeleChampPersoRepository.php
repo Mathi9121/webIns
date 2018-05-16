@@ -15,7 +15,7 @@ class ModeleChampPersoRepository extends EntityRepository
 	public function findModelesByIdEvenement($idevenement){
 			return $this->getEntityManager()
 				->createQuery(
-					'SELECT mo FROM OCIMEvenementsBundle:ModeleChampPerso mo
+					'SELECT mo FROM App\Entity\Evenements\ModeleChampPerso mo
 					LEFT JOIN mo.evenementFormule ff
 					WHERE ff.evenement = :id
 					OR mo.evenement = :id

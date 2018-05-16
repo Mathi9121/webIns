@@ -17,7 +17,7 @@ class ConventionRepository extends EntityRepository
   public function lastConventionNumber(){
     return $this->getEntityManager()
       ->createQuery(
-        'SELECT MAX(c.numero) as num FROM OCIMEvenementsBundle:Convention c
+        'SELECT MAX(c.numero) as num FROM App\Entity\Evenements\Convention c
         WHERE YEAR(c.edition) = YEAR(:date)'
       )
       ->setParameter('date', new \DateTime('now'))
@@ -27,7 +27,7 @@ class ConventionRepository extends EntityRepository
   public function findConventionsByInscriptions($slug){
     return $this->getEntityManager()
       ->createQuery(
-        'SELECT i FROM OCIMEvenementsBundle:Inscription i
+        'SELECT i FROM App\Entity\Evenements\Inscription i
           WHERE i.statutConvention = 1
           ORDER BY i.dateInscription DESC
           '
@@ -39,7 +39,7 @@ class ConventionRepository extends EntityRepository
   public function countConventionsByInscriptions(){
     return $this->getEntityManager()
       ->createQuery(
-        'SELECT count(i.id) FROM OCIMEvenementsBundle:Inscription i
+        'SELECT count(i.id) FROM App\Entity\Evenements\Inscription i
         WHERE i.statutConvention = 1
         '
       )

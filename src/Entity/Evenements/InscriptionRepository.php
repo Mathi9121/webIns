@@ -16,11 +16,11 @@ class InscriptionRepository extends EntityRepository
     {
         return $this->getEntityManager()
             ->createQuery(
-                'SELECT i, f FROM OCIMEvenementsBundle:Inscription i
+                'SELECT i, f FROM App\Entity\Evenements\Inscription i
 				JOIN i.evenementformule f
 				JOIN i.personnes p
 				WHERE f.evenement = :id
-				AND p INSTANCE OF OCIMContactsBundle:Stagiaire
+				AND p INSTANCE OF App\Entity\Contacts\Stagiaire
 				ORDER BY i.statut ASC, p.nom ASC'
             )->setParameter('id', $evenement_id)
             ->getResult();
@@ -28,7 +28,7 @@ class InscriptionRepository extends EntityRepository
 	public function countInscriptionsByEvenement($evenement_id){
 		return $this->getEntityManager()
             ->createQuery(
-                'SELECT distinct COUNT(i.statut), i.statut FROM OCIMEvenementsBundle:Inscription i
+                'SELECT distinct COUNT(i.statut), i.statut FROM App\Entity\Evenements\Inscription i
 				JOIN i.evenementformule f
 				WHERE f.evenement = :id
 				GROUP BY i.statut
@@ -40,9 +40,9 @@ class InscriptionRepository extends EntityRepository
 	public function lastInscriptions(){
 		return $this->getEntityManager()
             ->createQuery(
-        'SELECT i FROM OCIMEvenementsBundle:Inscription i
+        'SELECT i FROM App\Entity\Evenements\Inscription i
 				JOIN i.personnes p
-				WHERE p INSTANCE OF OCIMContactsBundle:Stagiaire
+				WHERE p INSTANCE OF App\Entity\Contacts\Stagiaire
 				ORDER BY i.dateInscription DESC'
             )
 			->setMaxResults(10)
@@ -52,7 +52,7 @@ class InscriptionRepository extends EntityRepository
 	public function getOrdreMaxByEvenement($evenement_id){
 		return $this->getEntityManager()
 			->createQuery(
-					'SELECT MAX(i.ordre) FROM OCIMEvenementsBundle:Inscription i
+					'SELECT MAX(i.ordre) FROM App\Entity\Evenements\Inscription i
 					JOIN i.evenementformule f
 					WHERE f.evenement = :id'
 				)->setParameter('id', $evenement_id)

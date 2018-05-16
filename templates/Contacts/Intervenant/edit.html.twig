@@ -10,20 +10,13 @@
 		{% endfor %}
 	];
 </script>
-{% javascripts
-	'%kernel.root_dir%/Resources/public/js/jquery-ui.min.js'
-	'@OCIMContactsBundle/Resources/public/js/Structure/tagsAdresse.js'
-	%}
-				<script type="text/javascript" src="{{ asset_url }}"></script>
-{% endjavascripts %}
+	<script type="text/javascript" src="{{ asset('js/jquery-ui.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/Contacts/Structure/tagsAdresse.js') }}"></script>
 {% endblock %}
 
 {% block stylesheets %}
 {{parent()}}
-{% stylesheets
-	'%kernel.root_dir%/Resources/public/css/autocomplete-ui.css'%}
-	<link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset_url }}"/>
-{% endstylesheets %}
+	<link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset('css/autocomplete-ui.css') }}"/>
 {% endblock %}
 
 {% block title %}Edition - Intervenant{% endblock %}

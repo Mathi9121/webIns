@@ -149,7 +149,7 @@ class InscriptionPubliqueController extends Controller
                     $ff = $ffarray[0];
                     $em = $this->getDoctrine()->getManager();
 
-                    $ordre = $em->getRepository('OCIMEvenementsBundle:Inscription')->getOrdreMaxByEvenement($evenement->getId());
+                    $ordre = $em->getRepository(Inscription::class)->getOrdreMaxByEvenement($evenement->getId());
 
                     $nouvelordre = (!is_null($ordre)) ? $ordre + 1000 : 0;
 
@@ -184,7 +184,7 @@ class InscriptionPubliqueController extends Controller
             } //FORMULAIRE FORMATION
             else {
                 $em = $this->getDoctrine()->getManager();
-                $ordre = $em->getRepository('OCIMEvenementsBundle:Inscription')->getOrdreMaxByEvenement($idevenement);
+                $ordre = $em->getRepository(Inscription::class)->getOrdreMaxByEvenement($idevenement);
                 $nouvelordre = (!is_null($ordre)) ? $ordre + 1000 : 0;
                 $entity->setOrdre($nouvelordre);
                 $entity->setStatut(2);

@@ -3,9 +3,7 @@
 <head>
 <meta charset='utf-8'/>
 {% block stylesheets %}
-  {% stylesheets '%kernel.root_dir%/Resources/public/css/font-awesome.min.css' %}
-  <link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset_url }}"/>
-  {% endstylesheets %}
+  <link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset('css/font-awesome.min.css') }}"/>
 {% endblock %}
 <style>
 html, body{
@@ -138,9 +136,7 @@ tinymce.init({
 </script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 {% block javascripts %}
-{% javascripts '@OCIMExportBundle/Resources/public/js/template/exportfrompreview.js' %}
-<script type="text/javascript" src="{{ asset_url }}"></script>
-{% endjavascripts %}
+<script src="{{ asset('js/Export/template/exportfrompreview.js') }}"></script>
 {% endblock %}
 </body>
 </html>

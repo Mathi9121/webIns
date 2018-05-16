@@ -26,7 +26,7 @@ class TemplateController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('OCIMExportBundle:Template')->findBy( array(), array('ordre'=> "ASC"));
+        $entities = $em->getRepository(Template::class)->findBy( array(), array('ordre'=> "ASC"));
 
         return $this->render('Export/Template/index.html.twig', array(
             'entities' => $entities,
@@ -43,7 +43,7 @@ class TemplateController extends Controller
         $ids = array_map( function($c){ return $c->id; } , $order);
 
         $em = $this->getDoctrine()->getManager();
-        $templates = $em->getRepository('OCIMExportBundle:Template')->findById($ids);
+        $templates = $em->getRepository(Template::class)->findById($ids);
 
         foreach($templates as &$obj){
           $obj->setOrdre((array_search($obj->getId(), $ids)+1));
@@ -85,7 +85,7 @@ class TemplateController extends Controller
       if($request->isXmlHttpRequest()){
         $idinscription = $request->getContent();
         $em = $this->getDoctrine()->getManager();
-        $liens = $em->getRepository('OCIMExportBundle:Template')->findBy( array(), array('ordre'=> "ASC"));
+        $liens = $em->getRepository(Template::class)->findBy( array(), array('ordre'=> "ASC"));
 
         //$router = $this->get('router');
 
@@ -107,7 +107,7 @@ class TemplateController extends Controller
       if($request->isXmlHttpRequest()){
         $idinscription = $request->getContent();
         $em = $this->getDoctrine()->getManager();
-        $liens = $em->getRepository('OCIMExportBundle:Template')->findBy(array('type' => "convention"));
+        $liens = $em->getRepository(Template::class)->findBy(array('type' => "convention"));
 
         //$router = $this->get('router');
 
@@ -167,7 +167,7 @@ class TemplateController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('OCIMExportBundle:Template')->find($id);
+        $entity = $em->getRepository(Template::class)->find($id);
 
         $inscription = $em->getRepository('OCIMEvenementsBundle:Inscription')->find($idinscription);
 		    $evenement = $em->getRepository('OCIMEvenementsBundle:Evenement')->find($inscription->getEvenementFormule()->getEvenement()->getId());
@@ -264,7 +264,7 @@ class TemplateController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('OCIMExportBundle:Template')->find($id);
+        $entity = $em->getRepository(Template::class)->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Template entity.');
@@ -306,7 +306,7 @@ class TemplateController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('OCIMExportBundle:Template')->find($id);
+        $entity = $em->getRepository(Template::class)->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Template entity.');
@@ -338,7 +338,7 @@ class TemplateController extends Controller
     {
 
         $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('OCIMExportBundle:Template')->find($id);
+        $entity = $em->getRepository(Template::class)->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Template entity.');
@@ -377,7 +377,7 @@ class TemplateController extends Controller
         $copie = new Template();
 
         $em = $this->getDoctrine()->getManager();
-        $template = $em->getRepository('OCIMExportBundle:Template')->find($id);
+        $template = $em->getRepository(Template::class)->find($id);
 
         $copie->setNom($nom);
         $copie->setFilename($template->getFilename());

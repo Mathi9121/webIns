@@ -2,22 +2,14 @@
 
 {% block stylesheets %}
 {{parent()}}
-{% stylesheets
-	'@OCIMEvenementsBundle/Resources/public/css/evenements.css'
-	'@OCIMEvenementsBundle/Resources/public/css/jquery.nouislider.css'
-filter='cssrewrite' %}
-	<link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset_url }}"/>
-{% endstylesheets %}
+	<link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset('css/Evenements/evenements.css') }}"/>
+	<link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset('css/Evenements/jquery.nouislider.css') }}"/>
 {% endblock %}
 
 {% block  javascripts %}
 {{parent()}}
-{% javascripts
-	'@OCIMEvenementsBundle/Resources/public/js/Evenement/jquery.nouislider.min.js'
-	'@OCIMEvenementsBundle/Resources/public/js/Evenement/filtresEvenement.js'
-	%}
-         <script type="text/javascript" src="{{ asset_url }}"></script>
-{% endjavascripts %}
+         <script type="text/javascript" src="{{ asset('js/Evenements/Evenement/jquery.nouislider.min.js') }}"></script>
+		 <script type="text/javascript" src="{{ asset('js/Evenements/Evenement/filtresEvenement.min.js') }}"></script>
 {% endblock %}
 
 {# Titres #}

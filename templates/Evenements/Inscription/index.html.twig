@@ -2,27 +2,20 @@
 
 {% block stylesheets %}
 {{ parent() }}
-	{% stylesheets
-		'%kernel.root_dir%/Resources/public/css/popup.css'
-		'@OCIMEvenementsBundle/Resources/public/css/inscriptions.css'
-	filter='cssrewrite' %}
-		<link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset_url }}"/>
-	{% endstylesheets %}
+	<link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset('css/popup.css') }}"/>
+	<link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset('css/Evenements/inscriptions.css') }}"/>
 {% endblock %}
 
 {% block  javascripts %}
 {{parent()}}
-{% javascripts
-	'%kernel.root_dir%/Resources/public/js/jquery-ui.min.js'
-	'%kernel.root_dir%/Resources/public/js/jquery.stickytableheaders.js'
-	'@OCIMEvenementsBundle/Resources/public/js/Inscription/inscription.js'
-	'@OCIMEvenementsBundle/Resources/public/js/Inscription/showDetailsInscriptions.js'
-	'@OCIMEvenementsBundle/Resources/public/js/Inscription/reponseschampPerso.js'
-	'%kernel.root_dir%/Resources/public/js/popup.js'
-	'@OCIMEvenementsBundle/Resources/public/js/Inscription/maj-statuts.js'
-	'@OCIMEvenementsBundle/Resources/public/js/Inscription/proposition-export.js' %}
-    	<script type="text/javascript" src="{{ asset_url }}"></script>
-{% endjavascripts %}
+    <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
+	<script src="{{ asset('js/jquery.stickytableheaders.js') }}"></script>
+	<script src="{{ asset('js/Evenements/Inscription/inscription.js') }}"></script>
+	<script src="{{ asset('js/Evenements/Inscription/showDetailsInscriptions.js') }}"></script>
+	<script src="{{ asset('js/Evenements/Inscription/reponseschampPerso.js') }}"></script>
+	<script src="{{ asset('js/popup.js') }}"></script>
+	<script src="{{ asset('js/Evenements/Inscription/maj-statuts.js') }}"></script>
+	<script src="{{ asset('js/Evenements/Inscription/proposition-export.js') }}"></script>
 {% endblock %}
 
 {% block breadcrumbs %}

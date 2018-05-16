@@ -16,7 +16,7 @@ class EvenementRepository extends EntityRepository
     {
 			return $this->getEntityManager()
 				->createQuery(
-					'SELECT f FROM OCIMEvenementsBundle:Evenement f'
+					'SELECT f FROM App\Entity\Evenements\Evenement f'
 				)
 				->getResult();
     }
@@ -24,7 +24,7 @@ class EvenementRepository extends EntityRepository
 	public function findAllFutursEvents(){
 		return $this->getEntityManager()
             ->createQuery(
-                'SELECT f FROM OCIMEvenementsBundle:Event f
+                'SELECT f FROM App\Entity\Evenements\Event f
 								WHERE f.dateFin >= :date
 								ORDER BY f.dateDebut ASC'
             )->setParameter('date', new \DateTime('now'))
@@ -35,7 +35,7 @@ class EvenementRepository extends EntityRepository
 	public function findAllFutursFormations(){
 		return $this->getEntityManager()
             ->createQuery(
-                'SELECT f FROM OCIMEvenementsBundle:Formation f
+                'SELECT f FROM App\Entity\Evenements\Formation f
 								WHERE f.dateFin >= :date
 								ORDER BY f.dateDebut ASC'
             )->setParameter('date', new \DateTime('now'))

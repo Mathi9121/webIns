@@ -26,8 +26,8 @@ class ConventionController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('OCIMEvenementsBundle:Convention')->findConventionsByInscriptions($slug);
-        $slugmax = $em->getRepository('OCIMEvenementsBundle:Convention')->countConventionsByInscriptions();
+        $entities = $em->getRepository(Convention::class)->findConventionsByInscriptions($slug);
+        $slugmax = $em->getRepository(Convention::class)->countConventionsByInscriptions();
 
         return $this->render('Evenements/Convention/index.html.twig', array(
             'entities' => $entities,
@@ -69,7 +69,7 @@ class ConventionController extends Controller
     public function derniernumeroAction(Request $request){
       if($request->isXMLHttpRequest()){
 
-        $num_convention = $this->getDoctrine()->getManager()->getRepository('OCIMEvenementsBundle:Convention')->lastConventionNumber();
+        $num_convention = $this->getDoctrine()->getManager()->getRepository(Convention::class)->lastConventionNumber();
 
         return new Response($num_convention['num'], 200);
       }
@@ -117,7 +117,7 @@ class ConventionController extends Controller
         $data = json_decode($data);
 
         $em = $this->getDoctrine()->getManager();
-        $convention = $em->getRepository('OCIMEvenementsBundle:Convention')->find($data['0']->idconvention);
+        $convention = $em->getRepository(Convention::class)->find($data['0']->idconvention);
 
         $reponse;
 
@@ -196,7 +196,7 @@ class ConventionController extends Controller
         $entity = new Convention();
         $form   = $this->createCreateForm($entity, $idinscription);
         $em = $this->getDoctrine()->getManager();
-        $num_convention = $em->getRepository('OCIMEvenementsBundle:Convention')->lastConventionNumber();
+        $num_convention = $em->getRepository(Convention::class)->lastConventionNumber();
 
         return $this->render('Evenements/Convention/new.html.twig', array(
             'entity' => $entity,
@@ -213,7 +213,7 @@ class ConventionController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('OCIMEvenementsBundle:Convention')->find($id);
+        $entity = $em->getRepository(Convention::class)->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Convention entity.');
@@ -235,8 +235,8 @@ class ConventionController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('OCIMEvenementsBundle:Convention')->find($id);
-        $num_convention = $em->getRepository('OCIMEvenementsBundle:Convention')->lastConventionNumber();
+        $entity = $em->getRepository(Convention::class)->find($id);
+        $num_convention = $em->getRepository(Convention::class)->lastConventionNumber();
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Convention entity.');
@@ -279,7 +279,7 @@ class ConventionController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('OCIMEvenementsBundle:Convention')->find($id);
+        $entity = $em->getRepository(Convention::class)->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Convention entity.');
@@ -312,7 +312,7 @@ class ConventionController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('OCIMEvenementsBundle:Convention')->find($id);
+            $entity = $em->getRepository(Convention::class)->find($id);
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Convention entity.');

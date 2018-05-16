@@ -25,7 +25,7 @@ class SignataireController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('OCIMContactsBundle:Signataire')->findAll();
+        $entities = $em->getRepository(Signataire::class)->findAll();
 
         return $this->render('Contacts/Signataire/index.html.twig', array(
             'entities' => $entities,
@@ -106,7 +106,7 @@ class SignataireController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('OCIMContactsBundle:Signataire')->find($id);
+        $entity = $em->getRepository(Signataire::class)->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Signataire entity.');
@@ -128,7 +128,7 @@ class SignataireController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('OCIMContactsBundle:Signataire')->find($id);
+        $entity = $em->getRepository(Signataire::class)->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Signataire entity.');
@@ -172,7 +172,7 @@ class SignataireController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('OCIMContactsBundle:Signataire')->find($id);
+        $entity = $em->getRepository(Signataire::class)->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Signataire entity.');
@@ -205,7 +205,7 @@ class SignataireController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('OCIMContactsBundle:Signataire')->find($id);
+            $entity = $em->getRepository(Signataire::class)->find($id);
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Signataire entity.');

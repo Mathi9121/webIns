@@ -27,7 +27,7 @@ class IntervenantController extends Controller
 
         $id = $request->query->get('id');
 
-        $entities = $em->getRepository('OCIMContactsBundle:Intervenant')->findAll();
+        $entities = $em->getRepository(Intervenant::class)->findAll();
 
         return $this->render('Contacts/Intervenant/index.html.twig', array(
             'entities' => $entities,
@@ -117,7 +117,7 @@ class IntervenantController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('OCIMContactsBundle:Intervenant')->find($id);
+        $entity = $em->getRepository(Intervenant::class)->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Intervenant entity.');
@@ -140,7 +140,7 @@ class IntervenantController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('OCIMContactsBundle:Intervenant')->find($id);
+        $entity = $em->getRepository(Intervenant::class)->find($id);
         $tags = $em->getRepository("OCIMContactsBundle:TagStructure")->findAll();
 
         if (!$entity) {
@@ -186,7 +186,7 @@ class IntervenantController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('OCIMContactsBundle:Intervenant')->find($id);
+        $entity = $em->getRepository(Intervenant::class)->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Intervenant entity.');
@@ -222,7 +222,7 @@ class IntervenantController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
 
             $em = $this->getDoctrine()->getManager();
-            $intervenant = $em->getRepository('OCIMContactsBundle:Intervenant')->find($id);
+            $intervenant = $em->getRepository(Intervenant::class)->find($id);
             $evenement = $em->getRepository('OCIMEvenementsBundle:Evenement')->find($idevenement);
 
             if (!$intervenant) {

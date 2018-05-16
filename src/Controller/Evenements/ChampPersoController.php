@@ -33,10 +33,10 @@ class ChampPersoController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('OCIMEvenementsBundle:Evenement')->findAll();
+        $entities = $em->getRepository(Evenement::class)->findAll();
 
 		foreach($entities as $entity){
-			$champPerso = $em->getRepository('OCIMEvenementsBundle:ModeleChampPerso')->findModelesByIdEvenement($entity->getId());
+			$champPerso = $em->getRepository(ModeleChampPerso::class)->findModelesByIdEvenement($entity->getId());
 			$entity->setModeles(new ArrayCollection($champPerso));
 		}
 
@@ -62,12 +62,12 @@ class ChampPersoController extends Controller
 			$data = json_decode($request->getContent());
 
 			$personne = new Personne();
-			$personne = $em->getRepository('OCIMContactsBundle:Personne')->find($data[0]->idpersonne);
+			$personne = $em->getRepository(Personne::class)->find($data[0]->idpersonne);
 
 			$reponseChampPerso = new ReponsesChampPerso();
 			// un objet ReponseChampPerso existe
 			if(!empty($data[0]->idreponse)){
-				$reponseChampPerso = $em->getRepository('OCIMEvenementsBundle:ReponsesChampPerso')->find($data[0]->idreponse);
+				$reponseChampPerso = $em->getRepository(ReponsesChampPerso::class)->find($data[0]->idreponse);
 			}
 
 			// construction et enregistrement de la nouvelle reponse
@@ -88,7 +88,7 @@ class ChampPersoController extends Controller
 
 			if($reponseChampPerso->getId() == null){
 				$reponseChampPerso->setPersonne($personne);
-				$reponseChampPerso->setModele($em->getReference('OCIMEvenementsBundle:ModeleChampPerso', $data[0]->idmodele));
+				$reponseChampPerso->setModele($em->getReference(ModeleChampPerso::class, $data[0]->idmodele));
 				$personne->addReponsesChampPerso($reponseChampPerso);
 				$em->persist($reponseChampPerso);
 			}
@@ -169,7 +169,7 @@ class ChampPersoController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('OCIMEvenementsBundle:evenementFormule')->find($id);
+        $entity = $em->getRepository(evenementFormule::class)->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find evenementFormule entity.');
@@ -192,7 +192,7 @@ class ChampPersoController extends Controller
         $em = $this->getDoctrine()->getManager();
 
 
-        $evenement = $em->getRepository('OCIMEvenementsBundle:Evenement')->find($idevenement);
+        $evenement = $em->getRepository(Evenement::class)->find($idevenement);
 
 		if($generation == "generate"){
 
@@ -250,7 +250,7 @@ class ChampPersoController extends Controller
 
 		}
 		else{
-			$modeles = $em->getRepository('OCIMEvenementsBundle:ModeleChampPerso')->findModelesByIdEvenement($idevenement);
+			$modeles = $em->getRepository(ModeleChampPerso::class)->findModelesByIdEvenement($idevenement);
 			if(!$modeles){
 				$modeles[] = new ModeleChampPerso();
 				$evenement->setModeles(new ArrayCollection($modeles));
@@ -296,8 +296,8 @@ class ChampPersoController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('OCIMEvenementsBundle:Evenement')->find($id);
-        $modeles = $em->getRepository('OCIMEvenementsBundle:ModeleChampPerso')->findModelesByIdEvenement($id);
+        $entity = $em->getRepository(Evenement::class)->find($id);
+        $modeles = $em->getRepository(ModeleChampPerso::class)->findModelesByIdEvenement($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find evenementFormule entity.');
@@ -374,7 +374,7 @@ class ChampPersoController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('OCIMEvenementsBundle:ModeleChampPerso')->findModelesByIdEvenement($id);
+            $entity = $em->getRepository(ModeleChampPerso::class)->findModelesByIdEvenement($id);
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find evenementFormule entity.');

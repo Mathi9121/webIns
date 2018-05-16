@@ -3,19 +3,13 @@
 
 {% block  javascripts %}
 {{ parent() }}
-{% javascripts '@OCIMEvenementsBundle/Resources/public/js/ChampPerso/formModele.js'
-	'@OCIMEvenementsBundle/Resources/public/js/ChampPerso/jquery-ui-1.9.2.custom.min.js'%}
-         <script type="text/javascript" src="{{ asset_url }}"></script>
-{% endjavascripts %}
+    <script type="text/javascript" src="{{ asset('js/Evenements/ChampPerso/formModele.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/Evenements/ChampPerso/jquery-ui-1.9.2.custom.min.js') }}"></script>
 {% endblock %}
 
 {% block stylesheets %}
 {{parent()}}
-{% stylesheets
-	'@OCIMEvenementsBundle/Resources/public/css/editionchampPerso.css'
-	filter='cssrewrite' %}
-	<link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset_url }}"/>
-{% endstylesheets %}
+	<link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset('css/Evenements/editionchampPerso.css') }}"/>
 {% endblock %}
 
 {% block title %}Edition Logistique{% endblock %}
@@ -45,7 +39,7 @@
 		<div class="units-row">
 			<div class="unit-60" id="place">
 				{% for modele in edit_form.modeles %}
-					<ul class="forms-inline-list" data-prototype="{% filter escape %}{% include 'OCIMEvenementsBundle:champPerso:prototypeFormModeleChampPerso.html.twig' with {'form': edit_form.modeles.vars.prototype} %}{% endfilter %}">
+					<ul class="forms-inline-list" data-prototype="{% filter escape %}{% include 'Evenements/champPerso/prototypeFormModeleChampPerso.html.twig' with {'form': edit_form.modeles.vars.prototype} %}{% endfilter %}">
 						{{ form_widget(modele.ordre) }}
 						<li class="ui-handle"></li>
 						<li>

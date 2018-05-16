@@ -3,20 +3,13 @@
 
 {% block stylesheets %}
 {{ parent() }}
-{% stylesheets
-'%kernel.root_dir%/Resources/public/css/popup.css'
-	filter='cssrewrite' %}
-<link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset_url }}"/>
-{% endstylesheets %}
+<link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset('css/popup.css') }}"/>
 {% endblock %}
 
 {% block  javascripts %}
 {{parent()}}
-{% javascripts
-	'%kernel.root_dir%/Resources/public/js/popup.js'
-	'@OCIMEvenementsBundle/Resources/public/js/Evenement/formEvenement.js'%}
-         <script type="text/javascript" src="{{ asset_url }}"></script>
-{% endjavascripts %}
+	<script type="text/javascript" src="{{ asset('js/popup.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/Evenements/Evenement/formEvenement.js') }}"></script>
 {% endblock %}
 
 {# Titres #}

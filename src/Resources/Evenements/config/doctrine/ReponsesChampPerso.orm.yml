@@ -8,7 +8,7 @@ Entity\Evenements\ReponsesChampPerso:
                 name: modele_id
                 referencedColumnName: id
         personne:
-            targetEntity: OCIM\ContactsBundle\Entity\Personne
+            targetEntity: Entity\Contacts\Personne
             inversedBy: reponsesChampPerso
             joinColumn:
                 name: personne_id

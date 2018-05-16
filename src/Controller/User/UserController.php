@@ -25,7 +25,7 @@ class UserController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('OCIMUserBundle:User')->findAll();
+        $entities = $em->getRepository(User::class)->findAll();
 
         return $this->render('User/User/index.html.twig', array(
             'entities' => $entities,
@@ -97,7 +97,7 @@ class UserController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('OCIMUserBundle:User')->find($id);
+        $entity = $em->getRepository(User::class)->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find User entity.');
@@ -119,7 +119,7 @@ class UserController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('OCIMUserBundle:User')->find($id);
+        $entity = $em->getRepository(User::class)->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find User entity.');
@@ -161,7 +161,7 @@ class UserController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('OCIMUserBundle:User')->find($id);
+        $entity = $em->getRepository(User::class)->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find User entity.');
@@ -194,7 +194,7 @@ class UserController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('OCIMUserBundle:User')->find($id);
+            $entity = $em->getRepository(User::class)->find($id);
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find User entity.');

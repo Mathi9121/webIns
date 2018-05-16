@@ -20,13 +20,9 @@ filter='cssrewrite' %}
 
 {% block  javascripts %}
 {{parent()}}
-{% javascripts
-'@OCIMExportBundle/Resources/public/js/template/delete-template.js'
-'%kernel.root_dir%/Resources/public/js/jquery-ui.min.js'
-'@OCIMExportBundle/Resources/public/js/template/sort-templates.js'
-%}
-<script type="text/javascript" src="{{ asset_url }}"></script>
-{% endjavascripts %}
+<script src="{{ asset('js/Export/template/delete-template.js') }}"></script>
+<script src="{{ asset('js/jquery-ui.min.js') }}"></script>
+<script src="{{ asset('js/Export/template/sort-templates.js') }}"></script>
 {% endblock %}
 
 {% block controls %}

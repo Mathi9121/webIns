@@ -5,23 +5,15 @@
 
 {% block stylesheets %}
 {{ parent() }}
-{% stylesheets
-'@OCIMEvenementsBundle/Resources/public/css/convention.css'
-'%kernel.root_dir%/Resources/public/css/popup.css'
-filter='cssrewrite' %}
-<link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset_url }}"/>
-{% endstylesheets %}
+<link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset('css/Evenements/convention.css') }}"/>
+<link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset('css/popup.css') }}"/>
 {% endblock %}
 
 {% block  javascripts %}
 {{parent()}}
-{% javascripts
-  '@OCIMEvenementsBundle/Resources/public/js/Convention/conventions.js'
-  '%kernel.root_dir%/Resources/public/js/popup.js'
-  '@OCIMEvenementsBundle/Resources/public/js/Convention/export-convention.js'
-  %}
-<script type="text/javascript" src="{{ asset_url }}"></script>
-{% endjavascripts %}
+<script type="text/javascript" src="{{ asset('js/Evenements/Convention/conventions.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/popup.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/Evenements/Convention/export-convention.js') }}"></script>
 {% endblock %}
 
 

@@ -38,7 +38,7 @@ class StringToTagsTransformer implements DataTransformerInterface
 		$tags = new ArrayCollection();
 		
 		foreach($arr as $a){
-			$tag = $this->om->getRepository('OCIMContactsBundle:TagStructure')->findOneBy(array('tag' => $a));
+			$tag = $this->om->getRepository(TagStructure::class)->findOneBy(array('tag' => $a));
 			if(!$tag){
 				$tag = new TagStructure();
 				$tag->setTag($a);
