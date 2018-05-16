@@ -1,4 +1,0 @@
-OCIM\ContactsBundle\Entity\Signataire:
-    type: entity
-    table: null
-    lifecycleCallbacks: {}
