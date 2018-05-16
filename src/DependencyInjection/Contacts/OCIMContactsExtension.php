@@ -23,6 +23,6 @@ class OCIMContactsExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../../Resources/Contacts/config'));
-        $loader->load('services.yml');
+        $loader->load('services.yaml');
     }
 }

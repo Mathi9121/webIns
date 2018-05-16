@@ -1,4 +1,4 @@
-OCIM\EvenementsBundle\Entity\Inscription:
+Entity\Evenements\Inscription:
     type: entity
     table: null
     oneToOne:
@@ -20,7 +20,7 @@ OCIM\EvenementsBundle\Entity\Inscription:
                     referencedColumnName: id
     manyToMany:
         personnes:
-            targetEntity: OCIM\ContactsBundle\Entity\Personne
+            targetEntity: Entity\Contacts\Personne
             fetch: EAGER
             cascade: ["all"]
             inversedBy: inscription
@@ -35,7 +35,7 @@ OCIM\EvenementsBundle\Entity\Inscription:
                     personne_id:
                         referencedColumnName: id
                         onDelete: CASCADE
-    repositoryClass: OCIM\EvenementsBundle\Entity\InscriptionRepository
+    repositoryClass: Entity\Evenements\InscriptionRepository
     id:
         id:
             type: integer

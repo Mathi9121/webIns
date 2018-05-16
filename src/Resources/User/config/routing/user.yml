@@ -1,30 +1,30 @@
 user:
     path:     /
-    defaults: { _controller: "OCIMUserBundle:User:index" }
+    controller: App\Controller\User\User::index
 
 user_show:
     path:     /{id}/show
-    defaults: { _controller: "OCIMUserBundle:User:show" }
+    controller: App\Controller\User\User::show
 
 user_new:
     path:     /new
-    defaults: { _controller: "OCIMUserBundle:User:new" }
+    controller: App\Controller\User\User::new
 
 user_create:
     path:     /create
-    defaults: { _controller: "OCIMUserBundle:User:create" }
+    controller: App\Controller\User\User::create
     requirements: { methods: post }
 
 user_edit:
     path:     /{id}/edit
-    defaults: { _controller: "OCIMUserBundle:User:edit" }
+    controller: App\Controller\User\User::edit
 
 user_update:
     path:     /{id}/update
-    defaults: { _controller: "OCIMUserBundle:User:update" }
+    controller: App\Controller\User\User::update
     requirements: { methods: post|put }
 
 user_delete:
     path:     /{id}/delete
-    defaults: { _controller: "OCIMUserBundle:User:delete" }
+    controller: App\Controller\User\User::delete
     requirements: { methods: post|delete }

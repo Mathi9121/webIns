@@ -1,11 +1,11 @@
-OCIM\EvenementsBundle\Entity\Convention:
+Entity\Evenements\Convention:
     type: entity
     table: null
     oneToOne:
         inscription:
             targetEntity: Inscription
             mappedBy: convention
-    repositoryClass: OCIM\EvenementsBundle\Entity\ConventionRepository
+    repositoryClass: Entity\Evenements\ConventionRepository
     id:
         id:
             type: integer

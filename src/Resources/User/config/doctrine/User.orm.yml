@@ -1,7 +1,7 @@
-OCIM\UserBundle\Entity\User:
+Entity\User\User:
     type: entity
     table: null
-    repositoryClass: OCIM\UserBundle\Entity\UserRepository
+    repositoryClass: Entity\User\UserRepository
     id:
         id:
             type: integer

@@ -5,5 +5,3 @@ services:
 #    ocim_user.example:
 #        class: %ocim_user.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
-    Symfony\Bundle\AsseticBundle\AsseticBundle:
-        public: true

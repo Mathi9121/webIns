@@ -1,30 +1,30 @@
 formule:
     path:     /
-    defaults: { _controller: "OCIMEvenementsBundle:Formule:index" }
+    controller: App\Controller\Evenements\Formule::index
 
 formule_show:
     path:     /{id}/show
-    defaults: { _controller: "OCIMEvenementsBundle:Formule:show" }
+    controller: App\Controller\Evenements\Formule::show
 
 formule_new:
     path:     /new
-    defaults: { _controller: "OCIMEvenementsBundle:Formule:new" }
+    controller: App\Controller\Evenements\Formule::new
 
 formule_create:
     path:     /create
-    defaults: { _controller: "OCIMEvenementsBundle:Formule:create" }
+    controller: App\Controller\Evenements\Formule::create
     requirements: { methods: post }
 
 formule_edit:
     path:     /{id}/edit
-    defaults: { _controller: "OCIMEvenementsBundle:Formule:edit" }
+    controller: App\Controller\Evenements\Formule::edit
 
 formule_update:
     path:     /{id}/update
-    defaults: { _controller: "OCIMEvenementsBundle:Formule:update" }
+    controller: App\Controller\Evenements\Formule::update
     requirements: { methods: post|put }
 
 formule_delete:
     path:     /{id}/delete
-    defaults: { _controller: "OCIMEvenementsBundle:Formule:delete" }
+    controller: App\Controller\Evenements\Formule::delete
     requirements: { methods: post|delete }

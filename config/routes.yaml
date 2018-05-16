@@ -1,37 +1,37 @@
 ocim_contacts:
-    resource: "../src/Resources/Contacts/config/routing.yml"
+    resource: "../src/Resources/Contacts/config/routing.yaml"
     prefix:   /
 
 ocim_export:
-    resource: "../src/Resources/Export/config/routing.yml"
+    resource: "../src/Resources/Export/config/routing.yaml"
     prefix:   /
 
 ocim_user:
-    resource: "../src/Resources/User/config/routing.yml"
+    resource: "../src/Resources/User/config/routing.yaml"
     prefix:   /
 
 ocim_evenements:
-    resource: "../src/Resources/Evenements/config/routing.yml"
+    resource: "../src/Resources/Evenements/config/routing.yaml"
     prefix:   /
 
 OCIMEvenementsBundle_evenement:
-    resource: "../src/Resources/Evenements/config/routing/evenement.yml"
+    resource: "../src/Resources/Evenements/config/routing/evenement.yaml"
     prefix:   /e
 
 OCIMEvenementsBundle_formule:
-    resource: "../src/Resources/Evenements/config/routing/formule.yml"
+    resource: "../src/Resources/Evenements/config/routing/formule.yaml"
     prefix:   /formule
 
 OCIMEvenementsBundle_inscription:
-    resource: "../src/Resources/Evenements/config/routing/inscription.yml"
+    resource: "../src/Resources/Evenements/config/routing/inscription.yaml"
     prefix:   /evenement-{idevenement}/inscriptions
 
 OCIMContactsBundle_personne:
-    resource: "../src/Resources/Contacts/config/routing/personne.yml"
+    resource: "../src/Resources/Contacts/config/routing/personne.yaml"
     prefix:   /personne
 
 OCIMUserBundle_user:
-    resource: "../src/Resources/User/config/routing/user.yml"
+    resource: "../src/Resources/User/config/routing/user.yaml"
     prefix:   /user
 
 connexion:

@@ -23,6 +23,6 @@ class OCIMUserExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../../Resources/User/config'));
-        $loader->load('services.yml');
+        $loader->load('services.yaml');
     }
 }

@@ -1,4 +1,4 @@
-OCIM\ContactsBundle\Entity\Admin:
+Entity\Contacts\Admin:
     type: entity
     table: null
     lifecycleCallbacks: {}

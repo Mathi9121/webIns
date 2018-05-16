@@ -1,5 +1,5 @@
 imports:
-    - { resource: parameters.yml }
+    - { resource: ../../parameters.yaml }
 
 
 framework:
@@ -7,7 +7,7 @@ framework:
     #translator:      { fallback: "%locale%" }
     secret:          "%secret%"
     router:
-        resource: "%kernel.root_dir%/config/routing_form.yml"
+        resource: "%kernel.root_dir%/config/routes/routes_form.yaml"
         strict_requirements: ~
     form:            ~
     csrf_protection: ~
@@ -40,7 +40,7 @@ doctrine:
         user:     "%database_user%"
         password: "%database_password%"
         charset:  UTF8
-        # if using pdo_sqlite as your database driver, add the path in parameters.yml
+        # if using pdo_sqlite as your database driver, add the path in parameters.yaml
         # e.g. database_path: "%kernel.root_dir%/data/data.db3"
         # path:     "%database_path%"
 
@@ -49,11 +49,11 @@ doctrine:
         auto_mapping: true
         dql:
             datetime_functions:
-                YEAR: OCIM\EvenementsBundle\DQL\Year
+                YEAR: DQL\Evenements\Year
 
 framework:
     router:
-        resource: "%kernel.root_dir%/config/routing_form.yml"
+        resource: "%kernel.root_dir%/config/routes/routes_form.yaml"
         strict_requirements: true
     profiler: { only_exceptions: false }
     templating:

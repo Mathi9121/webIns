@@ -1,4 +1,4 @@
-OCIM\ContactsBundle\Entity\Personne:
+Entity\Contacts\Personne:
     type: entity
     inheritanceType: SINGLE_TABLE
     discriminatorColumn:
@@ -19,17 +19,17 @@ OCIM\ContactsBundle\Entity\Personne:
                 referencedColumnName: id
     oneToMany:
         reponsesChampPerso:
-            targetEntity: OCIM\EvenementsBundle\Entity\ReponsesChampPerso
+            targetEntity: Entity\Evenements\ReponsesChampPerso
             mappedBy: personne
             cascade: ['all']
             onDelete: "CASCADE"
     manyToMany:
       inscription:
-        targetEntity: OCIM\EvenementsBundle\Entity\Inscription
+        targetEntity: Entity\Evenements\Inscription
         fetch: EAGER
         mappedBy: personnes
     table: null
-    repositoryClass: OCIM\ContactsBundle\Entity\PersonneRepository
+    repositoryClass: Entity\Contacts\PersonneRepository
     id:
         id:
             type: integer

@@ -1,8 +1,8 @@
 imports:
-    - { resource: "%kernel.root_dir%/config/routing.yaml" }
+    - { resource: "%kernel.root_dir%/config/packages/routing.yaml" }
 framework:
     router:
-        resource: "%kernel.root_dir%/config/routing_dev.yml"
+        resource: "%kernel.root_dir%/config/routes/routes_dev.yaml"
         strict_requirements: true
     profiler: { only_exceptions: false }
 

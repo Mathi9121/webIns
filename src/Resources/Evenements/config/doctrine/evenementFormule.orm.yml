@@ -1,4 +1,4 @@
-OCIM\EvenementsBundle\Entity\evenementFormule:
+Entity\Evenements\evenementFormule:
     type: entity
     manyToOne:
         formule:

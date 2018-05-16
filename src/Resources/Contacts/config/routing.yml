@@ -1,9 +1,9 @@
 ocim_contacts_intervenants:
-    resource: "@OCIMContactsBundle/Resources/config/routing/intervenant.yaml"
+    resource: "routing/intervenant.yaml"
     prefix:   /intervenants
 
 ocim_contacts_signataire:
-    resource: "@OCIMContactsBundle/Resources/config/routing/signataire.yaml"
+    resource: "routing/signataire.yaml"
     prefix:   /signataire
 
 ocim_contacts_homepage:

@@ -1,54 +1,55 @@
 documents:
     path:     /
-    defaults: { _controller: "OCIMExportBundle:Template:index" }
+    controller: App\Controller\Export\Template::index
 
 documents_show:
     path:     /{id}/inscription-{idinscription}/{mode}
-    defaults: { _controller: "OCIMExportBundle:Template:show" }
+    controller: App\Controller\Export\Template::show
     requirements: {mode: preview|show}
 
 documents_new:
     path:     /new
-    defaults: { _controller: "OCIMExportBundle:Template:new" }
+    controller: App\Controller\Export\Template::new
 
 documents_create:
     path:     /create
-    defaults: { _controller: "OCIMExportBundle:Template:create" }
+    controller: App\Controller\Export\Template::create
     requirements: { methods: post }
 
 documents_edit:
     path:     /{id}/edit
-    defaults: { _controller: "OCIMExportBundle:Template:edit" }
+    controller: App\Controller\Export\Template::edit
 
 documents_update:
     path:     /{id}/update
-    defaults: { _controller: "OCIMExportBundle:Template:update" }
+    controller: App\Controller\Export\Template::update
     requirements: { methods: post|put }
 
 documents_delete:
     path:     /{id}/delete
-    defaults: { _controller: "OCIMExportBundle:Template:delete" }
+    controller: App\Controller\Export\Template::delete
 
 documents_liens:
     path:     /liens
-    defaults: { _controller: "OCIMExportBundle:Template:liens" }
+    controller: App\Controller\Export\Template::liens
     requirements: { methods: post }
 
 documents_liensconventions:
     path:     /liens-conventions
-    defaults: { _controller: "OCIMExportBundle:Template:liensConvention" }
+    controller: App\Controller\Export\Template::liensConvention
     requirements: { methods: post }
 
 template_copy:
     path:     /copy
-    defaults: { _controller: "OCIMExportBundle:Template:copie" }
+    controller: App\Controller\Export\Template::copie
     requirements: { methods: post }
 
 documents_exportfrompreview:
     path:     /exportpreview
-    defaults: { _controller: "OCIMExportBundle:Template:exportfrompreview" }
+    controller: App\Controller\Export\Template::exportfrompreview
     requirements: {methods: post}
+
 document_maj_ordre:
     path: /maj-order
-    defaults: { _controller: "OCIMExportBundle:Template:majOrdre"}
+    controller: App\Controller\Export\Template::majOrdre
     requirements: { methods: post }

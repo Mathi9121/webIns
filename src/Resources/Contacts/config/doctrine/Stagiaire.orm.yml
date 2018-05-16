@@ -1,5 +1,5 @@
-OCIM\ContactsBundle\Entity\Stagiaire:
+Entity\Contacts\Stagiaire:
     type: entity
     table: null
-    repositoryClass: OCIM\ContactsBundle\Entity\StagiaireRepository
+    repositoryClass: Entity\Contacts\StagiaireRepository
     lifecycleCallbacks: {}

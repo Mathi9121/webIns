@@ -1,4 +1,4 @@
-OCIM\EvenementsBundle\Entity\TypeEvenement:
+Entity\Evenements\TypeEvenement:
     type: entity
     oneToMany:
       evenements:

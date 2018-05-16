@@ -1,7 +1,7 @@
-OCIM\ExportBundle\Entity\Template:
+Entity\Export\Template:
     type: entity
     table: null
-    repositoryClass: OCIM\ExportBundle\Entity\TemplateRepository
+    repositoryClass: Entity\Export\TemplateRepository
     id:
         id:
             type: integer

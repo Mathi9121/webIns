@@ -1,4 +1,4 @@
-OCIM\EvenementsBundle\Entity\Evenement:
+Entity\Evenements\Evenement:
     type: entity
     inheritanceType: SINGLE_TABLE
     discriminatorColumn:
@@ -26,7 +26,7 @@ OCIM\EvenementsBundle\Entity\Evenement:
     manyToMany:
         intervenants:
             inversedBy: evenements
-            targetEntity: OCIM\ContactsBundle\Entity\Intervenant
+            targetEntity: Entity\Contacts\Intervenant
             orderBy:
                 nom: ASC
             joinTable:
@@ -38,7 +38,7 @@ OCIM\EvenementsBundle\Entity\Evenement:
                     intervenant_id:
                         referencedColumnName: id
     table: null
-    repositoryClass: OCIM\EvenementsBundle\Entity\EvenementRepository
+    repositoryClass: Entity\Evenements\EvenementRepository
     id:
         id:
             type: integer

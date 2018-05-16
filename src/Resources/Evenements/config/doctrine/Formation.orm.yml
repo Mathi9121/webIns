@@ -1,4 +1,4 @@
-OCIM\EvenementsBundle\Entity\Formation:
+Entity\Evenements\Formation:
     type: entity
     table: null
     lifecycleCallbacks: {  }

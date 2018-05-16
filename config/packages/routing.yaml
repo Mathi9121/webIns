@@ -1,13 +1,13 @@
 imports:
-    - { resource: parameters.yml }
-    - { resource: security.yml }
+    - { resource: ../parameters.yaml }
+    - { resource: ../security.yaml }
 
 framework:
     #esi:             ~
     #translator:      { fallback: "%locale%" }
     secret:          "%secret%"
     router:
-        resource: "%kernel.root_dir%/config/routing.yml"
+        resource: "%kernel.root_dir%/config/routes.yaml"
         strict_requirements: ~
     form:            ~
     csrf_protection: ~
@@ -44,7 +44,7 @@ doctrine:
         user:     "%database_user%"
         password: "%database_password%"
         charset:  UTF8
-        # if using pdo_sqlite as your database driver, add the path in parameters.yml
+        # if using pdo_sqlite as your database driver, add the path in parameters.yaml
         # e.g. database_path: "%kernel.root_dir%/data/data.db3"
         # path:     "%database_path%"
 
@@ -53,7 +53,7 @@ doctrine:
         auto_mapping: true
         dql:
             datetime_functions:
-                YEAR: OCIM\EvenementsBundle\DQL\Year
+                YEAR: DQL\Evenements\Year
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -87,7 +87,3 @@ knp_snappy:
         enabled:    false
         binary:     wkhtmltoimage
         options:    []
-
-services:
-    Symfony\Bundle\AsseticBundle\AsseticBundle:
-        public: true

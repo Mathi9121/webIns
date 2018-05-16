@@ -1,11 +1,11 @@
-OCIM\ContactsBundle\Entity\TypeStructure:
+Entity\Contacts\TypeStructure:
     type: entity
     oneToMany:
         adresse:
             targetEntity: Adresse
             mappedBy: type
     table: null
-    repositoryClass: OCIM\ContactsBundle\Entity\TypeStructureRepository
+    repositoryClass: Entity\Contacts\TypeStructureRepository
     id:
         id:
             type: integer
