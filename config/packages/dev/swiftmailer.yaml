@@ -1,4 +1,7 @@
 # See https://symfony.com/doc/current/email/dev_environment.html
 swiftmailer:
-    # send all emails to a specific address
-    #delivery_addresses: ['me@example.com']
+    transport:  smtp
+    username:   et6549ru
+    password:   gK6Sz7RE
+    auth_mode:  login
+    host:       smtp.u-bourgogne.fr
