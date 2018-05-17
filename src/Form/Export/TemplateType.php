@@ -26,7 +26,7 @@ class TemplateType extends AbstractType
          'choices' => array(
            "PDF (.pdf)" => 'pdf',
            "Convention (.pdf)" => 'convention',
-         )
+         ),
          'choices_as_values' => true,
        ))
        ->add('filename', TextType::class, array(

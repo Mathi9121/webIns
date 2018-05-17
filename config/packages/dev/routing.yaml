@@ -1,5 +1,5 @@
 imports:
-    - { resource: "%kernel.root_dir%/config/packages/routing.yaml" }
+    - { resource: "../routing.yaml" }
 framework:
     router:
         resource: "%kernel.root_dir%/config/routes/routes_dev.yaml"
@@ -27,13 +27,3 @@ monolog:
         #chromephp:
         #    type:   chromephp
         #    level:  info
-
-assetic:
-#    use_controller: %use_assetic_controller%
-     use_controller: true
-swiftmailer:
-    transport:  smtp
-    username:   et6549ru
-    password:   gK6Sz7RE
-    auth_mode:  login
-    host:       smtp.u-bourgogne.fr
