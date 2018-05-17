@@ -1,8 +1,3 @@
-imports:
-    - { resource: ../parameters.yaml }
-    - { resource: security.yaml }
-    - { resource: framework.yaml }
-    - { resource: twig.yaml }
-    - { resource: doctrine.yaml }
-    - { resource: knp_snappy.yaml }
-    - { resource: swiftmailer.yaml }
+framework:
+    router:
+        strict_requirements: ~

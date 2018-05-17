@@ -1,7 +1,7 @@
 framework:
     #esi:             ~
     #translator:      { fallback: "%locale%" }
-    secret:          "%secret%"
+    secret:          "%env(APP_SECRET)%"
     router:
         resource: "%kernel.root_dir%/config/routes.yaml"
         strict_requirements: ~
