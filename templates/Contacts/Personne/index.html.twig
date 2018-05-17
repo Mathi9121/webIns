@@ -2,20 +2,12 @@
 
 {% block stylesheets %}
   {{parent()}}
-  {% stylesheets
-    '%kernel.root_dir%/Resources/public/css/dataTables.min.css'
-    filter='cssrewrite' %}
-  <link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset_url }}"/>
-  {% endstylesheets %}
+  <link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset('css/dataTables.min.css') }}"/>
 {% endblock %}
 
 {% block  javascripts %}
 {{parent()}}
-{% javascripts
-'%kernel.root_dir%/Resources/public/js/dataTables.min.js'
-%}
-<script type="text/javascript" src="{{ asset_url }}"></script>
-{% endjavascripts %}
+<script type="text/javascript" src="{{ asset('js/dataTables.min.js') }}"></script>
 <script>
 $(document).ready(function() {
 

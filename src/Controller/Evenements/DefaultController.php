@@ -5,6 +5,13 @@ namespace App\Controller\Evenements;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+use App\Entity\Evenements\Evenement;
+use App\Entity\Evenements\Inscription;
+use App\Entity\Evenements\Event;
+use App\Entity\Evenements\Formation;
+use App\Entity\Evenements\Formule;
+use App\Entity\Evenements\Convention;
+use App\Entity\Contacts\Intervenant;
 
 /**
  * Evenement controller.
@@ -16,47 +23,47 @@ class DefaultController extends Controller
 
 		$em = $this->getDoctrine()->getManager();
 
-        $evenements = $em->getRepository('OCIMEvenementsBundle:Evenement')->findAllFutursEvents();
-        $formations = $em->getRepository('OCIMEvenementsBundle:Evenement')->findAllFutursFormations();
-        $inscriptions = $em->getRepository('OCIMEvenementsBundle:Inscription')->lastInscriptions();
+        $evenements = $em->getRepository(Evenement::class)->findAllFutursEvents();
+        $formations = $em->getRepository(Evenement::class)->findAllFutursFormations();
+        $inscriptions = $em->getRepository(Inscription::class)->lastInscriptions();
 
 		//COUNT
 		$qb = $em->createQueryBuilder();
 		$qb->select('count(f.id)');
-		$qb->from('OCIMEvenementsBundle:Event','f');
+		$qb->from(Event::class,'f');
 		$countEvents = $qb->getQuery()->getSingleScalarResult();
 
 		$qb = $em->createQueryBuilder();
 		$qb->select('count(f.id)');
-		$qb->from('OCIMEvenementsBundle:Formation','f');
+		$qb->from(Formation::class,'f');
 		$countFormations = $qb->getQuery()->getSingleScalarResult();
 
 		$qb = $em->createQueryBuilder();
 		$qb->select('count(i.id)');
-		$qb->from('OCIMEvenementsBundle:Inscription','i');
+		$qb->from(Inscription::class,'i');
 		$countInscriptions = $qb->getQuery()->getSingleScalarResult();
 
 		$qb = $em->createQueryBuilder();
 		$qb->select('count(f.id)');
-		$qb->from('OCIMEvenementsBundle:Formule','f');
+		$qb->from(Formule::class,'f');
 		$countFormules = $qb->getQuery()->getSingleScalarResult();
 
 		$qb = $em->createQueryBuilder();
 		$qb->select('count(i.id)');
-		$qb->from('OCIMContactsBundle:Intervenant','i');
+		$qb->from(Intervenant::class,'i');
 		$countIntervenant = $qb->getQuery()->getSingleScalarResult();
 
 		$qb = $em->createQueryBuilder();
 		$qb->select('count(c.id)');
-		$qb->from('OCIMEvenementsBundle:Convention','c');
+		$qb->from(Convention::class,'c');
 		$countConvention = $qb->getQuery()->getSingleScalarResult();
 
 		foreach($evenements as $evenement){
-			$evenement->_count = $em->getRepository('OCIMEvenementsBundle:Inscription')->countInscriptionsByEvenement($evenement->getId());
+			$evenement->_count = $em->getRepository(Inscription::class)->countInscriptionsByEvenement($evenement->getId());
 		}
 
 		foreach($formations as $formation){
-			$formation->_count = $em->getRepository('OCIMEvenementsBundle:Inscription')->countInscriptionsByEvenement($formation->getId());
+			$formation->_count = $em->getRepository(Inscription::class)->countInscriptionsByEvenement($formation->getId());
 		}
 
 		return $this->render('Evenements/Default/index.html.twig', array(

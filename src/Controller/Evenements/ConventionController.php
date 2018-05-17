@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use App\Entity\Evenements\Convention;
+use App\Entity\Evenements\Inscription;
 use App\Form\Evenements\ConventionType;
 
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -43,14 +44,14 @@ class ConventionController extends Controller
     public function createAction(Request $request, $idinscription)
     {
         $entity = new Convention();
-		$inscription = $this->getDoctrine()->getManager()->getRepository('OCIMEvenementsBundle:Inscription')->find($idinscription);
+		$inscription = $this->getDoctrine()->getManager()->getRepository(Inscription::class)->find($idinscription);
 
         $form = $this->createCreateForm($entity, $idinscription);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-			      $entity->setInscription($em->getReference('OCIMEvenementsBundle:Inscription', $idinscription));
+			      $entity->setInscription($em->getReference(Inscription::class, $idinscription));
 			      $inscription->setConvention($entity);
             $em->persist($entity);
             $em->persist($inscription);
@@ -86,7 +87,7 @@ class ConventionController extends Controller
         $data = json_decode($request->getContent());
         $idinscription = $data[0]->idinscription;
         $numconvention = (int) $data[1]->numconvention;
-        $inscription = $em->getRepository('OCIMEvenementsBundle:Inscription')->find($idinscription);
+        $inscription = $em->getRepository(Inscription::class)->find($idinscription);
         $convention->setNumero($numconvention);
         $convention->setEdition(new \DateTime('now'));
         $convention->setInscription($inscription);

@@ -12,6 +12,8 @@ use App\Entity\Evenements\Formation;
 use App\Entity\Evenements\TypeEvenement;
 use App\Entity\Evenements\Formule;
 use App\Entity\Evenements\evenementFormule;
+use App\Entity\Evenements\Inscription;
+use App\Entity\Contacts\Intervenant;
 use App\Form\Evenements\EvenementType;
 use App\Form\Evenements\AjoutIntervenantType;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -49,7 +51,7 @@ class EvenementController extends Controller
 
       $qb = $em->createQueryBuilder('f')
         ->select('MIN(f.dateDebut), MAX(f.dateFin)')
-        ->from('OCIMEvenementsBundle:Evenement', 'f');
+        ->from(Evenement::class, 'f');
 
       $datesMinMax = $qb->getQuery()->getResult();
       //exit(\Doctrine\Common\Util\Debug::dump($datesMinMax[0]));
@@ -63,7 +65,7 @@ class EvenementController extends Controller
 	    $types = $em->getRepository(TypeEvenement::class)->findAll();
 
   		foreach($evenements as $evenement){
-  			$evenement->_count = $em->getRepository('OCIMEvenementsBundle:Inscription')->countInscriptionsByEvenement($evenement->getId());
+  			$evenement->_count = $em->getRepository(Inscription::class)->countInscriptionsByEvenement($evenement->getId());
   		}
 
   		return $this->render('Evenements/Evenement/index.html.twig', array(
@@ -144,7 +146,7 @@ class EvenementController extends Controller
 
       $entity = $em->getRepository(Evenement::class)->find($idevenement);
 
-      $intervenants = $em->getRepository('OCIMContactsBundle:Intervenant')->findAll();
+      $intervenants = $em->getRepository(Intervenant::class)->findAll();
 
       $form = $this->createForm(AjoutIntervenantType::class, $entity, array(
           'action' => $this->generateUrl('evenement_intervenants_update', array('idevenement' => $idevenement)),
@@ -239,8 +241,8 @@ class EvenementController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository(Evenement::class)->find($id);
-		    $entity->_count = $em->getRepository('OCIMEvenementsBundle:Inscription')->countInscriptionsByEvenement($id);
-		    $inscriptions = $em->getRepository('OCIMEvenementsBundle:Inscription')->findAllByEvenement($id);
+		    $entity->_count = $em->getRepository(Inscription::class)->countInscriptionsByEvenement($id);
+		    $inscriptions = $em->getRepository(Inscription::class)->findAllByEvenement($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Evenement entity.');

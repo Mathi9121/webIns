@@ -12,7 +12,10 @@ use App\Form\Evenements\FinancementType;
 use App\Entity\Contacts\Signataire;
 use App\Entity\Contacts\Intervenant;
 use App\Entity\Contacts\Adresse;
+use App\Entity\Contacts\TagStructure;
 use App\Entity\Evenements\ReponsesChampPerso;
+use App\Entity\Evenements\Evenement;
+use App\Entity\Evenements\ModeleChampPerso;
 
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
@@ -35,8 +38,8 @@ class InscriptionController extends Controller
     $id = $request->query->get('id');
 
     $entities = $em->getRepository(Inscription::class)->findAllByEvenement($idevenement);
-    $evenement = $em->getRepository('OCIMEvenementsBundle:Evenement')->find($idevenement);
-    $champPerso = $em->getRepository('OCIMEvenementsBundle:ModeleChampPerso')->findModelesByIdEvenement($idevenement);
+    $evenement = $em->getRepository(Evenement::class)->find($idevenement);
+    $champPerso = $em->getRepository(ModeleChampPerso::class)->findModelesByIdEvenement($idevenement);
 
     //exit(\Doctrine\Common\Util\Debug::dump($champPerso));
 
@@ -73,7 +76,7 @@ class InscriptionController extends Controller
     $inscription = $em->getRepository(Inscription::class)->find($idinscription);
     $stagiaire = $inscription->getStagiaire();
     $structure = $stagiaire->getAdresse();
-    $evenement = $em->getRepository("OCIMEvenementsBundle:Evenement")->find($idevenement);
+    $evenement = $em->getRepository(Evenement::class)->find($idevenement);
 
     $nbinscription = $inscription->getStagiaire()->getInscription()->count();
 
@@ -266,8 +269,8 @@ class InscriptionController extends Controller
     $entity = new Inscription();
     $form   = $this->createCreateForm($entity, $idevenement);
     $em = $this->getDoctrine()->getManager();
-    $evenement = $em->getRepository("OCIMEvenementsBundle:Evenement")->find($idevenement);
-    $tags = $em->getRepository("OCIMContactsBundle:TagStructure")->findAll();
+    $evenement = $em->getRepository(Evenement::class)->find($idevenement);
+    $tags = $em->getRepository(TagStructure::class)->findAll();
 
     return $this->render('Evenements/Inscription/new.html.twig', array(
       'entity' => $entity,
@@ -313,7 +316,7 @@ class InscriptionController extends Controller
     $em = $this->getDoctrine()->getManager();
 
     $entity = $em->getRepository(Inscription::class)->find($id);
-    $tags = $em->getRepository("OCIMContactsBundle:TagStructure")->findAll();
+    $tags = $em->getRepository(TagStructure::class)->findAll();
 
     if (!$entity) {
       throw $this->createNotFoundException('Unable to find Inscription entity.');

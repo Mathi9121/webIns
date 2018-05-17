@@ -6,6 +6,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use App\Entity\Contacts\Intervenant;
+use App\Entity\Contacts\TagStructure;
+use App\Entity\Evenements\Evenement;
 use App\Form\Contacts\IntervenantType;
 
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -47,7 +49,7 @@ class IntervenantController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             if($idevenement !== 'null'){
-			         $em->getRepository('OCIMEvenementsBundle:Evenement')->find($idevenement)->addIntervenant($entity);
+			         $em->getRepository(Evenement::class)->find($idevenement)->addIntervenant($entity);
             }
             $em->persist($entity);
             $em->flush();
@@ -99,7 +101,7 @@ class IntervenantController extends Controller
         $entity = new Intervenant();
         $form = $this->createCreateForm($entity,$idevenement);
         $em = $this->getDoctrine()->getManager();
-        $tags = $em->getRepository("OCIMContactsBundle:TagStructure")->findAll();
+        $tags = $em->getRepository(TagStructure::class)->findAll();
 
         return $this->render('Contacts/Intervenant/new.html.twig', array(
             'entity' => $entity,
@@ -141,7 +143,7 @@ class IntervenantController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository(Intervenant::class)->find($id);
-        $tags = $em->getRepository("OCIMContactsBundle:TagStructure")->findAll();
+        $tags = $em->getRepository(TagStructure::class)->findAll();
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Intervenant entity.');
@@ -223,7 +225,7 @@ class IntervenantController extends Controller
 
             $em = $this->getDoctrine()->getManager();
             $intervenant = $em->getRepository(Intervenant::class)->find($id);
-            $evenement = $em->getRepository('OCIMEvenementsBundle:Evenement')->find($idevenement);
+            $evenement = $em->getRepository(Evenement::class)->find($idevenement);
 
             if (!$intervenant) {
                 throw $this->createNotFoundException('Unable to find Intervenant entity.');

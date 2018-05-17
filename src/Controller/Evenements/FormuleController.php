@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use App\Entity\Evenements\Formule;
+use App\Entity\Evenements\Inscription;
+use App\Entity\Evenements\evenementFormule;
 use App\Form\Evenements\FormuleType;
 
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -32,8 +34,8 @@ class FormuleController extends Controller
 			//nombre d'inscriptions liées à la formule
 			$qb = $em->createQueryBuilder();
 			$qb->select('count(i.id)');
-			$qb->from('OCIMEvenementsBundle:Inscription','i');
-			$qb->join('OCIMEvenementsBundle:evenementFormule', 'f', 'WITH', 'f.id = i.evenementformule');
+			$qb->from(Inscription::class,'i');
+			$qb->join(evenementFormule::class, 'f', 'WITH', 'f.id = i.evenementformule');
 			$qb->where('f.formule = :id');
 			$qb->setParameter('id', $entity->getId());
 			$entity->_countInscriptions = $qb->getQuery()->getSingleResult();
@@ -41,7 +43,7 @@ class FormuleController extends Controller
 			// nombre de evenements liées à la formule
 			$qb = $em->createQueryBuilder();
 			$qb->select('count(ff.id)');
-			$qb->from('OCIMEvenementsBundle:evenementFormule','ff');
+			$qb->from(evenementFormule::class,'ff');
 			$qb->where('ff.formule = :id');
 			$qb->setParameter('id', $entity->getId());
 			$entity->_countEvenements = $qb->getQuery()->getSingleResult();

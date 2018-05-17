@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use App\Entity\Export\Template;
+use App\Entity\Evenements\Inscription;
+use App\Entity\Evenements\Evenement;
 use App\Form\Export\TemplateType;
 
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -169,8 +171,8 @@ class TemplateController extends Controller
 
         $entity = $em->getRepository(Template::class)->find($id);
 
-        $inscription = $em->getRepository('OCIMEvenementsBundle:Inscription')->find($idinscription);
-		    $evenement = $em->getRepository('OCIMEvenementsBundle:Evenement')->find($inscription->getEvenementFormule()->getEvenement()->getId());
+        $inscription = $em->getRepository(Inscription::class)->find($idinscription);
+		    $evenement = $em->getRepository(Evenement::class)->find($inscription->getEvenementFormule()->getEvenement()->getId());
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Template entity.');

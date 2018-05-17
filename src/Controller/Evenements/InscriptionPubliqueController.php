@@ -4,6 +4,9 @@ namespace App\Controller\Evenements;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use App\Entity\Evenements\Inscription;
+use App\Entity\Evenements\Formule;
+use App\Entity\Evenements\Evenement;
+use App\Entity\Evenements\evenementFormule;
 use App\Form\Evenements\InscriptionPubliqueType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,11 +33,11 @@ class InscriptionPubliqueController extends Controller
         $idevenement = $id;
 
         if ($entity == 'formule') {
-            $formule = $em->getRepository("OCIMEvenementsBundle:Formule")->find($id);
+            $formule = $em->getRepository(Formule::class)->find($id);
             $idevenement = $formule->getEvenementFormule()->get(0)->getEvenement()->getId();
         }
 
-        $evenement = $em->getRepository("OCIMEvenementsBundle:Evenement")->find($idevenement);
+        $evenement = $em->getRepository(Evenement::class)->find($idevenement);
 
         if (!$evenement) {
             throw $this->createNotFoundException(
@@ -53,7 +56,7 @@ class InscriptionPubliqueController extends Controller
                 'multiple' => true,
                 'constraints' => new Assert\Count(array('min' => 1, 'minMessage' => 'Vous devez choisir au moins un événement',)),
                 'property' => 'intitule',
-                'class' => 'OCIMEvenementsBundle:Evenement',
+                'class' => Evenement::class,
                 'query_builder' => function (EntityRepository $er) use ($id) {
                     return $er->createQueryBuilder('evenement')
                         ->join('evenement.evenementFormule', 'ff')
@@ -88,7 +91,7 @@ class InscriptionPubliqueController extends Controller
         if ($idff == 'type') {
             $idevenement = $partdonnees['evenements'][0];
         } else {
-            $idevenement = $this->getDoctrine()->getManager()->getRepository('OCIMEvenementsBundle:evenementFormule')->find($idff)->getEvenement()->getId();
+            $idevenement = $this->getDoctrine()->getManager()->getRepository(evenementFormule::class)->find($idff)->getEvenement()->getId();
         }
 
         $entity = new Inscription();
@@ -105,7 +108,7 @@ class InscriptionPubliqueController extends Controller
                 'multiple' => true,
                 'constraints' => new Assert\Count(array('min' => 1, 'minMessage' => 'Vous devez choisir au moins un evenement',)),
                 'property' => 'intitule',
-                'class' => 'OCIMEvenementsBundle:Evenement',
+                'class' => Evenement::class,
                 'query_builder' => function (EntityRepository $er) use ($typeid) {
                     return $er->createQueryBuilder('evenement')
                         ->join('evenement.evenementFormule', 'ff')
@@ -135,7 +138,7 @@ class InscriptionPubliqueController extends Controller
             //FORMULAIRE SPECIAL
             if ($idff == "type" && is_array($partdonnees['evenements'])) {
                 $em = $this->getDoctrine()->getManager();
-                $evenements = $em->getRepository('OCIMEvenementsBundle:Evenement')->findById($partdonnees['evenements']);
+                $evenements = $em->getRepository(Evenement::class)->findById($partdonnees['evenements']);
 
                 foreach ($evenements as $evenement) {
 

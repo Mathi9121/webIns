@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use App\Entity\Contacts\Signataire;
+use App\Entity\Evenements\Inscription;
 use App\Form\Contacts\SignataireType;
 
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -43,7 +44,7 @@ class SignataireController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $inscription = $em->getRepository('OCIMEvenementsBundle:Inscription')->find($idinscription);
+            $inscription = $em->getRepository(Inscription::class)->find($idinscription);
 			$inscription->setSignataire($entity);
 			$em->persist($entity);
 			$structure = $entity->getAdresse()->getStructure();

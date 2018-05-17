@@ -11,11 +11,7 @@ Gabarits
 
 {% block stylesheets %}
 {{parent()}}
-{% stylesheets
-'%kernel.root_dir%/Resources/public/css/dataTables.min.css'
-filter='cssrewrite' %}
-<link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset_url }}"/>
-{% endstylesheets %}
+<link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset('css/dataTables.min.css') }}"/>
 {% endblock %}
 
 {% block  javascripts %}
