@@ -1,50 +1,50 @@
 evenement:
     path:     /{type}/
-    controller: App\Controller\Evenements\Evenement::index
+    controller: App\Controller\Evenements\EvenementController::index
     defaults:
         type: 'formation'
     requirements: { type: formation|event }
 
 evenement_show:
     path:     /{id}/show
-    controller: App\Controller\Evenements\Evenement::show
+    controller: App\Controller\Evenements\EvenementController::show
 
 evenement_new:
     path:     /{type}/new
-    controller: App\Controller\Evenements\Evenement::new
+    controller: App\Controller\Evenements\EvenementController::new
     defaults:
         type: 'formation'
     requirements: { type: formation|event }
 
 evenement_create:
     path:     /create
-    controller: App\Controller\Evenements\Evenement::create
+    controller: App\Controller\Evenements\EvenementController::create
     requirements: { methods: post }
 
 evenement_edit:
     path:     /{id}/edit
-    controller: App\Controller\Evenements\Evenement::edit
+    controller: App\Controller\Evenements\EvenementController::edit
 
 evenement_update:
     path:     /{id}/update
-    controller: App\Controller\Evenements\Evenement::update
+    controller: App\Controller\Evenements\EvenementController::update
     requirements: { methods: post|put }
 
 evenement_delete:
     path:     /{id}/delete
-    controller: App\Controller\Evenements\Evenement::delete
+    controller: App\Controller\Evenements\EvenementController::delete
     requirements: { methods: post|delete }
 
 evenement_addtype:
     path:     /nouveau-type
-    controller: App\Controller\Evenements\Evenement::ajoutType
+    controller: App\Controller\Evenements\EvenementController::ajoutType
     requirements: { methods: post }
 
 evenement_addintervenants:
     path:     /{idevenement}/intervenant
-    controller: App\Controller\Evenements\Evenement::indexIntervenantEvenement
+    controller: App\Controller\Evenements\EvenementController::indexIntervenantEvenement
 
 evenement_intervenants_update:
     path:     /{idevenement}/intervenant_update
-    controller: App\Controller\Evenements\Evenement::updateIntervenantEvenement
+    controller: App\Controller\Evenements\EvenementController::updateIntervenantEvenement
     requirements: { methods: put }

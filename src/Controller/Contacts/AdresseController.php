@@ -11,7 +11,7 @@ use App\Entity\Contacts\TypeStructure;
 
 class AdresseController extends Controller
 {
-    public function ajoutTypeStructureAction(Request $request)
+    public function ajoutTypeStructure(Request $request)
     {
 
   		if($request->isXmlHttpRequest()){
@@ -34,7 +34,7 @@ class AdresseController extends Controller
       }
 		}
 
-    public function indexAction(){
+    public function index(){
 
       return $this->render('Contacts/Adresse/index.html.twig', array(
 

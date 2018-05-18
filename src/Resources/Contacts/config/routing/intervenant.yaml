@@ -1,34 +1,34 @@
 intervenants:
     path:     /
-    controller: App\Controller\Contacts\Intervenant::index
+    controller: App\Controller\Contacts\IntervenantController::index
 
 intervenants_show:
     path:     /evenement-{idevenement}/{id}/show
-    controller: App\Controller\Contacts\Intervenant::show
+    controller: App\Controller\Contacts\IntervenantController::show
 
 intervenants_new:
     path:     evenement/{idevenement}/new
-    controller: App\Controller\Contacts\Intervenant::new
+    controller: App\Controller\Contacts\IntervenantController::new
     defaults:
         idevenement: 'null'
 
 intervenants_create:
     path:     /evenement-{idevenement}/create/
-    controller: App\Controller\Contacts\Intervenant::create
+    controller: App\Controller\Contacts\IntervenantController::create
     requirements: { methods: post }
 
 intervenants_edit:
     path:     /evenement/{idevenement}/{id}/edit
-    controller: App\Controller\Contacts\Intervenant::edit
+    controller: App\Controller\Contacts\IntervenantController::edit
     defaults:
         idevenement: 'null'
 
 intervenants_update:
     path:     /evenement-{idevenement}/{id}/update
-    controller: App\Controller\Contacts\Intervenant::update
+    controller: App\Controller\Contacts\IntervenantController::update
     requirements: { methods: post|put }
 
 intervenants_delete:
     path:     /evenement-{idevenement}/{id}/delete
-    controller: App\Controller\Contacts\Intervenant::delete
+    controller: App\Controller\Contacts\IntervenantController::delete
     requirements: { methods: post|delete }

@@ -1,30 +1,30 @@
 formule:
     path:     /
-    controller: App\Controller\Evenements\Formule::index
+    controller: App\Controller\Evenements\FormuleController::index
 
 formule_show:
     path:     /{id}/show
-    controller: App\Controller\Evenements\Formule::show
+    controller: App\Controller\Evenements\FormuleController::show
 
 formule_new:
     path:     /new
-    controller: App\Controller\Evenements\Formule::new
+    controller: App\Controller\Evenements\FormuleController::new
 
 formule_create:
     path:     /create
-    controller: App\Controller\Evenements\Formule::create
+    controller: App\Controller\Evenements\FormuleController::create
     requirements: { methods: post }
 
 formule_edit:
     path:     /{id}/edit
-    controller: App\Controller\Evenements\Formule::edit
+    controller: App\Controller\Evenements\FormuleController::edit
 
 formule_update:
     path:     /{id}/update
-    controller: App\Controller\Evenements\Formule::update
+    controller: App\Controller\Evenements\FormuleController::update
     requirements: { methods: post|put }
 
 formule_delete:
     path:     /{id}/delete
-    controller: App\Controller\Evenements\Formule::delete
+    controller: App\Controller\Evenements\FormuleController::delete
     requirements: { methods: post|delete }

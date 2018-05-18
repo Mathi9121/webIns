@@ -23,7 +23,7 @@ class IntervenantController extends Controller
      * Lists all Intervenant entities.
      *
      */
-    public function indexAction(Request $request)
+    public function index(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -40,7 +40,7 @@ class IntervenantController extends Controller
      * Creates a new Intervenant entity.
      *
      */
-    public function createAction(Request $request, $idevenement)
+    public function create(Request $request, $idevenement)
     {
         $entity = new Intervenant();
         $form = $this->createCreateForm($entity, $idevenement);
@@ -96,7 +96,7 @@ class IntervenantController extends Controller
      * Displays a form to create a new Intervenant entity.
      *
      */
-    public function newAction($idevenement = null)
+    public function new($idevenement = null)
     {
         $entity = new Intervenant();
         $form = $this->createCreateForm($entity,$idevenement);
@@ -115,7 +115,7 @@ class IntervenantController extends Controller
      * Finds and displays a Intervenant entity.
      *
      */
-    public function showAction($id, $idevenement)
+    public function show($id, $idevenement)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -138,7 +138,7 @@ class IntervenantController extends Controller
      * Displays a form to edit an existing Intervenant entity.
      *
      */
-    public function editAction($id, $idevenement)
+    public function edit($id, $idevenement)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -184,7 +184,7 @@ class IntervenantController extends Controller
      * Edits an existing Intervenant entity.
      *
      */
-    public function updateAction(Request $request, $id, $idevenement)
+    public function update(Request $request, $id, $idevenement)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -216,7 +216,7 @@ class IntervenantController extends Controller
      * Deletes a Intervenant entity.
      *
      */
-    public function deleteAction(Request $request, $id, $idevenement)
+    public function delete(Request $request, $id, $idevenement)
     {
         $form = $this->createDeleteForm($id, $idevenement);
         $form->handleRequest($request);

@@ -1,30 +1,30 @@
 signataire:
     path:     /
-    controller: App\Controller\Contacts\Signataire::index
+    controller: App\Controller\Contacts\SignataireController::index
 
 signataire_show:
     path:     /{id}/show
-    controller: App\Controller\Contacts\Signataire::show
+    controller: App\Controller\Contacts\SignataireController::show
 
 signataire_new:
     path:     /evenement-{idevenement}/inscription-{idinscription}/new
-    controller: App\Controller\Contacts\Signataire::new
+    controller: App\Controller\Contacts\SignataireController::new
 
 signataire_create:
     path:     /evenement-{idevenement}/{idinscription}/create
-    controller: App\Controller\Contacts\Signataire::create
+    controller: App\Controller\Contacts\SignataireController::create
     requirements: { methods: post }
 
 signataire_edit:
     path:     /evenement-{idevenement}/{id}/edit
-    controller: App\Controller\Contacts\Signataire::edit
+    controller: App\Controller\Contacts\SignataireController::edit
 
 signataire_update:
     path:     /evenement-{idevenement}/{id}/update
-    controller: App\Controller\Contacts\Signataire::update
+    controller: App\Controller\Contacts\SignataireController::update
     requirements: { methods: post|put }
 
 signataire_delete:
     path:     /{id}/delete
-    controller: App\Controller\Contacts\Signataire::delete
+    controller: App\Controller\Contacts\SignataireController::delete
     requirements: { methods: post|delete }

@@ -1,47 +1,47 @@
 convention:
     path:     /{slug}
-    controller: App\Controller\Evenements\Convention::index
+    controller: App\Controller\Evenements\ConventionController::index
     defaults:
         slug: 1
 
 convention_show:
     path:     /{id}/show
-    controller: App\Controller\Evenements\Convention::show
+    controller: App\Controller\Evenements\ConventionController::show
 
 convention_new:
     path:     /inscription-{idinscription}/new
-    controller: App\Controller\Evenements\Convention::new
+    controller: App\Controller\Evenements\ConventionController::new
 
 convention_create:
     path:     /inscription-{idinscription}/create
-    controller: App\Controller\Evenements\Convention::create
+    controller: App\Controller\Evenements\ConventionController::create
     requirements: { methods: post }
 
 convention_edit:
     path:     /{id}/edit
-    controller: App\Controller\Evenements\Convention::edit
+    controller: App\Controller\Evenements\ConventionController::edit
 
 convention_update:
     path:     /{id}/update
-    controller: App\Controller\Evenements\Convention::update
+    controller: App\Controller\Evenements\ConventionController::update
     requirements: { methods: post|put }
 
 convention_delete:
     path:     /{id}/delete
-    controller: App\Controller\Evenements\Convention::delete
+    controller: App\Controller\Evenements\ConventionController::delete
     requirements: { methods: post|delete }
 
 convention_derniernumero:
     path:     /ajax/derniernumero
-    controller: App\Controller\Evenements\Convention::derniernumero
+    controller: App\Controller\Evenements\ConventionController::derniernumero
     requirements: { methods: post }
 
 convention_createConvention:
     path:     /ajax/createConvention
-    controller: App\Controller\Evenements\Convention::createConvention
+    controller: App\Controller\Evenements\ConventionController::createConvention
     requirements: { methods: post }
 
 convention_updateetape:
     path:     /ajax/updateConvention
-    controller: App\Controller\Evenements\Convention::updateConvention
+    controller: App\Controller\Evenements\ConventionController::updateConvention
     requirements: { methods: post }

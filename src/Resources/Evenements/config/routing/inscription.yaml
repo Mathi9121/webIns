@@ -1,54 +1,54 @@
 inscription:
     path:     /
-    controller: App\Controller\Evenements\Inscription::index
+    controller: App\Controller\Evenements\InscriptionController::index
 
 inscription_show:
     path:     /{id}/show
-    controller: App\Controller\Evenements\Inscription::show
+    controller: App\Controller\Evenements\InscriptionController::show
 
 inscription_new:
     path:     /new
-    controller: App\Controller\Evenements\Inscription::new
+    controller: App\Controller\Evenements\InscriptionController::new
 
 inscription_create:
     path:     /create
-    controller: App\Controller\Evenements\Inscription::create
+    controller: App\Controller\Evenements\InscriptionController::create
     requirements: { methods: post }
 
 inscription_edit:
     path:     /edit-{id}
-    controller: App\Controller\Evenements\Inscription::edit
+    controller: App\Controller\Evenements\InscriptionController::edit
 
 inscription_update:
     path:     /{id}/update
-    controller: App\Controller\Evenements\Inscription::update
+    controller: App\Controller\Evenements\InscriptionController::update
     requirements: { methods: post|put }
 
 inscription_delete:
     path:     /inscription-{id}/delete
-    controller: App\Controller\Evenements\Inscription::delete
+    controller: App\Controller\Evenements\InscriptionController::delete
     requirements: { methods: post|delete }
 
 inscription_edit_ordre:
     path: /ordre
-    controller: App\Controller\Evenements\Inscription::ordre
+    controller: App\Controller\Evenements\InscriptionController::ordre
     requirements: { methods: post }
 
 inscription_update_statut_convention:
     path: /statut-convention/
-    controller: App\Controller\Evenements\Inscription::updateStatutConvention
+    controller: App\Controller\Evenements\InscriptionController::updateStatutConvention
     requirements: { methods: post }
 
 inscription_update_statut_inscription:
     path: /statut-inscription/
-    controller: App\Controller\Evenements\Inscription::updateStatutInscription
+    controller: App\Controller\Evenements\InscriptionController::updateStatutInscription
     requirements: { methods: post }
 
 inscription_update_statut_financement:
     path: /statut-financement/
-    controller: App\Controller\Evenements\Inscription::updateStatutFinancement
+    controller: App\Controller\Evenements\InscriptionController::updateStatutFinancement
     requirements: { methods: post }
 
 inscription_switch_stagiaire_class:
     path: /switch-stagiaire-intervenant/{idinscription}
-    controller: App\Controller\Evenements\Inscription::switchStagiaire
+    controller: App\Controller\Evenements\InscriptionController::switchStagiaire

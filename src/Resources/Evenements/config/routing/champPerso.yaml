@@ -1,23 +1,23 @@
 champPerso:
     path:     /
-    controller: App\Controller\Evenements\ChampPerso::index
+    controller: App\Controller\Evenements\ChampPersoController::index
 
 champPerso_show:
     path:     /{id}/show
-    controller: App\Controller\Evenements\ChampPerso::show
+    controller: App\Controller\Evenements\ChampPersoController::show
 
 champPerso_new:
     path:     /new
-    controller: App\Controller\Evenements\ChampPerso::new
+    controller: App\Controller\Evenements\ChampPersoController::new
 
 champPerso_create:
     path:     /create
-    controller: App\Controller\Evenements\ChampPerso::create
+    controller: App\Controller\Evenements\ChampPersoController::create
     requirements: { methods: post }
 
 champPerso_edit:
     path:     /evenement-{idevenement}/{generation}
-    controller: App\Controller\Evenements\ChampPerso::edit
+    controller: App\Controller\Evenements\ChampPersoController::edit
     defaults:
         generation : edit
     requirements: 
@@ -25,15 +25,15 @@ champPerso_edit:
 
 champPerso_update:
     path:     /{id}/update
-    controller: App\Controller\Evenements\ChampPerso::update
+    controller: App\Controller\Evenements\ChampPersoController::update
     requirements: { methods: post|put }
 
 champPerso_delete:
     path:     /{id}/delete
-    controller: App\Controller\Evenements\ChampPerso::delete
+    controller: App\Controller\Evenements\ChampPersoController::delete
     requirements: { methods: post|delete }
 
 champPerso_reponse:
     path:     /update/reponse
-    controller: App\Controller\Evenements\ChampPerso::reponse
+    controller: App\Controller\Evenements\ChampPersoController::reponse
     requirements: { methods: post }

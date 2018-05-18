@@ -46,4 +46,4 @@ deconnexion:
 
 home:
     path: /
-    controller: App\Controller\Evenements\Default::index
+    controller: App\Controller\Evenements\DefaultController::index

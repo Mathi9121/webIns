@@ -1,3 +1,3 @@
 ocim_user_homepage:
     path:     /hello/{name}
-    controller: App\Controller\User\Default::index
+    controller: App\Controller\User\DefaultController::index

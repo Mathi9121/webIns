@@ -8,12 +8,12 @@ ocim_contacts_signataire:
 
 ocim_contacts_homepage:
     path:     /hello/{name}
-    controller: App\Controller\Contacts\Default::index
+    controller: App\Controller\Contacts\DefaultController::index
 
 structure_ajout:
     path:     structure_ajout
-    controller: App\Controller\Contacts\Adresse::ajoutTypeStructure
+    controller: App\Controller\Contacts\AdresseController::ajoutTypeStructure
 
 structure:
     path:     structures
-    controller: App\Controller\Contacts\Adresse::index
+    controller: App\Controller\Contacts\AdresseController::index
