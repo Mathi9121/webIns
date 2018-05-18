@@ -2,5 +2,5 @@ imports:
     - { resource: "../routing.yaml" }
 framework:
     router:
-        #resource: "%kernel.project_dir%/config/routes/routes_dev.yaml"
+        resource: "%kernel.project_dir%/config/routes/routes_dev.yaml"
         strict_requirements: true

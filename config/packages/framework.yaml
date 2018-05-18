@@ -3,7 +3,7 @@ framework:
     #translator:      { fallback: "%locale%" }
     secret:          "%env(APP_SECRET)%"
     router:
-        #resource: "%kernel.project_dir%/config/routes.yaml"
+        resource: "%kernel.project_dir%/config/routes.yaml"
         strict_requirements: ~
     form:            ~
     csrf_protection: ~
