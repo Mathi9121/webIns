@@ -36,7 +36,7 @@ OCIMUserBundle_user:
 
 connexion:
     path: /connexion
-    controller: App\Controller\User\Admin::connexion
+    controller: App\Controller\User\AdminController::connexion
 
 check:
     path: /check
