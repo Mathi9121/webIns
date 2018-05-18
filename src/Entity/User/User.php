@@ -13,31 +13,45 @@ class User implements UserInterface
 {
     /**
      * @var integer
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
      * @var string
+     *
+     * @ORM\Column(type="string")
      */
     private $nom;
 
     /**
      * @var string
+     *
+     * @ORM\Column(type="string")
      */
     private $prenom;
 
     /**
      * @var string
+     *
+     * @ORM\Column(type="string")
      */
     private $mail;
 
     /**
      * @var string
+     *
+     * @ORM\Column(type="string")
      */
     private $password;
 
     /**
      * @var boolean
+     *
+     * @ORM\Column(type="boolean")
      */
     private $admin;
 
