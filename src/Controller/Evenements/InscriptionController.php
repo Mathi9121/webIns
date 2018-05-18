@@ -31,7 +31,7 @@ class InscriptionController extends Controller
   * liste toutes les entités en fonction d'une evenement (id passé en paramètre)
   *
   */
-  public function indexAction(Request $request, $idevenement)
+  public function index(Request $request, $idevenement)
   {
     $em = $this->getDoctrine()->getManager();
 
@@ -51,7 +51,7 @@ class InscriptionController extends Controller
     ));
   }
 
-  public function ordreAction(Request $request, $idevenement){
+  public function ordre(Request $request, $idevenement){
     if($request->isXmlHttpRequest()){
 
       $em = $this->getDoctrine()->getManager();
@@ -69,7 +69,7 @@ class InscriptionController extends Controller
     }
   }
 
-  public function switchStagiaireAction($idinscription, $idevenement){
+  public function switchStagiaire($idinscription, $idevenement){
 
     $em = $this->getDoctrine()->getManager();
 
@@ -143,7 +143,7 @@ class InscriptionController extends Controller
     return $this->redirect($this->generateUrl('intervenants_edit', array('id' => $intervenant->getId(), 'idevenement'=> $idevenement)));
   }
 
-  public function updateStatutInscriptionAction(Request $request){
+  public function updateStatutInscription(Request $request){
     if($request->isXmlHttpRequest()){
       $data = json_decode($request->getContent());
       $em = $this->getDoctrine()->getManager();
@@ -155,7 +155,7 @@ class InscriptionController extends Controller
     }
   }
 
-  public function updateStatutFinancementAction(Request $request){
+  public function updateStatutFinancement(Request $request){
     if($request->isXmlHttpRequest()){
       $data = json_decode($request->getContent());
 
@@ -173,7 +173,7 @@ class InscriptionController extends Controller
     }
   }
 
-  public function updateStatutConventionAction(Request $request){
+  public function updateStatutConvention(Request $request){
     if($request->isXmlHttpRequest()){
       $data = json_decode($request->getContent());
 
@@ -207,7 +207,7 @@ class InscriptionController extends Controller
   * Creates a new Inscription entity.
   *
   */
-  public function createAction(Request $request, $idevenement)
+  public function create(Request $request, $idevenement)
   {
     $entity = new Inscription();
     $form = $this->createCreateForm($entity, $idevenement);
@@ -264,7 +264,7 @@ class InscriptionController extends Controller
   * Displays a form to create a new Inscription entity.
   *
   */
-  public function newAction($idevenement)
+  public function new($idevenement)
   {
     $entity = new Inscription();
     $form   = $this->createCreateForm($entity, $idevenement);
@@ -284,7 +284,7 @@ class InscriptionController extends Controller
   * Finds and displays a Inscription entity.
   *
   */
-  public function showAction(Request $request, $id, $idevenement)
+  public function show(Request $request, $id, $idevenement)
   {
     $type = $request->query->get('type');
 
@@ -311,7 +311,7 @@ class InscriptionController extends Controller
   * Displays a form to edit an existing Inscription entity.
   *
   */
-  public function editAction($id, $idevenement)
+  public function edit($id, $idevenement)
   {
     $em = $this->getDoctrine()->getManager();
 
@@ -358,7 +358,7 @@ class InscriptionController extends Controller
   * Edits an existing Inscription entity.
   *
   */
-  public function updateAction(Request $request, $id, $idevenement)
+  public function update(Request $request, $id, $idevenement)
   {
     $em = $this->getDoctrine()->getManager();
 
@@ -391,7 +391,7 @@ class InscriptionController extends Controller
   * Deletes a Inscription entity.
   *
   */
-  public function deleteAction(Request $request, $id, $idevenement)
+  public function delete(Request $request, $id, $idevenement)
   {
     $form = $this->createDeleteForm($id, $idevenement);
     $form->handleRequest($request);

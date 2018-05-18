@@ -24,7 +24,7 @@ class TemplateController extends Controller
      * Lists all Template entities.
      *
      */
-    public function indexAction()
+    public function index()
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -35,7 +35,7 @@ class TemplateController extends Controller
         ));
     }
 
-    public function majOrdreAction(Request $request){
+    public function majOrdre(Request $request){
       // test ajax
       if($request->isXmlHttpRequest()){
         //recuperation du tableau
@@ -62,7 +62,7 @@ class TemplateController extends Controller
      * Creates a new Template entity.
      *
      */
-    public function createAction(Request $request)
+    public function create(Request $request)
     {
         $entity = new Template();
         $form = $this->createCreateForm($entity);
@@ -83,7 +83,7 @@ class TemplateController extends Controller
         ));
     }
 
-    public function liensAction(Request $request){
+    public function liens(Request $request){
       if($request->isXmlHttpRequest()){
         $idinscription = $request->getContent();
         $em = $this->getDoctrine()->getManager();
@@ -105,7 +105,7 @@ class TemplateController extends Controller
       }
     }
 
-    public function liensConventionAction(Request $request){
+    public function liensConvention(Request $request){
       if($request->isXmlHttpRequest()){
         $idinscription = $request->getContent();
         $em = $this->getDoctrine()->getManager();
@@ -150,7 +150,7 @@ class TemplateController extends Controller
      * Displays a form to create a new Template entity.
      *
      */
-    public function newAction()
+    public function new()
     {
         $entity = new Template();
         $form   = $this->createCreateForm($entity);
@@ -165,7 +165,7 @@ class TemplateController extends Controller
      * Finds and displays a Template entity.
      *
      */
-    public function showAction($id, $idinscription, $mode)
+    public function show($id, $idinscription, $mode)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -243,7 +243,7 @@ class TemplateController extends Controller
 
     }
 
-    public function exportfrompreviewAction(Request $request){
+    public function exportfrompreview(Request $request){
       $content = $request->request->get('content');
       $filename = $request->request->get('filename');
 
@@ -262,7 +262,7 @@ class TemplateController extends Controller
      * Displays a form to edit an existing Template entity.
      *
      */
-    public function editAction($id)
+    public function edit($id)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -304,7 +304,7 @@ class TemplateController extends Controller
      * Edits an existing Template entity.
      *
      */
-    public function updateAction(Request $request, $id)
+    public function update(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -336,7 +336,7 @@ class TemplateController extends Controller
      * Deletes a Template entity.
      *
      */
-    public function deleteAction( $id)
+    public function delete( $id)
     {
 
         $em = $this->getDoctrine()->getManager();
@@ -370,7 +370,7 @@ class TemplateController extends Controller
         ;
     }
 
-    public function copieAction(Request $request){
+    public function copie(Request $request){
       if($request->isXmlHttpRequest()){
         $data = json_decode($request->getContent());
         $nom = $data->nom;

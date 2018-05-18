@@ -23,7 +23,7 @@ class ConventionController extends Controller
      * Lists all Convention entities.
      *
      */
-    public function indexAction($slug)
+    public function index($slug)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -41,7 +41,7 @@ class ConventionController extends Controller
      * Creates a new Convention entity.
      *
      */
-    public function createAction(Request $request, $idinscription)
+    public function create(Request $request, $idinscription)
     {
         $entity = new Convention();
 		$inscription = $this->getDoctrine()->getManager()->getRepository(Inscription::class)->find($idinscription);
@@ -67,7 +67,7 @@ class ConventionController extends Controller
     }
 
 
-    public function derniernumeroAction(Request $request){
+    public function derniernumero(Request $request){
       if($request->isXMLHttpRequest()){
 
         $num_convention = $this->getDoctrine()->getManager()->getRepository(Convention::class)->lastConventionNumber();
@@ -77,7 +77,7 @@ class ConventionController extends Controller
     }
 
 
-    public function createConventionAction(Request $request){
+    public function createConvention(Request $request){
 
       if($request->isXMLHttpRequest()){
 
@@ -111,7 +111,7 @@ class ConventionController extends Controller
     }
 
 
-    public function updateConventionAction(Request $request){
+    public function updateConvention(Request $request){
       if($request->isXMLHttpRequest()){
         $data = $request->getContent();
 
@@ -192,7 +192,7 @@ class ConventionController extends Controller
      * Displays a form to create a new Convention entity.
      *
      */
-    public function newAction($idinscription)
+    public function new($idinscription)
     {
         $entity = new Convention();
         $form   = $this->createCreateForm($entity, $idinscription);
@@ -210,7 +210,7 @@ class ConventionController extends Controller
      * Finds and displays a Convention entity.
      *
      */
-    public function showAction($id)
+    public function show($id)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -232,7 +232,7 @@ class ConventionController extends Controller
      * Displays a form to edit an existing Convention entity.
      *
      */
-    public function editAction($id)
+    public function edit($id)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -276,7 +276,7 @@ class ConventionController extends Controller
      * Edits an existing Convention entity.
      *
      */
-    public function updateAction(Request $request, $id)
+    public function update(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -306,7 +306,7 @@ class ConventionController extends Controller
      * Deletes a Convention entity.
      *
      */
-    public function deleteAction(Request $request, $id)
+    public function delete(Request $request, $id)
     {
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);

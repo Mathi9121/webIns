@@ -21,7 +21,7 @@ class UserController extends Controller
      * Lists all User entities.
      *
      */
-    public function indexAction()
+    public function index()
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -35,7 +35,7 @@ class UserController extends Controller
      * Creates a new User entity.
      *
      */
-    public function createAction(Request $request)
+    public function create(Request $request)
     {
         $entity = new User();
         $form = $this->createCreateForm($entity);
@@ -78,7 +78,7 @@ class UserController extends Controller
      * Displays a form to create a new User entity.
      *
      */
-    public function newAction()
+    public function new()
     {
         $entity = new User();
         $form   = $this->createCreateForm($entity);
@@ -93,7 +93,7 @@ class UserController extends Controller
      * Finds and displays a User entity.
      *
      */
-    public function showAction($id)
+    public function show($id)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -115,7 +115,7 @@ class UserController extends Controller
      * Displays a form to edit an existing User entity.
      *
      */
-    public function editAction($id)
+    public function edit($id)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -157,7 +157,7 @@ class UserController extends Controller
      * Edits an existing User entity.
      *
      */
-    public function updateAction(Request $request, $id)
+    public function update(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -187,7 +187,7 @@ class UserController extends Controller
      * Deletes a User entity.
      *
      */
-    public function deleteAction(Request $request, $id)
+    public function delete(Request $request, $id)
     {
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);

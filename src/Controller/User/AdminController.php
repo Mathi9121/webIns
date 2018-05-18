@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class AdminController extends Controller
 {
-    public function connexionAction(Request $request)
+    public function connexion(Request $request)
     {
 		$session = $request->getSession();
 

@@ -22,7 +22,7 @@ class SignataireController extends Controller
      * Lists all Signataire entities.
      *
      */
-    public function indexAction()
+    public function index()
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -36,7 +36,7 @@ class SignataireController extends Controller
      * Creates a new Signataire entity.
      *
      */
-    public function createAction(Request $request, $idinscription, $idevenement)
+    public function create(Request $request, $idinscription, $idevenement)
     {
         $entity = new Signataire();
         $form = $this->createCreateForm($entity, $idinscription, $idevenement);
@@ -87,7 +87,7 @@ class SignataireController extends Controller
      * Displays a form to create a new Signataire entity.
      *
      */
-    public function newAction($idinscription, $idevenement)
+    public function new($idinscription, $idevenement)
     {
         $entity = new Signataire();
         $form   = $this->createCreateForm($entity, $idinscription, $idevenement);
@@ -103,7 +103,7 @@ class SignataireController extends Controller
      * Finds and displays a Signataire entity.
      *
      */
-    public function showAction($id)
+    public function show($id)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -125,7 +125,7 @@ class SignataireController extends Controller
      * Displays a form to edit an existing Signataire entity.
      *
      */
-    public function editAction($id, $idevenement)
+    public function edit($id, $idevenement)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -169,7 +169,7 @@ class SignataireController extends Controller
      * Edits an existing Signataire entity.
      *
      */
-    public function updateAction(Request $request, $id, $idevenement)
+    public function update(Request $request, $id, $idevenement)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -199,7 +199,7 @@ class SignataireController extends Controller
      * Deletes a Signataire entity.
      *
      */
-    public function deleteAction(Request $request, $id)
+    public function delete(Request $request, $id)
     {
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);
