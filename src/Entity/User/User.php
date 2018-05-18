@@ -8,6 +8,7 @@ use Symfony\Component\Security\Core\Role\Role;
 
 /**
  * User
+ * @ORM\Entity
  */
 class User implements UserInterface
 {
