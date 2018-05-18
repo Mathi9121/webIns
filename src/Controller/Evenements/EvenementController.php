@@ -32,7 +32,7 @@ class EvenementController extends Controller
      * Lists all Evenement entities.
      *
      */
-    public function index(Request $request, $type)
+    public function indexAction(Request $request, $type)
     {
       $em = $this->getDoctrine()->getManager();
 
@@ -80,7 +80,7 @@ class EvenementController extends Controller
      * Creates a new Evenement entity.
      *
      */
-    public function create(Request $request)
+    public function createAction(Request $request)
     {
         $classname = $this->get('request')->request->get('ocim_evenementsbundle_evenement');
         $classname = $classname['eventType'];
@@ -113,7 +113,7 @@ class EvenementController extends Controller
         ));
     }
 
-    public function ajoutType(Request $request){
+    public function ajoutTypeAction(Request $request){
       if($request->isXmlHttpRequest()){
 
         $em = $this->getDoctrine()->getManager();
@@ -140,7 +140,7 @@ class EvenementController extends Controller
       }
     }
 
-    public function indexIntervenantEvenement($idevenement){
+    public function indexIntervenantEvenementAction($idevenement){
 
       $em = $this->getDoctrine()->getManager();
 
@@ -161,7 +161,7 @@ class EvenementController extends Controller
       ));
     }
 
-    public function updateIntervenantEvenement(Request $request, $idevenement){
+    public function updateIntervenantEvenementAction(Request $request, $idevenement){
 
       $em = $this->getDoctrine()->getManager();
 
@@ -220,7 +220,7 @@ class EvenementController extends Controller
      * Displays a form to create a new Evenement entity.
      *
      */
-    public function new($type)
+    public function newAction($type)
     {
         $entity = new Evenement();
         $entity->setEventType($type);
@@ -236,7 +236,7 @@ class EvenementController extends Controller
      * Finds and displays a Evenement entity.
      *
      */
-    public function show($id)
+    public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -275,7 +275,7 @@ class EvenementController extends Controller
      * Displays a form to edit an existing Evenement entity.
      *
      */
-    public function edit($id)
+    public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -320,7 +320,7 @@ class EvenementController extends Controller
      * Edits an existing Evenement entity.
      *
      */
-    public function update(Request $request, $id)
+    public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -367,7 +367,7 @@ class EvenementController extends Controller
      * Deletes a Evenement entity.
      *
      */
-    public function delete(Request $request, $id)
+    public function deleteAction(Request $request, $id)
     {
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);

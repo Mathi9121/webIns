@@ -19,7 +19,7 @@ use App\Entity\Contacts\Intervenant;
  */
 class DefaultController extends Controller
 {
-	public function index(){
+	public function indexAction(){
 
 		$em = $this->getDoctrine()->getManager();
 

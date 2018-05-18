@@ -17,7 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class InscriptionPubliqueController extends Controller
 {
-    public function inscription(Request $request)
+    public function inscriptionAction(Request $request)
     {
 
         $id = $request->query->get('id');
@@ -82,7 +82,7 @@ class InscriptionPubliqueController extends Controller
         ));
     }
 
-    public function createInscription(Request $request)
+    public function createInscriptionAction(Request $request)
     {
         $partdonnees = $request->request->get('ocim_evenementsbundle_inscription');
 

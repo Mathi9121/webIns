@@ -21,7 +21,7 @@ class PersonneController extends Controller
      * Lists all Personne entities.
      *
      */
-    public function index()
+    public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -37,7 +37,7 @@ class PersonneController extends Controller
      * Creates a new Personne entity.
      *
      */
-    public function create(Request $request)
+    public function createAction(Request $request)
     {
         $entity = new Personne();
         $form = $this->createCreateForm($entity);
@@ -80,7 +80,7 @@ class PersonneController extends Controller
      * Displays a form to create a new Personne entity.
      *
      */
-    public function new()
+    public function newAction()
     {
         $entity = new Personne();
         $form   = $this->createCreateForm($entity);
@@ -95,7 +95,7 @@ class PersonneController extends Controller
      * Finds and displays a Personne entity.
      *
      */
-    public function show($id)
+    public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -118,7 +118,7 @@ class PersonneController extends Controller
      * Displays a form to edit an existing Personne entity.
      *
      */
-    public function edit($id)
+    public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -160,7 +160,7 @@ class PersonneController extends Controller
      * Edits an existing Personne entity.
      *
      */
-    public function update(Request $request, $id)
+    public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -190,7 +190,7 @@ class PersonneController extends Controller
      * Deletes a Personne entity.
      *
      */
-    public function delete(Request $request, $id)
+    public function deleteAction(Request $request, $id)
     {
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);

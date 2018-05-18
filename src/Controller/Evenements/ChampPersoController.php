@@ -29,7 +29,7 @@ class ChampPersoController extends Controller
      * Lists all evenementFormule entities.
      *
      */
-    public function index()
+    public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -54,7 +54,7 @@ class ChampPersoController extends Controller
         ));
     }
 
-	public function reponse(Request $request){
+	public function reponseAction(Request $request){
 		if($request->isXmlHttpRequest()){
 
 			$em = $this->getDoctrine()->getManager();
@@ -107,7 +107,7 @@ class ChampPersoController extends Controller
      * Creates a new evenementFormule entity.
      *
      */
-    public function create(Request $request)
+    public function createAction(Request $request)
     {
         $entity = new evenementFormule();
         $form = $this->createCreateForm($entity);
@@ -150,7 +150,7 @@ class ChampPersoController extends Controller
      * Displays a form to create a new evenementFormule entity.
      *
      */
-    public function new()
+    public function newAction()
     {
         $entity = new evenementFormule();
         $form   = $this->createCreateForm($entity);
@@ -165,7 +165,7 @@ class ChampPersoController extends Controller
      * Finds and displays a evenementFormule entity.
      *
      */
-    public function show($id)
+    public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -187,7 +187,7 @@ class ChampPersoController extends Controller
      * Displays a form to edit an existing evenementFormule entity.
      *
      */
-    public function edit($idevenement, $generation)
+    public function editAction($idevenement, $generation)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -292,7 +292,7 @@ class ChampPersoController extends Controller
      * Edits an existing evenementFormule entity.
      *
      */
-    public function update(Request $request, $id)
+    public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -367,7 +367,7 @@ class ChampPersoController extends Controller
      * Deletes a evenementFormule entity.
      *
      */
-    public function delete(Request $request, $id)
+    public function deleteAction(Request $request, $id)
     {
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);

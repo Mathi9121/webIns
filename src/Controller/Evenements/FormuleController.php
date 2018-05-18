@@ -24,7 +24,7 @@ class FormuleController extends Controller
      * Lists all Formule entities.
      *
      */
-    public function index(Request $request)
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $id = $request->query->get('id');
@@ -58,7 +58,7 @@ class FormuleController extends Controller
      * Creates a new Formule entity.
      *
      */
-    public function create(Request $request)
+    public function createAction(Request $request)
     {
         $entity = new Formule();
         if(!$request->isXmlHttpRequest()){
@@ -128,7 +128,7 @@ class FormuleController extends Controller
      * Displays a form to create a new Formule entity.
      *
      */
-    public function new()
+    public function newAction()
     {
         $entity = new Formule();
         $form   = $this->createCreateForm($entity);
@@ -143,7 +143,7 @@ class FormuleController extends Controller
      * Finds and displays a Formule entity.
      *
      */
-    public function show($id)
+    public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -165,7 +165,7 @@ class FormuleController extends Controller
      * Displays a form to edit an existing Formule entity.
      *
      */
-    public function edit($id)
+    public function editAction($id)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -207,7 +207,7 @@ class FormuleController extends Controller
      * Edits an existing Formule entity.
      *
      */
-    public function update(Request $request, $id)
+    public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -237,7 +237,7 @@ class FormuleController extends Controller
      * Deletes a Formule entity.
      *
      */
-    public function delete(Request $request, $id)
+    public function deleteAction(Request $request, $id)
     {
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);
