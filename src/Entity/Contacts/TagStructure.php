@@ -8,16 +8,23 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * TagStructure
+ * @ORM\Entity
  */
 class TagStructure
 {
     /**
      * @var integer
+     * 
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
      * @var string
+     * 
+     * @ORM\Column(type="string")
      */
     private $tag;
 

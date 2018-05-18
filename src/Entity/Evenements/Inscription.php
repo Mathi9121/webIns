@@ -7,46 +7,65 @@ use Doctrine\Common\Collections\Criteria;
 
 /**
  * Inscription
+ * @ORM\Entity
  */
 class Inscription
 {
     /**
      * @var integer
+     * 
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
      * @var \DateTime
+     * 
+     * @ORM\Column(type="datetime")
      */
     private $dateInscription;
 
     /**
      * @var string
+     * 
+     * @ORM\Column(type="string")
      */
     private $statut;
 
     /**
      * @var string
+     * 
+     * @ORM\Column(type="string")
      */
     private $attentes;
 
     /**
      * @var string
+     * 
+     * @ORM\Column(type="string")
      */
     private $statutOrgFinanceur;
 
     /**
      * @var string
+     * 
+     * @ORM\Column(type="string")
      */
     private $statutConvention;
 
     /**
      * @var string
+     * 
+     * @ORM\Column(type="string")
      */
     private $hash;
 
 	/**
      * @var string
+     * 
+     * @ORM\Column(type="string")
      */
     private $ordre;
 

@@ -9,6 +9,7 @@ use App\Entity\Evenements\ModeleChampPerso;
 
 /**
  * Evenement
+ * @ORM\Entity
  */
 class Evenement
 {
@@ -17,36 +18,52 @@ class Evenement
 
     /**
      * @var integer
+     * 
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
      * @var string
+     * 
+     * @ORM\Column(type="string")
      */
     private $intitule;
 
     /**
      * @var string
+     * 
+     * @ORM\Column(type="string")
      */
     private $lieu;
 
     /**
      * @var \DateTime
+     * 
+     * @ORM\Column(type="datetime")
      */
     private $dateDebut;
 
     /**
      * @var \DateTime
+     * 
+     * @ORM\Column(type="datetime")
      */
     private $dateFin;
 
     /**
      * @var string
+     * 
+     * @ORM\Column(type="string")
      */
     private $dateText;
 
     /**
      * @var decimal
+     * 
+     * @ORM\Column(type="decimal")
      */
     private $nbHeures;
 

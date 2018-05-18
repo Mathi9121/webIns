@@ -6,16 +6,23 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * TypeStructure
+ * @ORM\Entity
  */
 class TypeStructure
 {
     /**
      * @var integer
+     * 
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
      * @var string
+     * 
+     * @ORM\Column(type="string")
      */
     private $type;
 

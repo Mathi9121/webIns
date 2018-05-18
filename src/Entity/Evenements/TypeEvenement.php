@@ -7,16 +7,23 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * TypeEvenement
+ * @ORM\Entity
  */
 class TypeEvenement
 {
     /**
      * @var integer
+     * 
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
      * @var string
+     * 
+     * @ORM\Column(type="string")
      */
     private $type;
 

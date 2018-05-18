@@ -6,41 +6,58 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Adresse
+ * @ORM\Entity
  */
 class Adresse
 {
     /**
      * @var integer
+     * 
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
      * @var string
+     * 
+     * @ORM\Column(type="string")
      */
     private $nomStructure;
 
     /**
      * @var string
+     * 
+     * @ORM\Column(type="string")
      */
     private $adresse;
 
     /**
      * @var string
+     * 
+     * @ORM\Column(type="string")
      */
     private $adresseComplement;
 
     /**
      * @var string
+     * 
+     * @ORM\Column(type="string")
      */
     private $cP;
 
     /**
      * @var string
+     * 
+     * @ORM\Column(type="string")
      */
     private $ville;
 
     /**
      * @var string
+     * 
+     * @ORM\Column(type="string")
      */
     private $pays;
 

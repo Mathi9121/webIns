@@ -6,31 +6,44 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Template
+ * @ORM\Entity
  */
 class Template
 {
     /**
      * @var integer
+     * 
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
      * @var string
+     * 
+     * @ORM\Column(type="string")
      */
     private $nom;
 
     /**
      * @var string
+     * 
+     * @ORM\Column(type="string")
      */
     private $type;
 
     /**
      * @var \DateTime
+     * 
+     * @ORM\Column(type="datetime")
      */
     private $date;
 
     /**
      * @var string
+     * 
+     * @ORM\Column(type="string")
      */
     private $contenu;
 

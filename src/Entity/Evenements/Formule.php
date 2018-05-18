@@ -8,36 +8,51 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Formule
+ * @ORM\Entity
  */
 class Formule
 {
     /**
      * @var integer
+     * 
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 	
     /**
      * @var string
+     * 
+     * @ORM\Column(type="string")
      */
     private $description;
 
     /**
      * @var string
+     * 
+     * @ORM\Column(type="string")
      */
     private $tarif;
 
     /**
      * @var boolean
+     * 
+     * @ORM\Column(type="boolean")
      */
     private $midi;
 
     /**
      * @var boolean
+     * 
+     * @ORM\Column(type="boolean")
      */
     private $soir;
 
     /**
      * @var boolean
+     * 
+     * @ORM\Column(type="boolean")
      */
     private $nuit;
 

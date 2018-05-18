@@ -6,21 +6,30 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Convention
+ * @ORM\Entity
  */
 class Convention
 {
     /**
      * @var integer
+     * 
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
      * @var string
+     * 
+     * @ORM\Column(type="string")
      */
     private $numero;
 
     /**
      * @var \DateTime
+     * 
+     * @ORM\Column(type="datetime")
      */
     private $edition;
 

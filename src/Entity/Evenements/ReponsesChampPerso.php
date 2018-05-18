@@ -6,26 +6,37 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * ReponsesChampPerso
+ * @ORM\Entity
  */
 class ReponsesChampPerso
 {
     /**
      * @var integer
+     * 
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
      * @var boolean
+     * 
+     * @ORM\Column(type="boolean")
      */
     private $reponse;
 
     /**
      * @var string
+     * 
+     * @ORM\Column(type="string")
      */
     private $reponseText;
 
     /**
      * @var \DateTime
+     * 
+     * @ORM\Column(type="datetime")
      */
     private $date;
 	

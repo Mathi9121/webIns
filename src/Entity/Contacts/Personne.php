@@ -7,49 +7,66 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Personne
+ * @ORM\Entity
  */
 class Personne
 {
     /**
      * @var integer
+     * 
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
      * @var string
+     * 
+     * @ORM\Column(type="string")
      */
     private $civilite;
 
     /**
      * @var string
+     * 
+     * @ORM\Column(type="integer")
      */
     private $nom;
 
     /**
      * @var string
+     * 
+     * @ORM\Column(type="integer")
      */
     private $prenom;
 
     /**
      * @var string
+     * 
+     * @ORM\Column(type="integer")
      */
     private $fonction;
 
     /**
      * @var string
+     * 
+     * @ORM\Column(type="integer")
      */
     private $tel;
 
     /**
      * @var string
+     * 
+     * @ORM\Column(type="integer")
      */
     private $mail;
 
     /**
      * @var string
+     * 
+     * @ORM\Column(type="integer")
      */
-
-
 	private $type;
 
     /**
