@@ -18,7 +18,7 @@ champPerso_create:
 champPerso_edit:
     path:     /evenement-{idevenement}/{generation}
     controller: App\Controller\Evenements\ChampPerso::edit
-    default:
+    defaults:
         generation : edit
     requirements: 
         generation: generate|edit

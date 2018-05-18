@@ -7,7 +7,7 @@ framework:
     #translator:      { fallback: "%locale%" }
     secret:          "%env(APP_SECRET)%"
     router:
-        resource: "%kernel.root_dir%/config/routes/routes_form.yaml"
+        resource: "%kernel.project_dir%/config/routes/routes_form.yaml"
         strict_requirements: ~
     form:            ~
     csrf_protection: ~
@@ -53,7 +53,7 @@ doctrine:
 
 framework:
     router:
-        resource: "%kernel.root_dir%/config/routes/routes_form.yaml"
+        resource: "%kernel.project_dir%/config/routes/routes_form.yaml"
         strict_requirements: true
     profiler: { only_exceptions: false }
     templating:

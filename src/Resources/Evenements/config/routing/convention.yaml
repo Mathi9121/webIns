@@ -1,7 +1,7 @@
 convention:
     path:     /{slug}
     controller: App\Controller\Evenements\Convention::index
-    default:
+    defaults:
         slug: 1
 
 convention_show:
