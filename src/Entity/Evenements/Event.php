@@ -2,6 +2,8 @@
 
 namespace App\Entity\Evenements;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Event
  * @ORM\Table(name="Event")
