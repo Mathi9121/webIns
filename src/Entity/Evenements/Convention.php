@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Convention
  * @ORM\Table(name="Convention")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\Evenements\ConventionRepository")
  */
 class Convention
 {

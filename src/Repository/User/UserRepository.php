@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity\User;
+namespace App\Repository\User;
 
 use Doctrine\ORM\EntityRepository;
 

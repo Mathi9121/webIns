@@ -9,7 +9,7 @@ use Symfony\Component\Security\Core\Role\Role;
 /**
  * User
  * @ORM\Table(name="User")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\User\UserRepository")
  */
 class User implements UserInterface
 {

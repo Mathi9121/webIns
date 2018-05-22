@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity\Contacts;
+namespace App\Repository\Contacts;
 
 use Doctrine\ORM\EntityRepository;
 

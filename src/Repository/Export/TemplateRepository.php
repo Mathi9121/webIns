@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity\Export;
+namespace App\Repository\Export;
 
 use Doctrine\ORM\EntityRepository;
 

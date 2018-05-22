@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\Criteria;
 /**
  * Inscription
  * @ORM\Table(name="Inscription")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\Evenements\InscriptionRepository")
  */
 class Inscription
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity\Evenements;
+namespace App\Repository\Evenements;
 
 use Doctrine\ORM\EntityRepository;
 use App\DQL\Evenements\Year;

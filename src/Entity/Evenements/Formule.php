@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Formule
  * @ORM\Table(name="Formule")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\Evenements\FormuleRepository")
  */
 class Formule
 {

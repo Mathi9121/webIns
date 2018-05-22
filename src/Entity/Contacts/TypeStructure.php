@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * TypeStructure
  * @ORM\Table(name="TypeStructure")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\Contacts\TypeStructureRepository")
  */
 class TypeStructure
 {

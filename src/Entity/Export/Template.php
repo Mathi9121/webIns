@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Template
  * @ORM\Table(name="Template")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\Export\TemplateRepository")
  */
 class Template
 {

@@ -10,7 +10,7 @@ use App\Entity\Evenements\ModeleChampPerso;
 /**
  * Evenement
  * @ORM\Table(name="Evenement")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\Evenements\EvenementRepository")
  */
 class Evenement
 {
