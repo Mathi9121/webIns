@@ -1,0 +1,4 @@
+Entity\Evenements\Event:
+    type: entity
+    table: null
+    lifecycleCallbacks: {  }

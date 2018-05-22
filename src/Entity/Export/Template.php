@@ -23,28 +23,28 @@ class Template
     /**
      * @var string
      * 
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      */
     private $nom;
 
     /**
      * @var string
      * 
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      */
     private $type;
 
     /**
      * @var \DateTime
      * 
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $date;
 
     /**
      * @var string
      * 
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $contenu;
 
@@ -152,6 +152,8 @@ class Template
     }
     /**
      * @var string
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $filename;
 
@@ -184,6 +186,8 @@ class Template
     }
     /**
      * @var integer
+     *
+     * @ORM\Column(type="integer", options={"default":0})
      */
     private $ordre = 0;
 

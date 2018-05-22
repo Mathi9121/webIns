@@ -23,14 +23,14 @@ class Convention
     /**
      * @var string
      * 
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $numero;
 
     /**
      * @var \DateTime
      * 
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date", nullable=true)
      */
     private $edition;
 
@@ -125,16 +125,22 @@ class Convention
 	}
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(type="date", nullable=true)
      */
     private $etape1;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(type="date", nullable=true)
      */
     private $etape2;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(type="date", nullable=true)
      */
     private $etape3;
 
@@ -209,6 +215,8 @@ class Convention
     }
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(type="date", nullable=true)
      */
     private $etape4;
 

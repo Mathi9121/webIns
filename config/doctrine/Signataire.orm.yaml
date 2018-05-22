@@ -1,0 +1,4 @@
+Entity\Contacts\Signataire:
+    type: entity
+    table: null
+    lifecycleCallbacks: {}

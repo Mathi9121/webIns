@@ -1,0 +1,4 @@
+Entity\Contacts\Admin:
+    type: entity
+    table: null
+    lifecycleCallbacks: {}

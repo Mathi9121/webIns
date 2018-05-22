@@ -23,21 +23,21 @@ class ReponsesChampPerso
     /**
      * @var boolean
      * 
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
     private $reponse;
 
     /**
      * @var string
      * 
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $reponseText;
 
     /**
      * @var \DateTime
      * 
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $date;
 	

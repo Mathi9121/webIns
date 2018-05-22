@@ -21,18 +21,18 @@ class Formule
      * @ORM\Column(type="integer")
      */
     private $id;
-	
+
     /**
      * @var string
      * 
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="text")
      */
     private $description;
 
     /**
      * @var string
      * 
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      */
     private $tarif;
 

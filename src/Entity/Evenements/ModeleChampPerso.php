@@ -23,21 +23,21 @@ class ModeleChampPerso
     /**
      * @var \DateTime
      * 
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $date;
 
     /**
      * @var string
      * 
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      */
     private $description;
 
     /**
      * @var string
      * 
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      */
     private $typeReponse;
 
@@ -176,6 +176,8 @@ class ModeleChampPerso
  
     /**
      * @var integer
+     *
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $ordre;
 

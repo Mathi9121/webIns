@@ -31,42 +31,42 @@ class Inscription
     /**
      * @var string
      * 
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      */
     private $statut;
 
     /**
      * @var string
      * 
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $attentes;
 
     /**
      * @var string
      * 
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $statutOrgFinanceur;
 
     /**
      * @var string
      * 
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $statutConvention;
 
     /**
      * @var string
      * 
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $hash;
 
 	/**
      * @var string
      * 
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $ordre;
 
@@ -532,6 +532,8 @@ class Inscription
 	}
     /**
      * @var boolean
+     *
+     * @ORM\Column(type="boolean", nullable=true)
      */
     private $provenancePCST;
 
@@ -560,6 +562,8 @@ class Inscription
     }
     /**
      * @var boolean
+     *
+     * @ORM\Column(type="boolean", nullable=true)
      */
     private $statutFinancement;
 

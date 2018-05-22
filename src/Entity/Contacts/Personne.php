@@ -24,49 +24,49 @@ class Personne
     /**
      * @var string
      * 
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $civilite;
 
     /**
      * @var string
      * 
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $nom;
 
     /**
      * @var string
      * 
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $prenom;
 
     /**
      * @var string
      * 
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $fonction;
 
     /**
      * @var string
      * 
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $tel;
 
     /**
      * @var string
      * 
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $mail;
 
     /**
      * @var string
      * 
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string")
      */
 	private $type;
 
@@ -227,6 +227,8 @@ class Personne
 
     /**
      * @var string
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $fax;
 
@@ -361,7 +363,12 @@ class Personne
         return $this->intervenant;
     }
 
-	private $commentaire;
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+     private $commentaire;
 
 	/**
      * Set commentaire

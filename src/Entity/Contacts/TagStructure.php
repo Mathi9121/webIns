@@ -25,7 +25,7 @@ class TagStructure
     /**
      * @var string
      * 
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      */
     private $tag;
 

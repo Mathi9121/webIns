@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 class UserType extends AbstractType
 {
@@ -29,7 +30,7 @@ class UserType extends AbstractType
             ->add('login', TextType::class, array(
 				'label'=> 'Login',
 			))
-            ->add('password', 'password', array(
+            ->add('password', PasswordType::class, array(
 				'label'=> 'Mot de passe',
 			))
         ;

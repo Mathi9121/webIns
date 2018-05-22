@@ -196,11 +196,13 @@ class User implements UserInterface
 	}
 
 	public function eraseCredentials(){
-	
+
 	}
-	
+
     /**
      * @var string
+     *
+     * @ORM\Column(type="string")
      */
     private $login;
 

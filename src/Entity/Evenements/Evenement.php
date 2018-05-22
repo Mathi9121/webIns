@@ -29,42 +29,42 @@ class Evenement
     /**
      * @var string
      * 
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255)
      */
     private $intitule;
 
     /**
      * @var string
      * 
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255))
      */
     private $lieu;
 
     /**
      * @var \DateTime
      * 
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date", length=255))
      */
     private $dateDebut;
 
     /**
      * @var \DateTime
      * 
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date", length=255))
      */
     private $dateFin;
 
     /**
      * @var string
      * 
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=255))
      */
     private $dateText;
 
     /**
      * @var decimal
      * 
-     * @ORM\Column(type="decimal")
+     * @ORM\Column(type="string", length=255))
      */
     private $nbHeures;
 
@@ -413,6 +413,8 @@ class Evenement
     }
     /**
      * @var string
+     *
+     * @ORM\Column(type="decimal", scale=1, precision=5)
      */
     private $nbJours;
 
