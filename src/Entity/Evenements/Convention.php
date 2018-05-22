@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Convention
+ * @ORM\Table(name="Convention")
  * @ORM\Entity
  */
 class Convention

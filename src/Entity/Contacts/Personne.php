@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Personne
+ * @ORM\Table(name="Personne")
  * @ORM\Entity
  */
 class Personne

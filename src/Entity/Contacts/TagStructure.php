@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * TagStructure
+ * @ORM\Table(name="TagStructure")
  * @ORM\Entity
  */
 class TagStructure

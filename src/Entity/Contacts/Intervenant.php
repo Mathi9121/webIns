@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Intervenant
+ * @ORM\Table(name="Intervenant")
  * @ORM\Entity
  */
 class Intervenant extends Personne

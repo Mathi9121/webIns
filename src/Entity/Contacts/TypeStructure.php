@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * TypeStructure
+ * @ORM\Table(name="TypeStructure")
  * @ORM\Entity
  */
 class TypeStructure

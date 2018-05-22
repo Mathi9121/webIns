@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Template
+ * @ORM\Table(name="Template")
  * @ORM\Entity
  */
 class Template

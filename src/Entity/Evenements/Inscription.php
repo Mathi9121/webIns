@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\Criteria;
 
 /**
  * Inscription
+ * @ORM\Table(name="Inscription")
  * @ORM\Entity
  */
 class Inscription

@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * evenementFormule
+ * @ORM\Table(name="evenementFormule")
  * @ORM\Entity
  */
 class evenementFormule

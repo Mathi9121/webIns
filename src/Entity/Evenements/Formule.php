@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Formule
+ * @ORM\Table(name="Formule")
  * @ORM\Entity
  */
 class Formule

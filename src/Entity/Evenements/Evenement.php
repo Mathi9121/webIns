@@ -9,6 +9,7 @@ use App\Entity\Evenements\ModeleChampPerso;
 
 /**
  * Evenement
+ * @ORM\Table(name="Evenement")
  * @ORM\Entity
  */
 class Evenement
