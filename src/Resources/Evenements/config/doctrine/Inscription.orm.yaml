@@ -35,7 +35,7 @@ Entity\Evenements\Inscription:
                     personne_id:
                         referencedColumnName: id
                         onDelete: CASCADE
-    repositoryClass: Entity\Evenements\InscriptionRepository
+    repositoryClass: Repository\Evenements\InscriptionRepository
     id:
         id:
             type: integer

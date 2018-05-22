@@ -1,7 +1,7 @@
 Entity\User\User:
     type: entity
     table: null
-    repositoryClass: Entity\User\UserRepository
+    repositoryClass: Repository\User\UserRepository
     id:
         id:
             type: integer

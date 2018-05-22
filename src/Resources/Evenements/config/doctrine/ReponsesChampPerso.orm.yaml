@@ -14,7 +14,7 @@ Entity\Evenements\ReponsesChampPerso:
                 name: personne_id
                 referencedColumnName: id
     table: null
-    repositoryClass: Entity\Evenements\ReponsesChampPersoRepository
+    repositoryClass: Repository\Evenements\ReponsesChampPersoRepository
     id:
         id:
             type: integer

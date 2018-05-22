@@ -29,7 +29,7 @@ Entity\Contacts\Personne:
         fetch: EAGER
         mappedBy: personnes
     table: null
-    repositoryClass: Entity\Contacts\PersonneRepository
+    repositoryClass: Repository\Contacts\PersonneRepository
     id:
         id:
             type: integer

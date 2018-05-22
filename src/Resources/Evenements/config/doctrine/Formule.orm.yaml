@@ -7,7 +7,7 @@ Entity\Evenements\Formule:
             mappedBy: formule
             fetch: EAGER
             cascade: ["persist"]
-    repositoryClass: Entity\Evenements\FormuleRepository
+    repositoryClass: Repository\Evenements\FormuleRepository
     id:
         id:
             type: integer

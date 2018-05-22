@@ -1,7 +1,7 @@
 Entity\Export\Template:
     type: entity
     table: null
-    repositoryClass: Entity\Export\TemplateRepository
+    repositoryClass: Repository\Export\TemplateRepository
     id:
         id:
             type: integer

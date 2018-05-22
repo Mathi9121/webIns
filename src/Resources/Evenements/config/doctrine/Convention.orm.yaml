@@ -5,7 +5,7 @@ Entity\Evenements\Convention:
         inscription:
             targetEntity: Inscription
             mappedBy: convention
-    repositoryClass: Entity\Evenements\ConventionRepository
+    repositoryClass: Repository\Evenements\ConventionRepository
     id:
         id:
             type: integer

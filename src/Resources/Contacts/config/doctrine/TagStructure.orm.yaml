@@ -5,7 +5,7 @@ Entity\Contacts\TagStructure:
             targetEntity: Adresse
             mappedBy: tags
     table: null
-    repositoryClass: Entity\Contacts\TagStructureRepository
+    repositoryClass: Repository\Contacts\TagStructureRepository
     id:
         id:
             type: integer

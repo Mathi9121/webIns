@@ -1,5 +1,5 @@
 Entity\Contacts\Stagiaire:
     type: entity
     table: null
-    repositoryClass: Entity\Contacts\StagiaireRepository
+    repositoryClass: Repository\Contacts\StagiaireRepository
     lifecycleCallbacks: {}
