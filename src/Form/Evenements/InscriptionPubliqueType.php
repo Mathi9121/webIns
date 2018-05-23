@@ -18,6 +18,7 @@ use App\Entity\Contacts\Stagiaire;
 use App\Entity\Contacts\Adresse;
 use App\Entity\Contacts\Admin;
 use App\Entity\Evenements\Inscription;
+use App\Entity\Evenements\evenementFormule;
 
 class InscriptionPubliqueType extends AbstractType
 {
@@ -38,7 +39,7 @@ class InscriptionPubliqueType extends AbstractType
 		$idevenement = $this->idevenement;
         $builder
 			->add('evenementformule', EntityType::class, array(
-				'class' => 'Entity\Evenements\evenementFormule',
+				'class' => evenementFormule::class,
 				'choice_translation_domain' => true,
 				"attr" => array('class'=>'width-100'),
 				"query_builder" => function(EntityRepository $er) use ($idevenement)
@@ -61,7 +62,6 @@ class InscriptionPubliqueType extends AbstractType
 							'Mme' => 'Mme',
 							'Mr' => 'Mr',
 							),
-						'choices_as_values' => true,
 						//'empty_value' => 'Choisissez une option',
 						'attr' => array('class'=> 'width-100'),
 						'required' => true,

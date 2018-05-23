@@ -29,7 +29,6 @@ class PersonneType extends AbstractType
 					'Mme' => 'Mme',
 					'Mr' => 'Mr',
                     ),
-                'choices_as_values' => true,
 				//'empty_value' => 'Choisissez une option',
 				'attr' => array('class'=> 'width-100'),
 				'required' => false,

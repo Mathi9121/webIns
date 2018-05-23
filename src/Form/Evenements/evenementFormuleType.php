@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Entity\Evenements\evenementFormule;
+use App\Entity\Evenements\Formule;
 
 class evenementFormuleType extends AbstractType
 {
@@ -19,7 +20,7 @@ class evenementFormuleType extends AbstractType
     {
         $builder
             ->add('formule', EntityType::class, array(
-                'class' => 'Entity\Evenements\Formule',
+                'class' => Formule::class,
                 'choice_translation_domain' => true,
 				'label'=> false,
 				'attr'=> array('class'=>'width-100'),

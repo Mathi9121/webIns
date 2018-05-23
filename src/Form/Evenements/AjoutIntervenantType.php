@@ -9,6 +9,7 @@ use App\Form\Contacts\DataTransformer\StringToTagsTransformer;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Entity\Evenements\Evenement;
+use App\Entity\Contacts\Intervenant;
 
 class AjoutIntervenantType extends AbstractType
 {
@@ -20,7 +21,7 @@ class AjoutIntervenantType extends AbstractType
     {
         $builder
           ->add('intervenants', EntityType::class, array(
-            'class' => 'Entity\Contacts\Intervenant',
+            'class' => Intervenant::class,
             'choice_translation_domain' => true,
             'multiple' => true,
             'expanded' => true,

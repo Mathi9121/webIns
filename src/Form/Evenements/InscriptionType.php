@@ -23,6 +23,7 @@ use App\Entity\Evenements\Convention;
 use App\Entity\Contacts\Admin;
 use App\Entity\Contacts\Signataire;
 use App\Entity\Evenements\Inscription;
+use App\Entity\Evenements\evenementFormule;
 
 class InscriptionType extends AbstractType
 {
@@ -49,7 +50,7 @@ class InscriptionType extends AbstractType
 				'em' => $entityManager
 				))
 			->add('evenementformule', EntityType::class, array(
-				'class' => 'Entity\Evenements\evenementFormule',
+				'class' => evenementFormule::class,
 				'choice_translation_domain' => true,
 				"attr" => array('class'=>'width-100'),
 				"query_builder" => function(EntityRepository $er) use ($idevenement)
@@ -71,7 +72,6 @@ class InscriptionType extends AbstractType
 				))
             ->add('numberStatut', ChoiceType::class, array(
 				'choices'   => array('Validé' => '1', 'En attente' => '2', "Annulé" => "3"),
-				'choices_as_values' => true,
 				//'preferred_choices' => array('en attente')
 				'attr' => array('class' => 'width-100'),
 				"label" => "Statut de l'inscription"
@@ -89,7 +89,6 @@ class InscriptionType extends AbstractType
 					'OUI' => true,
 					'NON' => false,
 					),
-				'choices_as_values' => true,
 				'required' => false,
 				'empty_value' => "Ne sais pas",
 				'label' => "Le stagiaire a-t-il besoin d'une convention?"
@@ -99,7 +98,6 @@ class InscriptionType extends AbstractType
 					'Accordé' => true,
 					'NON' => false ,
 					),
-				'choices_as_values' => true,
 				'required' => false,
 				'empty_value' => "En attente",
 				'label' => "Statut du financement :"

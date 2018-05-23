@@ -31,7 +31,6 @@ class EvenementType extends AbstractType
 			  'Formation' => "formation",
               'Evénement' => "event" 
 		  ),
-		  'choices_as_values' => true,
         ))
 			   ->add('intitule', null, array(
 				    'required' => true,

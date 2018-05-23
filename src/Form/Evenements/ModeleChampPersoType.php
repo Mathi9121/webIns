@@ -14,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Entity\Evenements\ModeleChampPerso;
+use App\Entity\Evenements\evenementFormule;
 
 class ModeleChampPersoType extends AbstractType
 {
@@ -50,12 +51,11 @@ class ModeleChampPersoType extends AbstractType
 					'Oui/Non' => 'bool',
 					//'Date/Heure'	=> 'dateTime',
 				),
-				'choices_as_values' => true,
 				'empty_value' => 'Type de réponse',
 				'required' => true,
 			))
 			->add('evenementFormule', EntityType::class, array(
-				'class' => 'Entity\Evenements\evenementFormule',
+				'class' => evenementFormule::class,
 				'choice_translation_domain' => true,
 				'multiple' => true,
 				'expanded' => true,
