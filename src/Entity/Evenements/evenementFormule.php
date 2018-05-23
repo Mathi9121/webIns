@@ -144,6 +144,8 @@ class evenementFormule
 	}
     /**
      * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\OneToMany(targetEntity="App\Entity\Evenements\Inscription", mappedBy="evenementFormule")
      */
     private $inscriptions;
 

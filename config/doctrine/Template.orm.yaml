@@ -1,4 +1,4 @@
-Entity\Export\Template:
+App\Entity\Export\Template:
     type: entity
     table: null
     repositoryClass: Repository\Export\TemplateRepository

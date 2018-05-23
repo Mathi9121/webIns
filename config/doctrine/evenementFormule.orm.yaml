@@ -1,4 +1,4 @@
-Entity\Evenements\evenementFormule:
+App\Entity\Evenements\evenementFormule:
     type: entity
     manyToOne:
         formule:

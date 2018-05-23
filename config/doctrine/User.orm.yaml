@@ -1,4 +1,4 @@
-Entity\User\User:
+App\Entity\User\User:
     type: entity
     table: null
     repositoryClass: Repository\User\UserRepository

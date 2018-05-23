@@ -1,4 +1,4 @@
-Entity\Evenements\Formule:
+App\Entity\Evenements\Formule:
     type: entity
     table: null
     oneToMany:

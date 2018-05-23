@@ -1,4 +1,4 @@
-Entity\Contacts\TypeStructure:
+App\Entity\Contacts\TypeStructure:
     type: entity
     oneToMany:
         adresse:

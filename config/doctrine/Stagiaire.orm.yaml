@@ -1,4 +1,4 @@
-Entity\Contacts\Stagiaire:
+App\Entity\Contacts\Stagiaire:
     type: entity
     table: null
     repositoryClass: Repository\Contacts\StagiaireRepository

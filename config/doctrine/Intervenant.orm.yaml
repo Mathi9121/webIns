@@ -1,4 +1,4 @@
-Entity\Contacts\Intervenant:
+App\Entity\Contacts\Intervenant:
     type: entity
     manyToMany:
       evenements:

@@ -1,4 +1,4 @@
-Entity\Evenements\TypeEvenement:
+App\Entity\Evenements\TypeEvenement:
     type: entity
     oneToMany:
       evenements:

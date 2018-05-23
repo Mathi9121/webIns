@@ -270,6 +270,11 @@ class Inscription
     }
 
 
+   /**
+    *
+    * @ORM\ManyToOne(targetEntity="App\Entity\Evenements\evenementFormule", inversedBy="inscriptions")
+    * @ORM\JoinColumn(name="evenementformule_id", referencedColumnName="id")
+    */
     private $evenementformule;
 
 

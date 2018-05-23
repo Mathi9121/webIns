@@ -1,4 +1,4 @@
-Entity\Evenements\Formation:
+App\Entity\Evenements\Formation:
     type: entity
     table: null
     lifecycleCallbacks: {  }

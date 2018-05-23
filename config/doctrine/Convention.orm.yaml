@@ -1,4 +1,4 @@
-Entity\Evenements\Convention:
+App\Entity\Evenements\Convention:
     type: entity
     table: null
     oneToOne:

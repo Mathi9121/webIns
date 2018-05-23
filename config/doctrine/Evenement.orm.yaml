@@ -1,4 +1,4 @@
-Entity\Evenements\Evenement:
+App\Entity\Evenements\Evenement:
     type: entity
     inheritanceType: SINGLE_TABLE
     discriminatorColumn:

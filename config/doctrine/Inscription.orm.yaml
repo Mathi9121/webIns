@@ -1,4 +1,4 @@
-Entity\Evenements\Inscription:
+App\Entity\Evenements\Inscription:
     type: entity
     table: null
     oneToOne:

@@ -1,4 +1,4 @@
-Entity\Contacts\TagStructure:
+App\Entity\Contacts\TagStructure:
     type: entity
     manyToMany:
         structures:

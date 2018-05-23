@@ -1,4 +1,4 @@
-Entity\Contacts\Personne:
+App\Entity\Contacts\Personne:
     type: entity
     inheritanceType: SINGLE_TABLE
     discriminatorColumn:

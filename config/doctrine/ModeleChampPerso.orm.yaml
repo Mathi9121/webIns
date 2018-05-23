@@ -1,4 +1,4 @@
-Entity\Evenements\ModeleChampPerso:
+App\Entity\Evenements\ModeleChampPerso:
     type: entity
     oneToMany:
         reponses:

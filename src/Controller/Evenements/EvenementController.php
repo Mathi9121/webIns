@@ -42,7 +42,7 @@ class EvenementController extends Controller
 
       $qb = $em->createQueryBuilder('f')
         ->select('f, YEAR(f.dateDebut) AS annee')
-        ->from($className, 'f')
+        ->from(Evenement::class, 'f')
         ->addOrderBy('annee', 'DESC')
         ->addOrderBy('f.dateDebut', 'ASC');
 

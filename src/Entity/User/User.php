@@ -55,7 +55,7 @@ class User implements UserInterface
      *
      * @ORM\Column(type="boolean")
      */
-    private $admin;
+//    private $admin;
 
 
     /**
@@ -166,22 +166,22 @@ class User implements UserInterface
      * @param boolean $admin
      * @return User
      */
-    public function setAdmin($admin)
+  /*  public function setAdmin($admin)
     {
         $this->admin = $admin;
 
         return $this;
-    }
+    }*/
 
     /**
      * Get admin
      *
      * @return boolean 
      */
-    public function getAdmin()
+   /* public function getAdmin()
     {
         return $this->admin;
-    }
+    }*/
 
 	public function getUsername(){
 		return $this->getLogin();
