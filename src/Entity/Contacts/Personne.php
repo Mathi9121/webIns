@@ -257,6 +257,9 @@ class Personne
     }
     /**
      * @var \Entity\Contacts\Adresse
+     * 
+     * @ORM\OneToOne(targetEntity="App\Entity\Contacts\Adresse")
+     * @ORM\JoinColumn(name="adresse_id", referencedColumnName="id")
      */
     private $adresse;
 
@@ -289,6 +292,8 @@ class Personne
 	}
     /**
      * @var \Entity\Evenements\Inscription
+     * 
+     * @ORM\ManyToMany(targetEntity="App\Entity\Evenements\Inscription", mappedBy="personnes")
      */
     private $inscription;
 
@@ -395,6 +400,8 @@ class Personne
 
     /**
      * @var \Doctrine\Common\Collections\Collection
+     * 
+     * @ORM\OneToMany(targetEntity="App\Entity\Evenements\ReponsesChampPerso", mappedBy="personne")
      */
     private $reponsesChampPerso;
 

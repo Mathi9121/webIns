@@ -190,6 +190,8 @@ class Formule
 	}
     /**
      * @var \Doctrine\Common\Collections\Collection
+     * 
+     * @ORM\OneToMany(targetEntity="App\Entity\Evenements\evenementFormule", mappedBy="formule")
      */
     private $evenementFormule;
 

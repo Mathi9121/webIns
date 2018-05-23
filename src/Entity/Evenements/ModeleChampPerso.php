@@ -127,6 +127,8 @@ class ModeleChampPerso
 	}
     /**
      * @var \Doctrine\Common\Collections\Collection
+     * 
+     * @ORM\OneToMany(targetEntity="App\Entity\Evenements\ReponsesChampPerso", mappedBy="modele")
      */
     private $reponses;
 
@@ -208,6 +210,8 @@ class ModeleChampPerso
 	
     /**
      * @var \Doctrine\Common\Collections\Collection
+     * 
+     * @ORM\ManyToMany(targetEntity="App\Entity\Evenements\evenementFormule", mappedBy="modeles")
      */
     private $evenementFormule;
 
@@ -248,6 +252,9 @@ class ModeleChampPerso
    
     /**
      * @var \Entity\Evenements\Evenement
+     * 
+     * @ORM\ManyToOne(targetEntity="App\Entity\Evenements\Evenement", inversedBy="modelesIntervenants")
+     * @ORM\JoinColumn(name="evenement_id", referencedColumnName="id")
      */
     private $evenement;
 

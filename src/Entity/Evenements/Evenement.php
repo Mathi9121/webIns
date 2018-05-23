@@ -14,7 +14,11 @@ use App\Entity\Evenements\ModeleChampPerso;
  */
 class Evenement
 {
-
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Evenements\TypeEvenement", inversedBy="evenements")
+     * @ORM\JoinColumn(name="type_id", referencedColumnName="id")
+     */
 	protected $type;
 
     /**
@@ -253,6 +257,8 @@ class Evenement
 
     /**
      * @var \Doctrine\Common\Collections\Collection
+     * 
+     * @ORM\OneToMany(targetEntity="App\Entity\Evenement\evenementFormule", mappedBy="evenement")
      */
     private $evenementFormule;
 	private $modeles;
@@ -310,6 +316,12 @@ class Evenement
     }
     /**
      * @var \Doctrine\Common\Collections\Collection
+     * 
+     * @ORM\ManyToMany(targetEntity="App\Entity\Contacts\Intervenant", inversedBy="evenements")
+     * @ORM\JoinTable(name="Intervenants",
+     *      joinColumns={@JoinColumn(name="evenement_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="intervenant_id", referencedColumnName="id")}
+     *      )
      */
     private $intervenants;
 
@@ -375,6 +387,8 @@ class Evenement
 	}
     /**
      * @var \Doctrine\Common\Collections\Collection
+     * 
+     * @ORM\OneToMany(targetEntity="App\Entity\Evenement\ModeleChampPerso", mappedBy="evenement")
      */
     private $modelesIntervenants;
 

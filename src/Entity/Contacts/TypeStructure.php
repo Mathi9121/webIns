@@ -80,6 +80,8 @@ class TypeStructure
 	}
     /**
      * @var \Doctrine\Common\Collections\Collection
+     * 
+     * @ORM\OneToMany(targetEntity="App\Entity\Contacts\Adresse", mappedBy="type")
      */
     private $adresse;
 

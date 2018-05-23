@@ -213,11 +213,20 @@ class Adresse
 
     /**
      * @var \Entity\Contacts\TypeStructure
+     * 
+     * @ORM\ManyToOne(targetEntity="App\Entity\Contacts\TypeStructure", inversedBy="adresse")
+     * @ORM\JoinColumn(name="type_id", referencedColumnName="id")
      */
     private $type;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
+     * 
+     * @ORM\ManyToMany(targetEntity="App\Entity\Contacts\TagStructure", inversedBy="structures")
+     * @ORM\JoinTable(name="adresses_tags",
+     *      joinColumns={@JoinColumn(name="adresse_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="tagStructure_id", referencedColumnName="id")}
+     *      )
      */
     private $tags;
 

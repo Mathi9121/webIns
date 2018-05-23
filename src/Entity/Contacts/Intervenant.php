@@ -13,6 +13,8 @@ class Intervenant extends Personne
 {
     /**
      * @var \Doctrine\Common\Collections\Collection
+     * 
+     * @ORM\ManyToMany(targetEntity="App\Entity\Evenements\Evenement", mappedBy="intervenants")
      */
     private $evenements;
 

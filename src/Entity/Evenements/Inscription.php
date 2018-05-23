@@ -242,6 +242,9 @@ class Inscription
 
     /**
      * @var \Entity\Evenements\Convention
+     * 
+     * @ORM\OneToOne(targetEntity="App\Entity\Evenements\Convention", inversedBy="inscription")
+     * @ORM\JoinColumn(name="convention_id", referencedColumnName="id")
      */
     private $convention;
 
@@ -417,6 +420,12 @@ class Inscription
 
     /**
      * @var \Doctrine\Common\Collections\Collection
+     * 
+     * @ORM\ManyToMany(targetEntity="App\Entity\Contacts\Personne", inversedBy="inscription")
+     * @ORM\JoinTable(name="inscription_personnes",
+     *      joinColumns={@JoinColumn(name="inscription_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="personne_id", referencedColumnName="id")}
+     *      )
      */
     private $personnes;
 

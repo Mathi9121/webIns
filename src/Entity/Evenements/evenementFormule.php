@@ -22,16 +22,28 @@ class evenementFormule
 
     /**
      * @var \Doctrine\Common\Collections\Collection
+     * 
+     * @ORM\ManyToMany(targetEntity="App\Entity\Evenements\ModeleChampPerso", inversedBy="evenementFormule")
+     * @ORM\JoinTable(name="evenementformule_modele",
+     *      joinColumns={@JoinColumn(name="evenementformule_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="modele_id", referencedColumnName="id", unique=true)}
+     *      )
      */
     private $modeles;
 
     /**
      * @var \Entity\Evenements\Formule
+     * 
+     * @ORM\ManyToOne(targetEntity="App\Entity\Evenements\Formule", inversedBy="evenementFormule")
+     * @ORM\JoinColumn(name="formule_id", referencedColumnName="id")
      */
     private $formule;
 
     /**
      * @var \Entity\Evenements\Evenement
+     * 
+     * @ORM\ManyToOne(targetEntity="App\Entity\Evenements\Evenement", inversedBy="evenementFormule")
+     * @ORM\JoinColumn(name="evenement_id", referencedColumnName="id")
      */
     private $evenement;
 

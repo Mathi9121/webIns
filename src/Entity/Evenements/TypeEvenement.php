@@ -63,6 +63,8 @@ class TypeEvenement
     }
     /**
      * @var \Doctrine\Common\Collections\Collection
+     * 
+     * @ORM\OneToMany(targetEntity="App\Entity\Evenements\Evenement", mappedBy="type")
      */
     private $evenements;
 

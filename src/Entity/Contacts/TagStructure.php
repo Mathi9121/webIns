@@ -75,6 +75,8 @@ class TagStructure
 	}
     /**
      * @var \Doctrine\Common\Collections\Collection
+     * 
+     * @ORM\ManyToMany(targetEntity="App\Entity\Contacts\Adresse", mappedBy="tags")
      */
     private $structures;
 

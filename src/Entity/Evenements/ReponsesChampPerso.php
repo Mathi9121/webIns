@@ -122,7 +122,10 @@ class ReponsesChampPerso
     }
   
   
-  
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Contacts\Personne", inversedBy="reponsesChampPerso")
+     * @ORM\JoinColumn(name="modele_id", referencedColumnName="id")
+     */
     private $modele;
 
 
@@ -177,6 +180,9 @@ class ReponsesChampPerso
     }
     /**
      * @var \Entity\Contacts\Personne
+     * 
+     * @ORM\ManyToOne(targetEntity="App\Entity\Contacts\Personne", inversedBy="reponsesChampPerso")
+     * @ORM\JoinColumn(name="personne_id", referencedColumnName="id")
      */
     private $personne;
 

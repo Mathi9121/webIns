@@ -93,6 +93,8 @@ class Convention
 
     /**
      * @var \Entity\Evenements\Inscription
+     * 
+     * @ORM\OneToOne(targetEntity="App\Entity\Evenements\Inscription", mappedBy="convention")
      */
     private $inscription;
 
