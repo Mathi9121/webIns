@@ -14,6 +14,8 @@ use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Validator\Constraints as Assert;
 
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class InscriptionPubliqueController extends Controller
 {
@@ -48,7 +50,7 @@ class InscriptionPubliqueController extends Controller
         if ($entity == 'formule') {
 
             //exit(\Doctrine\Common\Util\Debug::dump($evenementType));
-            $form->add('evenements', 'entity', array(
+            $form->add('evenements', EntityType::class, array(
                 'mapped' => false,
                 'label' => 'Vous participerez aux événements',
                 'required' => false,
@@ -66,11 +68,11 @@ class InscriptionPubliqueController extends Controller
                 }
             ));
 
-            $form->add('evenementformule', 'hidden', array(
+            $form->add('evenementformule', HiddenType::class, array(
                 'mapped' => false,
                 'data' => 'type',
             ));
-            $form->add('typeid', 'hidden', array(
+            $form->add('typeid', HiddenType::class, array(
                 'mapped' => false,
                 'data' => $id,
             ));
@@ -100,7 +102,7 @@ class InscriptionPubliqueController extends Controller
 
         if ($idff == 'type') {
             $typeid = $partdonnees['typeid'];
-            $form->add('evenements', 'entity', array(
+            $form->add('evenements', EntityType::class, array(
                 'mapped' => false,
                 'label' => 'Vous participerez aux évènements',
                 'required' => false,
@@ -117,11 +119,11 @@ class InscriptionPubliqueController extends Controller
                         ->setParameter('id', $typeid);
                 }
             ));
-            $form->add('evenementformule', 'hidden', array(
+            $form->add('evenementformule', HiddenType::class, array(
                 'mapped' => false,
                 'data' => 'type',
             ));
-            $form->add('typeid', 'hidden', array(
+            $form->add('typeid', HiddenType::class, array(
                 'mapped' => false,
                 'data' => $typeid,
             ));

@@ -49,7 +49,7 @@ doctrine:
         auto_mapping: true
         dql:
             datetime_functions:
-                YEAR: DQL\Evenements\Year
+                YEAR: App\DQL\Evenements\Year
 
 framework:
     router:
