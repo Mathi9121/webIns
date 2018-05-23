@@ -25,8 +25,8 @@ class evenementFormule
      * 
      * @ORM\ManyToMany(targetEntity="App\Entity\Evenements\ModeleChampPerso", inversedBy="evenementFormule")
      * @ORM\JoinTable(name="evenementformule_modele",
-     *      joinColumns={@JoinColumn(name="evenementformule_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@JoinColumn(name="modele_id", referencedColumnName="id", unique=true)}
+     *      joinColumns={@ORM\JoinColumn(name="evenementformule_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="modele_id", referencedColumnName="id", unique=true)}
      *      )
      */
     private $modeles;

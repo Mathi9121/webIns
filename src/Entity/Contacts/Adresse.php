@@ -224,8 +224,8 @@ class Adresse
      * 
      * @ORM\ManyToMany(targetEntity="App\Entity\Contacts\TagStructure", inversedBy="structures")
      * @ORM\JoinTable(name="adresses_tags",
-     *      joinColumns={@JoinColumn(name="adresse_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@JoinColumn(name="tagStructure_id", referencedColumnName="id")}
+     *      joinColumns={@ORM\JoinColumn(name="adresse_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="tagStructure_id", referencedColumnName="id")}
      *      )
      */
     private $tags;

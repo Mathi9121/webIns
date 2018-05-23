@@ -423,8 +423,8 @@ class Inscription
      * 
      * @ORM\ManyToMany(targetEntity="App\Entity\Contacts\Personne", inversedBy="inscription")
      * @ORM\JoinTable(name="inscription_personnes",
-     *      joinColumns={@JoinColumn(name="inscription_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@JoinColumn(name="personne_id", referencedColumnName="id")}
+     *      joinColumns={@ORM\JoinColumn(name="inscription_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="personne_id", referencedColumnName="id")}
      *      )
      */
     private $personnes;

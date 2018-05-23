@@ -319,8 +319,8 @@ class Evenement
      * 
      * @ORM\ManyToMany(targetEntity="App\Entity\Contacts\Intervenant", inversedBy="evenements")
      * @ORM\JoinTable(name="Intervenants",
-     *      joinColumns={@JoinColumn(name="evenement_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@JoinColumn(name="intervenant_id", referencedColumnName="id")}
+     *      joinColumns={@ORM\JoinColumn(name="evenement_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="intervenant_id", referencedColumnName="id")}
      *      )
      */
     private $intervenants;
