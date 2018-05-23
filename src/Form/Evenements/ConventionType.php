@@ -9,6 +9,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 
+use App\Entity\Evenements\Convention;
+
 class ConventionType extends AbstractType
 {
         /**
@@ -67,7 +69,7 @@ class ConventionType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Entity\Evenements\Convention',
+            'data_class' => Convention::class,
 			'attr' => array('class'=> "forms")
         ));
     }

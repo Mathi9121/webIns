@@ -18,6 +18,11 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use App\Entity\Contacts\Stagiaire;
+use App\Entity\Evenements\Convention;
+use App\Entity\Contacts\Admin;
+use App\Entity\Contacts\Signataire;
+use App\Entity\Evenements\Inscription;
 
 class InscriptionType extends AbstractType
 {
@@ -39,7 +44,7 @@ class InscriptionType extends AbstractType
 		$idevenement = $this->idevenement;
         $builder
 			->add('stagiaire', PersonneType::class, array(
-				'data_class' => 'Entity\Contacts\Stagiaire',
+				'data_class' => Stagiaire::class,
 				//'type'=> PersonneType::class
 				'em' => $entityManager
 				))
@@ -101,16 +106,16 @@ class InscriptionType extends AbstractType
 			))
             //->add('hash')
       ->add('convention', ConventionType::class, array(
-				'data_class' => 'Entity\Evenements\Convention',
+				'data_class' => Convention::class,
 				'required' => false,
 			))
 			->add('admin', AdminType::class, array(
-				'data_class' => 'Entity\Contacts\Admin',
+				'data_class' => Admin::class,
 				'required' => false,
 
 			))
 			->add('signataire', SignataireType::class, array(
-				'data_class' => 'Entity\Contacts\Signataire',
+				'data_class' => Signataire::class,
 				'required' => false,
 				'em' => $entityManager
 			))
@@ -131,7 +136,7 @@ class InscriptionType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Entity\Evenements\Inscription',
+            'data_class' => Inscription::class,
 			'attr' => array('class' => 'forms')
         ));
 		$resolver->setRequired(array(

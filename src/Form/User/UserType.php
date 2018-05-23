@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use App\Entity\User\User;
 
 class UserType extends AbstractType
 {
@@ -42,7 +43,7 @@ class UserType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Entity\User\User',
+            'data_class' => User::class,
 			'attr' => array('class'=> 'forms'),
 
         ));

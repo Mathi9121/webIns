@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use App\Form\Contacts\DataTransformer\StringToTagsTransformer;
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use App\Entity\Contacts\Adresse;
 
 class AdresseType extends AbstractType
 {
@@ -58,7 +59,7 @@ class AdresseType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Entity\Contacts\Adresse'
+            'data_class' => Adresse::class
         ));
         $resolver->setRequired(array(
             'em',

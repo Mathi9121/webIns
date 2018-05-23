@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 use App\Form\Evenements\evenementFormuleType;
+use App\Entity\Evenements\Evenement;
 
 class EvenementType extends AbstractType
 {
@@ -99,7 +100,7 @@ class EvenementType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Entity\Evenements\Evenement'
+            'data_class' => Evenement::class
         ));
 
 	}

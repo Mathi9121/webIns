@@ -9,6 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 use App\Form\Evenements\ModeleChampPersoType;
+use App\Entity\Evenements\Evenement;
 
 class ChampPersoType extends AbstractType
 {
@@ -37,7 +38,7 @@ class ChampPersoType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' =>  'Entity\Evenements\Evenement',
+            'data_class' =>  Evenement::class,
 			'attr' => array('class'=> 'forms'),
         ));
     }

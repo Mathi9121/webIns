@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use App\Form\Contacts\DataTransformer\StringToTagsTransformer;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use App\Entity\Evenements\Evenement;
 
 class AjoutIntervenantType extends AbstractType
 {
@@ -35,7 +36,7 @@ class AjoutIntervenantType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-			     'data_class' => 'Entity\Evenements\Evenement',
+			     'data_class' => Evenement::class,
 		       'attr' => array('class'=> ''),
         ));
 

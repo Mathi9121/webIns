@@ -11,6 +11,8 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 use App\Form\Contacts\AdresseSignataireType;
+use App\Entity\Contacts\Adresse;
+use App\Entity\Contacts\Signataire;
 
 class SignataireType extends AbstractType
 {
@@ -46,7 +48,7 @@ class SignataireType extends AbstractType
 			))
 			->add('adresse', AdresseSignataireType::class, array(
 				'attr' => array('class'=> 'width-100'),
-				'data_class' => 'Entity\Contacts\Adresse',
+				'data_class' => Adresse::class,
 				'em' => $entityManager
 			))
         ;
@@ -58,7 +60,7 @@ class SignataireType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Entity\Contacts\Signataire',
+            'data_class' => Signataire::class,
 			'attr' => array('class'=> 'forms'),
         ));
 		$resolver->setRequired(array(

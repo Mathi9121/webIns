@@ -9,6 +9,7 @@ use App\Form\Contacts\DataTransformer\StringToTagsTransformer;
 use Doctrine\ORM\EntityRepository;
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use App\Entity\Contacts\Adresse;
 
 class AdresseSignataireType extends AbstractType
 {
@@ -66,7 +67,7 @@ class AdresseSignataireType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Entity\Contacts\Adresse',
+            'data_class' => Adresse::class,
 			'attr' => array('class'=>'forms')
         ));
 		$resolver->setRequired(array(

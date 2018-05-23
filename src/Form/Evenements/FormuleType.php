@@ -6,6 +6,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+use App\Entity\Evenements\Formule;
+
 class FormuleType extends AbstractType
 {
         /**
@@ -47,7 +49,7 @@ class FormuleType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Entity\Evenements\Formule'
+            'data_class' => Formule::class
         ));
     }
 

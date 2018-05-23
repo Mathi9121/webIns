@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 use App\Form\Contacts\AdresseType;
+use App\Entity\Contacts\Intervenant;
 
 class IntervenantType extends AbstractType
 {
@@ -72,7 +73,7 @@ class IntervenantType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-			'data_class' => 'Entity\Contacts\Intervenant',
+			'data_class' => Intervenant::class,
 			'attr' => array('class'=> 'forms'),
         ));
 

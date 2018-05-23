@@ -9,6 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Doctrine\ORM\EntityRepository;
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use App\Entity\Contacts\Structure;
 
 class StructureType extends AbstractType
 {
@@ -45,7 +46,7 @@ class StructureType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Entity\Contacts\Structure'
+            'data_class' => Structure::class
         ));
 		$resolver->setRequired(array(
             'em',
