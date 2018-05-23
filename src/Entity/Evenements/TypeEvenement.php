@@ -82,7 +82,7 @@ class TypeEvenement
      * @param \Entity\Evenements\Evenement $evenements
      * @return TypeEvenement
      */
-    public function addEvenement(\Entity\Evenements\Evenement $evenements)
+    public function addEvenement(\App\Entity\Evenements\Evenement $evenements)
     {
         $this->evenements[] = $evenements;
 
@@ -94,7 +94,7 @@ class TypeEvenement
      *
      * @param \Entity\Evenements\Evenement $evenements
      */
-    public function removeEvenement(\Entity\Evenements\Evenement $evenements)
+    public function removeEvenement(\App\Entity\Evenements\Evenement $evenements)
     {
         $this->evenements->removeElement($evenements);
     }

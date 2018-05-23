@@ -258,7 +258,7 @@ class Evenement
     /**
      * @var \Doctrine\Common\Collections\Collection
      * 
-     * @ORM\OneToMany(targetEntity="App\Entity\Evenement\evenementFormule", mappedBy="evenement")
+     * @ORM\OneToMany(targetEntity="App\Entity\Evenements\evenementFormule", mappedBy="evenement")
      */
     private $evenementFormule;
 	private $modeles;
@@ -388,7 +388,7 @@ class Evenement
     /**
      * @var \Doctrine\Common\Collections\Collection
      * 
-     * @ORM\OneToMany(targetEntity="App\Entity\Evenement\ModeleChampPerso", mappedBy="evenement")
+     * @ORM\OneToMany(targetEntity="App\Entity\Evenements\ModeleChampPerso", mappedBy="evenement")
      */
     private $modelesIntervenants;
 
