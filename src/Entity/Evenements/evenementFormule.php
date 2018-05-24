@@ -15,7 +15,7 @@ class evenementFormule
      * @var integer
      * 
      * @ORM\Id
-     * @ORM\GeneratedValue
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -23,7 +23,7 @@ class evenementFormule
     /**
      * @var \Doctrine\Common\Collections\Collection
      * 
-     * @ORM\ManyToMany(targetEntity="App\Entity\Evenements\ModeleChampPerso", inversedBy="evenementFormule")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Evenements\ModeleChampPerso", inversedBy="evenementFormule", cascade={"all"})
      * @ORM\JoinTable(name="evenementformule_modele",
      *      joinColumns={@ORM\JoinColumn(name="evenementformule_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="modele_id", referencedColumnName="id", unique=true)}
@@ -34,16 +34,16 @@ class evenementFormule
     /**
      * @var \Entity\Evenements\Formule
      * 
-     * @ORM\ManyToOne(targetEntity="App\Entity\Evenements\Formule", inversedBy="evenementFormule")
-     * @ORM\JoinColumn(name="formule_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Evenements\Formule", inversedBy="evenementFormule", fetch="EAGER", cascade={"persist"})
+     * @ORM\JoinColumn(name="formule_id", referencedColumnName="id", onDelete= "CASCADE")
      */
     private $formule;
 
     /**
      * @var \Entity\Evenements\Evenement
      * 
-     * @ORM\ManyToOne(targetEntity="App\Entity\Evenements\Evenement", inversedBy="evenementFormule")
-     * @ORM\JoinColumn(name="evenement_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Evenements\Evenement", inversedBy="evenementFormule", fetch="EAGER", cascade={"persist"})
+     * @ORM\JoinColumn(name="evenement_id", referencedColumnName="id", onDelete= "CASCADE")
      */
     private $evenement;
 
@@ -157,7 +157,7 @@ class evenementFormule
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\Evenements\Inscription", mappedBy="evenementFormule")
+     * @ORM\OneToMany(targetEntity="App\Entity\Evenements\Inscription", mappedBy="evenementFormule", cascade={"persist"})
      */
     private $inscriptions;
 

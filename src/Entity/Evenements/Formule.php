@@ -17,7 +17,7 @@ class Formule
      * @var integer
      * 
      * @ORM\Id
-     * @ORM\GeneratedValue
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -191,7 +191,7 @@ class Formule
     /**
      * @var \Doctrine\Common\Collections\Collection
      * 
-     * @ORM\OneToMany(targetEntity="App\Entity\Evenements\evenementFormule", mappedBy="formule")
+     * @ORM\OneToMany(targetEntity="App\Entity\Evenements\evenementFormule", mappedBy="formule", fetch= "EAGER", cascade={"persist"})
      */
     private $evenementFormule;
 

@@ -15,7 +15,7 @@ class Adresse
      * @var integer
      * 
      * @ORM\Id
-     * @ORM\GeneratedValue
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -222,7 +222,7 @@ class Adresse
     /**
      * @var \Doctrine\Common\Collections\Collection
      * 
-     * @ORM\ManyToMany(targetEntity="App\Entity\Contacts\TagStructure", inversedBy="structures")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Contacts\TagStructure", inversedBy="structures", cascade={"all"})
      * @ORM\JoinTable(name="adresses_tags",
      *      joinColumns={@ORM\JoinColumn(name="adresse_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="tagStructure_id", referencedColumnName="id")}

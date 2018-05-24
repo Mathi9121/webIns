@@ -9,6 +9,9 @@ use Doctrine\Common\Collections\ArrayCollection;
  * Personne
  * @ORM\Table(name="Personne")
  * @ORM\Entity(repositoryClass="App\Repository\Contacts\PersonneRepository")
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorColumn(name="discr", type="string")
+ * @ORM\DiscriminatorMap({"signataire" = "Signataire", "stagiaire" = "Stagiaire", "intervenant" = "Intervenant", "admin" = "Admin", "personne" = "Personne"})
  */
 class Personne
 {
@@ -16,7 +19,7 @@ class Personne
      * @var integer
      * 
      * @ORM\Id
-     * @ORM\GeneratedValue
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -258,7 +261,7 @@ class Personne
     /**
      * @var \Entity\Contacts\Adresse
      * 
-     * @ORM\OneToOne(targetEntity="App\Entity\Contacts\Adresse")
+     * @ORM\OneToOne(targetEntity="App\Entity\Contacts\Adresse", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="adresse_id", referencedColumnName="id")
      */
     private $adresse;
@@ -293,7 +296,7 @@ class Personne
     /**
      * @var \Entity\Evenements\Inscription
      * 
-     * @ORM\ManyToMany(targetEntity="App\Entity\Evenements\Inscription", mappedBy="personnes")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Evenements\Inscription", mappedBy="personnes", fetch="EAGER")
      */
     private $inscription;
 
@@ -371,7 +374,7 @@ class Personne
     /**
      * @var string
      *
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
      private $commentaire;
 
@@ -401,7 +404,7 @@ class Personne
     /**
      * @var \Doctrine\Common\Collections\Collection
      * 
-     * @ORM\OneToMany(targetEntity="App\Entity\Evenements\ReponsesChampPerso", mappedBy="personne")
+     * @ORM\OneToMany(targetEntity="App\Entity\Evenements\ReponsesChampPerso", mappedBy="personne", cascade={"all"}, onDelete="CASCADE")
      */
     private $reponsesChampPerso;
 

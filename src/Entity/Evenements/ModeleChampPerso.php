@@ -15,7 +15,7 @@ class ModeleChampPerso
      * @var integer
      * 
      * @ORM\Id
-     * @ORM\GeneratedValue
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -128,7 +128,7 @@ class ModeleChampPerso
     /**
      * @var \Doctrine\Common\Collections\Collection
      * 
-     * @ORM\OneToMany(targetEntity="App\Entity\Evenements\ReponsesChampPerso", mappedBy="modele")
+     * @ORM\OneToMany(targetEntity="App\Entity\Evenements\ReponsesChampPerso", mappedBy="modele", cascade={"all"})
      */
     private $reponses;
 
@@ -211,7 +211,7 @@ class ModeleChampPerso
     /**
      * @var \Doctrine\Common\Collections\Collection
      * 
-     * @ORM\ManyToMany(targetEntity="App\Entity\Evenements\evenementFormule", mappedBy="modeles")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Evenements\evenementFormule", mappedBy="modeles", cascade={"persist"})
      */
     private $evenementFormule;
 

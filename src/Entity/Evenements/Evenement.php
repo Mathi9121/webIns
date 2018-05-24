@@ -11,6 +11,9 @@ use App\Entity\Evenements\ModeleChampPerso;
  * Evenement
  * @ORM\Table(name="Evenement")
  * @ORM\Entity(repositoryClass="App\Repository\Evenements\EvenementRepository")
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorColumn(name="discr", type="string")
+ * @ORM\DiscriminatorMap({"event" = "Event", "evenement" = "Evenement", "formation" = "Formation"})
  */
 class Evenement
 {
@@ -258,7 +261,7 @@ class Evenement
     /**
      * @var \Doctrine\Common\Collections\Collection
      * 
-     * @ORM\OneToMany(targetEntity="App\Entity\Evenements\evenementFormule", mappedBy="evenement")
+     * @ORM\OneToMany(targetEntity="App\Entity\Evenements\evenementFormule", mappedBy="evenement", cascade={"all"})
      */
     private $evenementFormule;
 	private $modeles;
@@ -318,6 +321,7 @@ class Evenement
      * @var \Doctrine\Common\Collections\Collection
      * 
      * @ORM\ManyToMany(targetEntity="App\Entity\Contacts\Intervenant", inversedBy="evenements")
+     * @ORM\OrderBy({"name" = "ASC"})
      * @ORM\JoinTable(name="Intervenants",
      *      joinColumns={@ORM\JoinColumn(name="evenement_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="intervenant_id", referencedColumnName="id")}

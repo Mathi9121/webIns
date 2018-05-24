@@ -9,14 +9,18 @@ use Doctrine\Common\Collections\Criteria;
  * Inscription
  * @ORM\Table(name="Inscription")
  * @ORM\Entity(repositoryClass="App\Repository\Evenements\InscriptionRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Inscription
 {
     /**
+     * 
+     * @ORM\PrePersist
+     * 
      * @var integer
      * 
      * @ORM\Id
-     * @ORM\GeneratedValue
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -243,7 +247,7 @@ class Inscription
     /**
      * @var \Entity\Evenements\Convention
      * 
-     * @ORM\OneToOne(targetEntity="App\Entity\Evenements\Convention", inversedBy="inscription")
+     * @ORM\OneToOne(targetEntity="App\Entity\Evenements\Convention", inversedBy="inscription", cascade={"all"})
      * @ORM\JoinColumn(name="convention_id", referencedColumnName="id")
      */
     private $convention;
@@ -275,8 +279,8 @@ class Inscription
 
    /**
     *
-    * @ORM\ManyToOne(targetEntity="App\Entity\Evenements\evenementFormule", inversedBy="inscriptions")
-    * @ORM\JoinColumn(name="evenementformule_id", referencedColumnName="id")
+    * @ORM\ManyToOne(targetEntity="App\Entity\Evenements\evenementFormule", inversedBy="inscriptions", fetch="EAGER")
+    * @ORM\JoinColumn(name="evenementformule_id", referencedColumnName="id", onDelete="CASCADE")
     */
     private $evenementformule;
 
@@ -421,10 +425,10 @@ class Inscription
     /**
      * @var \Doctrine\Common\Collections\Collection
      * 
-     * @ORM\ManyToMany(targetEntity="App\Entity\Contacts\Personne", inversedBy="inscription")
-     * @ORM\JoinTable(name="inscription_personnes",
-     *      joinColumns={@ORM\JoinColumn(name="inscription_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="personne_id", referencedColumnName="id")}
+     * @ORM\ManyToMany(targetEntity="App\Entity\Contacts\Personne", inversedBy="inscription", fetch="EAGER", cascade={"all"})
+     * @ORM\JoinTable(name="inscription_personnes", cascade={"persist", "remove"},
+     *      joinColumns={@ORM\JoinColumn(name="inscription_id", referencedColumnName="id", onDelete="CASCADE")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="personne_id", referencedColumnName="id", onDelete="CASCADE")}
      *      )
      */
     private $personnes;

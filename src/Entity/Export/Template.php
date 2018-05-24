@@ -8,14 +8,17 @@ use Doctrine\ORM\Mapping as ORM;
  * Template
  * @ORM\Table(name="Template")
  * @ORM\Entity(repositoryClass="App\Repository\Export\TemplateRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Template
 {
     /**
+     * @ORM\PrePersist
+     * 
      * @var integer
      * 
      * @ORM\Id
-     * @ORM\GeneratedValue
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
      */
     private $id;
