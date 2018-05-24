@@ -404,7 +404,7 @@ class Personne
     /**
      * @var \Doctrine\Common\Collections\Collection
      * 
-     * @ORM\OneToMany(targetEntity="App\Entity\Evenements\ReponsesChampPerso", mappedBy="personne", cascade={"all"}, onDelete="CASCADE")
+     * @ORM\OneToMany(targetEntity="App\Entity\Evenements\ReponsesChampPerso", mappedBy="personne", cascade={"all"})
      */
     private $reponsesChampPerso;
 

@@ -14,11 +14,9 @@ use Doctrine\Common\Collections\Criteria;
 class Inscription
 {
     /**
-     * 
-     * @ORM\PrePersist
-     * 
+     *
      * @var integer
-     * 
+     *
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
@@ -426,7 +424,7 @@ class Inscription
      * @var \Doctrine\Common\Collections\Collection
      * 
      * @ORM\ManyToMany(targetEntity="App\Entity\Contacts\Personne", inversedBy="inscription", fetch="EAGER", cascade={"all"})
-     * @ORM\JoinTable(name="inscription_personnes", cascade={"persist", "remove"},
+     * @ORM\JoinTable(name="inscription_personnes",
      *      joinColumns={@ORM\JoinColumn(name="inscription_id", referencedColumnName="id", onDelete="CASCADE")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="personne_id", referencedColumnName="id", onDelete="CASCADE")}
      *      )
@@ -467,6 +465,10 @@ class Inscription
         return $this->personnes;
     }
 
+    /**
+     *
+     *@ORM\PrePersist
+     */
 	function onPrePersist() {
 		$this->dateInscription = new \DateTime("now");
 		$this->hash = hash("sha256", substr($this->getStagiaire()->getNom(), 0, 5).$this->dateInscription->format("d/m/Y:H:i:s"));

@@ -13,8 +13,6 @@ use Doctrine\ORM\Mapping as ORM;
 class Template
 {
     /**
-     * @ORM\PrePersist
-     * 
      * @var integer
      * 
      * @ORM\Id
@@ -184,6 +182,9 @@ class Template
         return $this->filename;
     }
 
+    /**
+     * @ORM\PrePersist
+     */
     public function onPrePersist() {
         $this->date = new \DateTime("now");
     }
