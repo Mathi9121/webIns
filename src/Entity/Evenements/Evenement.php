@@ -6,6 +6,10 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use App\Entity\Evenements\TypeEvenement;
 use App\Entity\Evenements\ModeleChampPerso;
+use App\Entity\Evenements\Event;
+use App\Entity\Evenements\evenementFormule;
+use App\Entity\Contacts\Intervenant;
+use App\Entity\Evenements\Formation;
 
 /**
  * Evenement
@@ -230,7 +234,7 @@ class Evenement
      * @param \Entity\Evenements\TypeEvenement $type
      * @return Evenement
      */
-    public function setType(\Entity\Evenements\TypeEvenement $type = null)
+    public function setType(\App\Entity\Evenements\TypeEvenement $type = null)
     {
         $this->type = $type;
 
@@ -281,7 +285,7 @@ class Evenement
      * @param \Entity\Evenements\evenementFormule $evenementFormule
      * @return Evenement
      */
-    public function addEvenementFormule(\Entity\Evenements\evenementFormule $evenementFormule)
+    public function addEvenementFormule(\App\Entity\Evenements\evenementFormule $evenementFormule)
     {
 		$evenementFormule->setEvenement($this);
         $this->evenementFormule[] = $evenementFormule;
@@ -294,7 +298,7 @@ class Evenement
      *
      * @param \Entity\Evenements\evenementFormule $evenementFormule
      */
-    public function removeEvenementFormule(\Entity\Evenements\evenementFormule $evenementFormule)
+    public function removeEvenementFormule(\App\Entity\Evenements\evenementFormule $evenementFormule)
     {
         $this->evenementFormule->removeElement($evenementFormule);
     }
@@ -321,7 +325,6 @@ class Evenement
      * @var \Doctrine\Common\Collections\Collection
      * 
      * @ORM\ManyToMany(targetEntity="App\Entity\Contacts\Intervenant", inversedBy="evenements")
-     * @ORM\OrderBy({"name" = "ASC"})
      * @ORM\JoinTable(name="Intervenants",
      *      joinColumns={@ORM\JoinColumn(name="evenement_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="intervenant_id", referencedColumnName="id")}
@@ -336,7 +339,7 @@ class Evenement
      * @param \Entity\Contacts\Intervenant $intervenants
      * @return Evenement
      */
-    public function addIntervenant(\Entity\Contacts\Intervenant $intervenants)
+    public function addIntervenant(\App\Entity\Contacts\Intervenant $intervenants)
     {
         $this->intervenants[] = $intervenants;
 
@@ -348,7 +351,7 @@ class Evenement
      *
      * @param \Entity\Contacts\Intervenant $intervenants
      */
-    public function removeIntervenant(\Entity\Contacts\Intervenant $intervenants)
+    public function removeIntervenant(\App\Entity\Contacts\Intervenant $intervenants)
     {
         $this->intervenants->removeElement($intervenants);
     }
@@ -367,13 +370,13 @@ class Evenement
 		return $this->modeles;
 	}
 
-	public function addModele(\Entity\Evenements\ModeleChampPerso $ml)
+	public function addModele(\App\Entity\Evenements\ModeleChampPerso $ml)
     {
 		$this->modeles[] = $ml;
         return $this;
     }
 
-	public function removeModele(\Entity\Evenements\ModeleChampPerso $ml)
+	public function removeModele(\App\Entity\Evenements\ModeleChampPerso $ml)
     {
         $this->modeles->removeElement($ml);
     }
@@ -403,7 +406,7 @@ class Evenement
      * @param \Entity\Evenements\ModeleChampPerso $modelesIntervenants
      * @return Evenement
      */
-    public function addModelesIntervenant(\Entity\Evenements\ModeleChampPerso $modelesIntervenants)
+    public function addModelesIntervenant(\App\Entity\Evenements\ModeleChampPerso $modelesIntervenants)
     {
         $this->modelesIntervenants[] = $modelesIntervenants;
 
@@ -415,7 +418,7 @@ class Evenement
      *
      * @param \Entity\Evenements\ModeleChampPerso $modelesIntervenants
      */
-    public function removeModelesIntervenant(\Entity\Evenements\ModeleChampPerso $modelesIntervenants)
+    public function removeModelesIntervenant(\App\Entity\Evenements\ModeleChampPerso $modelesIntervenants)
     {
         $this->modelesIntervenants->removeElement($modelesIntervenants);
     }

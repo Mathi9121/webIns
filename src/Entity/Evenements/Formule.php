@@ -209,7 +209,7 @@ class Formule
      * @param \Entity\Evenements\evenementFormule $evenementFormule
      * @return Formule
      */
-    public function addEvenementFormule(\Entity\Evenements\evenementFormule $evenementFormule)
+    public function addEvenementFormule(\App\Entity\Evenements\evenementFormule $evenementFormule)
     {
         $this->evenementFormule[] = $evenementFormule;
 
@@ -221,7 +221,7 @@ class Formule
      *
      * @param \Entity\Evenements\evenementFormule $evenementFormule
      */
-    public function removeEvenementFormule(\Entity\Evenements\evenementFormule $evenementFormule)
+    public function removeEvenementFormule(\App\Entity\Evenements\evenementFormule $evenementFormule)
     {
         $this->evenementFormule->removeElement($evenementFormule);
     }

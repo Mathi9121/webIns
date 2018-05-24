@@ -87,7 +87,7 @@ class TagStructure
      * @param \Entity\Contacts\Adresse $structures
      * @return TagStructure
      */
-    public function addStructure(\Entity\Contacts\Adresse $structures)
+    public function addStructure(\App\Entity\Contacts\Adresse $structures)
     {
         $this->structures[] = $structures;
 
@@ -99,7 +99,7 @@ class TagStructure
      *
      * @param \Entity\Contacts\Adresse $structures
      */
-    public function removeStructure(\Entity\Contacts\Adresse $structures)
+    public function removeStructure(\App\Entity\Contacts\Adresse $structures)
     {
         $this->structures->removeElement($structures);
     }

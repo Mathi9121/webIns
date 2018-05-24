@@ -123,7 +123,7 @@ class ReponsesChampPerso
   
   
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Contacts\Personne", inversedBy="reponsesChampPerso")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Evenements\ModeleChampPerso", inversedBy="reponses")
      * @ORM\JoinColumn(name="modele_id", referencedColumnName="id")
      */
     private $modele;
@@ -135,7 +135,7 @@ class ReponsesChampPerso
      * @param \Entity\Evenements\ModeleChampPerso $modele
      * @return ReponsesChampPerso
      */
-    public function setModele(\Entity\Evenements\ModeleChampPerso $modele = null)
+    public function setModele(\App\Entity\Evenements\ModeleChampPerso $modele = null)
     {
         $this->modele = $modele;
 
@@ -162,7 +162,7 @@ class ReponsesChampPerso
      * @param \Entity\Evenements\Inscription $inscription
      * @return ReponsesChampPerso
      */
-    public function setInscription(\Entity\Evenements\Inscription $inscription = null)
+    public function setInscription(\App\Entity\Evenements\Inscription $inscription = null)
     {
         $this->inscription = $inscription;
 
@@ -193,7 +193,7 @@ class ReponsesChampPerso
      * @param \Entity\Contacts\Personne $personne
      * @return ReponsesChampPerso
      */
-    public function setPersonne(\Entity\Contacts\Personne $personne = null)
+    public function setPersonne(\App\Entity\Contacts\Personne $personne = null)
     {
         $this->personne = $personne;
 

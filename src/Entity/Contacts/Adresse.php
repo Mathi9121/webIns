@@ -244,7 +244,7 @@ class Adresse
      * @param \Entity\Contacts\TypeStructure $type
      * @return Adresse
      */
-    public function setType(\Entity\Contacts\TypeStructure $type = null)
+    public function setType(\App\Entity\Contacts\TypeStructure $type = null)
     {
         $this->type = $type;
 
@@ -267,7 +267,7 @@ class Adresse
      * @param \Entity\Contacts\TagStructure $tag
      * @return Adresse
      */
-    public function addTag(\Entity\Contacts\TagStructure $tag)
+    public function addTag(\App\Entity\Contacts\TagStructure $tag)
     {
         $this->tags[] = $tag;
 
@@ -279,7 +279,7 @@ class Adresse
      *
      * @param \Entity\Contacts\TagStructure $tag
      */
-    public function removeTag(\Entity\Contacts\TagStructure $tag)
+    public function removeTag(\App\Entity\Contacts\TagStructure $tag)
     {
         $this->tags->removeElement($tag);
     }

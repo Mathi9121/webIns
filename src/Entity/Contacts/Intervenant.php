@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Intervenant
  * @ORM\Table(name="Intervenant")
- * @ORM\Entity
+ * @ORM\Entity()
  */
 class Intervenant extends Personne
 {
@@ -25,7 +25,7 @@ class Intervenant extends Personne
      * @param \Entity\Evenements\Evenement $evenements
      * @return Intervenant
      */
-    public function addEvenement(\Entity\Evenements\Evenement $evenements)
+    public function addEvenement(\App\Entity\Evenements\Evenement $evenements)
     {
         $this->evenements[] = $evenements;
 
@@ -37,7 +37,7 @@ class Intervenant extends Personne
      *
      * @param \Entity\Evenements\Evenement $evenements
      */
-    public function removeEvenement(\Entity\Evenements\Evenement $evenements)
+    public function removeEvenement(\App\Entity\Evenements\Evenement $evenements)
     {
         $this->evenements->removeElement($evenements);
     }

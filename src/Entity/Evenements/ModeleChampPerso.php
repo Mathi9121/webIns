@@ -148,7 +148,7 @@ class ModeleChampPerso
      * @param \Entity\Evenements\ReponsesChampPerso $reponses
      * @return ModeleChampPerso
      */
-    public function addReponse(\Entity\Evenements\ReponsesChampPerso $reponses)
+    public function addReponse(\App\Entity\Evenements\ReponsesChampPerso $reponses)
     {
         $this->reponses[] = $reponses;
 
@@ -160,7 +160,7 @@ class ModeleChampPerso
      *
      * @param \Entity\Evenements\ReponsesChampPerso $reponses
      */
-    public function removeReponse(\Entity\Evenements\ReponsesChampPerso $reponses)
+    public function removeReponse(\App\Entity\Evenements\ReponsesChampPerso $reponses)
     {
         $this->reponses->removeElement($reponses);
     }
@@ -222,7 +222,7 @@ class ModeleChampPerso
      * @param \Entity\Evenements\evenementFormule $evenementFormule
      * @return ModeleChampPerso
      */
-    public function addEvenementFormule(\Entity\Evenements\evenementFormule $evenementFormule)
+    public function addEvenementFormule(\App\Entity\Evenements\evenementFormule $evenementFormule)
     {
         $this->evenementFormule[] = $evenementFormule;
 
@@ -234,7 +234,7 @@ class ModeleChampPerso
      *
      * @param \Entity\Evenements\evenementFormule $evenementFormule
      */
-    public function removeEvenementFormule(\Entity\Evenements\evenementFormule $evenementFormule)
+    public function removeEvenementFormule(\App\Entity\Evenements\evenementFormule $evenementFormule)
     {
         $this->evenementFormule->removeElement($evenementFormule);
     }
@@ -265,7 +265,7 @@ class ModeleChampPerso
      * @param \Entity\Evenements\Evenement $evenement
      * @return ModeleChampPerso
      */
-    public function setEvenement(\Entity\Evenements\Evenement $evenement = null)
+    public function setEvenement(\App\Entity\Evenements\Evenement $evenement = null)
     {
         $this->evenement = $evenement;
 

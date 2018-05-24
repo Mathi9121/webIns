@@ -73,7 +73,7 @@ class evenementFormule
      * @param \Entity\Evenements\ModeleChampPerso $modeles
      * @return evenementFormule
      */
-    public function addModele(\Entity\Evenements\ModeleChampPerso $modeles)
+    public function addModele(\App\Entity\Evenements\ModeleChampPerso $modeles)
     {
 		if(!$this->modeles->contains($modeles)){
 			$this->modeles[] = $modeles;
@@ -88,7 +88,7 @@ class evenementFormule
      *
      * @param \Entity\Evenements\ModeleChampPerso $modeles
      */
-    public function removeModele(\Entity\Evenements\ModeleChampPerso $modeles)
+    public function removeModele(\App\Entity\Evenements\ModeleChampPerso $modeles)
     {
         $this->modeles->removeElement($modeles);
     }
@@ -109,7 +109,7 @@ class evenementFormule
      * @param \Entity\Evenements\Formule $formule
      * @return evenementFormule
      */
-    public function setFormule(\Entity\Evenements\Formule $formule = null)
+    public function setFormule(\App\Entity\Evenements\Formule $formule = null)
     {
         $this->formule = $formule;
 
@@ -132,7 +132,7 @@ class evenementFormule
      * @param \Entity\Evenements\Evenement $evenement
      * @return evenementFormule
      */
-    public function setEvenement(\Entity\Evenements\Evenement $evenement = null)
+    public function setEvenement(\App\Entity\Evenements\Evenement $evenement = null)
     {
         $this->evenement = $evenement;
 
@@ -157,7 +157,7 @@ class evenementFormule
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\Evenements\Inscription", mappedBy="evenementFormule", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Evenements\Inscription", mappedBy="evenementformule", cascade={"persist"})
      */
     private $inscriptions;
 
@@ -168,7 +168,7 @@ class evenementFormule
      * @param \Entity\Evenements\Inscription $inscriptions
      * @return evenementFormule
      */
-    public function addInscription(\Entity\Evenements\Inscription $inscriptions)
+    public function addInscription(\App\Entity\Evenements\Inscription $inscriptions)
     {
         $this->inscriptions[] = $inscriptions;
 
@@ -180,7 +180,7 @@ class evenementFormule
      *
      * @param \Entity\Evenements\Inscription $inscriptions
      */
-    public function removeInscription(\Entity\Evenements\Inscription $inscriptions)
+    public function removeInscription(\App\Entity\Evenements\Inscription $inscriptions)
     {
         $this->inscriptions->removeElement($inscriptions);
     }

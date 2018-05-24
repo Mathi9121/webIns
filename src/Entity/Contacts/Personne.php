@@ -4,6 +4,11 @@ namespace App\Entity\Contacts;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use App\Entity\Contacts\Signataire;
+use App\Entity\Contacts\Stagiaire;
+use App\Entity\Contacts\Intervenant;
+use App\Entity\Contacts\Admin;
+use App\Entity\Contacts\Personne;
 
 /**
  * Personne
@@ -273,7 +278,7 @@ class Personne
      * @param \Entity\Contacts\Adresse $adresse
      * @return Personne
      */
-    public function setAdresse(\Entity\Contacts\Adresse $adresse = null)
+    public function setAdresse(\App\Entity\Contacts\Adresse $adresse = null)
     {
         $this->adresse = $adresse;
 
@@ -307,7 +312,7 @@ class Personne
      * @param \Entity\Evenements\Inscription $inscription
      * @return Personne
      */
-    public function setInscription(\Entity\Evenements\Inscription $inscription = null)
+    public function setInscription(\App\Entity\Evenements\Inscription $inscription = null)
     {
         $this->inscription = $inscription;
 
@@ -344,7 +349,7 @@ class Personne
      * @param \Entity\Contacts\Intervenant $intervenant
      * @return Personne
      */
-    public function addIntervenant(\Entity\Contacts\Intervenant $intervenant)
+    public function addIntervenant(\App\Entity\Contacts\Intervenant $intervenant)
     {
         $this->intervenant[] = $intervenant;
 
@@ -356,7 +361,7 @@ class Personne
      *
      * @param \Entity\Contacts\Intervenant $intervenant
      */
-    public function removeIntervenant(\Entity\Contacts\Intervenant $intervenant)
+    public function removeIntervenant(\App\Entity\Contacts\Intervenant $intervenant)
     {
         $this->intervenant->removeElement($intervenant);
     }
@@ -415,7 +420,7 @@ class Personne
      * @param \Entity\Evenements\ReponsesChampPerso $reponsesChampPerso
      * @return Personne
      */
-    public function addReponsesChampPerso(\Entity\Evenements\ReponsesChampPerso $reponsesChampPerso)
+    public function addReponsesChampPerso(\App\Entity\Evenements\ReponsesChampPerso $reponsesChampPerso)
     {
         $this->reponsesChampPerso[] = $reponsesChampPerso;
 
@@ -427,7 +432,7 @@ class Personne
      *
      * @param \Entity\Evenements\ReponsesChampPerso $reponsesChampPerso
      */
-    public function removeReponsesChampPerso(\Entity\Evenements\ReponsesChampPerso $reponsesChampPerso)
+    public function removeReponsesChampPerso(\App\Entity\Evenements\ReponsesChampPerso $reponsesChampPerso)
     {
         $this->reponsesChampPerso->removeElement($reponsesChampPerso);
     }
@@ -482,7 +487,7 @@ class Personne
      * @param \Entity\Evenements\Inscription $inscription
      * @return Personne
      */
-    public function addInscription(\Entity\Evenements\Inscription $inscription)
+    public function addInscription(\App\Entity\Evenements\Inscription $inscription)
     {
         $this->inscription[] = $inscription;
 
@@ -494,7 +499,7 @@ class Personne
      *
      * @param \Entity\Evenements\Inscription $inscription
      */
-    public function removeInscription(\Entity\Evenements\Inscription $inscription)
+    public function removeInscription(\App\Entity\Evenements\Inscription $inscription)
     {
         $this->inscription->removeElement($inscription);
     }

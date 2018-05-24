@@ -92,7 +92,7 @@ class TypeStructure
      * @param \Entity\Contacts\Adresse $adresse
      * @return TypeStructure
      */
-    public function addAdresse(\Entity\Contacts\Adresse $adresse)
+    public function addAdresse(\App\Entity\Contacts\Adresse $adresse)
     {
         $this->adresse[] = $adresse;
 
@@ -104,7 +104,7 @@ class TypeStructure
      *
      * @param \Entity\Contacts\Adresse $adresse
      */
-    public function removeAdresse(\Entity\Contacts\Adresse $adresse)
+    public function removeAdresse(\App\Entity\Contacts\Adresse $adresse)
     {
         $this->adresse->removeElement($adresse);
     }

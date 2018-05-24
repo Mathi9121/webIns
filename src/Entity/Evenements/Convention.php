@@ -105,7 +105,7 @@ class Convention
      * @param \Entity\Evenements\Inscription $inscription
      * @return Convention
      */
-    public function setInscription(\Entity\Evenements\Inscription $inscription = null)
+    public function setInscription(\App\Entity\Evenements\Inscription $inscription = null)
     {
         $this->inscription = $inscription;
 

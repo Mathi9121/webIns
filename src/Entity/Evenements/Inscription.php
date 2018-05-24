@@ -257,7 +257,7 @@ class Inscription
      * @param \Entity\Evenements\Convention $convention
      * @return Inscription
      */
-    public function setConvention(\Entity\Evenements\Convention $convention = null)
+    public function setConvention(\App\Entity\Evenements\Convention $convention = null)
     {
         $this->convention = $convention;
 
@@ -289,7 +289,7 @@ class Inscription
      * @param \Entity\Evenements\evenementFormule $evenementformule
      * @return Inscription
      */
-    public function setEvenementformule(\Entity\Evenements\evenementFormule $evenementformule = null)
+    public function setEvenementformule(\App\Entity\Evenements\evenementFormule $evenementformule = null)
     {
         $this->evenementformule = $evenementformule;
 
@@ -319,7 +319,7 @@ class Inscription
      * @param \Entity\Contacts\Personne $personne
      * @return Inscription
      */
-    public function setStagiaire(\Entity\Contacts\Stagiaire $stagiaire = null)
+    public function setStagiaire(\App\Entity\Contacts\Stagiaire $stagiaire = null)
     {
 
 		$this->stagiaire = $stagiaire;
@@ -356,7 +356,7 @@ class Inscription
      * @param \Entity\Contacts\Personne $personne
      * @return Inscription
      */
-    public function setSignataire(\Entity\Contacts\Signataire $signataire = null)
+    public function setSignataire(\App\Entity\Contacts\Signataire $signataire = null)
     {
 
 		$this->signataire = $signataire;
@@ -394,7 +394,7 @@ class Inscription
      * @param \Entity\Contacts\Personne $personne
      * @return Inscription
      */
-    public function setAdmin(\Entity\Contacts\Admin $admin = null)
+    public function setAdmin(\App\Entity\Contacts\Admin $admin = null)
     {
 
 		$this->admin = $admin;
@@ -438,7 +438,7 @@ class Inscription
      * @param \Entity\Contacts\Personne $personnes
      * @return Inscription
      */
-    public function addPersonne(\Entity\Contacts\Personne $personnes)
+    public function addPersonne(\App\Entity\Contacts\Personne $personnes)
     {
         $this->personnes[] = $personnes;
 
@@ -450,7 +450,7 @@ class Inscription
      *
      * @param \Entity\Contacts\Personne $personnes
      */
-    public function removePersonne(\Entity\Contacts\Personne $personnes)
+    public function removePersonne(\App\Entity\Contacts\Personne $personnes)
     {
         $this->personnes->removeElement($personnes);
     }
@@ -503,7 +503,7 @@ class Inscription
      * @param \Entity\Evenements\ReponsesChampPerso $reponsesChampPerso
      * @return Inscription
      */
-    public function addReponsesChampPerso(\Entity\Evenements\ReponsesChampPerso $reponsesChampPerso)
+    public function addReponsesChampPerso(\App\Entity\Evenements\ReponsesChampPerso $reponsesChampPerso)
     {
         $this->reponsesChampPerso[] = $reponsesChampPerso;
 
@@ -515,7 +515,7 @@ class Inscription
      *
      * @param \Entity\Evenements\ReponsesChampPerso $reponsesChampPerso
      */
-    public function removeReponsesChampPerso(\Entity\Evenements\ReponsesChampPerso $reponsesChampPerso)
+    public function removeReponsesChampPerso(\App\Entity\Evenements\ReponsesChampPerso $reponsesChampPerso)
     {
         $this->reponsesChampPerso->removeElement($reponsesChampPerso);
     }
