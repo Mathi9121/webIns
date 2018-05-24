@@ -13,7 +13,7 @@ class AdresseController extends Controller
 {
     public function ajoutTypeStructure(Request $request)
     {
-
+//test
   		if($request->isXmlHttpRequest()){
 
   			$em = $this->getDoctrine()->getManager();
