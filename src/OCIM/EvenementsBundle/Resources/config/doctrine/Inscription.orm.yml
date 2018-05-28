@@ -35,7 +35,7 @@ OCIM\EvenementsBundle\Entity\Inscription:
                     personne_id:
                         referencedColumnName: id
                         onDelete: CASCADE
-    repositoryClass: Repository\Evenements\InscriptionRepository
+    repositoryClass: OCIM\EvenementsBundle\Entity\InscriptionRepository
     id:
         id:
             type: integer

@@ -5,7 +5,7 @@ OCIM\EvenementsBundle\Entity\Convention:
         inscription:
             targetEntity: Inscription
             mappedBy: convention
-    repositoryClass: Repository\Evenements\ConventionRepository
+    repositoryClass: OCIM\EvenementsBundle\Entity\ConventionRepository
     id:
         id:
             type: integer

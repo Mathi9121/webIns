@@ -29,7 +29,7 @@ OCIM\ContactsBundle\Entity\Personne:
         fetch: EAGER
         mappedBy: personnes
     table: null
-    repositoryClass: Repository\Contacts\PersonneRepository
+    repositoryClass: OCIM\ContactsBundle\Entity\PersonneRepository
     id:
         id:
             type: integer

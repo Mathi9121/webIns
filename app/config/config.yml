@@ -159,4 +159,4 @@ knp_snappy:
 
 services:
     Symfony\Bundle\AsseticBundle\AsseticBundle:
-public: true
+        public: true

@@ -108,6 +108,7 @@ $hasMinorProblems = (bool) count($minorProblems);
                 white-space: normal;
                 font-family: Arial, Helvetica, sans-serif;
             }
+
             /*
             Copyright (c) 2010, Yahoo! Inc. All rights reserved.
             Code licensed under the BSD License:
@@ -246,6 +247,7 @@ $hasMinorProblems = (bool) count($minorProblems);
                 text-shadow:0 1px 1px #6b9311;
                 background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAcCAIAAAAvP0KbAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAEFJREFUeNpiPnv2LNMdvlymf///M/37B8R/QfQ/MP33L4j+B6Qh7L9//sHpf2h8MA1V+w/KRjYLaDaLCU8vQIABAFO3TxZriO4yAAAAAElFTkSuQmCC) repeat-x top left;
             }
+
             /* styles copied from bundles/sensiodistribution/webconfigurator/css/install.css */
             body {
                 font-size: 14px;

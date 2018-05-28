@@ -4,15 +4,10 @@
     "type": "project",
     "description": "The \"Symfony Standard Edition\" distribution",
     "autoload": {
-        "psr-0": {
-            "": "src/",
-            "SymfonyStandard": "app/"
-        }
+        "psr-4": { "": "src/", "SymfonyStandard\\": "app/" }
     },
     "autoload-dev": {
-        "psr-0": {
-            "Tests\\": "tests/"
-        }
+        "psr-4": { "Tests\\": "tests/" }
     },
     "require": {
         "php": ">=5.3.3",
@@ -27,13 +22,13 @@
         "sensio/distribution-bundle": "^5.0",
         "sensio/framework-extra-bundle": "~3.0",
         "incenteev/composer-parameter-handler": "~2.0",
+        "knplabs/knp-snappy-bundle": "1.5.2",
         "knplabs/knp-menu-bundle": "~2",
-        "knplabs/knp-snappy-bundle": "~1.4",
         "twig/twig": "^2.4",
         "symfony/polyfill-iconv": "~1.0",
         "symfony/security-acl": "^3.0",
-        "symfony/acl-bundle": "^1.0",        
-        "symfony/doctrine-bridge": "~3.0"        
+        "symfony/doctrine-bridge": "~3.0",
+        "symfony/acl-bundle": "^1.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
@@ -41,23 +36,23 @@
     },
     "scripts": {
         "post-root-package-install": [
-            "SymfonyStandard\\Composer::hookPackageInstall"
+            "SymfonyStandard\\Composer::hookRootPackageInstall"
         ],
         "post-install-cmd": [
-            "Incenteev\\ParameterHandler\\Script::buildParameters",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandle::buildBootstrap",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandle::clearCache",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandle::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandle::installRequirementFile",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandle::removeSymfonyStandardFiles"
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles"
         ],
         "post-update-cmd": [
-            "Incenteev\\ParameterHandler\\Script::buildParameters",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandle::buildBootstrap",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandle::clearCache",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandle::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandle::installRequirementFile",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandle::removeSymfonyStandardFiles"
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::removeSymfonyStandardFiles"
         ]
     },
     "config": {

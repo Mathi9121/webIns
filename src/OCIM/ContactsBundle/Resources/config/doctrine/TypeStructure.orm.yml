@@ -5,7 +5,7 @@ OCIM\ContactsBundle\Entity\TypeStructure:
             targetEntity: Adresse
             mappedBy: type
     table: null
-    repositoryClass: Repository\Contacts\TypeStructureRepository
+    repositoryClass: OCIM\ContactsBundle\Entity\TypeStructureRepository
     id:
         id:
             type: integer

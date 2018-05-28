@@ -11,4 +11,4 @@ _profiler:
 #    prefix:   /_configurator
 
 _main:
-    resource: routes.yml
+    resource: routing.yml

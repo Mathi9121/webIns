@@ -7,7 +7,7 @@ OCIM\EvenementsBundle\Entity\Formule:
             mappedBy: formule
             fetch: EAGER
             cascade: ["persist"]
-    repositoryClass: Repository\Evenements\FormuleRepository
+    repositoryClass: OCIM\EvenementsBundle\Entity\FormuleRepository
     id:
         id:
             type: integer
