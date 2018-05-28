@@ -1,6 +1,0 @@
-imports:
-    - { resource: "../routing.yaml" }
-
-#framework:
-#    validation:
-#        cache: apc

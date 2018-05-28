@@ -1,5 +1,0 @@
-App\Entity\Contacts\Stagiaire:
-    type: entity
-    table: null
-    repositoryClass: Repository\Contacts\StagiaireRepository
-    lifecycleCallbacks: {}

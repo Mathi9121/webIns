@@ -1,7 +1,0 @@
-# See https://symfony.com/doc/current/email/dev_environment.html
-swiftmailer:
-    transport:  smtp
-    username:   et6549ru
-    password:   gK6Sz7RE
-    auth_mode:  login
-    host:       smtp.u-bourgogne.fr

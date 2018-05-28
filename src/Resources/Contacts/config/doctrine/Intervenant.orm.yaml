@@ -1,8 +1,0 @@
-Entity\Contacts\Intervenant:
-    type: entity
-    manyToMany:
-      evenements:
-        targetEntity: Entity\Evenements\Evenement
-        mappedBy: intervenants
-    table: null
-    lifecycleCallbacks: {}

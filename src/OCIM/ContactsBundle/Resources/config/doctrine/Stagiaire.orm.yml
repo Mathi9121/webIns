@@ -1,0 +1,5 @@
+OCIM\ContactsBundle\Entity\Stagiaire:
+    type: entity
+    table: null
+    repositoryClass: Repository\Contacts\StagiaireRepository
+    lifecycleCallbacks: {}

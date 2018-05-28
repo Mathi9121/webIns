@@ -1,9 +1,0 @@
-inscriptionpublique_creation:
-    path:     /
-    controller: App\Controller\Evenements\InscriptionPubliqueController::createInscription
-    requirements: { methods: post }
-
-inscriptionpublique:
-    path:     /
-    controller: App\Controller\Evenements\InscriptionPubliqueController::inscription
-    requirements: { methods: get }

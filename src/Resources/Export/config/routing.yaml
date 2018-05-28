@@ -1,3 +1,0 @@
-ocim_export_documents:
-    resource: "routing/template.yaml"
-    prefix:   /documents

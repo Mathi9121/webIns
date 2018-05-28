@@ -1,6 +1,0 @@
-web_profiler:
-    toolbar: "%debug_toolbar%"
-    intercept_redirects: "%debug_redirects%"
-
-framework:
-    profiler: { only_exceptions: false }

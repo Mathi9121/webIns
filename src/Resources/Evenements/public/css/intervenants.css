@@ -1,7 +1,0 @@
-table.dataTable tbody tr.checked{
-  background-color: #e2e2e2;
-}
-table.dataTable tbody tr:hover{
-  background-color: #f6d4d4;
-  cursor: pointer
-}

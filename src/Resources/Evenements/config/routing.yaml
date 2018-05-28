@@ -1,7 +1,0 @@
-ocim_evenements_convention:
-    resource: "routing/convention.yaml"
-    prefix:   /convention
-
-OCIMEvenementsBundle_champPerso:
-    resource: "routing/champPerso.yaml"
-    prefix:   /champPerso
