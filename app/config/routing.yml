@@ -35,15 +35,15 @@ OCIMUserBundle_user:
     prefix:   /user
 
 connexion:
-    path: /connexion
+    pattern: /connexion
     defaults: { _controller: OCIMUserBundle:Admin:connexion }
 
 check:
-    path: /check
+    pattern: /check
 
 deconnexion:
-    path: /deconnexion
+    pattern: /deconnexion
 
 home:
-    path: /
+    pattern: /
     defaults: { _controller: OCIMEvenementsBundle:Default:index }

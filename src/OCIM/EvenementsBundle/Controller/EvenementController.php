@@ -17,8 +17,6 @@ use OCIM\EvenementsBundle\Form\AjoutIntervenantType;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Query\ResultSetMapping;
 
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-
 /**
  * Evenement controller.
  *
@@ -36,7 +34,7 @@ class EvenementController extends Controller
 
       $id = $request->query->get('id');
 
-      $className = 'OCIMEvenementsBundle:'.ucfirst($type);
+      $className = "OCIMEvenementsBundle:".ucfirst($type);
 
       $qb = $em->createQueryBuilder('f')
         ->select('f, YEAR(f.dateDebut) AS annee')
@@ -95,7 +93,7 @@ class EvenementController extends Controller
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
@@ -146,12 +144,12 @@ class EvenementController extends Controller
 
       $intervenants = $em->getRepository('OCIMContactsBundle:Intervenant')->findAll();
 
-      $form = $this->createForm(AjoutIntervenantType::class, $entity, array(
+      $form = $this->createForm(new AjoutIntervenantType(), $entity, array(
           'action' => $this->generateUrl('evenement_intervenants_update', array('idevenement' => $idevenement)),
           'method' => 'PUT',
       ));
 
-      $form->add('submit', SubmitType::class, array('label' => 'Enregistrer', 'attr' => array('class' => 'btn btn-green btn-save')));
+      $form->add('submit', 'submit', array('label' => 'Enregistrer', 'attr' => array('class' => 'btn btn-green btn-save')));
 
       return $this->render('OCIMEvenementsBundle:Evenement:addIntervenant.html.twig', array(
           'form' => $form->createView(),
@@ -169,16 +167,16 @@ class EvenementController extends Controller
           throw $this->createNotFoundException('Unable to find Evenement entity.');
       }
 
-      $form = $this->createForm(AjoutIntervenantType::class, $evenement, array(
+      $form = $this->createForm(new AjoutIntervenantType(), $evenement, array(
           'action' => $this->generateUrl('evenement_intervenants_update', array('idevenement' => $idevenement)),
           'method' => 'PUT',
       ));
 
-      $form->add('submit', SubmitType::class, array('label' => 'Enregistrer', 'attr' => array('class' => 'btn btn-green btn-save')));
+      $form->add('submit', 'submit', array('label' => 'Enregistrer', 'attr' => array('class' => 'btn btn-green btn-save')));
 
       $form->handleRequest($request);
 
-      if ($form->isSubmitted() && $form->isValid()) {
+      if ($form->isValid()) {
 
          $em->flush();
 
@@ -204,12 +202,12 @@ class EvenementController extends Controller
      */
     private function createCreateForm(Evenement $entity)
     {
-        $form = $this->createForm(EvenementType::class, $entity, array(
+        $form = $this->createForm(new EvenementType(), $entity, array(
             'action' => $this->generateUrl('evenement_create'),
             'method' => 'POST',
         ));
 
-        $form->add('submit', SubmitType::class, array('label' => 'Créer la evenement', 'attr' => array('class'=>'btn btn-green btn-save')));
+        $form->add('submit', 'submit', array('label' => 'Créer la evenement', 'attr' => array('class'=>'btn btn-green btn-save')));
 
         return $form;
     }
@@ -304,12 +302,12 @@ class EvenementController extends Controller
     */
     private function createEditForm(Evenement $entity)
     {
-        $form = $this->createForm(EvenementType::class, $entity, array(
+        $form = $this->createForm(new EvenementType(), $entity, array(
             'action' => $this->generateUrl('evenement_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
-        $form->add('submit', SubmitType::class, array('label' => 'Enregistrer', 'attr' => array('class'=>'btn btn-green btn-save')));
+        $form->add('submit', 'submit', array('label' => 'Enregistrer', 'attr' => array('class'=>'btn btn-green btn-save')));
 
         return $form;
     }
@@ -370,7 +368,7 @@ class EvenementController extends Controller
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('OCIMEvenementsBundle:Evenement')->find($id);
 
@@ -397,7 +395,7 @@ class EvenementController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('evenement_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', SubmitType::class, array('label' => 'Supprimer', 'attr'=> array('class'=>'btn btn-red btn-delete')))
+            ->add('submit', 'submit', array('label' => 'Supprimer', 'attr'=> array('class'=>'btn btn-red btn-delete')))
             ->getForm()
         ;
     }

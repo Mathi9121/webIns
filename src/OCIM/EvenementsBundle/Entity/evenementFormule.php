@@ -20,12 +20,12 @@ class evenementFormule
     private $modeles;
 
     /**
-     * @var \OCIM\EvenementsBundle\Formule
+     * @var \OCIM\EvenementsBundle\Entity\Formule
      */
     private $formule;
 
     /**
-     * @var \OCIM\EvenementsBundle\Evenement
+     * @var \OCIM\EvenementsBundle\Entity\Evenement
      */
     private $evenement;
 

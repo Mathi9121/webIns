@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	$('#ajouttypes').on("click", function(e){
+	$('#ajouttypes').click(function(e){
 		//annulation ancre
 		e.preventDefault();
 		

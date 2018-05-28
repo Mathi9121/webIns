@@ -4,11 +4,9 @@ namespace OCIM\ContactsBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use OCIM\ContactsBundle\Form\DataTransformer\StringToTagsTransformer;
 use Doctrine\ORM\EntityRepository;
-
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class AdresseSignataireType extends AbstractType
 {
@@ -22,26 +20,26 @@ class AdresseSignataireType extends AbstractType
 		$transformer = new StringToTagsTransformer($entityManager);
 
         $builder
-			->add('nomStructure', TextType::class, array(
+			->add('nomStructure', 'text', array(
 				'attr' => array('class' => 'width-100'),
 				'label' => 'Nom de la Structure',
 			))
-            ->add('adresse', TextType::class, array(
+            ->add('adresse', 'text', array(
 				'attr' => array('class' => 'width-100'),
 				'label' => 'Adresse',
 			))
-            ->add('adresseComplement', TextType::class, array(
+            ->add('adresseComplement', 'text', array(
 				'attr' => array('class' => 'width-100'),
 				'label' => "Complément d'adresse",
 			))
-            ->add('cP', TextType::class, array(
+            ->add('cP', 'text', array(
 				'attr' => array('class' => 'width-100'),
 				'label' => 'Code postal',
 			))
-            ->add('ville', TextType::class, array(
+            ->add('ville', 'text', array(
 				'attr' => array('class' => 'width-100'),
 			))
-            ->add('pays', TextType::class, array(
+            ->add('pays', 'text', array(
 				'attr' => array('class' => 'width-100'),
 			))
 			->add('type', null, array(
@@ -52,7 +50,7 @@ class AdresseSignataireType extends AbstractType
 				}
 			))
             ->add(
-				$builder->create('tags', TextType::class, array(
+				$builder->create('tags', 'text', array(
 				'attr' => array('class'=>'width-100 tags'),
 				'required' => false,
 				// 'data_class' => 'OCIM\ContactsBundle\Entity\TagStructure'
@@ -61,9 +59,9 @@ class AdresseSignataireType extends AbstractType
     }
 
     /**
-     * @param OptionsResolver $resolver
+     * @param OptionsResolverInterface $resolver
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'OCIM\ContactsBundle\Entity\Adresse',
@@ -73,21 +71,15 @@ class AdresseSignataireType extends AbstractType
             'em',
         ));
 
-        $resolver->setAllowedTypes('em', 'Doctrine\Common\Persistence\ObjectManager');
-    }
-
-    /**
-     * @return getBlockPrefix()
-     */
-    public function getName()
-    {
-        return $this->getBlockPrefix();
+        $resolver->setAllowedTypes(array(
+            'em' => 'Doctrine\Common\Persistence\ObjectManager',
+        ));
     }
 
     /**
      * @return string
      */
-    public function getBlockPrefix()
+    public function getName()
     {
         return 'ocim_contactsbundle_adresse';
     }

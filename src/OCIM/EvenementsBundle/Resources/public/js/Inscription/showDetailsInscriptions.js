@@ -13,7 +13,7 @@ $(document).ready(function(){
 
 
 	//ecouteur devenement : clique sur une ligne, sauf premiere case
-	$('.tab:not(#champPerso, #intervenants) table tr td').not(':first-of-type').css('cursor', 'pointer').on("click", function(){
+	$('.tab:not(#champPerso, #intervenants) table tr td').not(':first-of-type').css('cursor', 'pointer').click(function(){
 
 		// la ligne est selectionnée
 		$(this).closest('tr').addClass("selected", 500, "easeInOutCubic");
@@ -85,7 +85,7 @@ $(document).ready(function(){
 				$(details).css("margin-top", Math.min(data.trPosition, Math.abs(data.tableH - $(details).height())));
 
 				//evenement fermeture
-				$('.details-inscription a.close-box').on("click", function(e){
+				$('.details-inscription a.close-box').click(function(e){
 					e.preventDefault();
 					removeBox();
 				});

@@ -4,9 +4,7 @@ namespace OCIM\EvenementsBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class evenementFormuleType extends AbstractType
 {
@@ -17,9 +15,8 @@ class evenementFormuleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('formule', EntityType::class, array(
-                'class' => 'OCIM\EvenementsBundle\Entity\Formule',
-                'choice_translation_domain' => true,
+            ->add('formule', 'entity', array(
+				'class' => 'OCIM\EvenementsBundle\Entity\Formule',
 				'label'=> false,
 				'attr'=> array('class'=>'width-100'),
 			))
@@ -27,9 +24,9 @@ class evenementFormuleType extends AbstractType
     }
     
     /**
-     * @param OptionsResolver $resolver
+     * @param OptionsResolverInterface $resolver
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'OCIM\EvenementsBundle\Entity\evenementFormule'
@@ -37,17 +34,9 @@ class evenementFormuleType extends AbstractType
     }
 
     /**
-     * @return getBlockPrefix()
-     */
-    public function getName()
-    {
-        return $this->getBlockPrefix();
-    }
-
-    /**
      * @return string
      */
-    public function getBlockPrefix()
+    public function getName()
     {
         return 'ocim_evenementsbundle_evenementformule';
     }

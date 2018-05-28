@@ -9,8 +9,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use OCIM\ExportBundle\Entity\Template;
 use OCIM\ExportBundle\Form\TemplateType;
 
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-
 /**
  * Template controller.
  *
@@ -66,7 +64,7 @@ class TemplateController extends Controller
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
@@ -134,12 +132,12 @@ class TemplateController extends Controller
      */
     private function createCreateForm(Template $entity)
     {
-        $form = $this->createForm(TemplateType::class, $entity, array(
+        $form = $this->createForm(new TemplateType(), $entity, array(
             'action' => $this->generateUrl('documents_create'),
             'method' => 'POST',
         ));
 
-        $form->add('submit', SubmitType::class, array('label' => 'Create', 'attr' => array('class'=>'btn btn-green btn-save')));
+        $form->add('submit', 'submit', array('label' => 'Create', 'attr' => array('class'=>'btn btn-green btn-save')));
 
         return $form;
     }
@@ -194,9 +192,8 @@ class TemplateController extends Controller
         $filename = str_replace('{{inscription.convention.numeroToString}}', $inscription->getConvention()->getNumeroToString(), $filename);
       }
     }
-		// Ajout de la fonction twig pour calculer la durée entre deux dates
-        $env = new \Twig_Environment(new \Twig_Loader_Array(array()));
-        
+		// Ajout de la fonction twig pour calculer la durée entre deux date
+		$env = new \Twig_Environment(new \Twig_Loader_String());
 		$function = new \Twig_SimpleFunction('date_difference', function ($start, $end) {
 			return $start->diff($end, true)->format('%a') + 1;
 		});
@@ -207,7 +204,7 @@ class TemplateController extends Controller
       $str_date = $date->format('d ').$mois[$date->format('m')].$date->format(' Y');
       $date_abbr = $date->format('d/m/Y');
 
-        
+
 		// ajout à l'environnement
 		$env->addFunction($function);
 
@@ -215,9 +212,9 @@ class TemplateController extends Controller
 		//			</head><body style='margin:0px'>".$entity->getContenu()."</body></html>";
 		$contenu = $entity->getContenu();
     $contenu = "<style>.pagebreak{page-break-after: always;} @media print{ .pagebreak{height:0px; border:0;} }</style>".$contenu;
-        // contenu et valeurs
-        $temp = $env->createTemplate($contenu);
-        $contenu = $temp->render(
+		// contenu et valeurs
+		$contenu = $env->render(
+			$contenu,
 			array("evenement" => $evenement, "inscription" => $inscription, 'date'=> $str_date, 'date_abbr'=>$date_abbr)
 		);
 
@@ -230,7 +227,7 @@ class TemplateController extends Controller
     }
     else{
       return new Response(
-        $this->get('knp_snappy.pdf')->getOutputFromHtml($contenu, array('zoom' => 1.3)),
+        $this->get('knp_snappy.pdf')->getOutputFromHtml($contenu),
         200,
         array(
           'Content-Type'          => 'application/pdf',
@@ -245,9 +242,9 @@ class TemplateController extends Controller
       $content = $request->request->get('content');
       $filename = $request->request->get('filename');
 
-      $content = "<style>.pagebreak{height: 1px; page-break-after: always;} @media print{ .pagebreak{height:0px; border:0;}}</style>".$content;
+      $content = "<style>.pagebreak{height: 1px; page-break-after: always;} @media print{ .pagebreak{height:0px; border:0;} }</style>".$content;
       return new Response(
-        $this->get('knp_snappy.pdf')->getOutputFromHtml($content, array('zoom' => 1.3)),
+        $this->get('knp_snappy.pdf')->getOutputFromHtml($content),
         200,
         array(
           'Content-Type'          => 'application/pdf',
@@ -289,12 +286,12 @@ class TemplateController extends Controller
     */
     private function createEditForm(Template $entity)
     {
-        $form = $this->createForm(TemplateType::class, $entity, array(
+        $form = $this->createForm(new TemplateType(), $entity, array(
             'action' => $this->generateUrl('documents_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
-        $form->add('submit', SubmitType::class, array('label' => 'Enregistrer', 'attr' => array('class'=>'btn btn-green btn-save')));
+        $form->add('submit', 'submit', array('label' => 'Enregistrer', 'attr' => array('class'=>'btn btn-green btn-save')));
 
         return $form;
     }
@@ -363,7 +360,7 @@ class TemplateController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('documents_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', SubmitType::class, array('label' => 'Delete', 'attr' => array('class'=>'btn btn-red btn-delete')))
+            ->add('submit', 'submit', array('label' => 'Delete', 'attr' => array('class'=>'btn btn-red btn-delete')))
             ->getForm()
         ;
     }

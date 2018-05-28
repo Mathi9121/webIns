@@ -48,6 +48,8 @@ class Personne
     /**
      * @var string
      */
+
+
 	private $type;
 
     /**
@@ -341,10 +343,7 @@ class Personne
         return $this->intervenant;
     }
 
-    /**
-     * @var string
-     */
-     private $commentaire;
+	private $commentaire;
 
 	/**
      * Set commentaire

@@ -4,15 +4,8 @@ namespace OCIM\EvenementsBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Doctrine\ORM\EntityRepository;
-
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class ModeleChampPersoType extends AbstractType
 {
@@ -30,32 +23,30 @@ class ModeleChampPersoType extends AbstractType
     {
 		$idevenement = $this->idevenement;
         $builder
-			->add('ordre', HiddenType::class, array(
+			->add('ordre', 'hidden', array(
 				'attr' => array('class' => 'ordreModeles'),
 				'required'=> true,
 			))
-            ->add('date', DateType::class, array(
+            ->add('date', 'date', array(
 				'widget' => 'single_text',
 				'format' => 'dd/MM/yyyy',
 				'attr' => array('placeholder'=>'JJ/MM/AAAA', 'class'=>'datepicker', 'data-tool'=> "datepicker"),
 				'required'=> false,
 			))
-            ->add('description', TextType::class, array(
+            ->add('description', 'text', array(
 				'attr' => array('placeholder' => "Description")
 			))
-            ->add('typeReponse', ChoiceType::class, array(
+            ->add('typeReponse', 'choice', array(
 				'choices'   => array(
-					'Texte'	=> 'text',
-					'Oui/Non' => 'bool',
-					//'Date/Heure'	=> 'dateTime',
+					'text'	=> 'Texte',
+					'bool'	=> 'Oui/Non',
+					//'dateTime'	=> 'Date/Heure',
 				),
-				'choices_as_values' => true,
 				'empty_value' => 'Type de réponse',
 				'required' => true,
 			))
-			->add('evenementFormule', EntityType::class, array(
+			->add('evenementFormule', 'entity', array(
 				'class' => 'OCIM\EvenementsBundle\Entity\evenementFormule',
-				'choice_translation_domain' => true,
 				'multiple' => true,
 				'expanded' => true,
 				'by_reference' => false,
@@ -65,37 +56,29 @@ class ModeleChampPersoType extends AbstractType
 						->where('u.evenement = :idevenement')
 						->setParameter('idevenement', $idevenement);
 					},
-				'choice_label' => "FormuleId",
+				'property' => "FormuleId",
 			))
-			->add('intervenant', CheckboxType::class, array(
+			->add('intervenant', 'checkbox', array(
 				'label' => 'Intervenant',
 				'required' => false,
 			));
     }
 
     /**
-     * @param OptionsResolver $resolver
+     * @param OptionsResolverInterface $resolver
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'OCIM\EvenementsBundle\Entity\ModeleChampPerso',
 			'attr' => array('class'=> 'forms'),
         ));
-	}
-	
-	/**
-     * @return getBlockPrefix()
-     */
-    public function getName()
-    {
-        return $this->getBlockPrefix();
     }
 
     /**
      * @return string
      */
-    public function getBlockPrefix()
+    public function getName()
     {
         return 'ocim_evenementsbundle_modelechampPerso';
     }

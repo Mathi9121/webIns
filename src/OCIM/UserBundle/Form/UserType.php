@@ -4,10 +4,7 @@ namespace OCIM\UserBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class UserType extends AbstractType
 {
@@ -18,28 +15,28 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom', TextType::class, array(
+            ->add('nom', 'text', array(
 				'label'=> 'Nom',
 			))
-            ->add('prenom', TextType::class, array(
+            ->add('prenom', 'text', array(
 				'label'=> 'Prénom',
 			))
-			->add('mail', TextType::class, array(
+			->add('mail', 'text', array(
 				'label'=> '',
 			))
-            ->add('login', TextType::class, array(
+            ->add('login', 'text', array(
 				'label'=> 'Login',
 			))
-            ->add('password', PasswordType::class, array(
+            ->add('password', 'password', array(
 				'label'=> 'Mot de passe',
 			))
         ;
     }
 
     /**
-     * @param OptionsResolver $resolver
+     * @param OptionsResolverInterface $resolver
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'OCIM\UserBundle\Entity\User',
@@ -49,17 +46,9 @@ class UserType extends AbstractType
     }
 
     /**
-     * @return getBlockPrefix()
-     */
-    public function getName()
-    {
-        return $this->getBlockPrefix();
-    }
-
-    /**
      * @return string
      */
-    public function getBlockPrefix()
+    public function getName()
     {
         return 'ocim_userbundle_user';
     }

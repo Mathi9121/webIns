@@ -11,7 +11,6 @@ use Doctrine\Common\Collections\Criteria;
 class Inscription
 {
     /**
-     *
      * @var integer
      */
     private $id;
@@ -430,7 +429,7 @@ class Inscription
         return $this->personnes;
     }
 
-    function onPrePersist() {
+	function onPrePersist() {
 		$this->dateInscription = new \DateTime("now");
 		$this->hash = hash("sha256", substr($this->getStagiaire()->getNom(), 0, 5).$this->dateInscription->format("d/m/Y:H:i:s"));
 	}

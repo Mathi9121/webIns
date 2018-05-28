@@ -8,8 +8,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use OCIM\ContactsBundle\Entity\Intervenant;
 use OCIM\ContactsBundle\Form\IntervenantType;
 
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-
 /**
  * Intervenant controller.
  *
@@ -44,7 +42,7 @@ class IntervenantController extends Controller
         $form = $this->createCreateForm($entity, $idevenement);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             if($idevenement !== 'null'){
 			         $em->getRepository('OCIMEvenementsBundle:Evenement')->find($idevenement)->addIntervenant($entity);
@@ -79,13 +77,13 @@ class IntervenantController extends Controller
      */
     private function createCreateForm(Intervenant $entity, $idevenement)
     {
-        $form = $this->createForm(IntervenantType::class, $entity, array(
+        $form = $this->createForm(new IntervenantType(), $entity, array(
             'action' => $this->generateUrl('intervenants_create', array('idevenement'=> $idevenement)),
             'method' => 'POST',
 			'em' => $this->getDoctrine()->getManager(),
         ));
 
-        $form->add('submit', SubmitType::class, array('label' => 'Enregistrer', 'attr'=>array('class'=> 'btn btn-green btn-save')));
+        $form->add('submit', 'submit', array('label' => 'Enregistrer', 'attr'=>array('class'=> 'btn btn-green btn-save')));
 
         return $form;
     }
@@ -99,7 +97,7 @@ class IntervenantController extends Controller
         $entity = new Intervenant();
         $form = $this->createCreateForm($entity,$idevenement);
         $em = $this->getDoctrine()->getManager();
-        $tags = $em->getRepository('OCIMContactsBundle:TagStructure')->findAll();
+        $tags = $em->getRepository("OCIMContactsBundle:TagStructure")->findAll();
 
         return $this->render('OCIMContactsBundle:Intervenant:new.html.twig', array(
             'entity' => $entity,
@@ -141,7 +139,7 @@ class IntervenantController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('OCIMContactsBundle:Intervenant')->find($id);
-        $tags = $em->getRepository('OCIMContactsBundle:TagStructure')->findAll();
+        $tags = $em->getRepository("OCIMContactsBundle:TagStructure")->findAll();
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Intervenant entity.');
@@ -168,13 +166,13 @@ class IntervenantController extends Controller
     */
     private function createEditForm(Intervenant $entity, $idevenement)
     {
-        $form = $this->createForm(IntervenantType::class, $entity, array(
+        $form = $this->createForm(new IntervenantType(), $entity, array(
             'action' => $this->generateUrl('intervenants_update', array('id' => $entity->getId(), 'idevenement' => $idevenement)),
             'method' => 'PUT',
 			'em' => $this->getDoctrine()->getManager()
         ));
 
-        $form->add('submit', SubmitType::class, array('label' => 'Enregistrer', 'attr' => array('class' => 'btn btn-green btn-save')));
+        $form->add('submit', 'submit', array('label' => 'Enregistrer', 'attr' => array('class' => 'btn btn-green btn-save')));
 
         return $form;
     }
@@ -219,7 +217,7 @@ class IntervenantController extends Controller
         $form = $this->createDeleteForm($id, $idevenement);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isValid()) {
 
             $em = $this->getDoctrine()->getManager();
             $intervenant = $em->getRepository('OCIMContactsBundle:Intervenant')->find($id);
@@ -249,7 +247,7 @@ class IntervenantController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('intervenants_delete', array('id' => $id, 'idevenement' => $idevenement)))
             ->setMethod('DELETE')
-            ->add('submit', SubmitType::class, array('label' => 'Supprimer', 'attr'=> array('class' => 'btn btn-red btn-delete')))
+            ->add('submit', 'submit', array('label' => 'Supprimer', 'attr'=> array('class' => 'btn btn-red btn-delete')))
             ->getForm()
         ;
     }

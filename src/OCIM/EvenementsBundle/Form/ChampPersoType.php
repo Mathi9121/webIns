@@ -4,11 +4,7 @@ namespace OCIM\EvenementsBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-
-use OCIM\EvenementsBundle\Form\ModeleChampPersoType;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class ChampPersoType extends AbstractType
 {
@@ -22,19 +18,18 @@ class ChampPersoType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
         $builder
-			->add('modeles', CollectionType::class, array(
-                'entry_type' => new ModeleChampPersoType($this->idevenement),
+			->add('modeles', 'collection', array(
+				'type' => new ModeleChampPersoType($this->idevenement),
 				'allow_add' => true,
 				'allow_delete' => true,
 				));
     }
     
     /**
-     * @param OptionsResolver $resolver
+     * @param OptionsResolverInterface $resolver
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' =>  'OCIM\EvenementsBundle\Entity\Evenement',
@@ -43,17 +38,9 @@ class ChampPersoType extends AbstractType
     }
 
     /**
-     * @return getBlockPrefix()
-     */
-    public function getName()
-    {
-        return $this->getBlockPrefix();
-    }
-
-    /**
      * @return string
      */
-    public function getBlockPrefix()
+    public function getName()
     {
         return 'ocim_evenementsbundle_evenement';
     }

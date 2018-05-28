@@ -6,7 +6,7 @@ $(document).ready(function(){
 	$('td.champPerso[data-type="text"]').attr('contenteditable', 'true');
 
 	// on surveille le click sur les cases de type bool
-	$('td.champPerso[data-type="bool"]').on("click", function(){
+	$('td.champPerso[data-type="bool"]').click(function(){
 
 		// les variables utiles à lenregistrement ajax
 		var type = $(this).attr('data-type');
@@ -32,7 +32,7 @@ $(document).ready(function(){
 
 	});
 
-	$('td.champPerso[data-type="text"]').on("blur", function(){
+	$('td.champPerso[data-type="text"]').blur(function(){
 		var data = new Array();
 		data.push({
 			'type' : $(this).attr('data-type'),

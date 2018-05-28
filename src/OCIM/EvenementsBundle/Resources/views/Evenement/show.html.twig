@@ -3,7 +3,7 @@
 {% block stylesheets %}
 {{parent()}}
 {% stylesheets
- '@OCIMEvenementsBundle/Resources/public/css/evenements.css'
+	'@OCIMEvenementsBundle/Resources/public/css/evenements.css'
 filter='cssrewrite' %}
 	<link rel="stylesheet" type="text/css" charset="UTF-8" media="all" href="{{ asset_url }}"/>
 {% endstylesheets %}
@@ -27,10 +27,8 @@ couleurs['2hover'] = 	"rgba(255,165,0, 0.5)";
 couleurs['1hover'] = 		"rgba(3, 207, 3,  0.5)";
 couleurs['3hover']	= 		"rgba(255, 54, 0, 0.5)";
 
-	var dataStatus = {
-	type: 'Doughnut',
-    datasets: [
-	{% for stat in entity._count %}
+	var dataStatus = [
+    {% for stat in entity._count %}
 		{% set label = "" %}
 		{% if stat.statut == "1" %}
 			{% set label = "Inscriptions acceptés" %}
@@ -46,7 +44,7 @@ couleurs['3hover']	= 		"rgba(255, 54, 0, 0.5)";
 			label: "{{label}}"
 		},
 	{% endfor %}
-	]};
+	];
 
 
 
@@ -67,11 +65,9 @@ couleurs['3hover']	= 		"rgba(255, 54, 0, 0.5)";
     ]
 };
 	var canvas1 = $("#statuts-inscriptions").get(0).getContext("2d");
-	var ratioInscriptions = new Chart(canvas1, dataStatus);
+	var ratioInscriptions = new Chart(canvas1).Doughnut(dataStatus, {});
 	var canvas2 = $("#dates-inscriptions").get(0).getContext("2d");
-	var ratioInscriptions = new Chart(canvas2, {
-		type: 'line',
-		data: dataDates,
+	var ratioInscriptions = new Chart(canvas2).Line(dataDates, {
 		responsive: true,
 		maintainAspectRatio: false,
 		tooltipTemplate: {% verbatim %} "<%if (label){%><%=label%>: <%}%><%= value %> inscriptions" {% endverbatim %},
@@ -141,7 +137,7 @@ couleurs['3hover']	= 		"rgba(255, 54, 0, 0.5)";
 			</tr>
 			<tr>
 				<th><i class="fa fa-tachometer fa-fw"></i> Nombre de jours</th>
-				<td>{{ entity.nbJours|replace({'.0':''}) }}</td>
+				<td>{{ entity.nbJours|replace('.0', '') }}</td>
 			</tr>
 			</table>
 		</div>

@@ -8,8 +8,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use OCIM\ContactsBundle\Entity\Personne;
 use OCIM\ContactsBundle\Form\PersonneType;
 
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-
 /**
  * Personne controller.
  *
@@ -43,7 +41,7 @@ class PersonneController extends Controller
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
@@ -66,12 +64,12 @@ class PersonneController extends Controller
      */
     private function createCreateForm(Personne $entity)
     {
-        $form = $this->createForm(PersonneType::class, $entity, array(
+        $form = $this->createForm(new PersonneType(), $entity, array(
             'action' => $this->generateUrl('personne_create'),
             'method' => 'POST',
         ));
 
-        $form->add('submit', SubmitType::class, array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Create'));
 
         return $form;
     }
@@ -147,12 +145,12 @@ class PersonneController extends Controller
     */
     private function createEditForm(Personne $entity)
     {
-        $form = $this->createForm(PersonneType::class, $entity, array(
+        $form = $this->createForm(new PersonneType(), $entity, array(
             'action' => $this->generateUrl('personne_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
-        $form->add('submit', SubmitType::class, array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Update'));
 
         return $form;
     }
@@ -164,7 +162,7 @@ class PersonneController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('OCIMContacts:Personne')->find($id);
+        $entity = $em->getRepository('OCIMContactsBundle:Personne')->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Personne entity.');
@@ -195,7 +193,7 @@ class PersonneController extends Controller
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('OCIMContactsBundle:Personne')->find($id);
 
@@ -222,7 +220,7 @@ class PersonneController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('personne_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', SubmitType::class, array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
     }

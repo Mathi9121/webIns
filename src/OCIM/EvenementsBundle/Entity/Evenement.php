@@ -12,7 +12,7 @@ use OCIM\EvenementsBundle\Entity\ModeleChampPerso;
  */
 class Evenement
 {
-    
+
 	protected $type;
 
     /**

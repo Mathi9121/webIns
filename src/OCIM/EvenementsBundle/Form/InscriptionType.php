@@ -4,20 +4,11 @@ namespace OCIM\EvenementsBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use OCIM\ContactsBundle\Form\PersonneType;
-use OCIM\EvenementsBundle\Form\ConventionType;
-use OCIM\ContactsBundle\Form\AdminType;
-use OCIM\ContactsBundle\Form\SignataireType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
-
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class InscriptionType extends AbstractType
 {
@@ -38,14 +29,13 @@ class InscriptionType extends AbstractType
 
 		$idevenement = $this->idevenement;
         $builder
-			->add('stagiaire', PersonneType::class, array(
+			->add('stagiaire', new \OCIM\ContactsBundle\Form\PersonneType(), array(
 				'data_class' => 'OCIM\ContactsBundle\Entity\Stagiaire',
-				//'type'=> PersonneType::class
+				//'type'=> new \OCIM\ContactsBundle\Form\PersonneType()
 				'em' => $entityManager
 				))
-			->add('evenementformule', EntityType::class, array(
+			->add('evenementformule', "entity", array(
 				'class' => 'OCIM\EvenementsBundle\Entity\evenementFormule',
-				'choice_translation_domain' => true,
 				"attr" => array('class'=>'width-100'),
 				"query_builder" => function(EntityRepository $er) use ($idevenement)
 					{
@@ -55,18 +45,17 @@ class InscriptionType extends AbstractType
 					},
 				'label' => "Formule et Tarif"
 				))
-            ->add('dateInscription', DateTimeType::class, array(
+            ->add('dateInscription', 'datetime', array(
 				'widget' => 'single_text',
 				'format' => 'dd/MM/yyyy HH:mm:ss',
 				'required' => false,
-				/*'read_only' => true,*/
+				'read_only' => true,
 				'disabled' => true,
-				'attr' => array('class' => 'width-100', 'readonly' => true),
+				'attr' => array('class' => 'width-100'),
 				'label' => "Date d'inscription",
 				))
-            ->add('numberStatut', ChoiceType::class, array(
-				'choices'   => array('Validé' => '1', 'En attente' => '2', "Annulé" => "3"),
-				'choices_as_values' => true,
+            ->add('numberStatut','choice', array(
+				'choices'   => array( '1' => 'Validé', '2' => 'En attente', "3" => "Annulé"),
 				//'preferred_choices' => array('en attente')
 				'attr' => array('class' => 'width-100'),
 				"label" => "Statut de l'inscription"
@@ -74,42 +63,40 @@ class InscriptionType extends AbstractType
 				->add('provenancePCST', null, array(
 					'label' => "Provenance PCST",
 				))
-            ->add('attentes', TextareaType::class, array(
+            ->add('attentes', "textarea", array(
 				'attr' => array("class"=>"width-100", 'rows'=> 5),
 				'required' => false,
 				))
             //->add('statutOrgFinanceur')
-            ->add('statutConvention', ChoiceType::class, array(
+            ->add('statutConvention', 'choice', array(
 				'choices' => array(
-					'OUI' => true,
-					'NON' => false,
+					true => 'OUI',
+					false => 'NON',
 					),
-				'choices_as_values' => true,
 				'required' => false,
 				'empty_value' => "Ne sais pas",
 				'label' => "Le stagiaire a-t-il besoin d'une convention?"
 			))
-            ->add('statutFinancement', ChoiceType::class, array(
+            ->add('statutFinancement', 'choice', array(
 				'choices' => array(
-					'Accordé' => true,
-					'NON' => false ,
+					true => 'Accordé',
+					false => 'NON',
 					),
-				'choices_as_values' => true,
 				'required' => false,
 				'empty_value' => "En attente",
 				'label' => "Statut du financement :"
 			))
             //->add('hash')
-      ->add('convention', ConventionType::class, array(
+      ->add('convention', new \OCIM\EvenementsBundle\Form\ConventionType(), array(
 				'data_class' => 'OCIM\EvenementsBundle\Entity\Convention',
 				'required' => false,
 			))
-			->add('admin', AdminType::class, array(
+			->add('admin', new \OCIM\ContactsBundle\Form\AdminType(), array(
 				'data_class' => 'OCIM\ContactsBundle\Entity\Admin',
 				'required' => false,
 
 			))
-			->add('signataire', SignataireType::class, array(
+			->add('signataire', new \OCIM\ContactsBundle\Form\SignataireType(), array(
 				'data_class' => 'OCIM\ContactsBundle\Entity\Signataire',
 				'required' => false,
 				'em' => $entityManager
@@ -126,9 +113,9 @@ class InscriptionType extends AbstractType
     }
 
     /**
-     * @param OptionsResolver $resolver
+     * @param OptionsResolverInterface $resolver
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'OCIM\EvenementsBundle\Entity\Inscription',
@@ -138,21 +125,15 @@ class InscriptionType extends AbstractType
             'em',
         ));
 
-        $resolver->setAllowedTypes('em', 'Doctrine\Common\Persistence\ObjectManager');
-	}
-	
-	/**
-     * @return getBlockPrefix()
-     */
-    public function getName()
-    {
-        return $this->getBlockPrefix();
+        $resolver->setAllowedTypes(array(
+            'em' => 'Doctrine\Common\Persistence\ObjectManager',
+        ));
     }
 
     /**
      * @return string
      */
-    public function getBlockPrefix()
+    public function getName()
     {
         return 'ocim_evenementsbundle_inscription';
     }

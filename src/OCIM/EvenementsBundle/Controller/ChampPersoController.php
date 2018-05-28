@@ -15,8 +15,6 @@ use OCIM\EvenementsBundle\Form\ChampPersoType;
 use Doctrine\Common\Collections\ArrayCollection;
 use OCIM\ContactsBundle\Entity\Personne;
 
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-
 
 /**
  * evenementFormule controller.
@@ -113,7 +111,7 @@ class ChampPersoController extends Controller
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
@@ -136,12 +134,12 @@ class ChampPersoController extends Controller
      */
     private function createCreateForm(evenementFormule $entity)
     {
-        $form = $this->createForm(ChampPersoType::class, $entity, array(
+        $form = $this->createForm(new ChampPersoType(), $entity, array(
             'action' => $this->generateUrl('champPerso_create'),
             'method' => 'POST',
         ));
 
-        $form->add('submit', SubmitType::class, array('label' => 'Créer'));
+        $form->add('submit', 'submit', array('label' => 'Créer'));
 
         return $form;
     }
@@ -284,7 +282,7 @@ class ChampPersoController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', SubmitType::class, array('label' => 'Enregistrer', 'attr'=> array('class'=>'btn btn-green btn-save')));
+        $form->add('submit', 'submit', array('label' => 'Enregistrer', 'attr'=> array('class'=>'btn btn-green btn-save')));
 
         return $form;
     }
@@ -372,7 +370,7 @@ class ChampPersoController extends Controller
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('OCIMEvenementsBundle:ModeleChampPerso')->findModelesByIdEvenement($id);
 
@@ -402,7 +400,7 @@ class ChampPersoController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('champPerso_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', SubmitType::class, array('label' => 'Supprimer', 'attr'=>array('class'=>'btn btn-red btn-delete')))
+            ->add('submit', 'submit', array('label' => 'Supprimer', 'attr'=>array('class'=>'btn btn-red btn-delete')))
             ->getForm()
         ;
     }
