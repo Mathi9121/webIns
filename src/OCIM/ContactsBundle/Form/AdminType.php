@@ -5,7 +5,7 @@ namespace OCIM\ContactsBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
+use OCIM\ContactsBundle\Entity\Admin;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
@@ -17,7 +17,7 @@ class AdminType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-		
+
         $builder
             ->add('civilite', ChoiceType::class, array(
 				'choices' => array(
@@ -62,7 +62,7 @@ class AdminType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'OCIM\ContactsBundle\Entity\Admin',
+            'data_class' => Admin::class,
 			'attr' => array('class'=> 'forms'),
         ));
     }

@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use OCIM\ContactsBundle\Form\DataTransformer\StringToTagsTransformer;
+use OCIM\EvenementsBundle\Entity\Evenement;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
@@ -35,7 +36,7 @@ class AjoutIntervenantType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-			     'data_class' => 'OCIM\EvenementsBundle\Entity\Evenement',
+			     'data_class' => Evenement::class,
 		       'attr' => array('class'=> ''),
         ));
 

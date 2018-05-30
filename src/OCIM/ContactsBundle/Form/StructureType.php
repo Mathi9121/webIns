@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Doctrine\ORM\EntityRepository;
+use OCIM\ContactsBundle\Entity\Structure;
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
@@ -18,10 +19,10 @@ class StructureType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-	
+
 		$entityManager = $options['em'];
         $transformer = new StringToTagsTransformer($entityManager);
-		
+
         $builder
             ->add('type', null, array(
 				'attr' => array('class'=>'width-100'),
@@ -38,14 +39,14 @@ class StructureType extends AbstractType
 			))->addModelTransformer($transformer))
         ;
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'OCIM\ContactsBundle\Entity\Structure'
+            'data_class' => Structure::class
         ));
 		$resolver->setRequired(array(
             'em',

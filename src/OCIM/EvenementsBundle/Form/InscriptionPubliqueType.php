@@ -13,6 +13,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use OCIM\ContactsBundle\Entity\Stagiaire;
+use OCIM\EvenementsBundle\Entity\Inscription;
 
 class InscriptionPubliqueType extends AbstractType
 {
@@ -48,7 +50,7 @@ class InscriptionPubliqueType extends AbstractType
 			->add(
 				$builder->create('stagiaire', FormType::class, array(
 						'required' => true,
-						'data_class' => 'OCIM\ContactsBundle\Entity\Stagiaire',
+						'data_class' => Stagiaire::class,
 						'label' => false))
 					->add('civilite', ChoiceType::class, array(
 						'choices' => array(
@@ -150,7 +152,7 @@ class InscriptionPubliqueType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'OCIM\EvenementsBundle\Entity\Inscription',
+            'data_class' => Inscription::class,
 						'attr' => array('class' => 'forms'),
 						'csrf_protection' => false,
 

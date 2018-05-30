@@ -5,6 +5,7 @@ namespace OCIM\EvenementsBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use OCIM\EvenementsBundle\Entity\Formule;
 
 class FormuleType extends AbstractType
 {
@@ -37,17 +38,17 @@ class FormuleType extends AbstractType
 				'required' => false,
 				'label'  => 'Hébergement',
 			))
-			
+
         ;
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'OCIM\EvenementsBundle\Entity\Formule'
+            'data_class' => Formule::class
         ));
     }
 

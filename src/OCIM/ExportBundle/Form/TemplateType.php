@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use OCIM\ExportBundle\Entity\Template;
 
 class TemplateType extends AbstractType
 {
@@ -45,7 +46,7 @@ class TemplateType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'OCIM\ExportBundle\Entity\Template'
+            'data_class' => Template::class
         ));
     }
 

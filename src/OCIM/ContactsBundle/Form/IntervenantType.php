@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use OCIM\ContactsBundle\Form\DataTransformer\StringToTagsTransformer;
-
+use OCIM\ContactsBundle\Entity\Intervenant;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
@@ -72,7 +72,7 @@ class IntervenantType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-			'data_class' => 'OCIM\ContactsBundle\Entity\Intervenant',
+			'data_class' => Intervenant::class,
 			'attr' => array('class'=> 'forms'),
         ));
 

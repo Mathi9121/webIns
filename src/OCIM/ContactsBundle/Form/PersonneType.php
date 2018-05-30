@@ -8,7 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-
+use OCIM\ContactsBundle\Entity\Personne;
 use OCIM\ContactsBundle\Form\AdresseType;
 
 class PersonneType extends AbstractType
@@ -77,7 +77,7 @@ class PersonneType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'OCIM\ContactsBundle\Entity\Personne',
+            'data_class' => Personne::class,
 			'attr' => array('class'=> 'forms'),
         ));
         $resolver->setRequired(array(

@@ -279,7 +279,8 @@ class ChampPersoController extends Controller
     */
     private function createEditForm($entity)
     {
-        $form = $this->createForm(new ChampPersoType($entity->getId()), $entity, array(
+        $form = $this->createForm(ChampPersoType::class, $entity, array(
+            'getId' => $entity->getId(),
             'action' => $this->generateUrl('champPerso_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));

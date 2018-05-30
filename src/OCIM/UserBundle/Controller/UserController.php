@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use OCIM\UserBundle\Entity\User;
-use OCIM\FormBundle\Form\UserType;
+use OCIM\UserBundle\Form\UserType;
 
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 

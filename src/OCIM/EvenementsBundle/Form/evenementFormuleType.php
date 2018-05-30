@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use OCIM\EvenementsBundle\Entity\evenementFormule;
 
 class evenementFormuleType extends AbstractType
 {
@@ -32,7 +33,7 @@ class evenementFormuleType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'OCIM\EvenementsBundle\Entity\evenementFormule'
+            'data_class' => evenementFormule::class
         ));
     }
 

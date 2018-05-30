@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use OCIM\EvenementsBundle\Entity\ModeleChampPerso;
 
 class ModeleChampPersoType extends AbstractType
 {
@@ -79,7 +80,7 @@ class ModeleChampPersoType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'OCIM\EvenementsBundle\Entity\ModeleChampPerso',
+            'data_class' => ModeleChampPerso::class,
 			'attr' => array('class'=> 'forms'),
         ));
 	}
