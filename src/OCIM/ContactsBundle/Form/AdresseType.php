@@ -58,7 +58,7 @@ class AdresseType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => Adresse:class
+            'data_class' => Adresse::class
         ));
         $resolver->setRequired(array(
             'em',

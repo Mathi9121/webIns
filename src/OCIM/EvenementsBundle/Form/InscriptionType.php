@@ -28,10 +28,10 @@ class InscriptionType extends AbstractType
 {
 	private $idevenement;
 
-	public function __construct($idevenement)
-    {
-        $this->idevenement = $idevenement;
-    }
+//	public function __construct($idevenement)
+  //  {
+   //     $this->idevenement = $idevenement;
+   // }
 
         /**
      * @param FormBuilderInterface $builder
@@ -91,7 +91,7 @@ class InscriptionType extends AbstractType
 					),
 				'choices_as_values' => true,
 				'required' => false,
-				'empty_value' => "Ne sais pas",
+				'placeholder' => "Ne sais pas",
 				'label' => "Le stagiaire a-t-il besoin d'une convention?"
 			))
             ->add('statutFinancement', ChoiceType::class, array(
@@ -101,7 +101,7 @@ class InscriptionType extends AbstractType
 					),
 				'choices_as_values' => true,
 				'required' => false,
-				'empty_value' => "En attente",
+				'placeholder' => "En attente",
 				'label' => "Statut du financement :"
 			))
             //->add('hash')
@@ -140,10 +140,12 @@ class InscriptionType extends AbstractType
 			'attr' => array('class' => 'forms')
         ));
 		$resolver->setRequired(array(
+            'getId',
             'em',
         ));
 
         $resolver->setAllowedTypes('em', 'Doctrine\Common\Persistence\ObjectManager');
+        $resolver->setAllowedTypes('getId', 'string');
 	}
 	
 	/**

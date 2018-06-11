@@ -245,7 +245,8 @@ class InscriptionController extends Controller
   */
   private function createCreateForm(Inscription $entity, $idevenement)
   {
-    $form = $this->createForm(new InscriptionType($idevenement), $entity, array(
+    $form = $this->createForm(InscriptionType::class, $entity, array(
+      'getId' => $idevenement,
       'action' => $this->generateUrl('inscription_create', array('idevenement'=>$idevenement)),
       'method' => 'POST',
       'em' => $this->getDoctrine()->getManager(),
