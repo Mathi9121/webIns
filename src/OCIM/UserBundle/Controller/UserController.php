@@ -8,7 +8,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use OCIM\UserBundle\Entity\User;
 use OCIM\UserBundle\Form\UserType;
 
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 /**
  * User controller.
@@ -41,7 +40,7 @@ class UserController extends Controller
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
@@ -64,12 +63,12 @@ class UserController extends Controller
      */
     private function createCreateForm(User $entity)
     {
-        $form = $this->createForm(UserType::class, $entity, array(
+        $form = $this->createForm(new UserType(), $entity, array(
             'action' => $this->generateUrl('user_create'),
             'method' => 'POST',
         ));
 
-        $form->add('submit', SubmitType::class, array('label' => 'Créer', 'attr'=>array('class'=>'btn btn-green btn-save')));
+        $form->add('submit', 'submit', array('label' => 'Créer', 'attr'=>array('class'=>'btn btn-green btn-save')));
 
         return $form;
     }
@@ -144,12 +143,12 @@ class UserController extends Controller
     */
     private function createEditForm(User $entity)
     {
-        $form = $this->createForm(UserType::class, $entity, array(
+        $form = $this->createForm(new UserType(), $entity, array(
             'action' => $this->generateUrl('user_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
-        $form->add('submit', SubmitType::class, array('label' => 'Enregistrer', 'attr'=>array('class'=>'btn btn-green btn-save')));
+        $form->add('submit', 'submit', array('label' => 'Enregistrer', 'attr'=>array('class'=>'btn btn-green btn-save')));
 
         return $form;
     }
@@ -192,7 +191,7 @@ class UserController extends Controller
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('OCIMUserBundle:User')->find($id);
 
@@ -219,7 +218,7 @@ class UserController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('user_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', SubmitType::class, array('label' => 'Supprimer', 'attr'=>array('class'=>'btn btn-red btn-delete')))
+            ->add('submit', 'submit', array('label' => 'Supprimer', 'attr'=>array('class'=>'btn btn-red btn-delete')))
             ->getForm()
         ;
     }

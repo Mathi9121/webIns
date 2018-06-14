@@ -4,12 +4,8 @@ namespace OCIM\ContactsBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use OCIM\ContactsBundle\Entity\Personne;
-use OCIM\ContactsBundle\Form\AdresseType;
 
 class PersonneType extends AbstractType
 {
@@ -22,48 +18,47 @@ class PersonneType extends AbstractType
         $entityManager = $options['em'];
 
         $builder
-            ->add('civilite', ChoiceType::class, array(
+            ->add('civilite', 'choice', array(
 				'choices' => array(
 					'Mlle' => 'Mlle',
 					'Mme' => 'Mme',
 					'Mr' => 'Mr',
-                    ),
-                'choices_as_values' => true,
+					),
 				//'empty_value' => 'Choisissez une option',
 				'attr' => array('class'=> 'width-100'),
 				'required' => false,
 				'label' => "Civilité"
 			))
-            ->add('nom', TextType::class, array(
+            ->add('nom', 'text', array(
 				'attr' => array('class'=> 'width-100'),
 				'required' => false
 			))
-            ->add('prenom', TextType::class, array(
+            ->add('prenom', 'text', array(
 				'attr' => array('class'=> 'width-100'),
 				'required' => false,
 				'label' => "Prénom"
 			))
-            ->add('fonction', TextType::class, array(
+            ->add('fonction', 'text', array(
 				'attr' => array('class'=> 'width-100'),
 				'required' => false,
 				'label' => "Fonction",
 			))
-            ->add('tel', TextType::class, array(
+            ->add('tel', 'text', array(
 				'attr' => array('class'=> 'width-100'),
 				'label' => 'Téléphone',
 				'required' => false,
 			))
-            ->add('fax', TextType::class, array(
+            ->add('fax', 'text', array(
 				'required' => false,
 				'attr' => array('class'=> 'width-100'),
 				'required' => false,
 			))
-            ->add('mail', TextType::class, array(
+            ->add('mail', 'text', array(
 				'attr' => array('class'=> 'width-100'),
 				'label' => "Adresse Mail",
 				'required' => false
 			))
-			->add('adresse', AdresseType::class, array(
+			->add('adresse', new AdresseType(),array(
 				'required' => false,
 				'label' => false,
         'em' => $entityManager
@@ -72,9 +67,9 @@ class PersonneType extends AbstractType
     }
 
     /**
-     * @param OptionsResolver $resolver
+     * @param OptionsResolverInterface $resolver
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => Personne::class,
@@ -84,21 +79,15 @@ class PersonneType extends AbstractType
             'em',
         ));
 
-        $resolver->setAllowedTypes('em', 'Doctrine\Common\Persistence\ObjectManager');
-    }
-
-    /**
-     * @return getBlockPrefix()
-     */
-    public function getName()
-    {
-        return $this->getBlockPrefix();
+        $resolver->setAllowedTypes(array(
+            'em' => 'Doctrine\Common\Persistence\ObjectManager',
+        ));
     }
 
     /**
      * @return string
      */
-    public function getBlockPrefix()
+    public function getName()
     {
         return 'ocim_contactsbundle_personne';
     }

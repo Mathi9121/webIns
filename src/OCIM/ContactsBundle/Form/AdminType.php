@@ -4,10 +4,8 @@ namespace OCIM\ContactsBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use OCIM\ContactsBundle\Entity\Admin;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+
 
 class AdminType extends AbstractType
 {
@@ -19,36 +17,35 @@ class AdminType extends AbstractType
     {
 
         $builder
-            ->add('civilite', ChoiceType::class, array(
+            ->add('civilite', 'choice', array(
 				'choices' => array(
 					'Mlle' => 'Mlle',
 					'Mme' => 'Mme',
 					'Mr' => 'Mr',
-                    ),
-                'choices_as_values' => true,
+					),
 				'attr' => array('class'=> 'width-100'),
 				'label' => 'Civilité',
 				'required' => false,
 			))
-            ->add('nom', TextType::class, array(
+            ->add('nom', 'text', array(
 				'attr' => array('class'=> 'width-100'),
 				'required' => false,
 			))
-            ->add('prenom', TextType::class, array(
+            ->add('prenom', 'text', array(
 				'attr' => array('class'=> 'width-100'),
 				'label' => 'Prénom',
 				'required' => false,
 			))
-            ->add('fonction', TextType::class, array(
+            ->add('fonction', 'text', array(
 				'attr' => array('class'=> 'width-100'),
 				'required' => false,
 			))
-            ->add('tel', TextType::class, array(
+            ->add('tel', 'text', array(
 				'attr' => array('class'=> 'width-100'),
 				'label' => 'Téléphone',
 				'required' => false,
 			))
-            ->add('mail', TextType::class, array(
+            ->add('mail', 'text', array(
 				'attr' => array('class'=> 'width-100'),
 				'label' => 'Adresse Mail',
 				'required' => false,
@@ -57,9 +54,9 @@ class AdminType extends AbstractType
     }
 
     /**
-     * @param OptionsResolver $resolver
+     * @param OptionsResolverInterface $resolver
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => Admin::class,
@@ -68,17 +65,9 @@ class AdminType extends AbstractType
     }
 
     /**
-     * @return getBlockPrefix()
-     */
-    public function getName()
-    {
-        return $this->getBlockPrefix();
-    }
-
-    /**
      * @return string
      */
-    public function getBlockPrefix()
+    public function getName()
     {
         return 'ocim_contactsbundle_admin';
     }

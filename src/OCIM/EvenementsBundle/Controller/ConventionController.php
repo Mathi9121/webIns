@@ -9,8 +9,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use OCIM\EvenementsBundle\Entity\Convention;
 use OCIM\EvenementsBundle\Form\ConventionType;
 
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-
 /**
  * Convention controller.
  *
@@ -48,7 +46,7 @@ class ConventionController extends Controller
         $form = $this->createCreateForm($entity, $idinscription);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 			      $entity->setInscription($em->getReference('OCIMEvenementsBundle:Inscription', $idinscription));
 			      $inscription->setConvention($entity);
@@ -177,12 +175,12 @@ class ConventionController extends Controller
      */
     private function createCreateForm(Convention $entity, $idinscription)
     {
-        $form = $this->createForm(ConventionType::class, $entity, array(
+        $form = $this->createForm(new ConventionType(), $entity, array(
             'action' => $this->generateUrl('convention_create', array('idinscription'=> $idinscription)),
             'method' => 'POST',
         ));
 
-        $form->add('submit', SubmitType::class, array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Create'));
 
         return $form;
     }
@@ -262,12 +260,12 @@ class ConventionController extends Controller
     */
     private function createEditForm(Convention $entity)
     {
-        $form = $this->createForm(ConventionType::class, $entity, array(
+        $form = $this->createForm(new ConventionType(), $entity, array(
             'action' => $this->generateUrl('convention_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
-        $form->add('submit', SubmitType::class, array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Update'));
 
         return $form;
     }
@@ -310,7 +308,7 @@ class ConventionController extends Controller
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('OCIMEvenementsBundle:Convention')->find($id);
 
@@ -337,7 +335,7 @@ class ConventionController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('convention_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', SubmitType::class, array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
     }

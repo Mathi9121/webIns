@@ -4,15 +4,9 @@ namespace OCIM\ContactsBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use OCIM\ContactsBundle\Form\DataTransformer\StringToTypePersonneTransformer;
 
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-
-use OCIM\ContactsBundle\Form\AdresseSignataireType;
-use OCIM\ContactsBundle\Entity\Adresse;
-use OCIM\ContactsBundle\Entity\Signataire;
 
 class SignataireType extends AbstractType
 {
@@ -24,29 +18,28 @@ class SignataireType extends AbstractType
     {
 		$entityManager = $options['em'];
         $builder
-            ->add('civilite', ChoiceType::class, array(
+            ->add('civilite', 'choice', array(
 				'choices' => array(
 					'Mlle' => 'Mlle',
 					'Mme' => 'Mme',
 					'Mr' => 'Mr',
-                    ),
-                'choices_as_values' => true,
+					),
 				'attr' => array('class'=> 'width-100'),
 				'required' => false
 			))
-            ->add('nom', TextType::class, array(
+            ->add('nom', 'text', array(
 				'attr' => array('class'=> 'width-100')
 			))
-            ->add('prenom', TextType::class, array(
+            ->add('prenom', 'text', array(
 				'attr' => array('class'=> 'width-100')
 			))
-            ->add('fonction', TextType::class, array(
+            ->add('fonction', 'text', array(
 				'attr' => array('class'=> 'width-100')
 			))
-            ->add('mail', TextType::class, array(
+            ->add('mail', 'text', array(
 				'attr' => array('class'=> 'width-100')
 			))
-			->add('adresse', AdresseSignataireType::class, array(
+			->add('adresse', new AdresseSignataireType(), array(
 				'attr' => array('class'=> 'width-100'),
 				'data_class' => Adresse::class,
 				'em' => $entityManager
@@ -55,9 +48,9 @@ class SignataireType extends AbstractType
     }
 
     /**
-     * @param OptionsResolver $resolver
+     * @param OptionsResolverInterface $resolver
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => Signataire::class,
@@ -67,21 +60,15 @@ class SignataireType extends AbstractType
             'em',
         ));
 
-        $resolver->setAllowedTypes('em', 'Doctrine\Common\Persistence\ObjectManager');
-    }
-
-    /**
-     * @return getBlockPrefix()
-     */
-    public function getName()
-    {
-        return $this->getBlockPrefix();
+        $resolver->setAllowedTypes(array(
+            'em' => 'Doctrine\Common\Persistence\ObjectManager',
+        ));
     }
 
     /**
      * @return string
      */
-    public function getBlockPrefix()
+    public function getName()
     {
         return 'ocim_contactsbundle_signataire';
     }

@@ -103,7 +103,7 @@ $(document).ready(function(){
 				primary: "caret"
 			}
 			})
-			.on("click", function() {
+			.click(function() {
 				var menu = $( this ).parent().next().show().position({
 				my: "left top",
 				at: "left bottom",

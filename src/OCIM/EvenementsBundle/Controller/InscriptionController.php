@@ -14,7 +14,7 @@ use OCIM\ContactsBundle\Entity\Intervenant;
 use OCIM\ContactsBundle\Entity\Adresse;
 use OCIM\EvenementsBundle\Entity\ReponsesChampPerso;
 
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
 
 /**
 * Inscription controller.
@@ -70,10 +70,10 @@ class InscriptionController extends Controller
 
     $em = $this->getDoctrine()->getManager();
 
-    $inscription = $em->getRepository('OCIMEvenementsBundle:Inscription')->find($idinscription);
+    $inscription = $em->getRepository("OCIMEvenementsBundle:Inscription")->find($idinscription);
     $stagiaire = $inscription->getStagiaire();
     $structure = $stagiaire->getAdresse();
-    $evenement = $em->getRepository('OCIMEvenementsBundle:Evenement')->find($idevenement);
+    $evenement = $em->getRepository("OCIMEvenementsBundle:Evenement")->find($idevenement);
 
     $nbinscription = $inscription->getStagiaire()->getInscription()->count();
 
@@ -210,7 +210,7 @@ class InscriptionController extends Controller
     $form = $this->createCreateForm($entity, $idevenement);
     $form->handleRequest($request);
 
-    if ($form->isSubmitted() && $form->isValid()) {
+    if ($form->isValid()) {
       $em = $this->getDoctrine()->getManager();
 
       $ordre = $em->getRepository('OCIMEvenementsBundle:Inscription')->getOrdreMaxByEvenement($idevenement);
@@ -252,7 +252,7 @@ class InscriptionController extends Controller
       'em' => $this->getDoctrine()->getManager(),
     ));
 
-    $form->add('submit', SubmitType::class, array('label' => 'Ajouter le stagiaire', 'attr'=> array('class' => 'btn btn-green btn-save')
+    $form->add('submit', 'submit', array('label' => 'Ajouter le stagiaire', 'attr'=> array('class' => 'btn btn-green btn-save')
     ));
 
     return $form;
@@ -267,8 +267,8 @@ class InscriptionController extends Controller
     $entity = new Inscription();
     $form   = $this->createCreateForm($entity, $idevenement);
     $em = $this->getDoctrine()->getManager();
-    $evenement = $em->getRepository('OCIMEvenementsBundle:Evenement')->find($idevenement);
-    $tags = $em->getRepository('OCIMContactsBundle:TagStructure')->findAll();
+    $evenement = $em->getRepository("OCIMEvenementsBundle:Evenement")->find($idevenement);
+    $tags = $em->getRepository("OCIMContactsBundle:TagStructure")->findAll();
 
     return $this->render('OCIMEvenementsBundle:Inscription:new.html.twig', array(
       'entity' => $entity,
@@ -348,7 +348,7 @@ class InscriptionController extends Controller
       'em' => $this->getDoctrine()->getManager(),
     ));
 
-    $form->add('submit', SubmitType::class, array('label' => 'Enregistrer', 'attr'=> array('class'=> 'btn btn-green btn-save'),));
+    $form->add('submit', 'submit', array('label' => 'Enregistrer', 'attr'=> array('class'=> 'btn btn-green btn-save'),));
 
     return $form;
   }
@@ -394,7 +394,7 @@ class InscriptionController extends Controller
     $form = $this->createDeleteForm($id, $idevenement);
     $form->handleRequest($request);
 
-    if ($form->isSubmitted() && $form->isValid()) {
+    if ($form->isValid()) {
       $em = $this->getDoctrine()->getManager();
       $entity = $em->getRepository('OCIMEvenementsBundle:Inscription')->find($id);
 
@@ -433,7 +433,7 @@ class InscriptionController extends Controller
     return $this->createFormBuilder()
     ->setAction($this->generateUrl('inscription_delete', array('id' => $id, 'idevenement'=> $idevenement)))
     ->setMethod('DELETE')
-    ->add('submit', SubmitType::class, array('label' => ' Supprimer', 'attr'=> array('class'=>'btn btn-red btn-delete') ))
+    ->add('submit', 'submit', array('label' => ' Supprimer', 'attr'=> array('class'=>'btn btn-red btn-delete') ))
     ->getForm()
     ;
   }

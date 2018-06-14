@@ -5,8 +5,7 @@ namespace OCIM\ContactsBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Admin
- *
+ * Stagiaire
  */
 class Admin extends Personne
 {

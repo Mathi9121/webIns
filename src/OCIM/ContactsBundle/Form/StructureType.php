@@ -5,11 +5,9 @@ namespace OCIM\ContactsBundle\Form;
 use OCIM\ContactsBundle\Form\DataTransformer\StringToTagsTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Doctrine\ORM\EntityRepository;
 use OCIM\ContactsBundle\Entity\Structure;
-
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class StructureType extends AbstractType
 {
@@ -32,7 +30,7 @@ class StructureType extends AbstractType
 				}
 			))
             ->add(
-				$builder->create('tags', TextType::class, array(
+				$builder->create('tags', 'text', array(
 				'attr' => array('class'=>'width-100'),
 				'required' => false,
 				// 'data_class' => 'OCIM\ContactsBundle\Entity\TagStructure'
@@ -41,9 +39,9 @@ class StructureType extends AbstractType
     }
 
     /**
-     * @param OptionsResolver $resolver
+     * @param OptionsResolverInterface $resolver
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => Structure::class
@@ -52,22 +50,16 @@ class StructureType extends AbstractType
             'em',
         ));
 
-        $resolver->setAllowedTypes('em', 'Doctrine\Common\Persistence\ObjectManager');
+        $resolver->setAllowedTypes(array(
+            'em' => 'Doctrine\Common\Persistence\ObjectManager',
+        ));
 
-    }
-
-    /**
-     * @return getBlockPrefix()
-     */
-    public function getName()
-    {
-        return $this->getBlockPrefix();
     }
 
     /**
      * @return string
      */
-    public function getBlockPrefix()
+    public function getName()
     {
         return 'ocim_contactsbundle_structure';
     }

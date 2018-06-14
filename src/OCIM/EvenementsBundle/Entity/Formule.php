@@ -15,7 +15,7 @@ class Formule
      * @var integer
      */
     private $id;
-
+	
     /**
      * @var string
      */

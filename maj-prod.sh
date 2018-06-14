@@ -1,5 +1,5 @@
 #!/bin/bash
-bin/console cache:clear --env=prod
-chown -R www-data:www-data  var/cache/ var/logs/
-bin/console assets:install --env=prod
-bin/console assetic:dump --env=prod
+app/console cache:clear --env=prod
+chown -R www-data:www-data  app/cache/ app/logs/
+app/console assets:install --env=prod
+app/console assetic:dump --env=prod

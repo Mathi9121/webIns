@@ -13,14 +13,14 @@ class AdresseController extends Controller
 {
     public function ajoutTypeStructureAction(Request $request)
     {
-//test
+
   		if($request->isXmlHttpRequest()){
 
   			$em = $this->getDoctrine()->getManager();
 
   			$data = json_decode($request->getContent());
 
-			$s = new TypeStucture();
+  			$s = new TypeStructure();
 
   			if( !empty($data->structure) && isset($data->structure) ){
 

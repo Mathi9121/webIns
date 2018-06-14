@@ -17,7 +17,7 @@ framework:
         #assets_version: SomeVersionScheme
     default_locale:  "%locale%"
     trusted_hosts:   ~
-    #trusted_proxies: ~
+    trusted_proxies: ~
     session:
         # handler_id set to null will use default session handler from php.ini
         handler_id:  ~
@@ -52,9 +52,6 @@ assetic:
         fontawesome-webfont-woff:
             inputs: '%kernel.root_dir%/Resources/public/fonts/fontawesome-webfont.woff'
             output: 'fonts/fontawesome-webfont.woff'
-        fontawesome-webfont-woff2:
-            inputs: '%kernel.root_dir%/Resources/public/fonts/fontawesome-webfont.woff2'
-            output: 'fonts/fontawesome-webfont.woff2'
         images:
             inputs: '%kernel.root_dir%/Resources/public/img/coin_rouge.png'
             output: 'img/coin_rouge.png'
@@ -119,4 +116,4 @@ assetic:
 swiftmailer:
     transport:  smtp
     host: smtp.u-bourgogne.fr
-encryption: tls
+    encryption: tls

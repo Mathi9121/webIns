@@ -9,8 +9,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use OCIM\EvenementsBundle\Entity\Formule;
 use OCIM\EvenementsBundle\Form\FormuleType;
 
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-
 /**
  * Formule controller.
  *
@@ -63,7 +61,7 @@ class FormuleController extends Controller
           $form = $this->createCreateForm($entity);
           $form->handleRequest($request);
 
-          if ($form->isSubmitted() && $form->isValid()) {
+          if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
@@ -111,13 +109,13 @@ class FormuleController extends Controller
      */
     private function createCreateForm(Formule $entity)
     {
-        $form = $this->createForm(FormuleType::class, $entity, array(
+        $form = $this->createForm(new FormuleType(), $entity, array(
             'action' => $this->generateUrl('formule_create'),
             'method' => 'POST',
 			'attr' => array('class' => 'forms')
         ));
 
-        $form->add('submit', SubmitType::class, array('label' => 'Créer', 'attr'=> array('class'=> 'btn btn-green btn-save')));
+        $form->add('submit', 'submit', array('label' => 'Créer', 'attr'=> array('class'=> 'btn btn-green btn-save')));
 
         return $form;
     }
@@ -192,12 +190,12 @@ class FormuleController extends Controller
     */
     private function createEditForm(Formule $entity)
     {
-        $form = $this->createForm(FormuleType::class, $entity, array(
+        $form = $this->createForm(new FormuleType(), $entity, array(
             'action' => $this->generateUrl('formule_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
-        $form->add('submit', SubmitType::class, array('label' => 'Enregistrer', 'attr'=> array('class'=>'btn btn-green btn-save')));
+        $form->add('submit', 'submit', array('label' => 'Enregistrer', 'attr'=> array('class'=>'btn btn-green btn-save')));
 
         return $form;
     }
@@ -240,7 +238,7 @@ class FormuleController extends Controller
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('OCIMEvenementsBundle:Formule')->find($id);
 
@@ -267,7 +265,7 @@ class FormuleController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('formule_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', SubmitType::class, array('label' => 'Supprimer', 'attr'=> array('class'=>'btn btn-red btn-delete')))
+            ->add('submit', 'submit', array('label' => 'Supprimer', 'attr'=> array('class'=>'btn btn-red btn-delete')))
             ->getForm()
         ;
     }

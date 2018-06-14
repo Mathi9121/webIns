@@ -4,13 +4,9 @@ namespace OCIM\ContactsBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use OCIM\ContactsBundle\Form\DataTransformer\StringToTagsTransformer;
-use OCIM\ContactsBundle\Entity\Intervenant;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-use OCIM\ContactsBundle\Form\AdresseType;
 
 class IntervenantType extends AbstractType
 {
@@ -23,38 +19,37 @@ class IntervenantType extends AbstractType
 		$entityManager = $options['em'];
 		$transformer = new StringToTagsTransformer($entityManager);
         $builder
-				->add('civilite', ChoiceType::class, array(
+				->add('civilite', 'choice', array(
 					'choices' => array(
 					'Mlle' => 'Mlle',
 					'Mme' => 'Mme',
 					'Mr' => 'Mr',
 					),
-					'choices_as_values' => true,
 					'attr' => array('class'=> 'width-100'),
 					'required' => false
 				))
-				->add('nom', TextType::class, array(
+				->add('nom', 'text', array(
 					'attr' => array('class'=> 'width-100'),
 					'required' => false
 				))
-				->add('prenom', TextType::class, array(
+				->add('prenom', 'text', array(
 					'attr' => array('class'=> 'width-100'),
 					'required' => false
 				))
-				->add('fonction', TextType::class, array(
+				->add('fonction', 'text', array(
 					'attr' => array('class'=> 'width-100'),
 					'required' => false
 				))
-				->add('tel', TextType::class, array(
+				->add('tel', 'text', array(
 					'attr' => array('class'=> 'width-100'),
 					'required' => false,
 					'label' => 'Téléphone',
 				))
-				->add('mail', TextType::class, array(
+				->add('mail', 'text', array(
 					'attr' => array('class'=> 'width-100'),
 					'required' => false
 				))
-        ->add('adresse', AdresseType::class,array(
+        ->add('adresse', new AdresseType(),array(
           'required' => false,
           'label' => false,
           'em' => $entityManager
@@ -67,9 +62,9 @@ class IntervenantType extends AbstractType
     }
 
     /**
-     * @param OptionsResolver $resolver
+     * @param OptionsResolverInterface $resolver
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
 			'data_class' => Intervenant::class,
@@ -80,21 +75,15 @@ class IntervenantType extends AbstractType
             'em',
         ));
 
-        $resolver->setAllowedTypes('em', 'Doctrine\Common\Persistence\ObjectManager');
-	}
-	
-	/**
-     * @return getBlockPrefix()
-     */
-    public function getName()
-    {
-        return $this->getBlockPrefix();
+        $resolver->setAllowedTypes(array(
+            'em' => 'Doctrine\Common\Persistence\ObjectManager',
+        ));
     }
 
     /**
      * @return string
      */
-    public function getBlockPrefix()
+    public function getName()
     {
         return 'ocim_contactsbundle_personne';
     }

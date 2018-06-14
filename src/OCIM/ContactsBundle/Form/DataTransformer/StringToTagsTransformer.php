@@ -6,7 +6,6 @@ use Symfony\Component\Form\Exception\TransevenementFailedException;
 use Doctrine\Common\Persistence\ObjectManager;
 use OCIM\ContactsBundle\Entity\TagStructure;
 use Doctrine\Common\Collections\ArrayCollection;
-
 class StringToTagsTransformer implements DataTransformerInterface
 {
 	private $om;

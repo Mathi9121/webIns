@@ -17,22 +17,21 @@ framework:
         #assets_version: SomeVersionScheme
     default_locale:  "%locale%"
     trusted_hosts:   ~
-    #trusted_proxies: ~
+    trusted_proxies: ~
     session:
         # handler_id set to null will use default session handler from php.ini
         handler_id:  ~
         gc_probability: 0
     fragments:       ~
     http_method_override: true
-    assets: ~
 
 # Twig Configuration
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
-    form_themes:
-    #    resources:
-             - '::form.html.twig'
+    form:
+        resources:
+            - '::form.html.twig'
 
 # Assetic Configuration
 assetic:
@@ -56,9 +55,6 @@ assetic:
         fontawesome-webfont-woff:
             inputs: '%kernel.root_dir%/Resources/public/fonts/fontawesome-webfont.woff'
             output: 'fonts/fontawesome-webfont.woff'
-        fontawesome-webfont-woff2:
-            inputs: '%kernel.root_dir%/Resources/public/fonts/fontawesome-webfont.woff2'
-            output: 'fonts/fontawesome-webfont.woff2'
         images:
             inputs: '%kernel.root_dir%/Resources/public/img/coin_rouge.png'
             output: 'img/coin_rouge.png'
@@ -156,7 +152,3 @@ knp_snappy:
         enabled:    false
         binary:     wkhtmltoimage
         options:    []
-
-services:
-    Symfony\Bundle\AsseticBundle\AsseticBundle:
-        public: true

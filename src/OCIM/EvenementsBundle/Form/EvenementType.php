@@ -4,15 +4,9 @@ namespace OCIM\EvenementsBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use OCIM\EvenementsBundle\Entity\Formule;
 
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-
-use OCIM\EvenementsBundle\Form\evenementFormuleType;
-use OCIM\EvenementsBundle\Entity\Evenement;
 
 class EvenementType extends AbstractType
 {
@@ -25,13 +19,12 @@ class EvenementType extends AbstractType
 
 
         $builder
-        ->add('eventType', ChoiceType::class, array(
+        ->add('eventType', "choice", array(
           "label" => "Catégorie d'événement",
           "choices" => array(
-			  'Formation' => "formation",
-              'Evénement' => "event" 
-		  ),
-		  'choices_as_values' => true,
+              "formation" => 'Formation',
+              "event"     => 'Evénement'
+          )
         ))
 			   ->add('intitule', null, array(
 				    'required' => true,
@@ -43,7 +36,7 @@ class EvenementType extends AbstractType
 				'label'  => 'Lieu',
 				'attr' => array('class'=>'width-100')
 				))
-        ->add('dateDebut', DateType::class, array(
+        ->add('dateDebut', 'date', array(
   				'required' => true,
   				'widget' => 'single_text',
   				'label'  => 'Date de début',
@@ -54,7 +47,7 @@ class EvenementType extends AbstractType
   					'class' => 'width-100 datepicker',
             'data-tool' => 'datepicker'
 				      )))
-            ->add('dateFin', DateType::class, array(
+            ->add('dateFin', 'date', array(
 				'required' => true,
 				'widget' => 'single_text',
 				'format' => 'dd/MM/yyyy',
@@ -81,10 +74,10 @@ class EvenementType extends AbstractType
 				'label'  => 'Type d\'événement',
 				'attr' => array('class'=>'width-100')
 				))
-            ->add('evenementFormule', CollectionType::class, array(
-				'entry_type'   => evenementFormuleType::class,
+            ->add('evenementFormule', 'collection', array(
+				'type'   => new evenementFormuleType(),
 				'label' => 'Formules liées à l\'événement',
-				'entry_options' => array('label' => false),
+				'options' => array('label' => false),
 				'attr'=> array('class'=>'width-100'),
 				'required' => false,
 				'allow_add' => true,
@@ -95,28 +88,20 @@ class EvenementType extends AbstractType
     }
 
     /**
-     * @param OptionsResolver $resolver
+     * @param OptionsResolverInterface $resolver
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => Evenement::class
         ));
 
-	}
-	
-	/**
-     * @return getBlockPrefix()
-     */
-    public function getName()
-    {
-        return $this->getBlockPrefix();
     }
 
     /**
      * @return string
      */
-    public function getBlockPrefix()
+    public function getName()
     {
         return 'ocim_evenementsbundle_evenement';
     }

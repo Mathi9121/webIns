@@ -3,6 +3,7 @@
 
 {% block javascripts %}
 {{parent()}}
+	<script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
 	{% javascripts '@OCIMExportBundle/Resources/public/js/template/*' %}
 		<script type="text/javascript" src="{{ asset_url }}"></script>
 	{% endjavascripts %}

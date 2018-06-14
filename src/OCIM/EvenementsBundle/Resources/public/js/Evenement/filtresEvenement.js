@@ -64,7 +64,7 @@ var dateMax = parseInt($("#event-end").attr("data-date")) * 1000;
 	});
 
 	// filtre par date
-	$("#datefilter").on("change", function(){
+	$("#datefilter").change(function(){
 		$("tbody tr.titre-evenement").css("display", "table-row");
 		$('.filtres select option').eq(0).prop('selected', true);
 		$("tbody tr.titre-evenement").filter(function(index){
@@ -89,8 +89,7 @@ var dateMax = parseInt($("#event-end").attr("data-date")) * 1000;
 			});
 	});
 
-//$.expr[":"].contains = $.expr.createPseudo(function(arg) {
-$.expr.pseudos.contains = $.expr.createPseudo(function(arg) {
+$.expr[":"].contains = $.expr.createPseudo(function(arg) {
     return function( elem ) {
         return $(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
     };
@@ -114,11 +113,9 @@ $.expr.pseudos.contains = $.expr.createPseudo(function(arg) {
 
 
 	// affichage des infos quand click sur une ligne (tr)
-	$('tbody tr.titre-evenement').on("mouseenter", function(){
+	$('tbody tr.titre-evenement').hover(function(){
 		$(this).children('td').first().find('i.fa.fa-angle-right').toggleClass("hide");
-	}).on("mouseleave", function(){
-		$(this).children('td').first().find('i.fa.fa-angle-right').toggleClass("hide");
-	}).on("click", function(){
+	}).click(function(){
 
 		$('tbody tr td').css("border-bottom", '');
 		$('tbody tr.details-evenement').hide();

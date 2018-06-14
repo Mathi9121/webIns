@@ -8,8 +8,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use OCIM\ContactsBundle\Entity\Signataire;
 use OCIM\ContactsBundle\Form\SignataireType;
 
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-
 /**
  * Signataire controller.
  *
@@ -41,7 +39,7 @@ class SignataireController extends Controller
         $form = $this->createCreateForm($entity, $idinscription, $idevenement);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $inscription = $em->getRepository('OCIMEvenementsBundle:Inscription')->find($idinscription);
 			$inscription->setSignataire($entity);
@@ -71,13 +69,13 @@ class SignataireController extends Controller
      */
     private function createCreateForm(Signataire $entity, $idinscription, $idevenement)
     {
-        $form = $this->createForm(SignataireType::class, $entity, array(
+        $form = $this->createForm(new SignataireType(), $entity, array(
             'action' => $this->generateUrl('signataire_create', array('idinscription'=>$idinscription, 'idevenement'=> $idevenement)),
             'method' => 'POST',
 			'em' => $this->getDoctrine()->getManager(),
         ));
 
-        $form->add('submit', SubmitType::class, array('label' => 'Enregistrer'));
+        $form->add('submit', 'submit', array('label' => 'Enregistrer'));
 
         return $form;
     }
@@ -154,13 +152,13 @@ class SignataireController extends Controller
     */
     private function createEditForm(Signataire $entity, $idevenement)
     {
-        $form = $this->createForm(SignataireType::class, $entity, array(
+        $form = $this->createForm(new SignataireType(), $entity, array(
             'action' => $this->generateUrl('signataire_update', array('id' => $entity->getId(), 'idevenement'=>$idevenement)),
             'method' => 'PUT',
 			'em' => $this->getDoctrine()->getManager(),
         ));
 
-        $form->add('submit', SubmitType::class, array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Update'));
 
         return $form;
     }
@@ -203,7 +201,7 @@ class SignataireController extends Controller
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('OCIMContactsBundle:Signataire')->find($id);
 
@@ -230,7 +228,7 @@ class SignataireController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('signataire_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', SubmitType::class, array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
     }

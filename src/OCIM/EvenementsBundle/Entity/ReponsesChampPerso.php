@@ -110,6 +110,7 @@ class ReponsesChampPerso
     }
   
   
+  
     private $modele;
 
 

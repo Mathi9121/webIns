@@ -4,11 +4,9 @@ namespace OCIM\EvenementsBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use OCIM\ContactsBundle\Form\DataTransformer\StringToTagsTransformer;
 use OCIM\EvenementsBundle\Entity\Evenement;
-
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class AjoutIntervenantType extends AbstractType
 {
@@ -19,21 +17,20 @@ class AjoutIntervenantType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-          ->add('intervenants', EntityType::class, array(
+          ->add('intervenants', 'entity', array(
             'class' => 'OCIM\ContactsBundle\Entity\Intervenant',
-            'choice_translation_domain' => true,
             'multiple' => true,
             'expanded' => true,
             'required' => false,
-            'choice_label' => 'id'
+            'property' => 'id'
           ))
         ;
     }
 
     /**
-     * @param OptionsResolver $resolver
+     * @param OptionsResolverInterface $resolver
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
 			     'data_class' => Evenement::class,
@@ -43,17 +40,9 @@ class AjoutIntervenantType extends AbstractType
     }
 
     /**
-     * @return getBlockPrefix()
-     */
-    public function getName()
-    {
-        return $this->getBlockPrefix();
-    }
-
-    /**
      * @return string
      */
-    public function getBlockPrefix()
+    public function getName()
     {
         return 'ocim_evenementsocim_evenement';
     }

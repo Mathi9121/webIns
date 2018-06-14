@@ -28,11 +28,10 @@ security:
             logout:
                 path:   /deconnexion
                 target: /
-            logout_on_user_change: true
     access_control:
         - { path: ^/inscription , roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/connexion, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/, roles: ROLE_ADMIN }
         - { host: form, roles: IS_AUTHENTICATED_ANONYMOUSLY}
-    #acl:
-#   connection: default
+    acl:
+        connection: default

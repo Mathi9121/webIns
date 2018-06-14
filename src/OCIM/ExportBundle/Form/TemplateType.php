@@ -4,11 +4,8 @@ namespace OCIM\ExportBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use OCIM\ExportBundle\Entity\Template;
 
 class TemplateType extends AbstractType
 {
@@ -19,18 +16,17 @@ class TemplateType extends AbstractType
      public function buildForm(FormBuilderInterface $builder, array $options)
      {
        $builder
-       ->add('nom', TextType::class, array(
+       ->add('nom', 'text', array(
          'attr' => array('class'=>'width-100'),
          'required' => true,
        ))
-       ->add('type', ChoiceType::class, array(
+       ->add('type', 'choice', array(
          'choices' => array(
-           "PDF (.pdf)" => 'pdf',
-           "Convention (.pdf)" => 'convention',
-         ),
-         'choices_as_values' => true,
+           'pdf' => "PDF (.pdf)",
+           'convention' => "Convention (.pdf)",
+         )
        ))
-       ->add('filename', TextType::class, array(
+       ->add('filename', 'text', array(
          'attr' => array('class'=>'width-100'),
          'required' => false
        ))
@@ -41,9 +37,9 @@ class TemplateType extends AbstractType
      }
 
     /**
-     * @param OptionsResolver $resolver
+     * @param OptionsResolverInterface $resolver
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => Template::class
@@ -51,17 +47,9 @@ class TemplateType extends AbstractType
     }
 
     /**
-     * @return getBlockPrefix()
-     */
-    public function getName()
-    {
-        return $this->getBlockPrefix();
-    }
-
-    /**
      * @return string
      */
-    public function getBlockPrefix()
+    public function getName()
     {
         return 'ocim_exportbundle_template';
     }

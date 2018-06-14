@@ -10,10 +10,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Validator\Constraints as Assert;
 
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-
 class InscriptionPubliqueController extends Controller
 {
     public function inscriptionAction(Request $request)
@@ -32,11 +28,11 @@ class InscriptionPubliqueController extends Controller
         $idevenement = $id;
 
         if ($entity == 'formule') {
-            $formule = $em->getRepository('OCIMEvenementsBundle:Formule')->find($id);
+            $formule = $em->getRepository("OCIMEvenementsBundle:Formule")->find($id);
             $idevenement = $formule->getEvenementFormule()->get(0)->getEvenement()->getId();
         }
 
-        $evenement = $em->getRepository('OCIMEvenementsBundle:Evenement')->find($idevenement);
+        $evenement = $em->getRepository("OCIMEvenementsBundle:Evenement")->find($idevenement);
 
         if (!$evenement) {
             throw $this->createNotFoundException(
@@ -47,7 +43,7 @@ class InscriptionPubliqueController extends Controller
         if ($entity == 'formule') {
 
             //exit(\Doctrine\Common\Util\Debug::dump($evenementType));
-            $form->add('evenements', EntityType::class, array(
+            $form->add('evenements', 'entity', array(
                 'mapped' => false,
                 'label' => 'Vous participerez aux événements',
                 'required' => false,
@@ -65,11 +61,11 @@ class InscriptionPubliqueController extends Controller
                 }
             ));
 
-            $form->add('evenementformule', HiddenType::class, array(
+            $form->add('evenementformule', 'hidden', array(
                 'mapped' => false,
                 'data' => 'type',
             ));
-            $form->add('typeid', HiddenType::class, array(
+            $form->add('typeid', 'hidden', array(
                 'mapped' => false,
                 'data' => $id,
             ));
@@ -99,7 +95,7 @@ class InscriptionPubliqueController extends Controller
 
         if ($idff == 'type') {
             $typeid = $partdonnees['typeid'];
-            $form->add('evenements', EntityType::class, array(
+            $form->add('evenements', 'entity', array(
                 'mapped' => false,
                 'label' => 'Vous participerez aux évènements',
                 'required' => false,
@@ -116,11 +112,11 @@ class InscriptionPubliqueController extends Controller
                         ->setParameter('id', $typeid);
                 }
             ));
-            $form->add('evenementformule', HiddenType::class, array(
+            $form->add('evenementformule', 'hidden', array(
                 'mapped' => false,
                 'data' => 'type',
             ));
-            $form->add('typeid', HiddenType::class, array(
+            $form->add('typeid', 'hidden', array(
                 'mapped' => false,
                 'data' => $typeid,
             ));
@@ -131,7 +127,7 @@ class InscriptionPubliqueController extends Controller
         // exit(\Doctrine\Common\Util\Debug::dump($form->isValid()));
 
         // formulaire valide
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isValid()) {
 
 
             //FORMULAIRE SPECIAL
@@ -243,7 +239,7 @@ class InscriptionPubliqueController extends Controller
             'em' => $this->getDoctrine()->getManager(),
         ));
 
-        $form->add('submit', SubmitType::class, array('label' => "Valider"));
+        $form->add('submit', 'submit', array('label' => "Valider"));
 
         return $form;
     }
