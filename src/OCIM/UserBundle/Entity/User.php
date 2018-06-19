@@ -4,42 +4,67 @@ namespace OCIM\UserBundle\Entity;
 
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\Role\Role; 
+use Symfony\Component\Security\Core\Role\Role;
+use FOS\UserBundle\Model\User as BaseUser;
+use FR3D\LdapBundle\Model\LdapUserInterface as LdapUserInterface;
 
 /**
  * User
  */
-class User implements UserInterface
+class User extends BaseUser implements LdapUserInterface
 {
     /**
      * @var integer
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      */
-    private $nom;
+    protected $dn;
 
     /**
      * @var string
      */
-    private $prenom;
+    protected $name;
 
     /**
      * @var string
      */
-    private $mail;
+    protected $language;
 
     /**
      * @var string
      */
-    private $password;
+    protected $nom;
+
+    /*
+     * @var string
+     */
+    protected $prenom;
+
+    /**
+     * @var string
+     */
+//    private $mail;
+
+    /**
+     * @var string
+     */
+  //  private $mdp;
 
     /**
      * @var boolean
      */
-    private $admin;
+ //   private $admin;
+
+    public function __construct()
+    {
+        parent::__construct();
+        if (empty($this->roles)) {
+            $this->roles[] = 'ROLE_USER';
+        }
+    }
 
 
     /**
@@ -47,102 +72,165 @@ class User implements UserInterface
      *
      * @return integer 
      */
-    public function getId()
+  //  public function getId()
+    //{
+      //  return $this->id;
+   // }
+
+    /**
+     * Set dn
+     *
+     * @param string $dn
+     * @return User
+     */
+    public function setDn($dn)
     {
-        return $this->id;
+        $this->dn = $dn;
+
+//        return $this;
     }
 
     /**
-     * Set nom
+     * Get dn
      *
-     * @param string $nom
-     * @return User
+     * @return string
      */
-    public function setNom($nom)
+    public function getDn()
+    {
+        return $this->dn;
+    }
+
+ public function setNom($nom)
     {
         $this->nom = $nom;
 
-        return $this;
+//        return $this;
     }
 
     /**
-     * Get nom
+     * Get dn
      *
-     * @return string 
+     * @return string
      */
     public function getNom()
     {
         return $this->nom;
     }
 
+
+
     /**
-     * Set prenom
-     *
-     * @param string $prenom
-     * @return User
+     * 
      */
-    public function setPrenom($prenom)
+     public function setPrenom($prenom)
     {
         $this->prenom = $prenom;
 
-        return $this;
+//        return $this;
     }
 
     /**
-     * Get prenom
+     * Get dn
      *
-     * @return string 
+     * @return string
      */
     public function getPrenom()
     {
         return $this->prenom;
     }
 
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return User
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+  //      return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+  //  public function getName()
+    //{
+      //  return $this->name;
+  //  }
+
+    /**
+     * Set language
+     *
+     * @param string $language
+     * @return User
+     */
+    public function setLanguage($language)
+    {
+        $this->language = $language;
+
+    //    return $this;
+    }
+
+    /**
+     * Get language
+     *
+     * @return string
+     */
+//    public function getLanguage()
+  //  {
+    //    return $this->language;
+  //  }
+
     /**
      * Set mail
      *
-     * @param string $mail
+     * @param string @mail
      * @return User
      */
-    public function setMail($mail)
-    {
-        $this->mail = $mail;
+    //public function setMail($mail)
+ //   {
+   //     $this->mail = $mail;
 
-        return $this;
-    }
+     //   return $this;
+  //  }
 
     /**
      * Get mail
      *
-     * @return string 
+     * @return string
      */
-    public function getMail()
-    {
-        return $this->mail;
-    }
+  //  public function getMail()
+   // {
+     //   return $this->mail;
+  //  }
 
     /**
-     * Set password
+     * Set mdp
      *
-     * @param string $password
+     * @param string $mdp
      * @return User
      */
-    public function setPassword($password)
-    {
-        $this->password = base64_encode(hash('sha512', $password, true));
+//    public function setMdp($mdp)
+  //  {
+    //    $this->mdp = base64_encode(hash('sha512', $mdp, true));
 
-        return $this;
-    }
+      //  return $this;
+   // }
 
     /**
-     * Get password
+     * Get mdp
      *
      * @return string 
      */
-    public function getPassword()
-    {
-        return $this->password;
-    }
+   // public function getMdp()
+    //{
+      //  return $this->mdp;
+    //}
 
     /**
      * Set admin
@@ -150,43 +238,43 @@ class User implements UserInterface
      * @param boolean $admin
      * @return User
      */
-    public function setAdmin($admin)
-    {
-        $this->admin = $admin;
+//    public function setAdmin($admin)
+  //  {
+    //    $this->admin = $admin;
 
-        return $this;
-    }
+      //  return $this;
+  //  }
 
     /**
      * Get admin
      *
      * @return boolean 
      */
-    public function getAdmin()
-    {
-        return $this->admin;
-    }
+  //  public function getAdmin()
+    //{
+      //  return $this->admin;
+ //   }
 
-	public function getUsername(){
-		return $this->getLogin();
-	}
+//	public function getUsername(){
+//		return $this->getLogin();
+//	}
 
-	public function getSalt(){
-		return "";
-	}
+//	public function getSalt(){
+//		return "";
+//	}
 
-	public function getRoles(){
-		return array(new Role("ROLE_ADMIN"));
-	}
+//	public function getRoles(){
+//		return array(new Role("ROLE_ADMIN"));
+//	}
 
-	public function eraseCredentials(){
+//	public function eraseCredentials(){
 
-	}
+//	}
 
     /**
      * @var string
      */
-    private $login;
+  //  private $login;
 
 
     /**
@@ -195,20 +283,20 @@ class User implements UserInterface
      * @param string $login
      * @return User
      */
-    public function setLogin($login)
-    {
-        $this->login = $login;
+ //   public function setLogin($login)
+   // {
+     //   $this->login = $login;
 
-        return $this;
-    }
+       // return $this;
+  //  }
 
     /**
      * Get login
      *
      * @return string 
      */
-    public function getLogin()
-    {
-        return $this->login;
-    }
+ //   public function getLogin()
+   // {
+     //   return $this->login;
+  //  }
 }

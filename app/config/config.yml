@@ -1,6 +1,7 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+    - { resource: services.yml }
 
 framework:
     #esi:             ~
@@ -160,3 +161,26 @@ knp_snappy:
 services:
     Symfony\Bundle\AsseticBundle\AsseticBundle:
         public: true
+
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: OCIM\UserBundle\Entity\User
+    from_email:
+        address: '%mailer_user%'
+        sender_name: '%mailer_user%'
+
+fr3d_ldap:
+    driver:
+        host: webinscriptions.ocim.localhost
+        port: 389
+        username: 'cn=admin'
+    user:
+        baseDn: ou=user,dc=ocim,dc=fr
+        filter: (&(objectClass=person))
+        attributes:
+           - { ldap_attr: uid, user_method: setUsername }
+           - { ldap_attr: cn, user_method: setName }
+           - { ldap_attr: preferredlanguage, user_method: setLanguage }
+           - { ldap_attr: mail, user_method: setEmail }
+        

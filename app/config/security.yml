@@ -10,8 +10,15 @@ security:
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
-        main:
-            entity: {class: OCIM\UserBundle\Entity\User, property: login}
+        #main:
+         #   entity: {class: OCIM\UserBundle\Entity\User, property: login}
+        chain_provider:
+            chain:
+                providers: [fos_userbundle, fr3d_ldapbundle]
+        fr3d_ldapbundle:
+            id: fr3d_ldap.security.user.provider
+        fos_userbundle:
+            id: fos_user.user_provider.username
 
     firewalls:
         dev:
@@ -20,11 +27,17 @@ security:
 
         admin:
             pattern: ^/
-            anonymous:  ~
+            #anonymous:  ~
+            anonymous: true
+            fr3d_ldap: ~
             form_login:
                 check_path: /check
                 login_path: /connexion
                 use_forward: true
+                provider: fos_userbundle
+                #csrf_token_generator: security.csrf.token_manager
+                always_use_default_target_path: true
+                default_target_path: /
             logout:
                 path:   /deconnexion
                 target: /

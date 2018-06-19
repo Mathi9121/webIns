@@ -18,7 +18,9 @@ class AppKernel extends Kernel
             new OCIM\UserBundle\OCIMUserBundle(),
             new OCIM\ExportBundle\OCIMExportBundle(),
             new OCIM\ContactsBundle\OCIMContactsBundle(),
-			      new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
+            new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
+            new FR3D\LdapBundle\FR3DLdapBundle(),
         );
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();

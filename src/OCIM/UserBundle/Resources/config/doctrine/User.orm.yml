@@ -9,19 +9,13 @@ OCIM\UserBundle\Entity\User:
             generator:
                 strategy: AUTO
     fields:
-        nom:
+        dn:
             type: string
             length: 255
-        prenom:
+        name:
             type: string
             length: 255
-        login:
-            type: string
-            length: 255
-        mail:
-            type: string
-            length: 255
-        password:
+        language:
             type: string
             length: 255
     lifecycleCallbacks: {  }
