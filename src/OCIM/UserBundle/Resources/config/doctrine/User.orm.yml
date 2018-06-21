@@ -18,4 +18,16 @@ OCIM\UserBundle\Entity\User:
         language:
             type: string
             length: 255
+        nom:
+            type: string
+            length: 255
+        prenom:
+            type: string
+            length: 255
+        login:
+            type: string
+            length: 255
+        mail:
+            type: string
+            length: 255
     lifecycleCallbacks: {  }

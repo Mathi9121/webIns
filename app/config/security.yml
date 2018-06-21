@@ -36,6 +36,7 @@ security:
                 use_forward: true
                 provider: fos_userbundle
                 #csrf_token_generator: security.csrf.token_manager
+                #dn_string: 'cn={username},dc=ocim,dc=fr'
                 always_use_default_target_path: true
                 default_target_path: /
             logout:

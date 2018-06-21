@@ -46,7 +46,7 @@ class User extends BaseUser implements LdapUserInterface
     /**
      * @var string
      */
-//    private $mail;
+    protected $mail;
 
     /**
      * @var string
@@ -100,15 +100,19 @@ class User extends BaseUser implements LdapUserInterface
         return $this->dn;
     }
 
- public function setNom($nom)
+    /**
+     * Set nom
+     *
+     * @param string nom
+     * @return User
+     */
+    public function setNom($nom)
     {
         $this->nom = $nom;
-
-//        return $this;
     }
 
     /**
-     * Get dn
+     * Get nom
      *
      * @return string
      */
@@ -117,10 +121,11 @@ class User extends BaseUser implements LdapUserInterface
         return $this->nom;
     }
 
-
-
     /**
-     * 
+     * Set prenom
+     *
+     * @param string $prenom
+     * @return User
      */
      public function setPrenom($prenom)
     {
@@ -130,7 +135,7 @@ class User extends BaseUser implements LdapUserInterface
     }
 
     /**
-     * Get dn
+     * Get prenom
      *
      * @return string
      */
@@ -192,22 +197,22 @@ class User extends BaseUser implements LdapUserInterface
      * @param string @mail
      * @return User
      */
-    //public function setMail($mail)
- //   {
-   //     $this->mail = $mail;
+    public function setMail($mail)
+    {
+        $this->mail = $mail;
 
      //   return $this;
-  //  }
+    }
 
     /**
      * Get mail
      *
      * @return string
      */
-  //  public function getMail()
-   // {
-     //   return $this->mail;
-  //  }
+    public function getMail()
+    {
+        return $this->mail;
+    }
 
     /**
      * Set mdp
@@ -274,7 +279,7 @@ class User extends BaseUser implements LdapUserInterface
     /**
      * @var string
      */
-  //  private $login;
+    protected $login;
 
 
     /**
@@ -283,20 +288,20 @@ class User extends BaseUser implements LdapUserInterface
      * @param string $login
      * @return User
      */
- //   public function setLogin($login)
-   // {
-     //   $this->login = $login;
+    public function setLogin($login)
+    {
+        $this->login = $login;
 
-       // return $this;
-  //  }
+      //  return $this;
+    }
 
     /**
      * Get login
      *
-     * @return string 
+     * @return string
      */
- //   public function getLogin()
-   // {
-     //   return $this->login;
-  //  }
+    public function getLogin()
+    {
+        return $this->login;
+    }
 }
