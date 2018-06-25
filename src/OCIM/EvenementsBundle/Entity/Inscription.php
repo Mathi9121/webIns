@@ -659,7 +659,7 @@ class Inscription
      * 
      * @return boolean
      */
-    public function getAccordListe()
+    public function getAccordPersonnel()
     {
         return $this->accordPersonnel;
     }

@@ -131,6 +131,7 @@ class InscriptionType extends AbstractType
 					'Autre' => 'Autre',
 				),
 				'label' => 'Organisme :',
+                                'required' => false,
 			))
 			->addEventListener(
 				FormEvents::POST_SUBMIT,
