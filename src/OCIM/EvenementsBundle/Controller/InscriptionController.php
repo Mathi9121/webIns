@@ -93,7 +93,8 @@ class InscriptionController extends Controller
     $intervenant->setCivilite($stagiaire->getCivilite());
     $intervenant->setPrenom($stagiaire->getPrenom());
     $intervenant->setFonction($stagiaire->getFonction());
-    $intervenant->setTel($stagiaire->getTel());
+    $intervenant->setTelFixe($stagiaire->getTelFixe());
+    $intervenant->setTelPortable($stagiaire->getTelPortable());
     $intervenant->setMail($stagiaire->getMail());
 
     $adresse->setNomStructure($structure->getNomStructure());

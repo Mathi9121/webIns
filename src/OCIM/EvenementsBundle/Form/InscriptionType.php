@@ -119,7 +119,19 @@ class InscriptionType extends AbstractType
 				'required' => false,
 				'em' => $entityManager
 			))
-
+			->add('raisonAnnulation', TextareaType::class, array(
+				'attr' => array("class"=>"width-100", 'rows'=> 5),
+				'required' => false,
+			))
+			->add('organisme', ChoiceType::class, array(
+				'choices' => array(
+					'OPCA' => 'OPCA',
+					'ETA' => 'ETA',
+					'Prise en charge' => 'Prise en charge',
+					'Autre' => 'Autre',
+				),
+				'label' => 'Organisme :',
+			))
 			->addEventListener(
 				FormEvents::POST_SUBMIT,
 				function(FormEvent $event) {

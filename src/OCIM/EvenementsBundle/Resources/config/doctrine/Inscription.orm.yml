@@ -71,5 +71,21 @@ OCIM\EvenementsBundle\Entity\Inscription:
         provenancePCST:
             type: boolean
             nullable: true
+        organisme:
+            type: string
+            length: 255
+            nullable: true
+        adhererListe:
+            type: boolean
+            nullable: true
+        accordListe:
+            type: boolean
+            nullable: true
+        accordPersonnel:
+            type: boolean
+            nullable: true
+        raisonAnnulation:
+            type: text
+            nullable: true
     lifecycleCallbacks:
         prePersist: [ onPrePersist ]

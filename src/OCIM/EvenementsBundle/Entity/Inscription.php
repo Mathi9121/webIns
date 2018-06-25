@@ -567,4 +567,139 @@ class Inscription
     {
         return $this->statutFinancement;
     }
+
+    /**
+     * @var string
+     */
+    private $organisme;
+
+    /**
+     * Get organisme
+     * 
+     * @return string
+     */
+    public function getOrganisme()
+    {
+        return $this->organisme;
+    }
+
+    /**
+     * Set organisme
+     * 
+     * @param string $organisme
+     * @return Inscription
+     */
+    public function setOrganisme($organisme)
+    {
+        $this->organisme = $organisme;
+        return $this;
+    }
+
+    /**
+     * @var boolean
+     */
+    private $adhererListe;
+
+    /**
+     * Get adhererListe
+     * 
+     * @return boolean
+     */
+    public function getAdhererListe()
+    {
+        return $this->adhererListe;
+    }
+
+    /**
+     * Set adhererListe
+     * 
+     * @param boolean $adhererListe
+     * @return Inscription
+     */
+    public function setAdhererListe($adhererListe)
+    {
+        $this->adhererListe = $adhererListe;
+        return $this;
+    }
+
+    /**
+     * @var boolean
+     */
+    private $accordListe;
+
+    /**
+     * Get accordListe
+     * 
+     * @return boolean
+     */
+    public function getAccordListe()
+    {
+        return $this->accordListe;
+    }
+
+    /**
+     * Set accordListe
+     * 
+     * @param boolean
+     * @return Inscription
+     */
+    public function setAccordListe($accordListe)
+    {
+        $this->accordListe = $accordListe;
+        return $this;
+    }
+
+    /**
+     * @var boolean
+     */
+    private $accordPersonnel;
+
+    /**
+     * Get accordPersonnel
+     * 
+     * @return boolean
+     */
+    public function getAccordListe()
+    {
+        return $this->accordPersonnel;
+    }
+
+    /**
+     * Set accordPersonnel
+     * 
+     * @param boolean
+     * @return Inscription
+     */
+    public function setAccordPersonnel($accordPersonnel)
+    {
+        $this->accordPersonnel = $accordPersonnel;
+        return $this;
+    }
+
+    /**
+     * @var string
+     */
+    private $raisonAnnulation;
+
+    /**
+     * Get raisonAnnulation
+     * 
+     * @return string
+     */
+    public function getRaisonAnnulation()
+    {
+        return $this->raisonAnnulation;
+    }
+
+    /**
+     * Set raisonAnnulation
+     * 
+     * @param string
+     * @return Inscription
+     */
+    public function setRaisonAnnulation($raisonAnnulation)
+    {
+        $this->raisonAnnulation = $raisonAnnulation;
+        return $this;
+    }
 }

@@ -12,6 +12,7 @@ use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use OCIM\ContactsBundle\Entity\Stagiaire;
 use OCIM\EvenementsBundle\Entity\Inscription;
@@ -78,16 +79,16 @@ class InscriptionPubliqueType extends AbstractType
 						'required' => true,
 						'label' => "Fonction",
 					))
-					->add('tel', TextType::class, array(
+					->add('telFixe', TextType::class, array(
 						'attr' => array('class'=> 'width-100'),
-						'label' => 'Téléphone',
+						'label' => 'Téléphone Fixe',
 						'required' => true,
 					))
-					// ->add('fax', TextType::class, array(
-					// 	'required' => false,
-					// 	'attr' => array('class'=> 'width-100'),
-					// 	'required' => false,
-					// ))
+					->add('telPortable', TextType::class, array(
+					 	'required' => false,
+					 	'attr' => array('class'=> 'width-100'),
+						'label' => 'Téléphone Portable',
+					))
 					->add('mail', TextType::class, array(
 						'attr' => array('class'=> 'width-100'),
 						'label' => "Adresse Mail",
@@ -143,6 +144,21 @@ class InscriptionPubliqueType extends AbstractType
 							'checkMX' => true))
 					))
 			)
+			->add('adhererListe', CheckboxType::class, array(
+				'label' => 'Je donne mon accord pour recevoir l\'offre de formation de l\'OCIM',
+				'required' => false,
+				'mapped' => false,
+			))
+			->add('accordListe', CheckboxType::class, array(
+				'label' => "J'autorise la diffusion de mes coordonnées professionnelles aux personnes présentes lors de la formation OCIM.",
+				'required' => false,
+				'mapped' => false,
+			))
+			->add('accordPersonnel', CheckboxType::class, array(
+				'label' => "Accord personel administratif",
+				'required' => false,
+				'mapped' => false,
+			))
         ;
     }
 

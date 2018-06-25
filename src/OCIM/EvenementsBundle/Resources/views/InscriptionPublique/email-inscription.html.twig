@@ -34,8 +34,8 @@
 		<th>Vos informations de contacts</th>
 		<td>
 				Mail : {{inscription.stagiaire.mail}}<br/>
-				Tel : {{inscription.stagiaire.tel}}<br/>
-				{% if inscription.stagiaire.fax %}Fax : {{inscription.stagiaire.fax}}{% endif %}
+				{% if inscription.stagiaire.telFixe %}Tel Fixe: {{inscription.stagiaire.telFixe}}<br/>{% endif %}
+				{% if inscription.stagiaire.telPortable %}Tel Portable : {{inscription.stagiaire.telPortable}}{% endif %}
 		</td>
 	</tr>
 	<tr>

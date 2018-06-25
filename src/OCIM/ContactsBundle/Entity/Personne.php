@@ -38,7 +38,7 @@ class Personne
     /**
      * @var string
      */
-    private $tel;
+    private $telFixe;
 
     /**
      * @var string
@@ -153,26 +153,26 @@ class Personne
     }
 
     /**
-     * Set tel
+     * Set telFixe
      *
-     * @param string $tel
+     * @param string $telFixe
      * @return Personne
      */
-    public function setTel($tel)
+    public function setTelFixe($telFixe)
     {
-        $this->tel = $tel;
+        $this->telFixe = $telFixe;
 
         return $this;
     }
 
     /**
-     * Get tel
+     * Get telFixe
      *
      * @return string
      */
-    public function getTel()
+    public function getTelFixe()
     {
-        return $this->tel;
+        return $this->telFixe;
     }
 
     /**
@@ -208,31 +208,32 @@ class Personne
     /**
      * @var string
      */
-    private $fax;
+    private $telPortable;
 
 
     /**
-     * Set fax
+     * Set telPortable
      *
-     * @param string $fax
+     * @param string $telPortable
      * @return Personne
      */
-    public function setFax($fax)
+    public function setTelPortable($telPortable)
     {
-        $this->fax = $fax;
+        $this->telPortable = $telPortable;
 
         return $this;
     }
 
     /**
-     * Get fax
+     * Get telPortable
      *
      * @return string
      */
-    public function getFax()
+    public function getTelPortable()
     {
-        return $this->fax;
+        return $this->telPortable;
     }
+    
     /**
      * @var \OCIM\ContactsBundle\Entity\Adresse
      */
@@ -464,4 +465,5 @@ class Personne
     {
         $this->inscription->removeElement($inscription);
     }
+
 }

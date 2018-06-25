@@ -37,7 +37,8 @@ tinymce.init({
                   {text: "Nom", onclick: function() 				{editor.insertContent("{{ inscription.admin.nom }}"); }},
                   {text: "Prenom", onclick: function() 			{editor.insertContent("{{ inscription.admin.prenom }}"); }},
                   {text: "Fonction", onclick: function() 			{editor.insertContent("{{ inscription.admin.fonction }}"); }},
-                  {text: "Téléphone", onclick: function() 			{editor.insertContent("{{ inscription.admin.tel }}"); }},
+				  {text: "Téléphone Fixe", onclick: function() 			{editor.insertContent("{{ inscription.admin.telFixe }}"); }},
+				  {text: "Téléphone Portable", onclick:function() 			{editor.insertContent("{{ inscription.admin.telPortable }}"); }},
                   {text: "Mail", onclick: function() 			{editor.insertContent("{{ inscription.admin.mail }}"); }},
                   ]}
             ]
@@ -51,8 +52,8 @@ tinymce.init({
 				{text: 'Nom', onclick: function() 						{editor.insertContent("{{ inscription.stagiaire.nom }}"); }},
 				{text: 'Prenom', onclick: function() 					{editor.insertContent("{{ inscription.stagiaire.prenom }}"); }},
 				{text: 'Fonction', onclick: function() 					{editor.insertContent("{{ inscription.stagiaire.fonction }}"); }},
-				{text: 'Telephone', onclick: function() 				{editor.insertContent("{{ inscription.stagiaire.tel }}"); }},
-				{text: 'Fax', onclick: function() 						{editor.insertContent("{{ inscription.stagiaire.fax }}"); }},
+				{text: 'Téléphone Fixe', onclick: function() 			{editor.insertContent("{{ inscription.stagiaire.telFixe }}"); }},
+				{text: 'Téléphone Portable', onclick: function()		{editor.insertContent("{{ inscription.stagiaire.telPortable }}"); }},
 				{text: 'Mail', onclick: function() 						{editor.insertContent("{{ inscription.stagiaire.mail }}"); }},
 				{text: 'Nom Strucuture (adresse)', onclick: function()	{editor.insertContent("{{ inscription.stagiaire.adresse.nomStructure }}"); }},
 				{text: 'Adresse', onclick: function()					{editor.insertContent("{{ inscription.stagiaire.adresse.adresse }}"); }},

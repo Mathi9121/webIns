@@ -82,10 +82,12 @@ $(document).ready(function() {
                 <th>Adresse</th>
                 <th>Code Postal</th>
                 <th>Ville</th>
-                <th>Téléphone</th>
+                <th>Téléphone Fixe</th>
+                <th>Téléphone Portable</th>
                 <th>Mail</th>
                 <th>Type</th>
                 <th>Evenement</th>
+                <th>Année</th>
                 <th>Statut</th>
                 <th>Formule</th>
                 <th>Nom Financeur</th>
@@ -108,17 +110,25 @@ $(document).ready(function() {
                   <td>{{ (entity.adresse)? entity.adresse.adresse }}</td>
                   <td>{{ (entity.adresse)? entity.adresse.cP }}</td>
                   <td>{{ (entity.adresse)? entity.adresse.ville }}</td>
-                  <td style="white-space:nowrap">{{ entity.tel }}</td>
+                  <td style="white-space:nowrap">{{ entity.telFixe }}</td>
+                  <td style="white-space:nowrap">{{ entity.telPortable }}</td>
                   <td>{{ entity.mail }}</td>
                   <td>{{ entity.type }}</td>
                   <td>
                     {% if entity.type == "stagiaire" %}
                       {% for inscription in entity.inscription %}
-                        {{ inscription.evenementformule.evenement.intitule }}<br/>
+                        {{ inscription.evenementformule.evenement.intitule }} ({{ inscription.evenementformule.evenement.dateDebut|date("Y") }})<br/>
                       {% endfor %}
                     {% elseif entity.type == "intervenant" %}
                       {% for evenement in entity.evenements %}
-                        {{ evenement.intitule }}<br/>
+                        {{ evenement.intitule }} ({{ evenement.dateDebut|date("Y") }})<br/>
+                      {% endfor %}
+                    {% endif %}
+                  </td>
+                  <td>
+                    {% if entity.type == "stagiaire" %}
+                      {% for inscription in entity.inscription %}
+                        {{ inscription.evenementformule.evenement.dateDebut|date("Y") }}
                       {% endfor %}
                     {% endif %}
                   </td>

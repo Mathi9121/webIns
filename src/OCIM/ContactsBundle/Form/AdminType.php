@@ -43,11 +43,16 @@ class AdminType extends AbstractType
 				'attr' => array('class'=> 'width-100'),
 				'required' => false,
 			))
-            ->add('tel', TextType::class, array(
+            ->add('telFixe', TextType::class, array(
 				'attr' => array('class'=> 'width-100'),
-				'label' => 'Téléphone',
+				'label' => 'Téléphone Fixe',
 				'required' => false,
-			))
+            ))
+            ->add('telPortable', TextType::class, array(
+                'attr' => array('class' => 'width-100'),
+                'label' => 'Téléphone Portable',
+                'required' => false,
+            ))
             ->add('mail', TextType::class, array(
 				'attr' => array('class'=> 'width-100'),
 				'label' => 'Adresse Mail',

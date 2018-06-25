@@ -53,11 +53,11 @@ OCIM\ContactsBundle\Entity\Personne:
             type: string
             length: 255
             nullable: true
-        tel:
+        telFixe:
             type: string
             length: 255
             nullable: true
-        fax:
+        telPortable:
             type: string
             length: 255
             nullable: true

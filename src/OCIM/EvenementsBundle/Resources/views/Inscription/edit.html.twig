@@ -119,8 +119,8 @@
 			</div>
 			{{ form_row(form.stagiaire.prenom) }}
 			{{ form_row(form.stagiaire.fonction) }}
-			{{ form_row(form.stagiaire.tel) }}
-			{{ form_row(form.stagiaire.fax) }}
+			{{ form_row(form.stagiaire.telFixe) }}
+			{{ form_row(form.stagiaire.telPortable) }}
 			{{ form_row(form.stagiaire.mail) }}
 
 		</div>
@@ -168,7 +168,8 @@
 			</div>
 			{{ form_row(form.admin.prenom) }}
 			{{ form_row(form.admin.fonction) }}
-			{{ form_row(form.admin.tel) }}
+			{{ form_row(form.admin.telFixe) }}
+			{{ form_row(form.admin.telPortable) }}
 			{{ form_row(form.admin.mail) }}
 
 		</div>
@@ -213,27 +214,40 @@
 
 
 <div class="units-row">
-	<div class="panel unit-50">
-		<div class="header">
-			<span class="titre">Signataire</span>
-				<span class="controls right group">
+	<div class="unit-50">
+		<div class="panel style='margin-bottom:25px;'">
+			<div class="header">
+				<span class="titre">Signataire</span>
+					<span class="controls right group">
 
-				</span>
-		</div>
-
-		<div class="panel-body">
-			<div class="units-row end">
-				<div class="unit-20">
-					{{ form_row(form.signataire.civilite) }}
-				</div>
-				<div class="unit-80">
-					{{ form_row(form.signataire.nom) }}
-				</div>
+					</span>
 			</div>
-			{{ form_row(form.signataire.prenom) }}
-			{{ form_row(form.signataire.fonction) }}
-			{{ form_row(form.signataire.mail) }}
+
+			<div class="panel-body">
+				<div class="units-row end">
+					<div class="unit-20">
+						{{ form_row(form.signataire.civilite) }}
+					</div>
+					<div class="unit-80">
+						{{ form_row(form.signataire.nom) }}
+					</div>
+				</div>
+				{{ form_row(form.signataire.prenom) }}
+				{{ form_row(form.signataire.fonction) }}
+				{{ form_row(form.signataire.mail) }}
+			</div>
 		</div>
+
+		<div class="panel">
+			<div class="header">
+				<span class="titre">Raisons d'annulation</span>
+				<span class="controls right group"></span>
+			</div>
+			<div class=panel-body">
+				{{ form_row(form.raisonAnnulation) }}
+			</div>
+		</div>
+		
 
 	</div>
 	<div class="panel unit-50">
@@ -244,7 +258,12 @@
 				</span>
 		</div>
 		<div class="panel-body">
-			{{ form_row(form.statutFinancement) }}
+			<div class="unit-50">
+				{{ form_row(form.statutFinancement) }}
+			</div>
+			<div class="unit-50">
+				{{ form_row(form.organisme) }}
+			</div>
 			{{ form_row(form.signataire.adresse.nomStructure) }}
 			{{ form_row(form.signataire.adresse.adresse) }}
 			{{ form_row(form.signataire.adresse.adresseComplement) }}

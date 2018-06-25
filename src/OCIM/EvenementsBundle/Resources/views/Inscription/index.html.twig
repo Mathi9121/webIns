@@ -137,7 +137,8 @@
 				<th class="insc info"><span>Adresse</span></th>
 				<th class="insc info"><span>CP</span></th>
 				<th class="insc info"><span>Ville</span></th>
-				<th class="insc info"><span>Téléphone</span></th>
+				<th class="insc info"><span>Téléphone Fixe</span></th>
+				<th class="insc info"><span>Téléphone Portable></th>
 				<th class="insc info"><span>Mail Stagiaire</span></th>
 				<th class="insc info"><span>Mail Admin</span></th>
 				<th class="insc info"><span>Formule</span></th>
@@ -167,7 +168,8 @@
 						<td> {{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.adresse }}</td>
 						<td> {{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.cP }}</td>
 						<td> {{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.ville }}</td>
-						<td> {{ entity.stagiaire.tel }}</td>
+						<td> {{ entity.stagiaire.telFixe }}</td>
+						<td> {{ entity.stagiaire.telPortable }} </td>
 						<td> <a href="mailto:{{ entity.stagiaire.mail }}">{{ entity.stagiaire.mail }}</a></td>
 						<td> <a href="mailto:{{ (entity.admin)? entity.admin.mail }}">{{ (entity.admin)? entity.admin.mail }}</a></td>
 						<td class="inscformule" data-idformule="{{ entity.evenementFormule.formule.id }}"><span><abbr title="{{ entity.evenementFormule.formule }}">{{ entity.evenementFormule.formule.tarif }} {{ (entity.evenementFormule.formule.nuit)? "<i class='fa fa-moon-o'></i>" }}</abbr></span></td>
@@ -228,7 +230,8 @@
 				<th class="insc contact"><span>Adresse</span></th>
 				<th class="insc contact"><span>CP</span></th>
 				<th class="insc contact"><span>Ville</span></th>
-				<th class="insc contact"><span>Téléphone</span></th>
+				<th class="insc contact"><span>Téléphone Fixe</span></th>
+				<th class="insc contact"><span>Téléphone Portable</span></th>
 				<th class="insc contact"><span>Mail Stagiaire</span></th>
 			</tr>
 		</thead>
@@ -253,7 +256,8 @@
 						<td class="insc contact"><span>{{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.adresse }}</span></td>
 						<td class="insc contact"><span>{{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.CP }}</span></td>
 						<td class="insc contact"><span>{{ (entity.stagiaire.adresse)? entity.stagiaire.adresse.ville }}</span></td>
-						<td class="insc contact">{{ entity.stagiaire.tel }}</td>
+						<td class="insc contact">{{ entity.stagiaire.telFixe }}</td>
+						<td class="insc contact">{{ entity.stagiaire.telPortable }}</td>
 						<td class="insc contact"><a href="mailto:{{ entity.stagiaire.mail}}">{{ entity.stagiaire.mail}}</a></td>
       </tr>
         {% endfor %}
@@ -552,7 +556,8 @@
 					<th>Adresse</th>
 					<th>CP</th>
 					<th>Ville</th>
-					<th>Téléphone</th>
+					<th>Téléphone Fixe</th>
+					<th>Téléphone Portable</th>
 					<th>Email</th>
 					<th>Tags</th>
 					<th>Commentaire</th>
@@ -569,7 +574,8 @@
 						<td>{{ (intervenant.adresse is not null)? intervenant.adresse.adresse }}</td>
 						<td>{{ (intervenant.adresse is not null)? intervenant.adresse.cP }}</td>
 						<td>{{ (intervenant.adresse is not null)? intervenant.adresse.ville }}</td>
-						<td>{{ intervenant.tel }}</td>
+						<td>{{ intervenant.telFixe }}</td>
+						<td>{{ intervenant.telPortable }}</td>
 						<td><a href="mailto:{{ intervenant.mail }}">{{ intervenant.mail }}</a></td>
 						<td>{{ (intervenant.adresse is not null)? intervenant.adresse.tags|join(', ') }}</td>
 						<td>{{ intervenant.commentaire }}</td>
@@ -602,7 +608,8 @@
 						<th>Nom</th>
 						<th>Prénom</th>
 						<th>Fonction</th>
-						<th>Téléphone</th>
+						<th>Téléphone Fixe</th>
+						<th>Téléphone Portable</th>
 						<th>Email</th>
 						<th>Structure</th>
 						<th>Commentaire</th>
@@ -616,7 +623,8 @@
 							<td>{{intervenant.nom|capitalize}}</td>
 							<td>{{intervenant.prenom|capitalize}}</td>
 							<td>{{intervenant.fonction}}</td>
-							<td>{{intervenant.tel}}</td>
+							<td>{{intervenant.telFixe}}</td>
+							<td>{{intervenant.telPortable}}</td>
 							<td><a href="mailto:{{intervenant.mail}}">{{intervenant.mail}}</a></td>
 							<td>{{intervenant.adresse.nomStructure}}</td>
 							<td>{{intervenant.commentaire}}</td>

@@ -45,10 +45,15 @@ class IntervenantType extends AbstractType
 					'attr' => array('class'=> 'width-100'),
 					'required' => false
 				))
-				->add('tel', TextType::class, array(
+				->add('telFixe', TextType::class, array(
 					'attr' => array('class'=> 'width-100'),
 					'required' => false,
-					'label' => 'Téléphone',
+					'label' => 'Téléphone Fixe',
+				))
+				->add('telPortable', TextType::class, array(
+					'attr' => array('class' => 'width-100'),
+					'required' => false,
+					'label' => 'Téléphone Portable',
 				))
 				->add('mail', TextType::class, array(
 					'attr' => array('class'=> 'width-100'),

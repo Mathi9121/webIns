@@ -48,15 +48,15 @@ class PersonneType extends AbstractType
 				'required' => false,
 				'label' => "Fonction",
 			))
-            ->add('tel', TextType::class, array(
+            ->add('telFixe', TextType::class, array(
 				'attr' => array('class'=> 'width-100'),
-				'label' => 'Téléphone',
+				'label' => 'Téléphone Fixe',
 				'required' => false,
 			))
-            ->add('fax', TextType::class, array(
+            ->add('telPortable', TextType::class, array(
 				'required' => false,
 				'attr' => array('class'=> 'width-100'),
-				'required' => false,
+				'label' => 'Téléphone portable',
 			))
             ->add('mail', TextType::class, array(
 				'attr' => array('class'=> 'width-100'),

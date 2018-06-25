@@ -98,6 +98,17 @@
 		</div>
 	</div>
 
+	<div class="unit-50 panel">
+		<div class="header">
+			<span class="titre">Raison d'annulation</span>
+			<span class="controls right group"></span
+		</div>
+		
+		<div class="panel-body">
+			<p class="end"><i class="fa fa-quote-left fa-2x" style="color: #f1f1f1"></i> {{ entity.raisonAnnulation }} <i class="fa fa-quote-right fa-2x" style="color: #f1f1f1"></i></p>
+		</div>
+	</div>
+
 </div>
 
 
@@ -117,14 +128,14 @@
 			<p class="text-centered">
 				<em>{{entity.stagiaire.fonction}}</em>
 			</p>
-			{% if entity.stagiaire.tel %}
+			{% if entity.stagiaire.telFixe %}
 			<p class="text-centered end">
-				<i class="fa fa-phone"></i> {{entity.stagiaire.tel}}
+				<i class="fa fa-phone"></i> {{entity.stagiaire.telFixe}}
 			</p>
 			{% endif %}
-			{% if entity.stagiaire.fax %}
+			{% if entity.stagiaire.telPortable %}
 			<p class="text-centered end">
-				<i class="fa fa-fax"></i> {{entity.stagiaire.fax}}
+				<i class="fa fa-mobile"></i> {{entity.stagiaire.telPortable}}
 			</p>
 			{% endif %}
 			{% if entity.stagiaire.mail %}
@@ -180,9 +191,14 @@
 				<em>{{entity.admin.fonction}}</em>
 			</p>
 			{% endif %}
-			{% if entity.admin.tel %}
+			{% if entity.admin.telFixe %}
 			<p class="text-centered end">
-				<i class="fa fa-phone"></i> {{entity.admin.tel}}
+				<i class="fa fa-phone"></i> {{entity.admin.telFixe}}
+			</p>
+			{% endif %}
+			{% if entity.admin.telPortable %}
+			<p class="text-centered end">
+				<i class="fa fa-mobile"></i> {{entity.admin.telPortable}}
 			</p>
 			{% endif %}
 			{% if entity.admin.mail %}
@@ -227,6 +243,7 @@
 		</div>
 
 		<div class="panel-body">
+
 		{% if (entity.signataire)and(entity.signataire.adresse) %}
 		<span class="label label-outline">{{entity.signataire.adresse.type}}</span>
 			<address>
@@ -238,7 +255,9 @@
 				{{entity.signataire.adresse.pays}}
 			</address>
 
-
+			<div>
+				<strong>Organisme :</strong> {{ entity.organisme }}
+			</div>
 
 			<p> <strong>Tags :</strong>
 				{% for tag in entity.signataire.adresse.tags %}
