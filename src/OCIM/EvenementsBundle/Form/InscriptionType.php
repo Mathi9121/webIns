@@ -154,13 +154,15 @@ class InscriptionType extends AbstractType
         ));
 		$resolver->setRequired(array(
             'getId',
+            'getIdEdit',
             'em',
         ));
 
         $resolver->setAllowedTypes('em', 'Doctrine\Common\Persistence\ObjectManager');
         $resolver->setAllowedTypes('getId', 'string');
+        $resolver->setAllowedTypes('getIdEdit', 'string');
 	}
-	
+
 	/**
      * @return getBlockPrefix()
      */

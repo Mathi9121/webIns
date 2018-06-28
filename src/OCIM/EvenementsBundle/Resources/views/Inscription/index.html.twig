@@ -20,8 +20,9 @@
 	'@OCIMEvenementsBundle/Resources/public/js/Inscription/reponseschampPerso.js'
 	'%kernel.root_dir%/Resources/public/js/popup.js'
 	'@OCIMEvenementsBundle/Resources/public/js/Inscription/maj-statuts.js'
-	'@OCIMEvenementsBundle/Resources/public/js/Inscription/proposition-export.js' %}
-    	<script type="text/javascript" src="{{ asset_url }}"></script>
+	'@OCIMEvenementsBundle/Resources/public/js/Inscription/proposition-export.js'
+        '@OCIMEvenementsBundle/Resources/public/js/Inscription/onglet.js' %}
+  <script type="text/javascript" src="{{ asset_url }}"></script>
 {% endjavascripts %}
 {% endblock %}
 
@@ -109,8 +110,8 @@
 
 <div class="panel">
 	<nav class="nav-tabs" data-tools="tabs" data-equals="true" style="padding-left: 25px;">
-		<ul>
-			<li class="active"><a href="#general">informations Générales</a></li>
+		<ul class="onglet">
+			<li><a href="#general">informations Générales</a></li>
 			<li><a href="#contact">Contacts</a></li>
 			<li><a href="#champPerso">Logistique</a></li>
 			<li><a href="#convention">Convention</a></li>

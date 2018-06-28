@@ -15,6 +15,7 @@ use OCIM\ContactsBundle\Entity\Adresse;
 use OCIM\EvenementsBundle\Entity\ReponsesChampPerso;
 
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 /**
 * Inscription controller.
@@ -251,6 +252,7 @@ class InscriptionController extends Controller
       'action' => $this->generateUrl('inscription_create', array('idevenement'=>$idevenement)),
       'method' => 'POST',
       'em' => $this->getDoctrine()->getManager(),
+      'getIdEdit' => '',
     ));
 
     $form->add('submit', SubmitType::class, array('label' => 'Ajouter le stagiaire', 'attr'=> array('class' => 'btn btn-green btn-save')
@@ -320,7 +322,6 @@ class InscriptionController extends Controller
     if (!$entity) {
       throw $this->createNotFoundException('Unable to find Inscription entity.');
     }
-
     $editForm = $this->createEditForm($entity, $idevenement);
     $deleteForm = $this->createDeleteForm($id, $idevenement);
 
@@ -343,10 +344,12 @@ class InscriptionController extends Controller
   */
   private function createEditForm(Inscription $entity, $idevenement)
   {
-    $form = $this->createForm(new InscriptionType($idevenement), $entity, array(
+    $form = $this->createForm(InscriptionType::class, $entity, array(
+      'getId' => '',
       'action' => $this->generateUrl('inscription_update', array('id' => $entity->getId(), 'idevenement'=> $idevenement)),
       'method' => 'PUT',
       'em' => $this->getDoctrine()->getManager(),
+      'getIdEdit' => $idevenement,
     ));
 
     $form->add('submit', SubmitType::class, array('label' => 'Enregistrer', 'attr'=> array('class'=> 'btn btn-green btn-save'),));
@@ -375,7 +378,8 @@ class InscriptionController extends Controller
 
       $em->flush();
       $this->get('session')->getFlashBag()->add('notice','Modifications sauvegardées');
-      return $this->redirect($this->generateUrl('inscription', array('id' => $id, 'idevenement'=>$idevenement)));
+      //return $this->redirect($this->generateUrl('inscription', array('id' => $id, 'idevenement'=>$idevenement)));
+      return $this->redirect($_SERVER['HTTP_REFERER']);
     }
 
     $this->get('session')->getFlashBag()->add('error','Le formulaire contient des erreurs');

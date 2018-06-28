@@ -213,7 +213,7 @@
 		<div class="panel-body">
 			<table class="table-flat table-hovered">
 			{% for inscription in inscriptions %}
-				<tr data-href="{{ path('inscription', { 'idevenement': inscription.evenementformule.evenement.id, 'id': inscription.id }) }}">
+				 <tr data-href="{{ path('inscription', { 'idevenement': inscription.evenementformule.evenement.id, 'id': inscription.id }) }}">
 					<td>
 						{{inscription.stagiaire.nom}} {{inscription.stagiaire.prenom|capitalize}}
 						<span class="evenementchoisie hide">
