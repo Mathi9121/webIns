@@ -378,8 +378,7 @@ class InscriptionController extends Controller
 
       $em->flush();
       $this->get('session')->getFlashBag()->add('notice','Modifications sauvegardées');
-      //return $this->redirect($this->generateUrl('inscription', array('id' => $id, 'idevenement'=>$idevenement)));
-      return $this->redirect($_SERVER['HTTP_REFERER']);
+      return $this->redirect($this->generateUrl('inscription', array('id' => $id, 'idevenement'=>$idevenement)));
     }
 
     $this->get('session')->getFlashBag()->add('error','Le formulaire contient des erreurs');
