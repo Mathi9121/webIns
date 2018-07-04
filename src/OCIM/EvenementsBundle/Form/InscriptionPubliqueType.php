@@ -145,17 +145,17 @@ class InscriptionPubliqueType extends AbstractType
 					))
 			)
 			->add('adhererListe', CheckboxType::class, array(
-				'label' => 'Je donne mon accord pour recevoir l\'offre de formation de l\'OCIM',
+				'label' => 'Je donne mon accord pour recevoir l\'offre de formation de l\'OCIM.',
 				'required' => false,
 				'mapped' => false,
 			))
 			->add('accordListe', CheckboxType::class, array(
-				'label' => "J'autorise la diffusion de mes coordonnées professionnelles aux personnes présentes lors de la formation OCIM.",
+				'label' => 'J\'autorise la diffusion de mes coordonnées professionnelles aux personnes présentes lors de la formation OCIM.',
 				'required' => false,
 				'mapped' => false,
 			))
 			->add('accordPersonnel', CheckboxType::class, array(
-				'label' => "Accord personel administratif",
+				'label' => 'Accord personnel administratif',
 				'required' => false,
 				'mapped' => false,
 			))
