@@ -123,14 +123,16 @@ class InscriptionType extends AbstractType
 				'attr' => array("class"=>"width-100", 'rows'=> 5),
 				'required' => false,
 			))
-			->add('organisme', ChoiceType::class, array(
+			->add('financeur', ChoiceType::class, array(
 				'choices' => array(
-					'OPCA' => 'OPCA',
-					'ETA' => 'ETA',
-					'Prise en charge' => 'Prise en charge',
+					'Financement par des collectivités' => 'Financement par des collectivités',
+					'Financement privé' => 'Financement privé',
+					'Opca' => 'opca',
+                                        'Financement à titre individuelle (à ses propres frais)' => 'Financement à ses propres frais',
+                                        'Pôle emploi' => 'Pôle emploi',
 					'Autre' => 'Autre',
 				),
-				'label' => 'Organisme :',
+				'label' => 'Financeur :',
                                 'required' => false,
 			))
 			->addEventListener(

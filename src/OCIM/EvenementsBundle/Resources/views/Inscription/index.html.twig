@@ -442,6 +442,7 @@
 				<th class="insc info"><span>Prénom</span></th>
 				<th class="insc finance"><span>Structure stagiaire</span></th>
 				<th class="insc finance">Organisme Financeur</th>
+                                <th class="insc finance">Financeur</th>
 				<th class="insc finance">Adresse</th>
 				<th class="insc finance">CP</th>
 				<th class="insc finance">Ville</th>
@@ -477,6 +478,7 @@
 
 						{% if (entity.signataire is not null) and (entity.signataire.adresse is not null)%}
 							<td class="insc finance">{{ entity.signataire.adresse.nomStructure}}</td>
+                                                        <td class="insc finance">{{ (entity.financeur)? entity.financeur }}</td>
 							<td class="insc finance">{{ entity.signataire.adresse.adresse}}</td>
 							<td class="insc finance">{{ entity.signataire.adresse.cP}}</td>
 							<td class="insc finance">{{ entity.signataire.adresse.ville}}</td>

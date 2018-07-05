@@ -154,8 +154,8 @@ class InscriptionPubliqueType extends AbstractType
 				'required' => false,
 				'mapped' => false,
 			))
-			->add('accordPersonnel', CheckboxType::class, array(
-				'label' => 'Accord personnel administratif',
+			->add('accordOrganisme', CheckboxType::class, array(
+				'label' => 'Je donne mon accord pour recevoir l'\offre de formation de l\OCIM. (Organisme financeur)',
 				'required' => false,
 				'mapped' => false,
 			))

@@ -571,27 +571,27 @@ class Inscription
     /**
      * @var string
      */
-    private $organisme;
+    private $financeur;
 
     /**
-     * Get organisme
+     * Get financeur
      * 
      * @return string
      */
-    public function getOrganisme()
+    public function getFinanceur()
     {
-        return $this->organisme;
+        return $this->financeur;
     }
 
     /**
-     * Set organisme
+     * Set financeur
      * 
-     * @param string $organisme
+     * @param string $financeur
      * @return Inscription
      */
-    public function setOrganisme($organisme)
+    public function setFinanceur($financeur)
     {
-        $this->organisme = $organisme;
+        $this->financeur = $financeur;
         return $this;
     }
 
@@ -652,27 +652,27 @@ class Inscription
     /**
      * @var boolean
      */
-    private $accordPersonnel;
+    private $accordOrganisme;
 
     /**
-     * Get accordPersonnel
-     * 
+     * Get accordOrganisme
+     *
      * @return boolean
      */
-    public function getAccordPersonnel()
+    public function getAccordOrganisme()
     {
-        return $this->accordPersonnel;
+        return $this->accordOrganisme;
     }
 
     /**
-     * Set accordPersonnel
+     * Set accordOrganisme
      * 
      * @param boolean
      * @return Inscription
      */
-    public function setAccordPersonnel($accordPersonnel)
+    public function setAccordOrganisme($accordOrganisme)
     {
-        $this->accordPersonnel = $accordPersonnel;
+        $this->accordOrganisme = $accordOrganisme;
         return $this;
     }
 

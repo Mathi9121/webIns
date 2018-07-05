@@ -74,6 +74,11 @@ Commande pour installer les librairies nécessaires à Symfony, dans le dossier 
 
     composer install
 
+5) Création de la base de données
+---------------------------------
+
+    bin/console doctrine:schema:create 
+
 4) Mettre à jour la base de données
 -----------------------------------
 

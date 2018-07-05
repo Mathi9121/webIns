@@ -4,8 +4,8 @@
     Ajout du téléphone mobile des contacts
     Supprimer le champ fax
     Ajout des champs dans le formulaire d'inscription en ligne ainsi que dans le template 'Préinscription' :
-        - Je donne mon accord pour recevoir l'offre de formation de l'OCIM.
+        - Je donne mon accord pour recevoir l'offre de formation de l'OCIM. (pour le stagiaire)
         - J'autorise la diffusion de mes coordonnées professionnelles aux personnes présentes lors de la formation OCIM.
-        -
-    Ajout du type d'organisme financier (OPCA, )
+        - Je donne mon accord pour recevoir l'offre de formation de l'OCIM. (pour l'organisme financeur)
+    Ajout du financement (OPCA, Financement par des collectivités... )
     Ajout d'une catégorie pour la raison d'annulation à une formation

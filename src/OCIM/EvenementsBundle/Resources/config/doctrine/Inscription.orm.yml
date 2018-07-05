@@ -71,7 +71,7 @@ OCIM\EvenementsBundle\Entity\Inscription:
         provenancePCST:
             type: boolean
             nullable: true
-        organisme:
+        financeur:
             type: string
             length: 255
             nullable: true
@@ -81,7 +81,7 @@ OCIM\EvenementsBundle\Entity\Inscription:
         accordListe:
             type: boolean
             nullable: true
-        accordPersonnel:
+        accordOrganisme:
             type: boolean
             nullable: true
         raisonAnnulation:
