@@ -40,7 +40,7 @@ class InscriptionController extends Controller
     $champPerso = $em->getRepository('OCIMEvenementsBundle:ModeleChampPerso')->findModelesByIdEvenement($idevenement);
 
     //exit(\Doctrine\Common\Util\Debug::dump($champPerso));
-
+//    exit(\Doctrine\Common\Util\Debug::dump($idevenement));
     return $this->render('OCIMEvenementsBundle:Inscription:index.html.twig', array(
       'entities' => $entities,
       'evenement' => $evenement,
@@ -222,7 +222,7 @@ class InscriptionController extends Controller
       $entity->setOrdre($nouvelordre);
 
       //exit(\Doctrine\Common\Util\Debug::dump($entity->getSignataire()->getAdresse()->getStructure()));
-
+//      exit(\Doctrine\Common\Util\Debug::dump($idevenement));
       $em->persist($entity);
 
       $em->flush();
@@ -254,7 +254,6 @@ class InscriptionController extends Controller
       'em' => $this->getDoctrine()->getManager(),
       'getIdEdit' => '',
     ));
-
     $form->add('submit', SubmitType::class, array('label' => 'Ajouter le stagiaire', 'attr'=> array('class' => 'btn btn-green btn-save')
     ));
 
@@ -272,7 +271,7 @@ class InscriptionController extends Controller
     $em = $this->getDoctrine()->getManager();
     $evenement = $em->getRepository('OCIMEvenementsBundle:Evenement')->find($idevenement);
     $tags = $em->getRepository('OCIMContactsBundle:TagStructure')->findAll();
-
+//    exit(\Doctrine\Common\Util\Debug::dump($idevenement));
     return $this->render('OCIMEvenementsBundle:Inscription:new.html.twig', array(
       'entity' => $entity,
       'form'   => $form->createView(),

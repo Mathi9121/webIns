@@ -21,10 +21,10 @@ class InscriptionPubliqueType extends AbstractType
 {
 	private $idevenement;
 
-	public function __construct($idevenement)
+/*	public function __construct($idevenement)
     {
         $this->idevenement = $idevenement;
-    }
+    }*/
 
         /**
      * @param FormBuilderInterface $builder
@@ -33,7 +33,7 @@ class InscriptionPubliqueType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 		$entityManager = $options['em'];
-		$idevenement = $this->idevenement;
+		$idevenement = $options['getId'];
         $builder
 			->add('evenementformule', EntityType::class, array(
 				'class' => 'OCIM\EvenementsBundle\Entity\evenementFormule',
@@ -175,12 +175,14 @@ class InscriptionPubliqueType extends AbstractType
         ));
 
 		$resolver->setRequired(array(
+            'getId',
             'em',
         ));
 
         $resolver->setAllowedTypes('em', 'Doctrine\Common\Persistence\ObjectManager');
+        $resolver->setAllowedTypes('getId', 'string');
 	}
-	
+
 	/**
      * @return getBlockPrefix()
      */

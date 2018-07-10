@@ -23,10 +23,11 @@ class ChampPersoType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
+        $idevenement = $options['getId'];
         $builder
 			->add('modeles', CollectionType::class, array(
-                'entry_type' => new ModeleChampPersoType($this->idevenement),
+                'entry_type' => ModeleChampPersoType::class,
+                'entry_options' => array('getId' => $idevenement),
 				'allow_add' => true,
 				'allow_delete' => true,
 				));

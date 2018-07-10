@@ -28,7 +28,7 @@ class PersonneController extends Controller
         $entities = $em->getRepository('OCIMContactsBundle:Personne')->findAll(array(387, 388, 389, 390));
 
         //return new \Symfony\Component\HttpFoundation\Response (\Doctrine\Common\Util\Debug::dump($entities[0]->getInscription()[0]));
-
+//       exit(\Doctrine\Common\Util\Debug::dump($entities[0]->getInscription()[0]));
         return $this->render('OCIMContactsBundle:Personne:index.html.twig', array(
            'entities' => $entities,
         ));

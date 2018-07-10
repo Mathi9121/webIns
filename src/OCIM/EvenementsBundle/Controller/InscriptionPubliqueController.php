@@ -238,7 +238,8 @@ class InscriptionPubliqueController extends Controller
 
     private function createCreateForm(Inscription $entity, $idevenement)
     {
-        $form = $this->createForm(new InscriptionPubliqueType($idevenement), $entity, array(
+        $form = $this->createForm(InscriptionPubliqueType::class, $entity, array(
+            'getId' => $idevenement,
             'method' => 'POST',
             'em' => $this->getDoctrine()->getManager(),
         ));

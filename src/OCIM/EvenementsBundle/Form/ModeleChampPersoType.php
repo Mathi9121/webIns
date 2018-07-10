@@ -19,9 +19,9 @@ class ModeleChampPersoType extends AbstractType
 {
 	public $idevenement;
 
-	function __construct($idevenement){
-		$this->idevenement = $idevenement;
-	}
+//	function __construct($idevenement){
+//		$this->idevenement = $idevenement;
+//	}
 
         /**
      * @param FormBuilderInterface $builder
@@ -29,7 +29,7 @@ class ModeleChampPersoType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-		$idevenement = $this->idevenement;
+		$idevenement = $options['getId'];
         $builder
 			->add('ordre', HiddenType::class, array(
 				'attr' => array('class' => 'ordreModeles'),
@@ -51,7 +51,7 @@ class ModeleChampPersoType extends AbstractType
 					//'Date/Heure'	=> 'dateTime',
 				),
 				'choices_as_values' => true,
-				'empty_value' => 'Type de réponse',
+				'placeholder' => 'Type de réponse',
 				'required' => true,
 			))
 			->add('evenementFormule', EntityType::class, array(
@@ -83,6 +83,7 @@ class ModeleChampPersoType extends AbstractType
             'data_class' => ModeleChampPerso::class,
 			'attr' => array('class'=> 'forms'),
         ));
+        $resolver->setRequired(array('getId'));
 	}
 	
 	/**

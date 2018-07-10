@@ -80,7 +80,7 @@ class EvenementController extends Controller
      */
     public function createAction(Request $request)
     {
-        $classname = $this->get('request')->request->get('ocim_evenementsbundle_evenement');
+        $classname = $request->get('ocim_evenementsbundle_evenement');
         $classname = $classname['eventType'];
         $entity;
         switch ($classname) {

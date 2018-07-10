@@ -40,8 +40,14 @@ class InscriptionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 		$entityManager = $options['em'];
-
-		$idevenement = $this->idevenement;
+		if($options['getId'] != ''){
+		 $idevenement = $options['getId'];
+		}
+		else{
+		 $idevenement = $options['getIdEdit'];
+		}
+ //		$idevenement = $this->idevenement;
+//           exit($options['getIdEdit']);
         $builder
 			->add('stagiaire', PersonneType::class, array(
 				'data_class' => Stagiaire::class,
@@ -125,11 +131,12 @@ class InscriptionType extends AbstractType
 			))
 			->add('financeur', ChoiceType::class, array(
 				'choices' => array(
-					'Financement par des collectivités' => 'Financement par des collectivités',
-					'Financement privé' => 'Financement privé',
+					'Collectivités' => 'collectivités',
+					'Privé' => 'privé',
 					'Opca' => 'opca',
-                                        'Financement à titre individuelle (à ses propres frais)' => 'Financement à ses propres frais',
-                                        'Pôle emploi' => 'Pôle emploi',
+                                        'A titre individuelle' => 'à ses propres frais',
+                                        'Pôle emploi' => 'pôle emploi',
+                                        'Etat' => 'etat',
 					'Autre' => 'Autre',
 				),
 				'label' => 'Financeur :',
